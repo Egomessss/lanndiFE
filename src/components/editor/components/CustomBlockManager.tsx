@@ -91,7 +91,7 @@ export default function CustomBlockManager({
                             <div
                                 key={block.getId()}
                                 draggable
-                                className="flex h-10 w-full cursor-pointer items-center gap-2 rounded  border-solid border-gray-300 py-1 font-semibold transition-colors"
+                                className="flex h-10 w-full cursor-pointer items-center gap-2 rounded   py-1 font-semibold hover:bg-blue-500"
                                 onDragStart={(ev) =>
                                     dragStart(block, ev.nativeEvent)
                                 }
@@ -103,12 +103,12 @@ export default function CustomBlockManager({
                                         __html: block.getMedia()!,
                                     }}
                                 />
-                                <div
-                                    className="w-full text-center text-sm"
+                                <p
+                                    className="w-full text-start text-sm"
                                     title={block.getLabel()}
                                 >
                                     {block.getLabel()}
-                                </div>
+                                </p>
                             </div>
                         ))}
                     </div>

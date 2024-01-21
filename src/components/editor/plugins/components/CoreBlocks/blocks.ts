@@ -46,9 +46,9 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
    <path d='M5 19h4'></path>
    <path d='M5 5h4'></path>
 </svg>`,
-            content: `<div data-gjs-type='text'>
+            content: `
         <h1>${opts.labelHeading}</h1>
-      </div>`,
+     `,
         })
 
     editor.DomComponents.addType('link', {

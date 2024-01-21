@@ -30,7 +30,7 @@ export default function LayerItem({
     const layerRef = useRef<HTMLDivElement>(null)
     const [layerData, setLayerData] = useState(Layers.getLayerData(component))
 
-    const { open, selected, hovered, components, visible, name, locked } =
+    const {  open, selected, hovered, components, visible, name, locked } =
         layerData
     const componentsIds = components.map((cmp) => cmp.getId())
     const isDragging = draggingCmp === component
@@ -43,7 +43,7 @@ export default function LayerItem({
         if (layerRef.current) {
             ;(layerRef.current as any).__cmp = component
         }
-    }, [component])
+    }, [Layers, component, level])
 
     useEffect(() => {
         const up = (cmp: Component) => {

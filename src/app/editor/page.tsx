@@ -9,7 +9,7 @@ import { useState } from 'react'
 
 import zoomPlugin from '@/components/editor/plugins/utils/ZoomPlugin/zoomPlugin'
 
-import GjsEditor, { Canvas } from '@/components/editor/wrappers'
+import GjsEditor, { Canvas, WithEditor } from '@/components/editor/wrappers'
 import CoreBlocks from '@/components/editor/plugins/components/CoreBlocks'
 import MediaBlocks from '@/components/editor/plugins/components/MediaBlocks'
 import LayoutBlocks from '@/components/editor/plugins/components/LayoutBlocks'
@@ -20,8 +20,12 @@ import LayersAndPagesLeftSideBar from '@/components/editor/components/LayersAndP
 import BlockSideBar from '@/components/editor/components/BlockSideBar'
 import RightBar from '@/components/editor/components/RightBar'
 import TopBar from '@/components/editor/components/TopBar'
+import { starterTemplate, styleStarterTemplate } from '../../components/editor/templates/Starter'
+import FloatingBar from '@/components/editor/components/FloatingBar'
+
 
 export default function CustomEditor() {
+
     const onEditor = (editor: Editor) => {
         console.log('Editor loaded', { editor })
     }
@@ -49,16 +53,21 @@ export default function CustomEditor() {
             pages: [
                 {
                     name: 'Main Page',
-                    component: `<h1 id='random2'>Start Building Your Landing Page</h1><h2 class='random'>Start Building Your Landing Page</h2><h2 class='random3'>Start Building Your Landing Page</h2>`,
+                    component: starterTemplate,
+                    styles: styleStarterTemplate,
                 },
                 {
                     name: 'Test Page',
-                    component: `<h1>Start Building Your Landing Page</h1>`,
-                },
+                    component:
+                        `<h1>Start Building Your Landing Page</h1>`,
+                }
+                ,
                 {
                     name: 'Theme playground',
-                    component: `<h1>Start Building Your Landing Page</h1>`,
-                },
+                    component:
+                        `<h1>Start Building Your Landing Page</h1>`,
+                }
+                ,
             ],
         },
         plugins: [
@@ -78,47 +87,53 @@ export default function CustomEditor() {
             grapesjsCss="https://unpkg.com/grapesjs/dist/css/grapes.min.css"
             onEditor={onEditor}
             options={gjsOptions}
-        >
-            <AppShell
-                // layout="alt"
-                header={{ height: 50 }}
-                navbar={{
-                    width: 250,
-                    breakpoint: 'sm',
-                    collapsed: { mobile: !opened },
-                }}
-                aside={{
-                    width: 250,
-                    breakpoint: 'sm',
-                    collapsed: { mobile: !opened },
-                }}
-                padding={0}
-            >
-                <AppShell.Navbar hidden={!opened}>
-                    {openBlockSideBar ? (
-                        <LayersAndPagesLeftSideBar />
-                    ) : (
-                        <BlockSideBar />
-                    )}
-                </AppShell.Navbar>
 
-                <AppShell.Aside>
-                    <RightBar />
-                </AppShell.Aside>
-                <AppShell.Header>
-                    <TopBar onClick={onClick} openBlockSideBar={openBlockSideBar} />
-                    <Burger
-                        opened={opened}
-                        onClick={toggle}
-                        hiddenFrom="sm"
-                        size="sm"
-                    />
-                </AppShell.Header>
-                <AppShell.Main>
-                    <Canvas />
-                </AppShell.Main>
-            </AppShell>
+        >
+            <div className="absolute h-full w-full">
+                <AppShell
+                    // layout="alt"
+                    header={{ height: 50 }}
+                    navbar={{
+                        width: 250,
+                        breakpoint: 'sm',
+                        collapsed: { mobile: !opened },
+                    }}
+                    aside={{
+                        width: 250,
+                        breakpoint: 'sm',
+                        collapsed: { mobile: !opened },
+                    }}
+                    padding={0}
+                >
+                    <AppShell.Navbar hidden={!opened}>
+                        {openBlockSideBar ? (
+                            <LayersAndPagesLeftSideBar />
+                        ) : (
+                            <BlockSideBar />
+                        )}
+                    </AppShell.Navbar>
+                    <AppShell.Aside>
+                        <RightBar />
+                    </AppShell.Aside>
+                    <AppShell.Header>
+                        <TopBar onClick={onClick} openBlockSideBar={openBlockSideBar} />
+                        <Burger
+                            opened={opened}
+                            onClick={toggle}
+                            hiddenFrom="sm"
+                            size="sm"
+                        />
+                    </AppShell.Header>
+                    <AppShell.Main className="grow flex">
+                        <Canvas  />
+                    </AppShell.Main>
+                </AppShell>
+                <WithEditor>
+                    <FloatingBar  />
+                </WithEditor>
+            </div>
         </GjsEditor>
+
     )
 }
 

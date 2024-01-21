@@ -37,21 +37,20 @@ export default (editor: Editor, opts = {}) => {
     editor.Commands.add('zoomIn', {
         run: () => {
             const zoom = editor.Canvas.getZoom()
-            editor.Canvas.setZoom(`${zoom + 5}`)
+            editor.Canvas.setZoom(`${zoom + 10}`)
         },
     })
     editor.Commands.add('zoomOut', {
         run: () => {
             const zoom = editor.Canvas.getZoom()
-            editor.Canvas.setZoom(`${zoom - 5}`)
+            editor.Canvas.setZoom(`${zoom - 10}`)
         },
     })
 
     editor.Commands.add('zoomReset', {
         run: () => {
-            const zoom = editor.Canvas.getZoom()
             editor.Canvas.setZoom(100)
-            editor.Canvas.setCoords(0)
+            editor.Canvas.setCoords(0, 0)
         },
     })
 
@@ -60,7 +59,7 @@ export default (editor: Editor, opts = {}) => {
         editor.Canvas.setZoom(options.value)
     })
 
-    document.addEventListener('keydown', function (event) {
+    document.addEventListener('keydown', function(event) {
         if (event.shiftKey && (event.key === '=' || event.key === '+')) {
             event.preventDefault()
             editor.runCommand('zoomin')

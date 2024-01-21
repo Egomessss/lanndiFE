@@ -15,7 +15,7 @@ import {
     IconArrowBackUp,
     IconArrowForwardUp,
     IconBorderAll,
-    IconBorderNone, IconHandClick, IconHandGrab,
+    IconBorderNone, IconCode, IconHandClick, IconHandGrab, IconPresentation,
     IconZoomIn,
     IconZoomOut, IconZoomReset,
 } from '@tabler/icons-react'
@@ -29,65 +29,45 @@ interface CommandButton {
     disabled?: () => boolean
 }
 
-export default function TopBarButtons({}: React.HTMLAttributes<HTMLDivElement>) {
+export default function TopBarButtons() {
     const editor = useEditor()
 
-    const [zoomValue, setZoomValue] = useState(100) // Initialize the zoom value
 
     const [, setUpdateCounter] = useState(0)
 
     const { UndoManager, Commands } = editor
 
-    const handleZoomInput = (value: number | '') => {
-        editor.runCommand('zoomInput', { value: value })
-        if (value !== '' && value > 201) {
-            editor.Canvas.setZoom(100)
-            setZoomValue(100) // Update the zoom value in the state
-        } else if (value !== '' && value <= 200) {
-            editor.Canvas.setZoom(value)
-            setZoomValue(value) // Update the zoom value in the state
-        }
-        const zoom = editor.Canvas.getZoom()
-        setZoomValue(zoom)
-    }
-
-    const handleZoomReset = () => {
-        editor.runCommand('zoomReset')
-        const zoom = editor.Canvas.getZoom()
-        setZoomValue(zoom)
-    }
-
-    const handleZoomIn = () => {
-        editor.runCommand('zoomIn')
-        const zoom = editor.Canvas.getZoom()
-        setZoomValue(zoom)
-    }
-
-    const handleZoomOut = () => {
-        editor.runCommand('zoomOut')
-        const zoom = editor.Canvas.getZoom()
-        setZoomValue(zoom)
-    }
 
     editor.on('load', () => {
-        editor.runCommand('core:component-outline');
-    });
+        editor.runCommand('core:component-outline')
+    })
 
 
-    editor.Commands.add('core:designer-mode', {
-
-    });
+    editor.Commands.add('core:designer-mode', {})
 
     editor.Commands.add('core:designer-mode', {
         run: () => {
             editor.setDragMode('absolute')
             console.log('absolute')
         },
-        stop:()=>{
+        stop: () => {
             editor.setDragMode('')
             console.log('translate')
-        }
+        },
     })
+
+    editor.Commands.extend('core:preview', {
+        run: () => {
+            // opened()
+            editor.runCommand('core:preview')
+
+        },
+        stop: () => {
+            editor.setDragMode('')
+            console.log('translate')
+        },
+    })
+
 
     const cmdButtons: CommandButton[] = [
         // TODO fix these 2 commands
@@ -96,6 +76,17 @@ export default function TopBarButtons({}: React.HTMLAttributes<HTMLDivElement>) 
             Icon: IconBorderNone,
             name: 'Outline',
 
+        },
+        {
+            id: 'core:preview',
+            Icon: IconPresentation,
+            name: 'Preview',
+
+        },
+        {
+            id: 'core:open-code',
+            Icon: IconCode,
+            name: 'Code Editor',
         },
         // {
         //     id: 'core:designer-mode',
@@ -135,14 +126,11 @@ export default function TopBarButtons({}: React.HTMLAttributes<HTMLDivElement>) 
             editor.off(cmdEvent, onCommand)
             editor.off(updateEvent, updateCounter)
         }
-    }, [])
-
-
+    }, [cmdButtons, editor])
 
 
     return (
         <div className="flex  w-full gap-2 items-center">
-
             {cmdButtons.map(({ id, Icon, disabled, options, name }) => (
                 <div
                     key={id}
@@ -167,68 +155,7 @@ export default function TopBarButtons({}: React.HTMLAttributes<HTMLDivElement>) 
                     </Tooltip>
                 </div>
             ))}
-            <div className="flex items-center justify-center gap-2 px-6">
-                <Tooltip label="Zoom out/ Shift -">
-                    <ActionIcon
-                        color="blue"
-                        variant='outline'
-                        disabled={zoomValue < 51}
-                        onClick={handleZoomOut}
-                    >
-                        <IconZoomOut />
-                    </ActionIcon>
-                </Tooltip>
 
-                    <NumberInput
-                        hideControls
-                        value={editor.Canvas.getZoom()}
-                        onChange={handleZoomInput}
-                        max={200}
-                        size='xs'
-                        min={50}
-                        styles={{ input: { width: rem(54), textAlign: 'center' } }}
-                    />
-                <Tooltip label="Zoom in / Shift + ">
-                    <ActionIcon
-                        color="blue"
-                        disabled={zoomValue > 199}
-                        onClick={handleZoomIn}
-                        variant='outline'
-                    >
-                        <IconZoomIn />
-                    </ActionIcon>
-                </Tooltip>
-                <Tooltip label="Reset zoom & position">
-                    <ActionIcon
-                        color="blue"
-                        variant='outline'
-                        onClick={handleZoomReset}
-                    >
-                        <IconZoomReset />
-                    </ActionIcon>
-                </Tooltip>
-
-            </div>
-            <div className='flex items-center gap-2'>
-                <Tooltip label="Move - Space+LMB+Drag">
-                    <ActionIcon
-                        color="blue"
-                        variant='outline'
-                        onClick={handleZoomReset}
-                    >
-                        <IconHandGrab />
-                    </ActionIcon>
-                </Tooltip>
-                <Tooltip label="Select - Space+LMB+Drag">
-                    <ActionIcon
-                        color="blue"
-                        variant='outline'
-                        onClick={handleZoomReset}
-                    >
-                        <IconHandClick />
-                    </ActionIcon>
-                </Tooltip>
-            </div>
 
         </div>
     )

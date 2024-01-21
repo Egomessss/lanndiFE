@@ -119,11 +119,7 @@ export default function Topbar({ openBlockSideBar, onClick }:any) {
                     <TopBarButtons />
                 </WithEditor>
                 <div className="flex items-center gap-2">
-                    <Tooltip label="Preview">
-                        <ActionIcon variant="outline">
-                            <IconLink />
-                        </ActionIcon>
-                    </Tooltip>
+
                     <Tooltip label="Preview link">
                         <ActionIcon variant="outline">
                             <IconExternalLink />
