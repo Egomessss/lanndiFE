@@ -15,7 +15,7 @@ export default function TraitPropertyField({
     const editor = useEditor()
 
     const handleChange = (value: any) => {
-        console.log('value', value)
+        // console.log('value', value)
         trait.setValue(value)
     }
 
@@ -44,7 +44,7 @@ export default function TraitPropertyField({
         label: trait.getOptionLabel(option),
     }))
 
-    console.log('traitpropertyfield', value)
+    // console.log('traitpropertyfield', value)
 
     switch (type) {
 

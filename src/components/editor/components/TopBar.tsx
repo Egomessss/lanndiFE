@@ -69,25 +69,7 @@ export default function Topbar({ openBlockSideBar, onClick }:any) {
 
     return (
         <div className="gjs-top-sidebar flex h-full w-full items-center justify-between px-4 ">
-            <div className="flex w-full items-center justify-start gap-2 ">
-                <Button
-                    size="xs"
-                    leftSection={<IconArrowLeft />}
-                >
-                    Posts
-                </Button>
-                {/*<TemplatesModal />*/}
-                <Tooltip label="Open block manager">
-                    <ActionIcon onClick={onClick}>
-                        {openBlockSideBar ? <IconGrid4x4 /> : <IconX />}
-                    </ActionIcon>
-                </Tooltip>
-                <Tooltip label="Add custom code">
-                    <ActionIcon variant="outline">
-                        <IconCode />
-                    </ActionIcon>
-                </Tooltip>
-            </div>
+
             <div className="flex items-center gap-4">
                 <DevicesProvider>
                     {({ selected, select, devices }) => (
@@ -118,14 +100,6 @@ export default function Topbar({ openBlockSideBar, onClick }:any) {
                 <WithEditor>
                     <TopBarButtons />
                 </WithEditor>
-                <div className="flex items-center gap-2">
-
-                    <Tooltip label="Preview link">
-                        <ActionIcon variant="outline">
-                            <IconExternalLink />
-                        </ActionIcon>
-                    </Tooltip>
-                </div>
             </div>
 
             <div className="flex w-full items-center justify-end gap-2">

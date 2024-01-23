@@ -12,3 +12,11 @@
 body {
   background: #f5f8fa;
 }
+
+.gjs-toolbar{
+  background: red;
+  transform-origin: right bottom;
+  translate: 0px -10%;
+  border-radius: 3px;
+
+}

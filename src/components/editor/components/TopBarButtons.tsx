@@ -15,7 +15,7 @@ import {
     IconArrowBackUp,
     IconArrowForwardUp,
     IconBorderAll,
-    IconBorderNone, IconCode, IconHandClick, IconHandGrab, IconPresentation,
+    IconBorderNone, IconCode, IconHandClick, IconHandGrab, IconPresentation, IconRadar,
     IconZoomIn,
     IconZoomOut, IconZoomReset,
 } from '@tabler/icons-react'
@@ -38,14 +38,59 @@ export default function TopBarButtons() {
     const { UndoManager, Commands } = editor
 
 
-    editor.on('load', () => {
-        editor.runCommand('core:component-outline')
-    })
+    // editor.on('load', () => {
+    //     editor.runCommand('core:component-outline')
+    // })
+    const divComponent = editor.DomComponents.addComponent({
+        tagName: 'div',
+        // Additional properties for the 'div', like classes, styles, etc., can be added here
+        // For example:
+        // attributes: { class: 'my-custom-class' },
+        // content: 'This is a div'
+    });
+
+    editor.Commands.add('wrapper', {
+        run: () => {
+            // Get all currently selected components
+            const selectedComponents = editor.getSelectedAll();
+
+            // Check if there are selected components
+            if (selectedComponents.length === 0) {
+                return; // Exit if no components are selected
+            }
+
+            // Create a new 'div' component
+            const wrapperDiv = editor.DomComponents.addComponent({
+                tagName: 'div',
+                // Additional properties for the 'div', like classes, styles, etc.
+            });
+
+            // Get the parent of the first selected component
+            const firstComponentParent = selectedComponents[0].parent();
+
+            // Insert the wrapper at the position of the first selected component
+            if (firstComponentParent) {
+                firstComponentParent.append(wrapperDiv, { at: firstComponentParent.index(selectedComponents[0]) });
+            }
+
+            // Append each selected component to the new 'div'
+            selectedComponents.forEach(component => {
+                wrapperDiv.append(component);
+            });
+
+            // Select the new wrapper 'div' component
+            editor.select(wrapperDiv);
+        },
+        // Optional: Define the 'stop' function if needed
+        // stop: () => {
+        //     // Your stop logic here
+        // },
+    });
 
 
-    editor.Commands.add('core:designer-mode', {})
 
-    editor.Commands.add('core:designer-mode', {
+
+    editor.Commands.add('designer-mode', {
         run: () => {
             editor.setDragMode('absolute')
             console.log('absolute')
@@ -84,19 +129,9 @@ export default function TopBarButtons() {
 
         },
         {
-            id: 'core:open-code',
-            Icon: IconCode,
-            name: 'Code Editor',
-        },
-        // {
-        //     id: 'core:designer-mode',
-        //     Icon: RiDragDropLine,
-        //     name: 'Designer Mode',
-        // },
-        {
-            id: 'core:component-offset',
-            Icon: IconBorderAll,
-            name: 'Borders offset',
+            id: 'designer-mode',
+            Icon: IconRadar,
+            name: 'Designer Mode',
         },
         {
             id: 'core:undo',

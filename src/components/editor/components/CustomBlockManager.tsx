@@ -36,35 +36,36 @@ export default function CustomBlockManager({
 
     return (
         <div className="flex h-full flex-col pt-2 px-2">
-            <AppShell.Section> <Select
-                className="h-[4%]"
-                placeholder="Blocks"
-                value={value}
-                data={[
-                    {
-                        group: 'Default',
-                        items: [
-                            { value: 'defaultblocks', label: 'Blocks' },
-                            { value: 'defaultintegrations', label: 'Integrations' },
-                            {
-                                value: 'defaultsections',
-                                label: 'Sections',
-                            },
-                        ],
-                    },
-                    {
-                        group: 'Custom',
-                        items: [
-                            { value: 'customblocks', label: 'Blocks' },
-                            { value: 'customintegrations', label: 'Integrations' },
-                            {
-                                value: 'customsections',
-                                label: 'Sections',
-                            },
-                        ],
-                    },
-                ]}
-            />
+            <AppShell.Section>
+                <Select
+                    className="h-[4%]"
+                    placeholder="Blocks"
+                    value={value}
+                    data={[
+                        {
+                            group: 'Default',
+                            items: [
+                                { value: 'defaultblocks', label: 'Blocks' },
+                                { value: 'defaultintegrations', label: 'Integrations' },
+                                {
+                                    value: 'defaultsections',
+                                    label: 'Sections',
+                                },
+                            ],
+                        },
+                        {
+                            group: 'Custom',
+                            items: [
+                                { value: 'customblocks', label: 'Blocks' },
+                                { value: 'customintegrations', label: 'Integrations' },
+                                {
+                                    value: 'customsections',
+                                    label: 'Sections',
+                                },
+                            ],
+                        },
+                    ]}
+                />
             </AppShell.Section>
             <AppShell.Section offsetScrollbars grow
                               component={ScrollArea}>  {Array.from(mapCategoryBlocks).map(([category, blocks]) => (
