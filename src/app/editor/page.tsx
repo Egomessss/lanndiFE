@@ -32,14 +32,14 @@ import {
     IconX,
 } from '@tabler/icons-react'
 import PagesLeftSideBar from '@/components/editor/components/PagesLeftSideBar'
+import SemanticBlocks from '@/components/editor/plugins/components/SemanticBlocks'
 
 
 export default function CustomEditor() {
 
     const onEditor = (editor: Editor) => {
         console.log('Editor loaded', { editor })
-        const panelManager = editor.Panels;
-        console.log(panelManager)
+
         editor.on("component:selected", (component) => {
             const newTool = {
                 icon: 'fa-regular fa-square',
@@ -61,6 +61,7 @@ export default function CustomEditor() {
                 component.set("toolbar", defaultToolbar);
             }
         });
+
     }
     const [opened, { toggle }] = useDisclosure()
 
@@ -116,6 +117,7 @@ export default function CustomEditor() {
             ListBlocks,
             FormBlocks,
             IntegrationsBlocks,
+            SemanticBlocks
         ],
     }
 

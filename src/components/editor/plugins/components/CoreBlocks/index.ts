@@ -86,7 +86,7 @@ const CoreBlocks: Plugin<PluginOptions> = (editor, opts = {}) => {
         labelLink: 'Link',
         labelLinkBox:'Link box',
         labelIcon: 'Icon',
-        labelIconSvg: 'Icon SVG',
+        labelIconSvg: 'SVG',
         labelButton: 'Button',
         labelHeading: 'Heading',
         ...opts,
