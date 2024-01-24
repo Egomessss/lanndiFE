@@ -27,6 +27,7 @@ import {
 } from '@tabler/icons-react'
 
 import { DevicesProvider, WithEditor } from '@/components/editor/wrappers'
+import React from 'react'
 
 
 export default function Topbar({ openBlockSideBar, onClick }:any) {
@@ -69,7 +70,14 @@ export default function Topbar({ openBlockSideBar, onClick }:any) {
 
     return (
         <div className="gjs-top-sidebar flex h-full w-full items-center justify-between px-4 ">
-
+            <div className="flex w-full items-center justify-start gap-2 py-2 ">
+                <Button
+                    size="xs"
+                    leftSection={<IconArrowLeft />}
+                >
+                    Posts
+                </Button>
+            </div>
             <div className="flex items-center gap-4">
                 <DevicesProvider>
                     {({ selected, select, devices }) => (
@@ -98,7 +106,7 @@ export default function Topbar({ openBlockSideBar, onClick }:any) {
                     )}
                 </DevicesProvider>
                 <WithEditor>
-                    <TopBarButtons />
+                    <TopBarButtons onClick={onClick} />
                 </WithEditor>
             </div>
 

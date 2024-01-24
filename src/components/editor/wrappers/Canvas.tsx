@@ -17,7 +17,7 @@ export default function Canvas({
         <div
             {...rest}
             ref={canvasRef}
-            className='w-full h-full'
+            className='w-full h-full overflow-y-hidden'
         >
             {children}
         </div>

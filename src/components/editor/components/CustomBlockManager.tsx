@@ -35,11 +35,11 @@ export default function CustomBlockManager({
 
 
     return (
-        <div className="flex h-screen overflow-y-scroll flex-col pt-2 px-2">
-
+        <>
             <Select
-                className="h-[4%]"
+               ml="4"
                 placeholder="Blocks"
+
                 value={value}
                 data={[
                     {
@@ -117,6 +117,6 @@ export default function CustomBlockManager({
                 ))}
             </div>
 
-        </div>
+        </>
     )
 }

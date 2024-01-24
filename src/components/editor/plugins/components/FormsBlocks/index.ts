@@ -26,7 +26,7 @@ export type PluginOptions = {
 
 const FormBlocks: Plugin<PluginOptions> = (editor, opts = {}) => {
   const config: Required<PluginOptions> = {
-    blocks: ['form', 'input', 'textarea', 'select', 'form-button', 'label', 'checkbox', 'radio'],
+    blocks: ['form', 'input', 'textarea', 'select', 'form-button', 'label', 'checkbox', 'radio','form-button'],
     category: { id: 'forms', label: 'Forms' },
     block: () => ({}),
     ...opts

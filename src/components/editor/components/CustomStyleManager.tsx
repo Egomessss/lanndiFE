@@ -9,11 +9,11 @@ export default function CustomStyleManager({
     sectors,
 }: Omit<StylesResultyProps, "Container">) {
     return (
-        <ScrollArea
-           style={{height:'80%'}}
+        <div
+
             className="gjs-custom-style-manager text-left "
         >
-            <div className="m-2 flex flex-col items-center  justify-center">
+            <div className="ml-2 flex flex-col items-center  justify-center">
                 {sectors.map((sector) => (
                     <div
                         key={sector.getId()}
@@ -22,9 +22,6 @@ export default function CustomStyleManager({
                         <div className="flex w-full items-center justify-between">
                             {" "}
                             <Text fw={700}>{sector.getName()}</Text>
-                            <ActionIcon>
-                                <IconFile />
-                            </ActionIcon>
                         </div>
                         <Divider
                             className="w-full"
@@ -41,6 +38,6 @@ export default function CustomStyleManager({
                     </div>
                 ))}
             </div>
-        </ScrollArea>
+        </div>
     )
 }

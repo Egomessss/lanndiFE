@@ -7,14 +7,20 @@ import type {
     PropertyStack,
 } from 'grapesjs'
 
-import { SegmentedControl, Select, Slider, TextInput, ThemeIcon } from '@mantine/core'
+import { NumberInput, SegmentedControl, Select, Slider, TextInput, ThemeIcon } from '@mantine/core'
 import { useEditor } from '../wrappers'
-import React from 'react'
+import React, { useState } from 'react'
 import { IconArrowDown, IconArrowUp, IconPlus, IconScaleOutline, IconX } from '@tabler/icons-react'
 
 
 interface StylePropertyFieldProps extends React.HTMLProps<HTMLDivElement> {
     prop: Property
+}
+
+const selectProp = {
+    getOptions: () => ['px', 'em', 'rem', '%', 'vh', 'vw'],
+    getOptionId: (option: string) => option,
+    getOptionLabel: (option: string) => option,
 }
 
 export default function StylePropertyField({
@@ -31,6 +37,15 @@ export default function StylePropertyField({
         handleChange(ev.target.value)
     }
 
+    const [sizeValue, setSizeValue] = useState<string>('px') // Default value
+
+    // Handle change in select value
+    const handleSizeChange = (newValue: string) => {
+        setSizeValue(newValue)
+        // Apply the selected CSS unit in your style logic
+        // Example: updateStyleProperty('fontSize', `12${newValue}`);
+    }
+
     const openAssets = () => {
         const { Assets } = editor
         Assets.open({
@@ -45,6 +60,7 @@ export default function StylePropertyField({
     }
 
     const type = prop.getType()
+
     const defValue = prop.getDefaultValue()
     const canClear = prop.canClear()
     const hasValue = prop.hasValue()
@@ -53,15 +69,47 @@ export default function StylePropertyField({
     const valueWithDef = hasValue ? value : defValue
 
     let inputToRender = (
-        <TextInput
+        <NumberInput
+            hideControls
+            leftSection={
+                <svg viewBox="0 0 24 24" role="presentation" style={{ width: '14px', height: '14px' }}>
+                    <path
+                        d="M12,2.5L8,7H16L12,2.5M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10M8,17L12,21.5L16,17H8Z"
+                        style={{ fill: 'currentColor' }}></path>
+                </svg>
+            }
             placeholder={defValue}
             value={valueString}
             onChange={(newValue) => handleChange(newValue)}
-            size="small"
+            rightSection={
+                <Select
+                    size="xs"
+                    value={value}
+                    onChange={(newValue) => handleChange(newValue)}
+                    data={selectProp.getOptions().map((option) => ({
+                        value: selectProp.getOptionId(option),
+                        label: selectProp.getOptionLabel(option),
+                    }))}
+                    rightSectionPointerEvents="none"
+                    rightSection=''
+                />
+            }
         />
-    )
+    );
 
     switch (type) {
+        case 'text': {
+            const radioProp = prop as PropertyRadio
+            inputToRender = (
+                <TextInput
+                    placeholder={defValue}
+                    value={valueString}
+                    onChange={(newValue) => handleChange(newValue)}
+                    size="small"
+                />
+            )
+        }
+            break
         case 'radio': {
             const radioProp = prop as PropertyRadio
             inputToRender = (
@@ -81,6 +129,7 @@ export default function StylePropertyField({
             const selectProp = prop as PropertySelect
             inputToRender = (
                 <Select
+                    size="xs"
                     value={value}
                     onChange={(newValue) => handleChange(newValue)}
                     data={selectProp.getOptions().map((option) => ({
@@ -182,7 +231,7 @@ export default function StylePropertyField({
             const isTextShadow = stackProp.getName() === 'text-shadow'
             inputToRender = (
                 <div
-                    className='flex min-h-[54px] flex-col gap-2 bg-black/20 p-2'
+                    className="flex min-h-[54px] flex-col gap-2 bg-black/20 p-2"
 
 
                 >
@@ -215,7 +264,7 @@ export default function StylePropertyField({
                                     {layer.getLabel()}
                                 </button>
                                 <div
-                                    className='flex min-h-[17px] min-w-[17px] justify-center bg-white text-sm text-black'
+                                    className="flex min-h-[17px] min-w-[17px] justify-center bg-white text-sm text-black"
 
                                     style={layer.getStylePreview({
                                         number: { min: -3, max: 3 },
@@ -254,17 +303,17 @@ export default function StylePropertyField({
     return (
         <div
             {...rest}
-            className={`mb-3 px-1 ${prop.isFull() ? 'w-full' : 'w-1/2'}`}
+            className="mb-3 px-1 w-full"
 
         >
             <div
-                className={`mb-2 flex items-center ${canClear ? 'text-sky-300' : ''}`}
+                className={`mb-2 flex items-center justify-between w-full text-xs    ${canClear ? 'text-sky-300' : ''}`}
 
             >
                 <div className="flex-grow capitalize">{prop.getLabel()}</div>
                 {canClear && (
                     <button onClick={() => prop.clear()}>
-                        <IconX />
+                        <IconX size="0.8rem" />
                     </button>
                 )}
                 {type === 'stack' && (

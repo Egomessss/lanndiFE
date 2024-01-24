@@ -82,7 +82,7 @@ const CoreBlocks: Plugin<PluginOptions> = (editor, opts = {}) => {
         stylePrefix: 'gjs-',
         addBasicStyle: true,
         category: 'Core',
-        labelText: 'Text',
+        labelText: 'Paragraph',
         labelLink: 'Link',
         labelLinkBox:'Link box',
         labelIcon: 'Icon',

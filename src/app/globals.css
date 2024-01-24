@@ -3,20 +3,34 @@
 @tailwind utilities;
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  /*font-family: 'Inter Variable', sans-serif;*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /*font-family: 'Inter Variable', sans-serif;*/
 }
 
 body {
-  background: #f5f8fa;
+    background: #f5f8fa;
 }
 
-.gjs-toolbar{
-  background: red;
-  transform-origin: right bottom;
-  translate: 0px -10%;
-  border-radius: 3px;
+.gjs-toolbar {
+
+    transform-origin: right bottom;
+    translate: 0px -10%;
+    border-radius: 3px;
+
 
 }
+
+.gjs-toolbar-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gjs-toolbar-items > svg {
+    width: 16px;
+    height: 16px;
+    color:black;
+}
+

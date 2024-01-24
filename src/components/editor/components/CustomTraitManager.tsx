@@ -6,7 +6,7 @@ export default function CustomTraitManager({
     traits,
 }: Omit<TraitsResultProps, 'Container'>) {
     return (
-        <div className="gjs-custom-style-manager mt-3 p-1 text-left">
+        <div className="gjs-custom-trait-manager mt-3 p-1 text-left">
             {!traits.length ? (
                 <div>No properties available</div>
             ) : (

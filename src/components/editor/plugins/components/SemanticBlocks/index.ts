@@ -7,12 +7,12 @@ const SemanticBlocks: Plugin = (editor, opts = {}) => {
         blocks: ['span', 'section', 'main', 'header', 'nav', 'footer'],
         stylePrefix: 'lnd-',
         category: 'Semantic Blocks',
-        labelSpan: 'Span',
-        labelSection:'Section',
-        labelMain: 'Main',
-        labelHeader: 'Header',
-        labelNav: 'Nav',
-        labelFooter: 'Footer',
+        labelSpan: '<Span>',
+        labelSection:'<Section>',
+        labelMain: '<Main>',
+        labelHeader: '<Header>',
+        labelNav: '<Nav>',
+        labelFooter: '<Footer>',
         ...opts,
     }
 

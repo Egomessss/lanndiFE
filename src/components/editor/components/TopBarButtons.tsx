@@ -13,7 +13,7 @@ import React, { useEffect, useState } from 'react'
 import { useEditor } from '../wrappers'
 import {
     IconArrowBackUp,
-    IconArrowForwardUp,
+    IconArrowForwardUp, IconAspectRatio,
     IconBorderAll,
     IconBorderNone, IconCode, IconHandClick, IconHandGrab, IconPresentation, IconRadar,
     IconZoomIn,
@@ -29,7 +29,7 @@ interface CommandButton {
     disabled?: () => boolean
 }
 
-export default function TopBarButtons() {
+export default function TopBarButtons({onClick}) {
     const editor = useEditor()
 
 
@@ -41,17 +41,12 @@ export default function TopBarButtons() {
     // editor.on('load', () => {
     //     editor.runCommand('core:component-outline')
     // })
-    const divComponent = editor.DomComponents.addComponent({
-        tagName: 'div',
-        // Additional properties for the 'div', like classes, styles, etc., can be added here
-        // For example:
-        // attributes: { class: 'my-custom-class' },
-        // content: 'This is a div'
-    });
+
 
     editor.Commands.add('wrapper', {
         run: () => {
             // Get all currently selected components
+
             const selectedComponents = editor.getSelectedAll();
 
             // Check if there are selected components
@@ -93,7 +88,7 @@ export default function TopBarButtons() {
     editor.Commands.add('designer-mode', {
         run: () => {
             editor.setDragMode('absolute')
-            console.log('absolute')
+            console.log(editor.el)
         },
         stop: () => {
             editor.setDragMode('')
@@ -101,17 +96,22 @@ export default function TopBarButtons() {
         },
     })
 
-    editor.Commands.extend('core:preview', {
+    editor.Commands.extend('preview', {
         run: () => {
-            // opened()
-            editor.runCommand('core:preview')
+            onClick()
+            editor.runCommand('core:preview');
+            // Adding a specific class to hide elements
+editor.refresh()
 
         },
         stop: () => {
-            editor.setDragMode('')
-            console.log('translate')
+            onClick()
+            editor.stopCommand('core:preview');
+            editor.refresh()
         },
-    })
+    });
+
+
 
 
     const cmdButtons: CommandButton[] = [
@@ -123,7 +123,7 @@ export default function TopBarButtons() {
 
         },
         {
-            id: 'core:preview',
+            id: 'preview',
             Icon: IconPresentation,
             name: 'Preview',
 
@@ -132,6 +132,11 @@ export default function TopBarButtons() {
             id: 'designer-mode',
             Icon: IconRadar,
             name: 'Designer Mode',
+        },
+        {
+            id: 'core:fullscreen',
+            Icon: IconAspectRatio,
+            name: 'Fullscreen',
         },
         {
             id: 'core:undo',

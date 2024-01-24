@@ -63,7 +63,6 @@ export default function LayerItem({
                 className={
                     `flex items-center gap-1 p-1 pr-2 ${level === 0 ? 'border-t' : ''} ${isHovered ? 'bg-[#228BE6] bg-opacity-60' : ''} ${selected ? 'bg-[#228BE6]' : ''}`
                 }
-
                 key={cmp.getId()}
                 component={cmp}
                 level={level}
@@ -102,7 +101,7 @@ export default function LayerItem({
 
     const wrapperCls = `layer-item flex flex-col rounded-lg ${selected ? 'bg-[#228BE6]/20 text-white' : ''} ${(!visible || isDragging) ? 'opacity-50' : ''}`
 
-
+    const icon = component.get('icon');
     return (
         <div className={wrapperCls}>
             <div
@@ -133,6 +132,9 @@ export default function LayerItem({
                             <IconChevronLeft className="text-xl text-black" />
                         )}
                     </ActionIcon>
+                    {icon && (
+                        <span dangerouslySetInnerHTML={{ __html: icon }} />
+                    )}
                     <span
                         className="flex-grow truncate"
                         style={itemStyle}
