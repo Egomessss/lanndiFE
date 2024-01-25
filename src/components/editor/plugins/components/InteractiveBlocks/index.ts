@@ -1,5 +1,5 @@
-import type { Plugin } from "grapesjs"
-import loadBlocks from "./blocks"
+import type { Plugin } from 'grapesjs'
+import loadBlocks from './blocks'
 
 export type PluginOptions = {
     /**
@@ -32,51 +32,44 @@ export type PluginOptions = {
      */
     category?: string
 
+
+
     /**
-     * Image label
-     * @default 'Image'
+     * Link label
+     * @default 'Link'
      */
-    labelImage?: string
+    labelLink?: string
+
+    /**
+     * Link box label
+     * @default 'Link Box'
+     */
+    labelLinkBox?: string
+
 
     /**
      * Video label
-     * @default 'Video'
+     * @default 'Button'
      */
-    labelVideo?: string
+    labelButton?: string
 
-    /**
-     * Image label
-     * @default 'Icon'
-     */
-    labelIcon?: string
-
-    /**
-     * Image label
-     * @default 'Icon'
-     */
-    labelIconSvg?: string
 
 }
 
-const MediaBlocks: Plugin<PluginOptions> = (editor, opts = {}) => {
+const InteractiveBlocks: Plugin<PluginOptions> = (editor, opts = {}) => {
     const config: Required<PluginOptions> = {
-        blocks: [
-            "image",
-            "video",
-            'iconsvg','icon',
-        ],
+        blocks: [ 'link', 'link-box',  'button', ],
         flexGrid: false,
-        stylePrefix: "gjs-",
+        stylePrefix: 'gjs-',
         addBasicStyle: true,
-        category: "Media",
-        labelImage: "Image",
-        labelVideo: "Video",
-        labelIcon: 'Icon',
-        labelIconSvg: 'SVG',
+        category: 'Interactive',
+        labelLink: 'Link',
+        labelLinkBox:'Link box',
+        labelButton: 'Button',
         ...opts,
     }
 
     loadBlocks(editor, config)
 }
 
-export default MediaBlocks
+export default InteractiveBlocks

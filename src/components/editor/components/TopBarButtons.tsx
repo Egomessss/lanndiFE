@@ -88,11 +88,11 @@ export default function TopBarButtons({onClick}) {
     editor.Commands.add('designer-mode', {
         run: () => {
             editor.setDragMode('absolute')
-            console.log(editor.el)
+            // console.log(editor.el)
         },
         stop: () => {
             editor.setDragMode('')
-            console.log('translate')
+            // console.log('translate')
         },
     })
 
@@ -101,7 +101,7 @@ export default function TopBarButtons({onClick}) {
             onClick()
             editor.runCommand('core:preview');
             // Adding a specific class to hide elements
-editor.refresh()
+            editor.refresh()
 
         },
         stop: () => {
@@ -111,7 +111,7 @@ editor.refresh()
         },
     });
 
-
+    // editor.select(undefined);
 
 
     const cmdButtons: CommandButton[] = [

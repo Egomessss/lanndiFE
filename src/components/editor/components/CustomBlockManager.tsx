@@ -3,6 +3,7 @@ import * as React from 'react'
 import {
     Accordion,
     AppShell, Box,
+    Button,
     Divider,
     ScrollArea,
     Select,
@@ -35,64 +36,32 @@ export default function CustomBlockManager({
 
 
     return (
-        <>
-            <Select
-               ml="4"
-                placeholder="Blocks"
 
-                value={value}
-                data={[
-                    {
-                        group: 'Default',
-                        items: [
-                            { value: 'defaultblocks', label: 'Blocks' },
-                            { value: 'defaultintegrations', label: 'Integrations' },
-                            {
-                                value: 'defaultsections',
-                                label: 'Sections',
-                            },
-                        ],
-                    },
-                    {
-                        group: 'Custom',
-                        items: [
-                            { value: 'customblocks', label: 'Blocks' },
-                            { value: 'customintegrations', label: 'Integrations' },
-                            {
-                                value: 'customsections',
-                                label: 'Sections',
-                            },
-                        ],
-                    },
-                ]}
-            />
 
-            <div>
+            <div className="w-full">
                 {Array.from(mapCategoryBlocks).map(([category, blocks]) => (
                     <div
                         key={category}
                         // className="h-[10%]"
                     >
                         <div className="flex items-center gap-2 ">
+
+                            <Text style={{ whiteSpace: 'nowrap', fontWeight: '600', fontSize:'0.8rem' }} c="blue.5">{category}</Text>
                             <Divider
+                                variant="dashed"
                                 className="w-full"
                                 my="md"
-                                size="sm"
-                            />
-                            <Text style={{ whiteSpace: 'nowrap', fontWeight: '600' }} c="blue.5">{category}</Text>
-                            <Divider
-                                className="w-full"
-                                my="md"
-                                size="sm"
+                                size="xs"
                             />
                         </div>
 
-                        <div className="grid grid-cols-1 gap-2">
+                        <div className="flex flex-col gap-2">
                             {blocks.map((block) => (
-                                <div
+                                <Button variant="subtle"
+                                        style={{paddingLeft:'0px'}}
                                     key={block.getId()}
                                     draggable
-                                    className="flex h-10 w-full cursor-pointer items-center gap-2 rounded   py-1 font-semibold hover:bg-blue-500"
+                                        justify="space-between" fullWidth leftSection=''
                                     onDragStart={(ev) =>
                                         dragStart(block, ev.nativeEvent)
                                     }
@@ -105,18 +74,18 @@ export default function CustomBlockManager({
                                     {/*    }}*/}
                                     {/*/>*/}
                                     <p
-                                        className="w-full px-4 text-start text-sm"
+                                        className="w-full px-4 text-start text-xs"
                                         title={block.getLabel()}
                                     >
                                         {block.getLabel()}
                                     </p>
-                                </div>
+                                </Button>
                             ))}
                         </div>
                     </div>
                 ))}
             </div>
 
-        </>
+
     )
 }

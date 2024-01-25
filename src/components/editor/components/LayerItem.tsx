@@ -6,7 +6,15 @@ import type { Component } from 'grapesjs'
 
 import { ActionIcon } from '@mantine/core'
 import { useEditor } from '../wrappers'
-import { IconChevronLeft, IconChevronRight, IconEye, IconEyeCancel, IconLock, IconLockX } from '@tabler/icons-react'
+import {
+    IconChevronDown,
+    IconChevronLeft,
+    IconChevronRight,
+    IconEye,
+    IconEyeCancel,
+    IconLock,
+    IconLockX,
+} from '@tabler/icons-react'
 
 
 export declare interface LayerItemProps
@@ -37,6 +45,7 @@ export default function LayerItem({
     const cmpHash = componentsIds.join('-')
     const level = props.level + 1
     const isHovered = hovered || dragParent === component
+    console.log(components)
 
     useEffect(() => {
         level === 0 && setLayerData(Layers.getLayerData(component))
@@ -60,9 +69,9 @@ export default function LayerItem({
     const cmpToRender = useMemo(() => {
         return components.map((cmp) => (
             <LayerItem
-                className={
-                    `flex items-center gap-1 p-1 pr-2 ${level === 0 ? 'border-t' : ''} ${isHovered ? 'bg-[#228BE6] bg-opacity-60' : ''} ${selected ? 'bg-[#228BE6]' : ''}`
-                }
+                // className={
+                //     `flex items-center gap-1 p-1 pr-2 ${level === 0 ? '' : ''} ${isHovered ? 'bg-[#228BE6] bg-opacity-60' : ''} ${selected ? 'bg-[#228BE6] ' : ''}`
+                // }
                 key={cmp.getId()}
                 component={cmp}
                 level={level}
@@ -99,7 +108,7 @@ export default function LayerItem({
     }
 
 
-    const wrapperCls = `layer-item flex flex-col rounded-lg ${selected ? 'bg-[#228BE6]/20 text-white' : ''} ${(!visible || isDragging) ? 'opacity-50' : ''}`
+    const wrapperCls = `layer-item flex flex-col rounded-lg  ${selected ? 'bg-[#228BE6]/20  ' : ''} ${(!visible || isDragging) ? 'opacity-50' : ''}`
 
     const icon = component.get('icon');
     return (
@@ -114,51 +123,50 @@ export default function LayerItem({
             >
                 <div
                     className={
-                        `flex items-center gap-1 border-b p-1 pr-2 text-black ${level === 0 ? 'border-t' : ''} ${isHovered ? 'cursor-pointer' : ''} ${selected ? 'rounded-lg bg-[#228BE6] text-white' : ''}`
+                        `flex items-center gap-1   ${level === 0 ? '' : ''} ${isHovered ? 'cursor-pointer bg-[#228BE6]/20 rounded-lg' : ''} ${selected ? 'rounded-lg bg-[#339AF0] ' : ''}`
                     }
 
                 >
                     <ActionIcon
                         variant="transparent"
-                        style={{ marginLeft: `${level * 10}px` }}
-                        className={
-                            `cursor-pointer text-black ${!components.length ? 'pointer-events-none opacity-0' : ''}`
-                        }
+                        style={{ marginLeft: `${level * 6}px` }}
                         onClick={toggleOpen}
                     >
                         {open ? (
-                            <IconChevronRight className="text-xl text-black " />
+                            <IconChevronDown size="0.8rem" className="text-black" />
                         ) : (
-                            <IconChevronLeft className="text-xl text-black" />
+                            <IconChevronRight size="0.8rem" className="text-black"  />
                         )}
                     </ActionIcon>
                     {icon && (
                         <span dangerouslySetInnerHTML={{ __html: icon }} />
                     )}
-                    <span
+                    <p
                         className="flex-grow truncate"
                         style={itemStyle}
                     >
                         {name}
-                    </span>
+                    </p>
                     <ActionIcon
+                        autoContrast
                         variant="transparent"
                         onClick={lockLayer}
                     >
                         {locked ? (
-                            <IconLock className="text-white" />
+                            <IconLock size="0.8rem" className="text-black" />
                         ) : (
-                            <IconLockX className="text-black" />
+                            <IconLockX size="0.8rem" className="text-black" />
                         )}
                     </ActionIcon>
                     <ActionIcon
+                        autoContrast
                         variant="transparent"
                         onClick={toggleVisibility}
                     >
                         {visible ? (
-                            <IconEye className="text-black" />
+                            <IconEye size="0.8rem" className="text-black" />
                         ) : (
-                            <IconEyeCancel className="text-black" />
+                            <IconEyeCancel size="0.8rem" className="text-black" />
                         )}
                     </ActionIcon>
                 </div>

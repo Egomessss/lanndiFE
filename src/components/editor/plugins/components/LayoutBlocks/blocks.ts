@@ -1,7 +1,7 @@
 import { BlockProperties, Editor } from 'grapesjs'
-import { PluginOptions } from './index'
 
-export default function (editor: Editor, opts: Required<PluginOptions>) {
+
+export default function(editor: Editor, opts) {
     const bm = editor.BlockManager
     const {
         category,
@@ -139,107 +139,104 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
         select: true,
     }
 
+
     editor.DomComponents.addType('container', {
+        isComponent: el => {
+            // This will treat every 'div' element as a 'container' component
+            if (el.tagName === 'DIV') {
+                return { type: 'container' }
+            }
+        },
         model: {
+            tagName: 'div',
             defaults: {
+                // Define default properties for your container component
                 attributes: { class: 'container' },
-                components: `<div data-gjs-highlightable="true" id="ijw173" data-gjs-type="container" class="gjs-container">`,
-                styles: `
-        .container { width: 100%; height:200px;}
-      `,
+                // Avoid defining 'components' here to prevent recursive nesting of containers
+                styles: `.container { width: 100%; height: 200px; }`,
             },
         },
     })
 
+// When adding a 'container' block
     toAdd('container') &&
-        bm.add('container', {
-            ...commonBlockProps,
-            label: opts.labelContainer,
-            media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-box-model-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 8h8v8h-8z" /><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /></svg>`,
-            content: { type: 'container' },
-        })
-
-    toAdd('section') &&
-    bm.add('section', {
+    bm.add('container', {
         ...commonBlockProps,
-        label: opts.labelSection,
-        media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-section" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 20h.01" /><path d="M4 20h.01" /><path d="M8 20h.01" /><path d="M12 20h.01" /><path d="M16 20h.01" /><path d="M20 4h.01" /><path d="M4 4h.01" /><path d="M8 4h.01" /><path d="M12 4h.01" /><path d="M16 4l0 .01" /><path d="M4 8m0 1a1 1 0 0 1 1 -1h14a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-14a1 1 0 0 1 -1 -1z" /></svg>`,
-        content: { type: 'container' },
+        label: opts.labelContainer,
+        media: `<svg ></svg>`, // Your SVG icon
+        content: {
+            type: 'container',
+            // Content for the container, avoid nesting containers inside each other
+        },
     })
 
-    editor.DomComponents.addType('section', {
-        model: {
-            defaults: {
-                attributes: { class: 'section' },
-                components: `<section data-gjs-highlightable="true" id="iifjga" data-gjs-type="section" draggable="true" class="gjs-section"><div data-gjs-highlightable="true" id="ijw173" data-gjs-type="container" class="gjs-container"></div></section>`,
-                styles: `
-        .container { width: 100%; height:200px;}
-      `,
-            },
-        },
+
+    toAdd('rows') &&
+    bm.add('rows', {
+        ...commonBlockProps,
+        label: opts.labelRows,
+        media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-section" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 20h.01" /><path d="M4 20h.01" /><path d="M8 20h.01" /><path d="M12 20h.01" /><path d="M16 20h.01" /><path d="M20 4h.01" /><path d="M4 4h.01" /><path d="M8 4h.01" /><path d="M12 4h.01" /><path d="M16 4l0 .01" /><path d="M4 8m0 1a1 1 0 0 1 1 -1h14a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-14a1 1 0 0 1 -1 -1z" /></svg>`,
+        content: { type: 'rows' },
     })
 
 
     editor.DomComponents.addType('rows', {
         model: {
             defaults: {
-                components: `<div ${attrsRow}>
-                    <div ${attrsCell}></div>
-                    <div ${attrsCell}></div>
-                </div> `,
-                style: `${styleRow}
-          ${styleClm}`,
+                attributes: { class: 'rows' },
+                components: [{ type: 'container' }, { type: 'container' }, { type: 'container' }],
+                styles: `
+        .rows {display:flex; flex-direction:row; width: 100%; height:100%; gap:8px; padding: 10px;}
+      @media (max-width: 768px) {
+      .rows{
+        flex-wrap: wrap;
+      }
+    }
+      `,
             },
         },
     })
 
-    toAdd('rows') &&
-        bm.add('rows', {
-            ...commonBlockProps,
-            label: opts.labelRows,
-            media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-rows" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 12l16 0" /></svg>`,
-
-            content: { type: 'rows' },
-        })
 
     toAdd('columns') &&
-        bm.add('columns', {
-            ...commonBlockProps,
-            label: opts.labelColumns,
-            media: `<svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-columns-2' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'>
-            <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
-            <path d='M3 3m0 1a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v16a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1zm9 -1v18'></path>
-         </svg>`,
+    bm.add('columns', {
+        ...commonBlockProps,
+        label: opts.labelColumns,
+        media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-section" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 20h.01" /><path d="M4 20h.01" /><path d="M8 20h.01" /><path d="M12 20h.01" /><path d="M16 20h.01" /><path d="M20 4h.01" /><path d="M4 4h.01" /><path d="M8 4h.01" /><path d="M12 4h.01" /><path d="M16 4l0 .01" /><path d="M4 8m0 1a1 1 0 0 1 1 -1h14a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-14a1 1 0 0 1 -1 -1z" /></svg>`,
+        content: { type: 'columns' },
+    })
 
-            content: /* HTML */ `<div ${attrsRow}>
-                    <div ${attrsCell}></div>
-                    <div ${attrsCell}></div>
-                </div>
-                ${addBasicStyle
-                    ? `<style>
-          ${styleRow}
-          ${styleClm}
-        </style>`
-                    : ''}`,
-        })
 
+    editor.DomComponents.addType('columns', {
+        model: {
+            defaults: {
+                attributes: { class: 'columns' },
+                components: [{ type: 'container' }, { type: 'container' }, { type: 'container' }],
+                styles: `
+        .columns {display:flex; flex-direction:column; width: 100%; height:100%; gap:8px; padding: 10px;}
+    
+    
+      `,
+            },
+        },
+    })
     toAdd('grid') &&
-        bm.add('grid', {
-            ...commonBlockProps,
-            label: opts.labelGrid,
-            media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-grid-dots" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M19 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M19 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>`,
-            content: `<div ${attrsRow}>
+    bm.add('grid', {
+        ...commonBlockProps,
+        label: opts.labelGrid,
+        media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-grid-dots" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M19 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M19 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>`,
+        content: `<div ${attrsRow}>
         <div ${attrsCell}></div>
       </div>
       ${
-          addBasicStyle
-              ? `<style>
+            addBasicStyle
+                ? `<style>
           ${styleRow}
           ${styleClm}
         </style>`
-              : ''
-      }`,
-        })
+                : ''
+        }`,
+    })
 
     toAdd('table') &&
     bm.add('table', {

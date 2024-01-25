@@ -37,37 +37,6 @@ export type PluginOptions = {
      * @default 'Text'
      */
     labelText?: string
-
-    /**
-     * Link label
-     * @default 'Link'
-     */
-    labelLink?: string
-
-    /**
-     * Link box label
-     * @default 'Link Box'
-     */
-    labelLinkBox?: string
-
-    /**
-     * Image label
-     * @default 'Icon'
-     */
-    labelIcon?: string
-
-    /**
-     * Image label
-     * @default 'Icon'
-     */
-    labelIconSvg?: string
-
-    /**
-     * Video label
-     * @default 'Button'
-     */
-    labelButton?: string
-
     /**
      * Map label
      * @default 'Heading'
@@ -75,19 +44,14 @@ export type PluginOptions = {
     labelHeading?: string
 }
 
-const CoreBlocks: Plugin<PluginOptions> = (editor, opts = {}) => {
+const TypographyBlocks: Plugin<PluginOptions> = (editor, opts = {}) => {
     const config: Required<PluginOptions> = {
-        blocks: ['text', 'link', 'link-box', 'heading', 'icon', 'button', 'iconsvg'],
+        blocks: ['heading', 'text'],
         flexGrid: false,
         stylePrefix: 'gjs-',
         addBasicStyle: true,
-        category: 'Core',
+        category: 'Typography',
         labelText: 'Paragraph',
-        labelLink: 'Link',
-        labelLinkBox:'Link box',
-        labelIcon: 'Icon',
-        labelIconSvg: 'SVG',
-        labelButton: 'Button',
         labelHeading: 'Heading',
         ...opts,
     }
@@ -95,4 +59,4 @@ const CoreBlocks: Plugin<PluginOptions> = (editor, opts = {}) => {
     loadBlocks(editor, config)
 }
 
-export default CoreBlocks
+export default TypographyBlocks

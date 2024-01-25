@@ -36,6 +36,12 @@ export type PluginOptions = {
      * 1 Column label
      * @default '1 Column'
      */
+    labelCustomCode?: string
+
+    /**
+     * 1 Column label
+     * @default '1 Column'
+     */
     labelTabs?: string
 
     /**
@@ -59,11 +65,12 @@ export type PluginOptions = {
 
 const ExtraBlocks: Plugin<PluginOptions> = (editor, opts = {}) => {
     const config: Required<PluginOptions> = {
-        blocks: ['tabs','slider'],
+        blocks: ['custom-code','tabs','slider','accordion'],
         flexGrid: false,
         stylePrefix: 'ext-',
         addBasicStyle: true,
         category: 'Extra',
+        labelCustomCode: 'Custom Code',
         labelTabs: 'Tabs',
         labelSlider: 'Slider',
         labelAccordion: 'Accordion',
