@@ -15,7 +15,7 @@ import {
     IconArrowBackUp,
     IconArrowForwardUp, IconAspectRatio,
     IconBorderAll,
-    IconBorderNone, IconCode, IconHandClick, IconHandGrab, IconPresentation, IconRadar,
+    IconBorderNone, IconCode, IconHandClick, IconHandGrab, IconPresentation, IconRadar, IconScanEye, IconVector,
     IconZoomIn,
     IconZoomOut, IconZoomReset,
 } from '@tabler/icons-react'
@@ -124,13 +124,13 @@ export default function TopBarButtons({onClick}) {
         },
         {
             id: 'preview',
-            Icon: IconPresentation,
+            Icon: IconScanEye,
             name: 'Preview',
 
         },
         {
             id: 'designer-mode',
-            Icon: IconRadar,
+            Icon: IconVector,
             name: 'Designer Mode',
         },
         {
@@ -190,7 +190,7 @@ export default function TopBarButtons({onClick}) {
                             }
                             disabled={disabled?.()}
                         >
-                            <Icon />
+                            <Icon size="1rem" />
                         </ActionIcon>
                     </Tooltip>
                 </div>

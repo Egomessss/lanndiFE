@@ -46,6 +46,7 @@ const DevicesProvider = memo(function ({ children }: DevicesProviderProps) {
         Devices.remove('mobilePortrait')
 
         // Add new devices
+        Devices.add({ id: 'fit', name: 'Fit To Screen', width: '' })
         Devices.add({ id: 'desktop', name: 'Desktop', width: '1536px' })
         Devices.add({
             id: 'laptop',
@@ -65,12 +66,13 @@ const DevicesProvider = memo(function ({ children }: DevicesProviderProps) {
             width: '400px',
             widthMedia: '410px',
         })
-
+        Devices.select('fit')
         const up = () => {
             setPropState({
                 devices: Devices.getDevices(),
                 selected: Devices.getSelected()?.id as string,
                 select: (id) => Devices.select(id),
+
             })
         }
 

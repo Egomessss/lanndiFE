@@ -11,6 +11,7 @@ import {
 import TopBarButtons from './TopBarButtons'
 import {
     IconArrowLeft,
+    IconArrowsHorizontal,
     IconCode,
     IconDeviceDesktop,
     IconDeviceFloppy,
@@ -28,20 +29,23 @@ import {
 
 import { DevicesProvider, WithEditor } from '@/components/editor/wrappers'
 import React from 'react'
+import { useEditorInstance } from '@/components/editor/context/EditorInstance'
 
 
 export default function Topbar({ openBlockSideBar, onClick }:any) {
 
 
-    const getDeviceIcon = (deviceName) => {
-        if (deviceName.toLowerCase().includes('desktop')) {
-            return <IconDeviceDesktop />
-        } else if (deviceName.toLowerCase().includes('laptop')) {
-            return <IconDeviceLaptop />
-        } else if (deviceName.toLowerCase().includes('tablet')) {
-            return <IconDeviceTablet />
-        } else if (deviceName.toLowerCase().includes('mobile')) {
-            return <IconDeviceMobile />
+    const getDeviceIcon = (device:string) => {
+        if (device === 'desktop') {
+            return <IconDeviceDesktop size="1rem" />
+        } else if (device === 'laptop') {
+            return <IconDeviceLaptop size="1rem" />
+        } else if (device === 'tablet') {
+            return <IconDeviceTablet  size="1rem"/>
+        } else if (device === 'mobile') {
+            return <IconDeviceMobile  size="1rem"/>
+        }else if (device === 'fit') {
+            return <IconArrowsHorizontal  size="1rem"/>
         }
         return null // Fallback
     }
@@ -68,6 +72,12 @@ export default function Topbar({ openBlockSideBar, onClick }:any) {
         />
     )
 
+    const handleDeviceSelection = (device, selectFn) => {
+        selectFn(device.id);
+    };
+
+
+
     return (
         <div className="gjs-top-sidebar flex h-full w-full items-center justify-between px-4 ">
             <div className="flex w-full items-center justify-start gap-2 py-2 ">
@@ -75,7 +85,7 @@ export default function Topbar({ openBlockSideBar, onClick }:any) {
                     size="xs"
                     leftSection={<IconArrowLeft />}
                 >
-                    Posts
+                    Dashboard
                 </Button>
             </div>
             <div className="flex items-center gap-4">
@@ -90,14 +100,14 @@ export default function Topbar({ openBlockSideBar, onClick }:any) {
                                         label={`${device.getName()} - ${device.getWidthMedia()}`}
                                     >
                                         <ActionIcon
-                                            key={index}
+                                            key={device.id}
                                             variant={
                                                 isSelected ? 'filled' : 'subtle'
                                             }
                                             color="blue"
-                                            onClick={() => select(device.id)}
+                                            onClick={() =>  select(device.id)}
                                         >
-                                            {getDeviceIcon(device.getName())}
+                                            {getDeviceIcon(device.id)}
                                         </ActionIcon>
                                     </Tooltip>
                                 )
@@ -110,13 +120,8 @@ export default function Topbar({ openBlockSideBar, onClick }:any) {
                 </WithEditor>
             </div>
 
-            <div className="flex w-full items-center justify-end gap-2">
-                <Tooltip label="Page settings">
-                    <ActionIcon variant="outline">
-                        {' '}
-                        <IconSettings />
-                    </ActionIcon>
-                </Tooltip>
+            <div className="flex w-full items-center justify-end gap-4">
+
                 <Switch
                     onClick={() =>
                         setColorScheme(
@@ -133,7 +138,7 @@ export default function Topbar({ openBlockSideBar, onClick }:any) {
                     {/*<CreateUserAndPageModal />*/}
 
                     <ActionIcon variant="outline">
-                        <IconDeviceFloppy />
+                        <IconDeviceFloppy size="1rem" />
                     </ActionIcon>
 
                 </Tooltip>

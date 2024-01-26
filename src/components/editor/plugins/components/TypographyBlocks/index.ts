@@ -38,6 +38,11 @@ export type PluginOptions = {
      */
     labelText?: string
     /**
+     * Text label
+     * @default 'Text'
+     */
+    labelParagraph?: string
+    /**
      * Map label
      * @default 'Heading'
      */
@@ -46,12 +51,13 @@ export type PluginOptions = {
 
 const TypographyBlocks: Plugin<PluginOptions> = (editor, opts = {}) => {
     const config: Required<PluginOptions> = {
-        blocks: ['heading', 'text'],
+        blocks: ['heading', 'text', 'paragraph'],
         flexGrid: false,
-        stylePrefix: 'gjs-',
+        stylePrefix: 'lnd-',
         addBasicStyle: true,
         category: 'Typography',
-        labelText: 'Paragraph',
+        labelParagraph: 'Paragraph',
+        labelText: 'Text',
         labelHeading: 'Heading',
         ...opts,
     }

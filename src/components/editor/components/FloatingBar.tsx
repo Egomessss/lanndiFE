@@ -35,8 +35,48 @@ type Props = {
 
 const FloatingBar = () => {
     const editor = useEditor()
+    const options = {
+        ...{
+            // default options
+            zoomInKey: ['ctrl', '='],
+            zoomOutKey: ['ctrl', '-'],
+            panelCategory: 'Custom Category',
+        },
+        // ...opts,
+    }
 
     const [zoomValue, setZoomValue] = useState(100) // Initialize the zoom value
+
+    // Function to handle zooming
+    function handleZoom(isZoomIn: boolean) {
+        const currentZoom = editor.Canvas.getZoom();
+        const step = 5; // Define the zoom step
+        const newZoom = isZoomIn ? currentZoom + step : currentZoom - step;
+        console.log(newZoom)
+        editor.Canvas.setZoom(newZoom);
+        setZoomValue(newZoom)
+    }
+
+// Add keymaps for zooming in anCanvas.d out
+    editor.Keymaps.add('zoom-in', options.zoomInKey.join('+'), () => handleZoom(true));
+    editor.Keymaps.add('zoom-out', options.zoomOutKey.join('+'), () => handleZoom(false));
+
+// Prevent browser default zoom behavior on CTRL + scroll
+    editor.on('load', () => {
+        // Prevent browser default zoom behavior on CTRL + scroll
+        const canvasBody = editor.Canvas.getBody();
+        if (canvasBody) {
+            canvasBody.addEventListener('wheel', event => {
+                if (event.ctrlKey) {
+                    event.preventDefault();
+                    handleZoom(event.deltaY < 0);
+                }
+            }, { passive: false });
+        }
+    });
+
+
+
 
     let debounceTimeout: ReturnType<typeof setTimeout>
 

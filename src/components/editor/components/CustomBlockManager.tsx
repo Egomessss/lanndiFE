@@ -58,23 +58,23 @@ export default function CustomBlockManager({
                         <div className="flex flex-col gap-2">
                             {blocks.map((block) => (
                                 <Button variant="subtle"
-                                        style={{paddingLeft:'0px'}}
+                                        style={{paddingLeft:'4px'}}
                                     key={block.getId()}
                                     draggable
-                                        justify="space-between" fullWidth leftSection=''
+                                        justify="start" fullWidth
                                     onDragStart={(ev) =>
                                         dragStart(block, ev.nativeEvent)
                                     }
                                     onDragEnd={() => dragStop(false)}
                                 >
-                                    {/*<div*/}
-                                    {/*    className="flex h-10 w-10 items-center justify-center px-2"*/}
-                                    {/*    dangerouslySetInnerHTML={{*/}
-                                    {/*        __html: block.getMedia()!,*/}
-                                    {/*    }}*/}
-                                    {/*/>*/}
+                                    <div
+                                        className="flex h-4 w-4 items-center justify-center "
+                                        dangerouslySetInnerHTML={{
+                                            __html: block.getMedia()!,
+                                        }}
+                                    />
                                     <p
-                                        className="w-full px-4 text-start text-xs"
+                                        className="w-full px-2 text-start text-xs"
                                         title={block.getLabel()}
                                     >
                                         {block.getLabel()}

@@ -11,6 +11,7 @@ export default (editor: Editor, opts = {}) => {
         },
         ...opts,
     }
+
     // zoomout button
     editor.Panels.addButton('options', {
         id: 'Zoom Out',

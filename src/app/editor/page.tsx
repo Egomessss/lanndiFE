@@ -39,85 +39,64 @@ import ExtraBlocks from '@/components/editor/plugins/components/ExtraBlocks'
 export default function CustomEditor() {
     const [selected, setSelected] = useState('Blocks')
     const [selectedRightBar, setSelectedRightBar] = useState('Styles')
+
+
     const onEditor = (editor: Editor) => {
-
-
-
-
         console.log('Editor loaded', { editor })
-        // editor.Canvas.setZoom(60)
-        // editor.setDevice('desktop')
-        // console.log(editor.Canvas.getConfig)
-        editor.on('component:selected', (component) => {
 
-            const newTool = {
-                icon: 'fa-solid fa-right-to-bracket',
+        // Function to add a tool to the component's toolbar
+        const addToToolbar = (component, tool) => {
+            const toolbar = component.get('toolbar')
+            const toolExists = toolbar.some(item => item.command === tool.commandName)
+
+            if (!toolExists) {
+                toolbar.unshift({
+                    id: tool.id,
+                    attributes: { class: tool.icon, title: tool.title },
+                    command: tool.commandName,
+                })
+                component.set('toolbar', toolbar)
+            }
+        }
+
+        // Event handler for component selection
+        editor.on('component:selected', (component) => {
+            // Define tools to be added
+            const wrapperTool = {
+                icon: 'fa fa-plus',
                 title: 'Add a wrapper',
                 commandName: 'wrapper',
                 id: 'wrapper',
             }
-
-            const defaultToolbar = component.get('toolbar')
-            const checkAlreadyExist = defaultToolbar.find(
-                (toolbar) => toolbar.command === newTool.commandName,
-            )
-            if (!checkAlreadyExist) {
-                defaultToolbar.unshift({
-                    id: newTool.id,
-                    attributes: { class: newTool.icon, title: newTool.title },
-                    command: newTool.commandName,
-                })
-                component.set('toolbar', defaultToolbar)
-            }
-        })
-        editor.on('component:selected', (component) => {
-            const openTraitsManagerTool = {
-                icon: 'fa fa-cog', // Icon class for the tool, adjust as needed
-                title: 'Open component settings', // Tooltip for the tool
-                commandName: 'open-traits-manager', // Unique command name for the tool
-                id: 'open-traits-manager', // Unique ID for the tool
+            const settingsTool = {
+                icon: 'fa fa-cog',
+                title: 'Open component settings',
+                commandName: 'open-traits-manager',
+                id: 'open-traits-manager',
             }
 
-            // Get the default toolbar of the component
-            const defaultToolbar = component.get('toolbar')
-
-            // Check if the tool already exists in the toolbar
-            const toolExists = defaultToolbar.some(
-                (toolbarItem) => toolbarItem.command === openTraitsManagerTool.commandName,
-            )
-
-            // Add the new tool to the toolbar if it doesn't exist
-            if (!toolExists) {
-                defaultToolbar.unshift({
-                    id: openTraitsManagerTool.id,
-                    attributes: { class: openTraitsManagerTool.icon, title: openTraitsManagerTool.title },
-                    command: openTraitsManagerTool.commandName,
-                })
-                component.set('toolbar', defaultToolbar)
-            }
+            // Add tools to the toolbar
+            addToToolbar(component, wrapperTool)
+            addToToolbar(component, settingsTool)
         })
 
-        // Adding the command to open the Traits Manager
+        // Command to open the Traits Manager
         editor.Commands.add('open-traits-manager', {
             run: () => {
                 setSelectedRightBar('Settings')
             },
         })
 
-        // command for keymap
-
+        // Command for deselecting components
         editor.Commands.add('deselect-components', {
-            run: editor => {
-                // This will deselect any selected component
-                editor.select(undefined);
-                console.log('Components deselected');
+            run: () => {
+                editor.select(undefined)
+                console.log('Components deselected')
             },
-        });
+        })
 
-// Then, add a keymap for the 'Esc' key that triggers your custom command
-        const keymaps = editor.Keymaps;
-        keymaps.add('deselect-components', 'esc', 'deselect-components');
-
+        // Keymap for the 'Esc' key to trigger the deselect command
+        editor.Keymaps.add('deselect-components', 'esc', 'deselect-components')
     }
 
 
@@ -139,8 +118,18 @@ export default function CustomEditor() {
     const gjsOptions: EditorConfig = {
         height: '100svh',
         // width:'100%',
-        storageManager: false,
         undoManager: { trackSelection: false },
+        storageManager: {
+            type: 'local', // Type of the storage, available: 'local' | 'remote'
+            autosave: true, // Store data automatically
+            autoload: true, // Autoload stored data on init
+            stepsBeforeSave: 1, // If autosave enabled, indicates how many changes are necessary before store method is triggered
+            options: {
+                local: { // Options for the `local` type
+                    key: 'lanndiProject', // The key for the local storage
+                },
+            },
+        },
         // selectorManager: { componentFirst: true },
         projectData: {
             assets: [
@@ -304,28 +293,21 @@ export default function CustomEditor() {
                             </div>
                             <Box component={ScrollArea} className="p-2 w-full"> {renderSelectedComponent()}</Box>
                         </div>
-                        {/*<AppShell.Section>*/}
-                        {/*    <SegmentedControl fullWidth m="4" size="xs" color="blue" value={selected}*/}
-                        {/*                      onChange={handleSegmentChange} data={['Pages', 'Layers', 'Blocks']} />*/}
 
-                        {/*</AppShell.Section>*/}
-                        {/*<AppShell.Section offsetScrollbars grow my="md" component={ScrollArea}>*/}
-                        {/*    */}
-                        {/*</AppShell.Section>*/}
                     </AppShell.Navbar>
-                    <AppShell.Aside>
-                        <AppShell.Section>
-                            <SegmentedControl fullWidth m="4" size="xs" color="blue" value={selectedRightBar}
-                                              onChange={handleRightBarSegmentChange} data={['Styles', 'Settings']} />
+                    {/*<AppShell.Aside>*/}
+                    {/*    <AppShell.Section>*/}
+                    {/*        <SegmentedControl fullWidth m="4" size="xs" color="blue" value={selectedRightBar}*/}
+                    {/*                          onChange={handleRightBarSegmentChange} data={['Styles', 'Settings']} />*/}
 
-                        </AppShell.Section>
-                        <AppShell.Section offsetScrollbars grow my="md" component={ScrollArea}>
-                            {renderSelectedRightBarComponent()}
-                        </AppShell.Section>
-                    </AppShell.Aside>
-                    <AppShell.Header>
-                        <TopBar onClick={toggleDesktop} openBlockSideBar={openBlockSideBar} />
-                    </AppShell.Header>
+                    {/*    </AppShell.Section>*/}
+                    {/*    <AppShell.Section offsetScrollbars grow my="md" component={ScrollArea}>*/}
+                    {/*        {renderSelectedRightBarComponent()}*/}
+                    {/*    </AppShell.Section>*/}
+                    {/*</AppShell.Aside>*/}
+                    {/*<AppShell.Header>*/}
+                    {/*    <TopBar onClick={toggleDesktop} openBlockSideBar={openBlockSideBar} />*/}
+                    {/*</AppShell.Header>*/}
                     <AppShell.Main>
                         <Canvas />
                     </AppShell.Main>
