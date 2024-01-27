@@ -11,35 +11,6 @@ export default function(editor: Editor, opts: Required<PluginOptions>) {
         select: true,
     }
 
-    toAdd('text') &&
-    bm.add('text', {
-        ...commonBlockProps,
-        activate: true,
-        label: opts.labelText,
-        media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-letter-t" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 4l12 0" /><path d="M12 4l0 16" /></svg>`,
-        content: {
-            type: 'text',
-            content: 'Insert your text here',
-            style: { padding: '10px' },
-            icon:`<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-text-size" width="10" height="10" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7v-2h13v2" /><path d="M10 5v14" /><path d="M12 19h-4" /><path d="M15 13v-1h6v1" /><path d="M18 12v7" /><path d="M17 19h2" /></svg>`,
-        },
-    })
-
-    toAdd('paragraph') &&
-    bm.add('paragraph', {
-        ...commonBlockProps,
-        activate: true,
-        label: opts.labelParagraph,
-        media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-letter-p" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 20v-16h5.5a4 4 0 0 1 0 9h-5.5" /></svg>`,
-        content: {
-            type: 'text',
-            content: 'Insert your text here',
-            style: { padding: '10px' },
-            icon:`<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-letter-p" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 20v-16h5.5a4 4 0 0 1 0 9h-5.5" /></svg>`,
-        },
-    })
-
-
     editor.DomComponents.addType('heading', {
 
         model: {
@@ -101,33 +72,33 @@ export default function(editor: Editor, opts: Required<PluginOptions>) {
         content: { type: 'heading' },
     })
 
-    editor.DomComponents.addType('link', {
-        model: {
-            defaults: {
-                extend: 'link',
-                traits: [
-                    // The href trait, for the URL
-                    {
-                        type: 'text',
-                        label: 'target URL',
-                        name: 'href',
-                    },
-                    // A select trait for additional IDs
-                    {
-                        type: 'text',
-                        label: 'Select target ID',
-                        name: 'select-id',
-                    },
-                    // A checkbox trait for opening the link in a new tab
-                    {
-                        type: 'checkbox',
-                        label: 'Open in new tab',
-                        name: 'target',
-                        valueTrue: '_blank',
-                        valueFalse: '_self',
-                    },
-                ],
-            },
+
+
+    toAdd('paragraph') &&
+    bm.add('paragraph', {
+        ...commonBlockProps,
+        activate: true,
+        label: opts.labelParagraph,
+        media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-letter-p" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 20v-16h5.5a4 4 0 0 1 0 9h-5.5" /></svg>`,
+        content: {
+            type: 'text',
+            content: 'Insert your text here',
+            style: { padding: '10px' },
+            icon:`<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-letter-p" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 20v-16h5.5a4 4 0 0 1 0 9h-5.5" /></svg>`,
+        },
+    })
+
+    toAdd('text') &&
+    bm.add('text', {
+        ...commonBlockProps,
+        activate: true,
+        label: opts.labelText,
+        media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-letter-t" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 4l12 0" /><path d="M12 4l0 16" /></svg>`,
+        content: {
+            type: 'text',
+            content: 'Insert your text here',
+            style: { padding: '10px' },
+            icon:`<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-text-size" width="10" height="10" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7v-2h13v2" /><path d="M10 5v14" /><path d="M12 19h-4" /><path d="M15 13v-1h6v1" /><path d="M18 12v7" /><path d="M17 19h2" /></svg>`,
         },
     })
 

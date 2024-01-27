@@ -37,12 +37,7 @@ export type PluginOptions = {
      * @default 'Heading'
      */
     labelIconList?: string
-
-    /**
-     * Map label
-     * @default 'Heading'
-     */
-    labelListItem?: string
+    
 }
 
 const ListBlocks: Plugin<PluginOptions> = (editor, opts = {}) => {
@@ -52,14 +47,13 @@ const ListBlocks: Plugin<PluginOptions> = (editor, opts = {}) => {
             'ordered-list',
             'unordered-list',
             'icon-list',
-            'list-item',
+          
         ],
         category: 'Lists',
         labelNoDecorationList: 'List',
         labelOrderedList: 'Ordered List',
         labelUnorderedList: 'Unordered List',
         labelIconList: 'Icon List',
-        labelListItem: 'List item',
         ...opts,
     }
 

@@ -43,46 +43,6 @@ export default function TopBarButtons({onClick}) {
     // })
 
 
-    editor.Commands.add('wrapper', {
-        run: () => {
-            // Get all currently selected components
-
-            const selectedComponents = editor.getSelectedAll();
-
-            // Check if there are selected components
-            if (selectedComponents.length === 0) {
-                return; // Exit if no components are selected
-            }
-
-            // Create a new 'div' component
-            const wrapperDiv = editor.DomComponents.addComponent({
-                tagName: 'div',
-                // Additional properties for the 'div', like classes, styles, etc.
-            });
-
-            // Get the parent of the first selected component
-            const firstComponentParent = selectedComponents[0].parent();
-
-            // Insert the wrapper at the position of the first selected component
-            if (firstComponentParent) {
-                firstComponentParent.append(wrapperDiv, { at: firstComponentParent.index(selectedComponents[0]) });
-            }
-
-            // Append each selected component to the new 'div'
-            selectedComponents.forEach(component => {
-                wrapperDiv.append(component);
-            });
-
-            // Select the new wrapper 'div' component
-            editor.select(wrapperDiv);
-        },
-        // Optional: Define the 'stop' function if needed
-        // stop: () => {
-        //     // Your stop logic here
-        // },
-    });
-
-
 
 
     editor.Commands.add('designer-mode', {

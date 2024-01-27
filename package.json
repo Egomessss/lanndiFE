@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.4.2",
     "@mantine/core": "^7.4.2",
+    "@mantine/form": "^7.5.0",
     "@mantine/hooks": "^7.4.2",
     "@tabler/icons-react": "^2.46.0",
     "axios": "^1.6.5",

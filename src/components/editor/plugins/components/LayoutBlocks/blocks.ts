@@ -224,54 +224,137 @@ export default function(editor: Editor, opts) {
         },
     })
 
-    editor.DomComponents.addType('grid', {
-        model: {
-            defaults: {
-                attributes: { class: 'columns' },
-                resizable: true,
-                components: [{ type: 'container' }, { type: 'container' }, { type: 'container' }],
-                styles: `
-        .columns {display:flex; flex-direction:column; width: 100%; height:100%; gap:8px; padding: 10px;}
-    
-    
-      `,
-            },
-        },
-    })
+    // editor.DomComponents.addType('grid-cell', {
+    //     model: {
+    //         defaults: {
+    //             attributes: { class: 'columns' },
+    //             resizable: true,
+    //             components: [{ type: 'container' }, { type: 'container' }, { type: 'container' }],
+    //             styles: `
+    //     .columns {display:flex; flex-direction:column; width: 100%; height:100%; gap:8px; padding: 10px;}
+    //
+    //
+    //   `,
+    //         },
+    //     },
+    // })
+    //
+    // editor.DomComponents.addType('grid', {
+    //     model: {
+    //         defaults: {
+    //             attributes: { class: 'columns' },
+    //             resizable: true,
+    //             components: [{ type: 'container' }, { type: 'container' }, { type: 'container' }],
+    //             styles: `
+    //     .columns {display:flex; flex-direction:column; width: 100%; height:100%; gap:8px; padding: 10px;}
+    //
+    //
+    //   `,
+    //         },
+    //     },
+    // })
+    //
+    // toAdd('grid') &&
+    // bm.add('grid', {
+    //     ...commonBlockProps,
+    //     label: opts.labelGrid,
+    //     category:'Grid',
+    //     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-grid-dots" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M19 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M19 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>`,
+    //     content: `<div ${attrsRow}>
+    //     <div ${attrsCell}></div>
+    //   </div>
+    //   ${
+    //         addBasicStyle
+    //             ? `<style>
+    //       ${styleRow}
+    //       ${styleClm}
+    //     </style>`
+    //             : ''
+    //     }`,
+    // })
+    //
+    // toAdd('grid-cell') &&
+    // bm.add('grid-cell', {
+    //     ...commonBlockProps,
+    //     label: 'Grid Cell',
+    //     category:'Grid',
+    //     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rectangle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /></svg>`,
+    //     content: `<div ${attrsRow}>
+    //     <div ${attrsCell}></div>
+    //   </div>
+    //   ${
+    //         addBasicStyle
+    //             ? `<style>
+    //       ${styleRow}
+    //       ${styleClm}
+    //     </style>`
+    //             : ''
+    //     }`,
+    // })
+    //
+    // toAdd('table') &&
+    // bm.add('table', {
+    //     ...commonBlockProps,
+    //     category:'table',
+    //     label: opts.labelTable,
+    //     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-table" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z" /><path d="M3 10h18" /><path d="M10 3v18" /></svg>`,
+    //     content: `<div ${attrsRow}>
+    //     <div ${attrsCell}></div>
+    //   </div>
+    //   ${
+    //         addBasicStyle
+    //             ? `<style>
+    //       ${styleRow}
+    //       ${styleClm}
+    //     </style>`
+    //             : ''
+    //     }`,
+    // })
+    //
+    // toAdd('table-cell') &&
+    // bm.add('table-cell', {
+    //     ...commonBlockProps,
+    //     category:'table',
+    //     label: 'Table Cell',
+    //     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rectangle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /></svg>`,
+    //     content: {type:'cell'},
+    // })
+    //
+    // toAdd('table-row') &&
+    // bm.add('table-row', {
+    //     ...commonBlockProps,
+    //     category:'table',
+    //     label: 'Table Row',
+    //     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-table-row" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z" /><path d="M9 3l-6 6" /><path d="M14 3l-7 7" /><path d="M19 3l-7 7" /><path d="M21 6l-4 4" /><path d="M3 10h18" /><path d="M10 10v11" /></svg>`,
+    //     content: {type:'cell'},
+    // })
+    //
+    // toAdd('table-head') &&
+    // bm.add('table-head', {
+    //     ...commonBlockProps,
+    //     category:'table',
+    //     label: 'Table Head',
+    //     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-navbar" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 9l16 0" /></svg>`,
+    //     content: {type:'head'},
+    // })
+    //
+    // toAdd('table-body') &&
+    // bm.add('table-body', {
+    //     ...commonBlockProps,
+    //     category:'table',
+    //     label: 'Table Body',
+    //     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-section" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 20h.01" /><path d="M4 20h.01" /><path d="M8 20h.01" /><path d="M12 20h.01" /><path d="M16 20h.01" /><path d="M20 4h.01" /><path d="M4 4h.01" /><path d="M8 4h.01" /><path d="M12 4h.01" /><path d="M16 4l0 .01" /><path d="M4 8m0 1a1 1 0 0 1 1 -1h14a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-14a1 1 0 0 1 -1 -1z" /></svg>`,
+    //     content: {type:'head'},
+    // })
+    //
+    // toAdd('table-footer') &&
+    // bm.add('table-footer', {
+    //     ...commonBlockProps,
+    //     category:'table',
+    //     label: 'Table Footer',
+    //     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
+    //     content: {type:'head'},
+    // })
+    //
 
-    toAdd('grid') &&
-    bm.add('grid', {
-        ...commonBlockProps,
-        label: opts.labelGrid,
-        media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-grid-dots" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M19 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M19 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>`,
-        content: `<div ${attrsRow}>
-        <div ${attrsCell}></div>
-      </div>
-      ${
-            addBasicStyle
-                ? `<style>
-          ${styleRow}
-          ${styleClm}
-        </style>`
-                : ''
-        }`,
-    })
-
-    toAdd('table') &&
-    bm.add('table', {
-        ...commonBlockProps,
-        label: opts.labelTable,
-        media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-table" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z" /><path d="M3 10h18" /><path d="M10 3v18" /></svg>`,
-        content: `<div ${attrsRow}>
-        <div ${attrsCell}></div>
-      </div>
-      ${
-            addBasicStyle
-                ? `<style>
-          ${styleRow}
-          ${styleClm}
-        </style>`
-                : ''
-        }`,
-    })
 }

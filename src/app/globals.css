@@ -1,4 +1,4 @@
-@tailwind base;
+/*@tailwind base;*/
 @tailwind components;
 @tailwind utilities;
 
@@ -14,12 +14,9 @@ body {
 }
 
 .gjs-toolbar {
-
     transform-origin: right bottom;
     translate: 0px -10%;
     border-radius: 3px;
-
-
 }
 
 /* Example CSS to center the frame within the canvas */
@@ -33,11 +30,25 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding:2px;
 }
 
-.gjs-toolbar-items > svg {
-    width: 16px;
-    height: 16px;
-    color:black;
+.gjs-toolbar-items :nth-child(4) {
+    display: none;
 }
+.gjs-toolbar-items > * {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:25px;
+}
+
+.gjs-toolbar-items > *:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Darkens the background slightly */
+}
+/*.gjs-toolbar-items > svg {*/
+/*    width: 16px;*/
+/*    height: 16px;*/
+/*    color:black;*/
+/*}*/
 

@@ -9,7 +9,13 @@ import React, { useState } from 'react'
 
 import zoomPlugin from '@/components/editor/plugins/utils/ZoomPlugin/zoomPlugin'
 
-import GjsEditor, { Canvas, TraitsProvider, WithEditor } from '@/components/editor/wrappers'
+import GjsEditor, {
+    AssetsProvider,
+    Canvas,
+    ModalProvider,
+    TraitsProvider,
+    WithEditor,
+} from '@/components/editor/wrappers'
 import CoreBlocks from '../../components/editor/plugins/components/InteractiveBlocks'
 import MediaBlocks from '@/components/editor/plugins/components/MediaBlocks'
 import LayoutBlocks from '@/components/editor/plugins/components/LayoutBlocks'
@@ -35,6 +41,10 @@ import {
 import styles from '@/app/page.module.css'
 import TypographyBlocks from '@/components/editor/plugins/components/TypographyBlocks'
 import ExtraBlocks from '@/components/editor/plugins/components/ExtraBlocks'
+import CustomModal from '@/components/editor/components/CustomModal'
+import CustomAssetManager from '@/components/editor/components/CustomAssetManager'
+import TemplatesManager from '@/components/editor/components/TemplatesManager'
+import SettingsModal from '@/components/editor/components/SettingsModal'
 
 export default function CustomEditor() {
     const [selected, setSelected] = useState('Blocks')
@@ -46,37 +56,75 @@ export default function CustomEditor() {
 
         // Function to add a tool to the component's toolbar
         const addToToolbar = (component, tool) => {
-            const toolbar = component.get('toolbar')
-            const toolExists = toolbar.some(item => item.command === tool.commandName)
+            let toolbar = component.get('toolbar');
+            const existingToolIndex = toolbar.findIndex(item => item.command === tool.commandName);
 
-            if (!toolExists) {
+            if (existingToolIndex !== -1) {
+                // Replace the existing tool
+                toolbar[existingToolIndex] = {
+                    id: tool.id,
+                    attributes: { class: tool.icon, title: tool.title },
+                    command: tool.commandName,
+                };
+            } else {
+                // Add a new tool
                 toolbar.unshift({
                     id: tool.id,
                     attributes: { class: tool.icon, title: tool.title },
                     command: tool.commandName,
-                })
-                component.set('toolbar', toolbar)
+                });
             }
-        }
+            component.set('toolbar', toolbar);
+        };
 
         // Event handler for component selection
         editor.on('component:selected', (component) => {
             // Define tools to be added
             const wrapperTool = {
                 icon: 'fa fa-plus',
-                title: 'Add a wrapper',
+                title: 'Add a wrapper to selected components',
                 commandName: 'wrapper',
                 id: 'wrapper',
             }
+
             const settingsTool = {
                 icon: 'fa fa-cog',
                 title: 'Open component settings',
                 commandName: 'open-traits-manager',
                 id: 'open-traits-manager',
             }
+            const parentTool = {
+                icon: 'fa fa-arrow-up',
+                title: 'Select parent component',
+                commandName: 'select-parent',
+                id: 'select-parent',
+            }
+            const duplicateTool = {
+                icon: 'fa fa-clone',
+                title: 'Duplicate component',
+                commandName: 'tlb-clone',
+                id: 'tlb-clone',
+            }
+            const deleteTool = {
+                icon: 'fa fa-trash',
+                title: 'Delete component',
+                commandName: 'tlb-delete',
+                id: 'tlb-delete',
+            }
+
+            const moveTool = {
+                icon: 'fa fa-arrows',
+                title: 'Move component',
+                commandName: 'tlb-move',
+                id: 'tlb-move',
+            }
 
             // Add tools to the toolbar
             addToToolbar(component, wrapperTool)
+            addToToolbar(component, parentTool)
+            addToToolbar(component, deleteTool)
+            addToToolbar(component, moveTool)
+            addToToolbar(component, duplicateTool)
             addToToolbar(component, settingsTool)
         })
 
@@ -86,6 +134,50 @@ export default function CustomEditor() {
                 setSelectedRightBar('Settings')
             },
         })
+
+        editor.Commands.add('wrapper', {
+            run: () => {
+                // Get all currently selected components
+
+                const selectedComponents = editor.getSelectedAll();
+
+                // Check if there are selected components
+                if (selectedComponents.length === 0) {
+                    return; // Exit if no components are selected
+                }
+
+                // Create a new 'div' component
+                const wrapperDiv = editor.DomComponents.addComponent({
+                    tagName: 'div',
+                    // Additional properties for the 'div', like classes, styles, etc.
+                });
+
+                // Get the parent of the first selected component
+                const firstComponentParent = selectedComponents[0].parent();
+
+                const selected = editor.getSelected();
+
+                // Insert the wrapper at the position of the first selected component
+                if (firstComponentParent) {
+                    firstComponentParent.append(wrapperDiv, { at: selected.index() });
+                }
+
+                // Append each selected component to the new 'div'
+                selectedComponents.forEach(component => {
+                    wrapperDiv.append(component);
+                });
+
+                // Select the new wrapper 'div' component
+                editor.select(wrapperDiv);
+            },
+            // Optional: Define the 'stop' function if needed
+            // stop: () => {
+            //     // Your stop logic here
+            // },
+        });
+
+
+
 
         // Command for deselecting components
         editor.Commands.add('deselect-components', {
@@ -166,10 +258,10 @@ export default function CustomEditor() {
             CoreBlocks,
             MediaBlocks,
             ListBlocks,
-            FormBlocks,
-            ExtraBlocks,
-            // IntegrationsBlocks,
+            // FormBlocks,
             SemanticBlocks,
+            // IntegrationsBlocks,
+            ExtraBlocks,
         ],
 
     }
@@ -243,7 +335,7 @@ export default function CustomEditor() {
                         {/*    <Tabs.Panel value="second">Second panel</Tabs.Panel>*/}
                         {/*</Tabs>*/}
                         <div className="h-full flex ">
-                            <div className=" flex flex-col gap-2 h-full border-r-[1px] border-blue-500 p-1">
+                            <div className=" flex flex-col gap-2 h-full  p-1">
                                 <Tooltip label="Show/Hide Siderbar">
                                     <ActionIcon variant="subtle">
                                         <IconPlus size="1rem" />
@@ -259,16 +351,12 @@ export default function CustomEditor() {
                                         <IconSection size="1rem" />
                                     </ActionIcon>
                                 </Tooltip>
-                                <Tooltip label="Templates">
-                                    <ActionIcon variant="subtle">
-                                        <IconTemplate size="1rem" />
-                                    </ActionIcon>
-                                </Tooltip>
-                                <Tooltip label="Custom Components">
-                                    <ActionIcon variant="subtle">
-                                        <IconUserBolt size="1rem" />
-                                    </ActionIcon>
-                                </Tooltip>
+                               <TemplatesManager/>
+                                {/*<Tooltip label="Custom Components">*/}
+                                {/*    <ActionIcon variant="subtle">*/}
+                                {/*        <IconUserBolt size="1rem" />*/}
+                                {/*    </ActionIcon>*/}
+                                {/*</Tooltip>*/}
                                 <Divider my="xs" variant="dashed" />
                                 <Tooltip label="Layers">
                                     <ActionIcon variant="subtle">
@@ -281,16 +369,9 @@ export default function CustomEditor() {
                                         <IconFile size="1rem" />
                                     </ActionIcon>
                                 </Tooltip>
-
-
-                                <Tooltip label="Settings">
-                                    <ActionIcon variant="subtle">
-                                        <IconSettings size="1rem" />
-                                    </ActionIcon>
-                                </Tooltip>
-
-
+                                <SettingsModal/>
                             </div>
+                            <Divider orientation="vertical" my="md" />
                             <Box component={ScrollArea} className="p-2 w-full"> {renderSelectedComponent()}</Box>
                         </div>
 
@@ -315,6 +396,27 @@ export default function CustomEditor() {
                 <WithEditor>
                     <FloatingBar />
                 </WithEditor>
+                <ModalProvider>
+                    {({ open, title, content, close }) => (
+                        <CustomModal
+                            open={open}
+                            title={title}
+                            children={content}
+                            close={close}
+                        />
+                    )}
+                </ModalProvider>
+                <AssetsProvider>
+                    {({ assets, select, close, Container }) => (
+                        <Container>
+                            <CustomAssetManager
+                                assets={assets}
+                                select={select}
+                                close={close}
+                            />
+                        </Container>
+                    )}
+                </AssetsProvider>
             </div>
         </GjsEditor>
 

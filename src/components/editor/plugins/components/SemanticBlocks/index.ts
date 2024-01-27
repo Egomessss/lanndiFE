@@ -4,10 +4,9 @@ import loadBlocks from './blocks'
 
 const SemanticBlocks: Plugin = (editor, opts = {}) => {
     const config = {
-        blocks: ['span', 'section', 'main', 'header', 'nav', 'footer'],
+        blocks: [ 'section', 'main', 'header', 'nav', 'footer'],
         stylePrefix: 'lnd-',
         category: 'Semantic Blocks',
-        labelSpan: '<Span>',
         labelSection:'<Section>',
         labelMain: '<Main>',
         labelHeader: '<Header>',

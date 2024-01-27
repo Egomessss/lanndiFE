@@ -65,7 +65,9 @@ export type PluginOptions = {
 
 const ExtraBlocks: Plugin<PluginOptions> = (editor, opts = {}) => {
     const config: Required<PluginOptions> = {
-        blocks: ['custom-code','tabs','slider','accordion'],
+        blocks: ['custom-code',
+            // 'tabs','slider','accordion'
+        ],
         flexGrid: false,
         stylePrefix: 'ext-',
         addBasicStyle: true,
