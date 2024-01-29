@@ -36,8 +36,6 @@ export default function CustomBlockManager({
 
 
     return (
-
-
             <div className="w-full">
                 {Array.from(mapCategoryBlocks).map(([category, blocks]) => (
                     <div
@@ -45,7 +43,6 @@ export default function CustomBlockManager({
                         // className="h-[10%]"
                     >
                         <div className="flex items-center gap-2 ">
-
                             <Text style={{ whiteSpace: 'nowrap', fontWeight: '600', fontSize:'0.8rem' }} c="blue.5">{category}</Text>
                             <Divider
                                 variant="dashed"

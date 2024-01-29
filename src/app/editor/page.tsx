@@ -306,7 +306,6 @@ export default function CustomEditor() {
                         collapsed: { mobile: !opened, desktop: !desktopOpened },
                     }}
                     transitionDuration={1000}
-
                 >
                     <AppShell.Navbar hidden={!opened} classNames={styles}>
                         <div className="h-full flex ">

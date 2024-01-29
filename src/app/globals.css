@@ -44,3 +44,26 @@ body {
 /*    color:black;*/
 /*}*/
 
+.gjs-rte-actionbar{
+    translate: 0px -1%;
+    background-color: #3A97E3;
+    border-radius: 2px;
+    color:white;
+    border: none;
+}
+
+.gjs-badge{
+    translate: 0px -10%;
+    border-radius: 3px;
+}
+
+
+.gjs-rte-toolbar-ui{
+    translate: 0px -10%;
+ border: none;
+
+}
+
+.gjs-rte-action{
+    border: none;
+}

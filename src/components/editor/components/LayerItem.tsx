@@ -109,7 +109,7 @@ export default function LayerItem({
     }
 
 
-    const wrapperCls = `layer-item flex flex-col rounded-lg  ${selected ? 'bg-[#228BE6]/20  ' : ''} ${(!visible || isDragging) ? 'opacity-50' : ''}`
+    const wrapperCls = `layer-item flex flex-col rounded-lg  ${selected ? 'bg-[#228BE6]/20  ' : ''} ${(!visible || isDragging) ? 'opacity-40' : ''}`
 
     const icon = component.get('icon')
     return (
@@ -133,7 +133,7 @@ export default function LayerItem({
                         size="xs"
                         variant="subtle"
                         color="black"
-                        style={{ marginLeft: `${level * 2}px` }}
+                        style={{ marginLeft: `${level * 4}px` }}
                         onClick={toggleOpen}
                     >
                         {open ? (
