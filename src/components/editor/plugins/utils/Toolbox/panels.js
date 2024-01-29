@@ -1,4 +1,4 @@
-import { cmdSave } from './consts.js';
+import { cmdSave } from './consts';
 
 export default (editor, config) => {
     const cm = editor.Commands;

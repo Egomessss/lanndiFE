@@ -1,5 +1,5 @@
 import type { Plugin } from 'grapesjs';
-import styleGradient, { GRAD_DIRS, GRAD_TYPES, PluginOptions as StyleGradientOptions, getValidDir, parseGradient, toGradient } from 'grapesjs-style-gradient';
+import styleGradient, { GRAD_DIRS, GRAD_TYPES, PluginOptions as StyleGradientOptions, getValidDir, parseGradient, toGradient } from "../StyleGradient";
 
 export interface PluginOptions {
     /**

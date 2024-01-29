@@ -12,7 +12,7 @@ import type { IconCollection, PluginOptions, CommandOptions } from './types'
 const commandOptions: Required<CommandOptions> = {
   insertionMode: 'drop'
 }
-const plugin: Plugin<PluginOptions> = (editor, options) => {
+const IconPicker: Plugin<PluginOptions> = (editor, options) => {
   const { collections, modal = {}, component = {}, block = {} } = options
   const modalOptions = getModalOptions(modal)
   const { type, name } = getComponentOptions(component)
@@ -111,4 +111,4 @@ const plugin: Plugin<PluginOptions> = (editor, options) => {
   listenEditorEvents()
 }
 
-export default plugin
+export default IconPicker

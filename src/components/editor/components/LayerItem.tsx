@@ -4,16 +4,17 @@ import { MouseEvent, useEffect, useMemo, useRef, useState } from 'react'
 import type { Component } from 'grapesjs'
 
 
-import { ActionIcon } from '@mantine/core'
+import { ActionIcon, Menu } from '@mantine/core'
 import { useEditor } from '../wrappers'
 import {
     IconChevronDown,
     IconChevronLeft,
-    IconChevronRight,
+    IconChevronRight, IconDots, IconDotsVertical,
     IconEye,
     IconEyeCancel,
     IconLock,
     IconLockX,
+    IconSquarePlus,
 } from '@tabler/icons-react'
 
 
@@ -38,7 +39,7 @@ export default function LayerItem({
     const layerRef = useRef<HTMLDivElement>(null)
     const [layerData, setLayerData] = useState(Layers.getLayerData(component))
 
-    const {  open, selected, hovered, components, visible, name, locked } =
+    const { open, selected, hovered, components, visible, name, locked } =
         layerData
     const componentsIds = components.map((cmp) => cmp.getId())
     const isDragging = draggingCmp === component
@@ -110,7 +111,7 @@ export default function LayerItem({
 
     const wrapperCls = `layer-item flex flex-col rounded-lg  ${selected ? 'bg-[#228BE6]/20  ' : ''} ${(!visible || isDragging) ? 'opacity-50' : ''}`
 
-    const icon = component.get('icon');
+    const icon = component.get('icon')
     return (
         <div className={wrapperCls}>
             <div
@@ -123,52 +124,110 @@ export default function LayerItem({
             >
                 <div
                     className={
-                        `flex items-center gap-1   ${level === 0 ? '' : ''} ${isHovered ? 'cursor-pointer bg-[#228BE6]/20 rounded-lg' : ''} ${selected ? 'rounded-lg bg-[#339AF0] ' : ''}`
+                        `flex items-center p-1  ${level === 0 ? '' : ''} ${isHovered ? 'cursor-pointer bg-[#228BE6]/20 rounded-md' : ''} ${selected ? 'rounded-md bg-[#339AF0] ' : ''}`
                     }
 
                 >
+
                     <ActionIcon
-                        variant="transparent"
-                        style={{ marginLeft: `${level * 6}px` }}
+                        size="xs"
+                        variant="subtle"
+                        color="black"
+                        style={{ marginLeft: `${level * 2}px` }}
                         onClick={toggleOpen}
                     >
                         {open ? (
-                            <IconChevronDown size="0.8rem" className="text-black" />
+                            <IconChevronDown size="0.8rem" />
                         ) : (
-                            <IconChevronRight size="0.8rem" className="text-black"  />
+                            <IconChevronRight size="0.8rem" />
                         )}
                     </ActionIcon>
                     {icon && (
-                        <span dangerouslySetInnerHTML={{ __html: icon }} />
+                        <span className="pr-1" dangerouslySetInnerHTML={{ __html: icon }} />
                     )}
                     <p
-                        className="flex-grow truncate"
+                        className="flex-grow truncate text-[10px] font-medium"
                         style={itemStyle}
                     >
                         {name}
                     </p>
-                    <ActionIcon
-                        autoContrast
-                        variant="transparent"
-                        onClick={lockLayer}
-                    >
-                        {locked ? (
-                            <IconLock size="0.8rem" className="text-black" />
-                        ) : (
-                            <IconLockX size="0.8rem" className="text-black" />
-                        )}
-                    </ActionIcon>
-                    <ActionIcon
-                        autoContrast
-                        variant="transparent"
-                        onClick={toggleVisibility}
-                    >
-                        {visible ? (
-                            <IconEye size="0.8rem" className="text-black" />
-                        ) : (
-                            <IconEyeCancel size="0.8rem" className="text-black" />
-                        )}
-                    </ActionIcon>
+                    <Menu position="bottom-start" trigger="hover" openDelay={100} closeDelay={400} shadow="md" width={200}>
+                        <Menu.Target>
+                            <ActionIcon
+                                size="xs"
+                                autoContrast
+                                variant="subtle"
+                                color="black"
+                                onClick={lockLayer}
+                            >
+                                <IconDotsVertical size="1rem" />
+                            </ActionIcon>
+                        </Menu.Target>
+
+                        <Menu.Dropdown>
+                            <Menu.Item onClick={lockLayer}>
+                                Lock Layer
+                            </Menu.Item>
+
+                            <Menu.Item onClick={toggleVisibility}>
+                                Hide Layer
+                            </Menu.Item>
+                            <Menu.Item onClick={() => editor.runCommand('wrapper')}>
+                                Add Wrapper Container
+                            </Menu.Item>
+                            <Menu.Item
+                            >
+                                Save as Custom Block
+                            </Menu.Item>
+                            <Menu.Divider />
+                            <Menu.Item
+                                color="red"
+                            >
+                                Remove layer
+                            </Menu.Item>
+                        </Menu.Dropdown>
+                    </Menu>
+                    {/*<div>*/}
+                    {/*    <ActionIcon*/}
+                    {/*    size="xs"*/}
+                    {/*    variant="subtle"*/}
+                    {/*    color="black"*/}
+                    {/*    style={{ marginLeft: `${level * 6}px` }}*/}
+                    {/*  */}
+                    {/*>*/}
+                    {/*    {open ? (*/}
+                    {/*        <IconSquarePlus size="0.8rem"  />*/}
+                    {/*    ) : (*/}
+                    {/*        <IconSquarePlus size="0.8rem"  />*/}
+                    {/*    )}*/}
+                    {/*</ActionIcon>*/}
+                    {/*    <ActionIcon*/}
+                    {/*        size="xs"*/}
+                    {/*        autoContrast*/}
+                    {/*        variant="subtle"*/}
+                    {/*        color="black"*/}
+                    {/*     */}
+                    {/*    >*/}
+                    {/*        {locked ? (*/}
+                    {/*            <IconLock size="0.8rem"  />*/}
+                    {/*        ) : (*/}
+                    {/*            <IconLockX size="0.8rem"  />*/}
+                    {/*        )}*/}
+                    {/*    </ActionIcon>*/}
+                    {/*    <ActionIcon*/}
+                    {/*        size="xs"*/}
+                    {/*        autoContrast*/}
+                    {/*        variant="subtle"*/}
+                    {/*        color="black"*/}
+                    {/*       */}
+                    {/*    >*/}
+                    {/*        {visible ? (*/}
+                    {/*            <IconEye size="0.8rem"  />*/}
+                    {/*        ) : (*/}
+                    {/*            <IconEyeCancel size="0.8rem"  />*/}
+                    {/*        )}*/}
+                    {/*    </ActionIcon></div>*/}
+
                 </div>
             </div>
             {!!(open && components.length) && (

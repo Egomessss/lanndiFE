@@ -5,7 +5,8 @@ import loadBlocks from './blocks'
 const LayoutBlocks: Plugin = (editor, opts = {}) => {
     const config = {
         blocks: ['container','rows', 'columns',
-            // 'grid', 'grid-cell', 'table', 'table-cell', 'table-row', 'table-head', 'table-body','table-footer'
+            'grid', 'table',
+            // 'table', 'table-cell', 'table-row', 'table-head', 'table-body','table-footer'
         ],
         flexGrid: false,
         stylePrefix: 'lyt-',

@@ -79,9 +79,10 @@ export default function Topbar({ openBlockSideBar, onClick }:any) {
 
 
     return (
-        <div className="gjs-top-sidebar flex h-full w-full items-center justify-between px-4 ">
+        <div className="gjs-top-sidebar flex h-full w-full items-center justify-between px-2">
             <div className="flex w-full items-center justify-start gap-2 py-2 ">
                 <Button
+                    variant="outline"
                     size="xs"
                     leftSection={<IconArrowLeft />}
                 >
@@ -143,7 +144,7 @@ export default function Topbar({ openBlockSideBar, onClick }:any) {
 
                 </Tooltip>
 
-                <Button size="xs">Publish</Button>
+                <Button  variant="outline" size="xs">Publish</Button>
             </div>
         </div>
     )

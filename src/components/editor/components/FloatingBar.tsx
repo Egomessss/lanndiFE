@@ -141,7 +141,7 @@ const FloatingBar = () => {
 
     return (
         <Paper
-            className="absolute bottom-1 left-1/2 transform -translate-x-1/2 -translate-y-1/4  z-50 bg-white p-1 rounded-lg">
+            className="absolute bottom-1 left-1/2 transform -translate-x-1/2 -translate-y-1/2  z-50 bg-white p-1 rounded-lg">
             <div className="flex items-center justify-center gap-2  w-full">
                 <Tooltip label="Zoom out/ Shift -">
                     <ActionIcon

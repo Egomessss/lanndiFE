@@ -62,12 +62,12 @@ const MediaBlocks: Plugin<PluginOptions> = (editor, opts = {}) => {
     const config: Required<PluginOptions> = {
         blocks: [
             "image",
-            "video",
             'iconsvg',
-            'icon',
+            "youtube",
+            // 'icon',
         ],
         flexGrid: false,
-        stylePrefix: "gjs-",
+        stylePrefix: "lnd-",
         addBasicStyle: true,
         category: "Media",
         labelImage: "Image",

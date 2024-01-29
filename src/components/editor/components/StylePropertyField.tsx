@@ -29,6 +29,8 @@ export default function StylePropertyField({
                                            }: StylePropertyFieldProps) {
     const editor = useEditor()
 
+
+
     const handleChange = (value: any) => {
         prop.upValue(value)
     }

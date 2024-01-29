@@ -1,8 +1,8 @@
-import loadComponents from './components.js';
-import loadBlocks from './blocks.js';
-import loadPanels from './panels.js';
-import grid from './grid.js';
-import { breadcrumbs, palette, resizer } from './utils/index.js';
+import loadComponents from './components';
+import loadBlocks from './blocks';
+import loadPanels from './panels';
+import grid from './grid';
+import { breadcrumbs, palette, resizer } from './utils';
 
 export default (editor, opts = {}) => {
   const options = {
@@ -12,7 +12,7 @@ export default (editor, opts = {}) => {
       // show canvas resizer
       resizer: 1,
       // show breadcrumbs
-      breadcrumbs: 1,
+      breadcrumbs: 0,
       // label for grid block
       labelGrid: 'Grid',
       // category for grid block
@@ -295,19 +295,10 @@ export default (editor, opts = {}) => {
     ...opts
   };
 
-  // Load grid
+  // Loading various components and functions for the editor
   editor.Grid = grid(editor, options);
-  // Add components
   loadComponents(editor, options);
-  // Add blocks
   loadBlocks(editor, options);
-  // Add panels
-  options.panels && loadPanels(editor, options);
-  // Add breadcrumbs
-  options.breadcrumbs && breadcrumbs(editor, options);
-  // Add palette
-  options.palette && palette(editor, options);
-  // Load resizer
   options.resizer && resizer(editor, options);
 
   editor.on('load', () => {
@@ -316,49 +307,55 @@ export default (editor, opts = {}) => {
     const pfx = editor.Config.stylePrefix;
     const cmp = editor.Components;
 
-    //? Map layer icons to components
+    // Mapping layer icons to components
     options.defIcons.forEach(icon => {
       try {
         cmp.getType(icon.type).model.prototype.defaults.icon = icon.icon;
       } catch (error) { }
-    })
+    });
     options.icons.forEach(icon => {
       try {
         cmp.getType(icon.type).model.prototype.defaults.icon = icon.icon;
       } catch (error) { }
     });
 
-    // Add Settings Sector
+    // Add Settings Sector if enabled
     if (options.traitsInSm) {
-      // Load and show settings and style manager
       const openTmBtn = pn.getButton('views', 'open-tm');
       openTmBtn && openTmBtn.set('active', 1);
       const openSm = pn.getButton('views', 'open-sm');
       openSm && openSm.set('active', 1);
 
+      // Creating a new sector for traits
       const traitsSector = $(`<div class="${pfx}sm-sector ${pfx}one-bg no-select" style="max-height: calc(100% - 125px);overflow: auto;"><div class="${pfx}sm-sector-title ${pfx}sm-title"><div class="icon-settings fa fa-cog"></div><div class="${pfx}sm-sector-label">Settings</div></div><div class="${pfx}sm-properties" style="display: none;"></div></div>`);
       const traitsProps = traitsSector.find(`.${pfx}sm-properties`);
+
+      // Append traits to the created sector
+      // Make sure that `.${pfx}trt-traits` is a valid DOM element
       traitsProps.append($(`.${pfx}trt-traits`));
+
+      // Inserting the new sector before existing ones
+      // Ensure that `.${pfx}sm-sectors` is a valid selector and points to an existing DOM element
       $(`.${pfx}sm-sectors`).before(traitsSector);
+
+      // Toggle visibility of the traits section
       traitsSector.find(`.${pfx}sm-title`).on('click', function () {
         let traitStyle = traitsProps.get(0).style;
-        let hidden = traitStyle.display == 'none';
-        if (hidden) {
-          traitStyle.display = 'block';
-        } else {
-          traitStyle.display = 'none';
-        }
+        traitStyle.display = traitStyle.display == 'none' ? 'block' : 'none';
       });
+
+      // Adjusting UI elements
       pn.removeButton('views', 'open-tm');
       $(`.${pfx}pn-views .${pfx}pn-btn`).css('width', `${100 / pn.getPanel('views').buttons.length}%`);
     }
 
-    // Body icon
+    // Configure body icon if enabled
     if (options.wrapperIcon) {
       const openLm = pn.getButton('views', 'open-layers');
       openLm && openLm.set('active', 1);
       $(`.${pfx}layer-name`)[0].innerHTML = '<i class="fa fa-cubes"></i> Body';
       openSm && openSm.set('active', 1);
     }
+
   });
 };

@@ -1,4 +1,4 @@
-import { groupRepeatedUnits, createRepetition } from './repetition.js';
+import { groupRepeatedUnits, createRepetition } from './repetition';
 
 export default (editor, opts = {}) => {
     return {

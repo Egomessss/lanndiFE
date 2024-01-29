@@ -161,4 +161,36 @@ export default function(editor: Editor, opts:any) {
 
         },
     })
+
+    editor.DomComponents.addType('span', {
+        isComponent: el => {
+            if (el.tagName === 'span') { // Corrected the condition to check for H1 tag
+                return { type: 'span' };
+            }
+        },
+        model: {
+            defaults: {
+                name: 'Span', // Default component name
+                tagName: 'p',
+                content: 'Paragraph',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-h-6" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19 14a2 2 0 1 0 0 4a2 2 0 0 0 0 -4z" /><path d="M21 12a2 2 0 1 0 -4 0v4" /><path d="M4 6v12" /><path d="M12 6v12" /><path d="M11 18h2" /><path d="M3 18h2" /><path d="M4 12h8" /><path d="M3 6h2" /><path d="M11 6h2" /></svg>`,
+                droppable: false,
+            },
+
+        },
+    })
+
+    toAdd('span') &&
+    bm.add('span', {
+        ...commonBlockProps,
+        activate: true,
+        label: '<Span>',
+        media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-letter-t" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 4l12 0" /><path d="M12 4l0 16" /></svg>`,
+        content: {
+            type: 'text',
+            content: 'Insert your content here',
+            style: { padding: '10px' },
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-text-size" width="10" height="10" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7v-2h13v2" /><path d="M10 5v14" /><path d="M12 19h-4" /><path d="M15 13v-1h6v1" /><path d="M18 12v7" /><path d="M17 19h2" /></svg>`,
+        },
+    })
 }

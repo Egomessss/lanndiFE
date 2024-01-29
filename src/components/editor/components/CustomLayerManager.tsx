@@ -118,9 +118,7 @@ export default function CustomLayerManager({
 
     return (
         <ScrollArea
-            style={{ height: '60%' }}
-            className="gjs-custom-layer-manager relative  select-none text-left text-xs"
-            offsetScrollbars
+            className="gjs-custom-layer-manager relative  select-none text-left "
             onPointerDown={onDragStart}
             onPointerMove={onDragMove}
             onPointerUp={onDragEnd}

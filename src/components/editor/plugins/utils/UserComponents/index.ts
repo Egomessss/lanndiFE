@@ -28,6 +28,7 @@ export default (editor: Editor): void => {
           if (!toolbar.filter((tlb: any) => tlb.id === id).length) {
             toolbar.unshift({
               id,
+              icon: 'fa fa-folder',
               command: function () {
                 customSaveModal(editor)
               },

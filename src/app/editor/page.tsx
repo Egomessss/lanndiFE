@@ -46,6 +46,20 @@ import CustomAssetManager from '@/components/editor/components/CustomAssetManage
 import TemplatesManager from '@/components/editor/components/TemplatesManager'
 import SettingsModal from '@/components/editor/components/SettingsModal'
 
+import CustomCode from '@/components/editor/plugins/utils/CustomCode'
+import PostCss from '@/components/editor/plugins/utils/PostCss'
+
+
+import UserComponents from '@/components/editor/plugins/utils/UserComponents'
+import StyleGradient from '@/components/editor/plugins/utils/StyleGradient'
+import BackgroundStyle from '@/components/editor/plugins/utils/BackgroundStyle'
+import IconPicker from '@/components/editor/plugins/utils/IconPicker/plugin'
+import ReusableComponents from '@/components/editor/plugins/utils/ReusableComponents'
+import GoogleIcons from '@/components/editor/plugins/utils/GoogleIcons'
+import FlexBlock from '@/components/editor/plugins/components/Flex'
+import Toolbox from '@/components/editor/plugins/utils/Toolbox'
+
+
 export default function CustomEditor() {
     const [selected, setSelected] = useState('Blocks')
     const [selectedRightBar, setSelectedRightBar] = useState('Styles')
@@ -54,87 +68,51 @@ export default function CustomEditor() {
     const onEditor = (editor: Editor) => {
         console.log('Editor loaded', { editor })
 
-        // Function to add a tool to the component's toolbar
-        const addToToolbar = (component, tool) => {
-            let toolbar = component.get('toolbar');
-            const existingToolIndex = toolbar.findIndex(item => item.command === tool.commandName);
+        const sm = editor.StyleManager;
 
-            if (existingToolIndex !== -1) {
-                // Replace the existing tool
-                toolbar[existingToolIndex] = {
-                    id: tool.id,
-                    attributes: { class: tool.icon, title: tool.title },
-                    command: tool.commandName,
-                };
-            } else {
-                // Add a new tool
-                toolbar.unshift({
-                    id: tool.id,
-                    attributes: { class: tool.icon, title: tool.title },
-                    command: tool.commandName,
-                });
-            }
-            component.set('toolbar', toolbar);
-        };
+        // Add a new sector for grid properties
+        sm.addSector('grid', {
+            name: 'Grid',
+            open: false,
+            buildProps: ['display', 'grid-template-columns', 'grid-template-rows', 'grid-gap']
+        });
 
-        // Event handler for component selection
-        editor.on('component:selected', (component) => {
-            // Define tools to be added
-            const wrapperTool = {
-                icon: 'fa fa-plus',
-                title: 'Add a wrapper to selected components',
-                commandName: 'wrapper',
-                id: 'wrapper',
-            }
+        // Configure the 'display' property for enabling grid
+        sm.addProperty('grid', {
+            name: 'Display',
+            property: 'display',
+            type: 'select',
+            options: [
+                { value: 'block', name: 'Block' },
+                { value: 'grid', name: 'Grid' },
+                { value: 'flex', name: 'Flex' }
+            ],
+            defaults: 'block'
+        });
 
-            const settingsTool = {
-                icon: 'fa fa-cog',
-                title: 'Open component settings',
-                commandName: 'open-traits-manager',
-                id: 'open-traits-manager',
-            }
-            const parentTool = {
-                icon: 'fa fa-arrow-up',
-                title: 'Select parent component',
-                commandName: 'select-parent',
-                id: 'select-parent',
-            }
-            const duplicateTool = {
-                icon: 'fa fa-clone',
-                title: 'Duplicate component',
-                commandName: 'tlb-clone',
-                id: 'tlb-clone',
-            }
-            const deleteTool = {
-                icon: 'fa fa-trash',
-                title: 'Delete component',
-                commandName: 'tlb-delete',
-                id: 'tlb-delete',
-            }
+        // Configure 'grid-template-columns' property
+        sm.addProperty('grid', {
+            name: 'Grid Columns',
+            property: 'grid-template-columns',
+            type: 'text', // You can create a custom type if needed for better UX
+            defaults: '1fr 1fr' // Default value as an example
+        });
 
-            const moveTool = {
-                icon: 'fa fa-arrows',
-                title: 'Move component',
-                commandName: 'tlb-move',
-                id: 'tlb-move',
-            }
+        // Configure 'grid-template-rows' property
+        sm.addProperty('grid', {
+            name: 'Grid Rows',
+            property: 'grid-template-rows',
+            type: 'text', // You can create a custom type if needed for better UX
+            defaults: '1fr 1fr' // Default value as an example
+        });
 
-            // Add tools to the toolbar
-            addToToolbar(component, wrapperTool)
-            addToToolbar(component, parentTool)
-            addToToolbar(component, deleteTool)
-            addToToolbar(component, moveTool)
-            addToToolbar(component, duplicateTool)
-            addToToolbar(component, settingsTool)
-        })
-
-        // Command to open the Traits Manager
-        editor.Commands.add('open-traits-manager', {
-            run: () => {
-                setSelectedRightBar('Settings')
-            },
-        })
-
+        // Configure 'grid-gap' property
+        sm.addProperty('grid', {
+            name: 'Grid Gap',
+            property: 'grid-gap',
+            type: 'text', // You can create a custom type if needed for better UX
+            defaults: '10px' // Default value as an example
+        });
         editor.Commands.add('wrapper', {
             run: () => {
                 // Get all currently selected components
@@ -175,8 +153,6 @@ export default function CustomEditor() {
             //     // Your stop logic here
             // },
         });
-
-
 
 
         // Command for deselecting components
@@ -252,6 +228,7 @@ export default function CustomEditor() {
             ],
         },
         plugins: [
+            // FlexBlock,
             zoomPlugin,
             LayoutBlocks,
             TypographyBlocks,
@@ -262,7 +239,17 @@ export default function CustomEditor() {
             SemanticBlocks,
             // IntegrationsBlocks,
             ExtraBlocks,
+            CustomCode,
+            GoogleIcons,
+            // Toolbox,
+            // PostCss,
+            // Toolbar,
+            // UserComponents,
+            // StyleGradient,
+            // BackgroundStyle
         ],
+
+
 
     }
     // Render different components based on the selected value
@@ -322,18 +309,6 @@ export default function CustomEditor() {
 
                 >
                     <AppShell.Navbar hidden={!opened} classNames={styles}>
-                        {/*<Tabs classNames={styles}  defaultValue="first" orientation="vertical">*/}
-                        {/*    <Tabs.List >*/}
-                        {/*        <Tabs.Tab value="first"><IconPlus size="1rem" /></Tabs.Tab>*/}
-                        {/*        <Tabs.Tab value="second"><IconFile size="1rem" /></Tabs.Tab>*/}
-                        {/*        <Tabs.Tab value="third"><IconStack2 size="1rem" /></Tabs.Tab>*/}
-                        {/*        <Tabs.Tab value="forth"><IconPhoto size="1rem" /></Tabs.Tab>*/}
-                        {/*        <Tabs.Tab value="fifth"><IconSettings size="1rem" /></Tabs.Tab>*/}
-                        {/*    </Tabs.List>*/}
-
-                        {/*    /!*<Tabs.Panel value="first">First panel</Tabs.Panel>*!/*/}
-                        {/*    <Tabs.Panel value="second">Second panel</Tabs.Panel>*/}
-                        {/*</Tabs>*/}
                         <div className="h-full flex ">
                             <div className=" flex flex-col gap-2 h-full  p-1">
                                 <Tooltip label="Show/Hide Siderbar">
@@ -342,7 +317,7 @@ export default function CustomEditor() {
                                     </ActionIcon>
                                 </Tooltip>
                                 <Tooltip label="Blocks">
-                                    <ActionIcon variant="subtle">
+                                    <ActionIcon onClick={()=>setSelected("Blocks")} variant="subtle">
                                         <IconLayoutGridAdd size="1rem" />
                                     </ActionIcon>
                                 </Tooltip>
@@ -352,14 +327,14 @@ export default function CustomEditor() {
                                     </ActionIcon>
                                 </Tooltip>
                                <TemplatesManager/>
-                                {/*<Tooltip label="Custom Components">*/}
-                                {/*    <ActionIcon variant="subtle">*/}
-                                {/*        <IconUserBolt size="1rem" />*/}
-                                {/*    </ActionIcon>*/}
-                                {/*</Tooltip>*/}
+                                <Tooltip label="Custom Blocks">
+                                    <ActionIcon variant="subtle">
+                                        <IconUserBolt size="1rem" />
+                                    </ActionIcon>
+                                </Tooltip>
                                 <Divider my="xs" variant="dashed" />
                                 <Tooltip label="Layers">
-                                    <ActionIcon variant="subtle">
+                                    <ActionIcon onClick={()=>setSelected("Layers")} variant="subtle">
                                         <IconStack2 size="1rem" />
                                     </ActionIcon>
                                 </Tooltip>
@@ -386,16 +361,14 @@ export default function CustomEditor() {
                     {/*        {renderSelectedRightBarComponent()}*/}
                     {/*    </AppShell.Section>*/}
                     {/*</AppShell.Aside>*/}
-                    {/*<AppShell.Header>*/}
-                    {/*    <TopBar onClick={toggleDesktop} openBlockSideBar={openBlockSideBar} />*/}
-                    {/*</AppShell.Header>*/}
+                    <AppShell.Header>
+                        <TopBar onClick={toggleDesktop} openBlockSideBar={openBlockSideBar} />
+                    </AppShell.Header>
                     <AppShell.Main>
                         <Canvas />
                     </AppShell.Main>
                 </AppShell>
-                <WithEditor>
-                    <FloatingBar />
-                </WithEditor>
+
                 <ModalProvider>
                     {({ open, title, content, close }) => (
                         <CustomModal
