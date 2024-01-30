@@ -46,7 +46,6 @@ const ListBlocks: Plugin<PluginOptions> = (editor, opts = {}) => {
             'no-decoration-list',
             'ordered-list',
             'unordered-list',
-            'icon-list',
           
         ],
         category: 'Lists',

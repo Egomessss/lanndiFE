@@ -11,25 +11,30 @@ export default function(editor: Editor, opts:any) {
         select: true,
     }
 
+    editor.DomComponents.addType('section', {
+        isComponent: el => {
+            // This will treat every 'div' element as a 'container' component
+            if (el.tagName === 'SECTION') {
+                return { type: 'section' }
+            }
+        },
+        model: {
+            defaults: {
+                tagName: 'section',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-section" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 20h.01" /><path d="M4 20h.01" /><path d="M8 20h.01" /><path d="M12 20h.01" /><path d="M16 20h.01" /><path d="M20 4h.01" /><path d="M4 4h.01" /><path d="M8 4h.01" /><path d="M12 4h.01" /><path d="M16 4l0 .01" /><path d="M4 8m0 1a1 1 0 0 1 1 -1h14a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-14a1 1 0 0 1 -1 -1z" /></svg>`,
+                components:`<ul><li>List Item 1</li><li>List Item 2</li><li>List Item 3</li></ul>`,
+            },
+        },
+    })
 
     toAdd('section') &&
     bm.add('section', {
         ...commonBlockProps,
         activate: true,
         label: opts.labelSection,
-        media: `<svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-text-size' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'>
-            <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
-            <path d='M3 7v-2h13v2'></path>
-            <path d='M10 5v14'></path>
-            <path d='M12 19h-4'></path>
-            <path d='M15 13v-1h6v1'></path>
-            <path d='M18 12v7'></path>
-            <path d='M17 19h2'></path>
-         </svg>`,
+        media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-section" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 20h.01" /><path d="M4 20h.01" /><path d="M8 20h.01" /><path d="M12 20h.01" /><path d="M16 20h.01" /><path d="M20 4h.01" /><path d="M4 4h.01" /><path d="M8 4h.01" /><path d="M12 4h.01" /><path d="M16 4l0 .01" /><path d="M4 8m0 1a1 1 0 0 1 1 -1h14a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-14a1 1 0 0 1 -1 -1z" /></svg>`,
         content: {
-            type: 'text',
-            content: 'Insert your text here',
-            style: { padding: '10px' },
+            type: 'section',
         },
     })
 

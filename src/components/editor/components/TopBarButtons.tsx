@@ -14,11 +14,21 @@ import React, { useEffect, useState } from 'react'
 import { useEditor } from '../wrappers'
 import {
     IconArrowBackUp,
-    IconArrowForwardUp, IconAspectRatio,
+    IconArrowForwardUp,
+    IconAspectRatio,
     IconBorderAll,
-    IconBorderNone, IconCode, IconHandClick, IconHandGrab, IconPresentation, IconRadar, IconScanEye, IconVector,
+    IconBorderNone,
+    IconCode,
+    IconHandClick,
+    IconHandGrab,
+    IconPresentation,
+    IconRadar,
+    IconScanEye,
+    IconTrash,
+    IconVector,
     IconZoomIn,
-    IconZoomOut, IconZoomReset,
+    IconZoomOut,
+    IconZoomReset,
 } from '@tabler/icons-react'
 
 
@@ -159,6 +169,19 @@ export default function TopBarButtons({onClick}) {
 
     const cmdButtons: CommandButton[] = [
         // TODO fix these 2 commands
+        {
+            id: 'core:canvas-clear',
+            Icon: IconTrash,
+            name: 'Clear Canvas',
+
+        },
+        {
+            id: 'core:open-code',
+            Icon: IconCode,
+            name: 'Code',
+
+        },
+
         {
             id: 'core:component-outline',
             Icon: IconBorderNone,

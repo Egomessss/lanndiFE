@@ -132,13 +132,64 @@ export default function(editor: Editor, opts) {
 
     const toAdd = (name: string) => blocks.indexOf(name) >= 0
 
-    editor.DomComponents.addType('container', {
-        isComponent: el => {
-            // This will treat every 'div' element as a 'container' component
-            if (el.tagName === 'DIV') {
-                return { type: 'container' }
-            }
+    editor.DomComponents.addType('block', {
+        // isComponent: el => {
+        //     // This will treat every 'div' element as a 'container' component
+        //     if (el.tagName === 'DIV') {
+        //         return { type: 'container' }
+        //     }
+        // },
+        model: {
+            tagName: 'div',
+            defaults: {
+                icon:`<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /></svg>`,
+                resizable:false,
+                droppable:true,
+                // Define default properties for your container component
+                attributes: { class: 'block' },
+                // Avoid defining 'components' here to prevent recursive nesting of containers
+                styles: `
+                .block:empty:before {
+    background-color: #ddd;
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 30px;
+    opacity: 0.3;
+    border-radius: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    content: "Centered content";
+                `,
+            },
         },
+    })
+
+// When adding a 'container' block
+    toAdd('block') &&
+    bm.add('block', {
+        ...commonBlockProps,
+        label: 'Block',
+        media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /></svg>`, // Your SVG icon
+        content: {
+            type: 'block',
+            // Content for the container, avoid nesting containers inside each other
+        },
+    })
+
+    editor.DomComponents.addType('container', {
+        // isComponent: el => {
+        //     // This will treat every 'div' element as a 'container' component
+        //     if (el.tagName === 'DIV') {
+        //         return { type: 'container' }
+        //     }
+        // },
         model: {
             tagName: 'div',
             defaults: {
@@ -156,16 +207,13 @@ export default function(editor: Editor, opts) {
     font-weight: bold;
     height: 100%;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     min-height: 30px;
     opacity: 0.3;
     border-radius: 3px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    content: "Insert content here";
+    content: "Insert your content here";
                 `,
             },
         },
@@ -182,6 +230,7 @@ export default function(editor: Editor, opts) {
             // Content for the container, avoid nesting containers inside each other
         },
     })
+
 
 
     toAdd('rows') &&

@@ -199,34 +199,34 @@ export default function CustomEditor() {
             },
         },
         // selectorManager: { componentFirst: true },
-        projectData: {
-            assets: [
-                'https://via.placeholder.com/350x250/78c5d6/fff',
-                'https://via.placeholder.com/350x250/459ba8/fff',
-                'https://via.placeholder.com/350x250/79c267/fff',
-                'https://via.placeholder.com/350x250/c5d647/fff',
-                'https://via.placeholder.com/350x250/f28c33/fff',
-            ],
-            pages: [
-                {
-                    name: 'Main Page',
-                    component: starterTemplate,
-                    styles: styleStarterTemplate,
-                },
-                {
-                    name: 'Test Page',
-                    component:
-                        `<h1>Start Building Your Landing Page</h1>`,
-                }
-                ,
-                {
-                    name: 'Theme playground',
-                    component:
-                        `<h1>Start Building Your Landing Page</h1>`,
-                }
-                ,
-            ],
-        },
+        // projectData: {
+        //     assets: [
+        //         'https://via.placeholder.com/350x250/78c5d6/fff',
+        //         'https://via.placeholder.com/350x250/459ba8/fff',
+        //         'https://via.placeholder.com/350x250/79c267/fff',
+        //         'https://via.placeholder.com/350x250/c5d647/fff',
+        //         'https://via.placeholder.com/350x250/f28c33/fff',
+        //     ],
+        //     pages: [
+        //         {
+        //             name: 'Main Page',
+        //             component: starterTemplate,
+        //             styles: styleStarterTemplate,
+        //         },
+        //         {
+        //             name: 'Test Page',
+        //             component:
+        //                 `<h1>Start Building Your Landing Page</h1>`,
+        //         }
+        //         ,
+        //         {
+        //             name: 'Theme playground',
+        //             component:
+        //                 `<h1>Start Building Your Landing Page</h1>`,
+        //         }
+        //         ,
+        //     ],
+        // },
         plugins: [
             // FlexBlock,
             zoomPlugin,
