@@ -280,9 +280,9 @@ export default function CustomEditor() {
                     <SelectorsProvider>
                         {(props) => <CustomSelectorManager {...props} />}
                     </SelectorsProvider>
-                    {/*<StylesProvider>*/}
-                    {/*    {(props) => <CustomStyleManager {...props} />}*/}
-                    {/*</StylesProvider>*/}
+                    <StylesProvider>
+                        {(props) => <CustomStyleManager {...props} />}
+                    </StylesProvider>
                 </ScrollArea>
             case 'Settings':
                 return <TraitsProvider>

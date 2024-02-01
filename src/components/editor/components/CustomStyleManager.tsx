@@ -1,43 +1,36 @@
-import { Accordion, ActionIcon, Divider, ScrollArea, Text } from "@mantine/core"
-import * as React from "react"
+import { Accordion, ActionIcon, Divider, ScrollArea, Text } from '@mantine/core'
+import * as React from 'react'
 
-import StylePropertyField from "./StylePropertyField"
-import { StylesResultProps } from "../wrappers/StylesProvider"
+import StylePropertyField from './StylePropertyField'
+import { StylesResultProps } from '../wrappers/StylesProvider'
 import { IconFile } from '@tabler/icons-react'
 
 
 export default function CustomStyleManager({
-    sectors,
-}: Omit<StylesResultProps, "Container">) {
+                                               sectors,
+                                           }: Omit<StylesResultProps, 'Container'>) {
+
+    const items = sectors.map((sector) => (
+        <Accordion.Item key={sector.getId()} value={sector.getId()}>
+            <Accordion.Control>
+                {sector.getName()}
+            </Accordion.Control>
+            <Accordion.Panel>  {sector.getProperties().map((prop) => (
+                <StylePropertyField
+                    key={prop.getId()}
+                    prop={prop}
+                />
+            ))}</Accordion.Panel>
+        </Accordion.Item>
+    ))
     return (
         <div
-            className="gjs-custom-style-manager text-left "
+            className="gjs-custom-style-manager text-left mt-2"
         >
-            <div className="ml-2 flex flex-col items-center  justify-center">
-                {sectors.map((sector) => (
-                    <div
-                        key={sector.getId()}
-                        className="w-full"
-                    >
-                        <div className="flex w-full items-center justify-between">
-                            {" "}
-                            <Text fw={700}>{sector.getName()}</Text>
-                        </div>
-                        <Divider
-                            className="w-full"
-                            my="sm"
-                        />{" "}
-                        <div>
-                            {sector.getProperties().map((prop) => (
-                                <StylePropertyField
-                                    key={prop.getId()}
-                                    prop={prop}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                ))}
-            </div>
+            <Accordion variant="contained">
+                {items}
+            </Accordion>
+
         </div>
     )
 }

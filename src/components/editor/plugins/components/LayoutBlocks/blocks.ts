@@ -234,30 +234,30 @@ export default function(editor: Editor, opts) {
 
 
 
-    toAdd('rows') &&
-    bm.add('rows', {
+    toAdd('columns') &&
+    bm.add('columns', {
         ...commonBlockProps,
         label: opts.labelRows,
-        media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-columns" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M12 4l0 16" /></svg>`,
-        content: { type: 'rows' },
+        media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-rows" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 12l16 0" /></svg>`,
+        content: { type: 'columns' },
     })
 
 
-    editor.DomComponents.addType('rows', {
+    editor.DomComponents.addType('columns', {
         model: {
             defaults: {
-                icon:`<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-columns" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M12 4l0 16" /></svg>`,
-                attributes: { class: 'rows' },
+                icon:`<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-rows" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 12l16 0" /></svg>`,
+                attributes: { class: 'columns' },
                 components: [{ type: 'container' }, { type: 'container' }, { type: 'container' }],
                 styles: `
-        .rows {display:flex; flex-direction:row; width: 100%; height:200px; gap:8px; padding: 10px;}
+        .columns {display:flex; flex-direction:row; width: 100%; height:200px; gap:8px; padding: 10px;}
         .container{
        flex-grow: 1;
       flex-basis: 100%;
         height:100%;
         }
       @media (max-width: 768px) {
-      .rows{
+      .columns{
         flex-wrap: wrap;
       }
        .container{
@@ -271,23 +271,24 @@ export default function(editor: Editor, opts) {
     })
 
 
-    toAdd('columns') &&
-    bm.add('columns', {
+    toAdd('rows') &&
+    bm.add('rows', {
         ...commonBlockProps,
         label: opts.labelColumns,
-        media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-rows" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 12l16 0" /></svg>`,
-        content: { type: 'columns' },
+        media: ` <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-columns" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M12 4l0 16" /></svg>`,
+        content: { type: 'rows' },
     })
 
 
-    editor.DomComponents.addType('columns', {
+
+    editor.DomComponents.addType('rows', {
         model: {
             defaults: {
-                icon:`<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-rows" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 12l16 0" /></svg>`,
-                attributes: { class: 'columns' },
+                icon:`<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-columns" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M12 4l0 16" /></svg>`,
+                attributes: { class: 'rows' },
                 components: [{ type: 'container' }, { type: 'container' }, { type: 'container' }],
                 styles: `
-       .columns {display:flex; flex-direction:column; width: 100%; height:200px; gap:8px; padding: 10px;}
+       .rows {display:flex; flex-direction:column; width: 100%; height:200px; gap:8px; padding: 10px;}
         .container{
         height:33%;
         width:100%;
@@ -298,6 +299,7 @@ export default function(editor: Editor, opts) {
             },
         },
     })
+
 
     editor.DomComponents.addType('grid', {
         model: {
