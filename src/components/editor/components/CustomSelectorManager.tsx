@@ -44,7 +44,6 @@ export default function CustomSelectorManager({
     const setComponentFirst = () => sm.setComponentFirst(true)
     const setClassesFirst = () => sm.setComponentFirst(false)
 
-    console.log('targets',targets)
     return (
         <div className=" flex flex-col  gap-2 px-2 text-left">
             <div className="flex items-center justify-between">

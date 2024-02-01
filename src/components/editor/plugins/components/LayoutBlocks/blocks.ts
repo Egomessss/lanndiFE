@@ -169,6 +169,7 @@ export default function(editor: Editor, opts) {
                 `,
             },
         },
+
     })
 
 // When adding a 'container' block

@@ -26,7 +26,7 @@ export interface DevicesProviderProps {
     children: (props: DevicesResultProps) => React.JSX.Element
 }
 
-const DevicesProvider = memo(function ({ children }: DevicesProviderProps) {
+const DevicesProvider = memo(function({ children }: DevicesProviderProps) {
     const { editor } = useEditorInstance()
     const [propState, setPropState] = useState<DevicesState>(() => ({
         devices: [],
@@ -45,8 +45,12 @@ const DevicesProvider = memo(function ({ children }: DevicesProviderProps) {
         Devices.remove('mobileLandscape')
         Devices.remove('mobilePortrait')
 
+
+        const width = editor.Canvas.getElement().clientWidth
+
+
         // Add new devices
-        Devices.add({ id: 'fit', name: 'Fit To Screen', width: '' })
+        Devices.add({ id: 'fit', name: 'Fit To Screen', width: '', widthMedia: `${width}px`, })
         Devices.add({ id: 'desktop', name: 'Desktop', width: '1536px' })
         Devices.add({
             id: 'laptop',
