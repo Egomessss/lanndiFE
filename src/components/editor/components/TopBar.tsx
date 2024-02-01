@@ -1,6 +1,7 @@
 import {
     ActionIcon,
     Button,
+    Group,
     rem,
     Switch,
     Tooltip,
@@ -21,7 +22,8 @@ import {
     IconExternalLink,
     IconGrid4x4,
     IconLink,
-    IconMoonStars,
+    IconMoon,
+    IconMoonStars, IconScanEye,
     IconSettings,
     IconSun,
     IconX,
@@ -32,20 +34,20 @@ import React from 'react'
 import { useEditorInstance } from '@/components/editor/context/EditorInstance'
 
 
-export default function Topbar({ openBlockSideBar, onClick }:any) {
+export default function Topbar({ openBlockSideBar, onClick }: any) {
 
 
-    const getDeviceIcon = (device:string) => {
+    const getDeviceIcon = (device: string) => {
         if (device === 'desktop') {
             return <IconDeviceDesktop size="1rem" />
         } else if (device === 'laptop') {
             return <IconDeviceLaptop size="1rem" />
         } else if (device === 'tablet') {
-            return <IconDeviceTablet  size="1rem"/>
+            return <IconDeviceTablet size="1rem" />
         } else if (device === 'mobile') {
-            return <IconDeviceMobile  size="1rem"/>
-        }else if (device === 'fit') {
-            return <IconArrowsHorizontal  size="1rem"/>
+            return <IconDeviceMobile size="1rem" />
+        } else if (device === 'fit') {
+            return <IconArrowsHorizontal size="1rem" />
         }
         return null // Fallback
     }
@@ -73,21 +75,32 @@ export default function Topbar({ openBlockSideBar, onClick }:any) {
     )
 
     const handleDeviceSelection = (device, selectFn) => {
-        selectFn(device.id);
-    };
-
+        selectFn(device.id)
+    }
 
 
     return (
         <div className="gjs-top-sidebar flex h-full w-full items-center justify-between px-2">
             <div className="flex w-full items-center justify-start gap-2 py-2 ">
                 <Button
-                    variant="outline"
+                    variant="subtle"
                     size="xs"
                     leftSection={<IconArrowLeft />}
                 >
                     Dashboard
                 </Button>
+
+                <Group justify="center">
+                    <ActionIcon
+                        onClick={() => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')}
+                        variant="subtle"
+                        color={computedColorScheme === 'light' ?  'blue' :'yellow'}
+                        size="md"
+                        aria-label="Toggle color scheme"
+                    >
+                        {computedColorScheme === 'light' ? <IconMoon size="1rem"  /> : <IconSun  size="1rem" />}
+                    </ActionIcon>
+                </Group>
             </div>
             <div className="flex items-center gap-4">
                 <DevicesProvider>
@@ -106,7 +119,7 @@ export default function Topbar({ openBlockSideBar, onClick }:any) {
                                                 isSelected ? 'filled' : 'subtle'
                                             }
                                             color="blue"
-                                            onClick={() =>  select(device.id)}
+                                            onClick={() => select(device.id)}
                                         >
                                             {getDeviceIcon(device.id)}
                                         </ActionIcon>
@@ -123,28 +136,18 @@ export default function Topbar({ openBlockSideBar, onClick }:any) {
 
             <div className="flex w-full items-center justify-end gap-4">
 
-                <Switch
-                    onClick={() =>
-                        setColorScheme(
-                            computedColorScheme === 'light' ? 'dark' : 'light',
-                        )
-                    }
-                    size="md"
-                    color="dark.4"
-                    onLabel={moonIcon}
-                    offLabel={sunIcon}
-                />
+                <Button size="xs" variant="subtle" leftSection={<IconExternalLink size="1rem" />}>Preview</Button>
                 <Tooltip label="Save changes">
 
                     {/*<CreateUserAndPageModal />*/}
 
-                    <ActionIcon variant="outline">
+                    <ActionIcon variant="subtle">
                         <IconDeviceFloppy size="1rem" />
                     </ActionIcon>
 
                 </Tooltip>
 
-                <Button  variant="outline" size="xs">Publish</Button>
+                <Button  size="xs">Publish</Button>
             </div>
         </div>
     )

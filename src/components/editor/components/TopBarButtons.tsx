@@ -1,5 +1,5 @@
 import {
-    ActionIcon,
+    ActionIcon, Button,
     Divider,
     NumberInput,
     rem,
@@ -40,7 +40,7 @@ interface CommandButton {
     disabled?: () => boolean
 }
 
-export default function TopBarButtons({onClick}) {
+export default function TopBarButtons({ onClick }) {
     const editor = useEditor()
 
     const [zoomValue, setZoomValue] = useState(100) // Initialize the zoom value
@@ -136,8 +136,6 @@ export default function TopBarButtons({onClick}) {
     // })
 
 
-
-
     editor.Commands.add('designer-mode', {
         run: () => {
             editor.setDragMode('absolute')
@@ -152,17 +150,17 @@ export default function TopBarButtons({onClick}) {
     editor.Commands.extend('preview', {
         run: () => {
             onClick()
-            editor.runCommand('core:preview');
+            editor.runCommand('core:preview')
             // Adding a specific class to hide elements
             editor.refresh()
 
         },
         stop: () => {
             onClick()
-            editor.stopCommand('core:preview');
+            editor.stopCommand('core:preview')
             editor.refresh()
         },
-    });
+    })
 
     // editor.select(undefined);
 
@@ -188,22 +186,17 @@ export default function TopBarButtons({onClick}) {
             name: 'Outline',
 
         },
-        {
-            id: 'preview',
-            Icon: IconScanEye,
-            name: 'Preview',
 
-        },
-        {
-            id: 'designer-mode',
-            Icon: IconVector,
-            name: 'Designer Mode',
-        },
-        {
-            id: 'core:fullscreen',
-            Icon: IconAspectRatio,
-            name: 'Fullscreen',
-        },
+        // {
+        //     id: 'designer-mode',
+        //     Icon: IconVector,
+        //     name: 'Designer Mode',
+        // },
+        // {
+        //     id: 'core:fullscreen',
+        //     Icon: IconAspectRatio,
+        //     name: 'Fullscreen',
+        // },
         {
             id: 'core:undo',
             Icon: IconArrowBackUp,
@@ -247,7 +240,7 @@ export default function TopBarButtons({onClick}) {
                         disabled={zoomValue < 51}
                         onClick={handleZoomOut}
                     >
-                        <IconZoomOut  size="1rem"/>
+                        <IconZoomOut size="1rem" />
                     </ActionIcon>
                 </Tooltip>
 
@@ -268,7 +261,7 @@ export default function TopBarButtons({onClick}) {
                         onClick={handleZoomIn}
                         variant="subtle"
                     >
-                        <IconZoomIn  size="1rem"/>
+                        <IconZoomIn size="1rem" />
                     </ActionIcon>
                 </Tooltip>
                 <Tooltip label="Reset zoom & position">
@@ -328,6 +321,8 @@ export default function TopBarButtons({onClick}) {
                     </Tooltip>
                 </div>
             ))}
+
+
 
 
         </div>

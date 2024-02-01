@@ -2,15 +2,15 @@ import { Accordion, ActionIcon, Divider, ScrollArea, Text } from "@mantine/core"
 import * as React from "react"
 
 import StylePropertyField from "./StylePropertyField"
+import { StylesResultProps } from "../wrappers/StylesProvider"
 import { IconFile } from '@tabler/icons-react'
 
 
 export default function CustomStyleManager({
     sectors,
-}: Omit<StylesResultyProps, "Container">) {
+}: Omit<StylesResultProps, "Container">) {
     return (
         <div
-
             className="gjs-custom-style-manager text-left "
         >
             <div className="ml-2 flex flex-col items-center  justify-center">

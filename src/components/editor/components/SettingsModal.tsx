@@ -10,7 +10,7 @@ const SettingsModal = () => {
             <Modal size="xl" centered opened={opened} onClose={close} title="Settings">
                 {/* Modal content */}
             </Modal>
-            <Tooltip label="Settings">
+            <Tooltip label="Page Settings">
                 <ActionIcon onClick={open} variant="subtle">
                     <IconSettings size="1rem" />
                 </ActionIcon>

@@ -58,7 +58,7 @@ export type PluginOptions = {
 
 const InteractiveBlocks: Plugin<PluginOptions> = (editor, opts = {}) => {
     const config: Required<PluginOptions> = {
-        blocks: [ 'link', 'link-box',  'button', ],
+        blocks: [ 'link', 'link-box',  'button','nav-link' ],
         flexGrid: false,
         stylePrefix: 'gjs-',
         addBasicStyle: true,

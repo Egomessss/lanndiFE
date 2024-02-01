@@ -66,9 +66,15 @@ export default function CustomEditor() {
 
 
     const onEditor = (editor: Editor) => {
-        console.log('Editor loaded', { editor })
 
+        (window as any).editor = editor;
         const sm = editor.StyleManager;
+
+        editor.Selectors.setStates([
+                { name: 'hover', label: 'Hover' },
+                // { name: 'focus', label: 'Focus', info:'Change styles on user focus' },
+                // { name: 'active', label: 'Active', info:'Change styles on user hover' },
+            ]);
 
         // Add a new sector for grid properties
         sm.addSector('grid', {
@@ -268,14 +274,16 @@ export default function CustomEditor() {
     const renderSelectedRightBarComponent = () => {
         switch (selectedRightBar) {
             case 'Styles':
-                return <>
+                return <ScrollArea
+                    className="w-full"
+                   >
                     <SelectorsProvider>
                         {(props) => <CustomSelectorManager {...props} />}
                     </SelectorsProvider>
-                    <StylesProvider>
-                        {(props) => <CustomStyleManager {...props} />}
-                    </StylesProvider>
-                </>
+                    {/*<StylesProvider>*/}
+                    {/*    {(props) => <CustomStyleManager {...props} />}*/}
+                    {/*</StylesProvider>*/}
+                </ScrollArea>
             case 'Settings':
                 return <TraitsProvider>
                     {(props) => <CustomTraitManager {...props} />}
@@ -332,12 +340,11 @@ export default function CustomEditor() {
                                     </ActionIcon>
                                 </Tooltip>
                                 <Divider my="xs" variant="dashed" />
-                                <Tooltip label="Layers">
-                                    <ActionIcon onClick={()=>setSelected("Layers")} variant="subtle">
-                                        <IconStack2 size="1rem" />
-                                    </ActionIcon>
-                                </Tooltip>
-
+                                {/*<Tooltip label="Layers">*/}
+                                {/*    <ActionIcon onClick={()=>setSelected("Layers")} variant="subtle">*/}
+                                {/*        <IconStack2 size="1rem" />*/}
+                                {/*    </ActionIcon>*/}
+                                {/*</Tooltip>*/}
                                 <Tooltip label="Pages">
                                     <ActionIcon variant="subtle">
                                         <IconFile size="1rem" />
@@ -350,16 +357,16 @@ export default function CustomEditor() {
                         </div>
 
                     </AppShell.Navbar>
-                    {/*<AppShell.Aside>*/}
-                    {/*    <AppShell.Section>*/}
-                    {/*        <SegmentedControl fullWidth m="4" size="xs" color="blue" value={selectedRightBar}*/}
-                    {/*                          onChange={handleRightBarSegmentChange} data={['Styles', 'Settings']} />*/}
+                    <AppShell.Aside>
+                        <AppShell.Section>
+                            <SegmentedControl fullWidth m="4" size="xs" color="blue" value={selectedRightBar}
+                                              onChange={handleRightBarSegmentChange} data={['Styles', 'Settings']} />
 
-                    {/*    </AppShell.Section>*/}
-                    {/*    <AppShell.Section offsetScrollbars grow my="md" component={ScrollArea}>*/}
-                    {/*        {renderSelectedRightBarComponent()}*/}
-                    {/*    </AppShell.Section>*/}
-                    {/*</AppShell.Aside>*/}
+                        </AppShell.Section>
+                        <AppShell.Section  grow mb="lg" component={ScrollArea}>
+                            {renderSelectedRightBarComponent()}
+                        </AppShell.Section>
+                    </AppShell.Aside>
                     <AppShell.Header>
                         <TopBar onClick={toggleDesktop} openBlockSideBar={openBlockSideBar} />
                     </AppShell.Header>

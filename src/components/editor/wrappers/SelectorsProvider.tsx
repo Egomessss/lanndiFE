@@ -24,6 +24,11 @@ export type SelectorsState = {
     /**
      * Selector strings of currently selected targets.
      */
+    targetsIds: string[]
+
+    /**
+     * Selector strings of currently selected targets.
+     */
     targets: string[]
 
     /**
@@ -64,6 +69,7 @@ const SelectorsProvider = memo(function ({ children }: SelectorsProviderProps) {
         selectors: [],
         states: [],
         selectedState: "",
+        targetsIds: [],
         targets: [],
         addSelector: noop,
         removeSelector: noop,
@@ -76,11 +82,14 @@ const SelectorsProvider = memo(function ({ children }: SelectorsProviderProps) {
         const { Selectors } = editor
         const event = Selectors.events.custom
 
+
+
         const up = ({ container }: { container: HTMLElement }) => {
             setPropState({
                 selectors: Selectors.getSelected(),
                 states: Selectors.getStates(),
                 selectedState: Selectors.getState(),
+                targetsIds:editor.getSelectedAll().map((t)=>t.getId()),
                 targets: Selectors.getSelectedTargets().map((t) =>
                     t.getSelectorsString(),
                 ),
