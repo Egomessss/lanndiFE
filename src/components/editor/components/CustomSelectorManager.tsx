@@ -45,7 +45,7 @@ export default function CustomSelectorManager({
     const setClassesFirst = () => sm.setComponentFirst(false)
 
     return (
-        <div className=" flex flex-col  gap-2 px-2 text-left">
+        <div className=" flex flex-col  gap-2 text-left">
             <div className="flex items-center justify-between">
                 <Tooltip
                     label="Use this to change how your block reacts with a user action. e.g. Change background colour on hover">

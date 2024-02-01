@@ -31,20 +31,21 @@ import {
 } from '@tabler/icons-react'
 
 
-interface StylePropertyFieldProps extends React.HTMLProps<HTMLDivElement> {
-    prop: Property
-}
-
 const selectProp = {
     getOptions: () => ['px', 'em', 'rem', '%', 'vh', 'vw'],
     getOptionId: (option: string) => option,
     getOptionLabel: (option: string) => option,
 }
 
+interface StylePropertyFieldProps extends React.HTMLProps<HTMLDivElement> {
+    prop: Property;
+}
+
 export default function StylePropertyField({
                                                prop,
                                                ...rest
                                            }: StylePropertyFieldProps) {
+
     const editor = useEditor()
 
 
@@ -118,9 +119,9 @@ export default function StylePropertyField({
                 }))}
             />
         </div>
-
-
     )
+
+    console.log(prop)
 
     switch (type) {
         case 'text': {
@@ -146,12 +147,12 @@ export default function StylePropertyField({
                     data={radioProp.getOptions().map((option) => ({
                         value: radioProp.getOptionId(option),
                         label: (
-                            <Tooltip color="blue"  multiline
-                                      w={200}
-                                      withArrow openDelay={200} label={radioProp.getOptionLabel(option)}>
+                            <Tooltip color="blue" multiline
+                                     w={200}
+                                     withArrow openDelay={200} label={radioProp.getOptionLabel(option)}>
                                 <div className="flex items-center justify-center  w-full">
                                     <span className="mt-1"
-                                        dangerouslySetInnerHTML={{ __html: option.icon }} />
+                                          dangerouslySetInnerHTML={{ __html: option.icon }} />
                                 </div>
                             </Tooltip>
                         ),

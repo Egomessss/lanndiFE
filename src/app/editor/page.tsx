@@ -275,7 +275,7 @@ export default function CustomEditor() {
         switch (selectedRightBar) {
             case 'Styles':
                 return <ScrollArea
-                    className="w-full"
+                    m="4"
                    >
                     <SelectorsProvider>
                         {(props) => <CustomSelectorManager {...props} />}

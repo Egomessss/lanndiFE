@@ -12,22 +12,24 @@ export default function CustomStyleManager({
 
     const items = sectors.map((sector) => (
         <Accordion.Item key={sector.getId()} value={sector.getId()}>
-            <Accordion.Control>
+            <Accordion.Control >
                 {sector.getName()}
             </Accordion.Control>
-            <Accordion.Panel>  {sector.getProperties().map((prop) => (
+            <Accordion.Panel >
+                {sector.getProperties().map((prop) => (
                 <StylePropertyField
                     key={prop.getId()}
                     prop={prop}
                 />
-            ))}</Accordion.Panel>
+            ))}
+            </Accordion.Panel>
         </Accordion.Item>
     ))
     return (
         <div
             className="gjs-custom-style-manager text-left mt-2"
         >
-            <Accordion variant="contained">
+            <Accordion >
                 {items}
             </Accordion>
 
