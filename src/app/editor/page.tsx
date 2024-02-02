@@ -76,49 +76,7 @@ export default function CustomEditor() {
                 // { name: 'active', label: 'Active', info:'Change styles on user hover' },
             ]);
 
-        // Add a new sector for grid properties
-        sm.addSector('grid', {
-            name: 'Grid',
-            open: false,
-            buildProps: ['display', 'grid-template-columns', 'grid-template-rows', 'grid-gap']
-        });
 
-        // Configure the 'display' property for enabling grid
-        sm.addProperty('grid', {
-            name: 'Display',
-            property: 'display',
-            type: 'select',
-            options: [
-                { value: 'block', name: 'Block' },
-                { value: 'grid', name: 'Grid' },
-                { value: 'flex', name: 'Flex' }
-            ],
-            defaults: 'block'
-        });
-
-        // Configure 'grid-template-columns' property
-        sm.addProperty('grid', {
-            name: 'Grid Columns',
-            property: 'grid-template-columns',
-            type: 'text', // You can create a custom type if needed for better UX
-            defaults: '1fr 1fr' // Default value as an example
-        });
-
-        // Configure 'grid-template-rows' property
-        sm.addProperty('grid', {
-            name: 'Grid Rows',
-            property: 'grid-template-rows',
-            type: 'text', // You can create a custom type if needed for better UX
-            defaults: '1fr 1fr' // Default value as an example
-        });
-
-        // Configure 'grid-gap' property
-        sm.addProperty('grid', {
-            name: 'Grid Gap',
-            property: 'grid-gap',
-            type: 'text', // You can create a custom type if needed for better UX
-            defaults: '10px' // Default value as an example
-        });
         editor.Commands.add('wrapper', {
             run: () => {
                 // Get all currently selected components
@@ -193,6 +151,7 @@ export default function CustomEditor() {
         height: '100svh',
         // width:'100%',
         undoManager: { trackSelection: false },
+        styleManager:{sectors:[]},
         storageManager: {
             type: 'local', // Type of the storage, available: 'local' | 'remote'
             autosave: true, // Store data automatically

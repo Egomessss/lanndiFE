@@ -177,72 +177,72 @@ export default function StylePropertyField({
             )
         }
             break
-        // case 'color': {
-        //     inputToRender = (
-        //         <TextInput
-        //             placeholder={defValue}
-        //             value={valueString}
-        //             onChange={(newValue) => handleChange(newValue)}
-        //
-        //             // InputProps={{
-        //             //     startAdornment: (
-        //             //         <InputAdornment position="start">
-        //             //             <div
-        //             //                 className={`w-[15px] h-[15px] ${ROUND_BORDER_COLOR}`}
-        //             //                 style={{
-        //             //                     backgroundColor: valueWithDef,
-        //             //                 }}>
-        //             //                 <input
-        //             //                     type="color"
-        //             //                     className="w-[15px] h-[15px] cursor-pointer opacity-0"
-        //             //                     value={valueWithDef}
-        //             //                     onChange={ev =>
-        //             //                         handleChange(ev.target.value)
-        //             //                     }
-        //             //                 />
-        //             //             </div>
-        //             //         </InputAdornment>
-        //             //     ),
-        //             // }}
-        //         />
-        //     )
-        // }
-        //     break
-        // case 'slider': {
-        //     const sliderProp = prop as PropertySlider
-        //     inputToRender = (
-        //         <Slider
-        //             size="small"
-        //             value={parseFloat(value)}
-        //             min={sliderProp.getMin()}
-        //             max={sliderProp.getMax()}
-        //             step={sliderProp.getStep()}
-        //             onChange={(newValue) => handleChange(newValue)}
-        //         />
-        //     )
-        // }
-        //     break
-        // case 'file': {
-        //     inputToRender = (
-        //         <div className="flex flex-col items-center gap-3">
-        //             {value && value !== defValue && (
-        //                 <div
-        //                     className="inline-block h-[50px] w-[50px] cursor-pointer rounded bg-cover bg-center"
-        //                     style={{ backgroundImage: `url("${value}")` }}
-        //                     onClick={() => handleChange('')}
-        //                 />
-        //             )}
-        //             <button
-        //                 type="button"
-        //                 onClick={openAssets}
-        //
-        //             >
-        //                 Select Image
-        //             </button>
-        //         </div>
-        //     )
-        // }
-        //     break
+        case 'color': {
+            inputToRender = (
+                <TextInput
+                    placeholder={defValue}
+                    value={valueString}
+                    onChange={(newValue) => handleChange(newValue)}
+
+                    // InputProps={{
+                    //     startAdornment: (
+                    //         <InputAdornment position="start">
+                    //             <div
+                    //                 className={`w-[15px] h-[15px] ${ROUND_BORDER_COLOR}`}
+                    //                 style={{
+                    //                     backgroundColor: valueWithDef,
+                    //                 }}>
+                    //                 <input
+                    //                     type="color"
+                    //                     className="w-[15px] h-[15px] cursor-pointer opacity-0"
+                    //                     value={valueWithDef}
+                    //                     onChange={ev =>
+                    //                         handleChange(ev.target.value)
+                    //                     }
+                    //                 />
+                    //             </div>
+                    //         </InputAdornment>
+                    //     ),
+                    // }}
+                />
+            )
+        }
+            break
+        case 'slider': {
+            const sliderProp = prop as PropertySlider
+            inputToRender = (
+                <Slider
+                    size="small"
+                    value={parseFloat(value)}
+                    min={sliderProp.getMin()}
+                    max={sliderProp.getMax()}
+                    step={sliderProp.getStep()}
+                    onChange={(newValue) => handleChange(newValue)}
+                />
+            )
+        }
+            break
+        case 'file': {
+            inputToRender = (
+                <div className="flex flex-col items-center gap-3">
+                    {value && value !== defValue && (
+                        <div
+                            className="inline-block h-[50px] w-[50px] cursor-pointer rounded bg-cover bg-center"
+                            style={{ backgroundImage: `url("${value}")` }}
+                            onClick={() => handleChange('')}
+                        />
+                    )}
+                    <button
+                        type="button"
+                        onClick={openAssets}
+
+                    >
+                        Select Image
+                    </button>
+                </div>
+            )
+        }
+            break
         case 'composite': {
             const compositeProp = prop as PropertyComposite
             inputToRender = (

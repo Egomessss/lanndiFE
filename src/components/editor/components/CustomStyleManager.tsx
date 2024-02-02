@@ -15,7 +15,7 @@ export default function CustomStyleManager({
             <Accordion.Control >
                 {sector.getName()}
             </Accordion.Control>
-            <Accordion.Panel >
+            <Accordion.Panel>
                 {sector.getProperties().map((prop) => (
                 <StylePropertyField
                     key={prop.getId()}
