@@ -86,6 +86,25 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
                     ],
                 },
                 {
+                    type: 'composite',
+                    label: 'Positioning', // Label for the property
+                    property: 'position', // CSS property to change
+                    properties: [
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'top' },
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'right' },
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'bottom' },
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'left' },
+                    ]
+                },
+                {
+                    type: 'number',
+                    property: 'z-index',
+                    label: 'Z-index',
+                    default: '0',
+                    min: 0,
+                    max: 50,
+                },
+                {
                     label: 'Direction',
                     property: 'flex-direction',
                     type: 'radio',
@@ -208,18 +227,21 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
                     ],
                 },
                 {
-                    label: 'Gap row',
+                    label: 'Gap',
                     property: 'gap',
                     type: 'number',
                     default: 0,
                     min: 0,
+                    units: ['px', 'em', 'rem', '%', 'vh', 'vw']
                 },
                 {
-                    label: 'Gap column',
-                    property: 'gap',
-                    type: 'number',
-                    default: 0,
-                    min: 0,
+                    type: 'composite',
+                    label: 'Gap custom', // Label for the property
+                    property: 'gap', // CSS property to change
+                    properties: [
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'row-gap' },
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'column-gap' },
+                    ]
                 },
             ],
         },
@@ -237,12 +259,34 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
                     min: 0, // Min value (available only for the 'number' type)
                 },
                 {
+                    type: 'composite',
+                    label: 'Margin custom', // Label for the property
+                    property: 'margin', // CSS property to change
+                    properties: [
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'margin-top' },
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'margin-right' },
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'margin-bottom' },
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'margin-left' },
+                    ]
+                },
+                {
                     type: 'number',
                     label: 'Padding', // Label for the property
                     property: 'padding', // CSS property to change
                     default: '0', // Default value to display
                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
                     min: 0, // Min value (available only for the 'number' type)
+                },
+                {
+                    type: 'composite',
+                    label: 'Padding custom', // Label for the property
+                    property: 'padding', // CSS property to change
+                    properties: [
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'padding-top' },
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'padding-right' },
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'padding-bottom' },
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'padding-left' },
+                    ]
                 },
             ],
         },
@@ -327,12 +371,34 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
                     min: 0, // Min value (available only for the 'number' type)
                 },
                 {
+                    type: 'composite',
+                    label: 'Custom radius', // Label for the property
+                    property: 'border', // CSS property to change
+                    properties: [
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'border-top' },
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'border-right' },
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'border-bottom' },
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'border-left' },
+                    ]
+                },
+                {
                     type: 'number',
                     label: 'Width', // Label for the property
                     property: 'height', // CSS property to change
                     default: '0', // Default value to display
                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
                     min: 0, // Min value (available only for the 'number' type)
+                },
+                {
+                    type: 'composite',
+                    label: 'Custom width', // Label for the property
+                    property: 'border', // CSS property to change
+                    properties: [
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'border-top-width' },
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'border-right-width' },
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'border-bottom-width' },
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'border-left-width' },
+                    ]
                 },
                 {
                     type: 'select',
@@ -351,6 +417,17 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
                         { id: 'inset', label: 'Inset' },
                         { id: 'outset', label: 'Outset' },
                     ],
+                },
+                {
+                    type: 'composite',
+                    label: 'Custom style', // Label for the property
+                    property: 'border', // CSS property to change
+                    properties: [
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'border-top-style' },
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'border-right-style' },
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'border-bottom-style' },
+                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'border-left-style' },
+                    ]
                 },
                 {
                     type: 'color',

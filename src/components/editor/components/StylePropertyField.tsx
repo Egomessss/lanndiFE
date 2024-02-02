@@ -9,6 +9,7 @@ import type {
 
 import {
     ActionIcon,
+    Box,
     Center,
     NumberInput,
     SegmentedControl,
@@ -29,7 +30,8 @@ import {
     IconScaleOutline,
     IconX,
 } from '@tabler/icons-react'
-
+import ColorPicker from 'react-best-gradient-color-picker'
+import classes from './StylePropertyField.module.css'
 
 const selectProp = {
     getOptions: () => ['px', 'em', 'rem', '%', 'vh', 'vw'],
@@ -81,7 +83,7 @@ export default function StylePropertyField({
             accept: 'image/*',
         })
     }
-
+    const [color, setColor] = useState('rgba(255,255,255,1)')
     const type = prop.getType()
 
     const defValue = prop.getDefaultValue()
@@ -106,17 +108,19 @@ export default function StylePropertyField({
                 placeholder={defValue}
                 value={valueString}
                 onChange={(newValue) => handleChange(newValue)}
-            />
-            <Select
-                size="xs"
-                w="80"
-                placeholder="Unit"
-                value={sizeValue}
-                onChange={(newValue) => handleSizeChange(newValue)}
-                data={selectProp.getOptions().map((option) => ({
-                    value: selectProp.getOptionId(option),
-                    label: selectProp.getOptionLabel(option),
-                }))}
+                // rightSectionWidth='md'
+                rightSection={<Select
+                    classNames={classes}
+                    size="xs"
+                    variant="unstyled"
+                    placeholder="Unit"
+                    value={sizeValue}
+                    onChange={(newValue) => handleSizeChange(newValue)}
+                    data={selectProp.getOptions().map((option) => ({
+                        value: selectProp.getOptionId(option),
+                        label: selectProp.getOptionLabel(option),
+                    }))}
+                />}
             />
         </div>
     )
@@ -179,32 +183,7 @@ export default function StylePropertyField({
             break
         case 'color': {
             inputToRender = (
-                <TextInput
-                    placeholder={defValue}
-                    value={valueString}
-                    onChange={(newValue) => handleChange(newValue)}
-
-                    // InputProps={{
-                    //     startAdornment: (
-                    //         <InputAdornment position="start">
-                    //             <div
-                    //                 className={`w-[15px] h-[15px] ${ROUND_BORDER_COLOR}`}
-                    //                 style={{
-                    //                     backgroundColor: valueWithDef,
-                    //                 }}>
-                    //                 <input
-                    //                     type="color"
-                    //                     className="w-[15px] h-[15px] cursor-pointer opacity-0"
-                    //                     value={valueWithDef}
-                    //                     onChange={ev =>
-                    //                         handleChange(ev.target.value)
-                    //                     }
-                    //                 />
-                    //             </div>
-                    //         </InputAdornment>
-                    //     ),
-                    // }}
-                />
+                <ColorPicker value={color} onChange={setColor} />
             )
         }
             break
@@ -247,14 +226,15 @@ export default function StylePropertyField({
             const compositeProp = prop as PropertyComposite
             inputToRender = (
                 <div
-                    className="flex flex-wrap bg-black/20 p-2"
+                    className="flex flex-wrap"
                 >
                     {
-                        compositeProp.getProperties().map((prop) => (
-                            <StylePropertyField
-                                key={prop.getId()}
-                                prop={prop}
-                            />
+                        compositeProp.getProperties().map((prop, index) => (
+                            <div key={prop.getId()} className='w-1/2'>
+                                <StylePropertyField
+                                    prop={prop}
+                                /></div>
+
                         ))
                     }
                 </div>

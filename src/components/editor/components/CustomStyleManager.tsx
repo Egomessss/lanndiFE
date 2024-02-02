@@ -4,7 +4,7 @@ import * as React from 'react'
 import StylePropertyField from './StylePropertyField'
 import { StylesResultProps } from '../wrappers/StylesProvider'
 import { IconFile } from '@tabler/icons-react'
-
+import classes from './CustomStyleManager.module.css'
 
 export default function CustomStyleManager({
                                                sectors,
@@ -15,13 +15,13 @@ export default function CustomStyleManager({
             <Accordion.Control >
                 {sector.getName()}
             </Accordion.Control>
-            <Accordion.Panel>
+            <Accordion.Panel >
                 {sector.getProperties().map((prop) => (
-                <StylePropertyField
-                    key={prop.getId()}
-                    prop={prop}
-                />
-            ))}
+                    <StylePropertyField
+                        key={prop.getId()}
+                        prop={prop}
+                    />
+                ))}
             </Accordion.Panel>
         </Accordion.Item>
     ))
@@ -29,7 +29,7 @@ export default function CustomStyleManager({
         <div
             className="gjs-custom-style-manager text-left mt-2"
         >
-            <Accordion >
+            <Accordion classNames={classes}>
                 {items}
             </Accordion>
 

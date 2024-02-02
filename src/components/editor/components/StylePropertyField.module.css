@@ -1,0 +1,21 @@
+.wrapper{
+    width:100%;
+}
+
+.dropdown {
+    /*width:400px;*/
+    /*padding: 0;*/
+    width: 80px !important;
+}
+
+
+
+.section{
+    width:0;
+}
+
+.input{
+    margin:0;
+    padding:0 5px;
+    width:40px;
+}

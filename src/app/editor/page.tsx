@@ -234,7 +234,8 @@ export default function CustomEditor() {
         switch (selectedRightBar) {
             case 'Styles':
                 return <ScrollArea
-                    m="4"
+                    offsetScrollbars
+                    pl={4}
                    >
                     <SelectorsProvider>
                         {(props) => <CustomSelectorManager {...props} />}
@@ -344,17 +345,17 @@ export default function CustomEditor() {
                         />
                     )}
                 </ModalProvider>
-                <AssetsProvider>
-                    {({ assets, select, close, Container }) => (
-                        <Container>
-                            <CustomAssetManager
-                                assets={assets}
-                                select={select}
-                                close={close}
-                            />
-                        </Container>
-                    )}
-                </AssetsProvider>
+                {/*<AssetsProvider>*/}
+                {/*    {({ assets, select, close, Container }) => (*/}
+                {/*        <Container>*/}
+                {/*            <CustomAssetManager*/}
+                {/*                assets={assets}*/}
+                {/*                select={select}*/}
+                {/*                close={close}*/}
+                {/*            />*/}
+                {/*        </Container>*/}
+                {/*    )}*/}
+                {/*</AssetsProvider>*/}
             </div>
         </GjsEditor>
 
