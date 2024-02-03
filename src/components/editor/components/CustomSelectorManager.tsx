@@ -14,7 +14,7 @@ import {
     IconCurrentLocation,
     IconExclamationCircle,
     IconSelectAll,
-    IconSelector,
+    IconSelector, IconTags,
 } from '@tabler/icons-react'
 
 
@@ -73,7 +73,7 @@ export default function CustomSelectorManager({
             <div className="flex gap-2 items-center w-full">
                 <Tooltip label="Apply style changes to all blocks with the same class">
                     <ActionIcon variant={!isComponentFirst ? 'filled':'subtle'} onClick={setClassesFirst}  className="h-full">
-                        <IconBorderAll size="1rem" />
+                        <IconTags size="1rem" />
                     </ActionIcon>
                 </Tooltip>
                 <PillsInput className="w-full" size="xs"

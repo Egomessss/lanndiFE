@@ -35,10 +35,13 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
 
     const sectorsToAdd = [
         {
+            id: 'layout',
             name: 'Layout',
             open: false,
             properties: [
+
                 {
+
                     label: 'Layout',
                     property: 'display',
                     type: 'radio',
@@ -46,7 +49,7 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
                     options: [
                         {
                             id: 'block',
-                            label: 'Block - Element appear on a new line and takes full available width',
+                            label: 'Block - Element appears on a new line and takes full available width',
                             icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rectangle" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /></svg>`,
                         }, {
                             id: 'flex',
@@ -63,9 +66,64 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
                         },
                     ],
                 },
+
             ],
         },
         {
+            id: 'gridItem',
+            name: 'Grid Item',
+            open: false,
+            properties: [
+                {
+                    type: 'composite',
+                    label: 'Grid item span', // Label for the property
+                    property: 'grid', // CSS property to change
+                    properties: [{
+                        label: 'Columns',
+                        property: 'grid-column',
+                        type: 'number',
+                        default: '1',
+                        min: 0,
+                        max: 20,
+                    },
+                        {
+                            label: 'Rows',
+                            property: 'grid-row',
+                            type: 'number',
+                            default: '1',
+                            min: 0,
+                            max: 20,
+                        }],
+                },
+
+                {
+                    type: 'composite',
+                    label: 'Spacing', // Label for the property
+                    property: 'gap', // CSS property to change
+                    properties: [{
+                        label: 'Row',
+                        property: 'gap-row',
+                        type: 'number',
+                        default: 0,
+                        min: 0,
+                        units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                    },
+                        {
+                            label: 'Column',
+                            property: 'gap-column',
+                            type: 'number',
+                            default: 0,
+                            min: 0,
+                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                        }],
+                },
+
+
+            ],
+        },
+
+        {
+            id: 'flexProperties',
             name: 'Flex Properties',
             open: false,
             properties: [
@@ -150,11 +208,11 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
                         {
                             id: 'nowrap',
                             label: 'Don\'t Wrap',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-text-wrap-disabled" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6l10 0" /><path d="M4 18l10 0" /><path d="M4 12h17l-3 -3m0 6l3 -3" /></svg>`,
+                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-text-wrap-disabled" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6l10 0" /><path d="M4 18l10 0" /><path d="M4 12h17l-3 -3m0 6l3 -3" /></svg>`,
                         }, {
                             id: 'wrap',
                             label: 'Wrap',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-text-wrap" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6l16 0" /><path d="M4 18l5 0" /><path d="M4 12h13a3 3 0 0 1 0 6h-4l2 -2m0 4l-2 -2" /></svg>`,
+                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-text-wrap" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6l16 0" /><path d="M4 18l5 0" /><path d="M4 12h13a3 3 0 0 1 0 6h-4l2 -2m0 4l-2 -2" /></svg>`,
                         },
                     ],
                 },
@@ -184,6 +242,7 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
             ],
         },
         {
+            id: 'gridProperties',
             name: 'Grid Properties',
             open: false,
             properties: [
@@ -228,56 +287,7 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
 
             ],
         },
-        {
-            name: 'Grid Item Properties',
-            open: false,
-            properties: [
-                {
-                    type: 'composite',
-                    label: 'Spacing', // Label for the property
-                    property: 'gap', // CSS property to change
-                    properties: [{
-                        label: 'Spacing Row',
-                        property: 'gap-row',
-                        type: 'number',
-                        default: 0,
-                        min: 0,
-                        units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-                    },
-                        {
-                            label: 'Spacing column',
-                            property: 'gap-column',
-                            type: 'number',
-                            default: 0,
-                            min: 0,
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-                        }],
-                },
-                {
-                    type: 'composite',
-                    label: 'Spacing', // Label for the property
-                    property: 'gap', // CSS property to change
-                    properties: [{
-                        label: 'Spacing Row',
-                        property: 'gap-row',
-                        type: 'number',
-                        default: 0,
-                        min: 0,
-                        units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-                    },
-                        {
-                            label: 'Spacing column',
-                            property: 'gap-column',
-                            type: 'number',
-                            default: 0,
-                            min: 0,
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-                        }],
-                },
 
-
-            ],
-        },
         // add built in
 
         {
@@ -413,7 +423,7 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
             ],
         },
         {
-            name: 'Size',
+            name: 'Sizing',
             open: false,
             properties: [
                 {

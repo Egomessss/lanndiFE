@@ -167,18 +167,18 @@ export default function TopBarButtons({ onClick }) {
 
     const cmdButtons: CommandButton[] = [
         // TODO fix these 2 commands
-        {
-            id: 'core:canvas-clear',
-            Icon: IconTrash,
-            name: 'Clear Canvas',
-
-        },
-        {
-            id: 'core:open-code',
-            Icon: IconCode,
-            name: 'Code',
-
-        },
+        // {
+        //     id: 'core:canvas-clear',
+        //     Icon: IconTrash,
+        //     name: 'Clear Canvas',
+        //
+        // },
+        // {
+        //     id: 'core:open-code',
+        //     Icon: IconCode,
+        //     name: 'Code',
+        //
+        // },
 
         {
             id: 'core:component-outline',
@@ -186,12 +186,11 @@ export default function TopBarButtons({ onClick }) {
             name: 'Outline',
 
         },
-
-        // {
-        //     id: 'designer-mode',
-        //     Icon: IconVector,
-        //     name: 'Designer Mode',
-        // },
+        {
+            id: 'designer-mode',
+            Icon: IconVector,
+            name: 'Designer Mode',
+        },
         // {
         //     id: 'core:fullscreen',
         //     Icon: IconAspectRatio,

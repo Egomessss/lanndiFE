@@ -67,8 +67,8 @@ const DevicesProvider = memo(function({ children }: DevicesProviderProps) {
         Devices.add({
             id: 'mobile',
             name: 'Mobile',
-            width: '400px',
-            widthMedia: '410px',
+            width: '380px',
+            widthMedia: '380px',
         })
         Devices.select('fit')
         const up = () => {
