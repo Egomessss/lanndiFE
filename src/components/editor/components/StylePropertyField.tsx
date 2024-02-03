@@ -9,9 +9,10 @@ import type {
 
 import {
     ActionIcon,
-    Box,
+    Box, Button,
     Center,
     NumberInput,
+    Popover,
     SegmentedControl,
     Select,
     Slider,
@@ -25,7 +26,9 @@ import {
     IconArrowDown,
     IconArrowsUpDown,
     IconArrowUp,
+    IconCircleFilled,
     IconCode,
+    IconPalette,
     IconPlus,
     IconScaleOutline,
     IconX,
@@ -53,12 +56,12 @@ export default function StylePropertyField({
 
     const handleChange = (ev: any) => {
         prop.upValue(ev)
-        console.log(prop)
+
     }
 
 
     const onChange = (ev: any) => {
-        console.log(ev)
+
         handleChange(ev.target.value)
     }
 
@@ -125,7 +128,8 @@ export default function StylePropertyField({
         </div>
     )
 
-    console.log(prop)
+
+
 
     switch (type) {
         case 'text': {
@@ -153,7 +157,7 @@ export default function StylePropertyField({
                         label: (
                             <Tooltip color="blue" multiline
                                      w={200}
-                                     withArrow openDelay={200} label={radioProp.getOptionLabel(option)}>
+                                     withArrow openDelay={400} label={radioProp.getOptionLabel(option)}>
                                 <div className="flex items-center justify-center  w-full">
                                     <span className="mt-1"
                                           dangerouslySetInnerHTML={{ __html: option.icon }} />
@@ -184,7 +188,16 @@ export default function StylePropertyField({
             break
         case 'color': {
             inputToRender = (
-                <ColorPicker value={color} onChange={setColor} />
+                <Popover position="left-end"
+                         offset={0} width={200}  withArrow shadow="md">
+                    <Popover.Target>
+                        <Button justify="space-between" leftSection={<IconPalette size="1rem"/>} rightSection={<IconCircleFilled size="1rem"/>} variant="default" fullWidth size="xs">Pick</Button>
+                    </Popover.Target>
+                    <Popover.Dropdown>
+                        <ColorPicker value={color} onChange={setColor} />
+                    </Popover.Dropdown>
+                </Popover>
+
             )
         }
             break

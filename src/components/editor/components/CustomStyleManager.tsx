@@ -5,10 +5,28 @@
     import { StylesResultProps } from '../wrappers/StylesProvider'
     import { IconFile } from '@tabler/icons-react'
     import classes from './CustomStyleManager.module.css'
+    import { useEditorInstance } from '@/components/editor/context/EditorInstance'
 
     export default function CustomStyleManager({
                                                    sectors,
                                                }: Omit<StylesResultProps, 'Container'>) {
+
+        const { editor } = useEditorInstance()
+        const sm = editor?.StyleManager
+
+        const selectedParents = sm?.getSelectedParents()
+        let isParentFlexOrGrid = '';
+
+        if (selectedParents && selectedParents.length > 0) {
+            selectedParents.forEach(parent => {
+                console.log(parent.attributes.style.display)
+
+                if (parent.attributes.style.display === 'flex' || parent.attributes.style.display === 'grid') {
+                    console.log("grid or flex")
+                    isParentFlexOrGrid = parent.attributes.style.display;
+                }
+            });
+        }
 
         // Check if there are any sectors
         if (sectors.length === 0) {

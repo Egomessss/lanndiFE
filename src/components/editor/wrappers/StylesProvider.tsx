@@ -25,19 +25,18 @@ export interface StylesProviderProps {
 
 const StylesProvider = memo(function({ children }: StylesProviderProps) {
     const { editor } = useEditorInstance()
+    const sm = editor?.StyleManager
     const options = useEditorOptions()
     const [propState, setPropState] = useState<StylesState>(() => ({
         sectors: [],
         Container: () => null,
     }))
 
-    const sm = editor?.StyleManager
-
 
     const sectorsToAdd = [
         {
             name: 'Layout',
-            open: true,
+            open: false,
             properties: [
                 {
                     label: 'Layout',
@@ -68,7 +67,7 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
         },
         {
             name: 'Flex Properties',
-            open: true,
+            open: false,
             properties: [
                 {
                     label: 'Direction',
@@ -79,19 +78,20 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
                         {
                             id: 'row',
                             label: 'Horizontal',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M5 12l6 6" /><path d="M5 12l6 -6" /></svg>`,
-                        }, {
-                            id: 'row-reverse',
-                            label: 'Horizontal reversed',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-right" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M13 18l6 -6" /><path d="M13 6l6 6" /></svg>`,
+                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-right-left" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 7l-18 0" /><path d="M18 10l3 -3l-3 -3" /><path d="M6 20l-3 -3l3 -3" /><path d="M3 17l18 0" /></svg>`,
                         }, {
                             id: 'column',
                             label: 'Vertical',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-down" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M18 13l-6 6" /><path d="M6 13l6 6" /></svg>`,
-                        }, {
-                            id: 'column-reverse',
-                            label: 'Vertical reversed',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-up" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M18 11l-6 -6" /><path d="M6 11l6 -6" /></svg>`,
+                            icon: ` <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-arrows-up-down"
+                             width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                             fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M7 3l0 18" />
+                            <path d="M10 6l-3 -3l-3 3" />
+                            <path d="M20 18l-3 3l-3 -3" />
+                            <path d="M17 21l0 -18" />
+                        </svg>`
+                            ,
                         },
                     ],
                 },
@@ -118,16 +118,6 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
                             label: 'Space between',
                             icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-spacing-horizontal" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 20h-2a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h2" /><path d="M4 20h2a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M12 8v8" /></svg>`,
                         },
-                        {
-                            id: 'justify-around',
-                            label: 'Space around',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-container" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 4v.01" /><path d="M20 20v.01" /><path d="M20 16v.01" /><path d="M20 12v.01" /><path d="M20 8v.01" /><path d="M8 4m0 1a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1z" /><path d="M4 4v.01" /><path d="M4 20v.01" /><path d="M4 16v.01" /><path d="M4 12v.01" /><path d="M4 8v.01" /></svg>`,
-                        },
-                        {
-                            id: 'justify-evenly',
-                            label: 'Space evenly',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-box-margin" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 8h8v8h-8z" /><path d="M4 4v.01" /><path d="M8 4v.01" /><path d="M12 4v.01" /><path d="M16 4v.01" /><path d="M20 4v.01" /><path d="M4 20v.01" /><path d="M8 20v.01" /><path d="M12 20v.01" /><path d="M16 20v.01" /><path d="M20 20v.01" /><path d="M20 16v.01" /><path d="M20 12v.01" /><path d="M20 8v.01" /><path d="M4 16v.01" /><path d="M4 12v.01" /><path d="M4 8v.01" /></svg>`,
-                        },
                     ],
                 },
                 {
@@ -149,55 +139,31 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
                             label: 'End',
                             icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-bottom" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20l16 0" /><path d="M9 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
                         },
-                        {
-                            id: 'stretch',
-                            label: 'Stretch',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-vertical" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7l4 -4l4 4" /><path d="M8 17l4 4l4 -4" /><path d="M12 3l0 18" /></svg>`,
-                        },
-                        {
-                            id: 'baseline',
-                            label: 'Baseline',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-keyframe-align-center" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 20v2" /><path d="M12.816 16.58c-.207 .267 -.504 .42 -.816 .42c-.312 0 -.61 -.153 -.816 -.42l-2.908 -3.748a1.39 1.39 0 0 1 0 -1.664l2.908 -3.748c.207 -.267 .504 -.42 .816 -.42c.312 0 .61 .153 .816 .42l2.908 3.748a1.39 1.39 0 0 1 0 1.664l-2.908 3.748z" /><path d="M12 2v2" /><path d="M3 12h2" /><path d="M19 12h2" /></svg>`,
-                        },
                     ],
                 },
                 {
                     label: 'Wrap',
                     property: 'flex-wrap',
                     type: 'radio',
-                    default: 'start',
+                    default: 'nowrap',
                     options: [
                         {
-                            id: 'start',
-                            label: 'Start',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-top" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l16 0" /><path d="M9 8m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
+                            id: 'nowrap',
+                            label: 'Don\'t Wrap',
+                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-text-wrap-disabled" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6l10 0" /><path d="M4 18l10 0" /><path d="M4 12h17l-3 -3m0 6l3 -3" /></svg>`,
                         }, {
-                            id: 'center',
-                            label: 'Center',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-center" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 4l0 5" /><path d="M12 15l0 5" /><path d="M6 9m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z" /></svg>`,
-                        }, {
-                            id: 'end',
-                            label: 'End',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-bottom" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20l16 0" /><path d="M9 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
-                        },
-                        {
-                            id: 'stretch',
-                            label: 'Stretch',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-vertical" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7l4 -4l4 4" /><path d="M8 17l4 4l4 -4" /><path d="M12 3l0 18" /></svg>`,
-                        },
-                        {
-                            id: 'baseline',
-                            label: 'Baseline',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-keyframe-align-center" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 20v2" /><path d="M12.816 16.58c-.207 .267 -.504 .42 -.816 .42c-.312 0 -.61 -.153 -.816 -.42l-2.908 -3.748a1.39 1.39 0 0 1 0 -1.664l2.908 -3.748c.207 -.267 .504 -.42 .816 -.42c.312 0 .61 .153 .816 .42l2.908 3.748a1.39 1.39 0 0 1 0 1.664l-2.908 3.748z" /><path d="M12 2v2" /><path d="M3 12h2" /><path d="M19 12h2" /></svg>`,
+                            id: 'wrap',
+                            label: 'Wrap',
+                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-text-wrap" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6l16 0" /><path d="M4 18l5 0" /><path d="M4 12h13a3 3 0 0 1 0 6h-4l2 -2m0 4l-2 -2" /></svg>`,
                         },
                     ],
                 },
                 {
                     type: 'composite',
-                    label: 'Gap', // Label for the property
+                    label: 'Spacing', // Label for the property
                     property: 'gap', // CSS property to change
                     properties: [{
-                        label: 'Gap Row',
+                        label: 'Spacing Row',
                         property: 'gap-row',
                         type: 'number',
                         default: 0,
@@ -205,7 +171,7 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
                         units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
                     },
                         {
-                            label: 'Gap',
+                            label: 'Spacing column',
                             property: 'gap-column',
                             type: 'number',
                             default: 0,
@@ -219,136 +185,30 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
         },
         {
             name: 'Grid Properties',
-            open: true,
+            open: false,
             properties: [
                 {
-                    label: 'Direction',
-                    property: 'flex-direction',
-                    type: 'radio',
-                    default: 'horizontal',
-                    options: [
-                        {
-                            id: 'row',
-                            label: 'Horizontal',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M5 12l6 6" /><path d="M5 12l6 -6" /></svg>`,
-                        }, {
-                            id: 'row-reverse',
-                            label: 'Horizontal reversed',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-right" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M13 18l6 -6" /><path d="M13 6l6 6" /></svg>`,
-                        }, {
-                            id: 'column',
-                            label: 'Vertical',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-down" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M18 13l-6 6" /><path d="M6 13l6 6" /></svg>`,
-                        }, {
-                            id: 'column-reverse',
-                            label: 'Vertical reversed',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-up" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M18 11l-6 -6" /><path d="M6 11l6 -6" /></svg>`,
-                        },
-                    ],
+                    label: 'Columns',
+                    property: 'grid-template-columns',
+                    type: 'number',
+                    default: '2',
+                    min: 0,
+                    max: 20,
                 },
                 {
-                    label: 'Justify',
-                    property: 'justify-content',
-                    type: 'radio',
-                    default: 'start',
-                    options: [
-                        {
-                            id: 'start',
-                            label: 'Start',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-box-align-left" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.002 20.003v-16h-5a1 1 0 0 0 -1 1v14a1 1 0 0 0 1 1h5z" /><path d="M15.002 20.003h-.01" /><path d="M20.003 20.003h-.011" /><path d="M20.003 15.002h-.011" /><path d="M20.003 9.002h-.011" /><path d="M20.003 4.002h-.011" /><path d="M15.002 4.002h-.01" /></svg>`,
-                        }, {
-                            id: 'center',
-                            label: 'Center',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-middle" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 12l5 0" /><path d="M15 12l5 0" /><path d="M9 6m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
-                        }, {
-                            id: 'end',
-                            label: 'End',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-box-align-right" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13.998 20.003v-16h5a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-5z" /><path d="M8.998 20.003h.01" /><path d="M3.997 20.003h.011" /><path d="M3.997 15.002h.011" /><path d="M3.997 9.002h.011" /><path d="M3.997 4.002h.011" /><path d="M8.998 4.002h.01" /></svg>`,
-                        }, {
-                            id: 'justify-between',
-                            label: 'Space between',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-spacing-horizontal" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 20h-2a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h2" /><path d="M4 20h2a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M12 8v8" /></svg>`,
-                        },
-                        {
-                            id: 'justify-around',
-                            label: 'Space around',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-container" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 4v.01" /><path d="M20 20v.01" /><path d="M20 16v.01" /><path d="M20 12v.01" /><path d="M20 8v.01" /><path d="M8 4m0 1a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1z" /><path d="M4 4v.01" /><path d="M4 20v.01" /><path d="M4 16v.01" /><path d="M4 12v.01" /><path d="M4 8v.01" /></svg>`,
-                        },
-                        {
-                            id: 'justify-evenly',
-                            label: 'Space evenly',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-box-margin" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 8h8v8h-8z" /><path d="M4 4v.01" /><path d="M8 4v.01" /><path d="M12 4v.01" /><path d="M16 4v.01" /><path d="M20 4v.01" /><path d="M4 20v.01" /><path d="M8 20v.01" /><path d="M12 20v.01" /><path d="M16 20v.01" /><path d="M20 20v.01" /><path d="M20 16v.01" /><path d="M20 12v.01" /><path d="M20 8v.01" /><path d="M4 16v.01" /><path d="M4 12v.01" /><path d="M4 8v.01" /></svg>`,
-                        },
-                    ],
-                },
-                {
-                    label: 'Align',
-                    property: 'align-items',
-                    type: 'radio',
-                    default: 'start',
-                    options: [
-                        {
-                            id: 'start',
-                            label: 'Start',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-top" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l16 0" /><path d="M9 8m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
-                        }, {
-                            id: 'center',
-                            label: 'Center',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-center" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 4l0 5" /><path d="M12 15l0 5" /><path d="M6 9m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z" /></svg>`,
-                        }, {
-                            id: 'end',
-                            label: 'End',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-bottom" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20l16 0" /><path d="M9 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
-                        },
-                        {
-                            id: 'stretch',
-                            label: 'Stretch',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-vertical" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7l4 -4l4 4" /><path d="M8 17l4 4l4 -4" /><path d="M12 3l0 18" /></svg>`,
-                        },
-                        {
-                            id: 'baseline',
-                            label: 'Baseline',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-keyframe-align-center" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 20v2" /><path d="M12.816 16.58c-.207 .267 -.504 .42 -.816 .42c-.312 0 -.61 -.153 -.816 -.42l-2.908 -3.748a1.39 1.39 0 0 1 0 -1.664l2.908 -3.748c.207 -.267 .504 -.42 .816 -.42c.312 0 .61 .153 .816 .42l2.908 3.748a1.39 1.39 0 0 1 0 1.664l-2.908 3.748z" /><path d="M12 2v2" /><path d="M3 12h2" /><path d="M19 12h2" /></svg>`,
-                        },
-                    ],
-                },
-                {
-                    label: 'Wrap',
-                    property: 'flex-wrap',
-                    type: 'radio',
-                    default: 'start',
-                    options: [
-                        {
-                            id: 'start',
-                            label: 'Start',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-top" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l16 0" /><path d="M9 8m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
-                        }, {
-                            id: 'center',
-                            label: 'Center',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-center" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 4l0 5" /><path d="M12 15l0 5" /><path d="M6 9m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z" /></svg>`,
-                        }, {
-                            id: 'end',
-                            label: 'End',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-bottom" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20l16 0" /><path d="M9 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
-                        },
-                        {
-                            id: 'stretch',
-                            label: 'Stretch',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-vertical" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7l4 -4l4 4" /><path d="M8 17l4 4l4 -4" /><path d="M12 3l0 18" /></svg>`,
-                        },
-                        {
-                            id: 'baseline',
-                            label: 'Baseline',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-keyframe-align-center" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 20v2" /><path d="M12.816 16.58c-.207 .267 -.504 .42 -.816 .42c-.312 0 -.61 -.153 -.816 -.42l-2.908 -3.748a1.39 1.39 0 0 1 0 -1.664l2.908 -3.748c.207 -.267 .504 -.42 .816 -.42c.312 0 .61 .153 .816 .42l2.908 3.748a1.39 1.39 0 0 1 0 1.664l-2.908 3.748z" /><path d="M12 2v2" /><path d="M3 12h2" /><path d="M19 12h2" /></svg>`,
-                        },
-                    ],
+                    label: 'Rows',
+                    property: 'grid-template-rows',
+                    type: 'number',
+                    default: '2',
+                    min: 0,
+                    max: 20,
                 },
                 {
                     type: 'composite',
-                    label: 'Gap', // Label for the property
+                    label: 'Spacing', // Label for the property
                     property: 'gap', // CSS property to change
                     properties: [{
-                        label: 'Gap Row',
+                        label: 'Spacing Row',
                         property: 'gap-row',
                         type: 'number',
                         default: 0,
@@ -356,7 +216,57 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
                         units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
                     },
                         {
-                            label: 'Gap',
+                            label: 'Spacing column',
+                            property: 'gap-column',
+                            type: 'number',
+                            default: 0,
+                            min: 0,
+                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                        }],
+                },
+
+
+            ],
+        },
+        {
+            name: 'Grid Item Properties',
+            open: false,
+            properties: [
+                {
+                    type: 'composite',
+                    label: 'Spacing', // Label for the property
+                    property: 'gap', // CSS property to change
+                    properties: [{
+                        label: 'Spacing Row',
+                        property: 'gap-row',
+                        type: 'number',
+                        default: 0,
+                        min: 0,
+                        units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                    },
+                        {
+                            label: 'Spacing column',
+                            property: 'gap-column',
+                            type: 'number',
+                            default: 0,
+                            min: 0,
+                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                        }],
+                },
+                {
+                    type: 'composite',
+                    label: 'Spacing', // Label for the property
+                    property: 'gap', // CSS property to change
+                    properties: [{
+                        label: 'Spacing Row',
+                        property: 'gap-row',
+                        type: 'number',
+                        default: 0,
+                        min: 0,
+                        units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                    },
+                        {
+                            label: 'Spacing column',
                             property: 'gap-column',
                             type: 'number',
                             default: 0,
@@ -372,7 +282,7 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
 
         {
             name: 'Spacing',
-            open: true,
+            open: false,
             properties: [
                 {
                     type: 'composite',
@@ -452,18 +362,19 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
         },
         {
             name: 'Position',
-            open: true,
+            open: false,
             properties: [
 
                 {
                     label: 'Position',
                     property: 'position',
                     type: 'composite',
+                    default: 'static',
                     properties: [
                         {
                             type: 'select',
                             options: [
-                                { id: 'static', label: 'Static' },
+                                { id: 'static', label: 'Default' },
                                 { id: 'relative', label: 'Relative' },
                                 { id: 'absolute', label: 'Absolute' },
                                 { id: 'fixed', label: 'Fixed' },
@@ -503,7 +414,7 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
         },
         {
             name: 'Size',
-            open: true,
+            open: false,
             properties: [
                 {
                     label: 'Position',
@@ -564,7 +475,7 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
         },
         {
             name: 'Background',
-            open: true,
+            open: false,
             properties: [
                 {
                     type: 'color',
@@ -578,30 +489,37 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
         },
         {
             name: 'Border',
-            open: true,
+            open: false,
             properties: [
                 {
-                    type: 'number',
-                    label: 'Radius', // Label for the property
-                    property: 'width', // CSS property to change
-                    default: '0', // Default value to display
-                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                    min: 0, // Min value (available only for the 'number' type)
+                    type: 'composite',
+                    label: 'Spacing', // Label for the property
+                    property: 'gap', // CSS property to change
+                    properties: [{
+                        type: 'number',
+                        label: 'Roundness', // Label for the property
+                        property: 'width', // CSS property to change
+                        default: '0', // Default value to display
+                        units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                        min: 0, // Min value (available only for the 'number' type)
+
+                    },
+                        {
+                            type: 'number',
+                            label: 'Thickness', // Label for the property
+                            property: 'height', // CSS property to change
+                            default: '0', // Default value to display
+                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                            min: 0, // Min value (available only for the 'number' type)
+                        },
+                    ],
                 },
 
                 {
-                    type: 'number',
-                    label: 'Width', // Label for the property
-                    property: 'height', // CSS property to change
-                    default: '0', // Default value to display
-                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                    min: 0, // Min value (available only for the 'number' type)
-                },
-                {
                     type: 'select',
                     label: 'Style', // Label for the property
-                    property: 'min-width', // CSS property to change
-                    default: '0', // Default value to display
+                    property: 'border-style', // CSS property to change
+                    default: 'none', // Default value to display
                     options: [
                         { id: 'none', label: 'None' },
                         { id: 'hidden', label: 'Hidden' },
@@ -620,94 +538,115 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
         },
         {
             name: 'Typography',
-            open: true,
+            open: false,
             properties: [
                 {
-                    type: 'select',
-                    label: 'Font', // Label for the property
-                    property: 'width', // CSS property to change
-                    default: '0', // Default value to display
-                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                    min: 0, // Min value (available only for the 'number' type)
-                },
-                {
-                    type: 'color',
-                    label: 'Colour', // Label for the property
-                    property: 'height', // CSS property to change
-                    default: '0', // Default value to display
-                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                    min: 0, // Min value (available only for the 'number' type)
-                },
-                {
-                    type: 'number',
-                    label: 'Size', // Label for the property
-                    property: 'min-width', // CSS property to change
-                    default: '0', // Default value to display
-                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                    min: 0, // Min value (available only for the 'number' type)
-                },
-                {
-                    type: 'select',
-                    label: 'Weight', // Label for the property
-                    property: 'min-height', // CSS property to change
-                    default: '0', // Default value to display
-                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                    min: 0, // Min value (available only for the 'number' type)
-                },
-                {
-                    type: 'number',
-                    label: 'Line height', // Label for the property
-                    property: 'max-width', // CSS property to change
-                    default: '0', // Default value to display
-                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                    min: 0, // Min value (available only for the 'number' type)
-                },
-                {
-                    type: 'number',
+                    type: 'composite',
                     label: 'Spacing', // Label for the property
-                    property: 'max-width', // CSS property to change
-                    default: '0', // Default value to display
-                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                    min: 0, // Min value (available only for the 'number' type)
-                },
-                {
-                    type: 'select',
-                    label: 'Align', // Label for the property
-                    property: 'max-height', // CSS property to change
-                    default: '0', // Default value to display
-                    options: [
-                        { id: 'left', label: 'Left' },
-                        { id: 'center', label: 'Center' },
-                        { id: 'right', label: 'Right' },
-                        { id: 'justify', label: 'Justify' },
+                    property: 'gap', // CSS property to change
+                    properties: [
+                        {
+                            type: 'select',
+                            label: 'Font', // Label for the property
+                            property: 'width', // CSS property to change
+                            default: '0', // Default value to display
+                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                            min: 0, // Min value (available only for the 'number' type)
+                        },
+                        {
+                            type: 'color',
+                            label: 'Colour', // Label for the property
+                            property: 'height', // CSS property to change
+                            default: '0', // Default value to display
+                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                            min: 0, // Min value (available only for the 'number' type)
+                        },
+                        {
+                            type: 'number',
+                            label: 'Font size', // Label for the property
+                            property: 'min-width', // CSS property to change
+                            default: '0', // Default value to display
+                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                            min: 0, // Min value (available only for the 'number' type)
+                        },
+                        {
+                            type: 'select',
+                            label: 'Font Weight', // Label for the property
+                            property: 'font-weight', // CSS property to change
+                            default: '0', // Default value to display
+                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                            min: 0, // Min value (available only for the 'number' type)
+                        },
+                        {
+                            type: 'number',
+                            label: 'Line height', // Label for the property
+                            property: 'max-width', // CSS property to change
+                            default: '0', // Default value to display
+                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                            min: 0, // Min value (available only for the 'number' type)
+                        },
+                        {
+                            type: 'number',
+                            label: 'Spacing', // Label for the property
+                            property: 'max-width', // CSS property to change
+                            default: '0', // Default value to display
+                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                            min: 0, // Min value (available only for the 'number' type)
+                        },
+                        {
+                            type: 'select',
+                            label: 'Align', // Label for the property
+                            property: 'max-height', // CSS property to change
+                            default: '0', // Default value to display
+                            options: [
+                                { id: 'left', label: 'Left' },
+                                { id: 'center', label: 'Center' },
+                                { id: 'right', label: 'Right' },
+                                { id: 'justify', label: 'Justify' },
+                            ],
+                        },
+                        {
+                            type: 'select',
+                            label: 'Decoration', // Label for the property
+                            property: 'text-decoration', // CSS property to change
+                            default: '0', // Default value to display
+                            options: [
+                                { id: 'none', label: 'None' },
+                                { id: 'underline', label: 'Underline' },
+                                { id: 'overline', label: 'Overline' },
+                                { id: 'line-through', label: 'Line through' },
+                            ],
+                        },
+                        {
+                            type: 'select',
+                            label: 'White space', // Label for the property
+                            property: 'white-space', // CSS property to change
+                            default: '0', // Default value to display
+                            options: [
+                                { id: 'normal', label: 'Normal' },
+                                { id: 'no-wrap', label: 'No wrap' },
+                                { id: 'pre', label: 'Keep Spaces' },
+                                { id: 'pre-wrap', label: 'Wrap & Keep Spaces' },
+                                { id: 'pre-line', label: 'Wrap & Trim Spaces' },
+                                { id: 'break-space', label: 'Spaces & Breaks' },
+                            ],
+                        },
+                        {
+                            type: 'select',
+                            label: 'List style', // Label for the property
+                            property: 'list-style', // CSS property to change
+                            default: '0', // Default value to display
+                            options: [
+                                { id: 'none', label: 'None' },
+                                { id: 'square', label: 'Square' },
+                                { id: 'circle', label: 'Circle' },
+                                { id: 'upper-roman', label: 'Roman' },
+                                { id: 'lower-alpha', label: 'Alpha' },
+                            ],
+                        },
                     ],
                 },
-                {
-                    type: 'select',
-                    label: 'Align', // Label for the property
-                    property: 'max-height', // CSS property to change
-                    default: '0', // Default value to display
-                    options: [
-                        { id: 'none', label: 'None' },
-                        { id: 'underline', label: 'Underline' },
-                        { id: 'overline', label: 'Overline' },
-                        { id: 'line-through', label: 'Line through' },
-                    ],
-                },
-                {
-                    type: 'select',
-                    label: 'Align', // Label for the property
-                    property: 'max-height', // CSS property to change
-                    default: '0', // Default value to display
-                    options: [
-                        { id: 'normal', label: 'Normal' },
-                        { id: 'no-wrap', label: 'No wrap' },
-                        { id: 'pre', label: 'Pre' },
-                        { id: 'pre-wrap', label: 'Pre wrap' },
-                        { id: 'pre-line', label: 'Pre line' },
-                        { id: 'break-space', label: 'Break space' },
-                    ],
-                },
+
             ],
         },
 
@@ -730,170 +669,6 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
 // Example usage
     addSectors()
 
-    // sm?.addType('display', {
-    //     // Create UI
-    //
-    //     // Propagate UI changes up to the targets
-    //     emit({ props, updateStyle }, { event, partial }) {
-    //         const { value } = event.target;
-    //         updateStyle(`${value}px`, { partial });
-    //     },
-    //     // Update UI (eg. when the target is changed)
-    //     update({ value, el }) {
-    //         el.querySelector('.my-input').value = parseInt(value, 10);
-    //     },
-    //     // Clean the memory from side effects if necessary (eg. global event listeners, etc.)
-    //     destroy() {
-    //     },
-    // });
-
-
-    // editor?.on('style:update', (component, property, value) => {
-    //
-    //     if (property === 'display' && value === 'flex') {
-    //         // Add or update the 'flex-direction' property of the component's style
-    //         const sectorsToAdd = [
-    //             {
-    //                 label: 'Direction',
-    //                 property: 'flex-direction',
-    //                 type: 'radio',
-    //                 default: 'horizontal',
-    //                 options: [
-    //                     {
-    //                         id: 'row',
-    //                         label: 'Horizontal',
-    //                         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M5 12l6 6" /><path d="M5 12l6 -6" /></svg>`,
-    //                     }, {
-    //                         id: 'row-reverse',
-    //                         label: 'Horizontal reversed',
-    //                         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-right" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M13 18l6 -6" /><path d="M13 6l6 6" /></svg>`,
-    //                     }, {
-    //                         id: 'column',
-    //                         label: 'Vertical',
-    //                         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-down" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M18 13l-6 6" /><path d="M6 13l6 6" /></svg>`,
-    //                     }, {
-    //                         id: 'column-reverse',
-    //                         label: 'Vertical reversed',
-    //                         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-up" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M18 11l-6 -6" /><path d="M6 11l6 -6" /></svg>`,
-    //                     },
-    //                 ],
-    //             },
-    //             {
-    //                 label: 'Justify',
-    //                 property: 'justify-content',
-    //                 type: 'radio',
-    //                 default: 'start',
-    //                 options: [
-    //                     {
-    //                         id: 'start',
-    //                         label: 'Start',
-    //                         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-box-align-left" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.002 20.003v-16h-5a1 1 0 0 0 -1 1v14a1 1 0 0 0 1 1h5z" /><path d="M15.002 20.003h-.01" /><path d="M20.003 20.003h-.011" /><path d="M20.003 15.002h-.011" /><path d="M20.003 9.002h-.011" /><path d="M20.003 4.002h-.011" /><path d="M15.002 4.002h-.01" /></svg>`,
-    //                     }, {
-    //                         id: 'center',
-    //                         label: 'Center',
-    //                         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-middle" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 12l5 0" /><path d="M15 12l5 0" /><path d="M9 6m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
-    //                     }, {
-    //                         id: 'end',
-    //                         label: 'End',
-    //                         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-box-align-right" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13.998 20.003v-16h5a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-5z" /><path d="M8.998 20.003h.01" /><path d="M3.997 20.003h.011" /><path d="M3.997 15.002h.011" /><path d="M3.997 9.002h.011" /><path d="M3.997 4.002h.011" /><path d="M8.998 4.002h.01" /></svg>`,
-    //                     }, {
-    //                         id: 'justify-between',
-    //                         label: 'Space between',
-    //                         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-spacing-horizontal" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 20h-2a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h2" /><path d="M4 20h2a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M12 8v8" /></svg>`,
-    //                     },
-    //                     {
-    //                         id: 'justify-around',
-    //                         label: 'Space around',
-    //                         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-container" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 4v.01" /><path d="M20 20v.01" /><path d="M20 16v.01" /><path d="M20 12v.01" /><path d="M20 8v.01" /><path d="M8 4m0 1a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1z" /><path d="M4 4v.01" /><path d="M4 20v.01" /><path d="M4 16v.01" /><path d="M4 12v.01" /><path d="M4 8v.01" /></svg>`,
-    //                     },
-    //                     {
-    //                         id: 'justify-evenly',
-    //                         label: 'Space evenly',
-    //                         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-box-margin" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 8h8v8h-8z" /><path d="M4 4v.01" /><path d="M8 4v.01" /><path d="M12 4v.01" /><path d="M16 4v.01" /><path d="M20 4v.01" /><path d="M4 20v.01" /><path d="M8 20v.01" /><path d="M12 20v.01" /><path d="M16 20v.01" /><path d="M20 20v.01" /><path d="M20 16v.01" /><path d="M20 12v.01" /><path d="M20 8v.01" /><path d="M4 16v.01" /><path d="M4 12v.01" /><path d="M4 8v.01" /></svg>`,
-    //                     },
-    //                 ],
-    //             },
-    //             {
-    //                 label: 'Align',
-    //                 property: 'align-items',
-    //                 type: 'radio',
-    //                 default: 'start',
-    //                 options: [
-    //                     {
-    //                         id: 'start',
-    //                         label: 'Start',
-    //                         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-top" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l16 0" /><path d="M9 8m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
-    //                     }, {
-    //                         id: 'center',
-    //                         label: 'Center',
-    //                         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-center" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 4l0 5" /><path d="M12 15l0 5" /><path d="M6 9m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z" /></svg>`,
-    //                     }, {
-    //                         id: 'end',
-    //                         label: 'End',
-    //                         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-bottom" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20l16 0" /><path d="M9 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
-    //                     },
-    //                     {
-    //                         id: 'stretch',
-    //                         label: 'Stretch',
-    //                         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-vertical" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7l4 -4l4 4" /><path d="M8 17l4 4l4 -4" /><path d="M12 3l0 18" /></svg>`,
-    //                     },
-    //                     {
-    //                         id: 'baseline',
-    //                         label: 'Baseline',
-    //                         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-keyframe-align-center" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 20v2" /><path d="M12.816 16.58c-.207 .267 -.504 .42 -.816 .42c-.312 0 -.61 -.153 -.816 -.42l-2.908 -3.748a1.39 1.39 0 0 1 0 -1.664l2.908 -3.748c.207 -.267 .504 -.42 .816 -.42c.312 0 .61 .153 .816 .42l2.908 3.748a1.39 1.39 0 0 1 0 1.664l-2.908 3.748z" /><path d="M12 2v2" /><path d="M3 12h2" /><path d="M19 12h2" /></svg>`,
-    //                     },
-    //                 ],
-    //             },
-    //             {
-    //                 label: 'Gap Column',
-    //                 property: 'align-items',
-    //                 type: 'radio',
-    //                 default: 'start',
-    //                 options: [
-    //                     {
-    //                         id: 'start',
-    //                         label: 'Start',
-    //                         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-top" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l16 0" /><path d="M9 8m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
-    //                     }, {
-    //                         id: 'center',
-    //                         label: 'Center',
-    //                         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-center" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 4l0 5" /><path d="M12 15l0 5" /><path d="M6 9m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z" /></svg>`,
-    //                     }, {
-    //                         id: 'end',
-    //                         label: 'End',
-    //                         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-bottom" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20l16 0" /><path d="M9 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
-    //                     },
-    //                     {
-    //                         id: 'stretch',
-    //                         label: 'Stretch',
-    //                         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-vertical" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7l4 -4l4 4" /><path d="M8 17l4 4l4 -4" /><path d="M12 3l0 18" /></svg>`,
-    //                     },
-    //                     {
-    //                         id: 'baseline',
-    //                         label: 'Baseline',
-    //                         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-keyframe-align-center" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 20v2" /><path d="M12.816 16.58c-.207 .267 -.504 .42 -.816 .42c-.312 0 -.61 -.153 -.816 -.42l-2.908 -3.748a1.39 1.39 0 0 1 0 -1.664l2.908 -3.748c.207 -.267 .504 -.42 .816 -.42c.312 0 .61 .153 .816 .42l2.908 3.748a1.39 1.39 0 0 1 0 1.664l-2.908 3.748z" /><path d="M12 2v2" /><path d="M3 12h2" /><path d="M19 12h2" /></svg>`,
-    //                     },
-    //                 ],
-    //             }]
-    //
-    //         const addSectors = () => {
-    //             sectorsToAdd.forEach((sector) => {
-    //                 // Add sector
-    //                 sm?.addSector(sector.name, {
-    //                     name: sector.name,
-    //                     open: sector.open,
-    //                     buildProps: sector.properties.map(prop => prop.property),
-    //                     properties: sector.properties,
-    //                 })
-    //             })
-    //         }
-    //         addSectors()
-    //     }
-
-
-// Example usage
-
-    // })
 
     useEffect(() => {
         if (!editor) return
