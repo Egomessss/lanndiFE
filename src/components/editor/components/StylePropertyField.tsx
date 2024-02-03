@@ -170,6 +170,7 @@ export default function StylePropertyField({
             inputToRender = (
                 <Select
                     size="xs"
+                    placeholder={value}
                     value={value}
                     onChange={(newValue) => handleChange(newValue)}
                     data={selectProp.getOptions().map((option) => ({
@@ -225,19 +226,23 @@ export default function StylePropertyField({
         case 'composite': {
             const compositeProp = prop as PropertyComposite
             inputToRender = (
-                <div
-                    className="flex flex-wrap"
-                >
+                <div className="flex flex-wrap">
                     {
-                        compositeProp.getProperties().map((prop, index) => (
-                            <div key={prop.getId()} className='w-1/2'>
-                                <StylePropertyField
-                                    prop={prop}
-                                /></div>
+                        compositeProp.getProperties().map((prop, index) => {
+                            // Determine the width class based on index and total length
+                            const widthClass = compositeProp.getProperties().length > 4 && compositeProp.getProperties().length < 6
+                                ? (index === 0 ? 'w-full' : 'w-1/2')
+                                : 'w-1/2'
 
-                        ))
+                            return (
+                                <div key={prop.getId()} className={widthClass}>
+                                    <StylePropertyField prop={prop} />
+                                </div>
+                            )
+                        })
                     }
                 </div>
+
             )
         }
             break

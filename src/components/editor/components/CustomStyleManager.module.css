@@ -15,6 +15,10 @@
 
 }
 
+.label{
+    font-size: 0.7rem;
+    font-weight: bold;
+}
 
 .panel{
     padding:0 ;
