@@ -18,6 +18,7 @@ export default function CustomStyleManager({
     let excludeGridItem = false;
 
     // const selectedComponent = sm?.getSelected()
+    // console.log(selectedComponent?.attributes)
     // let selectComponentsDisplay = ''
     //
     // console.log("component",selectedComponent)
@@ -35,9 +36,9 @@ export default function CustomStyleManager({
         excludeGridItem = true; // Initially assume you need to exclude the gridItem
         selectedParents.forEach(parent => {
             // Check if display style is specifically 'grid', then do not exclude gridItem
-            if (parent.attributes.style.display === 'grid') {
+            if (parent.attributes.style.display && parent.attributes.style.display === 'grid') {
                 excludeGridItem = false; // Found a grid, so do not exclude
-                return; // Exit the loop early since we found a grid display
+                return; // Exit the loop early since we found ae grid display
             }
         });
     }
@@ -65,18 +66,29 @@ export default function CustomStyleManager({
     );
 
     // Map the rest of the sectors to accordion items
-    const accordionItems = otherSectors.map((sector) => (
-        <Accordion.Item key={sector.getId()} value={sector.getId()}>
-            <Accordion.Control>
-                {sector.getName()}
-            </Accordion.Control>
-            <Accordion.Panel>
-                {sector.getProperties().map((prop) => (
-                    <StylePropertyField key={prop.getId()} prop={prop} />
-                ))}
-            </Accordion.Panel>
-        </Accordion.Item>
-    ));
+    const accordionItems = otherSectors.map((sector) => {
+        // Determine if the sector has more than 8 properties
+        const isLargeSector = sector.getProperties().length > 8;
+
+        return (
+            <Accordion.Item key={sector.getId()} value={sector.getId()}>
+                <Accordion.Control>
+                    {sector.getName()}
+                </Accordion.Control>
+                <Accordion.Panel>
+                    <div className={isLargeSector ? 'flex flex-wrap  items-center' : ''}>
+                        {sector.getProperties().map((prop, index) => (
+                            // Apply 'w-full' to the first item and 'w-1/2' to the rest if it's a large sector
+                            <div key={prop.getId()} className={isLargeSector ? (index === 0 ? 'w-full' : 'w-1/2') : ''}>
+                                <StylePropertyField prop={prop} />
+                            </div>
+                        ))}
+                    </div>
+                </Accordion.Panel>
+            </Accordion.Item>
+        );
+    });
+
 
     return (
         <div className="gjs-custom-style-manager text-left mt-2">

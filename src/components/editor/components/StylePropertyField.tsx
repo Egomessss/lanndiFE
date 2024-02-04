@@ -92,12 +92,14 @@ export default function StylePropertyField({
     const defValue = prop.getDefaultValue()
     const canClear = prop.canClear()
     const hasValue = prop.hasValue()
+
     const value = prop.getValue()
     const valueString = hasValue ? value : ''
     const valueWithDef = hasValue ? value : defValue
 
+
     let inputToRender = (
-        <div className="flex items-center gap-1">
+        <div className="">
             <NumberInput
                 // hideControls
                 // leftSection={
@@ -172,6 +174,7 @@ export default function StylePropertyField({
         case 'select': {
             const selectProp = prop as PropertySelect
             inputToRender = (
+
                 <Select
                     size="xs"
                     placeholder={value}
@@ -183,18 +186,25 @@ export default function StylePropertyField({
                         name: selectProp.getOptionLabel(option), // You can adjust this according to your needs
                     }))}
                 />
+
             )
         }
             break
         case 'color': {
             inputToRender = (
                 <Popover position="left-end"
-                         offset={0} width={200}  withArrow shadow="md">
+                         offset={10} width={200}  withArrow shadow="md">
                     <Popover.Target>
                         <Button justify="space-between" leftSection={<IconPalette size="1rem"/>} rightSection={<IconCircleFilled size="1rem"/>} variant="default" fullWidth size="xs">Pick</Button>
                     </Popover.Target>
-                    <Popover.Dropdown>
-                        <ColorPicker value={color} onChange={setColor} />
+                    <Popover.Dropdown >
+                        <div style={{ background: "#fff",
+                            borderRadius: "8px",
+                            boxShadow: "0 0 6px rgb(0,0,0, .25)",
+                            padding: "8px",
+                            width: "310px",
+                            zIndex: 102}}>  <ColorPicker value={color} onChange={setColor} /></div>
+
                     </Popover.Dropdown>
                 </Popover>
 

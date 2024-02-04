@@ -78,17 +78,34 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
                     type: 'composite',
                     label: 'Grid item span', // Label for the property
                     property: 'grid', // CSS property to change
-                    properties: [{
-                        label: 'Columns',
-                        property: 'grid-column',
-                        type: 'number',
-                        default: '1',
-                        min: 0,
-                        max: 20,
-                    },
+                    properties: [
                         {
-                            label: 'Rows',
-                            property: 'grid-row',
+                            label: 'Row start',
+                            property: 'grid-row-start',
+                            type: 'number',
+                            default: '1',
+                            min: 0,
+                            max: 20,
+                        },
+                        {
+                            label: 'Row end',
+                            property: 'grid-row-end',
+                            type: 'number',
+                            default: '1',
+                            min: 0,
+                            max: 20,
+                        },
+                        {
+                            label: 'Column start',
+                            property: 'grid-column-start',
+                            type: 'number',
+                            default: '1',
+                            min: 0,
+                            max: 20,
+                        },
+                        {
+                            label: 'Column end',
+                            property: 'grid-column-end',
                             type: 'number',
                             default: '1',
                             min: 0,
@@ -247,27 +264,33 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
             open: false,
             properties: [
                 {
-                    label: 'Columns',
-                    property: 'grid-template-columns',
-                    type: 'number',
-                    default: '2',
-                    min: 0,
-                    max: 20,
-                },
-                {
-                    label: 'Rows',
-                    property: 'grid-template-rows',
-                    type: 'number',
-                    default: '2',
-                    min: 0,
-                    max: 20,
+                    type: 'composite',
+                    label: 'Grid span', // Label for the property
+                    property: 'grid', // CSS property to change
+                    properties: [
+                        {
+                            label: 'Columns',
+                            property: 'grid-template-columns',
+                            type: 'number',
+                            default: '2',
+                            min: 0,
+                            max: 20,
+                        },
+                        {
+                            label: 'Rows',
+                            property: 'grid-template-rows',
+                            type: 'number',
+                            default: '2',
+                            min: 0,
+                            max: 20,
+                        }],
                 },
                 {
                     type: 'composite',
                     label: 'Spacing', // Label for the property
                     property: 'gap', // CSS property to change
                     properties: [{
-                        label: 'Spacing Row',
+                        label: 'Row',
                         property: 'gap-row',
                         type: 'number',
                         default: 0,
@@ -275,7 +298,7 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
                         units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
                     },
                         {
-                            label: 'Spacing column',
+                            label: 'Column',
                             property: 'gap-column',
                             type: 'number',
                             default: 0,
@@ -299,12 +322,7 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
                     label: 'Margin', // Label for the property
                     property: 'margin', // CSS property to change
                     properties: [
-                        {
-                            type: 'number',
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-                            default: '0',
-                            property: 'margin',
-                        },
+
                         {
                             type: 'number',
                             units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
@@ -331,18 +349,12 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
                         },
                     ],
                 },
-
                 {
                     type: 'composite',
                     label: 'Padding', // Label for the property
                     property: 'padding', // CSS property to change
                     properties: [
                         {
-                            type: 'number',
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-                            default: '0',
-                            property: 'padding',
-                        }, {
                             type: 'number',
                             units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
                             default: '0',
@@ -374,23 +386,24 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
             name: 'Position',
             open: false,
             properties: [
-
+                {
+                    type: 'select',
+                    property: 'position',
+                    label: 'Position',
+                    options: [
+                        { id: 'static', label: 'Default' },
+                        { id: 'relative', label: 'Relative' },
+                        { id: 'absolute', label: 'Absolute' },
+                        { id: 'fixed', label: 'Fixed' },
+                        { id: 'sticky', label: 'Sticky' },
+                    ],
+                },
                 {
                     label: 'Position',
-                    property: 'position',
+                    property: 'inset',
                     type: 'composite',
-                    default: 'static',
                     properties: [
-                        {
-                            type: 'select',
-                            options: [
-                                { id: 'static', label: 'Default' },
-                                { id: 'relative', label: 'Relative' },
-                                { id: 'absolute', label: 'Absolute' },
-                                { id: 'fixed', label: 'Fixed' },
-                                { id: 'sticky', label: 'Sticky' },
-                            ],
-                        },
+
                         { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'top' },
                         {
                             type: 'number',
@@ -427,56 +440,78 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
             open: false,
             properties: [
                 {
-                    label: 'Position',
-                    property: 'position',
-                    type: 'composite',
-                    properties: [{
-                        type: 'number',
-                        label: 'Width', // Label for the property
-                        property: 'width', // CSS property to change
-                        default: '0', // Default value to display
-                        units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                        min: 0, // Min value (available only for the 'number' type)
-                    },
+                type: 'number',
+                    default: 0,
+                label: 'Width', // Label for the property
+                property: 'width', // CSS property to change
+                units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                min: 0, // Min value (available only for the 'number' type)
+            },
+                {
+                    type: 'number',
+                      default: 0,
+                    label: 'Max width', // Label for the property
+                    property: 'max-width', // CSS property to change
+                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                    min: 0, // Min value (available only for the 'number' type)
+                },
+                {
+                    type: 'number',
+                      default: 0,
+                    label: 'Min width', // Label for the property
+                    property: 'min-width', // CSS property to change
+                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                    min: 0, // Min value (available only for the 'number' type)
+                },
+                {
+                    type: 'number',
+                      default: 0,
+                    label: 'Height', // Label for the property
+                    property: 'height', // CSS property to change
+                    units: ['px', 'em', 'rem', '%', 'svh', 'dvh', 'vh', 'vw'], // Units (available only for the 'number' type)
+                    min: 0, // Min value (available only for the 'number' type)
+                },
+
+                {
+                    type: 'number',
+                      default: 0,
+                    label: 'Max height', // Label for the property
+                    property: 'max-height', // CSS property to change
+                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                    min: 0, // Min value (available only for the 'number' type)
+                },
+
+                {
+                    type: 'number',
+                      default: 0,
+                    label: 'Min height', // Label for the property
+                    property: 'min-height', // CSS property to change
+                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                    min: 0, // Min value (available only for the 'number' type)
+                },
+                {
+                    label: 'Overflow', // Label for the property
+                    property: 'overflow', // CSS property to change
+                    default: 'none', // Default value to display
+                    type: 'radio',
+                    options: [
                         {
-                            type: 'number',
-                            label: 'Height', // Label for the property
-                            property: 'height', // CSS property to change
-                            default: '0', // Default value to display
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                            min: 0, // Min value (available only for the 'number' type)
+                            id: 'visible',
+                            label: 'Block - Element appears on a new line and takes full available width',
+                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>`,
+                        }, {
+                            id: 'hidden',
+                            label: 'Flex - Arranges elements horizontally, or vertically.',
+                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye-off" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" /><path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" /><path d="M3 3l18 18" /></svg>`,
+                        }, {
+                            id: 'scroll',
+                            label: 'Hide - Hide the element',
+                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mouse" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 3m0 4a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-4a4 4 0 0 1 -4 -4z" /><path d="M12 7l0 4" /></svg>`,
                         },
                         {
-                            type: 'number',
-                            label: 'Max width', // Label for the property
-                            property: 'max-width', // CSS property to change
-                            default: '0', // Default value to display
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                            min: 0, // Min value (available only for the 'number' type)
-                        },
-                        {
-                            type: 'number',
-                            label: 'Max height', // Label for the property
-                            property: 'max-height', // CSS property to change
-                            default: '0', // Default value to display
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                            min: 0, // Min value (available only for the 'number' type)
-                        },
-                        {
-                            type: 'number',
-                            label: 'Min width', // Label for the property
-                            property: 'min-width', // CSS property to change
-                            default: '0', // Default value to display
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                            min: 0, // Min value (available only for the 'number' type)
-                        },
-                        {
-                            type: 'number',
-                            label: 'Min height', // Label for the property
-                            property: 'min-height', // CSS property to change
-                            default: '0', // Default value to display
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                            min: 0, // Min value (available only for the 'number' type)
+                            id: 'auto',
+                            label: 'Hide - Hide the element',
+                            icon: 'Auto',
                         },
                     ],
                 },
@@ -491,7 +526,6 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
                     type: 'color',
                     label: 'Colour', // Label for the property
                     property: 'min-height', // CSS property to change
-                    default: '0', // Default value to display
                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
                     min: 0, // Min value (available only for the 'number' type)
                 },
@@ -507,18 +541,18 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
                     property: 'gap', // CSS property to change
                     properties: [{
                         type: 'number',
+                        default: 0,
                         label: 'Roundness', // Label for the property
                         property: 'width', // CSS property to change
-                        default: '0', // Default value to display
                         units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
                         min: 0, // Min value (available only for the 'number' type)
 
                     },
                         {
                             type: 'number',
+                            default: 0,
                             label: 'Thickness', // Label for the property
                             property: 'height', // CSS property to change
-                            default: '0', // Default value to display
                             units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
                             min: 0, // Min value (available only for the 'number' type)
                         },
@@ -551,115 +585,121 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
             open: false,
             properties: [
                 {
-                    type: 'composite',
-                    label: 'Spacing', // Label for the property
-                    property: 'gap', // CSS property to change
-                    properties: [
-                        {
-                            type: 'select',
-                            label: 'Font', // Label for the property
-                            property: 'width', // CSS property to change
-                            default: '0', // Default value to display
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                            min: 0, // Min value (available only for the 'number' type)
-                        },
-                        {
-                            type: 'color',
-                            label: 'Colour', // Label for the property
-                            property: 'height', // CSS property to change
-                            default: '0', // Default value to display
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                            min: 0, // Min value (available only for the 'number' type)
-                        },
-                        {
-                            type: 'number',
-                            label: 'Font size', // Label for the property
-                            property: 'min-width', // CSS property to change
-                            default: '0', // Default value to display
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                            min: 0, // Min value (available only for the 'number' type)
-                        },
-                        {
-                            type: 'select',
-                            label: 'Font Weight', // Label for the property
-                            property: 'font-weight', // CSS property to change
-                            default: '0', // Default value to display
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                            min: 0, // Min value (available only for the 'number' type)
-                        },
-                        {
-                            type: 'number',
-                            label: 'Line height', // Label for the property
-                            property: 'max-width', // CSS property to change
-                            default: '0', // Default value to display
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                            min: 0, // Min value (available only for the 'number' type)
-                        },
-                        {
-                            type: 'number',
-                            label: 'Spacing', // Label for the property
-                            property: 'max-width', // CSS property to change
-                            default: '0', // Default value to display
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                            min: 0, // Min value (available only for the 'number' type)
-                        },
-                        {
-                            type: 'select',
-                            label: 'Align', // Label for the property
-                            property: 'max-height', // CSS property to change
-                            default: '0', // Default value to display
-                            options: [
-                                { id: 'left', label: 'Left' },
-                                { id: 'center', label: 'Center' },
-                                { id: 'right', label: 'Right' },
-                                { id: 'justify', label: 'Justify' },
-                            ],
-                        },
-                        {
-                            type: 'select',
-                            label: 'Decoration', // Label for the property
-                            property: 'text-decoration', // CSS property to change
-                            default: '0', // Default value to display
-                            options: [
-                                { id: 'none', label: 'None' },
-                                { id: 'underline', label: 'Underline' },
-                                { id: 'overline', label: 'Overline' },
-                                { id: 'line-through', label: 'Line through' },
-                            ],
-                        },
-                        {
-                            type: 'select',
-                            label: 'White space', // Label for the property
-                            property: 'white-space', // CSS property to change
-                            default: '0', // Default value to display
-                            options: [
-                                { id: 'normal', label: 'Normal' },
-                                { id: 'no-wrap', label: 'No wrap' },
-                                { id: 'pre', label: 'Keep Spaces' },
-                                { id: 'pre-wrap', label: 'Wrap & Keep Spaces' },
-                                { id: 'pre-line', label: 'Wrap & Trim Spaces' },
-                                { id: 'break-space', label: 'Spaces & Breaks' },
-                            ],
-                        },
-                        {
-                            type: 'select',
-                            label: 'List style', // Label for the property
-                            property: 'list-style', // CSS property to change
-                            default: '0', // Default value to display
-                            options: [
-                                { id: 'none', label: 'None' },
-                                { id: 'square', label: 'Square' },
-                                { id: 'circle', label: 'Circle' },
-                                { id: 'upper-roman', label: 'Roman' },
-                                { id: 'lower-alpha', label: 'Alpha' },
-                            ],
-                        },
+                    type: 'select',
+                    label: 'Font', // Label for the property
+                    property: 'font-family', // CSS property to change
+                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                    min: 0, // Min value (available only for the 'number' type)
+                },
+
+                {
+                    type: 'number',
+                    label: 'Font size', // Label for the property
+                    property: 'font-size', // CSS property to change
+                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                    min: 0, // Min value (available only for the 'number' type)
+                },
+                {
+                    type: 'select',
+                    label: 'Font Weight', // Label for the property
+                    property: 'font-weight', // CSS property to change
+                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                    min: 0, // Min value (available only for the 'number' type)
+                },
+                {
+                    type: 'number',
+                    label: 'Line spacing', // Label for the property
+                    property: 'line-height', // CSS property to change
+                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                    min: 0, // Min value (available only for the 'number' type)
+                },
+                {
+                    type: 'number',
+                    label: 'Letter spacing', // Label for the property
+                    property: 'letter-spacing', // CSS property to change
+                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                    min: 0, // Min value (available only for the 'number' type)
+                },
+                {
+                    type: 'select',
+                    label: 'Align', // Label for the property
+                    property: 'text-align', // CSS property to change
+                    options: [
+                        { id: 'left', label: 'Left' },
+                        { id: 'center', label: 'Center' },
+                        { id: 'right', label: 'Right' },
+                        { id: 'justify', label: 'Justify' },
+                    ],
+                },
+                {
+                    type: 'select',
+                    label: 'White space', // Label for the property
+                    property: 'white-space', // CSS property to change
+                    options: [
+                        { id: 'normal', label: 'Normal' },
+                        { id: 'no-wrap', label: 'No wrap' },
+                        { id: 'pre', label: 'Keep Spaces' },
+                        { id: 'pre-wrap', label: 'Wrap & Keep Spaces' },
+                        { id: 'pre-line', label: 'Wrap & Trim Spaces' },
+                        { id: 'break-space', label: 'Spaces & Breaks' },
+                    ],
+                },
+                {
+                    type: 'color',
+                    label: 'Colour', // Label for the property
+                    property: 'color', // CSS property to change
+                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                    min: 0, // Min value (available only for the 'number' type)
+                },
+                {
+                    type: 'select',
+                    label: 'Decoration', // Label for the property
+                    property: 'text-decoration', // CSS property to change
+                    options: [
+                        { id: 'none', label: 'None' },
+                        { id: 'underline', label: 'Underline' },
+                        { id: 'overline', label: 'Overline' },
+                        { id: 'line-through', label: 'Line through' },
+                    ],
+                },
+
+
+            ],
+        },
+        {
+            name: 'Extra',
+            open: false,
+            properties: [
+                {
+                    type: 'select',
+                    label: 'Cursor type', // Label for the property
+                    property: 'cursor', // CSS property to change
+                    default: 'default', // Default value to display
+                    options: [
+                        { id: 'default', label: 'Default' },
+                        { id: 'pointer', label: 'pointer' },
+                        { id: 'wait', label: 'Wait' },
+                        { id: 'not-allowed', label: 'Not allowed' },
+                        { id: 'zoom-in', label: 'Zoom in' },
+                        { id: 'grab', label: 'grab' },
+                        { id: 'move', label: 'Move' },
+                    ],
+                },
+                {
+                    type: 'select',
+                    label: 'List style', // Label for the property
+                    property: 'list-style', // CSS property to change
+                    options: [
+                        { id: 'none', label: 'None' },
+                        { id: 'square', label: 'Square' },
+                        { id: 'circle', label: 'Circle' },
+                        { id: 'upper-roman', label: 'Roman' },
+                        { id: 'lower-alpha', label: 'Alpha' },
                     ],
                 },
 
             ],
         },
-
     ]
 
 
