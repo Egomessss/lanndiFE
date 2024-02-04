@@ -39,9 +39,7 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
             name: 'Layout',
             open: false,
             properties: [
-
                 {
-
                     label: 'Layout',
                     property: 'display',
                     type: 'radio',
@@ -66,12 +64,11 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
                         },
                     ],
                 },
-
             ],
         },
         {
             id: 'gridItem',
-            name: 'Grid Item',
+            name: 'Grid Item Properties',
             open: false,
             properties: [
                 {
@@ -138,7 +135,6 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
 
             ],
         },
-
         {
             id: 'flexProperties',
             name: 'Flex Properties',
@@ -157,7 +153,7 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
                         }, {
                             id: 'column',
                             label: 'Vertical',
-                            icon: ` <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-arrows-up-down"
+                            icon: ` <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-up-down"
                              width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                              fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -310,396 +306,391 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
 
             ],
         },
-
-        // add built in
-
-        {
-            name: 'Spacing',
-            open: false,
-            properties: [
-                {
-                    type: 'composite',
-                    label: 'Margin', // Label for the property
-                    property: 'margin', // CSS property to change
-                    properties: [
-
-                        {
-                            type: 'number',
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-                            default: '0',
-                            property: 'margin-top',
-                        },
-                        {
-                            type: 'number',
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-                            default: '0',
-                            property: 'margin-right',
-                        },
-                        {
-                            type: 'number',
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-                            default: '0',
-                            property: 'margin-bottom',
-                        },
-                        {
-                            type: 'number',
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-                            default: '0',
-                            property: 'margin-left',
-                        },
-                    ],
-                },
-                {
-                    type: 'composite',
-                    label: 'Padding', // Label for the property
-                    property: 'padding', // CSS property to change
-                    properties: [
-                        {
-                            type: 'number',
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-                            default: '0',
-                            property: 'padding-top',
-                        },
-                        {
-                            type: 'number',
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-                            default: '0',
-                            property: 'padding-right',
-                        },
-                        {
-                            type: 'number',
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-                            default: '0',
-                            property: 'padding-bottom',
-                        },
-                        {
-                            type: 'number',
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-                            default: '0',
-                            property: 'padding-left',
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            name: 'Position',
-            open: false,
-            properties: [
-                {
-                    type: 'select',
-                    property: 'position',
-                    label: 'Position',
-                    options: [
-                        { id: 'static', label: 'Default' },
-                        { id: 'relative', label: 'Relative' },
-                        { id: 'absolute', label: 'Absolute' },
-                        { id: 'fixed', label: 'Fixed' },
-                        { id: 'sticky', label: 'Sticky' },
-                    ],
-                },
-                {
-                    label: 'Position',
-                    property: 'inset',
-                    type: 'composite',
-                    properties: [
-
-                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'top' },
-                        {
-                            type: 'number',
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-                            default: '0',
-                            property: 'right',
-                        },
-                        {
-                            type: 'number',
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-                            default: '0',
-                            property: 'bottom',
-                        },
-                        { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'left' },
-                    ],
-                },
-                {
-                    type: 'select',
-                    property: 'z-index',
-                    label: 'Layer',
-                    default: 'auto',
-                    options: [
-                        { id: 'auto', label: 'Default' },
-                        { id: '-1', label: 'Send to back' },
-                        { id: '1', label: 'Send backward' },
-                        { id: '10', label: 'Bring to front' },
-                        { id: '1000', label: 'Bring forward' },
-                    ],
-                },
-            ],
-        },
-        {
-            name: 'Sizing',
-            open: false,
-            properties: [
-                {
-                type: 'number',
-                    default: 0,
-                label: 'Width', // Label for the property
-                property: 'width', // CSS property to change
-                units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                min: 0, // Min value (available only for the 'number' type)
-            },
-                {
-                    type: 'number',
-                      default: 0,
-                    label: 'Max width', // Label for the property
-                    property: 'max-width', // CSS property to change
-                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                    min: 0, // Min value (available only for the 'number' type)
-                },
-                {
-                    type: 'number',
-                      default: 0,
-                    label: 'Min width', // Label for the property
-                    property: 'min-width', // CSS property to change
-                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                    min: 0, // Min value (available only for the 'number' type)
-                },
-                {
-                    type: 'number',
-                      default: 0,
-                    label: 'Height', // Label for the property
-                    property: 'height', // CSS property to change
-                    units: ['px', 'em', 'rem', '%', 'svh', 'dvh', 'vh', 'vw'], // Units (available only for the 'number' type)
-                    min: 0, // Min value (available only for the 'number' type)
-                },
-
-                {
-                    type: 'number',
-                      default: 0,
-                    label: 'Max height', // Label for the property
-                    property: 'max-height', // CSS property to change
-                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                    min: 0, // Min value (available only for the 'number' type)
-                },
-
-                {
-                    type: 'number',
-                      default: 0,
-                    label: 'Min height', // Label for the property
-                    property: 'min-height', // CSS property to change
-                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                    min: 0, // Min value (available only for the 'number' type)
-                },
-                {
-                    label: 'Overflow', // Label for the property
-                    property: 'overflow', // CSS property to change
-                    default: 'none', // Default value to display
-                    type: 'radio',
-                    options: [
-                        {
-                            id: 'visible',
-                            label: 'Block - Element appears on a new line and takes full available width',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>`,
-                        }, {
-                            id: 'hidden',
-                            label: 'Flex - Arranges elements horizontally, or vertically.',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye-off" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" /><path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" /><path d="M3 3l18 18" /></svg>`,
-                        }, {
-                            id: 'scroll',
-                            label: 'Hide - Hide the element',
-                            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mouse" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 3m0 4a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-4a4 4 0 0 1 -4 -4z" /><path d="M12 7l0 4" /></svg>`,
-                        },
-                        {
-                            id: 'auto',
-                            label: 'Hide - Hide the element',
-                            icon: 'Auto',
-                        },
-                    ],
-                },
-
-            ],
-        },
-        {
-            name: 'Background',
-            open: false,
-            properties: [
-                {
-                    type: 'color',
-                    label: 'Colour', // Label for the property
-                    property: 'min-height', // CSS property to change
-                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                    min: 0, // Min value (available only for the 'number' type)
-                },
-            ],
-        },
-        {
-            name: 'Border',
-            open: false,
-            properties: [
-                {
-                    type: 'composite',
-                    label: 'Spacing', // Label for the property
-                    property: 'gap', // CSS property to change
-                    properties: [{
-                        type: 'number',
-                        default: 0,
-                        label: 'Roundness', // Label for the property
-                        property: 'width', // CSS property to change
-                        units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                        min: 0, // Min value (available only for the 'number' type)
-
-                    },
-                        {
-                            type: 'number',
-                            default: 0,
-                            label: 'Thickness', // Label for the property
-                            property: 'height', // CSS property to change
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                            min: 0, // Min value (available only for the 'number' type)
-                        },
-                    ],
-                },
-
-                {
-                    type: 'select',
-                    label: 'Style', // Label for the property
-                    property: 'border-style', // CSS property to change
-                    default: 'none', // Default value to display
-                    options: [
-                        { id: 'none', label: 'None' },
-                        { id: 'hidden', label: 'Hidden' },
-                        { id: 'solid', label: 'Solid' },
-                        { id: 'dotted', label: 'Dotted' },
-                        { id: 'dashed', label: 'Dashed' },
-                    ],
-                },
-                {
-                    type: 'color',
-                    label: 'Colour', // Label for the property
-                    property: 'min-height', // CSS property to change
-
-                },
-            ],
-        },
-        {
-            name: 'Typography',
-            open: false,
-            properties: [
-                {
-                    type: 'select',
-                    label: 'Font', // Label for the property
-                    property: 'font-family', // CSS property to change
-                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                    min: 0, // Min value (available only for the 'number' type)
-                },
-
-                {
-                    type: 'number',
-                    label: 'Font size', // Label for the property
-                    property: 'font-size', // CSS property to change
-                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                    min: 0, // Min value (available only for the 'number' type)
-                },
-                {
-                    type: 'select',
-                    label: 'Font Weight', // Label for the property
-                    property: 'font-weight', // CSS property to change
-                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                    min: 0, // Min value (available only for the 'number' type)
-                },
-                {
-                    type: 'number',
-                    label: 'Line spacing', // Label for the property
-                    property: 'line-height', // CSS property to change
-                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                    min: 0, // Min value (available only for the 'number' type)
-                },
-                {
-                    type: 'number',
-                    label: 'Letter spacing', // Label for the property
-                    property: 'letter-spacing', // CSS property to change
-                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                    min: 0, // Min value (available only for the 'number' type)
-                },
-                {
-                    type: 'select',
-                    label: 'Align', // Label for the property
-                    property: 'text-align', // CSS property to change
-                    options: [
-                        { id: 'left', label: 'Left' },
-                        { id: 'center', label: 'Center' },
-                        { id: 'right', label: 'Right' },
-                        { id: 'justify', label: 'Justify' },
-                    ],
-                },
-                {
-                    type: 'select',
-                    label: 'White space', // Label for the property
-                    property: 'white-space', // CSS property to change
-                    options: [
-                        { id: 'normal', label: 'Normal' },
-                        { id: 'no-wrap', label: 'No wrap' },
-                        { id: 'pre', label: 'Keep Spaces' },
-                        { id: 'pre-wrap', label: 'Wrap & Keep Spaces' },
-                        { id: 'pre-line', label: 'Wrap & Trim Spaces' },
-                        { id: 'break-space', label: 'Spaces & Breaks' },
-                    ],
-                },
-                {
-                    type: 'color',
-                    label: 'Colour', // Label for the property
-                    property: 'color', // CSS property to change
-                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                    min: 0, // Min value (available only for the 'number' type)
-                },
-                {
-                    type: 'select',
-                    label: 'Decoration', // Label for the property
-                    property: 'text-decoration', // CSS property to change
-                    options: [
-                        { id: 'none', label: 'None' },
-                        { id: 'underline', label: 'Underline' },
-                        { id: 'overline', label: 'Overline' },
-                        { id: 'line-through', label: 'Line through' },
-                    ],
-                },
-
-
-            ],
-        },
-        {
-            name: 'Extra',
-            open: false,
-            properties: [
-                {
-                    type: 'select',
-                    label: 'Cursor type', // Label for the property
-                    property: 'cursor', // CSS property to change
-                    default: 'default', // Default value to display
-                    options: [
-                        { id: 'default', label: 'Default' },
-                        { id: 'pointer', label: 'pointer' },
-                        { id: 'wait', label: 'Wait' },
-                        { id: 'not-allowed', label: 'Not allowed' },
-                        { id: 'zoom-in', label: 'Zoom in' },
-                        { id: 'grab', label: 'grab' },
-                        { id: 'move', label: 'Move' },
-                    ],
-                },
-                {
-                    type: 'select',
-                    label: 'List style', // Label for the property
-                    property: 'list-style', // CSS property to change
-                    options: [
-                        { id: 'none', label: 'None' },
-                        { id: 'square', label: 'Square' },
-                        { id: 'circle', label: 'Circle' },
-                        { id: 'upper-roman', label: 'Roman' },
-                        { id: 'lower-alpha', label: 'Alpha' },
-                    ],
-                },
-
-            ],
-        },
+        // {
+        //     name: 'Spacing',
+        //     open: false,
+        //     properties: [
+        //         {
+        //             type: 'composite',
+        //             label: 'Margin', // Label for the property
+        //             property: 'margin', // CSS property to change
+        //             properties: [
+        //
+        //                 {
+        //                     type: 'number',
+        //                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+        //                     default: '0',
+        //                     property: 'margin-top',
+        //                 },
+        //                 {
+        //                     type: 'number',
+        //                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+        //                     default: '0',
+        //                     property: 'margin-right',
+        //                 },
+        //                 {
+        //                     type: 'number',
+        //                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+        //                     default: '0',
+        //                     property: 'margin-bottom',
+        //                 },
+        //                 {
+        //                     type: 'number',
+        //                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+        //                     default: '0',
+        //                     property: 'margin-left',
+        //                 },
+        //             ],
+        //         },
+        //         {
+        //             type: 'composite',
+        //             label: 'Padding', // Label for the property
+        //             property: 'padding', // CSS property to change
+        //             properties: [
+        //                 {
+        //                     type: 'number',
+        //                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+        //                     default: '0',
+        //                     property: 'padding-top',
+        //                 },
+        //                 {
+        //                     type: 'number',
+        //                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+        //                     default: '0',
+        //                     property: 'padding-right',
+        //                 },
+        //                 {
+        //                     type: 'number',
+        //                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+        //                     default: '0',
+        //                     property: 'padding-bottom',
+        //                 },
+        //                 {
+        //                     type: 'number',
+        //                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+        //                     default: '0',
+        //                     property: 'padding-left',
+        //                 },
+        //             ],
+        //         },
+        //     ],
+        // },
+        // {
+        //     name: 'Position',
+        //     open: false,
+        //     properties: [
+        //         {
+        //             type: 'select',
+        //             property: 'position',
+        //             label: 'Position',
+        //             options: [
+        //                 { id: 'static', label: 'Default' },
+        //                 { id: 'relative', label: 'Relative' },
+        //                 { id: 'absolute', label: 'Absolute' },
+        //                 { id: 'fixed', label: 'Fixed' },
+        //                 { id: 'sticky', label: 'Sticky' },
+        //             ],
+        //         },
+        //         {
+        //             label: 'Position',
+        //             property: 'inset',
+        //             type: 'composite',
+        //             properties: [
+        //
+        //                 { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'top' },
+        //                 {
+        //                     type: 'number',
+        //                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+        //                     default: '0',
+        //                     property: 'right',
+        //                 },
+        //                 {
+        //                     type: 'number',
+        //                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+        //                     default: '0',
+        //                     property: 'bottom',
+        //                 },
+        //                 { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'left' },
+        //             ],
+        //         },
+        //         {
+        //             type: 'select',
+        //             property: 'z-index',
+        //             label: 'Layer',
+        //             default: 'auto',
+        //             options: [
+        //                 { id: 'auto', label: 'Default' },
+        //                 { id: '-1', label: 'Send to back' },
+        //                 { id: '1', label: 'Send backward' },
+        //                 { id: '10', label: 'Bring to front' },
+        //                 { id: '1000', label: 'Bring forward' },
+        //             ],
+        //         },
+        //     ],
+        // },
+        // {
+        //     name: 'Sizing',
+        //     open: false,
+        //     properties: [
+        //         {
+        //             type: 'number',
+        //             default: 0,
+        //             label: 'Width', // Label for the property
+        //             property: 'width', // CSS property to change
+        //             units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+        //             min: 0, // Min value (available only for the 'number' type)
+        //         },
+        //         {
+        //             type: 'number',
+        //             default: 0,
+        //             label: 'Max width', // Label for the property
+        //             property: 'max-width', // CSS property to change
+        //             units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+        //             min: 0, // Min value (available only for the 'number' type)
+        //         },
+        //         {
+        //             type: 'number',
+        //             default: 0,
+        //             label: 'Min width', // Label for the property
+        //             property: 'min-width', // CSS property to change
+        //             units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+        //             min: 0, // Min value (available only for the 'number' type)
+        //         },
+        //         {
+        //             type: 'number',
+        //             default: 0,
+        //             label: 'Height', // Label for the property
+        //             property: 'height', // CSS property to change
+        //             units: ['px', 'em', 'rem', '%', 'svh', 'dvh', 'vh', 'vw'], // Units (available only for the 'number' type)
+        //             min: 0, // Min value (available only for the 'number' type)
+        //         },
+        //
+        //         {
+        //             type: 'number',
+        //             default: 0,
+        //             label: 'Max height', // Label for the property
+        //             property: 'max-height', // CSS property to change
+        //             units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+        //             min: 0, // Min value (available only for the 'number' type)
+        //         },
+        //
+        //         {
+        //             type: 'number',
+        //             default: 0,
+        //             label: 'Min height', // Label for the property
+        //             property: 'min-height', // CSS property to change
+        //             units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+        //             min: 0, // Min value (available only for the 'number' type)
+        //         },
+        //         {
+        //             label: 'Overflow', // Label for the property
+        //             property: 'overflow', // CSS property to change
+        //             default: 'none', // Default value to display
+        //             type: 'radio',
+        //             options: [
+        //                 {
+        //                     id: 'visible',
+        //                     label: 'Block - Element appears on a new line and takes full available width',
+        //                     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>`,
+        //                 }, {
+        //                     id: 'hidden',
+        //                     label: 'Flex - Arranges elements horizontally, or vertically.',
+        //                     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye-off" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" /><path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" /><path d="M3 3l18 18" /></svg>`,
+        //                 }, {
+        //                     id: 'scroll',
+        //                     label: 'Hide - Hide the element',
+        //                     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mouse" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 3m0 4a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-4a4 4 0 0 1 -4 -4z" /><path d="M12 7l0 4" /></svg>`,
+        //                 },
+        //                 {
+        //                     id: 'auto',
+        //                     label: 'Hide - Hide the element',
+        //                     icon: 'Auto',
+        //                 },
+        //             ],
+        //         },
+        //
+        //     ],
+        // },
+        // {
+        //     name: 'Background',
+        //     open: false,
+        //     properties: [
+        //         {
+        //             type: 'color',
+        //             label: 'Colour', // Label for the property
+        //             property: 'min-height', // CSS property to change
+        //             units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+        //             min: 0, // Min value (available only for the 'number' type)
+        //         },
+        //     ],
+        // },
+        // {
+        //     name: 'Border',
+        //     open: false,
+        //     properties: [
+        //         {
+        //             type: 'composite',
+        //             label: 'Spacing', // Label for the property
+        //             property: 'gap', // CSS property to change
+        //             properties: [{
+        //                 type: 'number',
+        //                 default: 0,
+        //                 label: 'Roundness', // Label for the property
+        //                 property: 'width', // CSS property to change
+        //                 units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+        //                 min: 0, // Min value (available only for the 'number' type)
+        //
+        //             },
+        //                 {
+        //                     type: 'number',
+        //                     default: 0,
+        //                     label: 'Thickness', // Label for the property
+        //                     property: 'height', // CSS property to change
+        //                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+        //                     min: 0, // Min value (available only for the 'number' type)
+        //                 },
+        //             ],
+        //         },
+        //
+        //         {
+        //             type: 'select',
+        //             label: 'Style', // Label for the property
+        //             property: 'border-style', // CSS property to change
+        //             default: 'none', // Default value to display
+        //             options: [
+        //                 { id: 'none', label: 'None' },
+        //                 { id: 'hidden', label: 'Hidden' },
+        //                 { id: 'solid', label: 'Solid' },
+        //                 { id: 'dotted', label: 'Dotted' },
+        //                 { id: 'dashed', label: 'Dashed' },
+        //             ],
+        //         },
+        //         {
+        //             type: 'color',
+        //             label: 'Colour', // Label for the property
+        //             property: 'min-height', // CSS property to change
+        //
+        //         },
+        //     ],
+        // },
+        // {
+        //     name: 'Typography',
+        //     open: false,
+        //     properties: [
+        //         {
+        //             type: 'select',
+        //             label: 'Font', // Label for the property
+        //             property: 'font-family', // CSS property to change
+        //         },
+        //
+        //         {
+        //             type: 'number',
+        //             label: 'Font size', // Label for the property
+        //             property: 'font-size', // CSS property to change
+        //             units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+        //             min: 0, // Min value (available only for the 'number' type)
+        //         },
+        //         {
+        //             type: 'select',
+        //             label: 'Font Weight', // Label for the property
+        //             property: 'font-weight', // CSS property to change
+        //             units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+        //             min: 0, // Min value (available only for the 'number' type)
+        //         },
+        //         {
+        //             type: 'number',
+        //             label: 'Line spacing', // Label for the property
+        //             property: 'line-height', // CSS property to change
+        //             units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+        //             min: 0, // Min value (available only for the 'number' type)
+        //         },
+        //         {
+        //             type: 'number',
+        //             label: 'Letter spacing', // Label for the property
+        //             property: 'letter-spacing', // CSS property to change
+        //             units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+        //             min: 0, // Min value (available only for the 'number' type)
+        //         },
+        //         {
+        //             type: 'select',
+        //             label: 'Align', // Label for the property
+        //             property: 'text-align', // CSS property to change
+        //             options: [
+        //                 { id: 'left', label: 'Left' },
+        //                 { id: 'center', label: 'Center' },
+        //                 { id: 'right', label: 'Right' },
+        //                 { id: 'justify', label: 'Justify' },
+        //             ],
+        //         },
+        //         {
+        //             type: 'select',
+        //             label: 'White space', // Label for the property
+        //             property: 'white-space', // CSS property to change
+        //             options: [
+        //                 { id: 'normal', label: 'Normal' },
+        //                 { id: 'no-wrap', label: 'No wrap' },
+        //                 { id: 'pre', label: 'Keep Spaces' },
+        //                 { id: 'pre-wrap', label: 'Wrap & Keep Spaces' },
+        //                 { id: 'pre-line', label: 'Wrap & Trim Spaces' },
+        //                 { id: 'break-space', label: 'Spaces & Breaks' },
+        //             ],
+        //         },
+        //         {
+        //             type: 'color',
+        //             label: 'Colour', // Label for the property
+        //             property: 'color', // CSS property to change
+        //             units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+        //             min: 0, // Min value (available only for the 'number' type)
+        //         },
+        //         {
+        //             type: 'select',
+        //             label: 'Decoration', // Label for the property
+        //             property: 'text-decoration', // CSS property to change
+        //             options: [
+        //                 { id: 'none', label: 'None' },
+        //                 { id: 'underline', label: 'Underline' },
+        //                 { id: 'overline', label: 'Overline' },
+        //                 { id: 'line-through', label: 'Line through' },
+        //             ],
+        //         },
+        //
+        //
+        //     ],
+        // },
+        // {
+        //     name: 'Extra',
+        //     open: false,
+        //     properties: [
+        //         {
+        //             type: 'select',
+        //             label: 'Cursor type', // Label for the property
+        //             property: 'cursor', // CSS property to change
+        //             default: 'default', // Default value to display
+        //             options: [
+        //                 { id: 'default', label: 'Default' },
+        //                 { id: 'pointer', label: 'pointer' },
+        //                 { id: 'wait', label: 'Wait' },
+        //                 { id: 'not-allowed', label: 'Not allowed' },
+        //                 { id: 'zoom-in', label: 'Zoom in' },
+        //                 { id: 'grab', label: 'grab' },
+        //                 { id: 'move', label: 'Move' },
+        //             ],
+        //         },
+        //         {
+        //             type: 'select',
+        //             label: 'List style', // Label for the property
+        //             property: 'list-style', // CSS property to change
+        //             options: [
+        //                 { id: 'none', label: 'None' },
+        //                 { id: 'square', label: 'Square' },
+        //                 { id: 'circle', label: 'Circle' },
+        //                 { id: 'upper-roman', label: 'Roman' },
+        //                 { id: 'lower-alpha', label: 'Alpha' },
+        //             ],
+        //         },
+        //
+        //     ],
+        // },
     ]
 
 

@@ -11,49 +11,15 @@ export default function CustomStyleManager({
                                                sectors,
                                            }: Omit<StylesResultProps, 'Container'>) {
 
-    const { editor } = useEditorInstance()
-    const sm = editor?.StyleManager
 
-    const gridItemId = 'gridItem';
-    let excludeGridItem = false;
-
-    // const selectedComponent = sm?.getSelected()
-    // console.log(selectedComponent?.attributes)
-    // let selectComponentsDisplay = ''
-    //
-    // console.log("component",selectedComponent)
-    // if (selectedComponent.attributes.style.display === 'flex' || selectedComponent.attributes.style.display === 'grid') {
-    //
-    //     // selectComponentsDisplay = selectedComponent.attributes.style.display
-    //
-    // }
-
-
-    const selectedParents = sm?.getSelectedParents()
-
-
-    if (selectedParents && selectedParents.length > 0) {
-        excludeGridItem = true; // Initially assume you need to exclude the gridItem
-        selectedParents.forEach(parent => {
-            // Check if display style is specifically 'grid', then do not exclude gridItem
-            if (parent.attributes.style.display && parent.attributes.style.display === 'grid') {
-                excludeGridItem = false; // Found a grid, so do not exclude
-                return; // Exit the loop early since we found ae grid display
-            }
-        });
-    }
 
     // Check if there are any sectors
     if (sectors.length === 0) {
         return null // or some placeholder component
     }
 
-    // Exclude the 'gridItem' sector if the condition is met
-    const filteredSectors = excludeGridItem ? sectors.filter(sector => sector.getId() !== gridItemId) : sectors;
-
     // Separate the first sector from the rest
-    const [firstSector, ...otherSectors] = filteredSectors;
-
+    const [firstSector, ...otherSectors] = sectors
 
 
     // Render the first sector outside the accordion
@@ -63,16 +29,16 @@ export default function CustomStyleManager({
                 <StylePropertyField key={prop.getId()} prop={prop} />
             ))}
         </div>
-    );
+    )
 
     // Map the rest of the sectors to accordion items
     const accordionItems = otherSectors.map((sector) => {
         // Determine if the sector has more than 8 properties
-        const isLargeSector = sector.getProperties().length > 8;
+        const isLargeSector = sector.getProperties().length > 8
 
         return (
             <Accordion.Item key={sector.getId()} value={sector.getId()}>
-                <Accordion.Control>
+                <Accordion.Control >
                     {sector.getName()}
                 </Accordion.Control>
                 <Accordion.Panel>
@@ -86,8 +52,8 @@ export default function CustomStyleManager({
                     </div>
                 </Accordion.Panel>
             </Accordion.Item>
-        );
-    });
+        )
+    })
 
 
     return (
@@ -100,5 +66,5 @@ export default function CustomStyleManager({
                 {accordionItems}
             </Accordion>
         </div>
-    );
+    )
 }

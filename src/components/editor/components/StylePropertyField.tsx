@@ -9,8 +9,7 @@ import type {
 
 import {
     ActionIcon,
-    Box, Button,
-    Center,
+    Button,
     NumberInput,
     Popover,
     SegmentedControl,
@@ -24,10 +23,8 @@ import { useEditor } from '../wrappers'
 import React, { useState } from 'react'
 import {
     IconArrowDown,
-    IconArrowsUpDown,
     IconArrowUp,
     IconCircleFilled,
-    IconCode,
     IconPalette,
     IconPlus,
     IconScaleOutline,
@@ -54,16 +51,14 @@ export default function StylePropertyField({
     const editor = useEditor()
 
 
-    const handleChange = (ev: any) => {
-        prop.upValue(ev)
-
-    }
-
+    const handleChange = (value: string) => {
+        prop.upValue(value);
+        console.log("up")
+    };
 
     const onChange = (ev: any) => {
-
-        handleChange(ev.target.value)
-    }
+        handleChange(ev);
+    };
 
     const [sizeValue, setSizeValue] = useState<string>('px') // Default value
 
@@ -120,7 +115,7 @@ export default function StylePropertyField({
                     variant="unstyled"
                     placeholder="Unit"
                     value={sizeValue}
-                    onChange={(newValue) => handleSizeChange(newValue)}
+                    onChange={(newValue) => setSizeValue(newValue)}
                     data={selectProp.getOptions().map((option) => ({
                         value: selectProp.getOptionId(option),
                         label: selectProp.getOptionLabel(option),
@@ -129,8 +124,6 @@ export default function StylePropertyField({
             />
         </div>
     )
-
-
 
 
     switch (type) {
@@ -173,17 +166,19 @@ export default function StylePropertyField({
             break
         case 'select': {
             const selectProp = prop as PropertySelect
+            console.log(selectProp.getOptions().map((option) => ({
+                value: selectProp.getOptionId(option),
+                label: selectProp.getOptionLabel(option),
+            })))
             inputToRender = (
-
                 <Select
                     size="xs"
                     placeholder={value}
                     value={value}
-                    onChange={(newValue) => handleChange(newValue)}
+                    onChange={onChange}
                     data={selectProp.getOptions().map((option) => ({
                         value: selectProp.getOptionId(option),
                         label: selectProp.getOptionLabel(option),
-                        name: selectProp.getOptionLabel(option), // You can adjust this according to your needs
                     }))}
                 />
 
@@ -193,17 +188,22 @@ export default function StylePropertyField({
         case 'color': {
             inputToRender = (
                 <Popover position="left-end"
-                         offset={10} width={200}  withArrow shadow="md">
+                         offset={10} width={200} withArrow shadow="md">
                     <Popover.Target>
-                        <Button justify="space-between" leftSection={<IconPalette size="1rem"/>} rightSection={<IconCircleFilled size="1rem"/>} variant="default" fullWidth size="xs">Pick</Button>
+                        <Button justify="space-between" leftSection={<IconPalette size="1rem" />}
+                                rightSection={<IconCircleFilled size="1rem" />} variant="default" fullWidth
+                                size="xs">Pick</Button>
                     </Popover.Target>
-                    <Popover.Dropdown >
-                        <div style={{ background: "#fff",
-                            borderRadius: "8px",
-                            boxShadow: "0 0 6px rgb(0,0,0, .25)",
-                            padding: "8px",
-                            width: "310px",
-                            zIndex: 102}}>  <ColorPicker value={color} onChange={setColor} /></div>
+                    <Popover.Dropdown>
+                        <div style={{
+                            background: '#fff',
+                            borderRadius: '8px',
+                            boxShadow: '0 0 6px rgb(0,0,0, .25)',
+                            padding: '8px',
+                            width: '310px',
+                            zIndex: 102,
+                        }}>
+                            <ColorPicker value={color} onChange={setColor} /></div>
 
                     </Popover.Dropdown>
                 </Popover>
