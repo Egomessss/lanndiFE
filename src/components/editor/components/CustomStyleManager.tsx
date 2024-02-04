@@ -1,16 +1,15 @@
-import { Accordion, ActionIcon, Divider, ScrollArea, Text } from '@mantine/core'
+import { Accordion, ActionIcon, Divider, ScrollArea, Text, Tooltip } from '@mantine/core'
 import * as React from 'react'
 
 import StylePropertyField from './StylePropertyField'
 import { StylesResultProps } from '../wrappers/StylesProvider'
-import { IconFile } from '@tabler/icons-react'
+import { IconExclamationCircle, IconFile } from '@tabler/icons-react'
 import classes from './CustomStyleManager.module.css'
 import { useEditorInstance } from '@/components/editor/context/EditorInstance'
 
 export default function CustomStyleManager({
                                                sectors,
                                            }: Omit<StylesResultProps, 'Container'>) {
-
 
 
     // Check if there are any sectors
@@ -36,9 +35,32 @@ export default function CustomStyleManager({
         // Determine if the sector has more than 8 properties
         const isLargeSector = sector.getProperties().length > 8
 
+        const icon = (sectorId) => {
+            if (sectorId === "Flex Properties") {
+                return <Tooltip color="blue" multiline
+                                w={200}
+                                withArrow openDelay={400}  label="Only use for flex layout">
+                    <IconExclamationCircle size="1rem" />
+                </Tooltip>;
+            } else if (sectorId === "Grid Properties") {
+                return <Tooltip color="blue" multiline
+                                w={200}
+                                withArrow openDelay={400}  label="Only use for grid layout">
+                    <IconExclamationCircle size="1rem" />
+                </Tooltip>;
+            } else if (sectorId === "Grid Item Properties") {
+                return <Tooltip color="blue" multiline
+                                w={200}
+                                withArrow openDelay={400}  label="Only use if the parent block is a grid layout">
+                    <IconExclamationCircle size="1rem" />
+                </Tooltip>;
+            } else {
+                return null; // Return null if none of the conditions are met
+            }
+        };
         return (
             <Accordion.Item key={sector.getId()} value={sector.getId()}>
-                <Accordion.Control >
+                <Accordion.Control icon={icon(sector.getId())}>
                     {sector.getName()}
                 </Accordion.Control>
                 <Accordion.Panel>
@@ -54,7 +76,6 @@ export default function CustomStyleManager({
             </Accordion.Item>
         )
     })
-
 
     return (
         <div className="gjs-custom-style-manager text-left mt-2">
