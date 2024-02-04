@@ -66,75 +66,7 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
                 },
             ],
         },
-        {
-            id: 'gridItem',
-            name: 'Grid Item Properties',
-            open: false,
-            properties: [
-                {
-                    type: 'composite',
-                    label: 'Grid item span', // Label for the property
-                    property: 'grid', // CSS property to change
-                    properties: [
-                        {
-                            label: 'Row start',
-                            property: 'grid-row-start',
-                            type: 'number',
-                            default: '1',
-                            min: 0,
-                            max: 20,
-                        },
-                        {
-                            label: 'Row end',
-                            property: 'grid-row-end',
-                            type: 'number',
-                            default: '1',
-                            min: 0,
-                            max: 20,
-                        },
-                        {
-                            label: 'Column start',
-                            property: 'grid-column-start',
-                            type: 'number',
-                            default: '1',
-                            min: 0,
-                            max: 20,
-                        },
-                        {
-                            label: 'Column end',
-                            property: 'grid-column-end',
-                            type: 'number',
-                            default: '1',
-                            min: 0,
-                            max: 20,
-                        }],
-                },
 
-                {
-                    type: 'composite',
-                    label: 'Spacing', // Label for the property
-                    property: 'gap', // CSS property to change
-                    properties: [{
-                        label: 'Row',
-                        property: 'gap-row',
-                        type: 'number',
-                        default: 0,
-                        min: 0,
-                        units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-                    },
-                        {
-                            label: 'Column',
-                            property: 'gap-column',
-                            type: 'number',
-                            default: 0,
-                            min: 0,
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-                        }],
-                },
-
-
-            ],
-        },
         {
             id: 'flexProperties',
             name: 'Flex Properties',
@@ -306,75 +238,144 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
 
             ],
         },
-        // {
-        //     name: 'Spacing',
-        //     open: false,
-        //     properties: [
-        //         {
-        //             type: 'composite',
-        //             label: 'Margin', // Label for the property
-        //             property: 'margin', // CSS property to change
-        //             properties: [
-        //
-        //                 {
-        //                     type: 'number',
-        //                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-        //                     default: '0',
-        //                     property: 'margin-top',
-        //                 },
-        //                 {
-        //                     type: 'number',
-        //                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-        //                     default: '0',
-        //                     property: 'margin-right',
-        //                 },
-        //                 {
-        //                     type: 'number',
-        //                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-        //                     default: '0',
-        //                     property: 'margin-bottom',
-        //                 },
-        //                 {
-        //                     type: 'number',
-        //                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-        //                     default: '0',
-        //                     property: 'margin-left',
-        //                 },
-        //             ],
-        //         },
-        //         {
-        //             type: 'composite',
-        //             label: 'Padding', // Label for the property
-        //             property: 'padding', // CSS property to change
-        //             properties: [
-        //                 {
-        //                     type: 'number',
-        //                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-        //                     default: '0',
-        //                     property: 'padding-top',
-        //                 },
-        //                 {
-        //                     type: 'number',
-        //                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-        //                     default: '0',
-        //                     property: 'padding-right',
-        //                 },
-        //                 {
-        //                     type: 'number',
-        //                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-        //                     default: '0',
-        //                     property: 'padding-bottom',
-        //                 },
-        //                 {
-        //                     type: 'number',
-        //                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-        //                     default: '0',
-        //                     property: 'padding-left',
-        //                 },
-        //             ],
-        //         },
-        //     ],
-        // },
+        {
+            id: 'gridItem',
+            name: 'Grid Item Properties',
+            open: false,
+            properties: [
+                {
+                    type: 'composite',
+                    label: 'Grid item span', // Label for the property
+                    property: 'grid', // CSS property to change
+                    properties: [
+                        {
+                            label: 'Row start',
+                            property: 'grid-row-start',
+                            type: 'number',
+                            default: '1',
+                            min: 0,
+                            max: 20,
+                        },
+                        {
+                            label: 'Row end',
+                            property: 'grid-row-end',
+                            type: 'number',
+                            default: '1',
+                            min: 0,
+                            max: 20,
+                        },
+                        {
+                            label: 'Column start',
+                            property: 'grid-column-start',
+                            type: 'number',
+                            default: '1',
+                            min: 0,
+                            max: 20,
+                        },
+                        {
+                            label: 'Column end',
+                            property: 'grid-column-end',
+                            type: 'number',
+                            default: '1',
+                            min: 0,
+                            max: 20,
+                        }],
+                },
+
+                {
+                    type: 'composite',
+                    label: 'Spacing', // Label for the property
+                    property: 'gap', // CSS property to change
+                    properties: [{
+                        label: 'Row',
+                        property: 'gap-row',
+                        type: 'number',
+                        default: 0,
+                        min: 0,
+                        units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                    },
+                        {
+                            label: 'Column',
+                            property: 'gap-column',
+                            type: 'number',
+                            default: 0,
+                            min: 0,
+                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                        }],
+                },
+
+
+            ],
+        },
+        {
+            name: 'Spacing',
+            open: false,
+            properties: [
+                {
+                    type: 'composite',
+                    label: 'Margin', // Label for the property
+                    property: 'margin', // CSS property to change
+                    properties: [
+
+                        {
+                            type: 'number',
+                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                            default: '0',
+                            property: 'margin-top',
+                        },
+                        {
+                            type: 'number',
+                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                            default: '0',
+                            property: 'margin-right',
+                        },
+                        {
+                            type: 'number',
+                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                            default: '0',
+                            property: 'margin-bottom',
+                        },
+                        {
+                            type: 'number',
+                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                            default: '0',
+                            property: 'margin-left',
+                        },
+                    ],
+                },
+                {
+                    type: 'composite',
+                    label: 'Padding', // Label for the property
+                    property: 'padding', // CSS property to change
+                    properties: [
+                        {
+                            type: 'number',
+                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                            default: '0',
+                            property: 'padding-top',
+                        },
+                        {
+                            type: 'number',
+                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                            default: '0',
+                            property: 'padding-right',
+                        },
+                        {
+                            type: 'number',
+                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                            default: '0',
+                            property: 'padding-bottom',
+                        },
+                        {
+                            type: 'number',
+                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                            default: '0',
+                            property: 'padding-left',
+                        },
+                    ],
+                },
+            ],
+        },
         // {
         //     name: 'Position',
         //     open: false,
@@ -691,6 +692,7 @@ const StylesProvider = memo(function({ children }: StylesProviderProps) {
         //
         //     ],
         // },
+
     ]
 
 

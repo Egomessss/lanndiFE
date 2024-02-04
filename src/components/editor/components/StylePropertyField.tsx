@@ -1,6 +1,6 @@
-import type {
+import {
     Property,
-    PropertyComposite,
+    PropertyComposite, PropertyNumber,
     PropertyRadio,
     PropertySelect,
     PropertySlider,
@@ -93,48 +93,39 @@ export default function StylePropertyField({
     const valueWithDef = hasValue ? value : defValue
 
 
+
     let inputToRender = (
-        <div className="">
-            <NumberInput
-                // hideControls
-                // leftSection={
-                // <ActionIcon>
-                //    <IconArrowsUpDown size="1rem"/>
-                // </ActionIcon>
-                // }
-                size="xs"
-                stepHoldDelay={500}
-                stepHoldInterval={(t) => Math.max(1000 / t ** 2, 25)}
-                placeholder={defValue}
-                value={valueString}
-                onChange={(newValue) => handleChange(newValue)}
-                // rightSectionWidth='md'
-                rightSection={<Select
-                    classNames={classes}
-                    size="xs"
-                    variant="unstyled"
-                    placeholder="Unit"
-                    value={sizeValue}
-                    onChange={(newValue) => setSizeValue(newValue)}
-                    data={selectProp.getOptions().map((option) => ({
-                        value: selectProp.getOptionId(option),
-                        label: selectProp.getOptionLabel(option),
-                    }))}
-                />}
-            />
-        </div>
+        <TextInput
+            placeholder={defValue}
+            value={valueString}
+            onChange={(newValue) => handleChange(newValue)}
+            size="small"
+        />
     )
 
 
     switch (type) {
-        case 'text': {
-            const radioProp = prop as PropertyRadio
+        case 'number': {
+            const numberProp = prop as PropertyNumber
+            console.log(numberProp.getUnits())
             inputToRender = (
-                <TextInput
+                <NumberInput
+                    size="xs"
+                    stepHoldDelay={500}
+                    stepHoldInterval={(t) => Math.max(1000 / t ** 2, 25)}
                     placeholder={defValue}
                     value={valueString}
-                    onChange={(newValue) => handleChange(newValue)}
-                    size="small"
+                    onChange={(newValue) => numberProp.upUnit(newValue)}
+                    rightSectionWidth={30}
+                    rightSection={<Select
+                        classNames={classes}
+                        size="xs"
+                        variant="unstyled"
+                        placeholder="Unit"
+                        value={numberProp.getUnit()}
+                        onChange={(newValue) =>  numberProp.upUnit(newValue)}
+                        data={numberProp.getUnits()}
+                    />}
                 />
             )
         }
@@ -166,10 +157,10 @@ export default function StylePropertyField({
             break
         case 'select': {
             const selectProp = prop as PropertySelect
-            console.log(selectProp.getOptions().map((option) => ({
-                value: selectProp.getOptionId(option),
-                label: selectProp.getOptionLabel(option),
-            })))
+            // console.log(selectProp.getOptions().map((option) => ({
+            //     value: selectProp.getOptionId(option),
+            //     label: selectProp.getOptionLabel(option),
+            // })))
             inputToRender = (
                 <Select
                     size="xs"
