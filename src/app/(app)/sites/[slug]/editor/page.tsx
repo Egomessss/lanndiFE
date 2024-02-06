@@ -10,7 +10,7 @@ import React, { useState } from 'react'
 import zoomPlugin from '@/components/editor/plugins/utils/ZoomPlugin/zoomPlugin'
 
 import GjsEditor, { Canvas, ModalProvider, TraitsProvider } from '@/components/editor/wrappers'
-import CoreBlocks from '../../components/editor/plugins/components/InteractiveBlocks'
+import CoreBlocks from '../../../../../components/editor/plugins/components/InteractiveBlocks'
 import MediaBlocks from '@/components/editor/plugins/components/MediaBlocks'
 import LayoutBlocks from '@/components/editor/plugins/components/LayoutBlocks'
 import ListBlocks from '@/components/editor/plugins/components/ListBlocks'
@@ -19,9 +19,9 @@ import BlockSideBar from '@/components/editor/components/BlockSideBar'
 import TopBar from '@/components/editor/components/TopBar'
 import PagesLeftSideBar from '@/components/editor/components/PagesLeftSideBar'
 import SemanticBlocks from '@/components/editor/plugins/components/SemanticBlocks'
-import SelectorsProvider from '../../components/editor/wrappers/SelectorsProvider'
+import SelectorsProvider from '../../../../../components/editor/wrappers/SelectorsProvider'
 import CustomSelectorManager from '@/components/editor/components/CustomSelectorManager'
-import StylesProvider from '../../components/editor/wrappers/StylesProvider'
+import StylesProvider from '../../../../../components/editor/wrappers/StylesProvider'
 import CustomStyleManager from '@/components/editor/components/CustomStyleManager'
 import CustomTraitManager from '@/components/editor/components/CustomTraitManager'
 import { IconFile, IconLayoutGridAdd, IconPlus, IconSection, IconUserBolt } from '@tabler/icons-react'
@@ -307,7 +307,7 @@ export default function CustomEditor() {
                     <AppShell.Header>
                         <TopBar onClick={toggleDesktop} openBlockSideBar={openBlockSideBar} />
                     </AppShell.Header>
-                    <AppShell.Main>
+                    <AppShell.Main >
                         <Canvas />
                     </AppShell.Main>
                 </AppShell>

@@ -5,7 +5,7 @@ import { useAuth } from '../../hooks/auth'
 import Loading from './Loading'
 import Navigation from './Navigation'
 import { useDisclosure } from '@mantine/hooks'
-import { AppShell, Burger, Group, NavLink, Skeleton, Menu, Avatar, Button, rem } from '@mantine/core'
+import { AppShell, Burger, Group, NavLink, Skeleton, Menu, Avatar, Button, rem, Text } from '@mantine/core'
 import {
     IconArrowsLeftRight,
     IconCreditCard,
@@ -41,9 +41,10 @@ const AppLayout = ({ children, header }) => {
             <AppShell.Header>
                 <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
                 {/*<Navigation user={undefined} />*/}
-                <div className="w-full flex justify-between items-center h-full px-6"><Link href="/dashboard">
-                    lanndi
-                </Link>
+                <div className="w-full flex justify-between items-center h-full px-4">
+                    <Link className="no-underline text-white font-bold text-xl" href="/sites">
+                        lanndi
+                    </Link>
                     <Menu shadow="md" width={200}>
                         <Menu.Target>
                             <Avatar color="cyan" radius="xl">MK</Avatar>
@@ -89,20 +90,20 @@ const AppLayout = ({ children, header }) => {
                     </Menu></div>
 
             </AppShell.Header>
-            <AppShell.Navbar p="md">
+            <AppShell.Navbar>
                 <NavLink
-                    href="#required-for-focus"
+                    href="/sites"
                     label="Sites"
                     leftSection={<IconHome2 size="1rem" stroke={1.5} />}
                 />
 
                 <NavLink
-                    href="#required-for-focus"
+                    href="/billing"
                     label="Billing"
                     leftSection={<IconCreditCard size="1rem" stroke={1.5} />}
                 />
                 <NavLink
-                    href="#required-for-focus"
+                    href="/account-settings"
                     label="Account Settings"
                     leftSection={<IconSettings size="1rem" stroke={1.5} />}
                 />

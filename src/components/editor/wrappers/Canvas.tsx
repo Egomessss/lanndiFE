@@ -17,7 +17,6 @@ export default function Canvas({
         <div
             {...rest}
             ref={canvasRef}
-            className='w-full h-full '
         >
             {children}
         </div>

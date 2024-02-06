@@ -14,6 +14,8 @@
     "@mantine/form": "^7.5.0",
     "@mantine/hooks": "^7.4.2",
     "@tabler/icons-react": "^2.46.0",
+    "@uiw/codemirror-extensions-langs": "^4.21.21",
+    "@uiw/react-codemirror": "^4.21.21",
     "axios": "^1.6.5",
     "grapesjs": "^0.21.8",
     "html2canvas": "^1.4.1",
