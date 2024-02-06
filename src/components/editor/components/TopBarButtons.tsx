@@ -131,9 +131,9 @@ export default function TopBarButtons({ onClick }) {
     const { UndoManager, Commands } = editor
 
 
-    // editor.on('load', () => {
-    //     editor.runCommand('core:component-outline')
-    // })
+    editor.on('load', () => {
+        editor.runCommand('core:component-outline')
+    })
 
 
     editor.Commands.add('designer-mode', {
@@ -167,12 +167,12 @@ export default function TopBarButtons({ onClick }) {
 
     const cmdButtons: CommandButton[] = [
         // TODO fix these 2 commands
-        // {
-        //     id: 'core:canvas-clear',
-        //     Icon: IconTrash,
-        //     name: 'Clear Canvas',
-        //
-        // },
+        {
+            id: 'core:canvas-clear',
+            Icon: IconTrash,
+            name: 'Clear Canvas',
+
+        },
         // {
         //     id: 'core:open-code',
         //     Icon: IconCode,

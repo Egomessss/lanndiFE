@@ -3,30 +3,20 @@ import grapesjs, { Editor, EditorConfig } from 'grapesjs'
 
 import { useDisclosure } from '@mantine/hooks'
 
-import { ActionIcon, AppShell, Box, Divider, ScrollArea, SegmentedControl, Tabs, Tooltip } from '@mantine/core'
+import { ActionIcon, AppShell, Box, Divider, ScrollArea, SegmentedControl, Tooltip } from '@mantine/core'
 
 import React, { useState } from 'react'
 
 import zoomPlugin from '@/components/editor/plugins/utils/ZoomPlugin/zoomPlugin'
 
-import GjsEditor, {
-    AssetsProvider,
-    Canvas,
-    ModalProvider,
-    TraitsProvider,
-    WithEditor,
-} from '@/components/editor/wrappers'
+import GjsEditor, { Canvas, ModalProvider, TraitsProvider } from '@/components/editor/wrappers'
 import CoreBlocks from '../../components/editor/plugins/components/InteractiveBlocks'
 import MediaBlocks from '@/components/editor/plugins/components/MediaBlocks'
 import LayoutBlocks from '@/components/editor/plugins/components/LayoutBlocks'
 import ListBlocks from '@/components/editor/plugins/components/ListBlocks'
-import FormBlocks from '@/components/editor/plugins/components/FormsBlocks'
-import IntegrationsBlocks from '@/components/editor/plugins/components/IntegrationBlocks'
 import LayersLeftSideBar from '@/components/editor/components/LayersLeftSideBar'
 import BlockSideBar from '@/components/editor/components/BlockSideBar'
 import TopBar from '@/components/editor/components/TopBar'
-import { starterTemplate, styleStarterTemplate } from '../../components/editor/templates/Starter'
-import FloatingBar from '@/components/editor/components/FloatingBar'
 import PagesLeftSideBar from '@/components/editor/components/PagesLeftSideBar'
 import SemanticBlocks from '@/components/editor/plugins/components/SemanticBlocks'
 import SelectorsProvider from '../../components/editor/wrappers/SelectorsProvider'
@@ -34,31 +24,21 @@ import CustomSelectorManager from '@/components/editor/components/CustomSelector
 import StylesProvider from '../../components/editor/wrappers/StylesProvider'
 import CustomStyleManager from '@/components/editor/components/CustomStyleManager'
 import CustomTraitManager from '@/components/editor/components/CustomTraitManager'
-import {
-    IconFile, IconLayersLinked, IconLayoutGridAdd, IconPhoto, IconPlus, IconSection, IconSettings, IconStack2,
-    IconTemplate, IconUserBolt,
-} from '@tabler/icons-react'
+import { IconFile, IconLayoutGridAdd, IconPlus, IconSection, IconUserBolt } from '@tabler/icons-react'
 import styles from '@/app/page.module.css'
 import TypographyBlocks from '@/components/editor/plugins/components/TypographyBlocks'
 import ExtraBlocks from '@/components/editor/plugins/components/ExtraBlocks'
 import CustomModal from '@/components/editor/components/CustomModal'
-import CustomAssetManager from '@/components/editor/components/CustomAssetManager'
 import TemplatesManager from '@/components/editor/components/TemplatesManager'
 import SettingsModal from '@/components/editor/components/SettingsModal'
 
 import CustomCode from '@/components/editor/plugins/utils/CustomCode'
-import PostCss from '@/components/editor/plugins/utils/PostCss'
-
-
-import UserComponents from '@/components/editor/plugins/utils/UserComponents'
-import StyleGradient from '@/components/editor/plugins/utils/StyleGradient'
-import BackgroundStyle from '@/components/editor/plugins/utils/BackgroundStyle'
-import IconPicker from '@/components/editor/plugins/utils/IconPicker/plugin'
-import ReusableComponents from '@/components/editor/plugins/utils/ReusableComponents'
 import GoogleIcons from '@/components/editor/plugins/utils/GoogleIcons'
-import FlexBlock from '@/components/editor/plugins/components/Flex'
-import Toolbox from '@/components/editor/plugins/utils/Toolbox'
-
+import BorderStyle from '@/components/editor/plugins/utils/BorderStyle'
+import FormBlocks from '@/components/editor/plugins/components/FormsBlocks'
+import PostCss from '@/components/editor/plugins/utils/PostCss'
+import ComponentEditor from '@/components/editor/plugins/utils/ComponentEditor'
+import CodeEditor from '@/components/editor/plugins/utils/CodeEditor'
 
 export default function CustomEditor() {
     const [selected, setSelected] = useState('Blocks')
@@ -200,18 +180,15 @@ export default function CustomEditor() {
             CoreBlocks,
             MediaBlocks,
             ListBlocks,
-            // FormBlocks,
+            FormBlocks,
             SemanticBlocks,
             // IntegrationsBlocks,
-            ExtraBlocks,
+            // ExtraBlocks,
+            // PostCss,
             CustomCode,
             GoogleIcons,
-            // Toolbox,
-            // PostCss,
-            // Toolbar,
-            // UserComponents,
-            // StyleGradient,
-            // BackgroundStyle
+            BorderStyle,
+            // CodeEditor
         ],
 
 
@@ -318,14 +295,14 @@ export default function CustomEditor() {
 
                     </AppShell.Navbar>
                     <AppShell.Aside>
-                        <AppShell.Section>
-                            <SegmentedControl fullWidth m="4" size="xs" color="blue" value={selectedRightBar}
-                                              onChange={handleRightBarSegmentChange} data={['Styles', 'Settings']} />
+                        {/*<AppShell.Section>*/}
+                        {/*    <SegmentedControl fullWidth m="4" size="xs" color="blue" value={selectedRightBar}*/}
+                        {/*                      onChange={handleRightBarSegmentChange} data={['Styles', 'Settings']} />*/}
 
-                        </AppShell.Section>
-                        <AppShell.Section  grow mb="lg" component={ScrollArea}>
-                            {renderSelectedRightBarComponent()}
-                        </AppShell.Section>
+                        {/*</AppShell.Section>*/}
+                        {/*<AppShell.Section  grow mb="lg" component={ScrollArea}>*/}
+                        {/*    {renderSelectedRightBarComponent()}*/}
+                        {/*</AppShell.Section>*/}
                     </AppShell.Aside>
                     <AppShell.Header>
                         <TopBar onClick={toggleDesktop} openBlockSideBar={openBlockSideBar} />
@@ -335,16 +312,16 @@ export default function CustomEditor() {
                     </AppShell.Main>
                 </AppShell>
 
-                <ModalProvider>
-                    {({ open, title, content, close }) => (
-                        <CustomModal
-                            open={open}
-                            title={title}
-                            children={content}
-                            close={close}
-                        />
-                    )}
-                </ModalProvider>
+                {/*<ModalProvider>*/}
+                {/*    {({ open, title, content, close }) => (*/}
+                {/*        <CustomModal*/}
+                {/*            open={open}*/}
+                {/*            title={title}*/}
+                {/*            children={content}*/}
+                {/*            close={close}*/}
+                {/*        />*/}
+                {/*    )}*/}
+                {/*</ModalProvider>*/}
                 {/*<AssetsProvider>*/}
                 {/*    {({ assets, select, close, Container }) => (*/}
                 {/*        <Container>*/}

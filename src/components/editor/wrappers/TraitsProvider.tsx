@@ -31,6 +31,8 @@ const TraitsProvider = memo(function ({ children }: TraitsProviderProps) {
         Container: () => null,
     }))
 
+
+
     useEffect(() => {
         if (!editor) return
         const { Traits } = editor
