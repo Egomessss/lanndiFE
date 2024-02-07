@@ -9,7 +9,7 @@ import { AppShell, Burger, Group, NavLink, Skeleton, Menu, Avatar, Button, rem, 
 import {
     IconArrowsLeftRight,
     IconCreditCard,
-    IconHome2,
+    IconHome2, IconLogout,
     IconMessageCircle,
     IconPhoto,
     IconSearch,
@@ -18,13 +18,18 @@ import {
 } from '@tabler/icons-react'
 import Link from 'next/link'
 
+
 const AppLayout = ({ children, header }) => {
     const [opened, { toggle }] = useDisclosure()
-    // const { user } = useAuth({ middleware: 'auth' })
-    //
+    // const { user, logout } = useAuth({ middleware: 'auth' })
+    // console.log(user)
     // if (!user) {
     //     return <Loading />
     // }
+
+    const user = {
+        name: 'edmilson'
+    }
 
     return (
 
@@ -40,52 +45,27 @@ const AppLayout = ({ children, header }) => {
         >
             <AppShell.Header>
                 <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-                {/*<Navigation user={undefined} />*/}
                 <div className="w-full flex justify-between items-center h-full px-4">
                     <Link className="no-underline text-white font-bold text-xl" href="/sites">
                         lanndi
                     </Link>
                     <Menu shadow="md" width={200}>
                         <Menu.Target>
-                            <Avatar color="cyan" radius="xl">MK</Avatar>
+                           <Button>{user.name}</Button>
+                            {/*<Avatar color="cyan" radius="xl">MK</Avatar>*/}
                         </Menu.Target>
 
                         <Menu.Dropdown>
-                            <Menu.Label>Application</Menu.Label>
                             <Menu.Item leftSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}>
-                                Settings
+                                Account Settings
                             </Menu.Item>
-                            <Menu.Item leftSection={<IconMessageCircle style={{ width: rem(14), height: rem(14) }} />}>
-                                Messages
-                            </Menu.Item>
-                            <Menu.Item leftSection={<IconPhoto style={{ width: rem(14), height: rem(14) }} />}>
-                                Gallery
-                            </Menu.Item>
-                            <Menu.Item
-                                leftSection={<IconSearch style={{ width: rem(14), height: rem(14) }} />}
-                                rightSection={
-                                    <Text size="xs" c="dimmed">
-                                        ⌘K
-                                    </Text>
-                                }
-                            >
-                                Search
-                            </Menu.Item>
-
                             <Menu.Divider />
-
-                            <Menu.Label>Danger zone</Menu.Label>
-                            <Menu.Item
-                                leftSection={<IconArrowsLeftRight style={{ width: rem(14), height: rem(14) }} />}
-                            >
-                                Transfer my data
-                            </Menu.Item>
-                            <Menu.Item
-                                color="red"
-                                leftSection={<IconTrash style={{ width: rem(14), height: rem(14) }} />}
-                            >
-                                Delete my account
-                            </Menu.Item>
+                            {/*<Menu.Item onClick={logout}*/}
+                            {/*    color="red"*/}
+                            {/*    leftSection={<IconLogout style={{ width: rem(14), height: rem(14) }} />}*/}
+                            {/*>*/}
+                            {/*    Logout*/}
+                            {/*</Menu.Item>*/}
                         </Menu.Dropdown>
                     </Menu></div>
 
