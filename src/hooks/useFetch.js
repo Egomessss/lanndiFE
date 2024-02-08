@@ -1,29 +1,29 @@
 import { useState, useEffect } from "react";
 
-export const useFetch = (url) => {
+export const useFetch = (url, options) => {
     // add headers
     // add post, get and patch, file upload?
 
     const [data, setData] = useState(null);
-    const [isPending, setIsPending] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
-            setIsPending(true);
+            setLoading(true);
             try {
-                const response = await fetch(url);
+                const response = await fetch(url, options);
                 if (!response.ok) throw new Error(response.statusText);
                 const json = await response.json();
-                setIsPending(false);
+                setLoading(false);
                 setData(json);
                 setError(null);
             } catch (error) {
                 setError(`${error} Could not Fetch Data`);
-                setIsPending(false);
+                setLoading(false);
             }
         };
         fetchData();
-    }, [url]);
-    return { data, isPending, error };
+    }, [options, url]);
+    return { data, loading, error };
 };
