@@ -99,9 +99,9 @@ export default function CustomStyleManager({
                     <div className={isLargeSector ? 'flex flex-wrap  items-center' : ''}>
                         {sector.getProperties().map((prop, index) => (
                             // Apply 'w-full' to the first item and 'w-1/2' to the rest if it's a large sector
-                            <div key={prop.getId()} className={isLargeSector ? (index === 0 ? 'w-full' : 'w-1/2') : ''}>
+
                                 <StylePropertyField key={prop.getId()} prop={prop} />
-                            </div>
+
                         ))}
                     </div>
                 </Accordion.Panel>

@@ -9,13 +9,10 @@ import { IconPageBreak } from '@tabler/icons-react'
 
 export default function PagesLeftSideBar() {
     return (
-
         <AppShell.Section>
             <PagesProvider>
                 {(props) => <CustomPageManager {...props} />}
             </PagesProvider>
         </AppShell.Section>
-
-
     )
 }

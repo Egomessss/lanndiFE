@@ -1,3 +1,5 @@
+'use client'
+
 import {
     Property,
     PropertyComposite, PropertyNumber,
@@ -10,6 +12,7 @@ import {
 import {
     ActionIcon,
     Button,
+    ColorInput,
     NumberInput,
     Popover,
     SegmentedControl,
@@ -52,16 +55,16 @@ export default function StylePropertyField({
 
 
     const handleChange = (value: string) => {
-        prop.upValue(value);
+        prop.upValue(value)
         console.log(prop.getValue())
         console.log(prop.getValue())
-        console.log("up")
-    };
+        console.log('up')
+    }
 
     const onChange = (ev: any) => {
-        console.log("onChange",ev)
-        handleChange(ev);
-    };
+        console.log('onChange', ev)
+        handleChange(ev)
+    }
 
     const [sizeValue, setSizeValue] = useState<string>('px') // Default value
 
@@ -84,7 +87,7 @@ export default function StylePropertyField({
             accept: 'image/*',
         })
     }
-    const [color, setColor] = useState('rgba(255,255,255,1)')
+
 
     const type = prop.getType()
     const defValue = prop.getDefaultValue()
@@ -93,7 +96,6 @@ export default function StylePropertyField({
     const value = prop.getValue()
     const valueString = hasValue ? value : ''
     const valueWithDef = hasValue ? value : defValue
-
 
 
     let inputToRender = (
@@ -125,7 +127,7 @@ export default function StylePropertyField({
                         variant="unstyled"
                         placeholder="Unit"
                         value={numberProp.getUnit()}
-                        onChange={(newValue) =>  numberProp.upUnit(newValue)}
+                        onChange={(newValue) => numberProp.upUnit(newValue)}
                         data={numberProp.getUnits()}
                     />}
                 />
@@ -180,27 +182,12 @@ export default function StylePropertyField({
             break
         case 'color': {
             inputToRender = (
-                <Popover position="left-end"
-                         offset={10} width={200} withArrow shadow="md">
-                    <Popover.Target>
-                        <Button justify="space-between" leftSection={<IconPalette size="1rem" />}
-                                rightSection={<IconCircleFilled size="1rem" />} variant="default" fullWidth
-                                size="xs">Pick</Button>
-                    </Popover.Target>
-                    <Popover.Dropdown>
-                        <div style={{
-                            background: '#fff',
-                            borderRadius: '8px',
-                            boxShadow: '0 0 6px rgb(0,0,0, .25)',
-                            padding: '8px',
-                            width: '310px',
-                            zIndex: 102,
-                        }}>
-                            <ColorPicker value={color} onChange={setColor} /></div>
-
-                    </Popover.Dropdown>
-                </Popover>
-
+                <ColorInput
+                    size="xs"
+                    value={value} onChange={onChange}
+                    format="hex"
+                    swatches={['#2e2e2e', '#868e96', '#fa5252', '#e64980', '#be4bdb', '#7950f2', '#4c6ef5', '#228be6', '#15aabf', '#12b886', '#40c057', '#82c91e', '#fab005', '#fd7e14']}
+                />
             )
         }
             break

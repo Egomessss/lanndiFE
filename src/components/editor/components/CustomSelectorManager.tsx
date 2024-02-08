@@ -54,6 +54,7 @@ export default function CustomSelectorManager({
                     </ThemeIcon>
                 </Tooltip>
                 <Select
+
                     clearable
                     value={selectedState}
                     onChange={(newValue: any) => {

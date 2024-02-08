@@ -1,34 +1,36 @@
-import { ActionIcon, Menu, NavLink, TextInput } from '@mantine/core'
+import { ActionIcon, Button, Menu, NavLink, TextInput, Text } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { useState } from 'react'
 
 
 import { PagesResultProps } from '../wrappers'
 import { IconCheck, IconDots, IconFile, IconTrash } from '@tabler/icons-react'
+import { modals } from '@mantine/modals'
+import { Page } from 'grapesjs'
 
 export default function CustomPageManager({
-    pages,
-    selected,
-    add,
-    select,
-    remove,
-}: PagesResultProps) {
+                                              pages,
+                                              selected,
+                                              add,
+                                              select,
+                                              remove,
+                                          }: PagesResultProps) {
     const [editingPageId, setEditingPageId] = useState<string | null>(null)
-    const [pageToDelete, setPageToDelete] = useState(null) // new state variable
 
-    const openDeleteModal = (page) => {
-        setPageToDelete(page)
-        open()
-    }
 
-    const confirmDelete = () => {
-        if (pageToDelete) {
-            remove(pageToDelete)
-        }
-        close()
-    }
+    const openModal = (pageToDelete:Page) => modals.openConfirmModal({
+        centered: true,
+        title: 'Please confirm your action',
+        children: (
+            <Text size="sm">
+               Are you sure you want to delete your page?
+            </Text>
+        ),
+        labels: { confirm: 'Delete', cancel: 'Cancel' },
+        onCancel: () => console.log('Cancel'),
+        onConfirm: () =>  remove(pageToDelete),
+    });
 
-    const [opened, { open, close }] = useDisclosure(false)
 
     const addNewPage = () => {
         const nextIndex = pages.length + 1
@@ -38,7 +40,7 @@ export default function CustomPageManager({
         })
     }
 
-    const duplicatePage = (pageToDuplicate) => {
+    const duplicatePage = (pageToDuplicate:any) => {
         add({
             name: `${pageToDuplicate.getName()} (Copy)`,
             component: pageToDuplicate.component, // Assuming component data is stored like this
@@ -47,29 +49,32 @@ export default function CustomPageManager({
 
     return (
         <div
-            className="gjs-custom-page-manager relative select-none text-left text-xs p-2"
+            className="gjs-custom-page-manager relative select-none text-left text-xs flex flex-col gap-2"
         >
+            <Button onClick={addNewPage} size="xs" variant="subtle">Add new page</Button>
             {pages.map((page, index) => (
                 <div key={index}>
                     {editingPageId === page.getId() ? (
                         <TextInput
+                            size="xs"
                             onChange={(e) => page.setName(e.target.value)}
-                            placeholder="Your name"
+                            placeholder="New page name"
                             rightSection={
-                                <ActionIcon
+                                <ActionIcon size="sm"
                                     onClick={() => setEditingPageId(null)}
                                 >
-                                    <IconCheck />
+                                    <IconCheck size="1rem" />
                                 </ActionIcon>
                             }
                         />
                     ) : (
-                        <NavLink
-                            variant="filled"
-                            label={page.getName() || 'Untitled page'}
-                            leftSection={<IconFile />}
+                        <Button
+                            fullWidth
+                            justify="space-between"
+                            // leftSection={<IconFile size="1rem" />}
                             key={page.getId()}
-                            active={page === selected}
+                            size="xs"
+                            variant={page === selected ? 'filled' : 'subtle'}
                             onClick={() => select(page)}
                             className="rounded-lg"
                             rightSection={
@@ -80,11 +85,9 @@ export default function CustomPageManager({
                                     offset={10}
                                 >
                                     <Menu.Target>
-                                        <ActionIcon variant="subtle">
-                                            <IconDots
-                                                className={
-                                                    selected && 'text-white'
-                                                }
+                                        <ActionIcon size="sm" variant="subtle">
+                                            <IconDots size="1rem"
+
                                             />
                                         </ActionIcon>
                                     </Menu.Target>
@@ -109,16 +112,16 @@ export default function CustomPageManager({
                                         <Menu.Label>Danger zone</Menu.Label>
 
                                         <Menu.Item
-                                            onClick={() => remove(page)}
+                                            onClick={() => openModal(page)}
                                             color="red"
-                                            leftSection={<IconTrash />}
+                                            leftSection={<IconTrash size="1rem" />}
                                         >
                                             Delete page
                                         </Menu.Item>
                                     </Menu.Dropdown>
                                 </Menu>
                             }
-                        />
+                        >{page.getName() || 'Untitled page'}</Button>
                     )}
                 </div>
             ))}

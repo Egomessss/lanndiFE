@@ -231,6 +231,7 @@ export default function CustomEditor() {
                                     label: 'Space between',
                                     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-spacing-horizontal" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 20h-2a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h2" /><path d="M4 20h2a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M12 8v8" /></svg>`,
                                 },
+
                             ],
                         },
                         {
@@ -251,6 +252,11 @@ export default function CustomEditor() {
                                     id: 'end',
                                     label: 'End',
                                     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-bottom" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20l16 0" /><path d="M9 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
+                                },
+                                {
+                                    id: 'stretch',
+                                    label: 'Stretch',
+                                    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-columns-3" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 3m0 1a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v16a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1zm6 -1v18m6 -18v18" /></svg>`,
                                 },
                             ],
                         },
@@ -429,30 +435,33 @@ export default function CustomEditor() {
                             label: 'Margin', // Label for the property
                             property: 'margin', // CSS property to change
                             properties: [
-
                                 {
                                     type: 'number',
                                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
                                     default: '0',
                                     property: 'margin-top',
+                                    label: 'Top',
                                 },
                                 {
                                     type: 'number',
                                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
                                     default: '0',
                                     property: 'margin-right',
+                                    label: 'Right',
                                 },
                                 {
                                     type: 'number',
                                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
                                     default: '0',
                                     property: 'margin-bottom',
+                                    label: 'Bottom',
                                 },
                                 {
                                     type: 'number',
                                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
                                     default: '0',
                                     property: 'margin-left',
+                                    label: 'Left',
                                 },
                             ],
                         },
@@ -466,98 +475,102 @@ export default function CustomEditor() {
                                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
                                     default: '0',
                                     property: 'padding-top',
+                                    label: 'Top',
                                 },
                                 {
                                     type: 'number',
                                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
                                     default: '0',
                                     property: 'padding-right',
+                                    label: 'Right',
                                 },
                                 {
                                     type: 'number',
                                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
                                     default: '0',
                                     property: 'padding-bottom',
+                                    label: 'Bottom',
                                 },
                                 {
                                     type: 'number',
                                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
                                     default: '0',
                                     property: 'padding-left',
+                                    label: 'Left',
                                 },
                             ],
                         },
                     ],
                 },
-                // {
-                //     name: 'Position',
-                //       open: true,
-                //     properties: [
-                //         {
-                //             type: 'select',
-                //             property: 'position',
-                //             label: 'Position',
-                //             options: [
-                //                 { id: 'static', label: 'Default' },
-                //                 { id: 'relative', label: 'Relative' },
-                //                 { id: 'absolute', label: 'Absolute' },
-                //                 { id: 'fixed', label: 'Fixed' },
-                //                 { id: 'sticky', label: 'Sticky' },
-                //             ],
-                //         },
-                //         {
-                //             label: 'Position',
-                //             property: 'inset',
-                //             type: 'composite',
-                //             properties: [
-                //
-                //                 { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'top' },
-                //                 {
-                //                     type: 'number',
-                //                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-                //                     default: '0',
-                //                     property: 'right',
-                //                 },
-                //                 {
-                //                     type: 'number',
-                //                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-                //                     default: '0',
-                //                     property: 'bottom',
-                //                 },
-                //                 { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'left' },
-                //             ],
-                //         },
-                //         {
-                //             type: 'select',
-                //             property: 'z-index',
-                //             label: 'Layer',
-                //             default: 'auto',
-                //             options: [
-                //                 { id: 'auto', label: 'Default' },
-                //                 { id: '-1', label: 'Send to back' },
-                //                 { id: '1', label: 'Send backward' },
-                //                 { id: '10', label: 'Bring to front' },
-                //                 { id: '1000', label: 'Bring forward' },
-                //             ],
-                //         },
-                //     ],
-                // },
+                {
+                    name: 'Position',
+                      open: true,
+                    properties: [
+                        {
+                            type: 'select',
+                            property: 'position',
+                            label: 'Position',
+                            options: [
+                                { id: 'static', label: 'Default' },
+                                { id: 'relative', label: 'Relative' },
+                                { id: 'absolute', label: 'Absolute' },
+                                { id: 'fixed', label: 'Fixed' },
+                                { id: 'sticky', label: 'Sticky' },
+                            ],
+                        },
+                        {
+                            label: 'Position',
+                            property: 'inset',
+                            type: 'composite',
+                            properties: [
+
+                                { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'top' },
+                                {
+                                    type: 'number',
+                                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                                    default: '0',
+                                    property: 'right',
+                                },
+                                {
+                                    type: 'number',
+                                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                                    default: '0',
+                                    property: 'bottom',
+                                },
+                                { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'left' },
+                            ],
+                        },
+                        {
+                            type: 'select',
+                            property: 'z-index',
+                            label: 'Layer',
+                            default: 'auto',
+                            options: [
+                                { id: 'auto', label: 'Default' },
+                                { id: '-1', label: 'Send to back' },
+                                { id: '1', label: 'Send backward' },
+                                { id: '10', label: 'Bring to front' },
+                                { id: '1000', label: 'Bring forward' },
+                            ],
+                        },
+                    ],
+                },
                 {
                     name: 'Sizing',
                     open: true,
                     properties: [
-                        {
-                            type: 'select',
-                            property: 'width',
-                            label: 'Width',
-                            default: 'auto',
-                            options: [
-                                { id: 'auto', label: 'Auto' },
-                                { id: 'max-content', label: 'Max content' },
-                                { id: 'min-content', label: 'Min content' },
-                                { id: 'fit-content', label: 'Fit content' },
-                            ],
-                        },
+                        // {
+                        //     type: 'select',
+                        //     property: 'width',
+                        //     label: 'Width',
+                        //     default: 'auto',
+                        //     options: [
+                        //         { id: 'auto', label: 'Auto' },
+                        //         { id: 'max-content', label: 'Max content' },
+                        //         { id: 'min-content', label: 'Min content' },
+                        //         { id: 'fit-content', label: 'Fit content' },
+                        //     ],
+                        // },
                         {
                             type: 'number',
                             default: 0,
@@ -582,18 +595,18 @@ export default function CustomEditor() {
                             units: ['px', 'em', 'rem', '%', 'svw', 'dvw', 'vw'], // Units (available only for the 'number' type)
                             min: 0, // Min value (available only for the 'number' type)
                         },
-                        {
-                            type: 'select',
-                            property: 'height',
-                            label: 'Height',
-                            default: 'auto',
-                            options: [
-                                { id: 'auto', label: 'Auto' },
-                                { id: 'max-content', label: 'Max content' },
-                                { id: 'min-content', label: 'Min content' },
-                                { id: 'fit-content', label: 'Fit content' },
-                            ],
-                        },
+                        // {
+                        //     type: 'select',
+                        //     property: 'height',
+                        //     label: 'Height',
+                        //     default: 'auto',
+                        //     options: [
+                        //         { id: 'auto', label: 'Auto' },
+                        //         { id: 'max-content', label: 'Max content' },
+                        //         { id: 'min-content', label: 'Min content' },
+                        //         { id: 'fit-content', label: 'Fit content' },
+                        //     ],
+                        // },
                         {
                             type: 'number',
                             default: 0,
@@ -652,7 +665,7 @@ export default function CustomEditor() {
                             default: 'none', // Default value to display
                             type: 'select',
                             options: [
-                                {id: 'fill', label: 'Fill'},
+                                {id: 'contain', label: 'Contain'},
                                 {id: 'cover', label: 'Cover'},
                                 {id: 'fill', label: 'Fill'},
                                 {id: 'scale-down', label: 'Scale down'},
@@ -662,186 +675,226 @@ export default function CustomEditor() {
 
                     ],
                 },
-                // {
-                //     name: 'Background',
-                //        open: true,
-                //     properties: [
-                //         {
-                //             type: 'color',
-                //             label: 'Colour', // Label for the property
-                //             property: 'min-height', // CSS property to change
-                //             units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                //             min: 0, // Min value (available only for the 'number' type)
-                //         },
-                //     ],
-                // },
-                // {
-                //     name: 'Border',
-                //       open: true,
-                //     properties: [
-                //         {
-                //             type: 'composite',
-                //             label: 'Spacing', // Label for the property
-                //             property: 'gap', // CSS property to change
-                //             properties: [{
-                //                 type: 'number',
-                //                 default: 0,
-                //                 label: 'Roundness', // Label for the property
-                //                 property: 'width', // CSS property to change
-                //                 units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                //                 min: 0, // Min value (available only for the 'number' type)
-                //
-                //             },
-                //                 {
-                //                     type: 'number',
-                //                     default: 0,
-                //                     label: 'Thickness', // Label for the property
-                //                     property: 'height', // CSS property to change
-                //                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                //                     min: 0, // Min value (available only for the 'number' type)
-                //                 },
-                //             ],
-                //         },
-                //
-                //         {
-                //             type: 'select',
-                //             label: 'Style', // Label for the property
-                //             property: 'border-style', // CSS property to change
-                //             default: 'none', // Default value to display
-                //             options: [
-                //                 { id: 'none', label: 'None' },
-                //                 { id: 'hidden', label: 'Hidden' },
-                //                 { id: 'solid', label: 'Solid' },
-                //                 { id: 'dotted', label: 'Dotted' },
-                //                 { id: 'dashed', label: 'Dashed' },
-                //             ],
-                //         },
-                //         {
-                //             type: 'color',
-                //             label: 'Colour', // Label for the property
-                //             property: 'min-height', // CSS property to change
-                //
-                //         },
-                //     ],
-                // },
-                // {
-                //     name: 'Typography',
-                //       open: true,
-                //     properties: [
-                //         {
-                //             type: 'select',
-                //             label: 'Font', // Label for the property
-                //             property: 'font-family', // CSS property to change
-                //         },
-                //
-                //         {
-                //             type: 'number',
-                //             label: 'Font size', // Label for the property
-                //             property: 'font-size', // CSS property to change
-                //             units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                //             min: 0, // Min value (available only for the 'number' type)
-                //         },
-                //         {
-                //             type: 'select',
-                //             label: 'Font Weight', // Label for the property
-                //             property: 'font-weight', // CSS property to change
-                //             units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                //             min: 0, // Min value (available only for the 'number' type)
-                //         },
-                //         {
-                //             type: 'number',
-                //             label: 'Line spacing', // Label for the property
-                //             property: 'line-height', // CSS property to change
-                //             units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                //             min: 0, // Min value (available only for the 'number' type)
-                //         },
-                //         {
-                //             type: 'number',
-                //             label: 'Letter spacing', // Label for the property
-                //             property: 'letter-spacing', // CSS property to change
-                //             units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                //             min: 0, // Min value (available only for the 'number' type)
-                //         },
-                //         {
-                //             type: 'select',
-                //             label: 'Align', // Label for the property
-                //             property: 'text-align', // CSS property to change
-                //             options: [
-                //                 { id: 'left', label: 'Left' },
-                //                 { id: 'center', label: 'Center' },
-                //                 { id: 'right', label: 'Right' },
-                //                 { id: 'justify', label: 'Justify' },
-                //             ],
-                //         },
-                //         {
-                //             type: 'select',
-                //             label: 'White space', // Label for the property
-                //             property: 'white-space', // CSS property to change
-                //             options: [
-                //                 { id: 'normal', label: 'Normal' },
-                //                 { id: 'no-wrap', label: 'No wrap' },
-                //                 { id: 'pre', label: 'Keep Spaces' },
-                //                 { id: 'pre-wrap', label: 'Wrap & Keep Spaces' },
-                //                 { id: 'pre-line', label: 'Wrap & Trim Spaces' },
-                //                 { id: 'break-space', label: 'Spaces & Breaks' },
-                //             ],
-                //         },
-                //         {
-                //             type: 'color',
-                //             label: 'Colour', // Label for the property
-                //             property: 'color', // CSS property to change
-                //             units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                //             min: 0, // Min value (available only for the 'number' type)
-                //         },
-                //         {
-                //             type: 'select',
-                //             label: 'Decoration', // Label for the property
-                //             property: 'text-decoration', // CSS property to change
-                //             options: [
-                //                 { id: 'none', label: 'None' },
-                //                 { id: 'underline', label: 'Underline' },
-                //                 { id: 'overline', label: 'Overline' },
-                //                 { id: 'line-through', label: 'Line through' },
-                //             ],
-                //         },
-                //
-                //
-                //     ],
-                // },
-                // {
-                //     name: 'Extra',
-                //       open: true,
-                //     properties: [
-                //         {
-                //             type: 'select',
-                //             label: 'Cursor type', // Label for the property
-                //             property: 'cursor', // CSS property to change
-                //             default: 'default', // Default value to display
-                //             options: [
-                //                 { id: 'default', label: 'Default' },
-                //                 { id: 'pointer', label: 'pointer' },
-                //                 { id: 'wait', label: 'Wait' },
-                //                 { id: 'not-allowed', label: 'Not allowed' },
-                //                 { id: 'zoom-in', label: 'Zoom in' },
-                //                 { id: 'grab', label: 'grab' },
-                //                 { id: 'move', label: 'Move' },
-                //             ],
-                //         },
-                //         {
-                //             type: 'select',
-                //             label: 'List style', // Label for the property
-                //             property: 'list-style', // CSS property to change
-                //             options: [
-                //                 { id: 'none', label: 'None' },
-                //                 { id: 'square', label: 'Square' },
-                //                 { id: 'circle', label: 'Circle' },
-                //                 { id: 'upper-roman', label: 'Roman' },
-                //                 { id: 'lower-alpha', label: 'Alpha' },
-                //             ],
-                //         },
-                //
-                //     ],
-                // },
+                {
+                    name: 'Background',
+                       open: true,
+                    properties: [
+                        {
+                            type: 'color',
+                            label: 'Background Colour', // Label for the property
+                            property: 'background-color', // CSS property to change
+                        },
+                    ],
+                },
+                {
+                    name: 'Border',
+                      open: true,
+                    properties: [
+                        {
+                            type: 'composite',
+                            label: 'Spacing', // Label for the property
+                            property: 'gap', // CSS property to change
+                            properties: [{
+                                type: 'number',
+                                default: 0,
+                                label: 'Roundness', // Label for the property
+                                property: 'width', // CSS property to change
+                                units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                                min: 0, // Min value (available only for the 'number' type)
+
+                            },
+                                {
+                                    type: 'number',
+                                    default: 0,
+                                    label: 'Thickness', // Label for the property
+                                    property: 'border-width', // CSS property to change
+                                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                                    min: 0, // Min value (available only for the 'number' type)
+                                },
+                            ],
+                        },
+
+                        {
+                            type: 'select',
+                            label: 'Style', // Label for the property
+                            property: 'border-style', // CSS property to change
+                            default: 'none', // Default value to display
+                            options: [
+                                { id: 'none', label: 'None' },
+                                { id: 'hidden', label: 'Hidden' },
+                                { id: 'solid', label: 'Solid' },
+                                { id: 'dotted', label: 'Dotted' },
+                                { id: 'dashed', label: 'Dashed' },
+                            ],
+                        },
+                        {
+                            type: 'color',
+                            label: 'Colour', // Label for the property
+                            property: 'min-height', // CSS property to change
+
+                        },
+                    ],
+                },
+                {
+                    name: 'Typography',
+                      open: true,
+                    properties: [
+                        {
+                            type: 'composite',
+                            property: 'font',
+                            label: 'Font',
+                            // Additional props
+                            properties: [
+                                {
+                                    type: 'select',
+                                    label: 'Family', // Updated label for clarity
+                                    property: 'font-family', // CSS property to change
+                                    default: 'inherit', // 'inherit' is more appropriate for font-family defaults
+                                    options: [
+                                        { id: 'inherit', label: 'Inherit' }, // Inherits the font-family from its parent
+                                        { id: 'serif', label: 'Serif' }, // Generic font family
+                                        { id: 'sans-serif', label: 'Sans-serif' }, // Generic font family
+                                        { id: 'monospace', label: 'Monospace' }, // Generic font family
+                                        { id: 'cursive', label: 'Cursive' }, // Generic font family
+                                        { id: 'fantasy', label: 'Fantasy' }, // Generic font family
+                                        { id: 'Times New Roman', label: 'Times New Roman' }, // Web-safe font
+                                        { id: 'Arial', label: 'Arial' }, // Web-safe font
+                                        { id: 'Verdana', label: 'Verdana' }, // Web-safe font
+                                        { id: 'Georgia', label: 'Georgia' }, // Web-safe font
+                                        { id: 'Courier New', label: 'Courier New' }, // Web-safe font
+                                        { id: 'Comic Sans MS', label: 'Comic Sans MS' } // Web-safe font, though often debated in design choice
+                                    ],
+                                },
+                                {
+                                    type: 'number',
+                                    label: 'Size', // Label for the property
+                                    property: 'font-size', // CSS property to change
+                                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                                    min: 0, // Min value (available only for the 'number' type)
+                                },
+                                {
+                                    type: 'select',
+                                    label: 'Weight', // Label for the property
+                                    property: 'font-weight', // CSS property to change
+                                    default: '400', // '400' corresponds to Normal weight, a common default
+                                    options: [
+                                        { id: '100', label: '100 – Thin' },
+                                        { id: '200', label: '200 – Extra Light' },
+                                        { id: '300', label: '300 – Light' },
+                                        { id: '400', label: '400 – Normal' },
+                                        { id: '500', label: '500 – Medium' },
+                                        { id: '600', label: '600 – Semi Bold' },
+                                        { id: '700', label: '700 – Bold' },
+                                        { id: '800', label: '800 – Extra Bold' },
+                                        { id: '900', label: '900 – Black (Heavy)' },
+                                    ],
+                                },
+                                {
+                                    type: 'select',
+                                    label: 'Style', // Label for the property
+                                    property: 'font-style', // CSS property to change
+                                    default: 'normal', // CSS property to change
+                                    options: [
+                                        { id: 'normal', label: 'Normal' }, // Inherits the font-family from its parent
+                                        { id: 'italic', label: 'Italic' }, // Generic font family
+                                    ],
+                                },
+                            ]
+                        },
+                        {
+                            type: 'number',
+                            label: 'Line spacing', // Label for the property
+                            property: 'line-height', // CSS property to change
+                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                            min: 0, // Min value (available only for the 'number' type)
+                        },
+                        {
+                            type: 'number',
+                            label: 'Letter spacing', // Label for the property
+                            property: 'letter-spacing', // CSS property to change
+                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                            min: 0, // Min value (available only for the 'number' type)
+                        },
+                        {
+                            type: 'select',
+                            label: 'Align', // Label for the property
+                            property: 'text-align', // CSS property to change
+                            options: [
+                                { id: 'left', label: 'Left' },
+                                { id: 'center', label: 'Center' },
+                                { id: 'right', label: 'Right' },
+                                { id: 'justify', label: 'Justify' },
+                            ],
+                        },
+                        {
+                            type: 'select',
+                            label: 'White space', // Label for the property
+                            property: 'white-space', // CSS property to change
+                            options: [
+                                { id: 'normal', label: 'Normal' },
+                                { id: 'no-wrap', label: 'No wrap' },
+                                { id: 'pre', label: 'Keep Spaces' },
+                                { id: 'pre-wrap', label: 'Wrap & Keep Spaces' },
+                                { id: 'pre-line', label: 'Wrap & Trim Spaces' },
+                                { id: 'break-space', label: 'Spaces & Breaks' },
+                            ],
+                        },
+                        {
+                            type: 'color',
+                            label: 'Colour', // Label for the property
+                            property: 'color', // CSS property to change
+                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                            min: 0, // Min value (available only for the 'number' type)
+                        },
+                        {
+                            type: 'select',
+                            label: 'Decoration', // Label for the property
+                            property: 'text-decoration', // CSS property to change
+                            options: [
+                                { id: 'none', label: 'None' },
+                                { id: 'underline', label: 'Underline' },
+                                { id: 'overline', label: 'Overline' },
+                                { id: 'line-through', label: 'Line through' },
+                            ],
+                        },
+
+
+                    ],
+                },
+                {
+                    name: 'Extra',
+                      open: true,
+                    properties: [
+                        {
+                            type: 'select',
+                            label: 'Cursor type', // Label for the property
+                            property: 'cursor', // CSS property to change
+                            default: 'default', // Default value to display
+                            options: [
+                                { id: 'default', label: 'Default' },
+                                { id: 'pointer', label: 'pointer' },
+                                { id: 'wait', label: 'Wait' },
+                                { id: 'not-allowed', label: 'Not allowed' },
+                                { id: 'zoom-in', label: 'Zoom in' },
+                                { id: 'grab', label: 'Grab' },
+                                { id: 'move', label: 'Move' },
+                            ],
+                        },
+                        {
+                            type: 'select',
+                            label: 'List style', // Label for the property
+                            property: 'list-style', // CSS property to change
+                            options: [
+                                { id: 'none', label: 'None' },
+                                { id: 'square', label: 'Square' },
+                                { id: 'circle', label: 'Circle' },
+                                { id: 'upper-roman', label: 'Roman' },
+                                { id: 'lower-alpha', label: 'Alpha' },
+                            ],
+                        },
+
+                    ],
+                },
             ],
         },
         deviceManager: {
@@ -951,6 +1004,7 @@ export default function CustomEditor() {
                 return null
         }
     }
+
     const renderSelectedRightBarComponent = () => {
         switch (selectedRightBar) {
             case 'Styles':
@@ -985,12 +1039,12 @@ export default function CustomEditor() {
                 <AppShell
                     header={{ height: 50 }}
                     navbar={{
-                        width: 250,
+                        width: 220,
                         breakpoint: 'sm',
                         collapsed: { mobile: !opened, desktop: !desktopOpened },
                     }}
                     aside={{
-                        width: 250,
+                        width: 220,
                         breakpoint: 'sm',
                         collapsed: { mobile: !opened, desktop: !desktopOpened },
                     }}
@@ -999,18 +1053,13 @@ export default function CustomEditor() {
                     <AppShell.Navbar hidden={!opened} classNames={styles}>
                         <div className="h-full flex">
                             <div className=" flex flex-col gap-2 h-full  p-1">
-                                <Tooltip label="Show/Hide Siderbar">
-                                    <ActionIcon onClick={open} variant="subtle">
-                                        <IconPlus size="1rem" />
-                                    </ActionIcon>
-                                </Tooltip>
                                 <Tooltip label="Blocks">
                                     <ActionIcon onClick={() => setSelected('Blocks')} variant="subtle">
                                         <IconLayoutGridAdd size="1rem" />
                                     </ActionIcon>
                                 </Tooltip>
                                 <Tooltip label="Sections">
-                                    <ActionIcon variant="subtle">
+                                    <ActionIcon onClick={() => setSelected('Sections')}  variant="subtle">
                                         <IconSection size="1rem" />
                                     </ActionIcon>
                                 </Tooltip>
@@ -1027,7 +1076,7 @@ export default function CustomEditor() {
                                 {/*    </ActionIcon>*/}
                                 {/*</Tooltip>*/}
                                 <Tooltip label="Pages">
-                                    <ActionIcon variant="subtle">
+                                    <ActionIcon onClick={() => setSelected('Pages')}  variant="subtle">
                                         <IconFile size="1rem" />
                                     </ActionIcon>
                                 </Tooltip>
