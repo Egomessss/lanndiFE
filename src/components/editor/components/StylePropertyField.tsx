@@ -53,10 +53,13 @@ export default function StylePropertyField({
 
     const handleChange = (value: string) => {
         prop.upValue(value);
+        console.log(prop.getValue())
+        console.log(prop.getValue())
         console.log("up")
     };
 
     const onChange = (ev: any) => {
+        console.log("onChange",ev)
         handleChange(ev);
     };
 
@@ -82,12 +85,11 @@ export default function StylePropertyField({
         })
     }
     const [color, setColor] = useState('rgba(255,255,255,1)')
-    const type = prop.getType()
 
+    const type = prop.getType()
     const defValue = prop.getDefaultValue()
     const canClear = prop.canClear()
     const hasValue = prop.hasValue()
-
     const value = prop.getValue()
     const valueString = hasValue ? value : ''
     const valueWithDef = hasValue ? value : defValue
@@ -107,7 +109,7 @@ export default function StylePropertyField({
     switch (type) {
         case 'number': {
             const numberProp = prop as PropertyNumber
-            console.log(numberProp.getUnits())
+            // console.log(numberProp.getUnits())
             inputToRender = (
                 <NumberInput
                     size="xs"
@@ -115,7 +117,7 @@ export default function StylePropertyField({
                     stepHoldInterval={(t) => Math.max(1000 / t ** 2, 25)}
                     placeholder={defValue}
                     value={valueString}
-                    onChange={(newValue) => numberProp.upUnit(newValue)}
+                    onChange={onChange}
                     rightSectionWidth={30}
                     rightSection={<Select
                         classNames={classes}
@@ -137,7 +139,7 @@ export default function StylePropertyField({
                     value={value}
                     size="xs"
                     fullWidth
-                    onChange={handleChange}
+                    onChange={onChange}
                     data={radioProp.getOptions().map((option) => ({
                         value: radioProp.getOptionId(option),
                         label: (

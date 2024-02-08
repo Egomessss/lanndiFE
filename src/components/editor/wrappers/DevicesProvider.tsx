@@ -39,38 +39,7 @@ const DevicesProvider = memo(function({ children }: DevicesProviderProps) {
         const { Devices } = editor
         const event = Devices.events.all
 
-        // Remove existing devices
-        Devices.remove('desktop')
-        Devices.remove('tablet')
-        Devices.remove('mobileLandscape')
-        Devices.remove('mobilePortrait')
 
-
-        const width = editor.Canvas.getElement().clientWidth
-
-
-        // Add new devices
-        Devices.add({ id: 'fit', name: 'Fit To Screen', width: '', widthMedia: `${width}px`, })
-        Devices.add({ id: 'desktop', name: 'Desktop', width: '1536px' })
-        Devices.add({
-            id: 'laptop',
-            name: 'Laptop',
-            width: '1280px',
-            widthMedia: '1290px',
-        })
-        Devices.add({
-            id: 'tablet',
-            name: 'Tablet',
-            width: '800px',
-            widthMedia: '810px',
-        })
-        Devices.add({
-            id: 'mobile',
-            name: 'Mobile',
-            width: '380px',
-            widthMedia: '380px',
-        })
-        Devices.select('fit')
         const up = () => {
             setPropState({
                 devices: Devices.getDevices(),
