@@ -13,7 +13,7 @@ import Button from '../../../components/common/Button'
 const Page = () => {
     const { forgotPassword } = useAuth({
         middleware: 'guest',
-        redirectIfAuthenticated: '/dashboard',
+        redirectIfAuthenticated: '/sites',
     })
 
     const [email, setEmail] = useState('')

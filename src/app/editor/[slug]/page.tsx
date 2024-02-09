@@ -289,7 +289,7 @@ export default function CustomEditor() {
                                 type: 'number',
                                 default: 0,
                                 min: 0,
-                                units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                                units: ['px','%', 'em', 'rem' ],
                             },
                                 {
                                     label: 'Spacing column',
@@ -297,9 +297,11 @@ export default function CustomEditor() {
                                     type: 'number',
                                     default: 0,
                                     min: 0,
-                                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                                    units: ['px','%', 'em', 'rem' ],
                                 }],
                         },
+
+
                     ],
                 },
                 {
@@ -340,7 +342,7 @@ export default function CustomEditor() {
                                 type: 'number',
                                 default: 0,
                                 min: 0,
-                                units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                                units: ['px', '%', 'em', 'rem'],
                             },
                                 {
                                     label: 'Column',
@@ -348,7 +350,7 @@ export default function CustomEditor() {
                                     type: 'number',
                                     default: 0,
                                     min: 0,
-                                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                                    units: ['px', '%', 'em', 'rem'],
                                 }],
                         },
 
@@ -413,28 +415,28 @@ export default function CustomEditor() {
                             properties: [
                                 {
                                     type: 'number',
-                                    units: ['px', 'em', 'rem', '%'],
+                                    units: ['px', '%', 'em', 'rem'],
                                     default: '0',
                                     property: 'margin-top',
                                     label: 'Top',
                                 },
                                 {
                                     type: 'number',
-                                    units: ['px', 'em', 'rem', '%'],
+                                    units: ['px', '%', 'em', 'rem'],
                                     default: '0',
                                     property: 'margin-right',
                                     label: 'Right',
                                 },
                                 {
                                     type: 'number',
-                                    units: ['px', 'em', 'rem', '%'],
+                                    units: ['px', '%', 'em', 'rem'],
                                     default: '0',
                                     property: 'margin-bottom',
                                     label: 'Bottom',
                                 },
                                 {
                                     type: 'number',
-                                    units: ['px', 'em', 'rem', '%'],
+                                    units: ['px', '%', 'em', 'rem'],
                                     default: '0',
                                     property: 'margin-left',
                                     label: 'Left',
@@ -448,28 +450,28 @@ export default function CustomEditor() {
                             properties: [
                                 {
                                     type: 'number',
-                                    units: ['px', 'em', 'rem', '%'],
+                                     units: ['px', '%', 'em', 'rem'],
                                     default: '0',
                                     property: 'padding-top',
                                     label: 'Top',
                                 },
                                 {
                                     type: 'number',
-                                    units: ['px', 'em', 'rem', '%'],
+                                     units: ['px', '%', 'em', 'rem'],
                                     default: '0',
                                     property: 'padding-right',
                                     label: 'Right',
                                 },
                                 {
                                     type: 'number',
-                                    units: ['px', 'em', 'rem', '%'],
+                                     units: ['px', '%', 'em', 'rem'],
                                     default: '0',
                                     property: 'padding-bottom',
                                     label: 'Bottom',
                                 },
                                 {
                                     type: 'number',
-                                    units: ['px', 'em', 'rem', '%'],
+                                     units: ['px', '%', 'em', 'rem'],
                                     default: '0',
                                     property: 'padding-left',
                                     label: 'Left',
@@ -500,20 +502,20 @@ export default function CustomEditor() {
                             type: 'composite',
                             properties: [
 
-                                { type: 'number', units: ['px', 'em', 'rem', '%'], default: '0', property: 'top' },
+                                { type: 'number',   units: ['px', '%', 'em', 'rem'], default: '0', property: 'top' },
                                 {
                                     type: 'number',
-                                    units: ['px', 'em', 'rem', '%'],
+                                      units: ['px', '%', 'em', 'rem'],
                                     default: '0',
                                     property: 'right',
                                 },
                                 {
                                     type: 'number',
-                                    units: ['px', 'em', 'rem', '%'],
+                                      units: ['px', '%', 'em', 'rem'],
                                     default: '0',
                                     property: 'bottom',
                                 },
-                                { type: 'number', units: ['px', 'em', 'rem', '%'], default: '0', property: 'left' },
+                                { type: 'number',   units: ['px', '%', 'em', 'rem'], default: '0', property: 'left' },
                             ],
                         },
                         {
@@ -539,14 +541,14 @@ export default function CustomEditor() {
                             type: 'number',
                             label: 'Width', // Label for the property
                             property: 'width', // CSS property to change
-                            units : ['px', '%', 'fit', 'fill'], // Units (available only for the 'number' type)
+                            units : ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
                             min: 0, // Min value (available only for the 'number' type)
                         },
                         {
                             type: 'number',
                             label: 'height', // Label for the property
                             property: 'width', // CSS property to change
-                            units : ['px', '%', 'fit', 'fill'], // Units (available only for the 'number' type)
+                            units : ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
                             min: 0, // Min value (available only for the 'number' type)
                         },
                         {
@@ -615,7 +617,7 @@ export default function CustomEditor() {
                                 default: 0,
                                 label: 'Roundness', // Label for the property
                                 property: 'width', // CSS property to change
-                                units: ['px', 'em', 'rem', '%'], // Units (available only for the 'number' type)
+                                units: ['px', '%', 'em', 'rem'], // Units (available only for the 'number' type)
                                 min: 0, // Min value (available only for the 'number' type)
 
                             },
@@ -624,7 +626,7 @@ export default function CustomEditor() {
                                     default: 0,
                                     label: 'Thickness', // Label for the property
                                     property: 'border-width', // CSS property to change
-                                    units: ['px', 'em', 'rem', '%'], // Units (available only for the 'number' type)
+                                    units: ['px', '%', 'em', 'rem'], // Units (available only for the 'number' type)
                                     min: 0, // Min value (available only for the 'number' type)
                                 },
                             ],
@@ -686,7 +688,7 @@ export default function CustomEditor() {
                                     type: 'number',
                                     label: 'Size', // Label for the property
                                     property: 'font-size', // CSS property to change
-                                    units: ['px', 'em', 'rem'], // Units (available only for the 'number' type)
+                                    units: ['px', '%', 'em', 'rem'], // Units (available only for the 'number' type)
                                     min: 0, // Min value (available only for the 'number' type)
                                 },
                                 {
@@ -722,14 +724,14 @@ export default function CustomEditor() {
                             type: 'number',
                             label: 'Line spacing', // Label for the property
                             property: 'line-height', // CSS property to change
-                            units: ['px', 'em', 'rem'], // Units (available only for the 'number' type)
+                            units: ['px', '%', 'em', 'rem'], // Units (available only for the 'number' type)
                             min: 0, // Min value (available only for the 'number' type)
                         },
                         {
                             type: 'number',
                             label: 'Letter spacing', // Label for the property
                             property: 'letter-spacing', // CSS property to change
-                            units: ['px', 'em', 'rem'], // Units (available only for the 'number' type)
+                            units: ['px', '%', 'em', 'rem'], // Units (available only for the 'number' type)
                             min: 0, // Min value (available only for the 'number' type)
                         },
                         {
@@ -760,6 +762,8 @@ export default function CustomEditor() {
                             type: 'color',
                             label: 'Colour', // Label for the property
                             property: 'color', // CSS property to change
+                            units: ['px', '%', 'em', 'rem'], // Units (available only for the 'number' type)
+                            min: 0, // Min value (available only for the 'number' type)
                         },
                         {
                             type: 'select',

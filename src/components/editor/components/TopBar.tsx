@@ -32,6 +32,7 @@ import {
 import { DevicesProvider, WithEditor } from '@/components/editor/wrappers'
 import React from 'react'
 import { useEditorInstance } from '@/components/editor/context/EditorInstance'
+import Link from 'next/link'
 
 
 export default function Topbar({ openBlockSideBar, onClick }: any) {
@@ -65,6 +66,8 @@ export default function Topbar({ openBlockSideBar, onClick }: any) {
         <div className="gjs-top-sidebar flex h-full w-full items-center justify-between px-2">
             <div className="flex w-full items-center justify-start gap-2 py-2 ">
                 <Button
+                    component={Link}
+                    href="/sites"
                     variant="subtle"
                     size="xs"
                     leftSection={<IconArrowLeft />}
