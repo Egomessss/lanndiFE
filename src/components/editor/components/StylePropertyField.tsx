@@ -56,21 +56,22 @@ export default function StylePropertyField({
 
     const handleChange = (value: string) => {
         prop.upValue(value)
+        //if fit change the value is fit-content
+        // if fill the value is 100%
         console.log(prop.getValue())
-        console.log(prop.getValue())
-        console.log('up')
+
     }
 
     const onChange = (ev: any) => {
-        console.log('onChange', ev)
         handleChange(ev)
     }
 
-    const [sizeValue, setSizeValue] = useState<string>('px') // Default value
 
     // Handle change in select value
     const handleSizeChange = (newValue: any) => {
-        setSizeValue(newValue)
+        console.log(newValue)
+        prop.upUnit(newValue)
+        console.log('log', prop.getUnit())
         // Apply the selected CSS unit in your style logic
         // Example: updateStyleProperty('fontSize', `12${newValue}`);
     }
@@ -118,16 +119,18 @@ export default function StylePropertyField({
                     stepHoldDelay={500}
                     stepHoldInterval={(t) => Math.max(1000 / t ** 2, 25)}
                     placeholder={defValue}
-                    value={valueString}
+                    value={numberProp.getValue()}
                     onChange={onChange}
                     rightSectionWidth={30}
+                    min={numberProp.getMin()}
+                    max={numberProp.getMax()}
                     rightSection={<Select
                         classNames={classes}
                         size="xs"
                         variant="unstyled"
                         placeholder="Unit"
                         value={numberProp.getUnit()}
-                        onChange={(newValue) => numberProp.upUnit(newValue)}
+                        onChange={handleSizeChange}
                         data={numberProp.getUnits()}
                     />}
                 />

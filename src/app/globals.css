@@ -15,22 +15,25 @@ body {
 }
 
 .gjs-toolbar {
-    translate: 0px -10%;
+    translate: 0px -8%;
     border-radius: 3px;
 }
 
-/* Example CSS to center the frame within the canvas */
-.frame-class { /* Replace with the actual class or ID of your frame */
-    margin: 0 auto; /* Centers the frame horizontally */
-    width: 80%; /* Adjust the width as needed */
-    /* Add other styles as necessary */
-}
 
 .gjs-toolbar-items {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2px;
+    /*padding: 2px;*/
+}
+
+.gjs-toolbar-item {
+    padding: 0;
+}
+
+.gjs-toolbar-item > svg{
+   height:14px;
+    width:14px;
 }
 
 
@@ -63,23 +66,7 @@ body {
     border: none;
 }
 
-.gjs-selected {
-    outline: 2px dotted #1970C2 !important;
-    outline-offset: -2px;
-}
 
-.gjs-hovered {
-    outline: 1px dotted #1970C2 !important;
-    outline-offset: -2px;
-}
 
-.gjs-highlighter {
-    position: absolute;
-    outline: 10px dotted;
-    outline-offset: -1px;
-    pointer-events: none;
-    width: 100%;
-    height: 100%;
-}
 
 

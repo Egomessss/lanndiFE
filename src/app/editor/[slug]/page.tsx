@@ -24,7 +24,7 @@ import CustomSelectorManager from '@/components/editor/components/CustomSelector
 import StylesProvider from '../../../components/editor/wrappers/StylesProvider'
 import CustomStyleManager from '@/components/editor/components/CustomStyleManager'
 import CustomTraitManager from '@/components/editor/components/CustomTraitManager'
-import { IconFile, IconLayoutGridAdd, IconPlus, IconSection, IconUserBolt } from '@tabler/icons-react'
+import { IconFile, IconLayoutGridAdd, IconPlus, IconSection, IconStack2, IconUserBolt } from '@tabler/icons-react'
 import styles from '@/app/page.module.css'
 import TypographyBlocks from '@/components/editor/plugins/components/TypographyBlocks'
 import ExtraBlocks from '@/components/editor/plugins/components/ExtraBlocks'
@@ -39,6 +39,7 @@ import FormBlocks from '@/components/editor/plugins/components/FormsBlocks'
 import PostCss from '@/components/editor/plugins/utils/PostCss'
 import ComponentEditor from '@/components/editor/plugins/utils/ComponentEditor'
 import CodeEditor from '@/components/editor/plugins/utils/CodeEditor'
+import { starterTemplate, styleStarterTemplate } from '@/components/editor/templates/Starter'
 
 export default function CustomEditor() {
 
@@ -147,25 +148,27 @@ export default function CustomEditor() {
                                     id: 'block',
                                     label: 'Block - Element appears on a new line and takes full available width',
                                     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-distribute-vertical" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l0 16" /><path d="M20 4l0 16" /><path d="M9 6m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
-                                }, {
+                                },
+                                {
                                     id: 'flex',
                                     label: 'Flex - Arranges elements horizontally, or vertically.',
                                     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-columns" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M12 4l0 16" /></svg>`,
-                                }, {
+                                },
+                                {
                                     id: 'grid',
                                     label: 'Grid - Enables complex layouts with rows and columns',
                                     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-grid" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /></svg>`,
                                 },
-                                {
-                                    id: 'inline-block',
-                                    label: 'Inline Block - Elements sit on the same line but can have width and height set.',
-                                    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-distribute-horizontal" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l16 0" /><path d="M4 20l16 0" /><path d="M6 9m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z" /></svg>`,
-                                },
-                                {
-                                    id: 'inline',
-                                    label: 'Inline - Default for text elements, font size and line height determine its size',
-                                    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-text-resize" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 5m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M19 5m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M5 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M19 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M5 7v10" /><path d="M7 5h10" /><path d="M7 19h10" /><path d="M19 7v10" /><path d="M10 10h4" /><path d="M12 14v-4" /></svg>`,
-                                },
+                                // {
+                                //     id: 'inline-block',
+                                //     label: 'Inline Block - Elements sit on the same line but can have width and height set.',
+                                //     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-distribute-horizontal" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l16 0" /><path d="M4 20l16 0" /><path d="M6 9m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z" /></svg>`,
+                                // },
+                                // {
+                                //     id: 'inline',
+                                //     label: 'Inline - Default for text elements, font size and line height determine its size',
+                                //     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-text-resize" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 5m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M19 5m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M5 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M19 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M5 7v10" /><path d="M7 5h10" /><path d="M7 19h10" /><path d="M19 7v10" /><path d="M10 10h4" /><path d="M12 14v-4" /></svg>`,
+                                // },
                                 {
                                     id: 'none',
                                     label: 'Hide - Hide the element',
@@ -175,7 +178,6 @@ export default function CustomEditor() {
                         },
                     ],
                 },
-
                 {
                     id: 'flexProperties',
                     name: 'Flex Properties',
@@ -298,8 +300,6 @@ export default function CustomEditor() {
                                     units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
                                 }],
                         },
-
-
                     ],
                 },
                 {
@@ -399,30 +399,6 @@ export default function CustomEditor() {
                                     max: 20,
                                 }],
                         },
-
-                        {
-                            type: 'composite',
-                            label: 'Spacing', // Label for the property
-                            property: 'gap', // CSS property to change
-                            properties: [{
-                                label: 'Row',
-                                property: 'gap-row',
-                                type: 'number',
-                                default: 0,
-                                min: 0,
-                                units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-                            },
-                                {
-                                    label: 'Column',
-                                    property: 'gap-column',
-                                    type: 'number',
-                                    default: 0,
-                                    min: 0,
-                                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
-                                }],
-                        },
-
-
                     ],
                 },
                 {
@@ -437,28 +413,28 @@ export default function CustomEditor() {
                             properties: [
                                 {
                                     type: 'number',
-                                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                                    units: ['px', 'em', 'rem', '%'],
                                     default: '0',
                                     property: 'margin-top',
                                     label: 'Top',
                                 },
                                 {
                                     type: 'number',
-                                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                                    units: ['px', 'em', 'rem', '%'],
                                     default: '0',
                                     property: 'margin-right',
                                     label: 'Right',
                                 },
                                 {
                                     type: 'number',
-                                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                                    units: ['px', 'em', 'rem', '%'],
                                     default: '0',
                                     property: 'margin-bottom',
                                     label: 'Bottom',
                                 },
                                 {
                                     type: 'number',
-                                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                                    units: ['px', 'em', 'rem', '%'],
                                     default: '0',
                                     property: 'margin-left',
                                     label: 'Left',
@@ -472,28 +448,28 @@ export default function CustomEditor() {
                             properties: [
                                 {
                                     type: 'number',
-                                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                                    units: ['px', 'em', 'rem', '%'],
                                     default: '0',
                                     property: 'padding-top',
                                     label: 'Top',
                                 },
                                 {
                                     type: 'number',
-                                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                                    units: ['px', 'em', 'rem', '%'],
                                     default: '0',
                                     property: 'padding-right',
                                     label: 'Right',
                                 },
                                 {
                                     type: 'number',
-                                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                                    units: ['px', 'em', 'rem', '%'],
                                     default: '0',
                                     property: 'padding-bottom',
                                     label: 'Bottom',
                                 },
                                 {
                                     type: 'number',
-                                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                                    units: ['px', 'em', 'rem', '%'],
                                     default: '0',
                                     property: 'padding-left',
                                     label: 'Left',
@@ -524,20 +500,20 @@ export default function CustomEditor() {
                             type: 'composite',
                             properties: [
 
-                                { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'top' },
+                                { type: 'number', units: ['px', 'em', 'rem', '%'], default: '0', property: 'top' },
                                 {
                                     type: 'number',
-                                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                                    units: ['px', 'em', 'rem', '%'],
                                     default: '0',
                                     property: 'right',
                                 },
                                 {
                                     type: 'number',
-                                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'],
+                                    units: ['px', 'em', 'rem', '%'],
                                     default: '0',
                                     property: 'bottom',
                                 },
-                                { type: 'number', units: ['px', 'em', 'rem', '%', 'vh', 'vw'], default: '0', property: 'left' },
+                                { type: 'number', units: ['px', 'em', 'rem', '%'], default: '0', property: 'left' },
                             ],
                         },
                         {
@@ -559,78 +535,18 @@ export default function CustomEditor() {
                     name: 'Sizing',
                     open: true,
                     properties: [
-                        // {
-                        //     type: 'select',
-                        //     property: 'width',
-                        //     label: 'Width',
-                        //     default: 'auto',
-                        //     options: [
-                        //         { id: 'auto', label: 'Auto' },
-                        //         { id: 'max-content', label: 'Max content' },
-                        //         { id: 'min-content', label: 'Min content' },
-                        //         { id: 'fit-content', label: 'Fit content' },
-                        //     ],
-                        // },
                         {
                             type: 'number',
-                            default: 0,
                             label: 'Width', // Label for the property
                             property: 'width', // CSS property to change
-                            units: ['px', 'em', 'rem', '%', 'svw', 'dvw', 'vw'], // Units (available only for the 'number' type)
+                            units : ['px', '%', 'fit', 'fill'], // Units (available only for the 'number' type)
                             min: 0, // Min value (available only for the 'number' type)
                         },
                         {
                             type: 'number',
-                            default: 0,
-                            label: 'Max width', // Label for the property
-                            property: 'max-width', // CSS property to change
-                            units: ['px', 'em', 'rem', '%', 'svw', 'dvw', 'vw'], // Units (available only for the 'number' type)
-                            min: 0, // Min value (available only for the 'number' type)
-                        },
-                        {
-                            type: 'number',
-                            default: 0,
-                            label: 'Min width', // Label for the property
-                            property: 'min-width', // CSS property to change
-                            units: ['px', 'em', 'rem', '%', 'svw', 'dvw', 'vw'], // Units (available only for the 'number' type)
-                            min: 0, // Min value (available only for the 'number' type)
-                        },
-                        // {
-                        //     type: 'select',
-                        //     property: 'height',
-                        //     label: 'Height',
-                        //     default: 'auto',
-                        //     options: [
-                        //         { id: 'auto', label: 'Auto' },
-                        //         { id: 'max-content', label: 'Max content' },
-                        //         { id: 'min-content', label: 'Min content' },
-                        //         { id: 'fit-content', label: 'Fit content' },
-                        //     ],
-                        // },
-                        {
-                            type: 'number',
-                            default: 0,
-                            label: 'Height', // Label for the property
-                            property: 'height', // CSS property to change
-                            units: ['px', 'em', 'rem', '%', 'svh', 'dvh', 'vh'], // Units (available only for the 'number' type)
-                            min: 0, // Min value (available only for the 'number' type)
-                        },
-
-                        {
-                            type: 'number',
-                            default: 0,
-                            label: 'Max height', // Label for the property
-                            property: 'max-height', // CSS property to change
-                            units: ['px', 'em', 'rem', '%', 'svh', 'dvh', 'vh'], // Units (available only for the 'number' type)
-                            min: 0, // Min value (available only for the 'number' type)
-                        },
-
-                        {
-                            type: 'number',
-                            default: 0,
-                            label: 'Min height', // Label for the property
-                            property: 'min-height', // CSS property to change
-                            units: ['px', 'em', 'rem', '%', 'svh', 'dvh', 'vh'], // Units (available only for the 'number' type)
+                            label: 'height', // Label for the property
+                            property: 'width', // CSS property to change
+                            units : ['px', '%', 'fit', 'fill'], // Units (available only for the 'number' type)
                             min: 0, // Min value (available only for the 'number' type)
                         },
                         {
@@ -699,7 +615,7 @@ export default function CustomEditor() {
                                 default: 0,
                                 label: 'Roundness', // Label for the property
                                 property: 'width', // CSS property to change
-                                units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                                units: ['px', 'em', 'rem', '%'], // Units (available only for the 'number' type)
                                 min: 0, // Min value (available only for the 'number' type)
 
                             },
@@ -708,7 +624,7 @@ export default function CustomEditor() {
                                     default: 0,
                                     label: 'Thickness', // Label for the property
                                     property: 'border-width', // CSS property to change
-                                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                                    units: ['px', 'em', 'rem', '%'], // Units (available only for the 'number' type)
                                     min: 0, // Min value (available only for the 'number' type)
                                 },
                             ],
@@ -730,7 +646,7 @@ export default function CustomEditor() {
                         {
                             type: 'color',
                             label: 'Colour', // Label for the property
-                            property: 'min-height', // CSS property to change
+                            property: 'border-color', // CSS property to change
 
                         },
                     ],
@@ -743,6 +659,7 @@ export default function CustomEditor() {
                             type: 'composite',
                             property: 'font',
                             label: 'Font',
+                            detached:false,
                             // Additional props
                             properties: [
                                 {
@@ -769,7 +686,7 @@ export default function CustomEditor() {
                                     type: 'number',
                                     label: 'Size', // Label for the property
                                     property: 'font-size', // CSS property to change
-                                    units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                                    units: ['px', 'em', 'rem'], // Units (available only for the 'number' type)
                                     min: 0, // Min value (available only for the 'number' type)
                                 },
                                 {
@@ -805,14 +722,14 @@ export default function CustomEditor() {
                             type: 'number',
                             label: 'Line spacing', // Label for the property
                             property: 'line-height', // CSS property to change
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                            units: ['px', 'em', 'rem'], // Units (available only for the 'number' type)
                             min: 0, // Min value (available only for the 'number' type)
                         },
                         {
                             type: 'number',
                             label: 'Letter spacing', // Label for the property
                             property: 'letter-spacing', // CSS property to change
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
+                            units: ['px', 'em', 'rem'], // Units (available only for the 'number' type)
                             min: 0, // Min value (available only for the 'number' type)
                         },
                         {
@@ -843,8 +760,6 @@ export default function CustomEditor() {
                             type: 'color',
                             label: 'Colour', // Label for the property
                             property: 'color', // CSS property to change
-                            units: ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
-                            min: 0, // Min value (available only for the 'number' type)
                         },
                         {
                             type: 'select',
@@ -1070,11 +985,11 @@ export default function CustomEditor() {
                                 {/*    </ActionIcon>*/}
                                 {/*</Tooltip>*/}
                                 <Divider my="xs" variant="dashed" />
-                                {/*<Tooltip label="Layers">*/}
-                                {/*    <ActionIcon onClick={()=>setSelected("Layers")} variant="subtle">*/}
-                                {/*        <IconStack2 size="1rem" />*/}
-                                {/*    </ActionIcon>*/}
-                                {/*</Tooltip>*/}
+                                <Tooltip label="Layers">
+                                    <ActionIcon onClick={()=>setSelected("Layers")} variant="subtle">
+                                        <IconStack2 size="1rem" />
+                                    </ActionIcon>
+                                </Tooltip>
                                 <Tooltip label="Pages">
                                     <ActionIcon onClick={() => setSelected('Pages')}  variant="subtle">
                                         <IconFile size="1rem" />
@@ -1100,7 +1015,7 @@ export default function CustomEditor() {
                     <AppShell.Header>
                         <TopBar onClick={toggleDesktop} openBlockSideBar={openBlockSideBar} />
                     </AppShell.Header>
-                    <AppShell.Main>
+                    <AppShell.Main  component={ScrollArea}>
                         <Canvas />
                     </AppShell.Main>
                 </AppShell>
