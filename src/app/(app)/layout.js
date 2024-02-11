@@ -23,11 +23,10 @@ const AppLayout = ({ children, header }) => {
     const [opened, { toggle }] = useDisclosure()
     const { user, logout } = useAuth({ middleware: 'auth' })
     console.log(user)
+
     if (!user) {
         return <Loading />
     }
-
-
 
     return (
         <AppShell
