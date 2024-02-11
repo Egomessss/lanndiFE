@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import '@mantine/core/styles.css'
+import '@mantine/notifications/styles.css'
 import { ColorSchemeScript, MantineProvider } from '@mantine/core'
 import { Inter } from 'next/font/google'
-import '@mantine/core/styles.css'
 import { ModalsProvider } from '@mantine/modals'
+import { Notifications } from '@mantine/notifications'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,7 +25,12 @@ export default function RootLayout({
             <ColorSchemeScript />
         </head>
         <body className={inter.className}>
-        <MantineProvider> <ModalsProvider>{children}  </ModalsProvider></MantineProvider>
+        <MantineProvider  defaultColorScheme="dark">
+            <Notifications />
+            <ModalsProvider >
+                {children}
+            </ModalsProvider>
+        </MantineProvider>
         </body>
         </html>
     )

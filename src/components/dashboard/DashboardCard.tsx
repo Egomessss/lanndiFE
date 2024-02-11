@@ -7,6 +7,9 @@ import { IconArrowsLeftRight, IconCopy, IconDots, IconMessageCircle, IconPhoto, 
 const DashboardCard = () => {
     return (
         <div className="flex flex-col col-span-1 ">
+            <div>
+
+            </div>
             <Image
                 src="https://images.pexels.com/photos/14577237/pexels-photo-14577237.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                 width={200}

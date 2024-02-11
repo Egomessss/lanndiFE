@@ -16,42 +16,24 @@ const Page = () => {
         redirectIfAuthenticated: '/sites',
     })
 
-    const [name, setName] = useState('')
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [passwordConfirmation, setPasswordConfirmation] = useState('')
     const [errors, setErrors] = useState([])
 
     const submitForm = event => {
         event.preventDefault()
 
         register({
-            name,
             email,
             password,
-            password_confirmation: passwordConfirmation,
             setErrors,
         })
     }
 
     return (
         <form onSubmit={submitForm}>
-            {/* Name */}
-            <div>
-                <Label htmlFor="name">Name</Label>
 
-                <Input
-                    id="name"
-                    type="text"
-                    value={name}
-                    className="block mt-1 w-full"
-                    onChange={event => setName(event.target.value)}
-                    required
-                    autoFocus
-                />
-
-                <InputError messages={errors.name} className="mt-2" />
-            </div>
 
             {/* Email Address */}
             <div className="mt-4">
@@ -86,28 +68,6 @@ const Page = () => {
                 <InputError messages={errors.password} className="mt-2" />
             </div>
 
-            {/* Confirm Password */}
-            <div className="mt-4">
-                <Label htmlFor="passwordConfirmation">
-                    Confirm Password
-                </Label>
-
-                <Input
-                    id="passwordConfirmation"
-                    type="password"
-                    value={passwordConfirmation}
-                    className="block mt-1 w-full"
-                    onChange={event =>
-                        setPasswordConfirmation(event.target.value)
-                    }
-                    required
-                />
-
-                <InputError
-                    messages={errors.password_confirmation}
-                    className="mt-2"
-                />
-            </div>
 
             <div className="flex items-center justify-end mt-4">
                 <Link
