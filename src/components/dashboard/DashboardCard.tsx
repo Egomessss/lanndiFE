@@ -1,18 +1,9 @@
 'use client'
 import React from 'react'
-import Image from 'next/image'
-import { ActionIcon, Badge, Menu } from '@mantine/core'
-import {
-    IconArrowsLeftRight,
-    IconCopy,
-    IconDots,
-    IconMessageCircle,
-    IconPhoto,
-    IconSearch,
-    IconSettings,
-    IconTrash,
-} from '@tabler/icons-react'
+import { ActionIcon, Badge, Menu, Text } from '@mantine/core'
+import { IconDots, IconSettings, IconTrash } from '@tabler/icons-react'
 import Link from 'next/link'
+import { modals } from '@mantine/modals'
 
 type Site = {
     name: string;
@@ -22,17 +13,28 @@ type Site = {
 };
 const DashboardCard = ({ data }) => {
 
+    const openDeleteModal = () =>
+        modals.openConfirmModal({
+            title: 'Delete your site',
+            centered: true,
+            children: (
+                <Text size="sm">
+                    Are you sure you want to delete your site? This action is destructive and irreversible!.
+                </Text>
+            ),
+            labels: { confirm: 'Delete site', cancel: 'No don\'t delete it' },
+            confirmProps: { color: 'red' },
+            onCancel: () => console.log('Cancel'),
+            onConfirm: () => console.log('Confirmed'),
+        })
+
     return (
         <div className="flex flex-col col-span-1 w-full">
-
             <img
                 src="https://images.pexels.com/photos/14577237/pexels-photo-14577237.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                 className="w-full h-44 rounded-lg"
-
-                alt="Picture of the author"
-
+                alt={data.name}
             />
-
             <div>
                 <div className="flex w-full justify-between items-center">
                     <h2 className="text-lg">{data.name}</h2>
@@ -50,6 +52,7 @@ const DashboardCard = ({ data }) => {
                             </Menu.Item>
                             <Menu.Divider />
                             <Menu.Item
+                                onClick={openDeleteModal}
                                 color="red"
                                 leftSection={<IconTrash size="1rem" />}
                             >
@@ -58,7 +61,8 @@ const DashboardCard = ({ data }) => {
                         </Menu.Dropdown>
                     </Menu>
                 </div>
-                {data.isLive ? <Badge variant="light" color="green">Live</Badge> : <Badge variant="light" color="green">Unpublished</Badge>}
+                {data.isLive ? <Badge variant="light" color="green">Live</Badge> :
+                    <Badge variant="light" color="green">Unpublished</Badge>}
             </div>
 
         </div>
