@@ -67,7 +67,7 @@ export default function Topbar({ openBlockSideBar, onClick }: any) {
             <div className="flex w-full items-center justify-start gap-2 py-2 ">
                 <Button
                     component={Link}
-                    href="/sites"
+                    href="/"
                     variant="subtle"
                     size="xs"
                     leftSection={<IconArrowLeft />}

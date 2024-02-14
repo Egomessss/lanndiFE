@@ -28,7 +28,7 @@ export const useFetch = (url, options = {}) => {
                 const response = await axios(config);
                 setData(response.data);
             } catch (err) {
-                setError(err.response ? err.response.data : 'Could not fetch data');
+                setError( 'Could not fetch data');
             } finally {
                 setLoading(false);
             }

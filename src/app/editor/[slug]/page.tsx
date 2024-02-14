@@ -255,11 +255,6 @@ export default function CustomEditor() {
                                     label: 'End',
                                     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-bottom" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20l16 0" /><path d="M9 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
                                 },
-                                {
-                                    id: 'stretch',
-                                    label: 'Stretch',
-                                    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-columns-3" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 3m0 1a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v16a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1zm6 -1v18m6 -18v18" /></svg>`,
-                                },
                             ],
                         },
                         {
@@ -490,8 +485,8 @@ export default function CustomEditor() {
                             label: 'Position',
                             options: [
                                 { id: 'static', label: 'Default' },
-                                { id: 'relative', label: 'Relative' },
-                                { id: 'absolute', label: 'Absolute' },
+                                { id: 'relative', label: 'Relative to position' },
+                                { id: 'absolute', label: 'Relative to parent' },
                                 { id: 'fixed', label: 'Fixed' },
                                 { id: 'sticky', label: 'Sticky' },
                             ],
@@ -528,7 +523,7 @@ export default function CustomEditor() {
                                 { id: '-1', label: 'Send to back' },
                                 { id: '1', label: 'Send backward' },
                                 { id: '10', label: 'Bring to front' },
-                                { id: '1000', label: 'Bring forward' },
+                                { id: '100', label: 'Bring forward' },
                             ],
                         },
                     ],
@@ -543,6 +538,13 @@ export default function CustomEditor() {
                             property: 'width', // CSS property to change
                             units : ['px', 'em', 'rem', '%', 'vh', 'vw'], // Units (available only for the 'number' type)
                             min: 0, // Min value (available only for the 'number' type)
+                            // options: [
+                            //     { id: 'auto', label: 'Default' },
+                            //     { id: 'fit-content', label: 'Fit Content' },
+                            //     { id: '100%', label: 'Fill' },
+                            //     { id: '10', label: 'Bring to front' },
+                            //     { id: '1000', label: 'Bring forward' },
+                            // ],
                         },
                         {
                             type: 'number',
@@ -615,7 +617,7 @@ export default function CustomEditor() {
                             properties: [{
                                 type: 'number',
                                 default: 0,
-                                label: 'Roundness', // Label for the property
+                                label: 'Radius', // Label for the property
                                 property: 'width', // CSS property to change
                                 units: ['px', '%', 'em', 'rem'], // Units (available only for the 'number' type)
                                 min: 0, // Min value (available only for the 'number' type)
@@ -624,7 +626,7 @@ export default function CustomEditor() {
                                 {
                                     type: 'number',
                                     default: 0,
-                                    label: 'Thickness', // Label for the property
+                                    label: 'Width', // Label for the property
                                     property: 'border-width', // CSS property to change
                                     units: ['px', '%', 'em', 'rem'], // Units (available only for the 'number' type)
                                     min: 0, // Min value (available only for the 'number' type)

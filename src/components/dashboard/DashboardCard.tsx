@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { ActionIcon, Badge, Menu, Text } from '@mantine/core'
+import { ActionIcon, Badge, Button, Menu, Text } from '@mantine/core'
 import { IconDots, IconSettings, IconTrash } from '@tabler/icons-react'
 import Link from 'next/link'
 import { modals } from '@mantine/modals'
@@ -32,7 +32,7 @@ const DashboardCard = ({ data }) => {
         <div className="flex flex-col col-span-1 w-full">
             <img
                 src="https://images.pexels.com/photos/14577237/pexels-photo-14577237.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                className="w-full h-44 rounded-lg"
+                className="w-full h-44 rounded-lg mb-2"
                 alt={data.name}
             />
             <div>
@@ -46,6 +46,10 @@ const DashboardCard = ({ data }) => {
                         </Menu.Target>
 
                         <Menu.Dropdown>
+                            <Menu.Item component={Link} href={`/sites/${data.slug}/settings`}
+                                       leftSection={<IconSettings size="1rem" />}>
+                                Edit site
+                            </Menu.Item>
                             <Menu.Item component={Link} href={`/sites/${data.slug}/settings`}
                                        leftSection={<IconSettings size="1rem" />}>
                                 Site Settings
@@ -63,6 +67,7 @@ const DashboardCard = ({ data }) => {
                 </div>
                 {data.isLive ? <Badge variant="light" color="green">Live</Badge> :
                     <Badge variant="light" color="green">Unpublished</Badge>}
+
             </div>
 
         </div>

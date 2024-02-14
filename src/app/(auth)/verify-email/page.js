@@ -8,7 +8,7 @@ import Button from '../../../components/common/Button'
 const Page = () => {
     const { logout, resendEmailVerification } = useAuth({
         middleware: 'auth',
-        redirectIfAuthenticated: '/sites',
+        redirectIfAuthenticated: '/',
     })
 
     const [status, setStatus] = useState(null)

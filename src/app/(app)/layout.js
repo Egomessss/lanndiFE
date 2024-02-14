@@ -41,34 +41,34 @@ const AppLayout = ({ children, header }) => {
             <AppShell.Header>
                 <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
                 <div className="w-full flex justify-between items-center h-full px-4">
-                    <Link className="no-underline text-white font-bold text-xl" href="/sites">
+                    <Link className="no-underline text-white font-bold text-xl" href="/">
                         lanndi
                     </Link>
                     <Menu shadow="md" width={200}>
                         <Menu.Target>
-                           <Button>{user.name}</Button>
-                            {/*<Avatar color="cyan" radius="xl">MK</Avatar>*/}
+                           <Button>{user?.name}</Button>
+                            {/*<Avatar color="green" radius="xl"></Avatar>*/}
                         </Menu.Target>
-
                         <Menu.Dropdown>
                             <Menu.Item leftSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}>
                                 Account Settings
                             </Menu.Item>
                             <Menu.Divider />
-                            {/*<Menu.Item onClick={logout}*/}
-                            {/*    color="red"*/}
-                            {/*    leftSection={<IconLogout style={{ width: rem(14), height: rem(14) }} />}*/}
-                            {/*>*/}
-                            {/*    Logout*/}
-                            {/*</Menu.Item>*/}
+                            <Menu.Item  onClick={logout}
+                                color="red"
+                                leftSection={<IconLogout style={{ width: rem(14), height: rem(14) }} />}
+                            >
+                                Logout
+                            </Menu.Item>
                         </Menu.Dropdown>
-                    </Menu></div>
+                    </Menu>
+                </div>
 
             </AppShell.Header>
             <AppShell.Navbar>
                 <NavLink
-                    href="/sites"
-                    label="Sites"
+                    href="/"
+                    label="Dashboard"
                     leftSection={<IconHome2 size="1rem" stroke={1.5} />}
                 />
 

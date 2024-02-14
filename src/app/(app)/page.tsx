@@ -1,5 +1,5 @@
 'use client'
-import DashboardCard from '../../../components/dashboard/DashboardCard'
+
 import { Button, Modal } from '@mantine/core'
 import { IconPlus } from '@tabler/icons-react'
 import Link from 'next/link'
@@ -7,6 +7,7 @@ import { useDisclosure } from '@mantine/hooks'
 import CreateSiteModal from '@/components/dashboard/CreateSiteModal'
 import { useFetch } from '@/hooks/useFetch'
 import { useEffect } from 'react'
+import DashboardCard from '@/components/dashboard/DashboardCard'
 
 type Site = {
     name: string;
@@ -30,7 +31,7 @@ const Dashboard = () => {
                 <CreateSiteModal />
             </div>
             <div className="grid grid-cols-4 gap-4 my-8">
-                {data?.data?.map((site:Site) => (
+                {data?.map((site: Site) => (
                     // Assuming your data has an id and other properties you need to pass to DashboardCard
                     <DashboardCard key={site.slug} data={site} />
                 ))}
