@@ -111,10 +111,9 @@ export default function CustomStyleManager({
   return (
     <div className="gjs-custom-style-manager text-left mt-2">
       <div>
-        <p>Width</p>
-        <div className="flex items-center gap-2 w-full">
-          <TextInput />
-          <Select data={[
+        <div className="flex items-end gap-2 w-full">
+          <TextInput label="Width" size="xs" />
+          <Select size="xs" data={[
             { value: 'px', label: 'Fixed' },
             { value: '%', label: 'Relative' },
             { value: 'em', label: 'Scale with block font size - em' },
@@ -125,10 +124,10 @@ export default function CustomStyleManager({
             { value: 'auto', label: 'auto' },
           ]} />
         </div>
-        <p>Max Width</p>
-        <div className="flex items-center gap-2 w-full">
-          <TextInput />
-          <Select data={[
+
+        <div className="flex items-end gap-2 w-full">
+          <TextInput label="Max Width" size="xs" />
+          <Select size="xs" data={[
             { value: 'px', label: 'Fixed' },
             { value: '%', label: 'Relative' },
             { value: 'em', label: 'Scale with block font size - em' },
@@ -139,10 +138,9 @@ export default function CustomStyleManager({
             { value: 'auto', label: 'auto' },
           ]} />
         </div>
-        <p>Min Width</p>
-        <div className="flex items-center gap-2 w-full">
-          <TextInput />
-          <Select data={[
+        <div className="flex items-end gap-2 w-full">
+          <TextInput label="Min Width" size="xs" />
+          <Select size="xs" data={[
             { value: 'px', label: 'Fixed' },
             { value: '%', label: 'Relative' },
             { value: 'em', label: 'Scale with block font size - em' },
@@ -153,10 +151,9 @@ export default function CustomStyleManager({
             { value: 'auto', label: 'auto' },
           ]} />
         </div>
-        <p>Height</p>
-        <div className="flex items-center gap-2 w-full">
-          <TextInput />
-          <Select data={[
+        <div className="flex items-end gap-2 w-full">
+          <TextInput label="Height" size="xs" />
+          <Select size="xs" data={[
             { value: 'px', label: 'Fixed - px' },
             { value: '%', label: 'Relative - %' },
             { value: 'em', label: 'Scale with block font size - em' },
@@ -164,6 +161,32 @@ export default function CustomStyleManager({
             { value: '100%', label: 'Full - 100%' },
             { value: 'fit-content', label: 'Fit Content' },
             { value: '100vh', label: 'Viewport - 100vh' },
+            { value: 'auto', label: 'auto' },
+          ]} />
+        </div>
+        <div className="flex items-end gap-2 w-full">
+          <TextInput label="Max Height" size="xs" />
+          <Select size="xs" data={[
+            { value: 'px', label: 'Fixed' },
+            { value: '%', label: 'Relative' },
+            { value: 'em', label: 'Scale with block font size - em' },
+            { value: 'rem', label: 'Scale with page font size - rem' },
+            { value: '100%', label: 'Full - 100%' },
+            { value: 'fit-content', label: 'Fit Content' },
+            { value: '100vw', label: 'Viewport - 100vw' },
+            { value: 'auto', label: 'auto' },
+          ]} />
+        </div>
+        <div className="flex items-end gap-2 w-full">
+          <TextInput label="Min Height" size="xs" />
+          <Select size="xs" data={[
+            { value: 'px', label: 'Fixed' },
+            { value: '%', label: 'Relative' },
+            { value: 'em', label: 'Scale with block font size - em' },
+            { value: 'rem', label: 'Scale with page font size - rem' },
+            { value: '100%', label: 'Full - 100%' },
+            { value: 'fit-content', label: 'Fit Content' },
+            { value: '100vw', label: 'Viewport - 100vw' },
             { value: 'auto', label: 'auto' },
           ]} />
         </div>

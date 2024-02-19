@@ -5,20 +5,19 @@ import axios from '@/lib/axios'
 
 export const useFormFetch = (endpoint, initOptions = {}) => {
     const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState('');
     const [validationErrors, setValidationErrors] = useState({});
     const [options, setOptions] = useState(initOptions);
 
     // Define the base URL from environment variables
     const baseURL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
-    const csrf = () => axios.get('/sanctum/csrf-cookie')
 
     const doFetch = async (endpoint, options = {}) => {
         try {
-            await csrf();
-            setLoading(true);
+
+            setIsLoading(true);
             setError(null);
             setValidationErrors({});
             const response = await axios(`${baseURL}${endpoint}`, {
@@ -50,7 +49,7 @@ export const useFormFetch = (endpoint, initOptions = {}) => {
                 setError('An error occurred while setting up the request');
             }
         } finally {
-            setLoading(false);
+            setIsLoading(false);
         }
     };
 
@@ -62,8 +61,6 @@ export const useFormFetch = (endpoint, initOptions = {}) => {
     }, [options]); // Depend on options which now includes the URL
 
     const submitForm = async (method, formData, hasFiles = false) => {
-        await csrf(); // Fetch CSRF token before submitting form
-
         let headers = {};
         let body;
 
@@ -81,5 +78,5 @@ export const useFormFetch = (endpoint, initOptions = {}) => {
         });
     };
 
-    return { data, loading, error, validationErrors, submitForm };
+    return { data, isLoading, error, validationErrors, submitForm };
 };

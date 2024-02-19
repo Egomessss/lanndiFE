@@ -141,7 +141,7 @@ export default function CustomEditor() {
                         {
                             label: 'Layout',
                             property: 'display',
-                            type: 'select',
+                            type: 'radio',
                             default: 'block',
                             options: [
                                 {
