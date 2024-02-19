@@ -25,7 +25,7 @@ import StylesProvider from '../../../components/editor/wrappers/StylesProvider'
 import CustomStyleManager from '@/components/editor/components/CustomStyleManager'
 import CustomTraitManager from '@/components/editor/components/CustomTraitManager'
 import { IconFile, IconLayoutGridAdd, IconPlus, IconSection, IconStack2, IconUserBolt } from '@tabler/icons-react'
-import styles from '@/app/page.module.css'
+import styles from '@/app/editor/[slug]/page.module.css'
 import TypographyBlocks from '@/components/editor/plugins/components/TypographyBlocks'
 import ExtraBlocks from '@/components/editor/plugins/components/ExtraBlocks'
 import CustomModal from '@/components/editor/components/CustomModal'
@@ -141,7 +141,7 @@ export default function CustomEditor() {
                         {
                             label: 'Layout',
                             property: 'display',
-                            type: 'radio',
+                            type: 'select',
                             default: 'block',
                             options: [
                                 {
@@ -151,12 +151,12 @@ export default function CustomEditor() {
                                 },
                                 {
                                     id: 'flex',
-                                    label: 'Flex - Arranges elements horizontally, or vertically.',
+                                    label: 'Flex - Flexible Row/Column.',
                                     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-columns" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M12 4l0 16" /></svg>`,
                                 },
                                 {
                                     id: 'grid',
-                                    label: 'Grid - Enables complex layouts with rows and columns',
+                                    label: 'Grid - Rows & Columns Grid.',
                                     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-grid" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /></svg>`,
                                 },
                                 // {
@@ -171,7 +171,7 @@ export default function CustomEditor() {
                                 // },
                                 {
                                     id: 'none',
-                                    label: 'Hide - Hide the element',
+                                    label: 'Hide - Hide element',
                                     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye-off" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" /><path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" /><path d="M3 3l18 18" /></svg>`,
                                 },
                             ],
@@ -258,7 +258,7 @@ export default function CustomEditor() {
                             ],
                         },
                         {
-                            label: 'Wrap',
+                            label: 'Wrap Content',
                             property: 'flex-wrap',
                             type: 'radio',
                             default: 'nowrap',
@@ -482,13 +482,13 @@ export default function CustomEditor() {
                         {
                             type: 'select',
                             property: 'position',
-                            label: 'Position',
+                            label: 'Element Position',
                             options: [
                                 { id: 'static', label: 'Default' },
-                                { id: 'relative', label: 'Relative to position' },
-                                { id: 'absolute', label: 'Relative to parent' },
-                                { id: 'fixed', label: 'Fixed' },
-                                { id: 'sticky', label: 'Sticky' },
+                                { id: 'relative', label: 'Relative to current position' },
+                                { id: 'absolute', label: 'Relative to container' },
+                                { id: 'fixed', label: 'Fixed on viewport' },
+                                { id: 'sticky', label: "Sticks While Scrolling" },
                             ],
                         },
                         {
@@ -516,14 +516,14 @@ export default function CustomEditor() {
                         {
                             type: 'select',
                             property: 'z-index',
-                            label: 'Layer',
+                            label: 'Stack order control',
                             default: 'auto',
                             options: [
-                                { id: 'auto', label: 'Default' },
-                                { id: '-1', label: 'Send to back' },
-                                { id: '1', label: 'Send backward' },
-                                { id: '10', label: 'Bring to front' },
-                                { id: '100', label: 'Bring forward' },
+                                { id: 'auto', label: 'Automatic' }, // More precise than "Default"
+                                { id: '-1', label: 'Send Backward' }, // Clarifies action
+                                { id: '1', label: 'Move Back' }, // Simplifies "Send backward" to ensure clarity within four words
+                                { id: '10', label: 'Bring Forward' }, // Direct and clear
+                                { id: '100', label: 'Move Front' }, // Simplified for clarity
                             ],
                         },
                     ],
@@ -554,42 +554,47 @@ export default function CustomEditor() {
                             min: 0, // Min value (available only for the 'number' type)
                         },
                         {
-                            label: 'Overflow', // Label for the property
+                            label: 'Content Overflow', // Label for the property
                             property: 'overflow', // CSS property to change
                             default: 'none', // Default value to display
                             type: 'radio',
                             options: [
                                 {
                                     id: 'visible',
-                                    label: 'Block - Element appears on a new line and takes full available width',
+                                    label: 'Show all',
                                     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>`,
                                 }, {
                                     id: 'hidden',
-                                    label: 'Flex - Arranges elements horizontally, or vertically.',
+                                    label: 'Clip.',
                                     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye-off" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" /><path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" /><path d="M3 3l18 18" /></svg>`,
                                 }, {
                                     id: 'scroll',
-                                    label: 'Hide - Hide the element',
+                                    label: 'Scrollable.',
+                                    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mouse" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 3m0 4a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-4a4 4 0 0 1 -4 -4z" /><path d="M12 7l0 4" /></svg>`,
+                                },
+                                {
+                                    id: 'clip',
+                                    label: 'Clip and hide overflow',
                                     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mouse" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 3m0 4a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-4a4 4 0 0 1 -4 -4z" /><path d="M12 7l0 4" /></svg>`,
                                 },
                                 {
                                     id: 'auto',
-                                    label: 'Hide - Hide the element',
+                                    label: 'Adds scrollbars only when necessary.',
                                     icon: 'Auto',
                                 },
                             ],
                         },
                         {
-                            label: 'Object', // Label for the property
+                            label: 'Image fit mode', // Label for the property
                             property: 'object-fit', // CSS property to change
                             default: 'none', // Default value to display
                             type: 'select',
                             options: [
-                                {id: 'contain', label: 'Contain'},
-                                {id: 'cover', label: 'Cover'},
-                                {id: 'fill', label: 'Fill'},
-                                {id: 'scale-down', label: 'Scale down'},
-                                {id: 'none', label: 'None'},
+                                {id: 'contain', label: 'Contain Within'}, // Enhanced clarity
+                                {id: 'cover', label: 'Cover Entire Space'}, // Explicit description
+                                {id: 'fill', label: 'Fill Available Space'}, // Descriptive
+                                {id: 'scale-down', label: 'Scale Down Only'}, // Clear action
+                                {id: 'none', label: 'None'}, // Explicit no action
                             ],
                         },
 
