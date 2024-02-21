@@ -6,6 +6,8 @@ import { useQuery } from '@tanstack/react-query';
 import axios from '@/lib/axios';
 import Loading from '@/app/(app)/Loading';
 import ErrorMessage from '@/app/(app)/Error';
+import ColorPicker from 'react-best-gradient-color-picker';
+import { useState } from 'react';
 
 export type Site = {
     id: number;
@@ -16,7 +18,7 @@ export type Site = {
 };
 
 const Dashboard = () => {
-
+  const [color, setColor] = useState('rgba(255,255,255,1)');
     const { data, isLoading, isError } = useQuery({
         queryKey: ['userSites'],
         queryFn: async () => {
@@ -31,8 +33,9 @@ const Dashboard = () => {
 
     return (
         <div>
+
             <div className="w-full flex justify-between items-center">
-                <h1>Sites</h1>
+                <h1>Sites</h1>6
                 <CreateSiteModal />
             </div>
             <div className="grid grid-cols-4 gap-4 my-8">

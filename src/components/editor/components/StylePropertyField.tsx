@@ -209,12 +209,18 @@ export default function StylePropertyField({
             break
         case 'color': {
             inputToRender = (
-                <ColorInput
-                    size="xs"
-                    value={value} onChange={onChange}
-                    format="hex"
-                    swatches={['#2e2e2e', '#868e96', '#fa5252', '#e64980', '#be4bdb', '#7950f2', '#4c6ef5', '#228be6', '#15aabf', '#12b886', '#40c057', '#82c91e', '#fab005', '#fd7e14']}
-                />
+              <Popover position="left-end" withArrow shadow="md">
+                  <Popover.Target>
+                      <Button justify="space-between" leftSection={<IconPalette size="1rem" />}
+                              rightSection={
+                          <IconCircleFilled className={`text-[${value}]`} size="1rem" />} variant="default" fullWidth
+                              size="xs">Pick</Button>
+                  </Popover.Target>
+                  <Popover.Dropdown>
+                      <ColorPicker hideOpacity hideAdvancedSliders hideColorGuide height={160} width={270} value={value} onChange={onChange} />
+                  </Popover.Dropdown>
+              </Popover>
+
             )
         }
             break
