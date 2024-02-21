@@ -16,7 +16,6 @@ export const useFormFetch = (endpoint, initOptions = {}) => {
 
     const doFetch = async (endpoint, options = {}) => {
         try {
-
             setIsLoading(true);
             setError(null);
             setValidationErrors({});
@@ -32,12 +31,10 @@ export const useFormFetch = (endpoint, initOptions = {}) => {
         } catch (error) {
             if (error.response) {
 
-
                 if (error.response.status === 422) {
                     // Handle Laravel validation errors
                     setValidationErrors(error.response.data.errors || {});
                 }
-
                 setError(error.response.data.message || 'Server responded with an error');
             } else if (error.request) {
                 // The request was made but no response was received

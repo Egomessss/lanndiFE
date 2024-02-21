@@ -1,3 +1,4 @@
+'use client'
 import { useState, useEffect } from "react";
 import axios from '../lib/axios'
 
@@ -28,7 +29,7 @@ export const useFetch = (url, options = {}) => {
                 const response = await axios(config);
                 setData(response.data);
             } catch (err) {
-                setError( 'Could not fetch data');
+                setError( 'Could not fetch data, please try again');
             } finally {
                 setLoading(false);
             }

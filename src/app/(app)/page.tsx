@@ -1,15 +1,14 @@
-'use client'
+'use client';
 
-import { Button, Modal } from '@mantine/core'
-import { IconPlus } from '@tabler/icons-react'
-import Link from 'next/link'
-import { useDisclosure } from '@mantine/hooks'
-import CreateSiteModal from '@/components/dashboard/CreateSiteModal'
-import { useFetch } from '@/hooks/useFetch'
-import { useEffect } from 'react'
-import DashboardCard from '@/components/dashboard/DashboardCard'
+import CreateSiteModal from '@/components/dashboard/CreateSiteModal';
+import DashboardCard from '@/components/dashboard/DashboardCard';
+import { useQuery } from '@tanstack/react-query';
+import axios from '@/lib/axios';
+import Loading from '@/app/(app)/Loading';
+import ErrorMessage from '@/app/(app)/Error';
 
-type Site = {
+export type Site = {
+    id: number;
     name: string;
     slug: string;
     isLive: boolean;
@@ -18,10 +17,16 @@ type Site = {
 
 const Dashboard = () => {
 
-    const { data, loading, error } = useFetch('/api/v1/sites');
-    console.log(data)
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error}</div>;
+    const { data, isLoading, isError } = useQuery({
+        queryKey: ['userSites'],
+        queryFn: async () => {
+         const {data} = await axios.get('/api/v1/sites');
+            return data as Site[];
+        },
+    })
+
+    if (isLoading) return <Loading/>
+    if (isError) return <ErrorMessage/>
 
 
     return (
@@ -31,9 +36,9 @@ const Dashboard = () => {
                 <CreateSiteModal />
             </div>
             <div className="grid grid-cols-4 gap-4 my-8">
-                {data?.map((site: Site) => (
-                    // Assuming your data has an id and other properties you need to pass to DashboardCard
-                    <DashboardCard key={site.slug} data={site} />
+                {data?.map((site) => (
+                  // Assuming your data has an id and other properties you need to pass to DashboardCard
+                  <DashboardCard key={site.slug} {...site} />
                 ))}
             </div>
 

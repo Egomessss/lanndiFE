@@ -1,38 +1,21 @@
-import {
-    ActionIcon,
-    Button,
-    Group,
-    rem,
-    Switch,
-    Tooltip,
-    useComputedColorScheme,
-    useMantineColorScheme,
-    useMantineTheme,
-} from '@mantine/core'
-import TopBarButtons from './TopBarButtons'
+import { ActionIcon, Button, Group, Tooltip, useComputedColorScheme, useMantineColorScheme } from '@mantine/core';
+import TopBarButtons from './TopBarButtons';
 import {
     IconArrowLeft,
     IconArrowsHorizontal,
-    IconCode,
     IconDeviceDesktop,
     IconDeviceFloppy,
     IconDeviceLaptop,
     IconDeviceMobile,
     IconDeviceTablet,
     IconExternalLink,
-    IconGrid4x4,
-    IconLink,
     IconMoon,
-    IconMoonStars, IconScanEye,
-    IconSettings,
     IconSun,
-    IconX,
-} from '@tabler/icons-react'
+} from '@tabler/icons-react';
 
-import { DevicesProvider, WithEditor } from '@/components/editor/wrappers'
-import React from 'react'
-import { useEditorInstance } from '@/components/editor/context/EditorInstance'
-import Link from 'next/link'
+import { DevicesProvider, WithEditor } from '@/components/editor/wrappers';
+import React from 'react';
+import Link from 'next/link';
 
 
 export default function Topbar({ openBlockSideBar, onClick }: any) {
@@ -57,9 +40,6 @@ export default function Topbar({ openBlockSideBar, onClick }: any) {
     const computedColorScheme = useComputedColorScheme('light', {
         getInitialValueInEffect: true,
     })
-    const theme = useMantineTheme()
-
-
 
 
     return (

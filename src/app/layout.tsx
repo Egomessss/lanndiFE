@@ -6,6 +6,8 @@ import { ColorSchemeScript, MantineProvider } from '@mantine/core'
 import { Inter } from 'next/font/google'
 import { ModalsProvider } from '@mantine/modals'
 import { Notifications } from '@mantine/notifications'
+import TanstackProvider from '@/components/providers/TanstackProvider'
+import React from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,12 +27,14 @@ export default function RootLayout({
             <ColorSchemeScript />
         </head>
         <body className={inter.className}>
-        <MantineProvider  defaultColorScheme="dark">
-            <Notifications />
-            <ModalsProvider >
-                {children}
-            </ModalsProvider>
-        </MantineProvider>
+        <TanstackProvider>
+            <MantineProvider defaultColorScheme="dark">
+                <Notifications />
+                <ModalsProvider>
+                    {children}
+                </ModalsProvider>
+            </MantineProvider>
+        </TanstackProvider>
         </body>
         </html>
     )
