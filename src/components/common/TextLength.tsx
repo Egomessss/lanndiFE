@@ -1,6 +1,12 @@
 import React from 'react';
 
-const TextLength = ({ maxLength, value }) => {
+type TextLengthProps = {
+    maxLength:number
+    value:string
+}
+
+const TextLength = ({ maxLength, value }:TextLengthProps) => {
+
   return (
     <div className="flex justify-end">
       {' '}
