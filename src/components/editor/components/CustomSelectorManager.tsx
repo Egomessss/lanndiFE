@@ -47,7 +47,9 @@ export default function CustomSelectorManager({
     return (
         <div className=" flex flex-col  gap-2 text-left">
             <div className="flex items-center justify-between">
-                <Tooltip
+                <Tooltip color="blue" multiline
+                         w={200} position="left-end"
+                         withArrow openDelay={400}
                     label="Use this to change how your block reacts with a user action. e.g. Change background colour on hover">
                     <ThemeIcon variant="light">
                         <IconExclamationCircle size="1rem" />

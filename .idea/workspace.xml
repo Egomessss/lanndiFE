@@ -4,14 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a46702ba-c4d1-4d54-b380-2c149de353c5" name="Changes" comment="idk">
+    <list default="true" id="a46702ba-c4d1-4d54-b380-2c149de353c5" name="Changes" comment="tooltip">
+      <change afterPath="$PROJECT_DIR$/.idea/blade.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/laravel-idea-personal.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/laravel-idea.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$USER_HOME$/PhpstormProjects/lanndiBE/app/Http/Controllers/API/V1/SiteController.php" beforeDir="false" afterPath="$USER_HOME$/PhpstormProjects/lanndiBE/app/Http/Controllers/API/V1/SiteController.php" afterDir="false" />
-      <change beforePath="$USER_HOME$/PhpstormProjects/lanndiBE/app/Http/Requests/SiteRequest.php" beforeDir="false" afterPath="$USER_HOME$/PhpstormProjects/lanndiBE/app/Http/Requests/SiteRequest.php" afterDir="false" />
-      <change beforePath="$USER_HOME$/PhpstormProjects/lanndiBE/app/Http/Resources/SiteResource.php" beforeDir="false" afterPath="$USER_HOME$/PhpstormProjects/lanndiBE/app/Http/Resources/SiteResource.php" afterDir="false" />
-      <change beforePath="$USER_HOME$/PhpstormProjects/lanndiBE/app/Models/Site.php" beforeDir="false" afterPath="$USER_HOME$/PhpstormProjects/lanndiBE/app/Models/Site.php" afterDir="false" />
-      <change beforePath="$USER_HOME$/PhpstormProjects/lanndiBE/database/migrations/2024_02_06_230000_create_sites_table.php" beforeDir="false" afterPath="$USER_HOME$/PhpstormProjects/lanndiBE/database/migrations/2024_02_06_230000_create_sites_table.php" afterDir="false" />
-      <change beforePath="$USER_HOME$/PhpstormProjects/lanndiBE/routes/api.php" beforeDir="false" afterPath="$USER_HOME$/PhpstormProjects/lanndiBE/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(app)/Loading.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/Loading.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/editor/[slug]/_components/SiteSettingsForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/editor/[slug]/_components/SiteSettingsForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/editor/components/CustomSelectorManager.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/components/CustomSelectorManager.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +30,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 4
@@ -41,21 +46,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.laravel-idea.search-composer-json": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/edgom/PhpstormProjects/lanndiBE",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Users\\edgom\\Downloads\\lanndiFE\\node_modules\\typescript\\lib"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.laravel-idea.search-composer-json&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.laravel-idea.update-module-directories&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/edgom/PhpstormProjects/lanndiBE&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\edgom\\Downloads\\lanndiFE\\node_modules\\typescript\\lib&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\edgom\Downloads\lanndiFE\src\components\common" />
@@ -72,7 +79,11 @@
       <updated>1707850515420</updated>
       <workItem from="1707850524331" duration="1280000" />
       <workItem from="1708500567930" duration="9909000" />
-      <workItem from="1708573879665" duration="424000" />
+      <workItem from="1708573879665" duration="755000" />
+      <workItem from="1708574667551" duration="412000" />
+      <workItem from="1708637400063" duration="1326000" />
+      <workItem from="1708876197722" duration="66000" />
+      <workItem from="1708910213365" duration="1783000" />
     </task>
     <task id="LOCAL-00001" summary="idk">
       <option name="closed" value="true" />
@@ -82,15 +93,79 @@
       <option name="project" value="LOCAL" />
       <updated>1708565265721</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="idk">
+      <option name="closed" value="true" />
+      <created>1708574449008</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1708574449008</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="3410d096-be4d-4962-a12b-d416d4099179" value="TOOL_WINDOW" />
+        <entry key="4f59b02f-13a6-496b-9ba6-70340f1c692b" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
+        <entry key="3410d096-be4d-4962-a12b-d416d4099179">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+            </State>
+          </value>
+        </entry>
+        <entry key="4f59b02f-13a6-496b-9ba6-70340f1c692b">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$USER_HOME$/PhpstormProjects/lanndiBE" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State />
@@ -100,7 +175,14 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="idk" />
-    <option name="LAST_COMMIT_MESSAGE" value="idk" />
+    <MESSAGE value="tooltip" />
+    <option name="LAST_COMMIT_MESSAGE" value="tooltip" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
