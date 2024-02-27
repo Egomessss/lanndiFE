@@ -44,24 +44,25 @@ const AppLayout = ({ children, header }) => {
                     <Link className="no-underline text-white font-bold text-xl" href="/">
                         lanndi
                     </Link>
-                    <Menu shadow="md" width={200}>
-                        <Menu.Target>
-                           <Button>{user?.name}</Button>
-                            {/*<Avatar color="green" radius="xl"></Avatar>*/}
-                        </Menu.Target>
-                        <Menu.Dropdown>
-                            <Menu.Item leftSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}>
-                                Account Settings
-                            </Menu.Item>
-                            <Menu.Divider />
-                            <Menu.Item  onClick={logout}
-                                color="red"
-                                leftSection={<IconLogout style={{ width: rem(14), height: rem(14) }} />}
-                            >
-                                Logout
-                            </Menu.Item>
-                        </Menu.Dropdown>
-                    </Menu>
+                    <p>{user?.name}</p>
+                    {/*<Menu shadow="md" width={200}>*/}
+                    {/*    <Menu.Target>*/}
+                    {/*       <Button>{user?.name}</Button>*/}
+                    {/*        /!*<Avatar color="green" radius="xl"></Avatar>*!/*/}
+                    {/*    </Menu.Target>*/}
+                    {/*    <Menu.Dropdown>*/}
+                    {/*        <Menu.Item leftSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}>*/}
+                    {/*            Account Settings*/}
+                    {/*        </Menu.Item>*/}
+                    {/*        <Menu.Divider />*/}
+                    {/*        <Menu.Item  onClick={logout}*/}
+                    {/*            color="red"*/}
+                    {/*            leftSection={<IconLogout style={{ width: rem(14), height: rem(14) }} />}*/}
+                    {/*        >*/}
+                    {/*            Logout*/}
+                    {/*        </Menu.Item>*/}
+                    {/*    </Menu.Dropdown>*/}
+                    {/*</Menu>*/}
                 </div>
 
             </AppShell.Header>
@@ -77,11 +78,11 @@ const AppLayout = ({ children, header }) => {
                     label="Billing"
                     leftSection={<IconCreditCard size="1rem" stroke={1.5} />}
                 />
-                <NavLink
-                    href="/account-settings"
-                    label="Account Settings"
-                    leftSection={<IconSettings size="1rem" stroke={1.5} />}
-                />
+                {/*<NavLink*/}
+                {/*    href="/account-settings"*/}
+                {/*    label="Account Settings"*/}
+                {/*    leftSection={<IconSettings size="1rem" stroke={1.5} />}*/}
+                {/*/>*/}
             </AppShell.Navbar>
             <AppShell.Main>{children}</AppShell.Main>
         </AppShell>

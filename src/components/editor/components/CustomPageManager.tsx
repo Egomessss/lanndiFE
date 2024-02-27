@@ -76,7 +76,6 @@ export default function CustomPageManager({
                             size="xs"
                             variant={page === selected ? 'filled' : 'subtle'}
                             onClick={() => select(page)}
-                            className="rounded-lg"
                             rightSection={
                                 <Menu
                                     shadow="md"

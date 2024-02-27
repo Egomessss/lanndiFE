@@ -36,10 +36,10 @@ export default function Topbar({ openBlockSideBar, onClick }: any) {
         return null // Fallback
     }
 
-    const { setColorScheme } = useMantineColorScheme()
-    const computedColorScheme = useComputedColorScheme('light', {
-        getInitialValueInEffect: true,
-    })
+    // const { setColorScheme } = useMantineColorScheme()
+    // const computedColorScheme = useComputedColorScheme('light', {
+    //     getInitialValueInEffect: true,
+    // })
 
 
     return (
@@ -55,17 +55,17 @@ export default function Topbar({ openBlockSideBar, onClick }: any) {
                     Dashboard
                 </Button>
 
-                <Group justify="center">
-                    <ActionIcon
-                        onClick={() => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')}
-                        variant="subtle"
-                        color={computedColorScheme === 'light' ?  'blue' :'yellow'}
-                        size="md"
-                        aria-label="Toggle color scheme"
-                    >
-                        {computedColorScheme === 'light' ? <IconMoon size="1rem"  /> : <IconSun  size="1rem" />}
-                    </ActionIcon>
-                </Group>
+                {/*<Group justify="center">*/}
+                {/*    <ActionIcon*/}
+                {/*        onClick={() => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')}*/}
+                {/*        variant="subtle"*/}
+                {/*        color={computedColorScheme === 'light' ?  'blue' :'yellow'}*/}
+                {/*        size="md"*/}
+                {/*        aria-label="Toggle color scheme"*/}
+                {/*    >*/}
+                {/*        {computedColorScheme === 'light' ? <IconMoon size="1rem"  /> : <IconSun  size="1rem" />}*/}
+                {/*    </ActionIcon>*/}
+                {/*</Group>*/}
             </div>
             <div className="flex items-center gap-4">
                 <DevicesProvider>
