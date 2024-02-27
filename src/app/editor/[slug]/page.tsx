@@ -109,8 +109,8 @@ export default function CustomEditor() {
         switch (selected) {
             case 'Blocks':
                 return <BlockSideBar/>
-            case 'Integrations':
-                return <BlockSideBar/>
+            // case 'Integrations':
+            //     return <BlockSideBar/>
             case 'Layers':
                 return <LayersLeftSideBar/>
             case 'Pages':

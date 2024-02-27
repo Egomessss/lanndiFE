@@ -16,7 +16,7 @@ import siteSettingsForm from '@/app/editor/[slug]/_components/SiteSettingsForm'
 export type SiteSettings = {
     title: string,
     description: string,
-    favIco: File | string,
+    favIcon: File | string,
     ogImage: File | string,
     language: string,
     headCode: string,

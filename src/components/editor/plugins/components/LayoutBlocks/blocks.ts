@@ -169,8 +169,6 @@ export default function(editor: Editor, opts) {
         height:33%;
         width:100%;
         }
-   
-    
       `,
             },
         },

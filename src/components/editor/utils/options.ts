@@ -9,10 +9,20 @@ import ExtraBlocks from "@/components/editor/plugins/components/ExtraBlocks";
 import CustomCode from "@/components/editor/plugins/utils/CustomCode";
 import BorderStyle from "@/components/editor/plugins/utils/BorderStyle";
 import {EditorConfig} from "grapesjs";
+import {useEditor} from "@/components/editor/context/EditorInstance";
+import {useParams} from "next/navigation";
+import GoogleIcons from "@/components/editor/plugins/utils/GoogleIcons";
 
-export  const gjsOptions: EditorConfig = {
+// const editor = useEditor();
+//
+// const projectId = getProjectId();
+// const params = useParams()
+// const siteSlug = params.slug
+
+export const gjsOptions: EditorConfig = {
+
     height: '100vh',
-    undoManager: { trackSelection: false },
+    undoManager: {trackSelection: false},
     styleManager: {
         sectors: [
             {
@@ -167,7 +177,7 @@ export  const gjsOptions: EditorConfig = {
                             type: 'number',
                             default: 0,
                             min: 0,
-                            units: ['px','%', 'em', 'rem' ],
+                            units: ['px', '%', 'em', 'rem'],
                         },
                             {
                                 label: 'Spacing column',
@@ -175,7 +185,7 @@ export  const gjsOptions: EditorConfig = {
                                 type: 'number',
                                 default: 0,
                                 min: 0,
-                                units: ['px','%', 'em', 'rem' ],
+                                units: ['px', '%', 'em', 'rem'],
                             }],
                     },
 
@@ -411,11 +421,11 @@ export  const gjsOptions: EditorConfig = {
                         property: 'position',
                         label: 'Element Position',
                         options: [
-                            { id: 'static', label: 'Default' },
-                            { id: 'relative', label: 'Relative to current position' },
-                            { id: 'absolute', label: 'Relative to container' },
-                            { id: 'fixed', label: 'Fixed on viewport' },
-                            { id: 'sticky', label: "Sticks while scrolling" },
+                            {id: 'static', label: 'Default'},
+                            {id: 'relative', label: 'Relative to current position'},
+                            {id: 'absolute', label: 'Relative to container'},
+                            {id: 'fixed', label: 'Fixed on viewport'},
+                            {id: 'sticky', label: "Sticks while scrolling"},
                         ],
                     },
                     {
@@ -424,7 +434,7 @@ export  const gjsOptions: EditorConfig = {
                         type: 'composite',
                         properties: [
 
-                            { type: 'number',   units: ['px', '%', 'em', 'rem'], default: '0', property: 'top' },
+                            {type: 'number', units: ['px', '%', 'em', 'rem'], default: '0', property: 'top'},
                             {
                                 type: 'number',
                                 units: ['px', '%', 'em', 'rem'],
@@ -437,7 +447,7 @@ export  const gjsOptions: EditorConfig = {
                                 default: '0',
                                 property: 'bottom',
                             },
-                            { type: 'number',   units: ['px', '%', 'em', 'rem'], default: '0', property: 'left' },
+                            {type: 'number', units: ['px', '%', 'em', 'rem'], default: '0', property: 'left'},
                         ],
                     },
                     {
@@ -446,11 +456,11 @@ export  const gjsOptions: EditorConfig = {
                         label: 'Stack order control',
                         default: 'auto',
                         options: [
-                            { id: 'auto', label: 'Automatic' }, // More precise than "Default"
-                            { id: '-1', label: 'Send Backward' }, // Clarifies action
-                            { id: '1', label: 'Move Back' }, // Simplifies "Send backward" to ensure clarity within four words
-                            { id: '10', label: 'Bring Forward' }, // Direct and clear
-                            { id: '100', label: 'Move Front' }, // Simplified for clarity
+                            {id: 'auto', label: 'Automatic'}, // More precise than "Default"
+                            {id: '-1', label: 'Send Backward'}, // Clarifies action
+                            {id: '1', label: 'Move Back'}, // Simplifies "Send backward" to ensure clarity within four words
+                            {id: '10', label: 'Bring Forward'}, // Direct and clear
+                            {id: '100', label: 'Move Front'}, // Simplified for clarity
                         ],
                     },
                 ],
@@ -494,11 +504,11 @@ export  const gjsOptions: EditorConfig = {
                         property: 'border-style', // CSS property to change
                         default: 'none', // Default value to display
                         options: [
-                            { id: 'none', label: 'None' },
-                            { id: 'hidden', label: 'Hidden' },
-                            { id: 'solid', label: 'Solid' },
-                            { id: 'dotted', label: 'Dotted' },
-                            { id: 'dashed', label: 'Dashed' },
+                            {id: 'none', label: 'None'},
+                            {id: 'hidden', label: 'Hidden'},
+                            {id: 'solid', label: 'Solid'},
+                            {id: 'dotted', label: 'Dotted'},
+                            {id: 'dashed', label: 'Dashed'},
                         ],
                     },
                     {
@@ -517,7 +527,7 @@ export  const gjsOptions: EditorConfig = {
                         type: 'composite',
                         property: 'font',
                         label: 'Font',
-                        detached:false,
+                        detached: false,
                         // Additional props
                         properties: [
                             {
@@ -526,18 +536,18 @@ export  const gjsOptions: EditorConfig = {
                                 property: 'font-family', // CSS property to change
                                 default: 'inherit', // 'inherit' is more appropriate for font-family defaults
                                 options: [
-                                    { id: 'inherit', label: 'Inherit' }, // Inherits the font-family from its parent
-                                    { id: 'serif', label: 'Serif' }, // Generic font family
-                                    { id: 'sans-serif', label: 'Sans-serif' }, // Generic font family
-                                    { id: 'monospace', label: 'Monospace' }, // Generic font family
-                                    { id: 'cursive', label: 'Cursive' }, // Generic font family
-                                    { id: 'fantasy', label: 'Fantasy' }, // Generic font family
-                                    { id: 'Times New Roman', label: 'Times New Roman' }, // Web-safe font
-                                    { id: 'Arial', label: 'Arial' }, // Web-safe font
-                                    { id: 'Verdana', label: 'Verdana' }, // Web-safe font
-                                    { id: 'Georgia', label: 'Georgia' }, // Web-safe font
-                                    { id: 'Courier New', label: 'Courier New' }, // Web-safe font
-                                    { id: 'Comic Sans MS', label: 'Comic Sans MS' } // Web-safe font, though often debated in design choice
+                                    {id: 'inherit', label: 'Inherit'}, // Inherits the font-family from its parent
+                                    {id: 'serif', label: 'Serif'}, // Generic font family
+                                    {id: 'sans-serif', label: 'Sans-serif'}, // Generic font family
+                                    {id: 'monospace', label: 'Monospace'}, // Generic font family
+                                    {id: 'cursive', label: 'Cursive'}, // Generic font family
+                                    {id: 'fantasy', label: 'Fantasy'}, // Generic font family
+                                    {id: 'Times New Roman', label: 'Times New Roman'}, // Web-safe font
+                                    {id: 'Arial', label: 'Arial'}, // Web-safe font
+                                    {id: 'Verdana', label: 'Verdana'}, // Web-safe font
+                                    {id: 'Georgia', label: 'Georgia'}, // Web-safe font
+                                    {id: 'Courier New', label: 'Courier New'}, // Web-safe font
+                                    {id: 'Comic Sans MS', label: 'Comic Sans MS'} // Web-safe font, though often debated in design choice
                                 ],
                             },
                             {
@@ -553,15 +563,15 @@ export  const gjsOptions: EditorConfig = {
                                 property: 'font-weight', // CSS property to change
                                 default: '400', // '400' corresponds to Normal weight, a common default
                                 options: [
-                                    { id: '100', label: '100 – Thin' },
-                                    { id: '200', label: '200 – Extra Light' },
-                                    { id: '300', label: '300 – Light' },
-                                    { id: '400', label: '400 – Normal' },
-                                    { id: '500', label: '500 – Medium' },
-                                    { id: '600', label: '600 – Semi Bold' },
-                                    { id: '700', label: '700 – Bold' },
-                                    { id: '800', label: '800 – Extra Bold' },
-                                    { id: '900', label: '900 – Black (Heavy)' },
+                                    {id: '100', label: '100 – Thin'},
+                                    {id: '200', label: '200 – Extra Light'},
+                                    {id: '300', label: '300 – Light'},
+                                    {id: '400', label: '400 – Normal'},
+                                    {id: '500', label: '500 – Medium'},
+                                    {id: '600', label: '600 – Semi Bold'},
+                                    {id: '700', label: '700 – Bold'},
+                                    {id: '800', label: '800 – Extra Bold'},
+                                    {id: '900', label: '900 – Black (Heavy)'},
                                 ],
                             },
                             {
@@ -570,8 +580,8 @@ export  const gjsOptions: EditorConfig = {
                                 property: 'font-style', // CSS property to change
                                 default: 'normal', // CSS property to change
                                 options: [
-                                    { id: 'normal', label: 'Normal' }, // Inherits the font-family from its parent
-                                    { id: 'italic', label: 'Italic' }, // Generic font family
+                                    {id: 'normal', label: 'Normal'}, // Inherits the font-family from its parent
+                                    {id: 'italic', label: 'Italic'}, // Generic font family
                                 ],
                             },
                         ]
@@ -595,10 +605,10 @@ export  const gjsOptions: EditorConfig = {
                         label: 'Align', // Label for the property
                         property: 'text-align', // CSS property to change
                         options: [
-                            { id: 'left', label: 'Left' },
-                            { id: 'center', label: 'Center' },
-                            { id: 'right', label: 'Right' },
-                            { id: 'justify', label: 'Justify' },
+                            {id: 'left', label: 'Left'},
+                            {id: 'center', label: 'Center'},
+                            {id: 'right', label: 'Right'},
+                            {id: 'justify', label: 'Justify'},
                         ],
                     },
                     {
@@ -606,12 +616,12 @@ export  const gjsOptions: EditorConfig = {
                         label: 'White space', // Label for the property
                         property: 'white-space', // CSS property to change
                         options: [
-                            { id: 'normal', label: 'Normal' },
-                            { id: 'no-wrap', label: 'No wrap' },
-                            { id: 'pre', label: 'Keep Spaces' },
-                            { id: 'pre-wrap', label: 'Wrap & Keep Spaces' },
-                            { id: 'pre-line', label: 'Wrap & Trim Spaces' },
-                            { id: 'break-space', label: 'Spaces & Breaks' },
+                            {id: 'normal', label: 'Normal'},
+                            {id: 'no-wrap', label: 'No wrap'},
+                            {id: 'pre', label: 'Keep Spaces'},
+                            {id: 'pre-wrap', label: 'Wrap & Keep Spaces'},
+                            {id: 'pre-line', label: 'Wrap & Trim Spaces'},
+                            {id: 'break-space', label: 'Spaces & Breaks'},
                         ],
                     },
                     {
@@ -626,10 +636,10 @@ export  const gjsOptions: EditorConfig = {
                         label: 'Decoration', // Label for the property
                         property: 'text-decoration', // CSS property to change
                         options: [
-                            { id: 'none', label: 'None' },
-                            { id: 'underline', label: 'Underline' },
-                            { id: 'overline', label: 'Overline' },
-                            { id: 'line-through', label: 'Line through' },
+                            {id: 'none', label: 'None'},
+                            {id: 'underline', label: 'Underline'},
+                            {id: 'overline', label: 'Overline'},
+                            {id: 'line-through', label: 'Line through'},
                         ],
                     },
 
@@ -646,13 +656,13 @@ export  const gjsOptions: EditorConfig = {
                         property: 'cursor', // CSS property to change
                         default: 'default', // Default value to display
                         options: [
-                            { id: 'default', label: 'Default' },
-                            { id: 'pointer', label: 'pointer' },
-                            { id: 'wait', label: 'Wait' },
-                            { id: 'not-allowed', label: 'Not allowed' },
-                            { id: 'zoom-in', label: 'Zoom in' },
-                            { id: 'grab', label: 'Grab' },
-                            { id: 'move', label: 'Move' },
+                            {id: 'default', label: 'Default'},
+                            {id: 'pointer', label: 'pointer'},
+                            {id: 'wait', label: 'Wait'},
+                            {id: 'not-allowed', label: 'Not allowed'},
+                            {id: 'zoom-in', label: 'Zoom in'},
+                            {id: 'grab', label: 'Grab'},
+                            {id: 'move', label: 'Move'},
                         ],
                     },
                     {
@@ -660,11 +670,11 @@ export  const gjsOptions: EditorConfig = {
                         label: 'List style', // Label for the property
                         property: 'list-style', // CSS property to change
                         options: [
-                            { id: 'none', label: 'None' },
-                            { id: 'square', label: 'Square' },
-                            { id: 'circle', label: 'Circle' },
-                            { id: 'upper-roman', label: 'Roman' },
-                            { id: 'lower-alpha', label: 'Alpha' },
+                            {id: 'none', label: 'None'},
+                            {id: 'square', label: 'Square'},
+                            {id: 'circle', label: 'Circle'},
+                            {id: 'upper-roman', label: 'Roman'},
+                            {id: 'lower-alpha', label: 'Alpha'},
                         ],
                     },
 
@@ -696,7 +706,7 @@ export  const gjsOptions: EditorConfig = {
                 width: '380px',
                 widthMedia: '380px',
             },
-            { id: 'fit', name: 'Fit To Screen', width: '' },
+            {id: 'fit', name: 'Fit To Screen', width: ''},
         ],
     },
     storageManager: {
@@ -708,13 +718,22 @@ export  const gjsOptions: EditorConfig = {
             local: { // Options for the `local` type
                 key: 'lanndiProject', // The key for the local storage
             },
+            // remote: {
+            //     urlLoad: `api/v1/editor/site/${siteSlug}`,
+            //     urlStore: `api/v1/editor/site/store/${siteSlug}`,
+            //     // Enrich the store call
+            //     onStore: (data) => ({id: siteSlug, data})
+            //     ,
+            //     // If on load, you're returning the same JSON from above...
+            //     onLoad: result => result.data,
+            // }
         },
     },
     selectorManager: {
         stylePrefix: 'lnd-', componentFirst: true, states: [
-            { name: 'hover', label: 'Hover', info: 'Change styles on user hover' },
-            { name: 'focus', label: 'Focus', info: 'Change styles on user focus' },
-            { name: 'active', label: 'Active', info: 'Change styles on active element' },
+            {name: 'hover', label: 'Hover', info: 'Change styles on user hover'},
+            {name: 'focus', label: 'Focus', info: 'Change styles on user focus'},
+            {name: 'active', label: 'Active', info: 'Change styles on active element'},
         ],
     },
     // projectData: {

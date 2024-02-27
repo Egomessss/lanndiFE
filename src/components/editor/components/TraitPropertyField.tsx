@@ -34,6 +34,8 @@ export default function TraitPropertyField({
 
     let inputToRender = (
         <TextInput
+            label={trait.getLabel()}
+            size="xs"
             placeholder={defValue}
             value={value}
             onChange={(event)=> trait.setValue(event.currentTarget.value)}
@@ -52,6 +54,8 @@ export default function TraitPropertyField({
             {
                 inputToRender = (
                     <Select
+                        label={trait.getLabel()}
+                        size="xs"
                         value={value}
                         onChange={handleChange}
                         data={data}
@@ -63,6 +67,8 @@ export default function TraitPropertyField({
             {
                 inputToRender = (
                     <TextInput
+                        label={trait.getLabel()}
+                        size="xs"
                         placeholder={defValue}
                         value={value}
                         onChange={handleChange}
@@ -74,6 +80,8 @@ export default function TraitPropertyField({
             {
                 inputToRender = (
                     <Checkbox
+                        label={trait.getLabel()}
+                        size="xs"
                         checked={value === '_blank'}
                         onChange={(event) =>
                             trait.setValue(event.currentTarget.checked)
@@ -85,7 +93,7 @@ export default function TraitPropertyField({
         case 'switch':
         {
             inputToRender = (
-                <Switch checked={value} onChange={(event) =>
+                <Switch  label={trait.getLabel()}   size="xs" checked={value} onChange={(event) =>
                     trait.setValue(event.currentTarget.checked)
                 }/>
             )
@@ -95,6 +103,7 @@ export default function TraitPropertyField({
             {
                 inputToRender = (
                     <Button
+                        size="xs"
                         fullWidth
                         onClick={handleButtonClick}
                     >
@@ -110,9 +119,6 @@ export default function TraitPropertyField({
             {...rest}
             className="mb-3 w-full px-1"
         >
-            <div className="mb-2 flex items-center">
-                <div className="flex-grow capitalize">{trait.getLabel()}</div>
-            </div>
             {inputToRender}
         </div>
     )

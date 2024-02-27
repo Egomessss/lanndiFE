@@ -1,9 +1,9 @@
-import { BlockProperties, Editor, grapesjs } from 'grapesjs'
-import { PluginOptions } from './index'
+import {BlockProperties, Editor, grapesjs} from 'grapesjs'
+import {PluginOptions} from './index'
 
-export default function(editor: Editor, opts: Required<PluginOptions>) {
+export default function (editor: Editor, opts: Required<PluginOptions>) {
     const bm = editor.BlockManager
-    const { category, blocks } = opts
+    const {category, blocks} = opts
 
     const toAdd = (name: string) => blocks.indexOf(name) >= 0
     const commonBlockProps: Partial<BlockProperties> = {
@@ -22,7 +22,7 @@ export default function(editor: Editor, opts: Required<PluginOptions>) {
                     // The href trait, for the URL
                     {
                         type: 'text',
-                        label: 'target URL',
+                        label: 'Target URL',
                         name: 'href',
                     },
                     // A select trait for additional IDs
@@ -64,7 +64,7 @@ export default function(editor: Editor, opts: Required<PluginOptions>) {
                     // The href trait, for the URL
                     {
                         type: 'text',
-                        label: 'target Page',
+                        label: 'Target Page',
                         name: 'href',
                     },
                 ],
@@ -72,85 +72,84 @@ export default function(editor: Editor, opts: Required<PluginOptions>) {
         },
     })
 
-    toAdd('nav-link') &&
-    bm.add('nav-link', {
-        ...commonBlockProps,
-        label: 'NavLink',
-        media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-symlink" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 21v-4a3 3 0 0 1 3 -3h5" /><path d="M9 17l3 -3l-3 -3" /><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M5 11v-6a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-9.5" /></svg>`,
-        content: {
-            type: 'link',
-            content: 'NavLink',
-        },
-    })
-
-    editor.DomComponents.addType('link-box', {
-
-        model: {
-            defaults: {
-                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" /><path d="M11 13l9 -9" /><path d="M15 4h5v5" /></svg>`,
-                extend: 'link',
-                droppable:true,
-                attributes: { class: 'link-box' },
-                styles: ` 
-                .gjs-link-box {
-    color: inherit;
-    display: inline-block;
-    vertical-align: top;
-    padding: 10px;
-    max-width: 100%;
-    text-decoration: none;
-    cursor: pointer;
-}
-                .link-box:empty {
-    text-decoration: none;
-    padding: 5px;
-}
-                
-                .link-box:empty:before {
-      background-color: #ddd;
-    color: #000;
-    font-size: 16px;
-    font-weight: bold;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 30px;
-    padding: 0 10px;
-    opacity: 0.3;
-    border-radius: 3px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    content: "Link Box";
-    }
-                `,
-                traits: [
-                    // The href trait, for the URL
-                    {
-                        type: 'text',
-                        label: 'target URL',
-                        name: 'href',
-                    },
-                    // A select trait for additional IDs
-                    {
-                        type: 'text',
-                        label: 'Select target ID',
-                        name: 'select-id',
-                    },
-                    // A checkbox trait for opening the link in a new tab
-                    {
-                        type: 'checkbox',
-                        label: 'Open in new tab',
-                        name: 'target',
-                        valueTrue: '_blank',
-                        valueFalse: '_self',
-                    },
-                ],
-            },
-        },
-    })
-
+//     toAdd('nav-link') &&
+//     bm.add('nav-link', {
+//         ...commonBlockProps,
+//         label: 'NavLink',
+//         media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-symlink" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 21v-4a3 3 0 0 1 3 -3h5" /><path d="M9 17l3 -3l-3 -3" /><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M5 11v-6a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-9.5" /></svg>`,
+//         content: {
+//             type: 'link',
+//             content: 'NavLink',
+//         },
+//     })
+//
+//     editor.DomComponents.addType('link-box', {
+//
+//         model: {
+//             defaults: {
+//                 icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" /><path d="M11 13l9 -9" /><path d="M15 4h5v5" /></svg>`,
+//                 extend: 'link',
+//                 droppable:true,
+//                 attributes: { class: 'link-box' },
+//                 styles: `
+//                 .gjs-link-box {
+//     color: inherit;
+//     display: inline-block;
+//     vertical-align: top;
+//     padding: 10px;
+//     max-width: 100%;
+//     text-decoration: none;
+//     cursor: pointer;
+// }
+//                 .link-box:empty {
+//     text-decoration: none;
+//     padding: 5px;
+// }
+//
+//                 .link-box:empty:before {
+//       background-color: #ddd;
+//     color: #000;
+//     font-size: 16px;
+//     font-weight: bold;
+//     height: 100%;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     min-height: 30px;
+//     padding: 0 10px;
+//     opacity: 0.3;
+//     border-radius: 3px;
+//     white-space: nowrap;
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     content: "Link Box";
+//     }
+//                 `,
+//                 traits: [
+//                     // The href trait, for the URL
+//                     {
+//                         type: 'text',
+//                         label: 'Target URL',
+//                         name: 'href',
+//                     },
+//                     // A select trait for additional IDs
+//                     {
+//                         type: 'text',
+//                         label: 'Select target ID',
+//                         name: 'select-id',
+//                     },
+//                     // A checkbox trait for opening the link in a new tab
+//                     {
+//                         type: 'checkbox',
+//                         label: 'Open in new tab',
+//                         name: 'target',
+//                         valueTrue: '_blank',
+//                         valueFalse: '_self',
+//                     },
+//                 ],
+//             },
+//         },
+//     })
 
 
     toAdd('link-box') &&
@@ -167,50 +166,40 @@ export default function(editor: Editor, opts: Required<PluginOptions>) {
         isComponent: el => {
             // This will treat every 'div' element as a 'container' component
             if (el.tagName === 'button') {
-                return { type: 'button' }
+                return {type: 'button'}
             }
         },
         model: {
             defaults: {
                 icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-transition-bottom" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 18a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3" /><path d="M3 3m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v0a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z" /><path d="M12 9v8" /><path d="M9 14l3 3l3 -3" /></svg>`,
                 extend: 'link',
-                droppable:true,
-                attributes: { class: 'button' },
-                styles: ` 
-.button {
-  align-items: center;
-  appearance: button;
-  background-color: #0276FF;
-  border-radius: 8px;
-  border-style: none;
-  box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  flex-shrink: 0;
-  height:40px;
-  width:80px;
-  font-size: 100%;
-  line-height: 1.15;
-  margin: 0;
-  padding: 10px 21px;
-  text-align: center;
-  text-transform: none;
-  transition: color .13s ease-in-out,background .13s ease-in-out,opacity .13s ease-in-out,box-shadow .13s ease-in-out;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.button:active {
-  background-color: #006AE8;
-}
-
-.button:hover {
-  background-color: #1C84FF;
-}
+                droppable: true,
+                attributes: {class: 'btn'},
+                styles: `
+                    .btn {
+                    width:fit-content
+                    cursor: pointer;
+                    outline: 0;
+                    color: #fff;
+                    background-color: #0d6efd;
+                    border-color: #0d6efd;
+                    display: inline-block;
+                    font-weight: 400;
+                    line-height: 1.5;
+                    text-align: center;
+                    border: 1px solid transparent;
+                    padding: 4px 12px;
+                    font-size: 16px;
+                    border-radius: .25rem;
+                    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+                    }
+                    
+                    .btn:hover {
+                        color: #fff;
+                        background-color: darken(#0b5ed7, 10%);
+                        border-color: #0a58ca;
+                    }
+                
                 `,
             },
         },
@@ -222,7 +211,7 @@ export default function(editor: Editor, opts: Required<PluginOptions>) {
         ...commonBlockProps,
         label: opts.labelButton,
         media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-transition-bottom" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 18a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3" /><path d="M3 3m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v0a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z" /><path d="M12 9v8" /><path d="M9 14l3 3l3 -3" /></svg>`,
-        content: {type:'button', content:'Call To Action'},
+        content: {type: 'button', content: 'Button'},
     })
 
 
