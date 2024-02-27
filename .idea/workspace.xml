@@ -5,15 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a46702ba-c4d1-4d54-b380-2c149de353c5" name="Changes" comment="tooltip">
-      <change afterPath="$PROJECT_DIR$/.idea/blade.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/laravel-idea-personal.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/laravel-idea.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(app)/Loading.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/Loading.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/editor/[slug]/_components/SiteSettingsForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/editor/[slug]/_components/SiteSettingsForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/editor/components/CustomSelectorManager.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/components/CustomSelectorManager.tsx" afterDir="false" />
+      <change beforePath="$USER_HOME$/PhpstormProjects/lanndiBE/app/Http/Controllers/API/V1/SiteController.php" beforeDir="false" afterPath="$USER_HOME$/PhpstormProjects/lanndiBE/app/Http/Controllers/API/V1/SiteController.php" afterDir="false" />
+      <change beforePath="$USER_HOME$/PhpstormProjects/lanndiBE/app/Http/Requests/SiteRequest.php" beforeDir="false" afterPath="$USER_HOME$/PhpstormProjects/lanndiBE/app/Http/Requests/SiteRequest.php" afterDir="false" />
+      <change beforePath="$USER_HOME$/PhpstormProjects/lanndiBE/routes/api.php" beforeDir="false" afterPath="$USER_HOME$/PhpstormProjects/lanndiBE/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,10 +17,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ComposerSettings">
-    <execution />
+    <execution>
+      <executable path="composer" />
+    </execution>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$USER_HOME$/PhpstormProjects/lanndiBE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -59,7 +57,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\edgom\\Downloads\\lanndiFE\\node_modules\\typescript\\lib&quot;
   }
 }</component>
@@ -83,7 +81,9 @@
       <workItem from="1708574667551" duration="412000" />
       <workItem from="1708637400063" duration="1326000" />
       <workItem from="1708876197722" duration="66000" />
-      <workItem from="1708910213365" duration="1783000" />
+      <workItem from="1708910213365" duration="1882000" />
+      <workItem from="1708995793343" duration="1507000" />
+      <workItem from="1708997338667" duration="266000" />
     </task>
     <task id="LOCAL-00001" summary="idk">
       <option name="closed" value="true" />
@@ -101,7 +101,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708574449008</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="tooltip">
+      <option name="closed" value="true" />
+      <created>1708912499828</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1708912499828</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

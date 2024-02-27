@@ -24,9 +24,9 @@ const AppLayout = ({ children, header }) => {
     const { user, logout } = useAuth({ middleware: 'auth' })
 
 
-    if (!user) {
-        return <Loading />
-    }
+    // if (!user) {
+    //     return <Loading />
+    // }
 
     return (
         <AppShell
