@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { ActionIcon, Badge, Button, Menu, Text } from '@mantine/core';
-import { IconDots, IconSettings, IconTrash } from '@tabler/icons-react';
+import {IconDots, IconPencil, IconSettings, IconTrash} from '@tabler/icons-react';
 import Link from 'next/link';
 import { modals } from '@mantine/modals';
 import { Site } from '@/app/(app)/page';
@@ -42,10 +42,10 @@ const DashboardCard = ({ name, slug, ogImage, isLive }: Site) => {
             </Menu.Target>
 
             <Menu.Dropdown>
-              <Menu.Item component={Link} href={`/sites/${slug}/settings`}
-                         leftSection={<IconSettings size="1rem" />}>
-                Edit site
-              </Menu.Item>
+                <Menu.Item component={Link} href={`/editor/${slug}`}
+                           leftSection={<IconPencil size="1rem" />}>
+                    Edit site
+                </Menu.Item>
               <Menu.Item component={Link} href={`/sites/${slug}/settings`}
                          leftSection={<IconSettings size="1rem" />}>
                 Site Settings

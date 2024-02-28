@@ -1,4 +1,4 @@
-import { ActionIcon, Button, Group, Tooltip, useComputedColorScheme, useMantineColorScheme } from '@mantine/core';
+import {ActionIcon, Button, Group, Tooltip, useComputedColorScheme, useMantineColorScheme} from '@mantine/core';
 import TopBarButtons from './TopBarButtons';
 import {
     IconArrowLeft,
@@ -13,25 +13,91 @@ import {
     IconSun,
 } from '@tabler/icons-react';
 
-import { DevicesProvider, WithEditor } from '@/components/editor/wrappers';
+import {DevicesProvider, useEditor, useEditorMaybe, WithEditor} from '@/components/editor/wrappers';
 import React from 'react';
 import Link from 'next/link';
+import {useMutation} from "@tanstack/react-query";
+import axios from "@/lib/axios";
+import {notifications} from "@mantine/notifications";
+import Loading from "@/app/(app)/Loading";
+import ErrorMessage from "@/app/(app)/Error";
+import {useParams} from "next/navigation";
 
 
-export default function Topbar({ openBlockSideBar, onClick }: any) {
+function SaveButton() {
+
+    const params = useParams()
+    const siteSlug = params.slug
+
+    const editor = useEditorMaybe()
+
+    const data = editor?.getProjectData();
+    console.log(data)
+
+    const {mutate, isError, isPending} = useMutation({
+            mutationFn:
+                async () => await axios.post(`api/v1/sites/editor/${siteSlug}/store`, {projectId: siteSlug, data}),
+            // onSuccess:
+            //     (data) => {
+            //         const responseData = data?.data // Assuming your data is nested under a 'data' key
+            //         if (responseData) {
+            //             notifications.show({
+            //                 title: 'Success!',
+            //                 message: responseData.message,
+            //                 color: 'green',
+            //             })
+            //             console.log(`/editor/${responseData.slug}`)
+            //         }
+            //     }
+            // ,
+            onError:
+                (error) => {
+                    console.log('error', error)
+                    // @ts-ignore
+                    if (error.response.status === 422) {
+                        // Handle Laravel validation errors
+                        // @ts-ignore
+                        form.setErrors(error.response.data.errors || {})
+                    } else {
+                        notifications.show({
+                            title: 'Error',
+                            message: 'Something went wrong... Please try again!',
+                            color: 'red',
+                        })
+                    }
+                },
+        },
+    )
+
+
+    // if (isPending) return <Loading />
+    // if (isError) return <ErrorMessage />
+
+    return <Tooltip label="Save changes">
+
+        {/*<CreateUserAndPageModal />*/}
+
+        <ActionIcon onClick={() => mutate()} variant="subtle">
+            <IconDeviceFloppy size="1rem"/>
+        </ActionIcon>
+
+    </Tooltip>;
+}
+
+export default function Topbar({openBlockSideBar, onClick}: any) {
 
 
     const getDeviceIcon = (device: string) => {
         if (device === 'desktop') {
-            return <IconDeviceDesktop size="1rem" />
+            return <IconDeviceDesktop size="1rem"/>
         } else if (device === 'laptop') {
-            return <IconDeviceLaptop size="1rem" />
+            return <IconDeviceLaptop size="1rem"/>
         } else if (device === 'tablet') {
-            return <IconDeviceTablet size="1rem" />
+            return <IconDeviceTablet size="1rem"/>
         } else if (device === 'mobile') {
-            return <IconDeviceMobile size="1rem" />
+            return <IconDeviceMobile size="1rem"/>
         } else if (device === 'fit') {
-            return <IconArrowsHorizontal size="1rem" />
+            return <IconArrowsHorizontal size="1rem"/>
         }
         return null // Fallback
     }
@@ -50,7 +116,7 @@ export default function Topbar({ openBlockSideBar, onClick }: any) {
                     href="/"
                     variant="subtle"
                     size="xs"
-                    leftSection={<IconArrowLeft />}
+                    leftSection={<IconArrowLeft/>}
                 >
                     Dashboard
                 </Button>
@@ -69,7 +135,7 @@ export default function Topbar({ openBlockSideBar, onClick }: any) {
             </div>
             <div className="flex items-center gap-4">
                 <DevicesProvider>
-                    {({ selected, select, devices }) => (
+                    {({selected, select, devices}) => (
                         <div className="flex items-center gap-2">
                             {devices.map((device, index) => {
                                 const isSelected = device.id === selected
@@ -95,24 +161,16 @@ export default function Topbar({ openBlockSideBar, onClick }: any) {
                     )}
                 </DevicesProvider>
                 <WithEditor>
-                    <TopBarButtons onClick={onClick} />
+                    <TopBarButtons onClick={onClick}/>
                 </WithEditor>
             </div>
 
             <div className="flex w-full items-center justify-end gap-4">
 
-                <Button size="xs" variant="subtle" leftSection={<IconExternalLink size="1rem" />}>Preview</Button>
-                <Tooltip label="Save changes">
+                <Button size="xs" variant="subtle" leftSection={<IconExternalLink size="1rem"/>}>Preview</Button>
+                <SaveButton/>
 
-                    {/*<CreateUserAndPageModal />*/}
-
-                    <ActionIcon variant="subtle">
-                        <IconDeviceFloppy size="1rem" />
-                    </ActionIcon>
-
-                </Tooltip>
-
-                <Button  size="xs">Publish</Button>
+                <Button size="xs">Publish</Button>
             </div>
         </div>
     )

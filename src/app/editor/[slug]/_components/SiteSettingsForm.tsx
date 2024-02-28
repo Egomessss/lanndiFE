@@ -84,7 +84,7 @@ const SiteSettingsForm = ({
         }
 
         // Use Axios to send formData
-        return await axios.post(`/api/v1/sites/${slug}/update`, formData, {
+        return await axios.post(`/api/v1/sites/settings/${slug}/update`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data', // This is important
           },

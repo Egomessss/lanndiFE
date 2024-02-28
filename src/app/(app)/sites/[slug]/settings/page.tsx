@@ -31,7 +31,7 @@ const Page = () => {
     const { data, isLoading, isError } = useQuery({
         queryKey: ['siteSettings', siteSlug],
         queryFn: async () => {
-            const { data } = await axios.get(`/api/v1/sites/${siteSlug}`)
+            const { data } = await axios.get(`/api/v1/sites/settings/${siteSlug}`)
             return data as SiteSettings
         },
     })

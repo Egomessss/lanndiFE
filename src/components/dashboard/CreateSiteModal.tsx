@@ -32,7 +32,7 @@ const CreateSiteModal = () => {
 
     const { mutate: submitSite, isPending } = useMutation({
             mutationFn:
-                async () => await axios.post('/api/v1/sites/store', form.values),
+                async () => await axios.post('/api/v1/sites/settings/store', form.values),
             onSuccess:
                 (data) => {
                     const responseData = data?.data // Assuming your data is nested under a 'data' key
