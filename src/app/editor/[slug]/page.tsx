@@ -3,7 +3,7 @@ import grapesjs, {Editor, EditorConfig} from 'grapesjs'
 import {useClickOutside, useDisclosure} from '@mantine/hooks'
 import {AppShell, ScrollArea} from '@mantine/core'
 import React, {useState} from 'react'
-import GjsEditor, {Canvas, TraitsProvider, useEditor} from '@/components/editor/wrappers'
+import GjsEditor, {AssetsProvider, Canvas, TraitsProvider, useEditor} from '@/components/editor/wrappers'
 import LayersLeftSideBar from '@/components/editor/components/LayersLeftSideBar'
 import BlockSideBar from '@/components/editor/components/BlockSideBar'
 import PagesLeftSideBar from '@/components/editor/components/PagesLeftSideBar'
@@ -35,6 +35,7 @@ import {useParams} from "next/navigation";
 import {notifications} from "@mantine/notifications";
 import {SiteSettings} from "@/app/(app)/sites/[slug]/settings/page";
 import {starterTemplate, styleStarterTemplate} from "@/components/editor/templates/Starter";
+import CustomAssetManager from '@/components/editor/components/CustomAssetManager'
 
 
 export type EditorData = {
@@ -135,9 +136,6 @@ export default function CustomEditor() {
         // Keymap for the 'Esc' key to trigger the deselect command
         editor.Keymaps.add('deselect-components', 'esc', 'deselect-components')
     }
-
-
-
 
 
     const gjsOptions: EditorConfig = {
@@ -857,35 +855,23 @@ export default function CustomEditor() {
                 {name: 'active', label: 'Active', info: 'Change styles on active element'},
             ],
         },
-        projectData:data?.data
-            // {
-            //     assets: [
-            //         'https://via.placeholder.com/350x250/78c5d6/fff',
-            //         'https://via.placeholder.com/350x250/459ba8/fff',
-            //         'https://via.placeholder.com/350x250/79c267/fff',
-            //         'https://via.placeholder.com/350x250/c5d647/fff',
-            //         'https://via.placeholder.com/350x250/f28c33/fff',
-            //     ],
-            //     pages: [
-            //         {
-            //             name: 'Main Page',
-            //             component: starterTemplate,
-            //             styles: styleStarterTemplate,
-            //         },
-            //         {
-            //             name: 'Test Page',
-            //             component:
-            //                 `<h1>Start Building Your Landing Page</h1>`,
-            //         }
-            //         ,
-            //         {
-            //             name: 'Theme playground',
-            //             component:
-            //                 `<h1>Start Building Your Landing Page</h1>`,
-            //         }
-            //         ,
-            //     ],
-            // }
+        projectData: data?.data ||
+            {
+                assets: [
+                    'https://via.placeholder.com/350x250/78c5d6/fff',
+                    'https://via.placeholder.com/350x250/459ba8/fff',
+                    'https://via.placeholder.com/350x250/79c267/fff',
+                    'https://via.placeholder.com/350x250/c5d647/fff',
+                    'https://via.placeholder.com/350x250/f28c33/fff',
+                ],
+                pages: [
+                    {
+                        name: '/',
+                        component: starterTemplate,
+                        styles: styleStarterTemplate,
+                    },
+                ],
+            }
         ,
         plugins: [
             // FlexBlock,
@@ -993,17 +979,17 @@ export default function CustomEditor() {
                 {/*        />*/}
                 {/*    )}*/}
                 {/*</ModalProvider>*/}
-                {/*<AssetsProvider>*/}
-                {/*    {({ assets, select, close, Container }) => (*/}
-                {/*        <Container>*/}
-                {/*            <CustomAssetManager*/}
-                {/*                assets={assets}*/}
-                {/*                select={select}*/}
-                {/*                close={close}*/}
-                {/*            />*/}
-                {/*        </Container>*/}
-                {/*    )}*/}
-                {/*</AssetsProvider>*/}
+                <AssetsProvider>
+                    {({ assets, select, close, Container }) => (
+                        <Container>
+                            <CustomAssetManager
+                                assets={assets}
+                                select={select}
+                                close={close}
+                            />
+                        </Container>
+                    )}
+                </AssetsProvider>
             </div>
         </GjsEditor>
 

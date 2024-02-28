@@ -20,6 +20,7 @@ export default function CustomAssetManager({
         editor.Assets.remove(asset);
     };
 
+
     return (
         <div className="grid grid-cols-3 gap-2 pr-2">
             {assets.map((asset) => (

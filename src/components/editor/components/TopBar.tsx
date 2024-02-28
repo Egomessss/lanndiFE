@@ -1,20 +1,20 @@
-import {ActionIcon, Button, Group, Tooltip, useComputedColorScheme, useMantineColorScheme} from '@mantine/core';
+import {ActionIcon, Button, Group, Loader, Tooltip, useComputedColorScheme, useMantineColorScheme} from '@mantine/core';
 import TopBarButtons from './TopBarButtons';
 import {
     IconArrowLeft,
-    IconArrowsHorizontal,
+    IconArrowsHorizontal, IconCheck,
     IconDeviceDesktop,
     IconDeviceFloppy,
     IconDeviceLaptop,
     IconDeviceMobile,
     IconDeviceTablet,
-    IconExternalLink,
+    IconExternalLink, IconFaceIdError,
     IconMoon,
     IconSun,
 } from '@tabler/icons-react';
 
 import {DevicesProvider, useEditor, useEditorMaybe, WithEditor} from '@/components/editor/wrappers';
-import React from 'react';
+import React, {useState} from 'react';
 import Link from 'next/link';
 import {useMutation} from "@tanstack/react-query";
 import axios from "@/lib/axios";
@@ -25,63 +25,94 @@ import {useParams} from "next/navigation";
 
 
 function SaveButton() {
-
+    const [showSuccess, setShowSuccess] = useState(false);
     const params = useParams()
     const siteSlug = params.slug
 
     const editor = useEditorMaybe()
 
     const data = editor?.getProjectData();
-    console.log(data)
+
 
     const {mutate, isError, isPending} = useMutation({
             mutationFn:
                 async () => await axios.post(`api/v1/sites/editor/${siteSlug}/store`, {projectId: siteSlug, data}),
-            // onSuccess:
-            //     (data) => {
-            //         const responseData = data?.data // Assuming your data is nested under a 'data' key
-            //         if (responseData) {
-            //             notifications.show({
-            //                 title: 'Success!',
-            //                 message: responseData.message,
-            //                 color: 'green',
-            //             })
-            //             console.log(`/editor/${responseData.slug}`)
-            //         }
-            //     }
-            // ,
             onError:
-                (error) => {
-                    console.log('error', error)
-                    // @ts-ignore
-                    if (error.response.status === 422) {
-                        // Handle Laravel validation errors
-                        // @ts-ignore
-                        form.setErrors(error.response.data.errors || {})
-                    } else {
-                        notifications.show({
-                            title: 'Error',
-                            message: 'Something went wrong... Please try again!',
-                            color: 'red',
-                        })
-                    }
+                () => {
+                    notifications.show({
+                        title: 'Error',
+                        message: 'Something went wrong... Please try again!',
+                        color: 'red',
+                    })
+
                 },
+            onSuccess: () => {
+                // On success, show the check icon
+                setShowSuccess(true);
+                // And hide it after 2 seconds
+                setTimeout(() => setShowSuccess(false), 2000);
+            },
         },
     )
-
-
-    // if (isPending) return <Loading />
-    // if (isError) return <ErrorMessage />
-
+    // Determine the color based on the mutation's state
+    const color = isError ? 'red' : showSuccess ? 'green' : 'blue';
+    console.log(isError)
     return <Tooltip label="Save changes">
-
         {/*<CreateUserAndPageModal />*/}
-
-        <ActionIcon onClick={() => mutate()} variant="subtle">
-            <IconDeviceFloppy size="1rem"/>
+        <ActionIcon loading={isPending} className={!showSuccess ? "animate-pulse" : ''}
+                    color={color}
+                    onClick={() => mutate()}
+                    variant="subtle">
+            {isError && <IconFaceIdError size="1rem"/>}
+            {!isPending && !isError && showSuccess ? <IconCheck size="1rem"/> : <IconDeviceFloppy size="1rem"/>}
         </ActionIcon>
 
     </Tooltip>;
+}
+
+function PublishButton() {
+    const [showSuccess, setShowSuccess] = useState(false);
+    const params = useParams()
+    const siteSlug = params.slug
+
+    const editor = useEditorMaybe()
+
+    const data = editor?.getProjectData();
+
+    const pagesData = editor?.Pages.getAll().map(page => {
+        const component = page.getMainComponent();
+        const slug = page.getName();
+        return {
+            slug: slug,
+            html: editor.getHtml({component}),
+            css: editor.getCss({component})
+        }
+    });
+
+    console.log("pageData",pagesData)
+
+    const {mutate, isPending} = useMutation({
+            mutationFn:
+                async () => await axios.post(`api/v1/sites/${siteSlug}/publish`, {projectId: siteSlug, data, pagesData}),
+            onError:
+                () => {
+                    notifications.show({
+                        title: 'Error',
+                        message: 'Something went wrong... Please try again!',
+                        color: 'red',
+                    })
+
+                },
+            onSuccess: () => {
+                // On success, show the check icon
+                setShowSuccess(true);
+                // And hide it after 2 seconds
+                setTimeout(() => setShowSuccess(false), 2000);
+            },
+        },
+    )
+
+    return <Tooltip label="Publish Site"><Button loading={isPending} size="xs" onClick={() => mutate()}>Publish</Button></Tooltip>;
 }
 
 export default function Topbar({openBlockSideBar, onClick}: any) {
@@ -169,8 +200,7 @@ export default function Topbar({openBlockSideBar, onClick}: any) {
 
                 <Button size="xs" variant="subtle" leftSection={<IconExternalLink size="1rem"/>}>Preview</Button>
                 <SaveButton/>
-
-                <Button size="xs">Publish</Button>
+                <PublishButton/>
             </div>
         </div>
     )
