@@ -882,7 +882,7 @@ export default function CustomEditor() {
             MediaBlocks,
             ListBlocks,
             // FormBlocks,
-            SemanticBlocks,
+            // SemanticBlocks,
             // IntegrationsBlocks,
             ExtraBlocks,
             // PostCss,
