@@ -980,12 +980,13 @@ export default function CustomEditor() {
                 {/*    )}*/}
                 {/*</ModalProvider>*/}
                 <AssetsProvider>
-                    {({ assets, select, close, Container }) => (
+                    {({ assets, select, close, Container, open }) => (
                         <Container>
                             <CustomAssetManager
                                 assets={assets}
                                 select={select}
                                 close={close}
+                                open={open}
                             />
                         </Container>
                     )}

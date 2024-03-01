@@ -17,7 +17,7 @@ export default function CustomPageManager({
                                           }: PagesResultProps) {
     const [editingPageId, setEditingPageId] = useState<string | null>(null)
 
-    console.log("pages", pages)
+    // console.log("pages", pages)
     const openModal = (pageToDelete: Page) => modals.openConfirmModal({
         centered: true,
         title: 'Please confirm your action',
