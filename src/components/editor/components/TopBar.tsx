@@ -32,7 +32,7 @@ function SaveButton() {
     const editor = useEditorMaybe()
 
     const data = editor?.getProjectData();
-
+    console.log("data",data)
 
     const {mutate, isError, isPending} = useMutation({
             mutationFn:

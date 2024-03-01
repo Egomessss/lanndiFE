@@ -16,7 +16,7 @@ export default function CustomStyleManager({
     const selectedComponent = editor?.getSelected()?.getStyle('display');
     const selectedComponentParent = editor?.getSelected()?.parent()?.getStyle('display');
 
-    console.log(sectors);
+
     if (selectedComponent === 'flex') {
         const sector = sm?.getSector('flexProperties');
         sector?.setOpen(true);

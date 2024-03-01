@@ -295,6 +295,7 @@ export default function TopBarButtons({ onClick }) {
                 {/*</Tooltip>*/}
             </div>
             <Divider orientation="vertical" />
+
             {cmdButtons.map(({ id, Icon, disabled, options, name }) => (
                 <div
                     key={id}

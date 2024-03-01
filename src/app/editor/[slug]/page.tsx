@@ -1,9 +1,9 @@
 'use client'
 import grapesjs, {Editor, EditorConfig} from 'grapesjs'
-import {useClickOutside, useDisclosure} from '@mantine/hooks'
+import {useDisclosure} from '@mantine/hooks'
 import {AppShell, ScrollArea} from '@mantine/core'
 import React, {useState} from 'react'
-import GjsEditor, {AssetsProvider, Canvas, TraitsProvider, useEditor} from '@/components/editor/wrappers'
+import GjsEditor, {AssetsProvider, Canvas, ModalProvider, TraitsProvider} from '@/components/editor/wrappers'
 import LayersLeftSideBar from '@/components/editor/components/LayersLeftSideBar'
 import BlockSideBar from '@/components/editor/components/BlockSideBar'
 import PagesLeftSideBar from '@/components/editor/components/PagesLeftSideBar'
@@ -22,20 +22,16 @@ import TypographyBlocks from "@/components/editor/plugins/components/TypographyB
 import CoreBlocks from "@/components/editor/plugins/components/InteractiveBlocks";
 import MediaBlocks from "@/components/editor/plugins/components/MediaBlocks";
 import ListBlocks from "@/components/editor/plugins/components/ListBlocks";
-import SemanticBlocks from "@/components/editor/plugins/components/SemanticBlocks";
-import ExtraBlocks from "@/components/editor/plugins/components/ExtraBlocks";
 import CustomCode from "@/components/editor/plugins/utils/CustomCode";
 import BorderStyle from "@/components/editor/plugins/utils/BorderStyle";
 import axios from "@/lib/axios";
-import {useMutation, useQuery} from "@tanstack/react-query";
+import {useQuery} from "@tanstack/react-query";
 import Loading from "@/app/(app)/Loading";
 import ErrorMessage from "@/app/(app)/Error";
-import {Site} from "@/app/(app)/page";
 import {useParams} from "next/navigation";
-import {notifications} from "@mantine/notifications";
-import {SiteSettings} from "@/app/(app)/sites/[slug]/settings/page";
 import {starterTemplate, styleStarterTemplate} from "@/components/editor/templates/Starter";
 import CustomAssetManager from '@/components/editor/components/CustomAssetManager'
+import CustomModal from "@/components/editor/components/CustomModal";
 
 
 export type EditorData = {
@@ -129,7 +125,6 @@ export default function CustomEditor() {
         editor.Commands.add('deselect-components', {
             run: () => {
                 editor.select(undefined)
-                console.log('Components deselected')
             },
         })
 
@@ -884,7 +879,7 @@ export default function CustomEditor() {
             // FormBlocks,
             // SemanticBlocks,
             // IntegrationsBlocks,
-            ExtraBlocks,
+            // ExtraBlocks,
             // PostCss,
             CustomCode,
             // GoogleIcons,
@@ -969,26 +964,26 @@ export default function CustomEditor() {
                     </AppShell.Main>
                 </AppShell>
 
-                {/*<ModalProvider>*/}
-                {/*    {({ open, title, content, close }) => (*/}
-                {/*        <CustomModal*/}
-                {/*            open={open}*/}
-                {/*            title={title}*/}
-                {/*            children={content}*/}
-                {/*            close={close}*/}
-                {/*        />*/}
-                {/*    )}*/}
-                {/*</ModalProvider>*/}
+                <ModalProvider>
+                    {({open, title, content, close}) => (
+                        <CustomModal
+                            open={open}
+                            title={title}
+                            children={content}
+                            close={close}
+                        />
+                    )}
+                </ModalProvider>
                 <AssetsProvider>
-                    {({ assets, select, close, Container, open }) => (
-                        <Container>
-                            <CustomAssetManager
-                                assets={assets}
-                                select={select}
-                                close={close}
-                                open={open}
-                            />
-                        </Container>
+                    {({assets, select, close, Container, open}) => (
+
+                        <CustomAssetManager
+                            assets={assets}
+                            select={select}
+                            close={close}
+                            open={open}
+                        />
+
                     )}
                 </AssetsProvider>
             </div>

@@ -22,17 +22,18 @@ function EditorNavbar(props: {
                         <IconLayoutGridAdd size="1rem"/>
                     </ActionIcon>
                 </Tooltip>
-                <Tooltip label="Integrations">
-                    <ActionIcon onClick={props.onClick1} variant="subtle">
-                        <IconWebhook size="1rem"/>
-                    </ActionIcon>
-                </Tooltip>
+
                 <Tooltip label="Sections">
                     <ActionIcon onClick={props.onClick2} variant="subtle">
                         <IconSection size="1rem"/>
                     </ActionIcon>
                 </Tooltip>
-                <TemplatesManager/>
+                {/*<Tooltip label="Integrations">*/}
+                {/*    <ActionIcon onClick={props.onClick1} variant="subtle">*/}
+                {/*        <IconWebhook size="1rem"/>*/}
+                {/*    </ActionIcon>*/}
+                {/*</Tooltip>*/}
+                {/*<TemplatesManager/>*/}
                 {/*<Tooltip label="Custom Blocks">*/}
                 {/*    <ActionIcon variant="subtle">*/}
                 {/*        <IconUserBolt size="1rem" />*/}

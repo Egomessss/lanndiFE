@@ -54,6 +54,7 @@ export default function CustomBlockManager({
 
                         <div className="flex flex-col gap-2">
                             {blocks.map((block) => (
+
                                 <Button variant="subtle"
                                         style={{paddingLeft:'4px'}}
                                     key={block.getId()}
@@ -72,7 +73,6 @@ export default function CustomBlockManager({
                                     />
                                     <p
                                         className="w-full px-2 text-start text-xs"
-                                        title={block.getLabel()}
                                     >
                                         {block.getLabel()}
                                     </p>
