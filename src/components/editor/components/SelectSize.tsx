@@ -1,41 +1,44 @@
 import {useState} from "react";
 import {Combobox, InputBase, useCombobox} from "@mantine/core";
-
+import classes from './SelectSize.module.css'
 type Props = {};
 
 
-const groceries = [
-    '🍎 Apples',
-    '🍌 Bananas',
-    '🥦 Broccoli',
-    '🥕 Carrots',
-    '🍫 Chocolate',
-    '🍇 Grapes',
+const units = [
+    { value: 'px', label: 'Fixed' },
+    { value: '%', label: 'Relative' },
+    { value: 'em', label: 'Scale with block font size - em' },
+    { value: 'rem', label: 'Scale with page font size - rem' },
+    { value: '100%', label: 'Full - 100%' },
+    { value: 'fit-content', label: 'Fit Content' },
+    { value: '100vw', label: 'Viewport - 100vw' },
+    { value: 'auto', label: 'auto' },
 ];
 
 
-export const SelectSize = (props: Props) => {
+export const SelectSize = () => {
     const combobox = useCombobox({
         onDropdownClose: () => combobox.resetSelectedOption(),
     });
 
-    const [data, setData] = useState(groceries);
+    const [data, setData] = useState(units);
     const [value, setValue] = useState<string | null>(null);
     const [search, setSearch] = useState('');
 
-    const exactOptionMatch = data.some((item) => item === search);
+    const exactOptionMatch = data.some((item) => item.value === search);
     const filteredOptions = exactOptionMatch
         ? data
-        : data.filter((item) => item.toLowerCase().includes(search.toLowerCase().trim()));
+        : data.filter((item) => item.value.toLowerCase().includes(search.toLowerCase().trim()));
 
     const options = filteredOptions.map((item) => (
-        <Combobox.Option value={item} key={item}>
-            {item}
+        <Combobox.Option value={item.value} key={item.value}>
+            {item.label}
         </Combobox.Option>
     ));
 
     return (
         <Combobox
+            classNames={classes}
             store={combobox}
             withinPortal={false}
             onOptionSubmit={(val) => {
@@ -67,11 +70,10 @@ export const SelectSize = (props: Props) => {
                         combobox.closeDropdown();
                         setSearch(value || '');
                     }}
-                    placeholder="Search value"
+                    placeholder="Value"
                     rightSectionPointerEvents="none"
                 />
             </Combobox.Target>
-
             <Combobox.Dropdown>
                 <Combobox.Options>
                     {options}

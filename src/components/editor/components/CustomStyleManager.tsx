@@ -111,8 +111,6 @@ export default function CustomStyleManager({
 
     return (
         <div className="gjs-custom-style-manager text-left mt-2">
-
-
             {/* Render the first sector element */}
             {firstSectorElement}
             <div className="flex flex-col gap-2">
@@ -122,18 +120,8 @@ export default function CustomStyleManager({
                         <Tooltip label="Width">
                             <span className="text-[10px]">W</span>
                         </Tooltip>
-
                         <SelectSize
-                            //     data={[
-                            //   { value: 'px', label: 'Fixed' },
-                            //   { value: '%', label: 'Relative' },
-                            //   { value: 'em', label: 'Scale with block font size - em' },
-                            //   { value: 'rem', label: 'Scale with page font size - rem' },
-                            //   { value: '100%', label: 'Full - 100%' },
-                            //   { value: 'fit-content', label: 'Fit Content' },
-                            //   { value: '100vw', label: 'Viewport - 100vw' },
-                            //   { value: 'auto', label: 'auto' },
-                            // ]}
+                                // data={}
 
                         />
                     </div>
