@@ -5,8 +5,8 @@ type Props = {};
 
 
 const units = [
-    { value: 'px', label: 'Fixed' },
-    { value: '%', label: 'Relative' },
+    { value: 'px', label: 'Fixed - px' },
+    { value: '%', label: 'Relative - %' },
     { value: 'em', label: 'Scale with block font size - em' },
     { value: 'rem', label: 'Scale with page font size - rem' },
     { value: '100%', label: 'Full - 100%' },
@@ -77,9 +77,6 @@ export const SelectSize = () => {
             <Combobox.Dropdown>
                 <Combobox.Options>
                     {options}
-                    {!exactOptionMatch && search.trim().length > 0 && (
-                        <Combobox.Option value="$create">+ Create {search}</Combobox.Option>
-                    )}
                 </Combobox.Options>
             </Combobox.Dropdown>
         </Combobox>

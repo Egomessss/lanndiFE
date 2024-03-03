@@ -6,7 +6,6 @@ import TemplatesManager from "@/components/editor/components/TemplatesManager";
 import SettingsModal from "@/components/editor/components/SettingsModal";
 
 function EditorNavbar(props: {
-    opened: boolean,
     onClick: () => void,
     onClick1: () => void,
     onClick2: () => void,
@@ -14,7 +13,7 @@ function EditorNavbar(props: {
     onClick4: () => void,
     renderSelectedComponent: React.JSX.Element | null
 }) {
-    return <AppShell.Navbar hidden={!props.opened} classNames={styles}>
+    return <AppShell.Navbar  classNames={styles}>
         <div className="h-full flex">
             <div className=" flex flex-col gap-2 h-full  p-1">
                 <Tooltip label="Blocks">

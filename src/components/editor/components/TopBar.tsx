@@ -115,7 +115,7 @@ function PublishButton() {
     return <Tooltip label="Publish Site"><Button loading={isPending} size="xs" onClick={() => mutate()}>Publish</Button></Tooltip>;
 }
 
-export default function Topbar({openBlockSideBar, onClick}: any) {
+export default function Topbar() {
 
 
     const getDeviceIcon = (device: string) => {

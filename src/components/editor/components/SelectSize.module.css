@@ -1,11 +1,13 @@
 .wrapper{
     width:100%;
+
 }
 
 .dropdown {
     /*width:400px;*/
     /*padding: 0;*/
     width: 100px !important;
+    font-size: 10px;
 }
 
 
