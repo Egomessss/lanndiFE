@@ -40,7 +40,7 @@ interface CommandButton {
     disabled?: () => boolean
 }
 
-export default function TopBarButtons({ onClick }) {
+export default function TopBarButtons() {
     const editor = useEditor()
 
     const [zoomValue, setZoomValue] = useState(100) // Initialize the zoom value
@@ -149,14 +149,12 @@ export default function TopBarButtons({ onClick }) {
 
     editor.Commands.extend('preview', {
         run: () => {
-            onClick()
             editor.runCommand('core:preview')
             // Adding a specific class to hide elements
             editor.refresh()
 
         },
         stop: () => {
-            onClick()
             editor.stopCommand('core:preview')
             editor.refresh()
         },

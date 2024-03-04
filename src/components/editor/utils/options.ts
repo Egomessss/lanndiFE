@@ -1,11 +1,11 @@
 import zoomPlugin from "@/components/editor/plugins/utils/ZoomPlugin/zoomPlugin";
-import LayoutBlocks from "@/components/editor/plugins/components/LayoutBlocks";
-import TypographyBlocks from "@/components/editor/plugins/components/TypographyBlocks";
-import CoreBlocks from "@/components/editor/plugins/components/InteractiveBlocks";
-import MediaBlocks from "@/components/editor/plugins/components/MediaBlocks";
-import ListBlocks from "@/components/editor/plugins/components/ListBlocks";
-import SemanticBlocks from "@/components/editor/plugins/components/SemanticBlocks";
-import ExtraBlocks from "@/components/editor/plugins/components/ExtraBlocks";
+import LayoutBlocks from "../plugins/BasicBlocks/LayoutBlocks";
+import TypographyBlocks from "../plugins/BasicBlocks/TypographyBlocks";
+import CoreBlocks from "../plugins/BasicBlocks/InteractiveBlocks";
+import MediaBlocks from "../plugins/BasicBlocks/MediaBlocks";
+import ListBlocks from "../plugins/BasicBlocks/ListBlocks";
+import SemanticBlocks from "../plugins/BasicBlocks/SemanticBlocks";
+import ExtraBlocks from "../plugins/BasicBlocks/ExtraBlocks";
 import CustomCode from "@/components/editor/plugins/utils/CustomCode";
 import BorderStyle from "@/components/editor/plugins/utils/BorderStyle";
 import {EditorConfig} from "grapesjs";
@@ -14,6 +14,7 @@ import {useParams} from "next/navigation";
 import GoogleIcons from "@/components/editor/plugins/utils/GoogleIcons";
 import {starterTemplate, styleStarterTemplate} from "@/components/editor/templates/Starter";
 import {EditorData} from "@/app/editor/[slug]/page";
+import Sections from "@/components/editor/plugins/Sections";
 
 // const editor = useEditor();
 //
@@ -298,40 +299,82 @@ export const editorConfigOptions = (data: EditorData) => ({
                 open: true,
                 properties: [
                     {
-                        type: 'composite',
-                        label: 'Margin', // Label for the property
-                        property: 'margin', // CSS property to change
-                        properties: [
-                            {
-                                type: 'number',
-                                units: ['px', '%', 'em', 'rem'],
-                                default: '0',
-                                property: 'margin-top',
-                                label: 'Top',
-                            },
-                            {
-                                type: 'number',
-                                units: ['px', '%', 'em', 'rem'],
-                                default: '0',
-                                property: 'margin-right',
-                                label: 'Right',
-                            },
-                            {
-                                type: 'number',
-                                units: ['px', '%', 'em', 'rem'],
-                                default: '0',
-                                property: 'margin-bottom',
-                                label: 'Bottom',
-                            },
-                            {
-                                type: 'number',
-                                units: ['px', '%', 'em', 'rem'],
-                                default: '0',
-                                property: 'margin-left',
-                                label: 'Left',
-                            },
-                        ],
+                        type: 'base',
+                        label: 'Width', // Label for the property
+                        property: 'width', // CSS property to change
+                        tooltip: 'px, %, em - Scales with block font size, rem - Scales with page font size, fit-content'
                     },
+                    {
+                        type: 'base',
+                        label: 'height', // Label for the property
+                        property: 'height', // CSS property to change
+                        tooltip: 'px, %, em - Scales with block font size, rem - Scales with page font size, fit-content'
+                    },
+                    {
+                        type: 'base',
+                        label: 'Max Width', // Label for the property
+                        property: 'max-width', // CSS property to change
+                        tooltip: 'px, %, em - Scales with block font size, rem - Scales with page font size, fit-content'
+                    },
+                    {
+                        type: 'base',
+                        label: 'Max Height', // Label for the property
+                        property: 'max-height', // CSS property to change
+                        tooltip: 'px, %, em - Scales with block font size, rem - Scales with page font size, fit-content'
+                    },
+                    {
+                        type: 'base',
+                        label: 'Min Width', // Label for the property
+                        property: 'min-width', // CSS property to change
+                        tooltip: 'px, %, em - Scales with block font size, rem - Scales with page font size, fit-content'
+                    },
+                    {
+                        type: 'base',
+                        label: 'Min Height', // Label for the property
+                        property: 'min-height', // CSS property to change
+                        tooltip: 'px, %, em - Scales with block font size, rem - Scales with page font size, fit-content'
+                    },
+
+                ],
+            },
+            {
+                name: 'Spacing',
+                open: true,
+                properties: [{
+                    type: 'composite',
+                    label: 'Margin', // Label for the property
+                    property: 'margin', // CSS property to change
+                    properties: [
+                        {
+                            type: 'number',
+                            units: ['px', '%', 'em', 'rem'],
+                            default: '0',
+                            property: 'margin-top',
+                            label: 'Top',
+                        },
+                        {
+                            type: 'number',
+                            units: ['px', '%', 'em', 'rem'],
+                            default: '0',
+                            property: 'margin-right',
+                            label: 'Right',
+                        },
+                        {
+                            type: 'number',
+                            units: ['px', '%', 'em', 'rem'],
+                            default: '0',
+                            property: 'margin-bottom',
+                            label: 'Bottom',
+                        },
+                        {
+                            type: 'number',
+                            units: ['px', '%', 'em', 'rem'],
+                            default: '0',
+                            property: 'margin-left',
+                            label: 'Left',
+                        },
+                    ],
+                },
                     {
                         type: 'composite',
                         label: 'Padding', // Label for the property
@@ -410,9 +453,7 @@ export const editorConfigOptions = (data: EditorData) => ({
                             {id: 'scale-down', label: 'Scale Down Only'}, // Clear action
                             {id: 'none', label: 'None'}, // Explicit no action
                         ],
-                    },
-
-                ],
+                    },]
             },
             {
                 name: 'Position',
@@ -475,15 +516,15 @@ export const editorConfigOptions = (data: EditorData) => ({
                     {
                         type: 'color',
                         label: 'Fill Colour', // Label for the property
-                        property: 'background-color', // CSS property to change
+                        property: 'background', // CSS property to change
                     },
                     {
-                        type: 'number',
+                        type: 'slider',
                         label: 'Opacity', // Label for the property
                         property: 'opacity', // CSS property to change
                         min: 0, // Min value (available only for the 'number' type)
                         max: 100, // Min value (available only for the 'number' type)
-
+                        default: 0
                     },
                 ],
             },
@@ -782,6 +823,7 @@ export const editorConfigOptions = (data: EditorData) => ({
         // GoogleIcons,
         BorderStyle,
         // CodeEditor
+        Sections
     ],
 
 

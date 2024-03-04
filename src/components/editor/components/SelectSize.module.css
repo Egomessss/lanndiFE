@@ -6,8 +6,13 @@
 .dropdown {
     /*width:400px;*/
     /*padding: 0;*/
-    width: 100px !important;
-    font-size: 10px;
+    width: 220px !important;
+
+}
+
+.option{
+    font-size: 12px;
+    white-space: nowrap;
 }
 
 

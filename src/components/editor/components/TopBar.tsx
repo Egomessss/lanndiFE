@@ -32,7 +32,7 @@ function SaveButton() {
     const editor = useEditorMaybe()
 
     const data = editor?.getProjectData();
-    console.log("data",data)
+    // console.log("data",data)
 
     const {mutate, isError, isPending} = useMutation({
             mutationFn:
@@ -89,7 +89,7 @@ function PublishButton() {
         }
     });
 
-    console.log("pageData",pagesData)
+    // console.log("pageData",pagesData)
 
     const {mutate, isPending} = useMutation({
             mutationFn:
@@ -133,11 +133,6 @@ export default function Topbar() {
         return null // Fallback
     }
 
-    // const { setColorScheme } = useMantineColorScheme()
-    // const computedColorScheme = useComputedColorScheme('light', {
-    //     getInitialValueInEffect: true,
-    // })
-
 
     return (
         <div className="gjs-top-sidebar flex h-full w-full items-center justify-between px-2">
@@ -147,7 +142,7 @@ export default function Topbar() {
                     href="/"
                     variant="subtle"
                     size="xs"
-                    leftSection={<IconArrowLeft/>}
+                    leftSection={<IconArrowLeft size="1rem"/>}
                 >
                     Dashboard
                 </Button>
@@ -168,7 +163,7 @@ export default function Topbar() {
                 <DevicesProvider>
                     {({selected, select, devices}) => (
                         <div className="flex items-center gap-2">
-                            {devices.map((device, index) => {
+                            {devices.map((device) => {
                                 const isSelected = device.id === selected
                                 return (
                                     <Tooltip
@@ -192,7 +187,7 @@ export default function Topbar() {
                     )}
                 </DevicesProvider>
                 <WithEditor>
-                    <TopBarButtons onClick={onClick}/>
+                    <TopBarButtons />
                 </WithEditor>
             </div>
 

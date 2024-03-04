@@ -1,10 +1,11 @@
-import { useRef, useEffect } from "react"
-import { useEditorOptions } from "../context/EditorOptions"
+import {useRef, useEffect} from "react"
+import {useEditorOptions} from "../context/EditorOptions"
+import {ScrollArea, AppShell} from "@mantine/core";
 
 export default function Canvas({
-    children,
-    ...rest
-}: React.HTMLProps<HTMLDivElement>) {
+                                   children,
+                                   ...rest
+                               }: HTMLProps<HTMLDivElement>) {
     const editorOptions = useEditorOptions()
 
     const canvasRef = useRef<HTMLDivElement>(null)
@@ -14,12 +15,14 @@ export default function Canvas({
     }, [canvasRef.current])
 
     return (
-        <div
-            {...rest}
-            ref={canvasRef}
-            className="w-full h-full "
-        >
-            {children}
-        </div>
+        <AppShell.Main component={ScrollArea}>
+            <div
+                {...rest}
+                ref={canvasRef}
+                className="w-full h-full "
+            >
+                {children}
+            </div>
+        </AppShell.Main>
     )
 }

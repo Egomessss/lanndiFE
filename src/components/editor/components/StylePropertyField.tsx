@@ -22,12 +22,13 @@ import {
     ThemeIcon,
     Tooltip,
 } from '@mantine/core'
-import { useEditor } from '../wrappers'
-import React, { useState } from 'react'
+import {useEditor} from '../wrappers'
+import React, {useState} from 'react'
 import {
     IconArrowDown,
     IconArrowUp,
     IconCircleFilled,
+    IconExclamationCircle,
     IconPalette,
     IconPlus,
     IconScaleOutline,
@@ -54,12 +55,9 @@ export default function StylePropertyField({
     const editor = useEditor()
 
 
-    const handleChange = (value: string) => {
+    const handleChange = (value: any) => {
         prop.upValue(value)
-        //if fit change the value is fit-content
-        // if fill the value is 100%
         console.log(prop.getValue())
-
     }
 
     const onChange = (ev: any) => {
@@ -72,16 +70,14 @@ export default function StylePropertyField({
         console.log(newValue)
         prop.upUnit(newValue)
         console.log('log', prop.getUnit())
-        // Apply the selected CSS unit in your style logic
-        // Example: updateStyleProperty('fontSize', `12${newValue}`);
     }
 
     const openAssets = () => {
-        const { Assets } = editor
+        const {Assets} = editor
         Assets.open({
             select: (asset, complete) => {
-                console.log({ complete })
-                prop.upValue(asset.getSrc(), { partial: !complete })
+                console.log({complete})
+                prop.upValue(asset.getSrc(), {partial: !complete})
                 complete && Assets.close()
             },
             types: ['image'],
@@ -101,10 +97,13 @@ export default function StylePropertyField({
 
     let inputToRender = (
         <TextInput
+            className="col-span-1"
+            // @ts-ignore
+            rightSection={<Tooltip multiline w={200} color="blue" label={prop.attributes.tooltip}><IconExclamationCircle size="1rem"/></Tooltip>}
             placeholder={defValue}
             value={valueString}
-            onChange={(newValue) => handleChange(newValue)}
-            size="small"
+            onChange={onChange}
+            size="xs"
         />
     )
 
@@ -112,7 +111,7 @@ export default function StylePropertyField({
     switch (type) {
         case 'number': {
             const numberProp = prop as PropertyNumber
-            // console.log(numberProp.getUnits())
+
             inputToRender = (
                 <NumberInput
                     size="xs"
@@ -145,15 +144,18 @@ export default function StylePropertyField({
                     size="xs"
                     fullWidth
                     onChange={onChange}
+                    // @ts-ignore
                     data={radioProp.getOptions().map((option) => ({
+                        // @ts-ignore
                         value: radioProp.getOptionId(option),
                         label: (
                             <Tooltip color="blue" multiline
                                      w={200}
+                                // @ts-ignore
                                      withArrow openDelay={400} label={radioProp.getOptionLabel(option)}>
                                 <div className="flex items-center justify-center  w-full">
                                     <span className="mt-1"
-                                          dangerouslySetInnerHTML={{ __html: option.icon }} />
+                                          dangerouslySetInnerHTML={{__html: option.icon}}/>
                                 </div>
                             </Tooltip>
                         ),
@@ -164,10 +166,7 @@ export default function StylePropertyField({
             break
         case 'select': {
             const selectProp = prop as PropertySelect
-            // console.log(selectProp.getOptions().map((option) => ({
-            //     value: selectProp.getOptionId(option),
-            //     label: selectProp.getOptionLabel(option),
-            // })))
+
             inputToRender = (
                 <Select
                     size="xs"
@@ -196,7 +195,7 @@ export default function StylePropertyField({
 
                             return (
                                 <div key={prop.getId()} className={widthClass}>
-                                    <StylePropertyField prop={prop} />
+                                    <StylePropertyField prop={prop}/>
                                 </div>
                             )
                         })
@@ -209,35 +208,37 @@ export default function StylePropertyField({
             break
         case 'color': {
             inputToRender = (
-              <Popover position="left-end" withArrow shadow="md">
-                  <Popover.Target>
-                      <Button justify="space-between" leftSection={<IconPalette size="1rem" />}
-                              rightSection={
-                          <IconCircleFilled className={`text-[${value}]`} size="1rem" />} variant="default" fullWidth
-                              size="xs">Pick</Button>
-                  </Popover.Target>
-                  <Popover.Dropdown>
-                      <ColorPicker hideOpacity hideAdvancedSliders hideColorGuide height={160} width={270} value={value} onChange={onChange} />
-                  </Popover.Dropdown>
-              </Popover>
+                <Popover position="left-start"  shadow="md">
+                    <Popover.Target>
+                        <Button justify="space-between" leftSection={<IconPalette size="1rem"/>}
+                                rightSection={
+                                    <IconCircleFilled className={`text-[${value}]`} size="1rem"/>} variant="default"
+                                fullWidth
+                                size="xs">Pick</Button>
+                    </Popover.Target>
+                    <Popover.Dropdown>
+                        <ColorPicker hideOpacity hideAdvancedSliders hideColorGuide height={200} width={280}
+                                     value={value} onChange={onChange}/>
+                    </Popover.Dropdown>
+                </Popover>
 
             )
         }
             break
-        // case 'slider': {
-        //     const sliderProp = prop as PropertySlider
-        //     inputToRender = (
-        //         <Slider
-        //             size="small"
-        //             value={parseFloat(value)}
-        //             min={sliderProp.getMin()}
-        //             max={sliderProp.getMax()}
-        //             step={sliderProp.getStep()}
-        //             onChange={(newValue) => handleChange(newValue)}
-        //         />
-        //     )
-        // }
-        //     break
+        case 'slider': {
+            const sliderProp = prop as PropertySlider
+
+            inputToRender = (
+                <Slider
+                    size="xs"
+                    value={sliderProp.getValue()}
+                    min={sliderProp.getMin()}
+                    max={sliderProp.getMax()}
+                    onChange={onChange}
+                />
+            )
+        }
+            break
         // case 'file': {
         //     inputToRender = (
         //         <div className="flex flex-col items-center gap-3">
@@ -343,12 +344,11 @@ export default function StylePropertyField({
         >
             <div
                 className={`mb-2 flex items-center justify-between w-full text-xs    ${canClear ? 'text-sky-300' : ''}`}
-
             >
                 <div className="flex-grow capitalize">{prop.getLabel()}</div>
                 {canClear && (
                     <ActionIcon size="xs" variant="subtle" onClick={() => prop.clear()}>
-                        <IconX size="0.8rem" />
+                        <IconX size="0.8rem"/>
                     </ActionIcon>
                 )}
                 {type === 'stack' && (
@@ -356,10 +356,10 @@ export default function StylePropertyField({
                         size="small"
                         className="!ml-2"
                         onClick={() =>
-                            (prop as PropertyStack).addLayer({}, { at: 0 })
+                            (prop as PropertyStack).addLayer({}, {at: 0})
                         }
                     >
-                        <IconPlus />
+                        <IconPlus/>
                     </ThemeIcon>
                 )}
             </div>
