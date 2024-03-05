@@ -54,32 +54,32 @@ export default function CustomEditor() {
                     }}
                     transitionDuration={1000}
                 >
+                    <EditorHeader/>
                     <LeftSideBar/>
                     <RightSideBar/>
-                    <EditorHeader/>
                     <Canvas/>
                 </AppShell>
-                <ModalProvider>
-                    {({open, title, content, close}) => (
-                        <CustomModal
-                            open={open}
-                            title={title}
-                            children={content}
-                            close={close}
-                        />
-                    )}
-                </ModalProvider>
-                <AssetsProvider>
-                    {({assets, select, close, Container, open}) => (
-                        <CustomAssetManager
-                            assets={assets}
-                            select={select}
-                            close={close}
-                            open={open}
-                        />
+                {/*<ModalProvider>*/}
+                {/*    {({open, title, content, close}) => (*/}
+                {/*        <CustomModal*/}
+                {/*            open={open}*/}
+                {/*            title={title}*/}
+                {/*            children={content}*/}
+                {/*            close={close}*/}
+                {/*        />*/}
+                {/*    )}*/}
+                {/*</ModalProvider>*/}
+                {/*<AssetsProvider>*/}
+                {/*    {({assets, select, close, Container, open}) => (*/}
+                {/*        <CustomAssetManager*/}
+                {/*            assets={assets}*/}
+                {/*            select={select}*/}
+                {/*            close={close}*/}
+                {/*            open={open}*/}
+                {/*        />*/}
 
-                    )}
-                </AssetsProvider>
+                {/*    )}*/}
+                {/*</AssetsProvider>*/}
             </div>
         </GjsEditor>
 

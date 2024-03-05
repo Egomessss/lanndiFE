@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Editor } from 'grapesjs'
+import {useState} from 'react'
+import {Editor} from 'grapesjs'
 
 export default (editor: Editor, opts = {}) => {
     editor.Commands.add('wrapper', {
@@ -53,4 +53,14 @@ export default (editor: Editor, opts = {}) => {
 
     // Keymap for the 'Esc' key to trigger the deselect command
     editor.Keymaps.add('deselect-components', 'esc', 'deselect-components')
+
+    editor.on('load', () => {
+        editor.runCommand('core:component-outline')
+    })
+
+    // editor.StyleManager.addBuiltIn('font-family', {
+    //     type: 'select',
+    //     label: 'Family', // Updated label for clarity
+    //     default: 'inherit', // 'inherit' is more appropriate for font-family defaults
+    // },)
 }

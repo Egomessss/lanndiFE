@@ -7,7 +7,7 @@ import {IconExclamationCircle, IconFile} from '@tabler/icons-react';
 import classes from './CustomStyleManager.module.css';
 import {useEditorInstance} from '@/components/editor/context/EditorInstance';
 import {SelectSize} from "@/components/editor/components/SelectSize";
-import {useEffect} from "react";
+import {useEffect, useMemo} from "react";
 
 function getIcon(sectorId: string) {
     switch (sectorId) {
@@ -57,20 +57,8 @@ export default function CustomStyleManager({
         return null; // or some placeholder component
     }
 
-    // Separate the first sector from the rest
-    const [firstSector, ...otherSectors] = sectors;
-
-    // Render the first sector outside the accordion
-    const firstSectorElement = (
-        <div key={firstSector.getId()}>
-            {firstSector.getProperties().map((prop) => (
-                <StylePropertyField key={prop.getId()} prop={prop}/>
-            ))}
-        </div>
-    );
-
     // Map the rest of the sectors to accordion items
-    const accordionItems = otherSectors.filter(sector => sector.isOpen()).map((sector) => {
+    const accordionItems = sectors.map((sector) => {
         const propertiesLength = sector.getProperties().length;
         const className = getClassName(propertiesLength);
 
@@ -93,9 +81,6 @@ export default function CustomStyleManager({
 
     return (
         <div className="gjs-custom-style-manager text-left mt-2 ">
-            {/* Render the first sector element */}
-            {firstSectorElement}
-            {/* Render the filtered sectors within the accordion */}
             <Accordion classNames={classes}>
                 {accordionItems}
             </Accordion>

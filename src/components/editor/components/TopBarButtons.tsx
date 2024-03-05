@@ -1,29 +1,11 @@
-import {
-    ActionIcon, Button,
-    Divider,
-    NumberInput,
-    rem,
-    Switch,
-    Tooltip,
-    useComputedColorScheme,
-    useMantineColorScheme,
-    useMantineTheme,
-} from '@mantine/core'
-import React, { useEffect, useState } from 'react'
+import {ActionIcon, Divider, NumberInput, rem, Tooltip,} from '@mantine/core'
+import React, {useEffect, useState} from 'react'
 
-import { useEditor } from '../wrappers'
+import {useEditor} from '../wrappers'
 import {
     IconArrowBackUp,
     IconArrowForwardUp,
-    IconAspectRatio,
-    IconBorderAll,
     IconBorderNone,
-    IconCode,
-    IconHandClick,
-    IconHandGrab,
-    IconPresentation,
-    IconRadar,
-    IconScanEye,
     IconTrash,
     IconVector,
     IconZoomIn,
@@ -34,7 +16,7 @@ import {
 
 interface CommandButton {
     id: string
-    Icon: IconType
+    Icon: any
     name: string
     options?: Record<string, any>
     disabled?: () => boolean
@@ -86,7 +68,7 @@ export default function TopBarButtons() {
 
     let debounceTimeout: ReturnType<typeof setTimeout>
 
-    const handleZoomInput = (value: number) => {
+    const handleZoomInput = (value:number) => {
         // Clear any previously scheduled debounce
         clearTimeout(debounceTimeout)
 
@@ -131,9 +113,7 @@ export default function TopBarButtons() {
     const { UndoManager, Commands } = editor
 
 
-    editor.on('load', () => {
-        editor.runCommand('core:component-outline')
-    })
+
 
 
     editor.Commands.add('designer-mode', {
@@ -240,7 +220,6 @@ export default function TopBarButtons() {
                         <IconZoomOut size="1rem" />
                     </ActionIcon>
                 </Tooltip>
-
                 <NumberInput
                     hideControls
                     value={editor.Canvas.getZoom()}
