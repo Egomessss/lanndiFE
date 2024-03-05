@@ -38,7 +38,7 @@ export const editorConfigOptions = (data: EditorData) => ({
                         label: 'Layout',
                         property: 'display',
                         type: 'radio',
-                        default: 'block',
+                        default:'inline',
                         options: [
                             {
                                 id: 'block',
@@ -60,11 +60,11 @@ export const editorConfigOptions = (data: EditorData) => ({
                             //     label: 'Inline Block - Elements sit on the same line but can have width and height set.',
                             //     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-distribute-horizontal" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l16 0" /><path d="M4 20l16 0" /><path d="M6 9m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z" /></svg>`,
                             // },
-                            // {
-                            //     id: 'inline',
-                            //     label: 'Inline - Default for text elements, font size and line height determine its size',
-                            //     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-text-resize" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 5m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M19 5m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M5 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M19 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M5 7v10" /><path d="M7 5h10" /><path d="M7 19h10" /><path d="M19 7v10" /><path d="M10 10h4" /><path d="M12 14v-4" /></svg>`,
-                            // },
+                            {
+                                id: 'inline',
+                                label: 'Inline - Does not start on a new line and only occupies as much width as necessary.',
+                                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-text-resize" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 5m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M19 5m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M5 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M19 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M5 7v10" /><path d="M7 5h10" /><path d="M7 19h10" /><path d="M19 7v10" /><path d="M10 10h4" /><path d="M12 14v-4" /></svg>`,
+                            },
                             {
                                 id: 'none',
                                 label: 'Hide - Hide element',
@@ -77,8 +77,8 @@ export const editorConfigOptions = (data: EditorData) => ({
             {
                 id: 'flexProperties',
                 name: 'Flex Properties',
-                open: false,
-                visible: false,
+                open: true,
+                visible: true,
                 properties: [
                     {
                         label: 'Direction',
@@ -198,8 +198,8 @@ export const editorConfigOptions = (data: EditorData) => ({
             {
                 id: 'gridProperties',
                 name: 'Grid Properties',
-                open: false,
-                visible: false,
+                open: true,
+                visible: true,
                 properties: [
                     {
                         type: 'composite',
@@ -251,8 +251,8 @@ export const editorConfigOptions = (data: EditorData) => ({
             {
                 id: 'gridItem',
                 name: 'Grid Item Properties',
-                open: false,
-                visible: false,
+                open: true,
+                visible: true,
                 properties: [
                     {
                         type: 'composite',
@@ -508,7 +508,6 @@ export const editorConfigOptions = (data: EditorData) => ({
                     },
                 ],
             },
-
             {
                 name: 'Background',
                 open: true,

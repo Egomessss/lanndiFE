@@ -7,42 +7,50 @@ import {IconExclamationCircle, IconFile} from '@tabler/icons-react';
 import classes from './CustomStyleManager.module.css';
 import {useEditorInstance} from '@/components/editor/context/EditorInstance';
 import {SelectSize} from "@/components/editor/components/SelectSize";
+import {useEffect} from "react";
+
+function getIcon(sectorId: string) {
+    switch (sectorId) {
+        case 'Flex Properties':
+            return (
+                <Tooltip color="blue" multiline w={200} withArrow openDelay={400} label="Only use for flex layout">
+                    <IconExclamationCircle size="1rem"/>
+                </Tooltip>
+            );
+        case 'Grid Properties':
+            return (
+                <Tooltip color="blue" multiline w={200} withArrow openDelay={400} label="Only use for grid layout">
+                    <IconExclamationCircle size="1rem"/>
+                </Tooltip>
+            );
+        case 'Grid Item Properties':
+            return (
+                <Tooltip color="blue" multiline w={200} withArrow openDelay={400}
+                         label="Only use if the parent block is a grid layout">
+                    <IconExclamationCircle size="1rem"/>
+                </Tooltip>
+            );
+        default:
+            return null; // Return null if none of the conditions are met
+    }
+}
+
+function getClassName(propertiesLength: number) {
+    if (propertiesLength > 8) {
+        return 'flex flex-wrap items-center';
+    } else if (propertiesLength === 6) {
+        return 'grid grid-cols-2';
+    }
+    return ''; // Default className if no condition is met
+}
 
 export default function CustomStyleManager({
                                                sectors,
                                            }: Omit<StylesResultProps, 'Container'>) {
-    const {editor} = useEditorInstance();
-    const sm = editor?.StyleManager;
-    const selectedComponent = editor?.getSelected()?.getStyle('display');
-    const selectedComponentParent = editor?.getSelected()?.parent()?.getStyle('display');
-
-
-    if (selectedComponent === 'flex') {
-        const sector = sm?.getSector('flexProperties');
-        sector?.setOpen(true);
-    } else if (selectedComponent !== 'flex' || selectedComponent !== 'undefined') {
-        const sector = sm?.getSector('flexProperties');
-        sector?.setOpen(false);
-    }
-
-    if (selectedComponent === 'grid') {
-
-        const sector = sm?.getSector('gridProperties');
-        sector?.setOpen(true);
-    } else if (selectedComponent !== 'grid' || selectedComponent !== 'undefined') {
-        const sector = sm?.getSector('gridProperties');
-        sector?.setOpen(false);
-    }
-
-    if (selectedComponentParent === 'grid') {
-        console.log('true');
-        const sector = sm?.getSector('gridItem');
-        sector?.setOpen(true);
-    } else if (selectedComponentParent !== 'grid' || selectedComponentParent !== 'undefined') {
-        const sector = sm?.getSector('gridItem');
-        sector?.setOpen(false);
-    }
-
+    // const {editor} = useEditorInstance();
+    // const sm = editor?.StyleManager;
+    //
+    // console.log(sm?.getProperty('layout','display')?.getValue())
 
     // Check if there are any sectors
     if (sectors.length === 0) {
@@ -51,7 +59,6 @@ export default function CustomStyleManager({
 
     // Separate the first sector from the rest
     const [firstSector, ...otherSectors] = sectors;
-
 
     // Render the first sector outside the accordion
     const firstSectorElement = (
@@ -62,48 +69,14 @@ export default function CustomStyleManager({
         </div>
     );
 
-
-
     // Map the rest of the sectors to accordion items
     const accordionItems = otherSectors.filter(sector => sector.isOpen()).map((sector) => {
-        // Determine if the sector has more than 8 properties
-        const isLargeSectorWithSixItems = sector.getProperties().length === 6;
-        const isLargeSectorWithEightItems = sector.getProperties().length > 8;
-
-        const icon = (sectorId) => {
-            if (sectorId === 'Flex Properties') {
-                return <Tooltip color="blue" multiline
-                                w={200}
-                                withArrow openDelay={400} label="Only use for flex layout">
-                    <IconExclamationCircle size="1rem"/>
-                </Tooltip>;
-            } else if (sectorId === 'Grid Properties') {
-                return <Tooltip color="blue" multiline
-                                w={200}
-                                withArrow openDelay={400} label="Only use for grid layout">
-                    <IconExclamationCircle size="1rem"/>
-                </Tooltip>;
-            } else if (sectorId === 'Grid Item Properties') {
-                return <Tooltip color="blue" multiline
-                                w={200}
-                                withArrow openDelay={400} label="Only use if the parent block is a grid layout">
-                    <IconExclamationCircle size="1rem"/>
-                </Tooltip>;
-            } else {
-                return null; // Return null if none of the conditions are met
-            }
-        };
-
-        let className = '';
-        if (isLargeSectorWithEightItems) {
-            className = 'flex flex-wrap items-center';
-        } else if (isLargeSectorWithSixItems) {
-            className = 'grid grid-cols-2';
-        }
+        const propertiesLength = sector.getProperties().length;
+        const className = getClassName(propertiesLength);
 
         return (
             <Accordion.Item key={sector.getId()} value={sector.getId()}>
-                <Accordion.Control icon={icon(sector.getId())}>
+                <Accordion.Control icon={getIcon(sector.getId())}>
                     {sector.getName()}
                 </Accordion.Control>
                 <Accordion.Panel>
@@ -118,7 +91,6 @@ export default function CustomStyleManager({
         );
     });
 
-
     return (
         <div className="gjs-custom-style-manager text-left mt-2 ">
             {/* Render the first sector element */}
@@ -130,6 +102,53 @@ export default function CustomStyleManager({
         </div>
     );
 }
+
+
+// const {editor} = useEditorInstance();
+// const sm = editor?.StyleManager;
+// const selectedComponent = editor?.getSelected()?.getStyle('display');
+// const selectedComponentParent = editor?.getSelected()?.parent()?.getStyle('display');
+// console.log(sm?.sectors)
+//
+// editor?.on('style:sector:update', (sector) => {
+//     console.log('updated', sector) });
+// editor?.on('style:sector:add', (sector) => {
+//     console.log('added', sector) });
+// editor?.on('style:target', (sector) => {
+//     console.log('target', sector) });
+//
+// // @ts-ignore
+// if (selectedComponent === 'flex') {
+//     const sector = sm?.getSector('flexProperties');
+//     sector?.setOpen(true);
+//
+//     // @ts-ignore
+// } else if (selectedComponent !== 'flex' || selectedComponent !== 'undefined') {
+//     const sector = sm?.getSector('flexProperties');
+//     sector?.setOpen(false);
+// }
+//
+// // @ts-ignore
+// if (selectedComponent === 'grid') {
+//     const sector = sm?.getSector('gridProperties');
+//     sector?.setOpen(true);
+//     console.log(true)
+//     // @ts-ignore
+// } else if (selectedComponent !== 'grid' || selectedComponent !== 'undefined') {
+//     const sector = sm?.getSector('gridProperties');
+//     sector?.setOpen(false);
+// }
+// // @ts-ignore
+// if (selectedComponentParent === 'grid') {
+//     console.log('true');
+//     const sector = sm?.getSector('gridItem');
+//     sector?.setOpen(true);
+//     // @ts-ignore
+// } else if (selectedComponentParent !== 'grid' || selectedComponentParent !== 'undefined') {
+//     const sector = sm?.getSector('gridItem');
+//     sector?.setOpen(false);
+// }
+
 
 {/*<div className="flex flex-col gap-2 px-1">*/
 }

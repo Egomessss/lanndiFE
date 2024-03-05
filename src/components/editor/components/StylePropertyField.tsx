@@ -37,11 +37,6 @@ import {
 import ColorPicker from 'react-best-gradient-color-picker'
 import classes from './StylePropertyField.module.css'
 
-const selectProp = {
-    getOptions: () => ['px', 'em', 'rem', '%', 'vh', 'vw'],
-    getOptionId: (option: string) => option,
-    getOptionLabel: (option: string) => option,
-}
 
 interface StylePropertyFieldProps extends React.HTMLProps<HTMLDivElement> {
     prop: Property;
@@ -99,7 +94,8 @@ export default function StylePropertyField({
         <TextInput
             className="col-span-1"
             // @ts-ignore
-            rightSection={<Tooltip multiline w={200} color="blue" label={prop.attributes.tooltip}><IconExclamationCircle size="1rem"/></Tooltip>}
+            rightSection={<Tooltip multiline w={200} color="blue" label={prop.attributes.tooltip}><IconExclamationCircle
+                size="1rem"/></Tooltip>}
             placeholder={defValue}
             value={valueString}
             onChange={onChange}
@@ -111,7 +107,6 @@ export default function StylePropertyField({
     switch (type) {
         case 'number': {
             const numberProp = prop as PropertyNumber
-
             inputToRender = (
                 <NumberInput
                     size="xs"
@@ -138,10 +133,11 @@ export default function StylePropertyField({
             break
         case 'radio': {
             const radioProp = prop
+
             inputToRender = (
                 <SegmentedControl
-                    value={value}
-                    size="xs"
+                    value={prop.getValue()}
+                   size='xs'
                     fullWidth
                     onChange={onChange}
                     // @ts-ignore
@@ -208,7 +204,7 @@ export default function StylePropertyField({
             break
         case 'color': {
             inputToRender = (
-                <Popover position="left-start"  shadow="md">
+                <Popover position="left-start" shadow="md">
                     <Popover.Target>
                         <Button justify="space-between" leftSection={<IconPalette size="1rem"/>}
                                 rightSection={
@@ -239,131 +235,108 @@ export default function StylePropertyField({
             )
         }
             break
-        // case 'file': {
-        //     inputToRender = (
-        //         <div className="flex flex-col items-center gap-3">
-        //             {value && value !== defValue && (
-        //                 <div
-        //                     className="inline-block h-[50px] w-[50px] cursor-pointer rounded bg-cover bg-center"
-        //                     style={{ backgroundImage: `url("${value}")` }}
-        //                     onClick={() => handleChange('')}
-        //                 />
-        //             )}
-        //             <button
-        //                 type="button"
-        //                 onClick={openAssets}
-        //
-        //             >
-        //                 Select Image
-        //             </button>
-        //         </div>
-        //     )
-        // }
-        //     break
-
-        // case 'stack': {
-        //     const stackProp = prop as PropertyStack
-        //     const layers = stackProp.getLayers()
-        //     const isTextShadow = stackProp.getName() === 'text-shadow'
-        //     inputToRender = (
-        //         <div
-        //             className="flex min-h-[54px] flex-col gap-2 bg-black/20 p-2"
-        //
-        //
-        //         >
-        //             {layers.map((layer) => (
-        //                 <div
-        //                     key={layer.getId()}
-        //
-        //                 >
-        //                     <div className="flex items-center gap-1 bg-slate-800 px-2 py-1">
-        //                         <ActionIcon
-        //                             size="small"
-        //                             onClick={() =>
-        //                                 layer.move(layer.getIndex() - 1)
-        //                             }
-        //                         >
-        //                             <IconArrowDown />
-        //                         </ActionIcon>
-        //                         <ActionIcon
-        //                             size="small"
-        //                             onClick={() =>
-        //                                 layer.move(layer.getIndex() + 1)
-        //                             }
-        //                         >
-        //                             <IconArrowUp />
-        //                         </ActionIcon>
-        //                         <button
-        //                             className="flex-grow"
-        //                             onClick={() => layer.select()}
-        //                         >
-        //                             {layer.getLabel()}
-        //                         </button>
-        //                         <div
-        //                             className="flex min-h-[17px] min-w-[17px] justify-center bg-white text-sm text-black"
-        //
-        //                             style={layer.getStylePreview({
-        //                                 number: { min: -3, max: 3 },
-        //                                 camelCase: true,
-        //                             })}
-        //                         >
-        //                             {isTextShadow && 'T'}
-        //                         </div>
-        //                         <ActionIcon
-        //                             size="small"
-        //                             onClick={() => layer.remove()}
-        //                         >
-        //                             <IconScaleOutline />
-        //                         </ActionIcon>
-        //                     </div>
-        //                     {layer.isSelected() && (
-        //                         <div className="flex flex-wrap p-2">
-        //                             {stackProp
-        //                                 .getProperties()
-        //                                 .map((prop) => (
-        //                                     <StylePropertyField
-        //                                         key={prop.getId()}
-        //                                         prop={prop}
-        //                                     />
-        //                                 ))}
-        //                         </div>
-        //                     )}
-        //                 </div>
-        //             ))}
-        //         </div>
-        //     )
-        // }
-        //     break
     }
 
     return (
         <div
             {...rest}
             className="mb-3 px-1 w-full"
-
         >
             <div
-                className={`mb-2 flex items-center justify-between w-full text-xs    ${canClear ? 'text-sky-300' : ''}`}
+                className={`mb-2 flex items-center justify-between w-full text-xs  whitespace-nowrap  ${canClear ? 'text-blue-300' : ''}`}
             >
                 <div className="flex-grow capitalize">{prop.getLabel()}</div>
                 {canClear && (
                     <ActionIcon size="xs" variant="subtle" onClick={() => prop.clear()}>
-                        <IconX size="0.8rem"/>
+                        <IconX size="0.6rem"/>
                     </ActionIcon>
                 )}
-                {type === 'stack' && (
-                    <ThemeIcon
-                        size="small"
-                        className="!ml-2"
-                        onClick={() =>
-                            (prop as PropertyStack).addLayer({}, {at: 0})
-                        }
-                    >
-                        <IconPlus/>
-                    </ThemeIcon>
-                )}
+                {/*{type === 'stack' && (*/}
+                {/*    <ThemeIcon*/}
+                {/*        size="small"*/}
+                {/*        className="!ml-2"*/}
+                {/*        onClick={() =>*/}
+                {/*            (prop as PropertyStack).addLayer({}, {at: 0})*/}
+                {/*        }*/}
+                {/*    >*/}
+                {/*        <IconPlus/>*/}
+                {/*    </ThemeIcon>*/}
+                {/*)}*/}
             </div>
             {inputToRender}
         </div>
     )
 }
+// case 'stack': {
+//     const stackProp = prop as PropertyStack
+//     const layers = stackProp.getLayers()
+//     const isTextShadow = stackProp.getName() === 'text-shadow'
+//     inputToRender = (
+//         <div
+//             className="flex min-h-[54px] flex-col gap-2 bg-black/20 p-2"
+//
+//
+//         >
+//             {layers.map((layer) => (
+//                 <div
+//                     key={layer.getId()}
+//
+//                 >
+//                     <div className="flex items-center gap-1 bg-slate-800 px-2 py-1">
+//                         <ActionIcon
+//                             size="small"
+//                             onClick={() =>
+//                                 layer.move(layer.getIndex() - 1)
+//                             }
+//                         >
+//                             <IconArrowDown />
+//                         </ActionIcon>
+//                         <ActionIcon
+//                             size="small"
+//                             onClick={() =>
+//                                 layer.move(layer.getIndex() + 1)
+//                             }
+//                         >
+//                             <IconArrowUp />
+//                         </ActionIcon>
+//                         <button
+//                             className="flex-grow"
+//                             onClick={() => layer.select()}
+//                         >
+//                             {layer.getLabel()}
+//                         </button>
+//                         <div
+//                             className="flex min-h-[17px] min-w-[17px] justify-center bg-white text-sm text-black"
+//
+//                             style={layer.getStylePreview({
+//                                 number: { min: -3, max: 3 },
+//                                 camelCase: true,
+//                             })}
+//                         >
+//                             {isTextShadow && 'T'}
+//                         </div>
+//                         <ActionIcon
+//                             size="small"
+//                             onClick={() => layer.remove()}
+//                         >
+//                             <IconScaleOutline />
+//                         </ActionIcon>
+//                     </div>
+//                     {layer.isSelected() && (
+//                         <div className="flex flex-wrap p-2">
+//                             {stackProp
+//                                 .getProperties()
+//                                 .map((prop) => (
+//                                     <StylePropertyField
+//                                         key={prop.getId()}
+//                                         prop={prop}
+//                                     />
+//                                 ))}
+//                         </div>
+//                     )}
+//                 </div>
+//             ))}
+//         </div>
+//     )
+// }
+//     break

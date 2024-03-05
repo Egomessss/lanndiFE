@@ -16,12 +16,14 @@ import {
 import {DevicesProvider, useEditor, useEditorMaybe, WithEditor} from '@/components/editor/wrappers';
 import React, {useState} from 'react';
 import Link from 'next/link';
-import {useMutation} from "@tanstack/react-query";
+import {useMutation, useQuery} from "@tanstack/react-query";
 import axios from "@/lib/axios";
 import {notifications} from "@mantine/notifications";
 import Loading from "@/app/(app)/Loading";
 import ErrorMessage from "@/app/(app)/Error";
 import {useParams} from "next/navigation";
+import {EditorData} from "@/app/editor/[slug]/page";
+import useEditorData from "@/hooks/useEditorData";
 
 
 function SaveButton() {
@@ -34,9 +36,21 @@ function SaveButton() {
     const data = editor?.getProjectData();
     // console.log("data",data)
 
+    const {data: projectData} = useEditorData();
+
     const {mutate, isError, isPending} = useMutation({
-            mutationFn:
-                async () => await axios.post(`api/v1/sites/editor/${siteSlug}/store`, {projectId: siteSlug, data}),
+            mutationFn: async (data) => {
+                const endpoint = `api/v1/sites/editor/${siteSlug}/`;
+                const url = projectData ? `${endpoint}update` : `${endpoint}store`; // Adjust 'update' and 'store' as per your API endpoints
+                const method = projectData ? 'patch' : 'post';
+
+                // Perform the request with the appropriate method and URL
+                await axios({
+                    method: method,
+                    url: url,
+                    data: {projectId: siteSlug, data: data}, // Assuming you want to send the same data for both requests
+                });
+            },
             onError:
                 () => {
                     notifications.show({
@@ -187,7 +201,7 @@ export default function Topbar() {
                     )}
                 </DevicesProvider>
                 <WithEditor>
-                    <TopBarButtons />
+                    <TopBarButtons/>
                 </WithEditor>
             </div>
 

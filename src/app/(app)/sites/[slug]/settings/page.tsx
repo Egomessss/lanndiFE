@@ -1,17 +1,13 @@
 'use client'
 
 import React from 'react'
-import { Button, Tabs } from '@mantine/core'
+import {Button, Tabs} from '@mantine/core'
 import SiteSettingsForm from '@/app/editor/[slug]/_components/SiteSettingsForm'
-import { useFetch } from '@/hooks/useFetch'
 import Loading from '@/app/(app)/Loading'
 import ErrorMessage from '@/app/(app)/Error'
-import { useQuery } from '@tanstack/react-query'
+import {useQuery} from '@tanstack/react-query'
 import axios from '@/lib/axios'
-import { Site } from '@/app/(app)/page'
-import { useParams } from 'next/navigation'
-import { z } from 'zod'
-import siteSettingsForm from '@/app/editor/[slug]/_components/SiteSettingsForm'
+import {useParams} from 'next/navigation'
 
 export type SiteSettings = {
     title: string,

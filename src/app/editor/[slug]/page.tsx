@@ -14,25 +14,16 @@ import {useParams} from "next/navigation";
 import CustomAssetManager from '@/components/editor/components/CustomAssetManager'
 import CustomModal from "@/components/editor/components/CustomModal";
 import {editorConfigOptions} from "@/components/editor/utils/options";
+import useEditorData from "@/hooks/useEditorData";
 
 
-export type EditorData = {
-    projectId: string
-    data: object
-}
 
 export default function CustomEditor() {
 
     const params = useParams()
     const siteSlug = params.slug
 
-    const {data, isLoading, isError} = useQuery({
-        queryKey: ['editorData', siteSlug],
-        queryFn: async () => {
-            const {data} = await axios.get(`/api/v1/sites/editor/${siteSlug}`)
-            return data as EditorData
-        },
-    })
+    const { data, isLoading, isError } = useEditorData();
 
     if (isLoading) return <Loading/>
     if (isError) return <ErrorMessage/>
