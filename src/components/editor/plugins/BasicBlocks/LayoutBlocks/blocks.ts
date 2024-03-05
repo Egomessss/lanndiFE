@@ -44,7 +44,6 @@ export default function (editor: Editor, opts) {
                   display: flex;
                   align-items: center;
                   justify-content: center;
-                  
                 }
                 `,
             },

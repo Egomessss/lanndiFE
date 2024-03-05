@@ -7,35 +7,35 @@ import {IconExclamationCircle, IconFile} from '@tabler/icons-react';
 import classes from './CustomStyleManager.module.css';
 import {useEditorInstance} from '@/components/editor/context/EditorInstance';
 import {SelectSize} from "@/components/editor/components/SelectSize";
-import {useEffect, useMemo} from "react";
+import {useEffect} from "react";
 
-function getIcon(sectorId: string) {
-    switch (sectorId) {
-        case 'Flex Properties':
-            return (
-                <Tooltip color="blue" multiline w={200} withArrow openDelay={400} label="Only use for flex layout">
-                    <IconExclamationCircle size="1rem"/>
-                </Tooltip>
-            );
-        case 'Grid Properties':
-            return (
-                <Tooltip color="blue" multiline w={200} withArrow openDelay={400} label="Only use for grid layout">
-                    <IconExclamationCircle size="1rem"/>
-                </Tooltip>
-            );
-        case 'Grid Item Properties':
-            return (
-                <Tooltip color="blue" multiline w={200} withArrow openDelay={400}
-                         label="Only use if the parent block is a grid layout">
-                    <IconExclamationCircle size="1rem"/>
-                </Tooltip>
-            );
-        default:
-            return null; // Return null if none of the conditions are met
-    }
-}
+// function getIcon(sectorId:string) {
+//     switch (sectorId) {
+//         case 'Flex Properties':
+//             return (
+//                 <Tooltip color="blue" multiline w={200} withArrow openDelay={400} label="Only use for flex layout">
+//                     <IconExclamationCircle size="1rem"/>
+//                 </Tooltip>
+//             );
+//         case 'Grid Properties':
+//             return (
+//                 <Tooltip color="blue" multiline w={200} withArrow openDelay={400} label="Only use for grid layout">
+//                     <IconExclamationCircle size="1rem"/>
+//                 </Tooltip>
+//             );
+//         case 'Grid Item Properties':
+//             return (
+//                 <Tooltip color="blue" multiline w={200} withArrow openDelay={400}
+//                          label="Only use if the parent block is a grid layout">
+//                     <IconExclamationCircle size="1rem"/>
+//                 </Tooltip>
+//             );
+//         default:
+//             return null; // Return null if none of the conditions are met
+//     }
+// }
 
-function getClassName(propertiesLength: number) {
+function getClassName(propertiesLength:number) {
     if (propertiesLength > 8) {
         return 'flex flex-wrap items-center';
     } else if (propertiesLength === 6) {
@@ -43,28 +43,35 @@ function getClassName(propertiesLength: number) {
     }
     return ''; // Default className if no condition is met
 }
-
 export default function CustomStyleManager({
                                                sectors,
                                            }: Omit<StylesResultProps, 'Container'>) {
-    // const {editor} = useEditorInstance();
-    // const sm = editor?.StyleManager;
-    //
-    // console.log(sm?.getProperty('layout','display')?.getValue())
 
     // Check if there are any sectors
     if (sectors.length === 0) {
         return null; // or some placeholder component
     }
 
+    // Separate the first sector from the rest
+    const [firstSector, ...otherSectors] = sectors;
+
+    // Render the first sector outside the accordion
+    const firstSectorElement = (
+        <div key={firstSector.getId()}>
+            {firstSector.getProperties().map((prop) => (
+                <StylePropertyField key={prop.getId()} prop={prop}/>
+            ))}
+        </div>
+    );
+
     // Map the rest of the sectors to accordion items
-    const accordionItems = sectors.map((sector) => {
+    const accordionItems = otherSectors.map((sector) => {
         const propertiesLength = sector.getProperties().length;
         const className = getClassName(propertiesLength);
 
         return (
             <Accordion.Item key={sector.getId()} value={sector.getId()}>
-                <Accordion.Control icon={getIcon(sector.getId())}>
+                <Accordion.Control >
                     {sector.getName()}
                 </Accordion.Control>
                 <Accordion.Panel>
@@ -81,6 +88,9 @@ export default function CustomStyleManager({
 
     return (
         <div className="gjs-custom-style-manager text-left mt-2 ">
+            {/* Render the first sector element */}
+            {firstSectorElement}
+            {/* Render the filtered sectors within the accordion */}
             <Accordion classNames={classes}>
                 {accordionItems}
             </Accordion>

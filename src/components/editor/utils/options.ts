@@ -11,6 +11,8 @@ import {starterTemplate, styleStarterTemplate} from "@/components/editor/templat
 import Sections from "@/components/editor/plugins/Sections";
 import {EditorData} from "@/hooks/useEditorData";
 import UtilsPlugin from "@/components/editor/plugins/utils/UtilsPlugin/utilsPlugin";
+import GoogleIcons from "@/components/editor/plugins/utils/GoogleIcons";
+import ScriptEditor from "@/components/editor/plugins/utils/ScriptEditor";
 
 // const editor = useEditor();
 //
@@ -31,7 +33,7 @@ export const editorConfigOptions = (data: EditorData) => ({
                 visible: false,
                 properties: [
                     {
-                        label: 'Layout',
+                        label: 'Display',
                         property: 'display',
                         type: 'radio',
                         default: 'inline',
@@ -844,7 +846,7 @@ export const editorConfigOptions = (data: EditorData) => ({
     //     },
     // },
     selectorManager: {
-        stylePrefix: 'lnd-', componentFirst: true, states: [
+        stylePrefix: 'lnd-', componentFirst: false, states: [
             {name: 'hover', label: 'Hover', info: 'Change styles on user hover'},
             {name: 'focus', label: 'Focus', info: 'Change styles on user focus'},
             {name: 'active', label: 'Active', info: 'Change styles on active element'},
@@ -869,7 +871,6 @@ export const editorConfigOptions = (data: EditorData) => ({
         }
     ,
     plugins: [
-        // FlexBlock,
         zoomPlugin,
         LayoutBlocks,
         TypographyBlocks,
@@ -881,10 +882,10 @@ export const editorConfigOptions = (data: EditorData) => ({
         // IntegrationsBlocks,
         // ExtraBlocks,
         // PostCss,
+        ScriptEditor,
         CustomCode,
-        // GoogleIcons,
+        GoogleIcons,
         BorderStyle,
-        // CodeEditor
         Sections,
         UtilsPlugin
     ],

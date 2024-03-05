@@ -27,8 +27,10 @@ export default (
             'style',
             editor.Canvas.getBody(),
             {
-                innerHTML: '.gjs-selected { outline: 2px dotted #1970C2 !important;\n' +
+                innerHTML: '.gjs-selected' +
+                    ' { outline: 2px dotted #1970C2 !important;\n' +
                     '    outline-offset: -2px; }'
+
             }
         );
 

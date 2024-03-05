@@ -1,4 +1,4 @@
-import materialIcons from '../../../../../../../grapesjs-google-material-icons-main/grapesjs-google-material-icons-main/_data/versions.json'
+import materialIcons from './versions.json'
 import IEditor from './types/editor';
 
 const IconPickerPopup = (editor: IEditor) => {

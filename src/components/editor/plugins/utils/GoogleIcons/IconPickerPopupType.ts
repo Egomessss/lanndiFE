@@ -1,6 +1,6 @@
 import IconPickerPopup from './IconPickerPopup'
 import IEditor from './types/editor';
-import materialIcons from '../../../../../../../grapesjs-google-material-icons-main/grapesjs-google-material-icons-main/_data/versions.json'
+import materialIcons from './versions.json'
 import { Component } from 'grapesjs';
 
 interface IIcons {

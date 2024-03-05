@@ -1,21 +1,12 @@
 import * as React from 'react'
-import { MouseEvent, useEffect, useMemo, useRef, useState } from 'react'
+import {MouseEvent, useEffect, useMemo, useRef, useState} from 'react'
 
-import type { Component } from 'grapesjs'
+import type {Component} from 'grapesjs'
 
 
-import { ActionIcon, Menu } from '@mantine/core'
-import { useEditor } from '../wrappers'
-import {
-    IconChevronDown,
-    IconChevronLeft,
-    IconChevronRight, IconDots, IconDotsVertical,
-    IconEye,
-    IconEyeCancel,
-    IconLock,
-    IconLockX,
-    IconSquarePlus,
-} from '@tabler/icons-react'
+import {ActionIcon, Menu} from '@mantine/core'
+import {useEditor} from '../wrappers'
+import {IconChevronDown, IconChevronRight, IconDotsVertical,} from '@tabler/icons-react'
 
 
 export declare interface LayerItemProps
@@ -132,7 +123,7 @@ export default function LayerItem({
                     <ActionIcon
                         size="xs"
                         variant="subtle"
-                        color="black"
+                        color="white"
                         style={{ marginLeft: `${level * 4}px` }}
                         onClick={toggleOpen}
                     >
@@ -157,7 +148,7 @@ export default function LayerItem({
                                 size="xs"
                                 autoContrast
                                 variant="subtle"
-                                color="black"
+                                color="white"
                                 onClick={lockLayer}
                             >
                                 <IconDotsVertical size="1rem" />

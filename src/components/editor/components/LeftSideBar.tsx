@@ -12,14 +12,15 @@ function LeftSideBar() {
 
     const icons = [
         { label: 'Blocks', Icon: IconLayoutGridAdd, selectedValue: 'Blocks' },
-        { label: 'Sections', Icon: IconSection, selectedValue: 'Blocks' },
+        { label: 'Sections', Icon: IconSection, selectedValue: 'Sections' },
         { label: 'Layers', Icon: IconStack2, selectedValue: 'Layers' },
         { label: 'Pages', Icon: IconFile, selectedValue: 'Pages' },
     ];
 
     const renderSelectedComponent = () => {
         switch (selected) {
-            case 'Blocks': return <BlockSideBar />;
+            case 'Blocks': return <BlockSideBar type='Blocks' />;
+            case 'Sections': return <BlockSideBar type='Sections' />;
             case 'Layers': return <LayersLeftSideBar />;
             case 'Pages': return <PagesLeftSideBar />;
             default: return null;

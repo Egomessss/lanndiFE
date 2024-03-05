@@ -10,32 +10,25 @@ export type CustomBlockManagerProps = Pick<
     'mapCategoryBlocks' | 'dragStart' | 'dragStop'
 >
 
-export default function CustomBlockManager({
+export default function CustomSectionsBlockManager({
                                                mapCategoryBlocks,
                                                dragStart,
                                                dragStop,
                                            }: CustomBlockManagerProps) {
-    const [value, setValue] = useState('Basic')
-    // default-blocks-basic
-    // default-block-interactive
-
-    // default-sections-hero
-
-    // custom-blocks-basic
-    // custom-sections-basic
-    // custom-templates-basic
 
 
     return (
         <div className="w-full">
             {Array.from(mapCategoryBlocks)
-                .filter(([category, _]) => !category.startsWith('sections-')) // Filter out categories starting with "section-"
+                .filter(([category, _]) => category.startsWith('sections-')) // Filter out categories starting with "section-"
                 .map(([category, blocks]) => (
                     <div
                         key={category}
                     >
                         <div className="flex items-center gap-2 ">
-                            <Text style={{ whiteSpace: 'nowrap', fontWeight: '600', fontSize:'0.8rem' }} c="blue.5">{category}</Text>
+                            <Text style={{ whiteSpace: 'nowrap', fontWeight: '600', fontSize: '0.8rem' }} c="blue.5">
+                                {category.replace('sections-', '').replace(/^\w/, c => c.toUpperCase())}
+                            </Text>
                             <Divider
                                 variant="dashed"
                                 className="w-full"
