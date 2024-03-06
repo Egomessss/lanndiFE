@@ -63,4 +63,5 @@ export default (editor: Editor, opts = {}) => {
     //     label: 'Family', // Updated label for clarity
     //     default: 'inherit', // 'inherit' is more appropriate for font-family defaults
     // },)
+
 }

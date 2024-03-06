@@ -74,6 +74,52 @@ export const editorConfigOptions = (data: EditorData) => ({
         ],
       },
       {
+        id: 'gridItem',
+        name: 'Grid Item Properties',
+        open: false,
+        visible: false,
+        properties: [
+          {
+            type: 'composite',
+            label: 'Grid item span', // Label for the property
+            property: 'grid', // CSS property to change
+            properties: [
+              {
+                label: 'Row start',
+                property: 'grid-row-start',
+                type: 'number',
+                default: '1',
+                min: 0,
+                max: 20,
+              },
+              {
+                label: 'Row end',
+                property: 'grid-row-end',
+                type: 'number',
+                default: '1',
+                min: 0,
+                max: 20,
+              },
+              {
+                label: 'Column start',
+                property: 'grid-column-start',
+                type: 'number',
+                default: '1',
+                min: 0,
+                max: 20,
+              },
+              {
+                label: 'Column end',
+                property: 'grid-column-end',
+                type: 'number',
+                default: '1',
+                min: 0,
+                max: 20,
+              }],
+          },
+        ],
+      },
+      {
         id: 'flexProperties',
         name: 'Flex Properties',
         open: false,
@@ -245,52 +291,7 @@ export const editorConfigOptions = (data: EditorData) => ({
           },
         ],
       },
-      {
-        id: 'gridItem',
-        name: 'Grid Item Properties',
-        open: false,
-        visible: false,
-        properties: [
-          {
-            type: 'composite',
-            label: 'Grid item span', // Label for the property
-            property: 'grid', // CSS property to change
-            properties: [
-              {
-                label: 'Row start',
-                property: 'grid-row-start',
-                type: 'number',
-                default: '1',
-                min: 0,
-                max: 20,
-              },
-              {
-                label: 'Row end',
-                property: 'grid-row-end',
-                type: 'number',
-                default: '1',
-                min: 0,
-                max: 20,
-              },
-              {
-                label: 'Column start',
-                property: 'grid-column-start',
-                type: 'number',
-                default: '1',
-                min: 0,
-                max: 20,
-              },
-              {
-                label: 'Column end',
-                property: 'grid-column-end',
-                type: 'number',
-                default: '1',
-                min: 0,
-                max: 20,
-              }],
-          },
-        ],
-      },
+
       // {
       //     name: 'Sizing',
       //      open: true,
@@ -805,6 +806,7 @@ export const editorConfigOptions = (data: EditorData) => ({
       // },
     ],
   },
+
   deviceManager: {
     default: 'fit',
     devices: [
