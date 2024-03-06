@@ -19,9 +19,11 @@ const StyledComponents = () => (
 );
 
 const SettingsComponents = () => (
+  <ScrollArea offsetScrollbars pl={4}>
     <TraitsProvider>
         {(props) => <CustomTraitManager {...props} />}
     </TraitsProvider>
+  </ScrollArea>
 );
 
 function RightSideBar() {

@@ -12,30 +12,29 @@ export const CssCode = () => {
 
     const editor = useEditor()
 
-
-    const stylesObject = editor.getSelected()?.getStyle()
-
+    const stylesObject = editor.getSelected()?.attributes.styles
+    console.log(editor.getSelected()?.attributes.styles);
     // console.log("style", editor.getSelected()?.toHTML())
-    function convertStylesToString(stylesObject) {
-        // Check if stylesObject is truthy; if not, return an empty string
-        if (!stylesObject) return '';
+    // function convertStylesToString(stylesObject) {
+    //     // Check if stylesObject is truthy; if not, return an empty string
+    //     if (!stylesObject) return '';
+    //
+    //     const styleStrings = Object.entries(stylesObject).map(([key, value]) => {
+    //         return `${key}: ${value};`;
+    //     });
+    //     return styleStrings.join(' ');
+    // }
+    //
+    // const styleString = convertStylesToString(stylesObject);
 
-        const styleStrings = Object.entries(stylesObject).map(([key, value]) => {
-            return `${key}: ${value};`;
-        });
-        return styleStrings.join(' ');
-    }
-
-    const styleString = convertStylesToString(stylesObject);
-
-    const [value, setValue] = useState(styleString || '');
+    const [value, setValue] = useState(stylesObject || '');
     const onChange = React.useCallback((val, viewUpdate) => {
         console.log('val:', val);
         setValue(val);
     }, []);
 
     const handleClick = () => {
-        editor.getSelected()?.setStyle(value)
+        editor.Css.addRules(value)
     }
 
 
@@ -43,14 +42,7 @@ export const CssCode = () => {
         <p>CSS Editor</p>
         <div className="w-full text-xs overflow-x-scroll">
             <CodeMirror
-                // options={{
-                //     lineWrapping: true,
-                //     keyMap: 'sublime',
-                //     mode: 'jsx',
-                // }}
-                // options={
-                //     {lineWrapping = {true}}
-                // }
+
                 value={value} height="200px" theme="dark"
                 extensions={[langs.css(), EditorView.lineWrapping]}
                 onChange={onChange}/>
@@ -78,13 +70,10 @@ export const SvgContentCode = () => {
 
     return <div className="flex items-start gap-2 flex-col w-full">
         <p>Svg content</p>
-        <div className="w-full">
+        <div className="w-full text-xs">
             <CodeMirror
-                // options={
-                //     {lineWrapping = {true}}
-                // }
                 value={value} height="200px" theme="dark"
-                extensions={[langs.html()]}
+                extensions={[langs.html(), EditorView.lineWrapping]}
                 onChange={onChange}/>
         </div>
         <Button onClick={handleClick} size="xs">Save Changes</Button>
@@ -169,7 +158,6 @@ export default function CustomTraitManager({
                 ))
             )}
             <CustomAttributes/>
-
         </div>
     )
 }
