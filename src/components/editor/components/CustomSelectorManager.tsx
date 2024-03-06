@@ -1,73 +1,70 @@
 import * as React from 'react';
-import { SelectorsResultProps, useEditor } from '../wrappers';
-import {
-  ActionIcon,
-  Pill,
-  PillsInput,
-  Select,
-  TagsInput, TextInput, ThemeIcon,
-  Tooltip,
-} from '@mantine/core';
-import {
-  IconBorderAll, IconCheck,
-  IconComponents,
-  IconCurrentLocation,
-  IconExclamationCircle, IconHash, IconPlus,
-  IconSelectAll,
-  IconSelector, IconTags,
-} from '@tabler/icons-react';
-import { notifications } from '@mantine/notifications';
 import { useState } from 'react';
+import { SelectorsResultProps, useEditor } from '../wrappers';
+import { CheckIcon, Combobox, Group, Pill, PillsInput, Select, ThemeIcon, Tooltip, useCombobox } from '@mantine/core';
+import { IconExclamationCircle, IconHash, IconTags } from '@tabler/icons-react';
 
 
 export default function CustomSelectorManager({
-                                                // selectors,
+                                                selectedSelectors,
                                                 selectedState,
                                                 targetsIds,
-                                                targets,
+                                                allSelectors,
                                                 states,
                                                 setState,
                                                 addSelector,
                                                 removeSelector,
                                               }: Omit<SelectorsResultProps, 'Container'>) {
 
-  const addNewSelector = () => {
-    const next = selectors.length + 1;
-    addSelector({ name: `new-${next}`, label: `New ${next}` });
-  };
+
+  const combobox = useCombobox({
+    onDropdownClose: () => combobox.resetSelectedOption(),
+    onDropdownOpen: () => combobox.updateSelectedOptionIndex('active'),
+  });
+
+  const [search, setSearch] = useState('');
+
+  const [value, setValue] = useState<string[]>([]);
+  const exactOptionMatch = allSelectors.some((item) => item === search);
 
 
-  const editor = useEditor();
-  const sm = editor.Selectors;
-  const selectors = editor.SelectorManager.getSelected().map(s => s.toString());
-  console.log('selectors', selectors);
-
-  const [isEditing, setIsEditing] = useState(false); // New state to manage editing mode
-  const [customValue, setCustomValue] = useState(''); // State to hold custom input value
-  const [valueHtml, setValueHtml] = useState(() => editor.getSelected()?.get('tagName')); // Default to 'nav' or any sensible default
-
-
-
-  const handleElementChange = (selectedValue) => {
-    setValueHtml(selectedValue); // Update state for controlled component
-
-    editor.SelectorManager.addSelected(customValue);
-  };
-
-  const saveCustomValue = () => {
-    if (customValue === '') {
-      notifications.show({
-        color: 'red',
-        title: 'Error!',
-        message: 'Please insert a valid html element',
-      });
-    } else {
-      handleElementChange(customValue);
-      setValueHtml(customValue);
-      setIsEditing(false); // Exit editing mode after saving
+  const handleValueSelect = (val: string) => {
+    setSearch('');
+    if (val === '$create') {
+      addSelector(search);
+      setValue((current) => [...current, search]);
+    }else{
+      setValue((current) =>
+        current.includes(val) ? current.filter((v) => v !== val) : [...current, val]
+      );
     }
   };
 
+
+  const handleValueRemove = (val: any) => {
+    console.log(val);
+    removeSelector(val)
+    // removeSelector(val); // Move this line inside handleValueRemove
+  };
+
+  const values = selectedSelectors.map((item) => (
+    <Pill key={item} withRemoveButton onRemove={() => handleValueRemove(item)}>
+      {item}
+    </Pill>
+  ));
+
+  // console.log("val",values);
+
+  const options = allSelectors
+    .filter((item) => item.toLowerCase().includes(search.trim().toLowerCase()))
+    .map((item) => (
+      <Combobox.Option value={item} key={item} active={value.includes(item)}>
+        <Group gap="sm">
+          {value.includes(item) ? <CheckIcon size={12} /> : null}
+          <span>{item}</span>
+        </Group>
+      </Combobox.Option>
+    ));
   return (
     <div className=" flex flex-col  gap-2 text-left">
       <div className="flex items-center justify-between">
@@ -96,59 +93,64 @@ export default function CustomSelectorManager({
         />
       </div>
 
-      <div className="flex gap-2 items-center w-full">
-        <Tooltip label="Applies style changes to all blocks with the same class">
-          <ThemeIcon className="h-full">
-            <IconTags size="1rem" />
-          </ThemeIcon>
-        </Tooltip>
-        <>
-          {isEditing ? (
-            <TextInput
-              label="Enter new html element"
-              size="xs"
-              value={customValue}
-              onChange={(event) => setCustomValue(event.target.value)}
-              placeholder="Enter HTML element type"
-              leftSection={<ActionIcon onClick={saveCustomValue} size="sm">
-                <IconCheck size="1rem" />
-              </ActionIcon>}
-            />
+      <div className="flex gap-2 items-start w-full h-full">
+        <div className="flex gap-5 h-full w-full flex-col">
 
-          ) : (
-            <Select
-              size="xs"
-              label="Change HTML Element type"
-              data={selectors}
-              value={selectors}
-              onChange={handleElementChange}
-              leftSection={
-                <Tooltip label="Add new HTML type">
-                  <ActionIcon size="sm" onClick={() => setIsEditing(true)}>
-                    <IconPlus size="1rem" />
-                  </ActionIcon>
-                </Tooltip>
-              }
-            />
-          )}
-        </>
+          <Tooltip color="blue" label="Apply style changes to all blocks with the same class">
+            <ThemeIcon variant="light" className="h-full">
+              <IconExclamationCircle size="1rem" />
+            </ThemeIcon>
+          </Tooltip>
+          <Tooltip color="blue" label={`#${targetsIds.toString()}`}>
+            <ThemeIcon
+              className="h-full">
+              <IconHash size="1rem" />
+            </ThemeIcon>
+          </Tooltip>
+        </div>
+
+        <Combobox className="w-full" store={combobox} onOptionSubmit={handleValueSelect} withinPortal={false}>
+          <Combobox.DropdownTarget>
+            <PillsInput   size="xs" onClick={() => combobox.openDropdown()}>
+              <Pill.Group>
+                {values}
+                <Combobox.EventsTarget>
+                  <PillsInput.Field
+                    onFocus={() => combobox.openDropdown()}
+                    onBlur={() => combobox.closeDropdown()}
+                    value={search}
+                    placeholder="Add class style"
+                    onChange={(event) => {
+                      combobox.updateSelectedOptionIndex();
+                      setSearch(event.currentTarget.value);
+                    }}
+                    onKeyDown={(event) => {
+                      if (event.key === 'Backspace' && search.length === 0) {
+                        event.preventDefault();
+                        handleValueRemove(value[value.length - 1]);
+                      }
+                    }}
+                  />
+                </Combobox.EventsTarget>
+              </Pill.Group>
+            </PillsInput>
+          </Combobox.DropdownTarget>
+
+          <Combobox.Dropdown>
+            <Combobox.Options>
+              {options}
+              {!exactOptionMatch && search.trim().length > 0 && (
+                <Combobox.Option value="$create">+ Create {search}</Combobox.Option>
+              )}
+              {exactOptionMatch && search.trim().length > 0 && options.length === 0 && (
+                <Combobox.Empty>Nothing found</Combobox.Empty>
+              )}
+            </Combobox.Options>
+          </Combobox.Dropdown>
+        </Combobox>
+
       </div>
-      <div className="flex gap-2 items-center w-full">
-        <Tooltip label="Block ID">
-          <ThemeIcon
-            className="h-full">
-            <IconHash size="1rem" />
-          </ThemeIcon>
-        </Tooltip>
-        <PillsInput className="w-full" size="xs"
-        >
-          <Pill.Group>
-            {targetsIds.map((target) => (
-              <Pill key={target}>#{target}</Pill>
-            ))}
-          </Pill.Group>
 
-        </PillsInput></div>
     </div>
   );
 }

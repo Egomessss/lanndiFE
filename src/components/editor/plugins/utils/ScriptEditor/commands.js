@@ -37,27 +37,27 @@ export default (editor, opts = {}) => {
     }
 
     // Add icons to specified component types
-    scriptTypesSupport && scriptTypesSupport.forEach(type => {
-        const typeOpt = domc.getType(type).model;
-        domc.addType(type, {
-            model: {
-                initToolbar() {
-                    typeOpt.prototype.initToolbar.apply(this, arguments);
-                    const tb = this.get('toolbar');
-                    const tbExists = tb.some(item => item.command === cmdId);
-
-                    if (!tbExists) {
-                        tb.unshift({
-                            command: cmdId,
-                            label: toolbarIcon,
-                            ...opts.toolbarBtnCustomScript
-                        });
-                        this.set('toolbar', tb);
-                    }
-                }
-            }
-        });
-    })
+    // scriptTypesSupport && scriptTypesSupport.forEach(type => {
+    //     const typeOpt = domc.getType(type).model;
+    //     domc.addType(type, {
+    //         model: {
+    //             initToolbar() {
+    //                 typeOpt.prototype.initToolbar.apply(this, arguments);
+    //                 const tb = this.get('toolbar');
+    //                 const tbExists = tb.some(item => item.command === cmdId);
+    //
+    //                 if (!tbExists) {
+    //                     tb.unshift({
+    //                         command: cmdId,
+    //                         label: toolbarIcon,
+    //                         ...opts.toolbarBtnCustomScript
+    //                     });
+    //                     this.set('toolbar', tb);
+    //                 }
+    //             }
+    //         }
+    //     });
+    // })
 
     // Add the script command
     cm.add(cmdId, {

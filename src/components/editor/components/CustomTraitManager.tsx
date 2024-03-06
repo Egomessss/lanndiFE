@@ -6,29 +6,37 @@ import { HtmlElementSelector } from '@/components/editor/components/HtmlElementS
 import CodeMirror, { EditorView } from '@uiw/react-codemirror';
 import { langs } from '@uiw/codemirror-extensions-langs';
 import React, { useState } from 'react';
-import { IconEdit, IconPlus, IconTrash } from '@tabler/icons-react';
+import { IconCheck, IconEdit, IconPlus, IconTrash } from '@tabler/icons-react';
+import type { Selector } from 'grapesjs';
 
 export const CssCode = () => {
 
   const editor = useEditor();
 
-  const stylesObject = editor.getSelected()?.attributes.styles;
 
-  const [value, setValue] = useState(stylesObject || '');
+  const component = editor.getSelected();
+  let componentCss = editor.CodeManager.getCode(component, 'css', {
+    cssc: editor.CssComposer,
+  });
+
+  const [value, setValue] = useState(componentCss || '');
+  // console.log("value",value);
 
   const handleClick = () => {
     editor.Css.addRules(value);
+    setValue('')
   };
 
-  return <div className="flex items-start gap-2 flex-col w-full">
+  return <div className="flex items-start gap-2 flex-col w-full ">
     <p>CSS Editor</p>
     <div className="w-full text-xs">
       <CodeMirror
-        value={value} height="200px" theme="dark"
+        value={componentCss} height="200px" theme="dark"
         extensions={[langs.css(), EditorView.lineWrapping]}
-        onChange={setValue} />
+        onChange={setValue}
+      />
     </div>
-    <Button onClick={handleClick} size="xs">Save Changes</Button>
+    <Button fullWidth onClick={handleClick} size="xs">Save CSS Changes</Button>
   </div>;
 };
 
@@ -61,6 +69,17 @@ export const SvgContentCode = () => {
   </div>;
 };
 
+function removeAttributes(attributes) {
+  // Clone the attributes object to avoid mutating the original object
+  const clonedAttributes = { ...attributes };
+
+  // Remove 'id' and 'class' keys if they exist
+  delete clonedAttributes.id;
+  delete clonedAttributes.class;
+
+  return clonedAttributes;
+}
+
 function CustomAttributes() {
 
   const editor = useEditor(); // Custom hook to access the GrapeJS editor instance
@@ -69,7 +88,8 @@ function CustomAttributes() {
   const [attributeValue, setAttributeValue] = useState('');
 
 
-  const attributes = editor.getSelected()?.getAttributes();
+  const attributes = removeAttributes(editor.getSelected()?.getAttributes());
+  // console.log('attrbiutes', attributes);
   // Function to handle adding attributes
   const handleAddAttribute = () => {
     const component = editor.getSelected(); // Get the currently selected component
@@ -94,22 +114,23 @@ function CustomAttributes() {
       <div>
         {Object.entries(attributes || {}).map(([key, value]) => {
           return (
-            <div key={key} className=" p-1 text-sm flex  justify-between flex-wrap  items-center px-1">
+            <div key={key} className="flex  gap-4 justify-end flex-wrap  items-center ">
               <TextInput
                 size="xs"
+                className="w-full"
                 label="Attribute Key"
                 placeholder="Attribute Key"
-                value={`${key}: ${value}`}
+                value={`${key}: "${value}"`}
                 // onChange={(event) => setAttributeKey(event.currentTarget.value)}
-                rightSection={<div className="flex  gap-2 items-center">
-                  <ActionIcon color="red" size="sm"
-                              onClick={handleRemoveAttribute}>
-                    <IconTrash size="1rem" />
-                  </ActionIcon>
-                  <ActionIcon size="sm" onClick={handleRemoveAttribute}>
-                    <IconEdit size="1rem" />
-                  </ActionIcon></div>}
+                rightSection={<ActionIcon size="sm" onClick={handleAddAttribute}>
+                  <IconCheck size="1rem" />
+                </ActionIcon>}
               />
+
+              <ActionIcon color="red" size="sm"
+                          onClick={handleRemoveAttribute}>
+                <IconTrash size="1rem" />
+              </ActionIcon>
 
 
             </div>);
@@ -149,7 +170,7 @@ export default function CustomTraitManager({
 
 
   return (
-    <div className="gjs-custom-trait-manager text-left w-full flex flex-col gap-2">
+    <div className="gjs-custom-trait-manager text-left w-full flex flex-col gap-4">
       {!traits.length ? (
         <div>No properties available</div>
       ) : (
@@ -165,7 +186,9 @@ export default function CustomTraitManager({
       <HtmlElementSelector />
       {value === 'svg' && <SvgContentCode />}
       <CssCode />
-
+      <Button onClick={() => editor.runCommand('edit-script')} size="xs" mb="4">
+        Edit Script Code
+      </Button>
 
     </div>
   );

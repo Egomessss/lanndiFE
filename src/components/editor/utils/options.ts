@@ -292,518 +292,518 @@ export const editorConfigOptions = (data: EditorData) => ({
         ],
       },
 
-      // {
-      //     name: 'Sizing',
-      //      open: true,
-      //     visible: true,
-      //     properties: [
-      //         {
-      //             type: 'base',
-      //             label: 'Width', // Label for the property
-      //             property: 'width', // CSS property to change
-      //             tooltip: 'px, %, em - Scales with block font size, rem - Scales with page font size, fit-content'
-      //         },
-      //         {
-      //             type: 'base',
-      //             label: 'height', // Label for the property
-      //             property: 'height', // CSS property to change
-      //             tooltip: 'px, %, em - Scales with block font size, rem - Scales with page font size, fit-content'
-      //         },
-      //         {
-      //             type: 'base',
-      //             label: 'Max Width', // Label for the property
-      //             property: 'max-width', // CSS property to change
-      //             tooltip: 'px, %, em - Scales with block font size, rem - Scales with page font size, fit-content'
-      //         },
-      //         {
-      //             type: 'base',
-      //             label: 'Max Height', // Label for the property
-      //             property: 'max-height', // CSS property to change
-      //             tooltip: 'px, %, em - Scales with block font size, rem - Scales with page font size, fit-content'
-      //         },
-      //         {
-      //             type: 'base',
-      //             label: 'Min Width', // Label for the property
-      //             property: 'min-width', // CSS property to change
-      //             tooltip: 'px, %, em - Scales with block font size, rem - Scales with page font size, fit-content'
-      //         },
-      //         {
-      //             type: 'base',
-      //             label: 'Min Height', // Label for the property
-      //             property: 'min-height', // CSS property to change
-      //             tooltip: 'px, %, em - Scales with block font size, rem - Scales with page font size, fit-content'
-      //         },
-      //
-      //     ],
-      // },
-      // {
-      //     name: 'Spacing',
-      //      open: true,
-      //     visible: true,
-      //     properties: [
-      //         {
-      //             type: 'composite',
-      //             label: 'Margin', // Label for the property
-      //             property: 'margin', // CSS property to change
-      //             properties: [
-      //                 {
-      //                     type: 'number',
-      //                     units: ['px', '%', 'em', 'rem'],
-      //                     default: '0',
-      //                     property: 'margin-top',
-      //                     label: 'Top',
-      //                 },
-      //                 {
-      //                     type: 'number',
-      //                     units: ['px', '%', 'em', 'rem'],
-      //                     default: '0',
-      //                     property: 'margin-right',
-      //                     label: 'Right',
-      //                 },
-      //                 {
-      //                     type: 'number',
-      //                     units: ['px', '%', 'em', 'rem'],
-      //                     default: '0',
-      //                     property: 'margin-bottom',
-      //                     label: 'Bottom',
-      //                 },
-      //                 {
-      //                     type: 'number',
-      //                     units: ['px', '%', 'em', 'rem'],
-      //                     default: '0',
-      //                     property: 'margin-left',
-      //                     label: 'Left',
-      //                 },
-      //             ],
-      //         },
-      //         {
-      //             type: 'composite',
-      //             label: 'Padding', // Label for the property
-      //             property: 'padding', // CSS property to change
-      //             properties: [
-      //                 {
-      //                     type: 'number',
-      //                     units: ['px', '%', 'em', 'rem'],
-      //                     default: '0',
-      //                     property: 'padding-top',
-      //                     label: 'Top',
-      //                 },
-      //                 {
-      //                     type: 'number',
-      //                     units: ['px', '%', 'em', 'rem'],
-      //                     default: '0',
-      //                     property: 'padding-right',
-      //                     label: 'Right',
-      //                 },
-      //                 {
-      //                     type: 'number',
-      //                     units: ['px', '%', 'em', 'rem'],
-      //                     default: '0',
-      //                     property: 'padding-bottom',
-      //                     label: 'Bottom',
-      //                 },
-      //                 {
-      //                     type: 'number',
-      //                     units: ['px', '%', 'em', 'rem'],
-      //                     default: '0',
-      //                     property: 'padding-left',
-      //                     label: 'Left',
-      //                 },
-      //             ],
-      //         },
-      //         {
-      //             label: 'Content Overflow', // Label for the property
-      //             property: 'overflow', // CSS property to change
-      //             default: 'none', // Default value to display
-      //             type: 'radio',
-      //             options: [
-      //                 {
-      //                     id: 'visible',
-      //                     label: 'Show all',
-      //                     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>`,
-      //                 }, {
-      //                     id: 'hidden',
-      //                     label: 'Clip.',
-      //                     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye-off" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" /><path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" /><path d="M3 3l18 18" /></svg>`,
-      //                 }, {
-      //                     id: 'scroll',
-      //                     label: 'Scrollable.',
-      //                     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mouse" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 3m0 4a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-4a4 4 0 0 1 -4 -4z" /><path d="M12 7l0 4" /></svg>`,
-      //                 },
-      //                 {
-      //                     id: 'clip',
-      //                     label: 'Clip and hide overflow',
-      //                     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cut" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M17 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M9.15 14.85l8.85 -10.85" /><path d="M6 4l8.85 10.85" /></svg>>`,
-      //                 },
-      //                 {
-      //                     id: 'auto',
-      //                     label: 'Adds scrollbars only when necessary.',
-      //                     icon: 'Auto',
-      //                 },
-      //             ],
-      //         },
-      //         {
-      //             label: 'Image fit mode', // Label for the property
-      //             property: 'object-fit', // CSS property to change
-      //             default: 'none', // Default value to display
-      //             type: 'select',
-      //             options: [
-      //                 {id: 'contain', label: 'Contain Within'}, // Enhanced clarity
-      //                 {id: 'cover', label: 'Cover Entire Space'}, // Explicit description
-      //                 {id: 'fill', label: 'Fill Available Space'}, // Descriptive
-      //                 {id: 'scale-down', label: 'Scale Down Only'}, // Clear action
-      //                 {id: 'none', label: 'None'}, // Explicit no action
-      //             ],
-      //         },]
-      // },
-      // {
-      //     name: 'Position',
-      //      open: true,
-      //     visible: true,
-      //     properties: [
-      //         {
-      //             type: 'select',
-      //             property: 'position',
-      //             label: 'Element Position',
-      //             options: [
-      //                 {id: 'static', label: 'Default'},
-      //                 {id: 'relative', label: 'Relative to current position'},
-      //                 {id: 'absolute', label: 'Relative to container'},
-      //                 {id: 'fixed', label: 'Fixed on viewport'},
-      //                 {id: 'sticky', label: "Sticks while scrolling"},
-      //             ],
-      //         },
-      //         {
-      //             label: 'Position',
-      //             property: 'inset',
-      //             type: 'composite',
-      //             properties: [
-      //
-      //                 {type: 'number', units: ['px', '%', 'em', 'rem'], default: '0', property: 'top'},
-      //                 {
-      //                     type: 'number',
-      //                     units: ['px', '%', 'em', 'rem'],
-      //                     default: '0',
-      //                     property: 'right',
-      //                 },
-      //                 {
-      //                     type: 'number',
-      //                     units: ['px', '%', 'em', 'rem'],
-      //                     default: '0',
-      //                     property: 'bottom',
-      //                 },
-      //                 {type: 'number', units: ['px', '%', 'em', 'rem'], default: '0', property: 'left'},
-      //             ],
-      //         },
-      //         {
-      //             type: 'select',
-      //             property: 'z-index',
-      //             label: 'Stack order control',
-      //             default: 'auto',
-      //             options: [
-      //                 {id: 'auto', label: 'Automatic'}, // More precise than "Default"
-      //                 {id: '-1', label: 'Send Backward'}, // Clarifies action
-      //                 {id: '1', label: 'Move Back'}, // Simplifies "Send backward" to ensure clarity within four words
-      //                 {id: '10', label: 'Bring Forward'}, // Direct and clear
-      //                 {id: '100', label: 'Move Front'}, // Simplified for clarity
-      //             ],
-      //         },
-      //     ],
-      // },
-      // {
-      //     name: 'Background',
-      //      open: true,
-      //     visible: true,
-      //     properties: [
-      //         {
-      //             type: 'color',
-      //             label: 'Fill Colour', // Label for the property
-      //             property: 'background', // CSS property to change
-      //         },
-      //         {
-      //             type: 'slider',
-      //             label: 'Opacity', // Label for the property
-      //             property: 'opacity', // CSS property to change
-      //             min: 0, // Min value (available only for the 'number' type)
-      //             max: 100, // Min value (available only for the 'number' type)
-      //             default: 0
-      //         },
-      //         {
-      //             "type": "select",
-      //             "label": "Background Repeat", // Updated label for clarity
-      //             "property": "background-repeat", // CSS property to change
-      //             "default": "repeat", // Default behavior is to repeat the background image
-      //             "options": [
-      //                 {"id": "repeat", "label": "Repeat"}, // Image is repeated in both directions
-      //                 {"id": "repeat-x", "label": "Repeat X"}, // Image is repeated horizontally
-      //                 {"id": "space", "label": "Space"}, // Image is repeated and spaced evenly
-      //                 {"id": "round", "label": "Round"}, // Image is repeated and sized to fit without clipping
-      //                 {"id": "no-repeat", "label": "No Repeat"}, // Image is not repeated
-      //                 {"id": "space repeat", "label": "Space repeat"} // Image is repeated vertically
-      //             ]
-      //         }
-      //     ],
-      //
-      // },
-      // {
-      //     name: 'Border',
-      //      open: true,
-      //     visible: true,
-      //     properties: [
-      //         {
-      //             "type": "composite",
-      //             "label": "Border Width", // Label for the property
-      //             "property": "border-width", // CSS property to change
-      //             "properties": [
-      //                 {
-      //                     "type": "number",
-      //                     // Typically, border widths are defined in pixels; add more units if necessary
-      //                     "default": "0",
-      //                     "property": "border-top-left-width",
-      //                     "label": "Top"
-      //                 },
-      //                 {
-      //                     "type": "number",
-      //                     // Units for the property
-      //                     "default": "0",
-      //                     "property": "border-top-right-width",
-      //                     "label": "Right"
-      //                 },
-      //                 {
-      //                     "type": "number",
-      //                     // Units for the property
-      //                     "default": "0",
-      //                     "property": "border-bottom-left-width",
-      //                     "label": "Bottom"
-      //                 },
-      //                 {
-      //                     "type": "number",
-      //                     // Units for the property
-      //                     "default": "0",
-      //                     "property": "border-bottom-right-width",
-      //                     "label": "Left"
-      //                 }
-      //             ]
-      //         },
-      //         {
-      //             type: 'select',
-      //             label: 'Style', // Label for the property
-      //             property: 'border-style', // CSS property to change
-      //             default: 'none', // Default value to display
-      //             options: [
-      //                 {id: 'none', label: 'None'},
-      //                 {id: 'hidden', label: 'Hidden'},
-      //                 {id: 'solid', label: 'Solid'},
-      //                 {id: 'dotted', label: 'Dotted'},
-      //                 {id: 'dashed', label: 'Dashed'},
-      //             ],
-      //         },
-      //         {
-      //             type: 'color',
-      //             label: 'Colour', // Label for the property
-      //             property: 'border-color', // CSS property to change
-      //
-      //         },
-      //         {
-      //             type: 'composite',
-      //             label: 'Radius', // Label for the property
-      //             property: 'border-radius', // CSS property to change
-      //             properties: [
-      //                 {
-      //                     type: 'number',
-      //                     units: ['px', '%', 'em', 'rem'],
-      //                     default: '0',
-      //                     property: 'border-top-left-radius',
-      //                     label: 'Top left',
-      //                 },
-      //                 {
-      //                     type: 'number',
-      //                     units: ['px', '%', 'em', 'rem'],
-      //                     default: '0',
-      //                     property: 'border-top-right-radius',
-      //                     label: 'Top Right',
-      //                 },
-      //                 {
-      //                     type: 'number',
-      //                     units: ['px', '%', 'em', 'rem'],
-      //                     default: '0',
-      //                     property: 'border-bottom-left-radius',
-      //                     label: 'Bottom left',
-      //                 },
-      //                 {
-      //                     type: 'number',
-      //                     units: ['px', '%', 'em', 'rem'],
-      //                     default: '0',
-      //                     property: 'border-bottom-right-radius',
-      //                     label: 'Bottom right',
-      //                 },
-      //             ],
-      //         },
-      //     ],
-      // },
-      // {
-      //     name: 'Typography',
-      //      open: true,
-      //     visible: true,
-      //     properties: [
-      //         {
-      //             type: 'composite',
-      //             property: 'font',
-      //             label: 'Font',
-      //             detached: false,
-      //             // Additional props
-      //             properties: [
-      //                 {
-      //                     type: 'select',
-      //                     label: 'Family', // Updated label for clarity
-      //                     property: 'font-family', // CSS property to change
-      //                     default: 'inherit', // 'inherit' is more appropriate for font-family defaults
-      //                     options: [
-      //                         {id: 'inherit', label: 'Inherit'}, // Inherits the font-family from its parent
-      //                         {id: 'serif', label: 'Serif'}, // Generic font family
-      //                         {id: 'sans-serif', label: 'Sans-serif'}, // Generic font family
-      //                         {id: 'monospace', label: 'Monospace'}, // Generic font family
-      //                         {id: 'cursive', label: 'Cursive'}, // Generic font family
-      //                         {id: 'fantasy', label: 'Fantasy'}, // Generic font family
-      //                         {id: 'Times New Roman', label: 'Times New Roman'}, // Web-safe font
-      //                         {id: 'Arial', label: 'Arial'}, // Web-safe font
-      //                         {id: 'Verdana', label: 'Verdana'}, // Web-safe font
-      //                         {id: 'Georgia', label: 'Georgia'}, // Web-safe font
-      //                         {id: 'Courier New', label: 'Courier New'}, // Web-safe font
-      //                         {id: 'Comic Sans MS', label: 'Comic Sans MS'} // Web-safe font, though often debated in design choice
-      //                     ],
-      //                 },
-      //                 {
-      //                     type: 'number',
-      //                     label: 'Size', // Label for the property
-      //                     property: 'font-size', // CSS property to change
-      //                     units: ['px', '%', 'em', 'rem'], // Units (available only for the 'number' type)
-      //                     min: 0, // Min value (available only for the 'number' type)
-      //                 },
-      //                 {
-      //                     type: 'select',
-      //                     label: 'Weight', // Label for the property
-      //                     property: 'font-weight', // CSS property to change
-      //                     default: '400', // '400' corresponds to Normal weight, a common default
-      //                     options: [
-      //                         {id: '100', label: '100 – Thin'},
-      //                         {id: '200', label: '200 – Extra Light'},
-      //                         {id: '300', label: '300 – Light'},
-      //                         {id: '400', label: '400 – Normal'},
-      //                         {id: '500', label: '500 – Medium'},
-      //                         {id: '600', label: '600 – Semi Bold'},
-      //                         {id: '700', label: '700 – Bold'},
-      //                         {id: '800', label: '800 – Extra Bold'},
-      //                         {id: '900', label: '900 – Black (Heavy)'},
-      //                     ],
-      //                 },
-      //                 {
-      //                     type: 'select',
-      //                     label: 'Style', // Label for the property
-      //                     property: 'font-style', // CSS property to change
-      //                     default: 'normal', // CSS property to change
-      //                     options: [
-      //                         {id: 'normal', label: 'Normal'}, // Inherits the font-family from its parent
-      //                         {id: 'italic', label: 'Italic'}, // Generic font family
-      //                     ],
-      //                 },
-      //             ]
-      //         },
-      //         {
-      //             type: 'number',
-      //             label: 'Line spacing', // Label for the property
-      //             property: 'line-height', // CSS property to change
-      //             units: ['px', '%', 'em', 'rem'], // Units (available only for the 'number' type)
-      //             min: 0, // Min value (available only for the 'number' type)
-      //         },
-      //         {
-      //             type: 'number',
-      //             label: 'Letter spacing', // Label for the property
-      //             property: 'letter-spacing', // CSS property to change
-      //             units: ['px', '%', 'em', 'rem'], // Units (available only for the 'number' type)
-      //             min: 0, // Min value (available only for the 'number' type)
-      //         },
-      //         {
-      //             type: 'select',
-      //             label: 'Align', // Label for the property
-      //             property: 'text-align', // CSS property to change
-      //             options: [
-      //                 {id: 'left', label: 'Left'},
-      //                 {id: 'center', label: 'Center'},
-      //                 {id: 'right', label: 'Right'},
-      //                 {id: 'justify', label: 'Justify'},
-      //             ],
-      //         },
-      //         {
-      //             type: 'select',
-      //             label: 'White space', // Label for the property
-      //             property: 'white-space', // CSS property to change
-      //             options: [
-      //                 {id: 'normal', label: 'Normal'},
-      //                 {id: 'no-wrap', label: 'No wrap'},
-      //                 {id: 'pre', label: 'Keep Spaces'},
-      //                 {id: 'pre-wrap', label: 'Wrap & Keep Spaces'},
-      //                 {id: 'pre-line', label: 'Wrap & Trim Spaces'},
-      //                 {id: 'break-space', label: 'Spaces & Breaks'},
-      //             ],
-      //         },
-      //         {
-      //             type: 'color',
-      //             label: 'Colour', // Label for the property
-      //             property: 'color', // CSS property to change
-      //             units: ['px', '%', 'em', 'rem'], // Units (available only for the 'number' type)
-      //             min: 0, // Min value (available only for the 'number' type)
-      //         },
-      //         {
-      //             type: 'select',
-      //             label: 'Decoration', // Label for the property
-      //             property: 'text-decoration', // CSS property to change
-      //             options: [
-      //                 {id: 'none', label: 'None'},
-      //                 {id: 'underline', label: 'Underline'},
-      //                 {id: 'overline', label: 'Overline'},
-      //                 {id: 'line-through', label: 'Line through'},
-      //             ],
-      //         },
-      //
-      //
-      //     ],
-      // },
-      // {
-      //     name: 'Extra',
-      //      open: true,
-      //     visible: true,
-      //     properties: [
-      //         {
-      //             type: 'select',
-      //             label: 'Cursor type', // Label for the property
-      //             property: 'cursor', // CSS property to change
-      //             default: 'default', // Default value to display
-      //             options: [
-      //                 {id: 'default', label: 'Default'},
-      //                 {id: 'pointer', label: 'pointer'},
-      //                 {id: 'wait', label: 'Wait'},
-      //                 {id: 'not-allowed', label: 'Not allowed'},
-      //                 {id: 'zoom-in', label: 'Zoom in'},
-      //                 {id: 'grab', label: 'Grab'},
-      //                 {id: 'move', label: 'Move'},
-      //             ],
-      //         },
-      //         {
-      //             type: 'select',
-      //             label: 'List style', // Label for the property
-      //             property: 'list-style', // CSS property to change
-      //             options: [
-      //                 {id: 'none', label: 'None'},
-      //                 {id: 'square', label: 'Square'},
-      //                 {id: 'circle', label: 'Circle'},
-      //                 {id: 'upper-roman', label: 'Roman'},
-      //                 {id: 'lower-alpha', label: 'Alpha'},
-      //             ],
-      //         },
-      //
-      //     ],
-      // },
+      {
+          name: 'Sizing',
+           open: true,
+          visible: true,
+          properties: [
+              {
+                  type: 'base',
+                  label: 'Width', // Label for the property
+                  property: 'width', // CSS property to change
+                  tooltip: 'px, %, em - Scales with block font size, rem - Scales with page font size, fit-content'
+              },
+              {
+                  type: 'base',
+                  label: 'height', // Label for the property
+                  property: 'height', // CSS property to change
+                  tooltip: 'px, %, em - Scales with block font size, rem - Scales with page font size, fit-content'
+              },
+              {
+                  type: 'base',
+                  label: 'Max Width', // Label for the property
+                  property: 'max-width', // CSS property to change
+                  tooltip: 'px, %, em - Scales with block font size, rem - Scales with page font size, fit-content'
+              },
+              {
+                  type: 'base',
+                  label: 'Max Height', // Label for the property
+                  property: 'max-height', // CSS property to change
+                  tooltip: 'px, %, em - Scales with block font size, rem - Scales with page font size, fit-content'
+              },
+              {
+                  type: 'base',
+                  label: 'Min Width', // Label for the property
+                  property: 'min-width', // CSS property to change
+                  tooltip: 'px, %, em - Scales with block font size, rem - Scales with page font size, fit-content'
+              },
+              {
+                  type: 'base',
+                  label: 'Min Height', // Label for the property
+                  property: 'min-height', // CSS property to change
+                  tooltip: 'px, %, em - Scales with block font size, rem - Scales with page font size, fit-content'
+              },
+
+          ],
+      },
+      {
+          name: 'Spacing',
+           open: true,
+          visible: true,
+          properties: [
+              {
+                  type: 'composite',
+                  label: 'Margin', // Label for the property
+                  property: 'margin', // CSS property to change
+                  properties: [
+                      {
+                          type: 'number',
+                          units: ['px', '%', 'em', 'rem'],
+                          default: '0',
+                          property: 'margin-top',
+                          label: 'Top',
+                      },
+                      {
+                          type: 'number',
+                          units: ['px', '%', 'em', 'rem'],
+                          default: '0',
+                          property: 'margin-right',
+                          label: 'Right',
+                      },
+                      {
+                          type: 'number',
+                          units: ['px', '%', 'em', 'rem'],
+                          default: '0',
+                          property: 'margin-bottom',
+                          label: 'Bottom',
+                      },
+                      {
+                          type: 'number',
+                          units: ['px', '%', 'em', 'rem'],
+                          default: '0',
+                          property: 'margin-left',
+                          label: 'Left',
+                      },
+                  ],
+              },
+              {
+                  type: 'composite',
+                  label: 'Padding', // Label for the property
+                  property: 'padding', // CSS property to change
+                  properties: [
+                      {
+                          type: 'number',
+                          units: ['px', '%', 'em', 'rem'],
+                          default: '0',
+                          property: 'padding-top',
+                          label: 'Top',
+                      },
+                      {
+                          type: 'number',
+                          units: ['px', '%', 'em', 'rem'],
+                          default: '0',
+                          property: 'padding-right',
+                          label: 'Right',
+                      },
+                      {
+                          type: 'number',
+                          units: ['px', '%', 'em', 'rem'],
+                          default: '0',
+                          property: 'padding-bottom',
+                          label: 'Bottom',
+                      },
+                      {
+                          type: 'number',
+                          units: ['px', '%', 'em', 'rem'],
+                          default: '0',
+                          property: 'padding-left',
+                          label: 'Left',
+                      },
+                  ],
+              },
+              {
+                  label: 'Content Overflow', // Label for the property
+                  property: 'overflow', // CSS property to change
+                  default: 'none', // Default value to display
+                  type: 'radio',
+                  options: [
+                      {
+                          id: 'visible',
+                          label: 'Show all',
+                          icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>`,
+                      }, {
+                          id: 'hidden',
+                          label: 'Clip.',
+                          icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye-off" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" /><path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" /><path d="M3 3l18 18" /></svg>`,
+                      }, {
+                          id: 'scroll',
+                          label: 'Scrollable.',
+                          icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mouse" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 3m0 4a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-4a4 4 0 0 1 -4 -4z" /><path d="M12 7l0 4" /></svg>`,
+                      },
+                      {
+                          id: 'clip',
+                          label: 'Clip and hide overflow',
+                          icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cut" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M17 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M9.15 14.85l8.85 -10.85" /><path d="M6 4l8.85 10.85" /></svg>>`,
+                      },
+                      {
+                          id: 'auto',
+                          label: 'Adds scrollbars only when necessary.',
+                          icon: 'Auto',
+                      },
+                  ],
+              },
+              {
+                  label: 'Image fit mode', // Label for the property
+                  property: 'object-fit', // CSS property to change
+                  default: 'none', // Default value to display
+                  type: 'select',
+                  options: [
+                      {id: 'contain', label: 'Contain Within'}, // Enhanced clarity
+                      {id: 'cover', label: 'Cover Entire Space'}, // Explicit description
+                      {id: 'fill', label: 'Fill Available Space'}, // Descriptive
+                      {id: 'scale-down', label: 'Scale Down Only'}, // Clear action
+                      {id: 'none', label: 'None'}, // Explicit no action
+                  ],
+              },]
+      },
+      {
+          name: 'Position',
+           open: true,
+          visible: true,
+          properties: [
+              {
+                  type: 'select',
+                  property: 'position',
+                  label: 'Element Position',
+                  options: [
+                      {id: 'static', label: 'Default'},
+                      {id: 'relative', label: 'Relative to current position'},
+                      {id: 'absolute', label: 'Relative to container'},
+                      {id: 'fixed', label: 'Fixed on viewport'},
+                      {id: 'sticky', label: "Sticks while scrolling"},
+                  ],
+              },
+              {
+                  label: 'Position',
+                  property: 'inset',
+                  type: 'composite',
+                  properties: [
+
+                      {type: 'number', units: ['px', '%', 'em', 'rem'], default: '0', property: 'top'},
+                      {
+                          type: 'number',
+                          units: ['px', '%', 'em', 'rem'],
+                          default: '0',
+                          property: 'right',
+                      },
+                      {
+                          type: 'number',
+                          units: ['px', '%', 'em', 'rem'],
+                          default: '0',
+                          property: 'bottom',
+                      },
+                      {type: 'number', units: ['px', '%', 'em', 'rem'], default: '0', property: 'left'},
+                  ],
+              },
+              {
+                  type: 'select',
+                  property: 'z-index',
+                  label: 'Stack order control',
+                  default: 'auto',
+                  options: [
+                      {id: 'auto', label: 'Automatic'}, // More precise than "Default"
+                      {id: '-1', label: 'Send Backward'}, // Clarifies action
+                      {id: '1', label: 'Move Back'}, // Simplifies "Send backward" to ensure clarity within four words
+                      {id: '10', label: 'Bring Forward'}, // Direct and clear
+                      {id: '100', label: 'Move Front'}, // Simplified for clarity
+                  ],
+              },
+          ],
+      },
+      {
+          name: 'Background',
+           open: true,
+          visible: true,
+          properties: [
+              {
+                  type: 'color',
+                  label: 'Fill Colour', // Label for the property
+                  property: 'background', // CSS property to change
+              },
+              {
+                  type: 'slider',
+                  label: 'Opacity', // Label for the property
+                  property: 'opacity', // CSS property to change
+                  min: 0, // Min value (available only for the 'number' type)
+                  max: 100, // Min value (available only for the 'number' type)
+                  default: 0
+              },
+              {
+                  "type": "select",
+                  "label": "Background Repeat", // Updated label for clarity
+                  "property": "background-repeat", // CSS property to change
+                  "default": "repeat", // Default behavior is to repeat the background image
+                  "options": [
+                      {"id": "repeat", "label": "Repeat"}, // Image is repeated in both directions
+                      {"id": "repeat-x", "label": "Repeat X"}, // Image is repeated horizontally
+                      {"id": "space", "label": "Space"}, // Image is repeated and spaced evenly
+                      {"id": "round", "label": "Round"}, // Image is repeated and sized to fit without clipping
+                      {"id": "no-repeat", "label": "No Repeat"}, // Image is not repeated
+                      {"id": "space repeat", "label": "Space repeat"} // Image is repeated vertically
+                  ]
+              }
+          ],
+
+      },
+      {
+          name: 'Border',
+           open: true,
+          visible: true,
+          properties: [
+              {
+                  "type": "composite",
+                  "label": "Border Width", // Label for the property
+                  "property": "border-width", // CSS property to change
+                  "properties": [
+                      {
+                          "type": "number",
+                          // Typically, border widths are defined in pixels; add more units if necessary
+                          "default": "0",
+                          "property": "border-top-left-width",
+                          "label": "Top"
+                      },
+                      {
+                          "type": "number",
+                          // Units for the property
+                          "default": "0",
+                          "property": "border-top-right-width",
+                          "label": "Right"
+                      },
+                      {
+                          "type": "number",
+                          // Units for the property
+                          "default": "0",
+                          "property": "border-bottom-left-width",
+                          "label": "Bottom"
+                      },
+                      {
+                          "type": "number",
+                          // Units for the property
+                          "default": "0",
+                          "property": "border-bottom-right-width",
+                          "label": "Left"
+                      }
+                  ]
+              },
+              {
+                  type: 'select',
+                  label: 'Style', // Label for the property
+                  property: 'border-style', // CSS property to change
+                  default: 'none', // Default value to display
+                  options: [
+                      {id: 'none', label: 'None'},
+                      {id: 'hidden', label: 'Hidden'},
+                      {id: 'solid', label: 'Solid'},
+                      {id: 'dotted', label: 'Dotted'},
+                      {id: 'dashed', label: 'Dashed'},
+                  ],
+              },
+              {
+                  type: 'color',
+                  label: 'Colour', // Label for the property
+                  property: 'border-color', // CSS property to change
+
+              },
+              {
+                  type: 'composite',
+                  label: 'Radius', // Label for the property
+                  property: 'border-radius', // CSS property to change
+                  properties: [
+                      {
+                          type: 'number',
+                          units: ['px', '%', 'em', 'rem'],
+                          default: '0',
+                          property: 'border-top-left-radius',
+                          label: 'Top left',
+                      },
+                      {
+                          type: 'number',
+                          units: ['px', '%', 'em', 'rem'],
+                          default: '0',
+                          property: 'border-top-right-radius',
+                          label: 'Top Right',
+                      },
+                      {
+                          type: 'number',
+                          units: ['px', '%', 'em', 'rem'],
+                          default: '0',
+                          property: 'border-bottom-left-radius',
+                          label: 'Bottom left',
+                      },
+                      {
+                          type: 'number',
+                          units: ['px', '%', 'em', 'rem'],
+                          default: '0',
+                          property: 'border-bottom-right-radius',
+                          label: 'Bottom right',
+                      },
+                  ],
+              },
+          ],
+      },
+      {
+          name: 'Typography',
+           open: true,
+          visible: true,
+          properties: [
+              {
+                  type: 'composite',
+                  property: 'font',
+                  label: 'Font',
+                  detached: false,
+                  // Additional props
+                  properties: [
+                      {
+                          type: 'select',
+                          label: 'Family', // Updated label for clarity
+                          property: 'font-family', // CSS property to change
+                          default: 'inherit', // 'inherit' is more appropriate for font-family defaults
+                          options: [
+                              {id: 'inherit', label: 'Inherit'}, // Inherits the font-family from its parent
+                              {id: 'serif', label: 'Serif'}, // Generic font family
+                              {id: 'sans-serif', label: 'Sans-serif'}, // Generic font family
+                              {id: 'monospace', label: 'Monospace'}, // Generic font family
+                              {id: 'cursive', label: 'Cursive'}, // Generic font family
+                              {id: 'fantasy', label: 'Fantasy'}, // Generic font family
+                              {id: 'Times New Roman', label: 'Times New Roman'}, // Web-safe font
+                              {id: 'Arial', label: 'Arial'}, // Web-safe font
+                              {id: 'Verdana', label: 'Verdana'}, // Web-safe font
+                              {id: 'Georgia', label: 'Georgia'}, // Web-safe font
+                              {id: 'Courier New', label: 'Courier New'}, // Web-safe font
+                              {id: 'Comic Sans MS', label: 'Comic Sans MS'} // Web-safe font, though often debated in design choice
+                          ],
+                      },
+                      {
+                          type: 'number',
+                          label: 'Size', // Label for the property
+                          property: 'font-size', // CSS property to change
+                          units: ['px', '%', 'em', 'rem'], // Units (available only for the 'number' type)
+                          min: 0, // Min value (available only for the 'number' type)
+                      },
+                      {
+                          type: 'select',
+                          label: 'Weight', // Label for the property
+                          property: 'font-weight', // CSS property to change
+                          default: '400', // '400' corresponds to Normal weight, a common default
+                          options: [
+                              {id: '100', label: '100 – Thin'},
+                              {id: '200', label: '200 – Extra Light'},
+                              {id: '300', label: '300 – Light'},
+                              {id: '400', label: '400 – Normal'},
+                              {id: '500', label: '500 – Medium'},
+                              {id: '600', label: '600 – Semi Bold'},
+                              {id: '700', label: '700 – Bold'},
+                              {id: '800', label: '800 – Extra Bold'},
+                              {id: '900', label: '900 – Black (Heavy)'},
+                          ],
+                      },
+                      {
+                          type: 'select',
+                          label: 'Style', // Label for the property
+                          property: 'font-style', // CSS property to change
+                          default: 'normal', // CSS property to change
+                          options: [
+                              {id: 'normal', label: 'Normal'}, // Inherits the font-family from its parent
+                              {id: 'italic', label: 'Italic'}, // Generic font family
+                          ],
+                      },
+                  ]
+              },
+              {
+                  type: 'number',
+                  label: 'Line spacing', // Label for the property
+                  property: 'line-height', // CSS property to change
+                  units: ['px', '%', 'em', 'rem'], // Units (available only for the 'number' type)
+                  min: 0, // Min value (available only for the 'number' type)
+              },
+              {
+                  type: 'number',
+                  label: 'Letter spacing', // Label for the property
+                  property: 'letter-spacing', // CSS property to change
+                  units: ['px', '%', 'em', 'rem'], // Units (available only for the 'number' type)
+                  min: 0, // Min value (available only for the 'number' type)
+              },
+              {
+                  type: 'select',
+                  label: 'Align', // Label for the property
+                  property: 'text-align', // CSS property to change
+                  options: [
+                      {id: 'left', label: 'Left'},
+                      {id: 'center', label: 'Center'},
+                      {id: 'right', label: 'Right'},
+                      {id: 'justify', label: 'Justify'},
+                  ],
+              },
+              {
+                  type: 'select',
+                  label: 'White space', // Label for the property
+                  property: 'white-space', // CSS property to change
+                  options: [
+                      {id: 'normal', label: 'Normal'},
+                      {id: 'no-wrap', label: 'No wrap'},
+                      {id: 'pre', label: 'Keep Spaces'},
+                      {id: 'pre-wrap', label: 'Wrap & Keep Spaces'},
+                      {id: 'pre-line', label: 'Wrap & Trim Spaces'},
+                      {id: 'break-space', label: 'Spaces & Breaks'},
+                  ],
+              },
+              {
+                  type: 'color',
+                  label: 'Colour', // Label for the property
+                  property: 'color', // CSS property to change
+                  units: ['px', '%', 'em', 'rem'], // Units (available only for the 'number' type)
+                  min: 0, // Min value (available only for the 'number' type)
+              },
+              {
+                  type: 'select',
+                  label: 'Decoration', // Label for the property
+                  property: 'text-decoration', // CSS property to change
+                  options: [
+                      {id: 'none', label: 'None'},
+                      {id: 'underline', label: 'Underline'},
+                      {id: 'overline', label: 'Overline'},
+                      {id: 'line-through', label: 'Line through'},
+                  ],
+              },
+
+
+          ],
+      },
+      {
+          name: 'Extra',
+           open: true,
+          visible: true,
+          properties: [
+              {
+                  type: 'select',
+                  label: 'Cursor type', // Label for the property
+                  property: 'cursor', // CSS property to change
+                  default: 'default', // Default value to display
+                  options: [
+                      {id: 'default', label: 'Default'},
+                      {id: 'pointer', label: 'pointer'},
+                      {id: 'wait', label: 'Wait'},
+                      {id: 'not-allowed', label: 'Not allowed'},
+                      {id: 'zoom-in', label: 'Zoom in'},
+                      {id: 'grab', label: 'Grab'},
+                      {id: 'move', label: 'Move'},
+                  ],
+              },
+              {
+                  type: 'select',
+                  label: 'List style', // Label for the property
+                  property: 'list-style', // CSS property to change
+                  options: [
+                      {id: 'none', label: 'None'},
+                      {id: 'square', label: 'Square'},
+                      {id: 'circle', label: 'Circle'},
+                      {id: 'upper-roman', label: 'Roman'},
+                      {id: 'lower-alpha', label: 'Alpha'},
+                  ],
+              },
+
+          ],
+      },
     ],
   },
 

@@ -9,7 +9,7 @@ export type SelectorsState = {
     /**
      * Array of current selectors.
      */
-    selectors: Selector[]
+    selectedSelectors: string[]
 
     /**
      * Array of available states.
@@ -29,7 +29,7 @@ export type SelectorsState = {
     /**
      * Selector strings of currently selected targets.
      */
-    targets: string[]
+    allSelectors: string[]
 
     /**
      * Add new selector to selected targets.
@@ -66,11 +66,11 @@ const SelectorsProvider = memo(function ({ children }: SelectorsProviderProps) {
     const { editor } = useEditorInstance()
     const options = useEditorOptions()
     const [propState, setPropState] = useState<SelectorsState>(() => ({
-        selectors: [],
+        selectedSelectors: [],
         states: [],
         selectedState: "",
         targetsIds: [],
-        targets: [],
+        allSelectors: [],
         addSelector: noop,
         removeSelector: noop,
         setState: noop,
@@ -86,13 +86,11 @@ const SelectorsProvider = memo(function ({ children }: SelectorsProviderProps) {
 
         const up = ({ container }: { container: HTMLElement }) => {
             setPropState({
-                selectors: Selectors.getSelected(),
+                selectedSelectors: Selectors.getSelected().filter((s:Selector) => s.get('type') === 1).map(s => s.toString()),
                 states: Selectors.getStates(),
                 selectedState: Selectors.getState(),
                 targetsIds:editor.getSelectedAll().map((t)=>t.getId()),
-                targets: Selectors.getSelectedTargets().map((t) =>
-                    t.getSelectorsString(),
-                ),
+                allSelectors: Selectors.getAll().filter((s:Selector) => s.get('type') === 1).map(s => s.toString()),
                 addSelector: (...args) => Selectors.addSelected(...args),
                 removeSelector: (...args) => Selectors.removeSelected(...args),
                 setState: (...args) => Selectors.setState(...args),

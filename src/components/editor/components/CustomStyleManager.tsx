@@ -1,14 +1,24 @@
-import { Accordion, ActionIcon, Divider, ScrollArea, Select, Text, TextInput, ThemeIcon, Tooltip } from '@mantine/core';
+import {
+  Accordion,
+  ActionIcon,
+  Divider,
+  ScrollArea,
+  Select,
+  Tabs,
+  Text,
+  TextInput,
+  ThemeIcon,
+  Tooltip,
+} from '@mantine/core';
 import * as React from 'react';
 
 import StylePropertyField from './StylePropertyField';
 import { StylesResultProps } from '../wrappers/StylesProvider';
-import { IconExclamationCircle, IconFile } from '@tabler/icons-react';
+import { IconExclamationCircle, IconFile, IconHash } from '@tabler/icons-react';
 import classes from './CustomStyleManager.module.css';
 import { useEditor, useEditorInstance } from '@/components/editor/context/EditorInstance';
 import { SelectSize } from '@/components/editor/components/SelectSize';
-import { useEffect } from 'react';
-
+import { useEffect, useState } from 'react';
 
 
 function getClassName(propertiesLength: number) {
@@ -82,10 +92,11 @@ export default function CustomStyleManager({
     </div>
   );
 
-
-
+  const [value, setValue] = useState<string | null>(null);
+  // const [activeTab, setActiveTab] = useState(sectors.length > 0 ? sectors[0].getId().toString() : '');
   // Map the rest of the sectors to accordion items
   const accordionItems = otherSectors.filter(sector => sector.isOpen()).map((sector) => {
+
     const propertiesLength = sector.getProperties().length;
     const className = getClassName(propertiesLength);
 
@@ -94,30 +105,52 @@ export default function CustomStyleManager({
         <Accordion.Control>
           {sector.getName()}
         </Accordion.Control>
-        <Accordion.Panel>
-          <div className={className}>
-            {sector.getProperties().map((prop) => (
-              // Apply 'w-full' to the first item and 'w-1/2' to the rest if it's a large sector
-              <StylePropertyField key={prop.getId()} prop={prop} />
-            ))}
-          </div>
-        </Accordion.Panel>
+        {value === sector.getId() && ( // Conditionally render Accordion.Panel based on value state
+          <Accordion.Panel>
+            <div className={className}>
+              {sector.getProperties().map((prop) => (
+                <StylePropertyField key={prop.getId()} prop={prop} />
+              ))}
+            </div>
+          </Accordion.Panel>
+        )}
       </Accordion.Item>
     );
   });
+
+
+
 
   return (
     <div className="gjs-custom-style-manager text-left mt-2 ">
       {/* Render the first sector element */}
       {firstSectorElement}
-      {/* Render the filtered sectors within the accordion */}
-      <Accordion multiple defaultValue={['flexProperties','gridProperties', 'gridItem']} classNames={classes}>
+      <Accordion value={value} onChange={setValue}
+                  classNames={classes}>
         {accordionItems}
       </Accordion>
+      {/*<div className="gjs-custom-style-manager text-left">*/}
+      {/*  <Tabs  orientation="vertical" placement="right" keepMounted={false}>*/}
+      {/*    <Tabs.List grow  justify="space-between">*/}
+      {/*      {sectors.map((sector) => (*/}
+      {/*        <Tabs.Tab  p={4} key={sector.getId()} value={sector.getId().toString()}>*/}
+      {/*         <IconHash size="1rem"/>*/}
+      {/*        </Tabs.Tab>*/}
+      {/*      ))}*/}
+      {/*    </Tabs.List>*/}
+
+      {/*    {sectors.map((sector) => (*/}
+      {/*      <Tabs.Panel key={sector.getId()} value={sector.getId().toString()} className={` flex flex-wrap`}>*/}
+      {/*        {sector.getProperties().map((prop) => (*/}
+      {/*          <StylePropertyField key={prop.getId()} prop={prop} />*/}
+      {/*        ))}*/}
+      {/*      </Tabs.Panel>*/}
+      {/*    ))}*/}
+      {/*  </Tabs>*/}
+      {/*</div>*/}
     </div>
   );
 }
-
 
 
 {/*<div className="flex flex-col gap-2 px-1">*/

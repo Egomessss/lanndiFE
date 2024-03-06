@@ -59,16 +59,16 @@ export default function CustomEditor() {
                     <RightSideBar/>
                     <Canvas/>
                 </AppShell>
-                {/*<ModalProvider>*/}
-                {/*    {({open, title, content, close}) => (*/}
-                {/*        <CustomModal*/}
-                {/*            open={open}*/}
-                {/*            title={title}*/}
-                {/*            children={content}*/}
-                {/*            close={close}*/}
-                {/*        />*/}
-                {/*    )}*/}
-                {/*</ModalProvider>*/}
+                <ModalProvider>
+                    {({open, title, content, close}) => (
+                        <CustomModal
+                            open={open}
+                            title={title}
+                            children={content}
+                            close={close}
+                        />
+                    )}
+                </ModalProvider>
                 {/*<AssetsProvider>*/}
                 {/*    {({assets, select, close, Container, open}) => (*/}
                 {/*        <CustomAssetManager*/}

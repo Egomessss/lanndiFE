@@ -46,7 +46,7 @@ function RightSideBar() {
                               onChange={setSelectedRightBar} data={["Styles", "Settings"]}/>
 
         </AppShell.Section>
-        <AppShell.Section grow mb="lg" component={ScrollArea}>
+        <AppShell.Section grow  component={ScrollArea}>
             {renderSelectedRightBarComponent()}
         </AppShell.Section>
         {/*<Tabs>*/}

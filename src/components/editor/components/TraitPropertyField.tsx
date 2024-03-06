@@ -117,7 +117,7 @@ export default function TraitPropertyField({
     return (
         <div
             {...rest}
-            className="mb-3 w-full px-1"
+            className=" w-full "
         >
             {inputToRender}
         </div>
