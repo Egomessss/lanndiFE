@@ -47,31 +47,7 @@ export default function (editor: Editor, opts) {
                 }
                 `,
             },
-
         },
-        view: {
-            init() {
-                // console.log('init')
-                console.log('render')
-                const sm = editor.StyleManager;
-                const sector = sm?.getSector('flexProperties');
-                console.log('sector',sector)
-                console.log('sector closed?',sector?.isOpen())
-                sector?.setOpen(true);
-                console.log('sector open',sector?.isOpen())
-            },
-            // onRender() {
-            //     console.log('render')
-            //     const sm = editor.StyleManager;
-            //     const sector = sm?.getSector('flexProperties');
-            //     console.log('sector',sector)
-            //     console.log('sector closed?',sector?.isOpen())
-            //     sector?.setOpen(true);
-            //     console.log('sector open',sector?.isOpen())
-            // },
-        },
-
-
     })
 
 // When adding a 'container' block
