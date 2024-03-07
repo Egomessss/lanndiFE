@@ -13,6 +13,7 @@ import { EditorData } from '@/hooks/useEditorData';
 import UtilsPlugin from '@/components/editor/plugins/utils/UtilsPlugin/utilsPlugin';
 import GoogleIcons from '@/components/editor/plugins/utils/GoogleIcons';
 import ScriptEditor from '@/components/editor/plugins/utils/ScriptEditor';
+import PostCss from '../plugins/utils/PostCss';
 
 // const editor = useEditor();
 //
@@ -24,6 +25,100 @@ import ScriptEditor from '@/components/editor/plugins/utils/ScriptEditor';
 export const editorConfigOptions = (data: EditorData) => ({
   height: '100vh',
   undoManager: { trackSelection: false },
+
+  deviceManager: {
+    default: 'fit',
+    devices: [
+      {
+        id: 'desktop', name: 'Desktop', width: '1536px', widthMedia: '1536px',
+      },
+      {
+        id: 'laptop',
+        name: 'Laptop',
+        width: '1280px',
+        widthMedia: '1280px',
+      },
+      {
+        id: 'tablet',
+        name: 'Tablet',
+        width: '800px',
+        widthMedia: '800px',
+      },
+      {
+        id: 'mobile',
+        name: 'Mobile',
+        width: '380px',
+        widthMedia: '380px',
+      },
+      { id: 'fit', name: 'Fit To Screen', width: '' },
+    ],
+  },
+  //     storageManager: {
+  //         type: 'local', // Type of the storage, available: 'local' | 'remote'
+  //         autosave: true, // Store data automatically
+  //         autoload: true, // Autoload stored data on init
+  //         stepsBeforeSave: 1, // If autosave enabled, indicates how many changes are necessary before store method is triggered
+  //         options: {
+  //             local: { // Options for the `local` type
+  //                 key: 'lanndiProject', // The key for the local storage
+  //             },
+  //             remote: {
+  //                 urlLoad: `api/v1/editor/site/${siteSlug}`,
+  //                 urlStore: `api/v1/editor/site/store/${siteSlug}`,
+  //                 // Enrich the store call
+  //                 onStore: async store(data) {
+  //                     return await axios.patch(`projects/${projectId}`, {id: siteSlug, data});
+  //                 },
+  //             // If on load, you're returning the same JSON from above...
+  //             onLoad: result => result.data,
+  //         }
+  //     },
+  // },
+  selectorManager: {
+    stylePrefix: 'lnd-', componentFirst: false, states: [
+      { name: 'hover', label: 'Hover', info: 'Change styles on user hover' },
+      { name: 'focus', label: 'Focus', info: 'Change styles on user focus' },
+      { name: 'active', label: 'Active', info: 'Change styles on active element' },
+    ],
+  },
+  projectData: data?.data ||
+    {
+      assets: [
+        'https://via.placeholder.com/350x250/78c5d6/fff',
+        'https://via.placeholder.com/350x250/459ba8/fff',
+        'https://via.placeholder.com/350x250/79c267/fff',
+        'https://via.placeholder.com/350x250/c5d647/fff',
+        'https://via.placeholder.com/350x250/f28c33/fff',
+      ],
+      pages: [
+        {
+          name: '/',
+          component: starterTemplate,
+          styles: styleStarterTemplate,
+        },
+      ],
+    }
+  ,
+  plugins: [
+    zoomPlugin,
+    LayoutBlocks,
+    TypographyBlocks,
+    CoreBlocks,
+    MediaBlocks,
+    ListBlocks,
+    // FormBlocks,
+    // SemanticBlocks,
+    // IntegrationsBlocks,
+    // ExtraBlocks,
+    PostCss,
+    ScriptEditor,
+    CustomCode,
+    GoogleIcons,
+    BorderStyle,
+    Sections,
+    UtilsPlugin,
+  ],
+
   styleManager: {
     custom:true,
     sectors: [
@@ -806,99 +901,6 @@ export const editorConfigOptions = (data: EditorData) => ({
       },
     ],
   },
-
-  deviceManager: {
-    default: 'fit',
-    devices: [
-      {
-        id: 'desktop', name: 'Desktop', width: '1536px', widthMedia: '1536px',
-      },
-      {
-        id: 'laptop',
-        name: 'Laptop',
-        width: '1280px',
-        widthMedia: '1280px',
-      },
-      {
-        id: 'tablet',
-        name: 'Tablet',
-        width: '800px',
-        widthMedia: '800px',
-      },
-      {
-        id: 'mobile',
-        name: 'Mobile',
-        width: '380px',
-        widthMedia: '380px',
-      },
-      { id: 'fit', name: 'Fit To Screen', width: '' },
-    ],
-  },
-  //     storageManager: {
-  //         type: 'local', // Type of the storage, available: 'local' | 'remote'
-  //         autosave: true, // Store data automatically
-  //         autoload: true, // Autoload stored data on init
-  //         stepsBeforeSave: 1, // If autosave enabled, indicates how many changes are necessary before store method is triggered
-  //         options: {
-  //             local: { // Options for the `local` type
-  //                 key: 'lanndiProject', // The key for the local storage
-  //             },
-  //             remote: {
-  //                 urlLoad: `api/v1/editor/site/${siteSlug}`,
-  //                 urlStore: `api/v1/editor/site/store/${siteSlug}`,
-  //                 // Enrich the store call
-  //                 onStore: async store(data) {
-  //                     return await axios.patch(`projects/${projectId}`, {id: siteSlug, data});
-  //                 },
-  //             // If on load, you're returning the same JSON from above...
-  //             onLoad: result => result.data,
-  //         }
-  //     },
-  // },
-  selectorManager: {
-    stylePrefix: 'lnd-', componentFirst: false, states: [
-      { name: 'hover', label: 'Hover', info: 'Change styles on user hover' },
-      { name: 'focus', label: 'Focus', info: 'Change styles on user focus' },
-      { name: 'active', label: 'Active', info: 'Change styles on active element' },
-    ],
-  },
-  projectData: data?.data ||
-    {
-      assets: [
-        'https://via.placeholder.com/350x250/78c5d6/fff',
-        'https://via.placeholder.com/350x250/459ba8/fff',
-        'https://via.placeholder.com/350x250/79c267/fff',
-        'https://via.placeholder.com/350x250/c5d647/fff',
-        'https://via.placeholder.com/350x250/f28c33/fff',
-      ],
-      pages: [
-        {
-          name: '/',
-          component: starterTemplate,
-          styles: styleStarterTemplate,
-        },
-      ],
-    }
-  ,
-  plugins: [
-    zoomPlugin,
-    LayoutBlocks,
-    TypographyBlocks,
-    CoreBlocks,
-    MediaBlocks,
-    ListBlocks,
-    // FormBlocks,
-    // SemanticBlocks,
-    // IntegrationsBlocks,
-    // ExtraBlocks,
-    // PostCss,
-    ScriptEditor,
-    CustomCode,
-    GoogleIcons,
-    BorderStyle,
-    Sections,
-    UtilsPlugin,
-  ],
 
 
 });

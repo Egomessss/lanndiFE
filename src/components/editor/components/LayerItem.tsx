@@ -84,6 +84,7 @@ export default function LayerItem({
     }
 
     const select = (event: MouseEvent) => {
+        editor.select(component);
         event.stopPropagation()
         Layers.setLayerData(component, { selected: true }, { event })
     }
