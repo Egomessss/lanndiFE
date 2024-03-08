@@ -1,6 +1,7 @@
 import type { BlockProperties, Plugin } from 'grapesjs';
 import loadFooters from './footers';
 import loadFaqs from './faq';
+import loadNavbars from './navbars';
 
 
 export type PluginOptions = {
@@ -47,8 +48,9 @@ export type RequiredPluginOptions = Required<PluginOptions>;
 const SectionBlocks: Plugin<PluginOptions> = (editor) => {
 
 
-    loadFooters(editor);
+    loadNavbars(editor);
     loadFaqs(editor);
+    loadFooters(editor);
 };
 
 export default SectionBlocks;

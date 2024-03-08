@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, FileInput, Textarea, TextInput } from '@mantine/core';
+import { Button, Divider, FileInput, Textarea, TextInput } from '@mantine/core';
 import { IconFile } from '@tabler/icons-react';
 import CodeMirror from '@uiw/react-codemirror';
 import { langs } from '@uiw/codemirror-extensions-langs';
@@ -11,18 +11,10 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import TextLength from '@/components/common/TextLength';
 import axios from '@/lib/axios';
 
-type SiteSettingsProps = {
-  title: string,
-  description: string,
-  favIcon: File | string,
-  ogImage: File | string,
-  language: string,
-  headCode: string,
-  bodyCode: string,
-  slug: string
-}
+
 
 const SiteSettingsForm = ({
+  name,
                             title,
                             description,
                             favIcon,
@@ -31,12 +23,12 @@ const SiteSettingsForm = ({
                             headCode,
                             bodyCode,
                             slug,
-                          }: SiteSettingsProps) => {
+                          }: SiteSettings) => {
 
-  console.log(ogImage);
   const queryClient = useQueryClient();
 
   const formSchema = z.object({
+    name: z.string().max(60, 'Title must be at most 60 characters'),
     title: z.string().max(60, 'Title must be at most 60 characters'),
     description: z.string().max(160, 'Description must be at most 160 characters'),
     favIcon: z.instanceof(File).refine((file) => {
@@ -54,6 +46,7 @@ const SiteSettingsForm = ({
 // Usage with useForm
   const form = useForm({
     initialValues: {
+      name: name || '', // Shorthand for title: title
       title: title || '', // Shorthand for title: title
       description: description || '', // Defaults to what's passed in, or you can provide a fallback
       favIcon: favIcon || null, // Defaults to null if favIco is not provided
@@ -69,6 +62,7 @@ const SiteSettingsForm = ({
       mutationFn: async () => {
         const formData = new FormData();
         // Append text fields
+        formData.append('name', form.values.name);
         formData.append('title', form.values.title);
         formData.append('description', form.values.description);
         formData.append('language', form.values.language);
@@ -105,7 +99,6 @@ const SiteSettingsForm = ({
       ,
       onError:
         (error) => {
-          console.log('error', error);
           // @ts-ignore
           if (error.response.status === 422) {
             // Handle Laravel validation errors
@@ -142,6 +135,15 @@ const SiteSettingsForm = ({
 
   return (
     <div className="flex items-start gap-8 flex-col my-4 w-full">
+      <TextInput className="w-full"
+                 label="Site name"
+                 placeholder="Insert your site name here..."
+                 {...form.getInputProps('name')}
+                 rightSectionWidth="40"
+                 rightSection={form.getInputProps('name').value &&
+                   <TextLength maxLength={60} value={form.getInputProps('name').value} />}
+      />
+      <Divider className="w-full" my="xs" label="Site metadata settings"/>
       <TextInput className="w-full"
                  label="Title"
                  placeholder="Insert your title here..."

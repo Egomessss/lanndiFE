@@ -116,6 +116,8 @@ export default function CustomLayerManager({
         ? { top: dragRect.y, left: 0, marginLeft: dragLevel * 10 + 20 }
         : {}
 
+
+
     return (
         <ScrollArea
             className="gjs-custom-layer-manager relative  select-none text-left "

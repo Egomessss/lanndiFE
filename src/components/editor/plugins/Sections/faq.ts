@@ -1,66 +1,66 @@
-import type {Editor} from 'grapesjs';
-import {RequiredPluginOptions} from './index';
+import type { Editor } from 'grapesjs';
+import { RequiredPluginOptions } from './index';
 
 export default (editor: Editor) => {
-    const {Components} = editor;
-    const script = function() {
-        const accordionContent = document.querySelectorAll(".accordion-content");
+  const { Components } = editor;
+  const script = function() {
+    const accordionContent = document.querySelectorAll('.accordion-content');
 
-        accordionContent.forEach((item,index)=>{
-            let header = item.querySelector("header");
-            header.addEventListener("click",()=>{
+    accordionContent.forEach((item, index) => {
+      let header = item.querySelector('header');
+      header.addEventListener('click', () => {
 
-                item.classList.toggle("open");
+        item.classList.toggle('open');
 
-                let description = item.querySelector(".description");
-                let icon = item.querySelector(".fa-angle-down");
+        let description = item.querySelector('.description');
+        let icon = item.querySelector('.fa-angle-down');
 
-                if(item.classList.contains("open")){
-                    description.style.height = `${description.scrollHeight + 10}px`;
-                    icon.style.transform = "rotate(180deg)";
-                }else{
-                    description.style.height = "0px";
-                    icon.style.transform =  "rotate(0deg)";
-                }
-
-                removeOpen(index);
-            })
-
-        })
-
-        function removeOpen(index1){
-
-            accordionContent.forEach((item2,index2)=>{
-
-                if(index1 != index2){
-                    item2.classList.remove("open");
-
-                    let des = item2.querySelector(".description");
-                    des.style.height = "0px";
-
-                    let icon = item2.querySelector(".fa-angle-down");
-                    icon.style.transform = "rotate(0deg)";
-                }
-            })
+        if (item.classList.contains('open')) {
+          description.style.height = `${description.scrollHeight + 10}px`;
+          icon.style.transform = 'rotate(180deg)';
+        } else {
+          description.style.height = '0px';
+          icon.style.transform = 'rotate(0deg)';
         }
-    };
 
-    editor.Blocks.add('faq-one', {
-        media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
-        label: 'FAQ Simple',
-        category: 'sections-faqs',
-        select: true,
-        content: {type: 'faq-one'},
+        removeOpen(index);
+      });
+
     });
 
-    Components.addType('faq-one', {
-        model: {
-            defaults: {
-                script:script,
-                droppable: false,
-                name: 'FAQ One',
-                attributes: {class: 'faq-one'},
-                components: `  
+    function removeOpen(index1) {
+
+      accordionContent.forEach((item2, index2) => {
+
+        if (index1 != index2) {
+          item2.classList.remove('open');
+
+          let des = item2.querySelector('.description');
+          des.style.height = '0px';
+
+          let icon = item2.querySelector('.fa-angle-down');
+          icon.style.transform = 'rotate(0deg)';
+        }
+      });
+    }
+  };
+
+  editor.Blocks.add('faq-one', {
+    media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
+    label: 'FAQ Simple',
+    category: 'sections-faqs',
+    select: true,
+    content: { type: 'faq-one' },
+  });
+
+  Components.addType('faq-one', {
+    model: {
+      defaults: {
+        script: script,
+        droppable: false,
+        name: 'FAQ One',
+        attributes: { class: 'faq-one' },
+        components: `  
      <div class="accordion">
         <div class="accordion-content">
             <header>
@@ -115,15 +115,7 @@ export default (editor: Editor) => {
         </div>
     </div>
     <!-- footer copy right section end -->`,
-                styles: `
-
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
-
+        styles: `
 .accordion{
     max-width: 530px;
     width: 100%;
@@ -188,8 +180,8 @@ export default (editor: Editor) => {
     transition: all 0.2s linear;
 }
 `,
-            }
-        }
-    });
+      },
+    },
+  });
 
 }

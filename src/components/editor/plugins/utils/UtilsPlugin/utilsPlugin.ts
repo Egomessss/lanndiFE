@@ -1,5 +1,4 @@
-import {useState} from 'react'
-import {Editor} from 'grapesjs'
+import { Editor } from 'grapesjs';
 
 export default (editor: Editor, opts = {}) => {
     editor.Commands.add('wrapper', {
@@ -26,11 +25,12 @@ export default (editor: Editor, opts = {}) => {
 
             // Insert the wrapper at the position of the first selected component
             if (firstComponentParent) {
-                firstComponentParent.append(wrapperDiv, {at: selected.index()})
+                firstComponentParent.append(wrapperDiv, {at: selected?.index()})
             }
 
             // Append each selected component to the new 'div'
             selectedComponents.forEach(component => {
+                // @ts-ignore
                 wrapperDiv.append(component)
             })
 

@@ -43,11 +43,14 @@ const LayersProvider = memo(function ({ children }: LayersProviderProps) {
             })
         }
 
+       // console.log('boefore',propState)
         editor.on(event, up)
+        // editor.on('component:update:tagName',()=>console.log('after',propState))
         Layers.__trgCustom({})
 
         return () => {
             editor.off(event, up)
+            // editor.off('component:update:tagName', up)
         }
     }, [editor])
 

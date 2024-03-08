@@ -1,74 +1,69 @@
 import { TraitsResultProps, useEditor } from '@/components/editor/wrappers';
 import TraitPropertyField from '@/components/editor/components/TraitPropertyField';
-import { ActionIcon, Box, Button, TextInput } from '@mantine/core';
+import { ActionIcon, Button, TextInput } from '@mantine/core';
 import { HeadingTypeSelector } from '@/components/editor/components/HeadingTypeSelector';
 import { HtmlElementSelector } from '@/components/editor/components/HtmlElementSelector';
 import CodeMirror, { EditorView } from '@uiw/react-codemirror';
 import { langs } from '@uiw/codemirror-extensions-langs';
 import React, { useState } from 'react';
-import { IconCheck, IconEdit, IconPlus, IconTrash } from '@tabler/icons-react';
-import type { Selector } from 'grapesjs';
+import { IconCheck, IconTrash } from '@tabler/icons-react';
 
-function formatCSS(cssString: string): string {
-  // Split the input string into individual block sections (selectors + declarations)
-  const blocks = cssString.split('}').filter(Boolean); // Remove any empty strings
-
-  let formattedCSS = '';
-
-  blocks.forEach((block) => {
-    const [selectors, declarations] = block.split('{');
-    const formattedDeclarations = declarations
-      .trim()
-      .split(';')
-      .filter(Boolean) // Remove any empty strings resulting from split
-      .map((declaration) => `  ${declaration.trim()};\n`) // Add indentation and newline to each declaration
-      .join('');
-
-    formattedCSS += `${selectors.trim()} {\n${formattedDeclarations}}\n\n`;
-  });
-
-  return formattedCSS;
-}
-
-export const CssCode = () => {
-
-  const editor = useEditor();
-
-
-  const component = editor.getSelected();
-  let componentCss = editor.CodeManager.getCode(component, 'css', {
-    cssc: editor.CssComposer,
-  });
-
-  const formattedCSS: string = formatCSS(componentCss);
-
-  const [value, setValue] = useState(componentCss || '');
-  // console.log("value",value);
-  console.log('css', componentCss);
-
-  const handleClick = () => {
-    editor.Css.addRules(value);
-    setValue('')
-  };
-
-  const random = 'p {\n' +
-    '  color: red;\n' +
-    '  font-family: courier;\n' +
-    '  font-size: 160%;\n' +
-    '}'
-
-  return <div className="flex items-start gap-2 flex-col w-full ">
-    <p>CSS Editor</p>
-    <div className="w-full text-xs">
-      <CodeMirror
-        value={formattedCSS} height="200px" theme="dark"
-        extensions={[langs.css(), EditorView.lineWrapping]}
-        onChange={setValue}
-      />
-    </div>
-    <Button fullWidth onClick={handleClick} size="xs">Save CSS Changes</Button>
-  </div>;
-};
+// function formatCSS(cssString: string): string {
+//   // Split the input string into individual block sections (selectors + declarations)
+//   const blocks = cssString.split('}').filter(Boolean); // Remove any empty strings
+//
+//   let formattedCSS = '';
+//
+//   blocks.forEach((block) => {
+//     const [selectors, declarations] = block.split('{');
+//     const formattedDeclarations = declarations
+//       .trim()
+//       .split(';')
+//       .filter(Boolean) // Remove any empty strings resulting from split
+//       .map((declaration) => `  ${declaration.trim()};\n`) // Add indentation and newline to each declaration
+//       .join('');
+//
+//     formattedCSS += `${selectors.trim()} {\n${formattedDeclarations}}\n\n`;
+//   });
+//
+//   return formattedCSS;
+// }
+//
+// export const CssCode = () => {
+//
+//   const editor = useEditor();
+//
+//
+//   const component = editor.getSelected();
+//   let componentCss = editor.CodeManager.getCode(component, 'css', {
+//     cssc: editor.CssComposer,
+//   });
+//
+//   const formattedCSS: string = formatCSS(componentCss);
+//
+//   const [value, setValue] = useState(componentCss || '');
+//   // console.log("value",value);
+//   console.log('css', componentCss);
+//
+//   const handleClick = () => {
+//     console.log('css', value);
+//     // editor.Css.addRules(value);
+//     // setValue('')
+//   };
+//
+//
+//   return <div className="flex items-start gap-2 flex-col w-full ">
+//     <p>CSS Editor</p>
+//     <div className="w-full text-xs">
+//       <CodeMirror
+//         value={formattedCSS} height="200px" theme="dark"
+//         extensions={[langs.css(), EditorView.lineWrapping]}
+//         onChange={setValue}
+//       />
+//     </div>
+//     <Button fullWidth onClick={handleClick} size="xs">Save CSS Changes</Button>
+//   </div>;
+// };
 
 export const SvgContentCode = () => {
 
@@ -215,10 +210,10 @@ export default function CustomTraitManager({
       {['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(value!) && <HeadingTypeSelector />}
       <HtmlElementSelector />
       {value === 'svg' && <SvgContentCode />}
-      <CssCode />
-      <Button onClick={() => editor.runCommand('edit-script')} size="xs" mb="4">
-        Edit Script(JS)
-      </Button>
+      {/*<CssCode />*/}
+      {/*<Button onClick={() => editor.runCommand('edit-script')} size="xs" mb="4">*/}
+      {/*  Edit Script(JS)*/}
+      {/*</Button>*/}
 
     </div>
   );
