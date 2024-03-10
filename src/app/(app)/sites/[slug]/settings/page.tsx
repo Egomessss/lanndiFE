@@ -1,18 +1,14 @@
 'use client';
-
 import React from 'react';
-import { Button, Tabs, TextInput } from '@mantine/core';
-import SiteSettingsForm from '@/app/editor/[slug]/_components/SiteSettingsForm';
+import { Tabs } from '@mantine/core';
+import SiteSettingsForm from '@/app/(app)/sites/[slug]/settings/_components/SiteSettingsForm';
 import Loading from '@/app/(app)/Loading';
 import ErrorMessage from '@/app/(app)/Error';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import axios from '@/lib/axios';
-import { useParams, useRouter } from 'next/navigation';
-import { useDisclosure } from '@mantine/hooks';
-import { z } from 'zod';
-import { useForm, zodResolver } from '@mantine/form';
-import { notifications } from '@mantine/notifications';
+import { useParams } from 'next/navigation';
 import DomainSettingsForm from '@/app/(app)/sites/[slug]/settings/_components/DomainSettingsForm';
+import DomainConfiguration from '@/app/(app)/sites/[slug]/settings/_components/DomainConfiguration';
 
 export type SiteSettings = {
   name: string,
@@ -47,7 +43,7 @@ const Page = () => {
 
   return (
     <div>
-      <Tabs defaultValue="first">
+      <Tabs keepMounted={false} defaultValue="first">
         <Tabs.List>
           <Tabs.Tab value="first">General</Tabs.Tab>
           <Tabs.Tab value="second">Domain</Tabs.Tab>
@@ -57,6 +53,7 @@ const Page = () => {
         </Tabs.Panel>
         <Tabs.Panel value="second">
           {data && <DomainSettingsForm {...data} />}
+          {data && <DomainConfiguration {...data} />}
         </Tabs.Panel>
 
       </Tabs>

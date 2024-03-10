@@ -20,7 +20,7 @@ import {useMutation} from "@tanstack/react-query";
 import axios from "@/lib/axios";
 import {notifications} from "@mantine/notifications";
 import {useParams} from "next/navigation";
-import useEditorData from "@/hooks/useEditorData";
+import useEditorData from "@/hooks/use-editor-data";
 
 
 

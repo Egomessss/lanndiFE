@@ -15,23 +15,23 @@ import CustomAssetManager from '@/components/editor/components/CustomAssetManage
 import CustomModal from "@/components/editor/components/CustomModal";
 import {editorConfigOptions} from "@/components/editor/utils/options";
 import useEditorData from "@/hooks/use-editor-data";
+import { useAuth } from '@/hooks/auth';
 
 
 
 export default function CustomEditor() {
 
-    const params = useParams()
-    const siteSlug = params.slug
 
-    const { data, isLoading, isError } = useEditorData();
-
-    if (isLoading) return <Loading/>
-    if (isError) return <ErrorMessage/>
-
+    // if not user they have to pay which also registers them
+    // after register they save their project which redirects the to editor with slug
 
     const onEditor = (editor: Editor) => {
         (window as any).editor = editor
     }
+
+    const data = null
+
+
 
     return (
         <GjsEditor
