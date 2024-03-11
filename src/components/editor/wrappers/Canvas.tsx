@@ -1,4 +1,4 @@
-import {useRef, useEffect} from "react"
+import { useRef, useEffect, HTMLProps } from 'react';
 import {useEditorOptions} from "../context/EditorOptions"
 import {ScrollArea, AppShell} from "@mantine/core";
 

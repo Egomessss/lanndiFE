@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { SelectorsResultProps, useEditor } from '../wrappers';
+import { SelectorsResultProps } from '../wrappers';
 import { CheckIcon, Combobox, Group, Pill, PillsInput, Select, ThemeIcon, Tooltip, useCombobox } from '@mantine/core';
-import { IconExclamationCircle, IconHash, IconTags } from '@tabler/icons-react';
+import { IconExclamationCircle, IconHash } from '@tabler/icons-react';
 
 
 export default function CustomSelectorManager({
@@ -33,9 +33,9 @@ export default function CustomSelectorManager({
     if (val === '$create') {
       addSelector(search);
       setValue((current) => [...current, search]);
-    }else{
+    } else {
       setValue((current) =>
-        current.includes(val) ? current.filter((v) => v !== val) : [...current, val]
+        current.includes(val) ? current.filter((v) => v !== val) : [...current, val],
       );
     }
   };
@@ -43,7 +43,7 @@ export default function CustomSelectorManager({
 
   const handleValueRemove = (val: any) => {
     console.log(val);
-    removeSelector(val)
+    removeSelector(val);
     // removeSelector(val); // Move this line inside handleValueRemove
   };
 
@@ -65,6 +65,7 @@ export default function CustomSelectorManager({
         </Group>
       </Combobox.Option>
     ));
+
   return (
     <div className=" flex flex-col  gap-2 text-left">
       <div className="flex items-center justify-between">
@@ -82,6 +83,7 @@ export default function CustomSelectorManager({
           onChange={(newValue: any) => {
             setState(newValue);
           }}
+          // @ts-ignore
           data={states.map((state) => ({
             key: state.id,
             value: state.id,
@@ -109,9 +111,11 @@ export default function CustomSelectorManager({
           </Tooltip>
         </div>
 
-        <Combobox className="w-full" store={combobox} onOptionSubmit={handleValueSelect} withinPortal={false}>
+        <Combobox styles={{
+          dropdown: { width: '100%' },
+        }} store={combobox} onOptionSubmit={handleValueSelect} withinPortal={false}>
           <Combobox.DropdownTarget>
-            <PillsInput   size="xs" onClick={() => combobox.openDropdown()}>
+            <PillsInput size="xs" onClick={() => combobox.openDropdown()}>
               <Pill.Group>
                 {values}
                 <Combobox.EventsTarget>

@@ -1,4 +1,5 @@
 
+
 import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import axios from '@/lib/axios';
@@ -16,20 +17,23 @@ type Page = {
 };
 
 
-const Homepage = ({
-                    params,
-                  }: {
+const Page = ({
+                params,
+              }: {
   params: { domain: string };
 }) => {
-
   const headerDomain = headers().has('apx-incoming-host')
     ? headers().get('apx-incoming-host')
     : headers().get('host');
 
+  // const domain = headers().has('apx-incoming-host')
+  //   ? headers().get('apx-incoming-host')
+  //   : headers().get('host');
+  //
   // const { data, isLoading, isError } = useQuery({
   //   queryKey: ['siteSettings', domain],
   //   queryFn: async () => {
-  //     const { data } = await axios.get(`/api/v1/site/${domain}`);
+  //     const { data } = await axios.get(`/api/v1/site/${domain}/${params.slug}`);
   //     return data as Page;
   //   },
   // });
@@ -46,4 +50,4 @@ const Homepage = ({
   );
 };
 
-export default Homepage;
+export default Page;

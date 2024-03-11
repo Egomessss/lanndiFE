@@ -42,6 +42,7 @@ interface StylePropertyFieldProps extends React.HTMLProps<HTMLDivElement> {
     prop: Property;
 }
 
+
 export default function StylePropertyField({
                                                prop,
                                                ...rest
@@ -62,9 +63,10 @@ export default function StylePropertyField({
 
     // Handle change in select value
     const handleSizeChange = (newValue: any) => {
-        console.log(newValue)
+        // console.log(newValue)
+        // @ts-ignore
         prop.upUnit(newValue)
-        console.log('log', prop.getUnit())
+        // console.log('log', prop.getUnit())
     }
 
     const openAssets = () => {

@@ -68,7 +68,7 @@ export default function TopBarButtons() {
 
     let debounceTimeout: ReturnType<typeof setTimeout>
 
-    const handleZoomInput = (value:number) => {
+    const handleZoomInput = (value:any) => {
         // Clear any previously scheduled debounce
         clearTimeout(debounceTimeout)
 

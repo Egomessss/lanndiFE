@@ -21,7 +21,7 @@ import Link from 'next/link'
 
 const AppLayout = ({ children, header }) => {
     const [opened, { toggle }] = useDisclosure()
-    const { user, logout } = useAuth({ middleware: 'auth' })
+    // const { user, logout } = useAuth({ middleware: 'auth' })
 
 
     // if (!user) {
@@ -44,7 +44,7 @@ const AppLayout = ({ children, header }) => {
                     <Link className="no-underline text-white font-bold text-xl" href="/">
                         lanndi
                     </Link>
-                    <p>{user?.name}</p>
+                    {/*<p>{user?.name}</p>*/}
                     {/*<Menu shadow="md" width={200}>*/}
                     {/*    <Menu.Target>*/}
                     {/*       <Button>{user?.name}</Button>*/}
@@ -55,7 +55,7 @@ const AppLayout = ({ children, header }) => {
                     {/*            Account Settings*/}
                     {/*        </Menu.Item>*/}
                     {/*        <Menu.Divider />*/}
-                    {/*        <Menu.Item  onClick={logout}*/}
+                    {/*        <Menu.Item onClick={logout}*/}
                     {/*            color="red"*/}
                     {/*            leftSection={<IconLogout style={{ width: rem(14), height: rem(14) }} />}*/}
                     {/*        >*/}

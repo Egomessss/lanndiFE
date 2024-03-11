@@ -1,7 +1,7 @@
-import {BlockProperties, Editor} from 'grapesjs'
+import { BlockProperties, Editor } from 'grapesjs';
 
 
-export default function (editor: Editor, opts) {
+export default function (editor: Editor, opts:any) {
 
     const {
         category,
@@ -11,6 +11,7 @@ export default function (editor: Editor, opts) {
         rowHeight,
         addBasicStyle,
     } = opts
+
     const commonBlockProps: Partial<BlockProperties> = {
         category,
         select: true,

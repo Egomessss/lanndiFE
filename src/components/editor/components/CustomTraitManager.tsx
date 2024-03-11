@@ -73,8 +73,7 @@ export const SvgContentCode = () => {
   const [value, setValue] = useState(() => editor.getSelected()?.toHTML());
 
 
-  const onChange = React.useCallback((val, viewUpdate) => {
-    console.log('val:', val);
+  const onChange = React.useCallback((val:string) => {
     setValue(val);
   }, []);
 
@@ -94,7 +93,7 @@ export const SvgContentCode = () => {
   </div>;
 };
 
-function removeAttributes(attributes) {
+function removeAttributes(attributes:any) {
   // Clone the attributes object to avoid mutating the original object
   const clonedAttributes = { ...attributes };
 

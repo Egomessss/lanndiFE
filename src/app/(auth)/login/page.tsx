@@ -11,9 +11,14 @@ import AuthSessionStatus from '../AuthSessionStatus'
 import { Button, Checkbox, PasswordInput, TextInput } from '@mantine/core'
 import { IconAt } from '@tabler/icons-react'
 
+interface FormErrors {
+    email?: string;
+    password?: string;
+}
+
 
 const Login = () => {
-    const router = useRouter()
+
 
     const { login } = useAuth({
         middleware: 'guest',
@@ -23,18 +28,12 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [shouldRemember, setShouldRemember] = useState(false)
-    const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState<FormErrors>({})
     const [status, setStatus] = useState(null)
 
-    useEffect(() => {
-        if (router.reset?.length > 0 && errors.length === 0) {
-            setStatus(atob(router.reset))
-        } else {
-            setStatus(null)
-        }
-    })
 
-    const submitForm = async event => {
+
+    const submitForm = async (event: { preventDefault: () => void }) => {
         event.preventDefault()
 
         login({
