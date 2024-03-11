@@ -21,8 +21,8 @@ import Link from 'next/link'
 
 const AppLayout = ({ children, header }) => {
     const [opened, { toggle }] = useDisclosure()
-    const { user, logout } = useAuth({ middleware: 'auth' })
-
+    const { user, logout } = useAuth()
+    console.log(user);
 
     // if (!user) {
     //     return <Loading />
@@ -44,25 +44,25 @@ const AppLayout = ({ children, header }) => {
                     <Link className="no-underline text-white font-bold text-xl" href="/">
                         lanndi
                     </Link>
-                    {/*<p>{user?.name}</p>*/}
-                    {/*<Menu shadow="md" width={200}>*/}
-                    {/*    <Menu.Target>*/}
-                    {/*       <Button>{user?.name}</Button>*/}
-                    {/*        /!*<Avatar color="green" radius="xl"></Avatar>*!/*/}
-                    {/*    </Menu.Target>*/}
-                    {/*    <Menu.Dropdown>*/}
-                    {/*        <Menu.Item leftSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}>*/}
-                    {/*            Account Settings*/}
-                    {/*        </Menu.Item>*/}
-                    {/*        <Menu.Divider />*/}
-                    {/*        <Menu.Item onClick={logout}*/}
-                    {/*            color="red"*/}
-                    {/*            leftSection={<IconLogout style={{ width: rem(14), height: rem(14) }} />}*/}
-                    {/*        >*/}
-                    {/*            Logout*/}
-                    {/*        </Menu.Item>*/}
-                    {/*    </Menu.Dropdown>*/}
-                    {/*</Menu>*/}
+                    <p>{user?.name}</p>
+                    <Menu shadow="md" width={200}>
+                        <Menu.Target>
+                           <Button>{user?.name}</Button>
+                            {/*<Avatar color="green" radius="xl"></Avatar>*/}
+                        </Menu.Target>
+                        <Menu.Dropdown>
+                            <Menu.Item leftSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}>
+                                Account Settings
+                            </Menu.Item>
+                            <Menu.Divider />
+                            <Menu.Item onClick={logout}
+                                color="red"
+                                leftSection={<IconLogout style={{ width: rem(14), height: rem(14) }} />}
+                            >
+                                Logout
+                            </Menu.Item>
+                        </Menu.Dropdown>
+                    </Menu>
                 </div>
 
             </AppShell.Header>

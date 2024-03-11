@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { useAuth } from '@/hooks/auth';
+import { cookies } from 'next/headers';
 
 export const config = {
   matcher: [
@@ -30,6 +31,7 @@ export function middleware(req: NextRequest) {
     ? req.headers.get('apx-incoming-host')
     : req.headers.get('host');
 
+
   // do something with the "domain"
   const searchParams = req.nextUrl.searchParams.toString();
   // Get the pathname of the request (e.g. /, /about, /blog/first-post)
@@ -37,45 +39,48 @@ export function middleware(req: NextRequest) {
     searchParams.length > 0 ? `?${searchParams}` : ''
   }`;
 
+  const session = cookies().get('isLoggedIn');
 
-  // // rewrites for app pages
-  // if (hostname == `app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) {
-  //   const { user } = useAuth();
-  //   if (!user && path !== '/login') {
-  //     return NextResponse.redirect(new URL('/login', req.url));
-  //   } else if (user && path == '/login') {
-  //     return NextResponse.redirect(new URL('/', req.url));
-  //   }
+  if (hostname === `app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) {
+    if (!session && path !== '/login') {
+      console.log('no session');
+      return NextResponse.redirect(new URL('/login', req.url));
+    } else if (session && path == '/login') {
+      console.log(' session');
+      return NextResponse.redirect(new URL('/', req.url));
+    }
+    console.log('rewriten');
+    return NextResponse.rewrite(
+      new URL(`/app${path === '/' ? '' : path}`, req.url),
+    );
+  }
+
+  if (hostname === 'localhost:3000') {
+    if (!session && path !== '/login') {
+      console.log('no session');
+      return NextResponse.redirect(new URL('/login', req.url));
+    } else if (session && path == '/login') {
+      console.log(' session');
+      return NextResponse.redirect(new URL('/', req.url));
+    }
+
+  }
+
+  // // rewrite root application to `/home` folder
+  // if (
+  //   hostname === 'localhost:3000' ||
+  //   hostname === process.env.NEXT_PUBLIC_ROOT_DOMAIN
+  // ) {
+  //   console.log('local host rewritten');
   //   return NextResponse.rewrite(
-  //     new URL(`/app${path === '/' ? '' : path}`, req.url),
+  //     new URL(`/${path === '/' ? '' : path}`, req.url),
   //   );
   // }
-
-  // special case for `vercel.pub` domain
-  if (hostname === 'lanndi.com') {
-    return NextResponse.redirect(
-      'https://lanndi.com',
-    );
-  }
-
-  // rewrite root application to `/home` folder
-  if (
-    hostname === 'localhost:3000' ||
-    hostname === process.env.NEXT_PUBLIC_ROOT_DOMAIN
-  ) {
-    return NextResponse.rewrite(
-      new URL(`/${path === '/' ? '' : path}`, req.url),
-    );
-  }
-
-  // rewrite everything else to `/[domain]/[slug] dynamic route
-  return NextResponse.rewrite(new URL(`/${hostname}${path}`, req.url));
-
-  // const response = NextResponse.next({
-  //   request: {
-  //     headers: request.headers,
-  //   },
-  // });
   //
-  // return response;
+
+  // // rewrite everything else to `/[domain]/[slug] dynamic route
+  if (hostname !== `app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) {
+    return NextResponse.rewrite(new URL(`/${hostname}${path}`, req.url));
+  }
+
 }
