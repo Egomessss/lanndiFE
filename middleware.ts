@@ -13,7 +13,7 @@ export const config = {
     "/((?!api/|_next/|_static/|_vercel|[\\w-]+\\.\\w+).*)",
   ],
 };
-function logMessage(message) {
+function logMessage(message:any) {
   if (process.env.NODE_ENV === 'production') {
     // In production, you might want to send this to a logging service instead
     // or simply disable verbose logging.
