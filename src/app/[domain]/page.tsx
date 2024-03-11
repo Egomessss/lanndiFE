@@ -42,6 +42,7 @@ const Homepage = ({
   return (
     <div>
       <h1>{params.domain === process.env.NEXT_PUBLIC_APP_PRIMARY_DOMAIN ? 'Welcome to the primary domain' : `Welcome to the subdomain ${params.domain} or ${headerDomain}`}</h1>
+      <h2>random</h2>
     </div>
   );
 };
