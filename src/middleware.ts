@@ -37,18 +37,24 @@ export function middleware(req: NextRequest) {
     searchParams.length > 0 ? `?${searchParams}` : ''
   }`;
 
-  console.log(`Hostname: ${hostname}, Path: ${path}`);
 
-  // rewrites for app pages
-  if (hostname == `app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) {
-    const { user } = useAuth();
-    if (!user && path !== '/login') {
-      return NextResponse.redirect(new URL('/login', req.url));
-    } else if (user && path == '/login') {
-      return NextResponse.redirect(new URL('/', req.url));
-    }
-    return NextResponse.rewrite(
-      new URL(`/app${path === '/' ? '' : path}`, req.url),
+  // // rewrites for app pages
+  // if (hostname == `app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) {
+  //   const { user } = useAuth();
+  //   if (!user && path !== '/login') {
+  //     return NextResponse.redirect(new URL('/login', req.url));
+  //   } else if (user && path == '/login') {
+  //     return NextResponse.redirect(new URL('/', req.url));
+  //   }
+  //   return NextResponse.rewrite(
+  //     new URL(`/app${path === '/' ? '' : path}`, req.url),
+  //   );
+  // }
+
+  // special case for `vercel.pub` domain
+  if (hostname === 'lanndi.com') {
+    return NextResponse.redirect(
+      'https://lanndi.com',
     );
   }
 

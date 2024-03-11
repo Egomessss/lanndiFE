@@ -21,7 +21,7 @@ import Link from 'next/link'
 
 const AppLayout = ({ children, header }) => {
     const [opened, { toggle }] = useDisclosure()
-    // const { user, logout } = useAuth({ middleware: 'auth' })
+    const { user, logout } = useAuth({ middleware: 'auth' })
 
 
     // if (!user) {
