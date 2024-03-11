@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { useAuth } from '@/hooks/auth';
 
 export const config = {
   matcher: [
@@ -10,10 +11,9 @@ export const config = {
      * 3. /_static (inside /public)
      * 4. all root files inside /public (e.g. /favicon.ico)
      */
-    "/((?!api/|_next/|_static/|_vercel|[\\w-]+\\.\\w+).*)",
+    '/((?!api/|_next/|_static/|_vercel|[\\w-]+\\.\\w+).*)',
   ],
 };
-
 
 
 export function middleware(req: NextRequest) {
@@ -34,18 +34,31 @@ export function middleware(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams.toString();
   // Get the pathname of the request (e.g. /, /about, /blog/first-post)
   const path = `${url.pathname}${
-    searchParams.length > 0 ? `?${searchParams}` : ""
+    searchParams.length > 0 ? `?${searchParams}` : ''
   }`;
 
   console.log(`Hostname: ${hostname}, Path: ${path}`);
 
+  // rewrites for app pages
+  if (hostname == `app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) {
+    const { user } = useAuth();
+    if (!user && path !== '/login') {
+      return NextResponse.redirect(new URL('/login', req.url));
+    } else if (user && path == '/login') {
+      return NextResponse.redirect(new URL('/', req.url));
+    }
+    return NextResponse.rewrite(
+      new URL(`/app${path === '/' ? '' : path}`, req.url),
+    );
+  }
+
   // rewrite root application to `/home` folder
   if (
-    hostname === "localhost:3000" ||
+    hostname === 'localhost:3000' ||
     hostname === process.env.NEXT_PUBLIC_ROOT_DOMAIN
   ) {
     return NextResponse.rewrite(
-      new URL(`/login${path === "/" ? "" : path}`, req.url),
+      new URL(`/${path === '/' ? '' : path}`, req.url),
     );
   }
 
