@@ -13,14 +13,7 @@ export const config = {
     "/((?!api/|_next/|_static/|_vercel|[\\w-]+\\.\\w+).*)",
   ],
 };
-function logMessage(message:any) {
-  if (process.env.NODE_ENV === 'production') {
-    // In production, you might want to send this to a logging service instead
-    // or simply disable verbose logging.
-  } else {
-    console.log(message);
-  }
-}
+
 
 
 export function middleware(req: NextRequest) {
@@ -44,7 +37,7 @@ export function middleware(req: NextRequest) {
     searchParams.length > 0 ? `?${searchParams}` : ""
   }`;
 
-  logMessage(`Hostname: ${hostname}, Path: ${path}`);
+  console.log(`Hostname: ${hostname}, Path: ${path}`);
 
   // rewrite root application to `/home` folder
   if (
@@ -52,7 +45,7 @@ export function middleware(req: NextRequest) {
     hostname === process.env.NEXT_PUBLIC_ROOT_DOMAIN
   ) {
     return NextResponse.rewrite(
-      new URL(`/${path === "/" ? "" : path}`, req.url),
+      new URL(`/login${path === "/" ? "" : path}`, req.url),
     );
   }
 
