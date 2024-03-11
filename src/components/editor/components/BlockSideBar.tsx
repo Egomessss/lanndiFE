@@ -3,7 +3,7 @@ import { BlocksProvider } from '../wrappers'
 import React from 'react'
 import CustomSectionsBlockManager from "@/components/editor/components/CustomSectionsBlockManager";
 
-export default function BlockSideBar({type}) {
+export default function BlockSideBar({type}:any) {
     return (
         <BlocksProvider>
             {type === 'Blocks' ?

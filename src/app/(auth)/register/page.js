@@ -12,7 +12,7 @@ import Button from '../../../components/common/Button'
 
 const Page = () => {
     const { register } = useAuth({
-        middleware: 'guest',
+        middleware: 'auth',
         redirectIfAuthenticated: '/',
     })
 
@@ -76,7 +76,7 @@ const Page = () => {
                     Already registered?
                 </Link>
 
-                <Button className="ml-4">Register</Button>
+                {/*<Button className="ml-4">Register</Button>*/}
             </div>
         </form>
     )

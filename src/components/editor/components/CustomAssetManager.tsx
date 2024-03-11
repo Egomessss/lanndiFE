@@ -1,18 +1,15 @@
 import * as React from 'react';
 
-import type {Asset} from 'grapesjs';
-import {BTN_CLS} from './common';
-import {useEditor} from '@/components/editor/context/EditorInstance'
-import {IconPlus, IconTrash, IconX} from '@tabler/icons-react'
-import {AssetsResultProps} from "@/components/editor/wrappers";
-import {ActionIcon, Button, FileInput, Modal, ScrollArea, TextInput} from "@mantine/core";
-import {useState} from "react";
-import {notifications} from "@mantine/notifications";
-import {useForm, zodResolver} from "@mantine/form";
-import {useMutation, useQueryClient} from "@tanstack/react-query";
-import axios from "@/lib/axios";
-import {z} from "zod";
-import {useParams} from "next/navigation";
+import type { Asset } from 'grapesjs';
+import { useEditor } from '@/components/editor/context/EditorInstance';
+import { IconTrash } from '@tabler/icons-react';
+import { ActionIcon, Button, FileInput, Modal, ScrollArea, TextInput } from '@mantine/core';
+import { notifications } from '@mantine/notifications';
+import { useForm, zodResolver } from '@mantine/form';
+import { useMutation } from '@tanstack/react-query';
+import axios from '@/lib/axios';
+import { z } from 'zod';
+import { useParams } from 'next/navigation';
 
 // export type CustomAssetManagerProps = Pick<
 //     AssetsResultProps,
@@ -133,7 +130,7 @@ export default function CustomAssetManager({
                                                select,
                                                open,
                                                close
-                                           }) {
+                                           }:any) {
     const editor = useEditor();
     const params = useParams()
     const siteSlug = params.slug
@@ -199,7 +196,7 @@ export default function CustomAssetManager({
                 <SubmitAsset />
 
                 <div className="grid grid-cols-4 gap-2 pr-2">
-                    {assets.map((asset) => (
+                    {assets.map((asset:Asset) => (
                         <div
                             key={asset.getSrc()}
                             className=" rounded col-span-1 border-solid p-2"

@@ -9,7 +9,7 @@ export default function CustomModal({
                                       close,
                                       open,
                                       ...props
-                                    }) {
+                                    }:any) {
   return (
     <Modal size="xl" centered opened={open} onClose={close} {...props}>
       <div className="flex pb-3">

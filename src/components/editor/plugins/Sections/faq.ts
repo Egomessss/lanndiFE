@@ -8,7 +8,7 @@ export default (editor: Editor) => {
 
     accordionContent.forEach((item, index) => {
       let header = item.querySelector('header');
-      header.addEventListener('click', () => {
+      header?.addEventListener('click', () => {
 
         item.classList.toggle('open');
 
@@ -16,10 +16,14 @@ export default (editor: Editor) => {
         let icon = item.querySelector('.fa-angle-down');
 
         if (item.classList.contains('open')) {
+          // @ts-ignore
           description.style.height = `${description.scrollHeight + 10}px`;
+          // @ts-ignore
           icon.style.transform = 'rotate(180deg)';
         } else {
+          // @ts-ignore
           description.style.height = '0px';
+          // @ts-ignore
           icon.style.transform = 'rotate(0deg)';
         }
 
@@ -28,7 +32,7 @@ export default (editor: Editor) => {
 
     });
 
-    function removeOpen(index1) {
+    function removeOpen(index1: number) {
 
       accordionContent.forEach((item2, index2) => {
 
@@ -36,9 +40,11 @@ export default (editor: Editor) => {
           item2.classList.remove('open');
 
           let des = item2.querySelector('.description');
+          // @ts-ignore
           des.style.height = '0px';
 
           let icon = item2.querySelector('.fa-angle-down');
+          // @ts-ignore
           icon.style.transform = 'rotate(0deg)';
         }
       });

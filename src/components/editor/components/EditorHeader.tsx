@@ -19,7 +19,7 @@ function SaveButton() {
   const params = useParams();
   const siteSlug = params.slug;
 
-  const { user } = useAuth({ middleware: 'guest' });
+  const { user } = useAuth({ middleware: 'guest', redirectIfAuthenticated: '/'});
 
   const editor = useEditorMaybe();
 
@@ -82,6 +82,7 @@ function SaveButton() {
 }
 
 function PublishButton() {
+  const { user } = useAuth({ middleware: 'guest', redirectIfAuthenticated: '/'});
   const [showSuccess, setShowSuccess] = useState(false);
   const params = useParams();
   const siteSlug = params.slug;
@@ -130,12 +131,14 @@ function PublishButton() {
 }
 
 function EditorHeader() {
-
+  const { user } = useAuth({ middleware: 'guest', redirectIfAuthenticated: '/'});
+  console.log(user);
   return (
     <AppShell.Header>
       <div className="gjs-top-sidebar flex h-full w-full items-center justify-between px-2">
         <div className="flex w-full items-center justify-start gap-2 py-2 ">
           <Button
+            disabled={user === undefined}
             component={Link}
             href="/"
             variant="subtle"
@@ -155,9 +158,9 @@ function EditorHeader() {
         </div>
 
         <div className="flex w-full items-center justify-end gap-4">
-          <Button size="xs" variant="subtle" leftSection={<IconExternalLink size="1rem" />}>Preview</Button>
+          {user &&  <Button size="xs" variant="subtle" leftSection={<IconExternalLink size="1rem" />}>Preview</Button>}
           <SaveButton />
-          <PublishButton />
+          {user && <PublishButton />}
         </div>
       </div>
     </AppShell.Header>);

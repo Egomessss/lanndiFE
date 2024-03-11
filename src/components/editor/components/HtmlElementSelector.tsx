@@ -30,7 +30,7 @@ export const HtmlElementSelector = () => {
     { label: 'Button - button', value: 'button' },
   ];
 
-  const handleElementChange = (selectedValue) => {
+  const handleElementChange = (selectedValue:any) => {
     const selectedOption = htmlElements.find(option => option.value === selectedValue);
     const label = selectedOption ? selectedOption.label : '';
     setValueHtml(selectedValue); // Update state for controlled component
