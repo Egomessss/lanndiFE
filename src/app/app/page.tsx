@@ -4,10 +4,11 @@ import CreateSiteModal from '@/components/dashboard/CreateSiteModal'
 import DashboardCard from '@/components/dashboard/DashboardCard'
 import { useQuery } from '@tanstack/react-query'
 import axios from '@/lib/axios'
-import Loading from '@/app/(app)/Loading'
-import ErrorMessage from '@/app/(app)/Error'
+
 import ColorPicker from 'react-best-gradient-color-picker'
 import { useState } from 'react'
+import Loading from '@/app/app/Loading';
+import ErrorMessage from '@/app/app/Error';
 
 export type Site = {
     id: number;
