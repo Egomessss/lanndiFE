@@ -8,8 +8,8 @@ import RightSideBar from "@/components/editor/components/RightSideBar";
 import EditorHeader from "@/components/editor/components/EditorHeader";
 import axios from "@/lib/axios";
 import {useQuery} from "@tanstack/react-query";
-import Loading from "@/app/(app)/Loading";
-import ErrorMessage from "@/app/(app)/Error";
+import Loading from "@/app/app/Loading";
+import ErrorMessage from "@/app/app/Error";
 import {useParams} from "next/navigation";
 import CustomAssetManager from '@/components/editor/components/CustomAssetManager'
 import CustomModal from "@/components/editor/components/CustomModal";

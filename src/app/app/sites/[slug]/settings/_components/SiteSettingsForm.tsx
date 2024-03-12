@@ -6,7 +6,7 @@ import { langs } from '@uiw/codemirror-extensions-langs';
 import { useForm, zodResolver } from '@mantine/form';
 import { z } from 'zod';
 import { notifications } from '@mantine/notifications';
-import { SiteSettings } from '@/app/(app)/sites/[slug]/settings/page';
+import { SiteSettings } from '@/app/app/sites/[slug]/settings/page';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import TextLength from '@/components/common/TextLength';
 import axios from '@/lib/axios';

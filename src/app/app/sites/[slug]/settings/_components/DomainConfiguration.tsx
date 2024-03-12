@@ -7,9 +7,9 @@ import React from 'react';
 import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import axios from '@/lib/axios';
-import Loading from '@/app/(app)/Loading';
-import ErrorMessage from '@/app/(app)/Error';
-import { SiteSettings } from '@/app/(app)/sites/[slug]/settings/page';
+import Loading from '@/app/app/Loading';
+import ErrorMessage from '@/app/app/Error';
+import { SiteSettings } from '@/app/app/sites/[slug]/settings/page';
 
 
 interface StatusResponse {

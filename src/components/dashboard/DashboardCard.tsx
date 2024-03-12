@@ -4,7 +4,7 @@ import { ActionIcon, Badge, Button, Menu, Text } from '@mantine/core';
 import {IconDots, IconPencil, IconSettings, IconTrash} from '@tabler/icons-react';
 import Link from 'next/link';
 import { modals } from '@mantine/modals';
-import { Site } from '@/app/(app)/page';
+import { Site } from '@/app/app/page';
 
 
 const DashboardCard = ({ name, slug, ogImage, isLive }: Site) => {
