@@ -1,85 +1,60 @@
-'use client'
+'use client';
 
 
-import Link from 'next/link'
+import Link from 'next/link';
 
-import { useState } from 'react'
-import { useAuth } from '../../../hooks/auth'
-import Label from '../../../components/common/Label'
-import Input from '../../../components/common/Input'
-import InputError from '../../../components/common/InputError'
-import Button from '../../../components/common/Button'
+import { useState } from 'react';
+import { useAuth } from '../../../hooks/auth';
+
+import { Anchor, Button, PasswordInput, TextInput } from '@mantine/core';
+import { IconAt } from '@tabler/icons-react';
 
 const Page = () => {
-    const { register } = useAuth({
-        middleware: 'auth',
-        redirectIfAuthenticated: '/',
-    })
+  const { register } = useAuth({
+    middleware: 'auth',
+    redirectIfAuthenticated: '/',
+  });
 
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [errors, setErrors] = useState([])
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState([]);
 
-    const submitForm = event => {
-        event.preventDefault()
+  const submitForm = event => {
+    event.preventDefault();
 
-        register({
-            email,
-            password,
-            setErrors,
-        })
-    }
+    register({
+      email,
+      password,
+      setErrors,
+    });
+  };
 
-    return (
-        <form onSubmit={submitForm}>
+  return (
+    <form onSubmit={submitForm} className="flex flex-col gap-4 ">
+      <TextInput
+        type="email"
+        leftSection={<IconAt size="1rem" />}
+        label="Email"
+        value={email}
+        onChange={event => setEmail(event.target.value)}
+        error={errors?.email}
+      />
+      {/* Password */}
 
+      <PasswordInput
+        label="Password"
+        value={password}
+        onChange={event => setPassword(event.target.value)}
+        error={errors?.password}
+      />
 
-            {/* Email Address */}
-            <div className="mt-4">
-                <Label htmlFor="email">Email</Label>
+      <Anchor component={Link} size="sm" href="/login">
+        Already registered?
+      </Anchor>
+      <Button type="submit" >Register</Button>
+    </form>
+  );
+};
 
-                <Input
-                    id="email"
-                    type="email"
-                    value={email}
-                    className="block mt-1 w-full"
-                    onChange={event => setEmail(event.target.value)}
-                    required
-                />
-
-                <InputError messages={errors.email} className="mt-2" />
-            </div>
-
-            {/* Password */}
-            <div className="mt-4">
-                <Label htmlFor="password">Password</Label>
-
-                <Input
-                    id="password"
-                    type="password"
-                    value={password}
-                    className="block mt-1 w-full"
-                    onChange={event => setPassword(event.target.value)}
-                    required
-                    autoComplete="new-password"
-                />
-
-                <InputError messages={errors.password} className="mt-2" />
-            </div>
-
-
-            <div className="flex items-center justify-end mt-4">
-                <Link
-                    href="/login"
-                    className="underline text-sm text-gray-600 hover:text-gray-900">
-                    Already registered?
-                </Link>
-
-                {/*<Button className="ml-4">Register</Button>*/}
-            </div>
-        </form>
-    )
-}
-
-export default Page
+export default Page;

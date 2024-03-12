@@ -88,8 +88,8 @@ export function middleware(req: NextRequest) {
 
 
   // // rewrite everything else to `/[domain]/[slug] dynamic route
-  if (hostname !== `app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) {
+
     return NextResponse.rewrite(new URL(`/${hostname}${path}`, req.url));
-  }
+
 
 }

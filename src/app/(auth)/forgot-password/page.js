@@ -1,66 +1,58 @@
-'use client'
+'use client';
 
 
-import { useState } from 'react'
-import { useAuth } from '../../../hooks/auth'
-import AuthSessionStatus from '../AuthSessionStatus'
-import Label from '../../../components/common/Label'
-import Input from '../../../components/common/Input'
-import InputError from '../../../components/common/InputError'
-import Button from '../../../components/common/Button'
+import { useState } from 'react';
+import { useAuth } from '../../../hooks/auth';
+import AuthSessionStatus from '../AuthSessionStatus';
+
+import { Button, TextInput } from '@mantine/core';
+import { IconAt } from '@tabler/icons-react';
 
 
 const Page = () => {
-    const { forgotPassword } = useAuth({
-        middleware: 'guest',
-        redirectIfAuthenticated: '/',
-    })
+  const { forgotPassword } = useAuth({
+    middleware: 'guest',
+    redirectIfAuthenticated: '/',
+  });
 
-    const [email, setEmail] = useState('')
-    const [errors, setErrors] = useState([])
-    const [status, setStatus] = useState(null)
+  const [email, setEmail] = useState('');
+  const [errors, setErrors] = useState([]);
+  const [status, setStatus] = useState(null);
 
-    const submitForm = event => {
-        event.preventDefault()
+  const submitForm = event => {
+    event.preventDefault();
 
-        forgotPassword({ email, setErrors, setStatus })
-    }
+    forgotPassword({ email, setErrors, setStatus });
+  };
 
-    return (
-        <>
-            <div className="mb-4 text-sm text-gray-600">
-                Forgot your password? No problem. Just let us know your email
-                email address and we will email you a password reset link that
-                that will allow you to choose a new one.
-            </div>
+  return (
+    <div  className="max-w-96">
+      <p className=" text-balance text-center my-4">
+        Forgot your password? No problem. Just let us know your email
+        email address and we will email you a password reset link that
+        that will allow you to choose a new one.
+      </p>
 
-            {/* Session Status */}
-            <AuthSessionStatus className="mb-4" status={status} />
+      {/* Session Status */}
+      <AuthSessionStatus className="mb-4" status={status} />
 
-            <form onSubmit={submitForm}>
-                {/* Email Address */}
-                <div>
-                    <Label htmlFor="email">Email</Label>
-                    <Input
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={email}
-                        className="block mt-1 w-full"
-                        onChange={event => setEmail(event.target.value)}
-                        required
-                        autoFocus
-                    />
+      <form onSubmit={submitForm} className="flex flex-col gap-4 w-full">
+        {/* Email Address */}
+        <TextInput
+          type="email"
+          leftSection={<IconAt size="1rem" />}
+          label="Email"
+          value={email}
+          onChange={event => setEmail(event.target.value)}
+          error={errors?.email}
+        />
 
-                    <InputError messages={errors.email} className="mt-2" />
-                </div>
 
-                <div className="flex items-center justify-end mt-4">
-                    <Button>Email Password Reset Link</Button>
-                </div>
-            </form>
-        </>
-    )
-}
+        <Button type="submit">Email Password Reset Link</Button>
 
-export default Page
+      </form>
+    </div>
+  );
+};
+
+export default Page;

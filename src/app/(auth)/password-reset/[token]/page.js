@@ -9,6 +9,8 @@ import Label from '../../../../components/common/Label'
 import Input from '../../../../components/common/Input'
 import InputError from '../../../../components/common/InputError'
 import Button from '../../../../components/common/Button'
+import { PasswordInput, TextInput } from '@mantine/core';
+import { IconAt } from '@tabler/icons-react';
 
 
 const PasswordReset = () => {
@@ -45,62 +47,30 @@ const PasswordReset = () => {
 
             <form onSubmit={submitForm}>
                 {/* Email Address */}
-                <div>
-                    <Label htmlFor="email">Email</Label>
-
-                    <Input
-                        id="email"
-                        type="email"
-                        value={email}
-                        className="block mt-1 w-full"
-                        onChange={event => setEmail(event.target.value)}
-                        required
-                        autoFocus
-                    />
-
-                    <InputError messages={errors.email} className="mt-2" />
-                </div>
+                <TextInput
+                  type="email"
+                  leftSection={<IconAt size="1rem" />}
+                  label="Email"
+                  value={email}
+                  onChange={event => setEmail(event.target.value)}
+                  error={errors?.email}
+                />
 
                 {/* Password */}
-                <div className="mt-4">
-                    <Label htmlFor="password">Password</Label>
-                    <Input
-                        id="password"
-                        type="password"
-                        value={password}
-                        className="block mt-1 w-full"
-                        onChange={event => setPassword(event.target.value)}
-                        required
-                    />
-
-                    <InputError
-                        messages={errors.password}
-                        className="mt-2"
-                    />
-                </div>
+                <PasswordInput
+                  label="Password"
+                  value={password}
+                  onChange={event => setPassword(event.target.value)}
+                  error={errors?.password}
+                />
 
                 {/* Confirm Password */}
-                <div className="mt-4">
-                    <Label htmlFor="passwordConfirmation">
-                        Confirm Password
-                    </Label>
-
-                    <Input
-                        id="passwordConfirmation"
-                        type="password"
-                        value={passwordConfirmation}
-                        className="block mt-1 w-full"
-                        onChange={event =>
-                            setPasswordConfirmation(event.target.value)
-                        }
-                        required
-                    />
-
-                    <InputError
-                        messages={errors.password_confirmation}
-                        className="mt-2"
-                    />
-                </div>
+                <PasswordInput
+                  label="Password confirmation"
+                  value={passwordConfirmation}
+                  onChange={event => setPasswordConfirmation(event.target.value)}
+                  error={errors?.passwordConfirmation}
+                />
 
                 <div className="flex items-center justify-end mt-4">
                     <Button>Reset Password</Button>

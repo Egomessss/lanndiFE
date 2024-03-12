@@ -24,9 +24,9 @@ const AppLayout = ({ children, header }) => {
     const { user, logout } = useAuth()
     console.log(user);
 
-    // if (!user) {
-    //     return <Loading />
-    // }
+    if (!user) {
+        return <Loading />
+    }
 
     return (
         <AppShell
