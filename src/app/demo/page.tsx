@@ -16,13 +16,10 @@ import CustomModal from '@/components/editor/components/CustomModal';
 import { editorConfigOptions } from '@/components/editor/utils/options';
 import useEditorData from '@/hooks/use-editor-data';
 import { useAuth } from '@/hooks/auth';
+import { EditorLoading } from '@/components/common/EditorLoading';
 
 
-export function EditorLoading() {
-  return <div className="flex items-center gap-4 flex-col h-screen w-full items-center justify-center"><Loader
-    color="blue" type="bars" /><p>Loading the
-    editor</p></div>;
-}
+
 
 export default function CustomEditor() {
 

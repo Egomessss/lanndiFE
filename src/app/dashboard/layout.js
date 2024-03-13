@@ -9,7 +9,7 @@ import { IconCreditCard, IconHome2, IconLogout, IconSettings, IconUser } from '@
 import Link from 'next/link';
 
 
-const AppLayout = ({ children, header }) => {
+const layout = ({ children }) => {
   const [opened, { toggle }] = useDisclosure();
   const { user, logout } = useAuth();
   console.log(user);
@@ -81,4 +81,4 @@ const AppLayout = ({ children, header }) => {
   );
 };
 
-export default AppLayout;
+export default layout;
