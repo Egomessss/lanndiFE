@@ -27,12 +27,9 @@ const Page = () => {
         </p>
       )}
 
-
       <Button onClick={() => resendEmailVerification({ setStatus })}>
         Resend Verification Email
       </Button>
-
-
     </div>
   );
 };

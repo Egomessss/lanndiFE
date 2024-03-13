@@ -20,10 +20,7 @@ interface FormErrors {
 const Login = () => {
 
 
-  const { login } = useAuth({
-    middleware: 'guest',
-    redirectIfAuthenticated: '/',
-  });
+  const { login,isLoading } = useAuth();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -80,7 +77,7 @@ const Login = () => {
             Register here
           </Anchor>
 
-          <Button type="submit">Login</Button>
+          <Button loading={isLoading} type="submit">Login</Button>
         </div>
       </form>
     </>

@@ -10,10 +10,7 @@ import { Anchor, Button, PasswordInput, TextInput } from '@mantine/core';
 import { IconAt } from '@tabler/icons-react';
 
 const Page = () => {
-  const { register } = useAuth({
-    middleware: 'auth',
-    redirectIfAuthenticated: '/',
-  });
+  const { register, isLoading } = useAuth();
 
 
   const [email, setEmail] = useState('');
@@ -52,7 +49,7 @@ const Page = () => {
       <Anchor component={Link} size="sm" href="/login">
         Already registered?
       </Anchor>
-      {/*<Button type="submit" >Register</Button>*/}
+      <Button loading={isLoading} type="submit">Register</Button>
     </form>
   );
 };

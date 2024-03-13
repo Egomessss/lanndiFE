@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 import axios from '@/lib/axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 
 
@@ -18,21 +18,28 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
       }),
   );
 
+  const [isLoading, setIsLoading] = useState(false);
+  // Add similar state variables for other actions...
+
 
   const csrf = () => axios.get('/sanctum/csrf-cookie');
 
   const register = async ({ setErrors, ...props }) => {
+    setIsLoading(true);
     await csrf();
 
     setErrors([]);
 
     axios
       .post('/register', props)
-      .then(() => mutate())
+      .then(() => {
+        mutate();
+        setIsLoading(false);
+      })
       .catch(error => {
         if (error.response.status !== 422) throw error;
-
         setErrors(error.response.data.errors);
+        setIsLoading(false)
       });
   };
 
@@ -41,6 +48,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 
     setErrors([]);
     setStatus(null);
+    setIsLoading(true)
 
     axios
       .post('/login', props)
@@ -49,11 +57,12 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
         const twoWeeksInSeconds = 60 * 60 * 24 * 14;
         // On successful login, set a cookie to last for 2 weeks
         document.cookie = `isLoggedIn=true; path=/; max-age=${twoWeeksInSeconds}; secure; samesite=Strict`;
+        // router.push('/');
       })
       .catch(error => {
         if (error.response.status !== 422) throw error;
-
         setErrors(error.response.data.errors);
+        setIsLoading(false);
       });
   };
 
@@ -108,18 +117,9 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
     window.location.pathname = '/login';
   };
 
-  // useEffect(() => {
-  //   if (middleware === 'guest' && redirectIfAuthenticated && user)
-  //     router.push(redirectIfAuthenticated);
-  //   if (
-  //     window.location.pathname === '/verify-email' &&
-  //     user?.email_verified_at
-  //   )
-  //     router.push(redirectIfAuthenticated);
-  //   if (middleware === 'auth' && error) logout();
-  // }, [user, error]);
 
   return {
+    isLoading,
     user,
     register,
     login,

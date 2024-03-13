@@ -19,7 +19,7 @@ function SaveButton() {
   const params = useParams();
   const siteSlug = params.slug;
 
-  const { user } = useAuth({ middleware: 'guest', redirectIfAuthenticated: '/' });
+  const { user } = useAuth();
 
   const editor = useEditorMaybe();
 

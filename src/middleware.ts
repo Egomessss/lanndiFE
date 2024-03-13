@@ -60,27 +60,20 @@ export function middleware(req: NextRequest) {
 
   // Check if the current path is an unprotected route
   const isUnprotectedRoute = unprotectedRoutes.includes(path);
+
   if (hostname === `app.${process.env.NEXT_PUBLIC_APP_PRIMARY_DOMAIN}` || hostname === 'localhost:3000') {
-    console.log(`app.${process.env.NEXT_PUBLIC_APP_PRIMARY_DOMAIN}`);
-    // Allow access to unprotected routes without session
-    if (isUnprotectedRoute) {
+
+    if (!session && !isUnprotectedRoute) {
+      return NextResponse.redirect(new URL('/login', req.url));
+    } else if (session && (path === '/login' || path === '/register')) {
+      console.log('Session exists, redirecting to /');
+      return NextResponse.redirect(new URL('/', req.url));
+    } else if (isUnprotectedRoute) {
       console.log('Accessing unprotected route:', path);
       return NextResponse.next(); // Proceed without redirecting
     }
 
-    // Redirect to login if there's no session and trying to access protected routes
-    if (!session && !isUnprotectedRoute) {
-      console.log('No session, redirecting to /login');
-      return NextResponse.redirect(new URL('/login', req.url));
-    }
 
-    // Redirect to home if there's a session and trying to access login/register
-    if (session && (path === '/login' || path === '/register')) {
-      console.log('Session exists, redirecting to /');
-      return NextResponse.redirect(new URL('/', req.url));
-    }
-
-    console.log('Rewritten');
     return NextResponse.rewrite(new URL(`/dashboard${path === '/' ? '' : path}`, req.url));
   }
 
