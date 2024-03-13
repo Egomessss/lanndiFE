@@ -3,10 +3,10 @@
 import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import axios from '@/lib/axios';
-import Loading from '@/app/app/Loading';
-import ErrorMessage from '@/app/app/Error';
+import Loading from '@/app/dashboard/Loading';
+import ErrorMessage from '@/app/dashboard/Error';
 import React from 'react';
-import { SiteSettings } from '@/app/app/sites/[slug]/settings/page';
+import { SiteSettings } from '@/app/dashboard/sites/[slug]/page';
 import { headers } from 'next/headers';
 
 

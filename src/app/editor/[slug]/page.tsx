@@ -8,13 +8,14 @@ import RightSideBar from "@/components/editor/components/RightSideBar";
 import EditorHeader from "@/components/editor/components/EditorHeader";
 import axios from "@/lib/axios";
 import {useQuery} from "@tanstack/react-query";
-import Loading from "@/app/app/Loading";
-import ErrorMessage from "@/app/app/Error";
+import Loading from "@/app/dashboard/Loading";
+import ErrorMessage from "@/app/dashboard/Error";
 import {useParams} from "next/navigation";
 import CustomAssetManager from '@/components/editor/components/CustomAssetManager'
 import CustomModal from "@/components/editor/components/CustomModal";
 import {editorConfigOptions} from "@/components/editor/utils/options";
 import useEditorData from "@/hooks/use-editor-data";
+import { EditorLoading } from '@/app/demo/page';
 
 
 
@@ -32,6 +33,11 @@ export default function CustomEditor() {
     const onEditor = (editor: Editor) => {
         (window as any).editor = editor
     }
+
+    if (isLoading) {
+        return <EditorLoading />; // Replace this with your loading component
+    }
+
 
     return (
         <GjsEditor

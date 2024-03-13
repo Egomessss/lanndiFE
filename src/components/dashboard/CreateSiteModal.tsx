@@ -91,6 +91,7 @@ const CreateSiteModal = () => {
                     />
                     <TextInput
                         withAsterisk
+                        description='The domain that will appear before *.lanndi.com* eg. example.lanndi.com'
                         label="Site subdomain"
                         placeholder="Insert site subdomain here..."
                         {...form.getInputProps('subdomain')}

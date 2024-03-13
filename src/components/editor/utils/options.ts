@@ -7,19 +7,12 @@ import ListBlocks from '../plugins/BasicBlocks/ListBlocks';
 import CustomCode from '@/components/editor/plugins/utils/CustomCode';
 import BorderStyle from '@/components/editor/plugins/utils/BorderStyle';
 import { starterTemplate, styleStarterTemplate } from '@/components/editor/templates/Starter';
-
 import Sections from '@/components/editor/plugins/Sections';
 import { EditorData } from '@/hooks/use-editor-data';
 import UtilsPlugin from '@/components/editor/plugins/utils/UtilsPlugin/utilsPlugin';
 import GoogleIcons from '@/components/editor/plugins/utils/GoogleIcons';
 import ScriptEditor from '@/components/editor/plugins/utils/ScriptEditor';
 import PostCss from '../plugins/utils/PostCss';
-
-// const editor = useEditor();
-//
-// const projectId = getProjectId();
-// const params = useParams()
-// const siteSlug = params.slug
 
 
 export const editorConfigOptions = (data: EditorData) => ({
@@ -53,27 +46,27 @@ export const editorConfigOptions = (data: EditorData) => ({
       { id: 'fit', name: 'Fit To Screen', width: '' },
     ],
   },
-  //     storageManager: {
-  //         type: 'local', // Type of the storage, available: 'local' | 'remote'
-  //         autosave: true, // Store data automatically
-  //         autoload: true, // Autoload stored data on init
-  //         stepsBeforeSave: 1, // If autosave enabled, indicates how many changes are necessary before store method is triggered
-  //         options: {
-  //             local: { // Options for the `local` type
-  //                 key: 'lanndiProject', // The key for the local storage
-  //             },
-  //             remote: {
-  //                 urlLoad: `api/v1/editor/site/${siteSlug}`,
-  //                 urlStore: `api/v1/editor/site/store/${siteSlug}`,
-  //                 // Enrich the store call
-  //                 onStore: async store(data) {
-  //                     return await axios.patch(`projects/${projectId}`, {id: siteSlug, data});
-  //                 },
-  //             // If on load, you're returning the same JSON from above...
-  //             onLoad: result => result.data,
-  //         }
-  //     },
-  // },
+      storageManager: {
+          type: 'local', // Type of the storage, available: 'local' | 'remote'
+          autosave: true, // Store data automatically
+          autoload: true, // Autoload stored data on init
+          stepsBeforeSave: 1, // If autosave enabled, indicates how many changes are necessary before store method is triggered
+          options: {
+              local: { // Options for the `local` type
+                  key: 'lanndiProject', // The key for the local storage
+              },
+          //     remote: {
+            //         urlLoad: `api/v1/editor/site/${siteSlug}`,
+            //         urlStore: `api/v1/editor/site/store/${siteSlug}`,
+            //         // Enrich the store call
+            //         onStore: async store(data) {
+            //             return await axios.patch(`projects/${projectId}`, {id: siteSlug, data});
+            //         },
+            //     // If on load, you're returning the same JSON from above...
+            //     onLoad: result => result.data,
+            // }
+      },
+  },
   selectorManager: {
     stylePrefix: 'lnd-', componentFirst: false, states: [
       { name: 'hover', label: 'Hover', info: 'Change styles on user hover' },

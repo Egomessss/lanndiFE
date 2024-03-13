@@ -1,26 +1,28 @@
-import { Button } from '@mantine/core'
-import { IconArrowRight } from '@tabler/icons-react'
-import React from 'react'
-import Link from 'next/link'
-import { DarkModeButton } from '@/components/common/DarkModeButton/DarkModeButton'
+import Link from 'next/link';
+import { Button, ThemeIcon } from '@mantine/core';
+import { IconFileStack } from '@tabler/icons-react';
+import React from 'react';
 
 
-const Navbar = () => {
+export const Navbar = () => {
 
-    return (
-        <div className="flex justify-between px-4 py-8">
-            <a href="/">lanndi</a>
-            <div className="flex items-center gap-4">
-               {/*<DarkModeButton/>*/}
-                <Button variant='subtle'>Log in</Button>
-                <Link href='page/create'>
-                    <Button rightSection={<IconArrowRight />}>
-                        Choose your template
-                    </Button>
-                </Link>
-            </div>
-        </div>
-    )
-}
 
-export default Navbar
+  return (
+    <nav className="py-4 flex justify-between w-full items-center">
+      <Link href="/" className="no-underline text-inherit flex items-center gap-2">
+        <IconFileStack className="text-blue-500 " size="1.2rem" />
+        <span className="font-bold">lanndi</span>
+      </Link>
+      <div className="flex gap-2 items-center">
+        <Button
+          target="_blank"
+          component="a" href="https://lanndi.lemonsqueezy.com/checkout/buy/2ddb7d73-91f4-4121-8413-c24ec6a3335c"
+        >
+          Buy lifetime deal
+        </Button>
+      </div>
+
+    </nav>
+
+  );
+};

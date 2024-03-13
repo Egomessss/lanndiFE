@@ -1,20 +1,12 @@
-import Link from 'next/link'
-import React from 'react'
-
+import Link from 'next/link';
+import React from 'react';
 
 const Footer = () => {
     return (
-        <footer className="flex flex-col items-center justify-center p-4 gap-4 text-xs">
-            <p className='text-center'>
-                SpsFeed is a human-curated and maintained directory of
-                early-stage bootstrapped startups that are under 10k MRR,
-                whether you're looking for an Ai startup, an inexpensive
-                alternative to some overpriced startups offering or just to see
-                the next big thing… We’re here
-            </p>
+        <footer className="p-4 flex flex-col text-xs">
             <div className="flex w-full justify-between">
                 <span className=" text-gray-500 sm:text-center ">
-                    © 2024 spsFeed™ . All Rights Reserved.
+                    © 2024 lanndi™ . All Rights Reserved.
                 </span>
                 <p className=" ">
                     Created by{' '}
@@ -26,8 +18,10 @@ const Footer = () => {
                         Edmilson
                     </a>
                 </p>
+
+
             </div>
-            <div className="mt-2 flex w-full justify-center gap-2 text-xs">
+            <div className="flex gap-2 text-xs w-full justify-center mt-2">
                 <Link href="/privacy-policy">Privacy Policy</Link>{' '}
                 <Link href="/terms-and-conditions">Terms</Link>
             </div>

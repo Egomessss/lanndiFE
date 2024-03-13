@@ -19,7 +19,7 @@ function SaveButton() {
   const params = useParams();
   const siteSlug = params.slug;
 
-  const { user } = useAuth({ middleware: 'guest', redirectIfAuthenticated: '/'});
+  const { user } = useAuth({ middleware: 'guest', redirectIfAuthenticated: '/' });
 
   const editor = useEditorMaybe();
 
@@ -64,7 +64,7 @@ function SaveButton() {
   return (<>
     {user ? <Tooltip label="Save changes">
         {/*<CreateUserAndPageModal />*/}
-        <ActionIcon loading={isPending} className={!showSuccess ? 'animate-pulse' : ''}
+        <ActionIcon disabled={!user} loading={isPending} className={!showSuccess ? 'animate-pulse' : ''}
                     color={color}
                     onClick={() => mutate()}
                     variant="subtle">
@@ -74,7 +74,17 @@ function SaveButton() {
 
       </Tooltip> :
       <div>
+        <Tooltip  label="Save changes">
+          {/*<CreateUserAndPageModal />*/}
+          <ActionIcon disabled={!user} loading={isPending} className={!showSuccess ? 'animate-pulse' : ''}
+                      color={color}
+                      onClick={() => mutate()}
+                      variant="subtle">
+            {isError && <IconFaceIdError size="1rem" />}
+            {!isPending && !isError && showSuccess ? <IconCheck size="1rem" /> : <IconDeviceFloppy size="1rem" />}
+          </ActionIcon>
 
+        </Tooltip>
       </div>}
 
 
@@ -82,7 +92,7 @@ function SaveButton() {
 }
 
 function PublishButton() {
-  const { user } = useAuth({ middleware: 'guest', redirectIfAuthenticated: '/'});
+  const { user } = useAuth({ middleware: 'guest', redirectIfAuthenticated: '/' });
   const [showSuccess, setShowSuccess] = useState(false);
   const params = useParams();
   const siteSlug = params.slug;
@@ -125,13 +135,13 @@ function PublishButton() {
   );
 
   return <Tooltip label="Publish Site">
-    <Button loading={isPending} size="xs" onClick={() => mutate()}>Publish</Button>
+    <Button disabled={!user} loading={isPending} size="xs" onClick={() => mutate()}>Publish</Button>
   </Tooltip>;
 
 }
 
 function EditorHeader() {
-  const { user } = useAuth({ middleware: 'guest', redirectIfAuthenticated: '/'});
+  const { user } = useAuth({ middleware: 'guest', redirectIfAuthenticated: '/' });
   console.log(user);
   return (
     <AppShell.Header>
@@ -154,13 +164,14 @@ function EditorHeader() {
           <WithEditor>
             <CommandButtons />
           </WithEditor>
-
         </div>
 
         <div className="flex w-full items-center justify-end gap-4">
-          {user &&  <Button size="xs" variant="subtle" leftSection={<IconExternalLink size="1rem" />}>Preview</Button>}
+          <Button color="red" component="a" target="_blank"  href="https://lanndi.lemonsqueezy.com/checkout/buy/2ddb7d73-91f4-4121-8413-c24ec6a3335c" size="xs">Get LTD 33% off</Button>
+          <Button disabled={!user} size="xs" variant="subtle"
+                  leftSection={<IconExternalLink size="1rem" />}>Preview</Button>
           <SaveButton />
-          {user && <PublishButton />}
+          <PublishButton />
         </div>
       </div>
     </AppShell.Header>);

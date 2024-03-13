@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
         <div>
             <div className="flex flex-col justify-center items-center h-screen w-full">
 
-                <Link className="no-underline text-white" href="/">
+                <Link className="no-underline text-white" href="/public">
                     <h1>Welcome to lanndi</h1>
                 </Link>
 

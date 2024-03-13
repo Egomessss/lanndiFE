@@ -7,8 +7,8 @@ import axios from '@/lib/axios'
 
 import ColorPicker from 'react-best-gradient-color-picker'
 import { useState } from 'react'
-import Loading from '@/app/app/Loading';
-import ErrorMessage from '@/app/app/Error';
+import Loading from '@/app/dashboard/Loading';
+import ErrorMessage from '@/app/dashboard/Error';
 
 export type Site = {
     id: number;

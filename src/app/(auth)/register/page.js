@@ -52,7 +52,7 @@ const Page = () => {
       <Anchor component={Link} size="sm" href="/login">
         Already registered?
       </Anchor>
-      <Button type="submit" >Register</Button>
+      {/*<Button type="submit" >Register</Button>*/}
     </form>
   );
 };

@@ -1,12 +1,22 @@
-
 import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import axios from '@/lib/axios';
-import Loading from '@/app/app/Loading';
-import ErrorMessage from '@/app/app/Error';
+import Loading from '@/app/dashboard/Loading';
+import ErrorMessage from '@/app/dashboard/Error';
 import React from 'react';
-import { SiteSettings } from '@/app/app/sites/[slug]/settings/page';
+import { SiteSettings } from '@/app/dashboard/sites/[slug]/page';
 import { headers } from 'next/headers';
+import Script from 'next/script';
+import { Navbar } from '@/components/landing/Navbar';
+import Hero from '@/components/landing/Hero';
+import PainPoints from '@/components/landing/PainPoints';
+import HowItWorks from '@/components/landing/HowItWorks';
+import Benefits from '@/components/landing/Benefits';
+import WaitlistBanner from '@/components/landing/WaitlistBanner';
+import Features from '@/components/landing/Features';
+import { Roadmap } from '@/components/landing/Roadmap';
+import { Pricing } from '@/components/landing/Pricing';
+import Footer from '@/components/landing/Footer';
 
 
 type Page = {
@@ -60,8 +70,23 @@ const Homepage = ({
 
   return (
     <div>
-      <h1>{params.domain === process.env.NEXT_PUBLIC_APP_PRIMARY_DOMAIN ? 'Welcome to the primary domain' : `Welcome to the subdomain ${params.domain} or ${headerDomain}`}</h1>
-      <h2>random</h2>
+      {params.domain === 'lanndi.com' && <div className="px-4 md:px-8">
+        {process.env.NODE_ENV === 'production' && (
+          <Script defer src="https://eu.umami.is/script.js"
+                  data-website-id="926180c0-ced2-44d6-94a2-70149d477560"></Script>
+        )}
+        <Navbar />
+        <Hero />
+        <PainPoints />
+        <HowItWorks />
+        <Benefits />
+        {/*<WaitlistBanner />*/}
+        <Features />
+        <Roadmap />
+        <Pricing />
+        {/*<WaitlistBanner />*/}
+        <Footer />
+      </div>}
     </div>
   );
 };

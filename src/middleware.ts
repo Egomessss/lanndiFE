@@ -50,6 +50,14 @@ export function middleware(req: NextRequest) {
     '/home',
   ];
 
+  if (hostname !== `app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}` && hostname !== 'localhost:3000') {
+    console.log('Accessing domains', hostname);
+    return NextResponse.rewrite(new URL(`/${hostname}${path}`, req.url));
+  }
+
+  // app.lanndi.com and localhost - dashboard
+  // not app and localhost - either subdomain or domain
+
   // Check if the current path is an unprotected route
   const isUnprotectedRoute = unprotectedRoutes.includes(path);
   if (hostname === `app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}` || hostname === 'localhost:3000') {
@@ -72,24 +80,7 @@ export function middleware(req: NextRequest) {
     }
 
     console.log('Rewritten');
-    return NextResponse.rewrite(new URL(`/app${path === '/' ? '' : path}`, req.url));
+    return NextResponse.rewrite(new URL(`/dashboard${path === '/' ? '' : path}`, req.url));
   }
-
-  // // rewrite root application to `/home` folder
-  // if (
-  //   hostname === 'localhost:3000' ||
-  //   hostname === process.env.NEXT_PUBLIC_ROOT_DOMAIN
-  // ) {
-  //   console.log('local host rewritten');
-  //   return NextResponse.rewrite(
-  //     new URL(`/home${path === '/' ? '' : path}`, req.url),
-  //   );
-  // }
-
-
-  // // rewrite everything else to `/[domain]/[slug] dynamic route
-
-    return NextResponse.rewrite(new URL(`/${hostname}${path}`, req.url));
-
 
 }

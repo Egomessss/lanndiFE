@@ -12,17 +12,17 @@ function LeftSideBar() {
 
     const icons = [
         { label: 'Blocks', Icon: IconLayoutGridAdd, selectedValue: 'Blocks' },
-        { label: 'Sections', Icon: IconSection, selectedValue: 'Sections' },
+        // { label: 'Sections', Icon: IconSection, selectedValue: 'Sections' },
         { label: 'Layers', Icon: IconStack2, selectedValue: 'Layers' },
-        { label: 'Pages', Icon: IconFile, selectedValue: 'Pages' },
+        // { label: 'Pages', Icon: IconFile, selectedValue: 'Pages' },
     ];
 
     const renderSelectedComponent = () => {
         switch (selected) {
             case 'Blocks': return <BlockSideBar type='Blocks' />;
-            case 'Sections': return <BlockSideBar type='Sections' />;
+            // case 'Sections': return <BlockSideBar type='Sections' />;
             case 'Layers': return <LayersLeftSideBar />;
-            case 'Pages': return <PagesLeftSideBar />;
+            // case 'Pages': return <PagesLeftSideBar />;
             default: return null;
         }
     };
@@ -38,8 +38,8 @@ function LeftSideBar() {
                             </ActionIcon>
                         </Tooltip>
                     ))}
-                    <Divider my="xs" variant="dashed" />
-                    <SettingsModal />
+                    {/*<Divider my="xs" variant="dashed" />*/}
+                    {/*<SettingsModal />*/}
                 </div>
                 <Divider orientation="vertical" my="xs" />
                 <Box component={ScrollArea} className="p-2 w-full">{renderSelectedComponent()}</Box>
