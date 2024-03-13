@@ -50,7 +50,7 @@ export function middleware(req: NextRequest) {
     '/home',
   ];
 
-  if (hostname !== `app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}` && hostname !== 'localhost:3000') {
+  if (hostname !== `app.${process.env.NEXT_PUBLIC_APP_PRIMARY_DOMAIN}` && hostname !== 'localhost:3000') {
     console.log('Accessing domains', hostname);
     return NextResponse.rewrite(new URL(`/${hostname}${path}`, req.url));
   }
@@ -60,7 +60,8 @@ export function middleware(req: NextRequest) {
 
   // Check if the current path is an unprotected route
   const isUnprotectedRoute = unprotectedRoutes.includes(path);
-  if (hostname === `app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}` || hostname === 'localhost:3000') {
+  if (hostname === `app.${process.env.NEXT_PUBLIC_APP_PRIMARY_DOMAIN}` || hostname === 'localhost:3000') {
+    console.log(`app.${process.env.NEXT_PUBLIC_APP_PRIMARY_DOMAIN}`);
     // Allow access to unprotected routes without session
     if (isUnprotectedRoute) {
       console.log('Accessing unprotected route:', path);
