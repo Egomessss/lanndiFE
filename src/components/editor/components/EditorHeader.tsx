@@ -26,7 +26,8 @@ function SaveButton() {
   const data = editor?.getProjectData();
   // console.log("data",data)
 
-  const { data: isFirstTimeSaving } = useEditorData();
+  // const { data: isFirstTimeSaving } = useEditorData();
+  const isFirstTimeSaving = true
 
   const { mutate, isError, isPending } = useMutation({
       mutationFn: async () => {
@@ -61,7 +62,8 @@ function SaveButton() {
   // Determine the color based on the mutation's state
   const color = isError ? 'red' : showSuccess ? 'green' : 'blue';
   console.log(isError);
-  return (<>
+  return (
+    <>
     {user ? <Tooltip label="Save changes">
         {/*<CreateUserAndPageModal />*/}
         <ActionIcon disabled={!user} loading={isPending} className={!showSuccess ? 'animate-pulse' : ''}
@@ -71,7 +73,6 @@ function SaveButton() {
           {isError && <IconFaceIdError size="1rem" />}
           {!isPending && !isError && showSuccess ? <IconCheck size="1rem" /> : <IconDeviceFloppy size="1rem" />}
         </ActionIcon>
-
       </Tooltip> :
       <div>
         <Tooltip  label="Save changes">
@@ -86,9 +87,8 @@ function SaveButton() {
 
         </Tooltip>
       </div>}
-
-
-  </>);
+  </>
+  );
 }
 
 function PublishButton() {

@@ -116,16 +116,16 @@ export default function TopBarButtons() {
 
 
 
-    editor.Commands.add('designer-mode', {
-        run: () => {
-            editor.setDragMode('absolute')
-            // console.log(editor.el)
-        },
-        stop: () => {
-            editor.setDragMode('')
-            // console.log('translate')
-        },
-    })
+    // editor.Commands.add('designer-mode', {
+    //     run: () => {
+    //         editor.setDragMode('absolute')
+    //         // console.log(editor.el)
+    //     },
+    //     stop: () => {
+    //         editor.setDragMode('')
+    //         // console.log('translate')
+    //     },
+    // })
 
     editor.Commands.extend('preview', {
         run: () => {

@@ -1,8 +1,19 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { SelectorsResultProps } from '../wrappers';
-import { CheckIcon, Combobox, Group, Pill, PillsInput, Select, ThemeIcon, Tooltip, useCombobox } from '@mantine/core';
-import { IconExclamationCircle, IconHash } from '@tabler/icons-react';
+import {
+  CheckIcon,
+  Combobox,
+  Group,
+  Pill,
+  PillsInput,
+  ScrollArea,
+  Select,
+  ThemeIcon,
+  Tooltip,
+  useCombobox,
+} from '@mantine/core';
+import { IconExclamationCircle, IconHash, IconTags } from '@tabler/icons-react';
 
 
 export default function CustomSelectorManager({
@@ -48,12 +59,12 @@ export default function CustomSelectorManager({
   };
 
   const values = selectedSelectors.map((item) => (
-    <Pill key={item} withRemoveButton onRemove={() => handleValueRemove(item)}>
+    <Pill key={item} withRemoveButton onRemove={() => removeSelector(item)}>
       {item}
     </Pill>
   ));
 
-  // console.log("val",values);
+  console.log("val",selectedSelectors);
 
   const options = allSelectors
     .filter((item) => item.toLowerCase().includes(search.trim().toLowerCase()))
@@ -97,15 +108,14 @@ export default function CustomSelectorManager({
 
       <div className="flex gap-2 items-start w-full h-full">
         <div className="flex gap-5 h-full w-full flex-col">
-
           <Tooltip color="blue" label="Apply style changes to all blocks with the same class">
-            <ThemeIcon variant="light" className="h-full">
-              <IconExclamationCircle size="1rem" />
+            <ThemeIcon variant="light">
+              <IconTags size="1rem" />
             </ThemeIcon>
           </Tooltip>
           <Tooltip color="blue" label={`#${targetsIds.toString()}`}>
             <ThemeIcon
-              className="h-full">
+              variant="light">
               <IconHash size="1rem" />
             </ThemeIcon>
           </Tooltip>
@@ -117,7 +127,9 @@ export default function CustomSelectorManager({
           <Combobox.DropdownTarget>
             <PillsInput size="xs" onClick={() => combobox.openDropdown()}>
               <Pill.Group>
-                {values}
+                <ScrollArea.Autosize type="scroll" mah={40}>
+                  {values}
+                </ScrollArea.Autosize>
                 <Combobox.EventsTarget>
                   <PillsInput.Field
                     onFocus={() => combobox.openDropdown()}

@@ -137,11 +137,11 @@ export const editorConfigOptions = (data: EditorData) => ({
                 label: 'Flex - Flexible Row/Column.',
                 icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-columns" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M12 4l0 16" /></svg>`,
               },
-              {
-                id: 'grid',
-                label: 'Grid - Rows & Columns Grid.',
-                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-grid" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /></svg>`,
-              },
+              // {
+              //   id: 'grid',
+              //   label: 'Grid - Rows & Columns Grid.',
+              //   icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-grid" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /></svg>`,
+              // },
               // {
               //     id: 'inline-block',
               //     label: 'Inline Block - Elements sit on the same line but can have width and height set.',
@@ -161,52 +161,52 @@ export const editorConfigOptions = (data: EditorData) => ({
           },
         ],
       },
-      {
-        id: 'gridItem',
-        name: 'Grid Item Properties',
-        open: false,
-        visible: false,
-        properties: [
-          {
-            type: 'composite',
-            label: 'Grid item span', // Label for the property
-            property: 'grid', // CSS property to change
-            properties: [
-              {
-                label: 'Row start',
-                property: 'grid-row-start',
-                type: 'number',
-                default: '1',
-                min: 0,
-                max: 20,
-              },
-              {
-                label: 'Row end',
-                property: 'grid-row-end',
-                type: 'number',
-                default: '1',
-                min: 0,
-                max: 20,
-              },
-              {
-                label: 'Column start',
-                property: 'grid-column-start',
-                type: 'number',
-                default: '1',
-                min: 0,
-                max: 20,
-              },
-              {
-                label: 'Column end',
-                property: 'grid-column-end',
-                type: 'number',
-                default: '1',
-                min: 0,
-                max: 20,
-              }],
-          },
-        ],
-      },
+      // {
+      //   id: 'gridItem',
+      //   name: 'Grid Item Properties',
+      //   open: false,
+      //   visible: false,
+      //   properties: [
+      //     {
+      //       type: 'composite',
+      //       label: 'Grid item span', // Label for the property
+      //       property: 'grid', // CSS property to change
+      //       properties: [
+      //         {
+      //           label: 'Row start',
+      //           property: 'grid-row-start',
+      //           type: 'base',
+      //           default: '1',
+      //           min: 0,
+      //           max: 20,
+      //         },
+      //         {
+      //           label: 'Row end',
+      //           property: 'grid-row-end',
+      //           type: 'base',
+      //           default: '1',
+      //           min: 0,
+      //           max: 20,
+      //         },
+      //         {
+      //           label: 'Column start',
+      //           property: 'grid-column-start',
+      //           type: 'base',
+      //           default: '1',
+      //           min: 0,
+      //           max: 20,
+      //         },
+      //         {
+      //           label: 'Column end',
+      //           property: 'grid-column-end',
+      //           type: 'base',
+      //           default: '1',
+      //           min: 0,
+      //           max: 20,
+      //         }],
+      //     },
+      //   ],
+      // },
       {
         id: 'flexProperties',
         name: 'Flex Properties',
@@ -273,7 +273,7 @@ export const editorConfigOptions = (data: EditorData) => ({
             options: [
               {
                 id: 'start',
-                label: 'Start',
+                label: 'Top',
                 icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-top" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l16 0" /><path d="M9 8m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
               }, {
                 id: 'center',
@@ -281,7 +281,7 @@ export const editorConfigOptions = (data: EditorData) => ({
                 icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-center" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 4l0 5" /><path d="M12 15l0 5" /><path d="M6 9m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z" /></svg>`,
               }, {
                 id: 'end',
-                label: 'End',
+                label: 'Bottom',
                 icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-bottom" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20l16 0" /><path d="M9 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
               },
             ],
@@ -307,78 +307,76 @@ export const editorConfigOptions = (data: EditorData) => ({
             type: 'composite',
             label: 'Spacing', // Label for the property
             property: 'gap', // CSS property to change
-            properties: [{
-              label: 'Row',
-              property: 'gap-row',
-              type: 'number',
-              default: 0,
-              min: 0,
-              units: ['px', '%', 'em', 'rem'],
-            },
-              {
-                label: 'Column',
-                property: 'gap-column',
-                type: 'number',
-                default: 0,
-                min: 0,
-                units: ['px', '%', 'em', 'rem'],
-              }],
-          },
-
-
-        ],
-      },
-      {
-        id: 'gridProperties',
-        name: 'Grid Properties',
-        open: false,
-        visible: false,
-        properties: [
-          {
-            type: 'composite',
-            label: 'Grid span', // Label for the property
-            property: 'grid', // CSS property to change
+            // detached:false,
             properties: [
               {
-                label: 'Columns',
-                property: 'grid-template-columns',
-                type: 'number',
-                default: '2',
-                min: 0,
-                max: 20,
+                label: 'Row',
+                property: 'row-gap',
+                type: 'base',
+                default: '0',
+                tooltip: 'Units available: px, %, em, rem',
               },
               {
-                label: 'Rows',
-                property: 'grid-template-rows',
-                type: 'number',
-                default: '2',
-                min: 0,
-                max: 20,
-              }],
-          },
-          {
-            type: 'composite',
-            label: 'Spacing', // Label for the property
-            property: 'gap', // CSS property to change
-            properties: [{
-              label: 'Row',
-              property: 'gap-row',
-              type: 'number',
-              default: 0,
-              min: 0,
-              units: ['px', '%', 'em', 'rem'],
-            },
-              {
                 label: 'Column',
-                property: 'gap-column',
-                type: 'number',
-                default: 0,
-                min: 0,
-                units: ['px', '%', 'em', 'rem'],
+                property: 'column-gap',
+                type: 'base',
+                default: '0',
+                tooltip: 'Units available: px, %, em, rem',
               }],
           },
+
+
         ],
       },
+      // {
+      //   id: 'gridProperties',
+      //   name: 'Grid Properties',
+      //   open: false,
+      //   visible: false,
+      //   properties: [
+      //     {
+      //       type: 'composite',
+      //       label: 'Grid span', // Label for the property
+      //       property: 'grid', // CSS property to change
+      //       properties: [
+      //         {
+      //           label: 'Columns',
+      //           property: 'grid-template-columns',
+      //           type: 'base',
+      //           default: 0,
+      //           min: 0,
+      //           max: 20,
+      //         },
+      //         {
+      //           label: 'Rows',
+      //           property: 'grid-template-rows',
+      //           type: 'base',
+      //           default: 0,
+      //           min: 0,
+      //           max: 20,
+      //         }],
+      //     },
+      //     {
+      //       type: 'composite',
+      //       label: 'Spacing', // Label for the property
+      //       property: 'gap', // CSS property to change
+      //       properties: [{
+      //         label: 'Row',
+      //         property: 'row-gap',
+      //         type: 'base',
+      //         default: '0',
+      //         tooltip: 'Units available: px, %, em, rem',
+      //       },
+      //         {
+      //           label: 'Column',
+      //           property: 'column-gap',
+      //           type: 'base',
+      //           default: '0',
+      //           tooltip: 'Units available: px, %, em, rem',
+      //         }],
+      //     },
+      //   ],
+      // },
 
       {
         name: 'Sizing',
@@ -390,42 +388,42 @@ export const editorConfigOptions = (data: EditorData) => ({
             label: 'Width', // Label for the property
             property: 'width', // CSS property to change
             tooltip: 'Units available: px, %, em, rem, fit-content',
-            default: 'auto'
+            default: 'auto',
           },
           {
             type: 'base',
             label: 'height', // Label for the property
             property: 'height', // CSS property to change
             tooltip: 'Units available: px, %, em, rem, fit-content',
-            default: 'auto'
+            default: 'auto',
           },
           {
             type: 'base',
             label: 'Max Width', // Label for the property
             property: 'max-width', // CSS property to change
             tooltip: 'Units available: px, %, em, rem, fit-content',
-            default: 'auto'
+            default: 'auto',
           },
           {
             type: 'base',
             label: 'Max Height', // Label for the property
             property: 'max-height', // CSS property to change
             tooltip: 'Units available: px, %, em, rem, fit-content',
-            default: 'auto'
+            default: 'auto',
           },
           {
             type: 'base',
             label: 'Min Width', // Label for the property
             property: 'min-width', // CSS property to change
             tooltip: 'Units available: px, %, em, rem, fit-content',
-            default: 'auto'
+            default: 'auto',
           },
           {
             type: 'base',
             label: 'Min Height', // Label for the property
             property: 'min-height', // CSS property to change
             tooltip: 'Units available: px, %, em, rem, fit-content',
-            default: 'auto'
+            default: 'auto',
           },
 
         ],
@@ -441,32 +439,32 @@ export const editorConfigOptions = (data: EditorData) => ({
             property: 'margin', // CSS property to change
             properties: [
               {
-                type: 'number',
-                units: ['px', '%', 'em', 'rem'],
-                default: '0',
+                type: 'base',
                 property: 'margin-top',
                 label: 'Top',
+                default: '0',
+                tooltip: 'Units available: px, %, em, rem',
               },
               {
-                type: 'number',
-                units: ['px', '%', 'em', 'rem'],
-                default: '0',
+                type: 'base',
                 property: 'margin-right',
                 label: 'Right',
+                default: '0',
+                tooltip: 'Units available: px, %, em, rem',
               },
               {
-                type: 'number',
-                units: ['px', '%', 'em', 'rem'],
-                default: '0',
+                type: 'base',
                 property: 'margin-bottom',
                 label: 'Bottom',
+                default: '0',
+                tooltip: 'Units available: px, %, em, rem',
               },
               {
-                type: 'number',
-                units: ['px', '%', 'em', 'rem'],
-                default: '0',
+                type: 'base',
                 property: 'margin-left',
                 label: 'Left',
+                default: '0',
+                tooltip: 'Units available: px, %, em, rem',
               },
             ],
           },
@@ -476,37 +474,37 @@ export const editorConfigOptions = (data: EditorData) => ({
             property: 'padding', // CSS property to change
             properties: [
               {
-                type: 'number',
-                units: ['px', '%', 'em', 'rem'],
-                default: '0',
+                type: 'base',
                 property: 'padding-top',
                 label: 'Top',
+                default: '0',
+                tooltip: 'Units available: px, %, em, rem',
               },
               {
-                type: 'number',
-                units: ['px', '%', 'em', 'rem'],
-                default: '0',
+                type: 'base',
                 property: 'padding-right',
                 label: 'Right',
+                default: '0',
+                tooltip: 'Units available: px, %, em, rem',
               },
               {
-                type: 'number',
-                units: ['px', '%', 'em', 'rem'],
-                default: '0',
+                type: 'base',
                 property: 'padding-bottom',
                 label: 'Bottom',
+                default: '0',
+                tooltip: 'Units available: px, %, em, rem',
               },
               {
-                type: 'number',
-                units: ['px', '%', 'em', 'rem'],
-                default: '0',
+                type: 'base',
                 property: 'padding-left',
                 label: 'Left',
+                default: '0',
+                tooltip: 'Units available: px, %, em, rem',
               },
             ],
           },
           {
-            label: 'Content Overflow', // Label for the property
+            label: 'Overflow', // Label for the property
             property: 'overflow', // CSS property to change
             default: 'none', // Default value to display
             type: 'radio',
@@ -514,20 +512,20 @@ export const editorConfigOptions = (data: EditorData) => ({
               {
                 id: 'visible',
                 label: 'Show all',
-                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>`,
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>`,
               }, {
                 id: 'hidden',
                 label: 'Clip.',
-                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye-off" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" /><path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" /><path d="M3 3l18 18" /></svg>`,
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye-off" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" /><path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" /><path d="M3 3l18 18" /></svg>`,
               }, {
                 id: 'scroll',
                 label: 'Scrollable.',
-                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mouse" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 3m0 4a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-4a4 4 0 0 1 -4 -4z" /><path d="M12 7l0 4" /></svg>`,
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mouse" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 3m0 4a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-4a4 4 0 0 1 -4 -4z" /><path d="M12 7l0 4" /></svg>`,
               },
               {
                 id: 'clip',
                 label: 'Clip and hide overflow',
-                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cut" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M17 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M9.15 14.85l8.85 -10.85" /><path d="M6 4l8.85 10.85" /></svg>`,
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cut" width="12" height="12" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M17 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M9.15 14.85l8.85 -10.85" /><path d="M6 4l8.85 10.85" /></svg>`,
               },
               {
                 id: 'auto',
@@ -572,21 +570,34 @@ export const editorConfigOptions = (data: EditorData) => ({
             property: 'inset',
             type: 'composite',
             properties: [
-
-              { type: 'number', units: ['px', '%', 'em', 'rem'], default: '0', property: 'top' },
               {
-                type: 'number',
-                units: ['px', '%', 'em', 'rem'],
+                type: 'base',
+                property: 'top',
+                label: 'Top',
                 default: '0',
-                property: 'right',
+                tooltip: 'Units available: px, %, em, rem',
               },
               {
-                type: 'number',
-                units: ['px', '%', 'em', 'rem'],
-                default: '0',
+                type: 'base',
                 property: 'bottom',
+                label: 'Bottom',
+                default: '0',
+                tooltip: 'Units available: px, %, em, rem',
               },
-              { type: 'number', units: ['px', '%', 'em', 'rem'], default: '0', property: 'left' },
+              {
+                type: 'base',
+                property: 'left',
+                label: 'Left',
+                default: '0',
+                tooltip: 'Units available: px, %, em, rem',
+              },
+              {
+                type: 'base',
+                property: 'right',
+                label: 'Right',
+                default: '0',
+                tooltip: 'Units available: px, %, em, rem',
+              },
             ],
           },
           {
@@ -619,8 +630,9 @@ export const editorConfigOptions = (data: EditorData) => ({
             label: 'Opacity', // Label for the property
             property: 'opacity', // CSS property to change
             min: 0, // Min value (available only for the 'number' type)
-            max: 100, // Min value (available only for the 'number' type)
+            max: 1, // Min value (available only for the 'number' type)
             default: 0,
+            // step: 0.1,
           },
           {
             'type': 'select',
@@ -645,41 +657,6 @@ export const editorConfigOptions = (data: EditorData) => ({
         visible: true,
         properties: [
           {
-            'type': 'composite',
-            'label': 'Border Width', // Label for the property
-            'property': 'border-width', // CSS property to change
-            'properties': [
-              {
-                'type': 'number',
-                // Typically, border widths are defined in pixels; add more units if necessary
-                'default': '0',
-                'property': 'border-top-left-width',
-                'label': 'Top',
-              },
-              {
-                'type': 'number',
-                // Units for the property
-                'default': '0',
-                'property': 'border-top-right-width',
-                'label': 'Right',
-              },
-              {
-                'type': 'number',
-                // Units for the property
-                'default': '0',
-                'property': 'border-bottom-left-width',
-                'label': 'Bottom',
-              },
-              {
-                'type': 'number',
-                // Units for the property
-                'default': '0',
-                'property': 'border-bottom-right-width',
-                'label': 'Left',
-              },
-            ],
-          },
-          {
             type: 'select',
             label: 'Style', // Label for the property
             property: 'border-style', // CSS property to change
@@ -689,47 +666,96 @@ export const editorConfigOptions = (data: EditorData) => ({
               { id: 'hidden', label: 'Hidden' },
               { id: 'solid', label: 'Solid' },
               { id: 'dotted', label: 'Dotted' },
-              { id: 'dashed', label: 'Dashed' },
+              { id: 'double', label: 'Double' },
+              { id: 'groove', label: 'Groove' },
+              { id: 'ridge', label: 'Ridge' },
+              { id: 'inset', label: 'Inset' },
+              { id: 'outset', label: 'Outset' },
             ],
           },
+          {
+            'type': 'composite',
+            'label': 'Border Width', // Label for the property
+            'property': 'border-width', // CSS property to change
+            'properties': [
+              {
+                'type': 'base',
+                // Typically, border widths are defined in pixels; add more units if necessary
+                'default': '0',
+                'property': 'border-top-width',
+                'label': 'Top',
+                tooltip: 'Units available: px, %, em, rem',
+              },
+              {
+                'type': 'base',
+                // Units for the property
+                'default': '0',
+                'property': 'border-right-width',
+                'label': 'Right',
+                tooltip: 'Units available: px, %, em, rem',
+              },
+              {
+                'type': 'base',
+                // Units for the property
+                'default': '0',
+                'property': 'border-bottom-width',
+                'label': 'Bottom',
+                tooltip: 'Units available: px, %, em, rem',
+              },
+              {
+                'type': 'base',
+                // Units for the property
+                'default': '0',
+                'property': 'border-left-width',
+                'label': 'Left',
+                tooltip: 'Units available: px, %, em, rem',
+              },
+            ],
+          },
+
           {
             type: 'color',
             label: 'Colour', // Label for the property
             property: 'border-color', // CSS property to change
 
           },
+
           {
             type: 'composite',
             label: 'Radius', // Label for the property
             property: 'border-radius', // CSS property to change
             properties: [
               {
-                type: 'number',
+                type: 'base',
                 units: ['px', '%', 'em', 'rem'],
                 default: '0',
                 property: 'border-top-left-radius',
                 label: 'Top left',
+                tooltip: 'Units available: px, %, em, rem',
               },
               {
-                type: 'number',
+                type: 'base',
                 units: ['px', '%', 'em', 'rem'],
                 default: '0',
                 property: 'border-top-right-radius',
-                label: 'Top Right',
+                label: 'Top right',
+                tooltip: 'Units available: px, %, em, rem',
               },
               {
-                type: 'number',
-                units: ['px', '%', 'em', 'rem'],
-                default: '0',
-                property: 'border-bottom-left-radius',
-                label: 'Bottom left',
-              },
-              {
-                type: 'number',
+                type: 'base',
                 units: ['px', '%', 'em', 'rem'],
                 default: '0',
                 property: 'border-bottom-right-radius',
                 label: 'Bottom right',
+                tooltip: 'Units available: px, %, em, rem',
+              },
+              {
+                type: 'base',
+                units: ['px', '%', 'em', 'rem'],
+                default: '0',
+                property: 'border-bottom-left-radius',
+                label: 'Bottom left',
+                tooltip: 'Units available: px, %, em, rem',
               },
             ],
           },
@@ -747,6 +773,40 @@ export const editorConfigOptions = (data: EditorData) => ({
             detached: false,
             // Additional props
             properties: [
+              {
+                type: 'select',
+                label: 'Style', // Label for the property
+                property: 'font-style', // CSS property to change
+                default: 'normal', // CSS property to change
+                options: [
+                  { id: 'normal', label: 'Normal' }, // Inherits the font-family from its parent
+                  { id: 'italic', label: 'Italic' }, // Generic font family
+                ],
+              },
+              {
+                type: 'select',
+                label: 'Weight', // Label for the property
+                property: 'font-weight', // CSS property to change
+                default: '400', // '400' corresponds to Normal weight, a common default
+                options: [
+                  { id: '100', label: '100 – Thin' },
+                  { id: '200', label: '200 – Extra Light' },
+                  { id: '300', label: '300 – Light' },
+                  { id: '400', label: '400 – Normal' },
+                  { id: '500', label: '500 – Medium' },
+                  { id: '600', label: '600 – Semi Bold' },
+                  { id: '700', label: '700 – Bold' },
+                  { id: '800', label: '800 – Extra Bold' },
+                  { id: '900', label: '900 – Black (Heavy)' },
+                ],
+              },
+              {
+                type: 'base',
+                label: 'Size', // Label for the property
+                property: 'font-size', // CSS property to change
+                tooltip: 'Units available: px, %, em, rem',
+              },
+
               {
                 type: 'select',
                 label: 'Family', // Updated label for clarity
@@ -767,51 +827,19 @@ export const editorConfigOptions = (data: EditorData) => ({
                   { id: 'Comic Sans MS', label: 'Comic Sans MS' }, // Web-safe font, though often debated in design choice
                 ],
               },
-              {
-                type: 'number',
-                label: 'Size', // Label for the property
-                property: 'font-size', // CSS property to change
-                units: ['px', '%', 'em', 'rem'], // Units (available only for the 'number' type)
-                min: 0, // Min value (available only for the 'number' type)
-              },
-              {
-                type: 'select',
-                label: 'Weight', // Label for the property
-                property: 'font-weight', // CSS property to change
-                default: '400', // '400' corresponds to Normal weight, a common default
-                options: [
-                  { id: '100', label: '100 – Thin' },
-                  { id: '200', label: '200 – Extra Light' },
-                  { id: '300', label: '300 – Light' },
-                  { id: '400', label: '400 – Normal' },
-                  { id: '500', label: '500 – Medium' },
-                  { id: '600', label: '600 – Semi Bold' },
-                  { id: '700', label: '700 – Bold' },
-                  { id: '800', label: '800 – Extra Bold' },
-                  { id: '900', label: '900 – Black (Heavy)' },
-                ],
-              },
-              {
-                type: 'select',
-                label: 'Style', // Label for the property
-                property: 'font-style', // CSS property to change
-                default: 'normal', // CSS property to change
-                options: [
-                  { id: 'normal', label: 'Normal' }, // Inherits the font-family from its parent
-                  { id: 'italic', label: 'Italic' }, // Generic font family
-                ],
-              },
+
+
             ],
           },
           {
-            type: 'number',
+            type: 'base',
             label: 'Line spacing', // Label for the property
             property: 'line-height', // CSS property to change
             units: ['px', '%', 'em', 'rem'], // Units (available only for the 'number' type)
             min: 0, // Min value (available only for the 'number' type)
           },
           {
-            type: 'number',
+            type: 'base',
             label: 'Letter spacing', // Label for the property
             property: 'letter-spacing', // CSS property to change
             units: ['px', '%', 'em', 'rem'], // Units (available only for the 'number' type)
@@ -895,7 +923,6 @@ export const editorConfigOptions = (data: EditorData) => ({
               { id: 'lower-alpha', label: 'Alpha' },
             ],
           },
-
         ],
       },
     ],

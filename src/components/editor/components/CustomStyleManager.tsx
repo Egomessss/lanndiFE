@@ -1,24 +1,11 @@
-import {
-  Accordion,
-  ActionIcon,
-  Divider,
-  ScrollArea,
-  Select,
-  Tabs,
-  Text,
-  TextInput,
-  ThemeIcon,
-  Tooltip,
-} from '@mantine/core';
+import { Accordion } from '@mantine/core';
 import * as React from 'react';
+import { useState } from 'react';
 
 import StylePropertyField from './StylePropertyField';
 import { StylesResultProps } from '../wrappers/StylesProvider';
-import { IconExclamationCircle, IconFile, IconHash } from '@tabler/icons-react';
 import classes from './CustomStyleManager.module.css';
-import { useEditor, useEditorInstance } from '@/components/editor/context/EditorInstance';
-import { SelectSize } from '@/components/editor/components/SelectSize';
-import { useEffect, useState } from 'react';
+import { useEditor } from '@/components/editor/context/EditorInstance';
 
 
 function getClassName(propertiesLength: number) {
@@ -55,24 +42,24 @@ export default function CustomStyleManager({
   }
 
 // @ts-ignore
-  if (selectedComponent === 'grid') {
-    const sector = sm?.getSector('gridProperties');
-    sector?.setOpen(true);
-    // @ts-ignore
-  } else if (selectedComponent !== 'grid' || selectedComponent !== 'undefined') {
-    const sector = sm?.getSector('gridProperties');
-    sector?.setOpen(false);
-  }
-
-  // @ts-ignore
-  if (selectedComponentParent === 'grid') {
-    const sector = sm?.getSector('gridItem');
-    sector?.setOpen(true);
-    // @ts-ignore
-  } else if (selectedComponentParent !== 'grid' || selectedComponentParent !== 'undefined') {
-    const sector = sm?.getSector('gridItem');
-    sector?.setOpen(false);
-  }
+//   if (selectedComponent === 'grid') {
+//     const sector = sm?.getSector('gridProperties');
+//     sector?.setOpen(true);
+//     // @ts-ignore
+//   } else if (selectedComponent !== 'grid' || selectedComponent !== 'undefined') {
+//     const sector = sm?.getSector('gridProperties');
+//     sector?.setOpen(false);
+//   }
+//
+//   // @ts-ignore
+//   if (selectedComponentParent === 'grid') {
+//     const sector = sm?.getSector('gridItem');
+//     sector?.setOpen(true);
+//     // @ts-ignore
+//   } else if (selectedComponentParent !== 'grid' || selectedComponentParent !== 'undefined') {
+//     const sector = sm?.getSector('gridItem');
+//     sector?.setOpen(false);
+//   }
 
 
   // Check if there are any sectors

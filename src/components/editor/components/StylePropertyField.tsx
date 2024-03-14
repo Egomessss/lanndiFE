@@ -48,17 +48,23 @@ export default function StylePropertyField({
                                              ...rest
                                            }: StylePropertyFieldProps) {
 
+
   const editor = useEditor();
 
 
   const handleChange = (value: any) => {
     prop.upValue(value);
-    console.log(prop.getValue());
+    console.log('updated', prop.getValue());
   };
 
   const onChange = (ev: any) => {
-
+    console.log('received', ev);
     handleChange(ev);
+  };
+
+  const onChangeNumber = (value:  string | number) => {
+    console.log('received', value); // This now logs the received value directly
+    handleChange(value);
   };
 
   const onChangeText = (ev: any) => {
@@ -90,21 +96,24 @@ export default function StylePropertyField({
 
 
   const type = prop.getType();
+  const style = prop.getStyle();
+  console.log("style",style);
   const defValue = prop.getDefaultValue();
   const canClear = prop.canClear();
   const hasValue = prop.hasValue();
   const value = prop.getValue();
   const valueString = hasValue ? value : '';
   const valueWithDef = hasValue ? value : defValue;
-  console.log('property', prop.getName(), 'value', value);
+  // console.log('property', prop.getName(), 'value', value);
 
   let inputToRender = (
     <TextInput
       className="col-span-1"
+      // default={valueWithDef}
       // @ts-ignore
       rightSection={<Tooltip multiline w={200} color="blue" label={prop.attributes.tooltip}><IconExclamationCircle
         size="1rem" /></Tooltip>}
-      placeholder={defValue}
+      // placeholder={defValue}
       value={valueString}
       onChange={onChangeText}
       size="xs"
@@ -121,12 +130,12 @@ export default function StylePropertyField({
           stepHoldDelay={500}
           stepHoldInterval={(t) => Math.max(1000 / t ** 2, 25)}
           placeholder={defValue}
-          value={numberProp.getValue()}
-          onChange={onChange}
+          value={value}
+          onChange={onChangeNumber}
           rightSectionWidth={30}
           min={numberProp.getMin()}
           max={numberProp.getMax()}
-          rightSection={numberProp.getUnits() && <Select
+          rightSection={numberProp.getUnits().length > 2 && <Select
             classNames={classes}
             size="xs"
             variant="unstyled"
@@ -239,6 +248,7 @@ export default function StylePropertyField({
           min={sliderProp.getMin()}
           max={sliderProp.getMax()}
           onChange={onChange}
+          step={0.1}
         />
       );
     }
