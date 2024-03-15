@@ -227,47 +227,7 @@ export default function (editor: Editor, opts: any) {
     })
 
 
-    editor.DomComponents.addType('heading', {
 
-        model: {
-            defaults: {
-                tagName: 'h1',
-                content: 'Heading',
-                traits: [
-                    {
-                        type: 'select',
-                        label: 'Heading Type',
-                        name: 'tagName', // Use 'tagName' to change the component's tag
-                        options: [
-                            {value: 'h1', name: 'H1 - Heading One'},
-                            {value: 'h2', name: 'H2 - Heading Two'},
-                            {value: 'h3', name: 'H3 - Heading Three'},
-                            {value: 'h4', name: 'H4 - Heading Four'},
-                            {value: 'h5', name: 'H5 - Heading Five'},
-                            {value: 'h6', name: 'H6 - Heading Six'},
-                            // Add more options as needed
-                        ],
-                    },
-                ],
-                droppable: false,
-            },
-
-            init() {
-                this.on('change:attributes', this.handleAttrChange)
-            },
-
-            handleAttrChange() {
-                // Get the new tagName value from the attributes
-                const newTag = this.getAttributes().tagName
-
-                if (newTag) {
-                    // Update the model's tagName property
-                    this.set('tagName', newTag)
-                }
-            },
-
-        },
-    })
 
 
 }
