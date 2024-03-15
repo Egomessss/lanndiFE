@@ -18,6 +18,13 @@ const Hero = () => {
           </p>
           <div className="flex gap-2 items-center">
             <Button
+              variant="subtle"
+              target="_blank"
+              component="a" href="https://app.lanndi.com/demo"
+            >
+              Try demo
+            </Button>
+            <Button
               target="_blank"
               component="a" href="https://lanndi.lemonsqueezy.com/checkout/buy/2ddb7d73-91f4-4121-8413-c24ec6a3335c"
             >
