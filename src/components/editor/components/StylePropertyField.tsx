@@ -255,6 +255,7 @@ export default function StylePropertyField({
   }
 
 
+  // @ts-ignore
   return (
     <div
       {...rest}
@@ -265,9 +266,10 @@ export default function StylePropertyField({
       >
         <div className="flex-grow capitalize flex gap-1 items-center text-xs">
           <span>{prop.getLabel()}</span>
-          {/* @ts-ignore */}
+
           <Tooltip position="left" className="cursor-pointer" multiline w={500} openDelay={180} color="gray"
-                    label={`${prop.attributes.tooltip} * css -${style}*`}><IconExclamationCircle
+            //@ts-ignore
+                   label={`${prop.attributes.tooltip} * css -${style}*`}><IconExclamationCircle
             size="0.7rem" /></Tooltip>
         </div>
         {canClear && (
