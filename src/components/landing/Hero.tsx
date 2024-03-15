@@ -11,13 +11,10 @@ const Hero = () => {
         <div className="flex  flex-col items-center justify-center  gap-4 py-4 text-center">
           <h1 className=" max-w-3xl leading-9 md:text-6xl md:leading-none">
             Create your dream website in<span
-            className="underline decoration-blue-500 text-blue-500 ml-2">minutes</span> not
-            <span
-              className="underline decoration-red-500 text-red-500"> weeks</span>
+            className="underline decoration-blue-500 text-blue-500 ml-2">minutes</span>
           </h1>
           <p className="max-w-3xl font-medium">
-            Create, launch and share your fast, beautiful and responsive websites effortlessly, with a super easy-to-use
-            website editor without needing code or design experience
+            Create, launch and share your fast, beautiful and responsive one page website effortlessly, with a super easy-to-use editor without needing code or design skills
           </p>
           <div className="flex gap-2 items-center">
             <Button

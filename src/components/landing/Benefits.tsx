@@ -17,33 +17,33 @@ const Benefits = () => {
     {
       heading: 'Super simple and user friendly editor.',
       description:
-        'No technical jargon, roadblocks or having to spend days reading guides and watching tutorials so you can build your dream website.',
+        'Learn the editor in 30 minutes without having to be blasted by technical jargon, roadblocks or having to leave the editor to spend days reading guides and watching tutorials so you can build your dream website.',
       thumbnail: 'https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/ease.webp',
     },
     {
       heading: 'Pixel perfect customization.',
       description:
-        'With lanndi you are not limited to blocks and templates you can fully customize everything top to bottom just the way you like, and even achieve more functionality with the code editor.',
+        'With lanndi, you are not limited to blocks and templates you can fully customize everything top to bottom just the way you like, and even achieve more functionality with the code editor.',
       thumbnail: 'https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/properties.webp',
     },
     {
       heading: 'Convert more with fast and responsive websites.',
       description:
-        'Reduce bounce rate and convert more by presenting a website that is beautiful and super fast in every device.',
+        'Reduce bounce rate and convert more by presenting a website that is beautiful and instantly loads on every device.',
       thumbnail: 'https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/mobile.webp',
     },
-    {
-      heading: 'Design without limit.',
-      description:
-        'Use the designer mode to freely place your block elements wherever you want without limits, rules and awkward constraints.',
-      thumbnail: 'https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/designermode.gif',
-    },
-    {
-      heading: 'More websites for less.',
-      description:
-        'lanndi is made specifically for small websites be it a landing page, a portfolios or a link in bio, each site has a maximum of 10 pages per domain allowing you to have a ton of sites on single hosting plan.',
-      thumbnail: 'https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/sitesimage.jpg',
-    },
+    // {
+    //   heading: 'Design without limit.',
+    //   description:
+    //     'Use the designer mode to freely place your block elements wherever you want without limits, rules and awkward constraints.',
+    //   thumbnail: 'https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/designermode.gif',
+    // },
+    // {
+    //   heading: 'More websites for less.',
+    //   description:
+    //     'lanndi is made specifically for small websites be it a landing page, a portfolios or a link in bio, each site has a maximum of 10 pages per domain allowing you to have a ton of sites on single hosting plan.',
+    //   thumbnail: 'https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/sitesimage.jpg',
+    // },
   ];
 
 

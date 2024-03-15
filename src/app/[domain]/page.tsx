@@ -17,6 +17,7 @@ import Features from '@/components/landing/Features';
 import { Roadmap } from '@/components/landing/Roadmap';
 import { Pricing } from '@/components/landing/Pricing';
 import Footer from '@/components/landing/Footer';
+import Head from 'next/head';
 
 
 type Page = {
@@ -70,6 +71,53 @@ const Homepage = ({
 
   return (
     <div>
+      <Head>
+        <title>Create your dream website in minutes</title>
+        <meta
+          name="description"
+          content="Create, launch and share your fast, beautiful and responsive website effortlessly, with a super easy-to-use editor without needing code or design skills"
+        />
+        <meta
+          name="twitter:card"
+          content="summary_large_image"
+        />
+        <meta
+          name="twitter:title"
+          content="Create your dream website in minutes"
+        />
+        <meta
+          name="twitter:description"
+          content="Create, launch and share your fast, beautiful and responsive website effortlessly, with a super easy-to-use editor without needing code or design skills"
+        />
+        <meta
+          name="twitter:site"
+          content="https://lanndi.com"
+        />
+        <meta
+          name="twitter:image"
+          content="https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/metaimage.webp"
+        />
+        <meta
+          property="og:title"
+          content="Create your dream website in minutes"
+        />
+        <meta
+          property="og:description"
+          content="Create, launch and share your fast, beautiful and responsive website effortlessly, with a super easy-to-use editor without needing code or design skills"
+        />
+        <meta
+          property="og:url"
+          content="https://lanndi.com"
+        />
+        <meta
+          property="og:type"
+          content="website"
+        />
+        <meta
+          property="og:image"
+          content="https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/metaimage.webp"
+        />
+      </Head>
       {params.domain === 'lanndi.com' && <div className="px-4 md:px-8">
         {process.env.NODE_ENV === 'production' && (
           <Script defer src="https://eu.umami.is/script.js"
@@ -77,7 +125,7 @@ const Homepage = ({
         )}
         <Navbar />
         <Hero />
-        <PainPoints />
+        {/*<PainPoints />*/}
         <HowItWorks />
         <Benefits />
         {/*<WaitlistBanner />*/}

@@ -8,6 +8,10 @@ export const Roadmap = () => {
       <ul className="flex flex-col gap-4 max-w-xl ">
         <li className="flex gap-4 items-center">
           <IconCheck size="2rem" />
+          <Text size="xl">Pages Expansion</Text>
+        </li>
+        <li className="flex gap-4 items-center">
+          <IconCheck size="2rem" />
           <Text size="xl">SEO Optimization </Text>
         </li>
         <li className="flex gap-4 items-center">
@@ -25,6 +29,10 @@ export const Roadmap = () => {
         <li className="flex gap-4 items-center">
           <IconCheck size="2rem" />
           <Text size="xl">Save custom blocks and templates</Text>
+        </li>
+        <li className="flex gap-4 items-center">
+          <IconCheck size="2rem" />
+          <Text size="xl">CMS</Text>
         </li>
       </ul>
     </div>

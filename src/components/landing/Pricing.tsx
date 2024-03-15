@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React from 'react';
 
 const includedFeatures = [
-  '3 websites',
+  '5 websites',
   'Priority support',
   'Priority feature requests',
   'Lifetime access to all future features and updates',
