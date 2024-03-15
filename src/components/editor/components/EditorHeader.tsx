@@ -141,21 +141,21 @@ function PublishButton() {
 }
 
 function EditorHeader() {
-  const { user } = useAuth({ middleware: 'guest', redirectIfAuthenticated: '/' });
-  console.log(user);
+  const { user } = useAuth();
+  // console.log(user);
   return (
     <AppShell.Header>
       <div className="gjs-top-sidebar flex h-full w-full items-center justify-between px-2">
         <div className="flex w-full items-center justify-start gap-2 py-2 ">
           <Button
-            disabled={user === undefined}
+            // disabled={user === undefined}
             component={Link}
-            href="/"
+            href="https://lanndi.com"
             variant="subtle"
             size="xs"
             leftSection={<IconArrowLeft size="1rem" />}
           >
-            Dashboard
+            Homepage
           </Button>
 
         </div>
@@ -167,7 +167,7 @@ function EditorHeader() {
         </div>
 
         <div className="flex w-full items-center justify-end gap-4">
-          <Button color="red" component="a" target="_blank"  href="https://lanndi.lemonsqueezy.com/checkout/buy/2ddb7d73-91f4-4121-8413-c24ec6a3335c" size="xs">Get LTD 33% off</Button>
+          <Button color="red" component="a" target="_blank"  href="https://lanndi.lemonsqueezy.com/checkout/buy/2ddb7d73-91f4-4121-8413-c24ec6a3335c" size="xs">Get Lifetime deal 33% off</Button>
           <Button disabled={!user} size="xs" variant="subtle"
                   leftSection={<IconExternalLink size="1rem" />}>Preview</Button>
           <SaveButton />

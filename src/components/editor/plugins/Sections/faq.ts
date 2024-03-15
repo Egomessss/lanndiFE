@@ -67,6 +67,7 @@ export default (editor: Editor) => {
         name: 'FAQ One',
         attributes: { class: 'faq-one' },
         components: `  
+  <div class="accordion-wrapper">
      <div class="accordion">
         <div class="accordion-content">
             <header>
@@ -119,9 +120,18 @@ export default (editor: Editor) => {
                 omnis debitis expedita consectetur eos!
             </p>
         </div>
-    </div>
+    </div></div>
     <!-- footer copy right section end -->`,
         styles: `
+        .accordion-wrapper {
+        height:500px;
+        width:100%;
+        display:flex;
+        justify-items:center;
+        align-items:center;
+        }
+        
+        
 .accordion{
     max-width: 530px;
     width: 100%;

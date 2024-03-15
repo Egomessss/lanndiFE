@@ -13,6 +13,7 @@ import UtilsPlugin from '@/components/editor/plugins/utils/UtilsPlugin/utilsPlug
 import GoogleIcons from '@/components/editor/plugins/utils/GoogleIcons';
 import ScriptEditor from '@/components/editor/plugins/utils/ScriptEditor';
 import PostCss from '../plugins/utils/PostCss';
+import Grid from '@/components/editor/plugins/BasicBlocks/Grid';
 
 
 export const editorConfigOptions = (data: EditorData) => ({
@@ -74,24 +75,24 @@ export const editorConfigOptions = (data: EditorData) => ({
       { name: 'active', label: 'Active', info: 'Change styles on active element' },
     ],
   },
-  projectData: data?.data ||
-    {
-      assets: [
-        'https://via.placeholder.com/350x250/78c5d6/fff',
-        'https://via.placeholder.com/350x250/459ba8/fff',
-        'https://via.placeholder.com/350x250/79c267/fff',
-        'https://via.placeholder.com/350x250/c5d647/fff',
-        'https://via.placeholder.com/350x250/f28c33/fff',
-      ],
-      pages: [
-        {
-          name: '/',
-          component: starterTemplate,
-          styles: styleStarterTemplate,
-        },
-      ],
-    }
-  ,
+  // projectData: data?.data ||
+  //   {
+  //     assets: [
+  //       'https://via.placeholder.com/350x250/78c5d6/fff',
+  //       'https://via.placeholder.com/350x250/459ba8/fff',
+  //       'https://via.placeholder.com/350x250/79c267/fff',
+  //       'https://via.placeholder.com/350x250/c5d647/fff',
+  //       'https://via.placeholder.com/350x250/f28c33/fff',
+  //     ],
+  //     pages: [
+  //       {
+  //         name: '/',
+  //         component: starterTemplate,
+  //         styles: styleStarterTemplate,
+  //       },
+  //     ],
+  //   }
+  // ,
   plugins: [
     zoomPlugin,
     LayoutBlocks,
@@ -110,6 +111,7 @@ export const editorConfigOptions = (data: EditorData) => ({
     BorderStyle,
     Sections,
     UtilsPlugin,
+    // Grid
   ],
 
   styleManager: {
@@ -137,11 +139,11 @@ export const editorConfigOptions = (data: EditorData) => ({
                 label: 'Flex - Flexible Row/Column.',
                 icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-columns" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M12 4l0 16" /></svg>`,
               },
-              // {
-              //   id: 'grid',
-              //   label: 'Grid - Rows & Columns Grid.',
-              //   icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-grid" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /></svg>`,
-              // },
+              {
+                id: 'grid',
+                label: 'Grid - Rows & Columns Grid.',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-grid" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /></svg>`,
+              },
               // {
               //     id: 'inline-block',
               //     label: 'Inline Block - Elements sit on the same line but can have width and height set.',
@@ -161,52 +163,68 @@ export const editorConfigOptions = (data: EditorData) => ({
           },
         ],
       },
-      // {
-      //   id: 'gridItem',
-      //   name: 'Grid Item Properties',
-      //   open: false,
-      //   visible: false,
-      //   properties: [
-      //     {
-      //       type: 'composite',
-      //       label: 'Grid item span', // Label for the property
-      //       property: 'grid', // CSS property to change
-      //       properties: [
-      //         {
-      //           label: 'Row start',
-      //           property: 'grid-row-start',
-      //           type: 'base',
-      //           default: '1',
-      //           min: 0,
-      //           max: 20,
-      //         },
-      //         {
-      //           label: 'Row end',
-      //           property: 'grid-row-end',
-      //           type: 'base',
-      //           default: '1',
-      //           min: 0,
-      //           max: 20,
-      //         },
-      //         {
-      //           label: 'Column start',
-      //           property: 'grid-column-start',
-      //           type: 'base',
-      //           default: '1',
-      //           min: 0,
-      //           max: 20,
-      //         },
-      //         {
-      //           label: 'Column end',
-      //           property: 'grid-column-end',
-      //           type: 'base',
-      //           default: '1',
-      //           min: 0,
-      //           max: 20,
-      //         }],
-      //     },
-      //   ],
-      // },
+      {
+        id: 'gridItem',
+        name: 'Grid Item Properties',
+        open: false,
+        visible: false,
+        properties: [
+          {
+            label: 'Column span',
+            property: 'grid-column',
+            type: 'base',
+            tooltip: 'Starts/spans - e.g. 2/span 2 - starts in row 2 and spans 2 rows',
+          },
+          {
+            label: 'Row span',
+            property: 'grid-row',
+            type: 'base',
+            tooltip: 'Starts/spans - e.g. 1/span 1 - starts in column 1 and spans 1 column',
+          },
+          {
+            label: 'Justify',
+            property: 'justify-self',
+            type: 'radio',
+            default: 'start',
+            options: [
+              {
+                id: 'start',
+                label: 'Start',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-box-align-left" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.002 20.003v-16h-5a1 1 0 0 0 -1 1v14a1 1 0 0 0 1 1h5z" /><path d="M15.002 20.003h-.01" /><path d="M20.003 20.003h-.011" /><path d="M20.003 15.002h-.011" /><path d="M20.003 9.002h-.011" /><path d="M20.003 4.002h-.011" /><path d="M15.002 4.002h-.01" /></svg>`,
+              }, {
+                id: 'center',
+                label: 'Center',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-middle" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 12l5 0" /><path d="M15 12l5 0" /><path d="M9 6m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
+              }, {
+                id: 'end',
+                label: 'End',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-box-align-right" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13.998 20.003v-16h5a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-5z" /><path d="M8.998 20.003h.01" /><path d="M3.997 20.003h.011" /><path d="M3.997 15.002h.011" /><path d="M3.997 9.002h.011" /><path d="M3.997 4.002h.011" /><path d="M8.998 4.002h.01" /></svg>`,
+              },
+            ],
+          },
+          {
+            label: 'Align',
+            property: 'align-self',
+            type: 'radio',
+            default: 'start',
+            options: [
+              {
+                id: 'start',
+                label: 'Top',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-top" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l16 0" /><path d="M9 8m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
+              }, {
+                id: 'center',
+                label: 'Center',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-center" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 4l0 5" /><path d="M12 15l0 5" /><path d="M6 9m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z" /></svg>`,
+              }, {
+                id: 'end',
+                label: 'Bottom',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-bottom" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20l16 0" /><path d="M9 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
+              },
+            ],
+          },
+        ],
+      },
       {
         id: 'flexProperties',
         name: 'Flex Properties',
@@ -328,56 +346,123 @@ export const editorConfigOptions = (data: EditorData) => ({
 
         ],
       },
-      // {
-      //   id: 'gridProperties',
-      //   name: 'Grid Properties',
-      //   open: false,
-      //   visible: false,
-      //   properties: [
-      //     {
-      //       type: 'composite',
-      //       label: 'Grid span', // Label for the property
-      //       property: 'grid', // CSS property to change
-      //       properties: [
-      //         {
-      //           label: 'Columns',
-      //           property: 'grid-template-columns',
-      //           type: 'base',
-      //           default: 0,
-      //           min: 0,
-      //           max: 20,
-      //         },
-      //         {
-      //           label: 'Rows',
-      //           property: 'grid-template-rows',
-      //           type: 'base',
-      //           default: 0,
-      //           min: 0,
-      //           max: 20,
-      //         }],
-      //     },
-      //     {
-      //       type: 'composite',
-      //       label: 'Spacing', // Label for the property
-      //       property: 'gap', // CSS property to change
-      //       properties: [{
-      //         label: 'Row',
-      //         property: 'row-gap',
-      //         type: 'base',
-      //         default: '0',
-      //         tooltip: 'Units available: px, %, em, rem',
-      //       },
-      //         {
-      //           label: 'Column',
-      //           property: 'column-gap',
-      //           type: 'base',
-      //           default: '0',
-      //           tooltip: 'Units available: px, %, em, rem',
-      //         }],
-      //     },
-      //   ],
-      // },
+      {
+        id: 'gridProperties',
+        name: 'Grid Properties',
+        open: false,
+        visible: false,
+        properties: [
+          {
+            label: 'Columns',
+            property: 'grid-template-columns',
+            type: 'base',
+            tooltip: 'Adds columns by adding 1fr without commas, e.g. 1. 1fr 1fr 1fr parts the width into 3 equal columns, 2. 100px 200px 500px parts the grid into 3 different sized columns',
+          },
+          {
+            label: 'Rows',
+            property: 'grid-template-rows',
+            type: 'base',
+            tooltip: 'Adds rows by adding 1fr without commas,  e.g. 1. 1fr 1fr 1fr parts the width into 3 equal rows, 2. 100px 200px 500px parts the grid into 3 different sized rows',
 
+          },
+          {
+            label: 'Justify content',
+            property: 'justify-content',
+            type: 'select',
+            default: 'start',
+            options: [
+              { id: 'start', label: 'Align Start' }, // Aligns to the start edge
+              { id: 'end', label: 'Align End' }, // Aligns to the end edge
+              { id: 'center', label: 'Center' }, // Centers in the container
+              { id: 'stretch', label: 'Stretch to Fill' }, // Stretches to fill the container width
+              { id: 'space-around', label: 'Space Around' }, // Even space with half-size at ends
+              { id: 'space-between', label: 'Space Between' }, // Even space, no space at ends
+              { id: 'space-evenly', label: 'Space Evenly' }, // Even space, including ends
+            ],
+          },
+          {
+            label: 'Align content',
+            property: 'align-content',
+            type: 'select',
+            default: 'start',
+            options: [
+              { id: 'start', label: 'Align Start' }, // Aligns to the start edge
+              { id: 'end', label: 'Align End' }, // Aligns to the end edge
+              { id: 'center', label: 'Center' }, // Centers in the container
+              { id: 'stretch', label: 'Stretch to Fill' }, // Stretches to fill the container width
+              { id: 'space-around', label: 'Space Around' }, // Even space with half-size at ends
+              { id: 'space-between', label: 'Space Between' }, // Even space, no space at ends
+              { id: 'space-evenly', label: 'Space Evenly' }, // Even space, including ends
+            ],
+          },
+          {
+            label: 'Justify items',
+            property: 'justify-items',
+            type: 'radio',
+            default: 'start',
+            options: [
+              {
+                id: 'start',
+                label: 'Start',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-box-align-left" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.002 20.003v-16h-5a1 1 0 0 0 -1 1v14a1 1 0 0 0 1 1h5z" /><path d="M15.002 20.003h-.01" /><path d="M20.003 20.003h-.011" /><path d="M20.003 15.002h-.011" /><path d="M20.003 9.002h-.011" /><path d="M20.003 4.002h-.011" /><path d="M15.002 4.002h-.01" /></svg>`,
+              }, {
+                id: 'center',
+                label: 'Center',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-middle" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 12l5 0" /><path d="M15 12l5 0" /><path d="M9 6m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
+              }, {
+                id: 'end',
+                label: 'End',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-box-align-right" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13.998 20.003v-16h5a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-5z" /><path d="M8.998 20.003h.01" /><path d="M3.997 20.003h.011" /><path d="M3.997 15.002h.011" /><path d="M3.997 9.002h.011" /><path d="M3.997 4.002h.011" /><path d="M8.998 4.002h.01" /></svg>`,
+              }, {
+                id: 'justify-between',
+                label: 'Space between',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-spacing-horizontal" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 20h-2a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h2" /><path d="M4 20h2a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M12 8v8" /></svg>`,
+              },
+
+            ],
+          },
+          {
+            label: 'Align items',
+            property: 'align-items',
+            type: 'radio',
+            default: 'start',
+            options: [
+              {
+                id: 'start',
+                label: 'Top',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-top" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l16 0" /><path d="M9 8m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
+              }, {
+                id: 'center',
+                label: 'Center',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-center" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 4l0 5" /><path d="M12 15l0 5" /><path d="M6 9m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z" /></svg>`,
+              }, {
+                id: 'end',
+                label: 'Bottom',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-bottom" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20l16 0" /><path d="M9 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
+              },
+            ],
+          },
+          {
+            type: 'composite',
+            label: 'Spacing', // Label for the property
+            property: 'gap', // CSS property to change
+            properties: [{
+              label: 'Row',
+              property: 'row-gap',
+              type: 'base',
+              default: '0',
+              tooltip: 'Units available: px, %, em, rem',
+            },
+              {
+                label: 'Column',
+                property: 'column-gap',
+                type: 'base',
+                default: '0',
+                tooltip: 'Units available: px, %, em, rem',
+              }],
+          },
+        ],
+      },
       {
         name: 'Sizing',
         open: true,

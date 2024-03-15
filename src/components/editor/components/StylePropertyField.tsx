@@ -12,7 +12,7 @@ import {
 import {
   ActionIcon,
   Button,
-  ColorInput,
+  ColorInput, Input,
   NumberInput,
   Popover,
   SegmentedControl,
@@ -54,31 +54,31 @@ export default function StylePropertyField({
 
   const handleChange = (value: any) => {
     prop.upValue(value);
-    console.log('updated', prop.getValue());
+
   };
 
   const onChange = (ev: any) => {
-    console.log('received', ev);
+
     handleChange(ev);
   };
 
-  const onChangeNumber = (value:  string | number) => {
-    console.log('received', value); // This now logs the received value directly
+  const onChangeNumber = (value: string | number) => {
+
     handleChange(value);
   };
 
   const onChangeText = (ev: any) => {
-    console.log(ev.target.value);
+
     handleChange(ev.currentTarget.value);
   };
 
 
   // Handle change in select value
   const handleSizeChange = (newValue: any) => {
-    // console.log(newValue)
+
     // @ts-ignore
     prop.upUnit(newValue);
-    // console.log('log', prop.getUnit())
+
   };
 
   const openAssets = () => {
@@ -96,23 +96,22 @@ export default function StylePropertyField({
 
 
   const type = prop.getType();
-  const style = prop.getStyle();
-  console.log("style",style);
+  const style = prop.getName();
+
   const defValue = prop.getDefaultValue();
   const canClear = prop.canClear();
   const hasValue = prop.hasValue();
   const value = prop.getValue();
   const valueString = hasValue ? value : '';
   const valueWithDef = hasValue ? value : defValue;
-  // console.log('property', prop.getName(), 'value', value);
+  console.log('property', prop.getName(), 'value', value);
 
   let inputToRender = (
-    <TextInput
+    <Input
       className="col-span-1"
       // default={valueWithDef}
       // @ts-ignore
-      rightSection={<Tooltip multiline w={200} color="blue" label={prop.attributes.tooltip}><IconExclamationCircle
-        size="1rem" /></Tooltip>}
+
       // placeholder={defValue}
       value={valueString}
       onChange={onChangeText}
@@ -162,7 +161,7 @@ export default function StylePropertyField({
             // @ts-ignore
             value: radioProp.getOptionId(option),
             label: (
-              <Tooltip color="blue" multiline
+              <Tooltip color="gray" multiline
                        w={200}
                 // @ts-ignore
                        withArrow openDelay={400} label={radioProp.getOptionLabel(option)}>
@@ -255,6 +254,7 @@ export default function StylePropertyField({
       break;
   }
 
+
   return (
     <div
       {...rest}
@@ -263,7 +263,13 @@ export default function StylePropertyField({
       <div
         className={`mb-2 flex items-center justify-between w-full text-xs  whitespace-nowrap  ${canClear ? 'text-blue-300' : ''}`}
       >
-        <div className="flex-grow capitalize">{prop.getLabel()}</div>
+        <div className="flex-grow capitalize flex gap-1 items-center text-xs">
+          <span>{prop.getLabel()}</span>
+          {/* @ts-ignore */}
+          <Tooltip position="left" className="cursor-pointer" multiline w={500} openDelay={180} color="gray"
+                    label={`${prop.attributes.tooltip} * css -${style}*`}><IconExclamationCircle
+            size="0.7rem" /></Tooltip>
+        </div>
         {canClear && (
           <ActionIcon size="xs" variant="subtle" onClick={() => prop.clear()}>
             <IconX size="0.6rem" />

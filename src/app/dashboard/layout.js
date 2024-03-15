@@ -12,7 +12,7 @@ import Link from 'next/link';
 const layout = ({ children }) => {
   const [opened, { toggle }] = useDisclosure();
   const { user, logout } = useAuth();
-  console.log(user);
+  // console.log(user);
 
   if (!user) {
     return <Loading />;

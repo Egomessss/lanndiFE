@@ -19,8 +19,6 @@ import { useAuth } from '@/hooks/auth';
 import { EditorLoading } from '@/components/common/EditorLoading';
 
 
-
-
 export default function CustomEditor() {
 
 
@@ -89,17 +87,17 @@ export default function CustomEditor() {
             />
           )}
         </ModalProvider>
-        <AssetsProvider>
-            {({assets, select, close, Container, open}) => (
-                <CustomAssetManager
-                    assets={assets}
-                    select={select}
-                    close={close}
-                    open={open}
-                />
+        {/*<AssetsProvider>*/}
+        {/*    {({assets, select, close, Container, open}) => (*/}
+        {/*        <CustomAssetManager*/}
+        {/*            assets={assets}*/}
+        {/*            select={select}*/}
+        {/*            close={close}*/}
+        {/*            open={open}*/}
+        {/*        />*/}
 
-            )}
-        </AssetsProvider>
+        {/*    )}*/}
+        {/*</AssetsProvider>*/}
       </div>
     </GjsEditor>
 

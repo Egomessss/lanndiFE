@@ -183,8 +183,8 @@ export default function (editor: Editor, opts:any) {
                 styles: `
                 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr); 
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr; 
   gap: 10px;
   padding:10px;
   height: 200px;

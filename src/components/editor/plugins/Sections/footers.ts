@@ -1,247 +1,374 @@
-import type {Editor} from 'grapesjs';
-import {RequiredPluginOptions} from './index';
+import type { Editor } from 'grapesjs';
+import { RequiredPluginOptions } from './index';
 
 export default (editor: Editor) => {
-    const {Components} = editor;
+  const { Components } = editor;
 
-    editor.Blocks.add('footer-one', {
-        media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
-        label: 'Footer Simple',
-        category: 'sections-footers',
-        select: true,
-        content: {type: 'footer-one'},
-    });
+  editor.Blocks.add('footer-one', {
+    media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
+    label: 'Footer Multi-column',
+    category: 'sections-footers',
+    select: true,
+    content: { type: 'footer-one' },
+  });
 
-    Components.addType('footer-one', {
-        model: {
-            defaults: {
-                droppable: false,
-                name: 'Footer One',
-                attributes: {class: 'footer-one'},
-                components: `  <!-- footer section start -->
-    <footer id="footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3">
-            <a href="index.html"><img src="https://logo-download.com/wp-content/data/images/2021/08/Levi_Strauss__Co.-Logo.png" alt="" class="img-fluid logo-footer"></a>
-                      <div class="footer-about">
-                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,  </p>
-                      </div>
-
-          </div>
-          <div class="col-md-3">
-            <div class="useful-link">
-              <h2>Useful Links</h2>
-              <img src="./assets/images/about/home_line.png" alt="" class="img-fluid">
-              <div class="use-links">
-                <li><a href="index.html"><i class="fa-solid fa-angles-right"></i> Home</a></li>
-                <li><a href="about.html"><i class="fa-solid fa-angles-right"></i> About Us</a></li>
-                <li><a href="gallery.html"><i class="fa-solid fa-angles-right"></i> Gallery</a></li>
-                <li><a href="contact.html"><i class="fa-solid fa-angles-right"></i> Contact</a></li>
-              </div>
-            </div>
-
-          </div>
-                    <div class="col-md-3">
-                        <div class="social-links">
-              <h2>Follow Us</h2>
-              <img src="./assets/images/about/home_line.png" alt="">
-              <div class="social-icons">
-                <li><a href=""><i class="fa-brands fa-facebook-f"></i> Facebook</a></li>
-                <li><a href=""><i class="fa-brands fa-instagram"></i> Instagram</a></li>
-                <li><a href=""><i class="fa-brands fa-linkedin-in"></i> Linkedin</a></li>
-              </div>
-            </div>
-                    
-
-                    </div>
-          <div class="col-md-3">
-            <div class="address">
-              <h2>Address</h2>
-              <img src="./assets/images/about/home_line.png" alt="" class="img-fluid">
-              <div class="address-links">
-                <li class="address1"><i class="fa-solid fa-location-dot"></i> Kolathur ramankulam-
-                  Malappuram Dt 
-                   Kerala 679338</li>
-                   <li><a href=""><i class="fa-solid fa-phone"></i> +91 90904500112</a></li>
-                   <li><a href=""><i class="fa-solid fa-envelope"></i> mail@1234567.com</a></li>
-              </div>
-            </div>
-          </div>
-                  
-        </div>
-      </div>
-
-    </footer>
-    <!-- footer section end -->
-    <!-- footer copy right section start -->
-    <section id="copy-right">
-      <div class="copy-right-sec"><i class="fa-solid fa-copyright"></i>  
-        lorem ispum lorem ispum 2022 Powerd By <a href="#">lorem ispum</a> 
-
-
-      </div>
-
-    </section>
-    <!-- footer copy right section end -->`,
-                styles: `*{
-  -webkit-box-sizing:border-box;
-  -moz-box-sizing:border-box;
-  -o-box-sizing:border-box;
-  -ms-box-sizing:border-box;
-  box-sizing:border-box;
-}
-body{
-  font-size:14px;
-  background: #fff;
-    max-width:1920px;
-    margin:0 auto;
-  overflow-x:hidden;
-  font-family: poppins;
+  Components.addType('footer-one', {
+    model: {
+      defaults: {
+        droppable: false,
+        name: 'Footer Multi-column',
+        attributes: { class: 'footer-one' },
+        components: ` <footer class="footer">
+  <div class="footer__addr">
+    <h1 class="footer__logo">lanndi</h1>
+        
+    <h2>Contact</h2>
+    
+    <address>
+      5534 Somewhere In. The World 22193-10212<br>
+          
+      <a class="footer__btn" href="mailto:example@gmail.com">Email Us</a>
+    </address>
+  </div>
   
+  <ul class="footer__nav">
+    <li class="nav__item">
+      <h2 class="nav__title">Media</h2>
 
-}
-#footer{
-  background: #f7f7f7;
-    padding: 3rem;
-  /* padding-top: 5rem; */
-  padding-top: 7rem;
-    padding-bottom: 80px;
-  background-image: url(https://arena.km.ua/wp-content/uploads/3538533.jpg);
-}
-#footer2{
-  background: #f7f7f7;
-    padding: 3rem;
-    margin-top: 0px;
-  /* padding-top: 5rem; */
-  padding-top: 7rem;
-    padding-bottom: 80px;
-  background-image: url(../images/cards/v748-toon-111.png);
-}
-.logo-footer{
-  /* max-width: 300px; */
-}
-.social-links{
-  /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; */
+      <ul class="nav__ul">
+        <li>
+          <a href="#">Online</a>
+        </li>
 
-}
-.social-links h2{
-  padding-bottom: 15px;
-  font-size: 20px;
-    font-weight: 600;
-}
-.social-links img{
-  padding-bottom: 25px;
-}
-.social-icons{
-  /* display: flex;
-    gap: 3rem; */
+        <li>
+          <a href="#">Print</a>
+        </li>
+            
+        <li>
+          <a href="#">Alternative Ads</a>
+        </li>
+      </ul>
+    </li>
+    
+    <li class="nav__item nav__item--extra">
+      <h2 class="nav__title">Technology</h2>
+      
+      <ul class="nav__ul nav__ul--extra">
+        <li>
+          <a href="#">Hardware Design</a>
+        </li>
+        
+        <li>
+          <a href="#">Software Design</a>
+        </li>
+        
+        <li>
+          <a href="#">Digital Signage</a>
+        </li>
+        
+        <li>
+          <a href="#">Automation</a>
+        </li>
+        
+        <li>
+          <a href="#">Artificial Intelligence</a>
+        </li>
+        
+        <li>
+          <a href="#">IoT</a>
+        </li>
+      </ul>
+    </li>
+    
+    <li class="nav__item">
+      <h2 class="nav__title">Legal</h2>
+      
+      <ul class="nav__ul">
+        <li>
+          <a href="#">Privacy Policy</a>
+        </li>
+        
+        <li>
+          <a href="#">Terms of Use</a>
+        </li>
+        
+        <li>
+          <a href="#">Sitemap</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <div class="legal">
+    <p>&copy; 2024 Something. All rights reserved.</p>
+    
+    <div class="legal__links">
+      <span>Made with lanndi</span>
+    </div>
+  </div>
+</footer>
+    `,
+        styles: `.footer {
   display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  color: #777777;
+  flex-flow: row wrap;
+  padding: 30px 30px 20px 30px;
+  color: #2f2f2f;
+  background-color: #fff;
+  border-top: 1px solid #e5e5e5;
 }
-.social-icons a{
-  /* font-size: 18px; */
-    /* background: #ffffff; */
-    /* box-shadow: rgb(0 0 0 / 8%) 0px 4px 12px;
-    padding: 0.4rem 1rem 0.4rem 1rem;
-    border-radius: 3px;
-  color: #82074a; */
-  /* margin-right: 18px; */
-  color: #777777;
+
+.footer > * {
+  flex:  1 100%;
 }
-.social-icons a:hover{
-  color: #000;
+
+.footer__addr {
+  margin-right: 1.25em;
+  margin-bottom: 2em;
 }
-.social-icons a i{
-  box-shadow: rgb(0 0 0 / 8%) 0px 4px 12px;
-    padding: 0.4rem 1rem 0.4rem 1rem;
-    border-radius: 3px;
-    color: #82074a;
-  font-size: 16px;
-  margin-right: 12px;
+
+.footer__logo {
+  font-family: 'Pacifico', cursive;
+  font-weight: 400;
+  text-transform: lowercase;
+  font-size: 1.5rem;
 }
-li{
+
+.footer__addr h2 {
+  margin-top: 1.3em;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.nav__title {
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.footer address {
+  font-style: normal;
+  color: #999;
+}
+
+.footer__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  max-width: max-content;
+  background-color: rgb(33, 33, 33, 0.07);
+  border-radius: 100px;
+  color: #2f2f2f;
+  line-height: 0;
+  margin: 0.6em 0;
+  font-size: 1rem;
+  padding: 0 1.3em;
+}
+
+.footer ul {
   list-style: none;
+  padding-left: 0;
 }
-.useful-link h2{
-  padding-bottom: 15px;
-  font-size: 20px;
-    font-weight: 600;
-}
-.useful-link img{
-  padding-bottom: 15px;
-}
-.use-links{
-  line-height: 32px;
-}
-.use-links li i{
-  font-size: 14px;
-    padding-right: 8px;
-    color: #898989;
-}
-.use-links li a{
-  color: #303030;
-    font-size: 15px;
-    font-weight: 500;
-  color: #777777;
-}
-.use-links li a:hover{
-  color: #000;
-}
-.address h2{
-  padding-bottom: 15px;
-  font-size: 20px;
-    font-weight: 600;
-}
-.address img{
-  padding-bottom: 15px;
-}
-.address-links li a{
-  color: #303030;
-    font-size: 15px;
-    font-weight: 500;
-  color: #777777;
 
+.footer li {
+  line-height: 2em;
 }
-.address-links li i{
-  font-size: 16px;
-    padding-right: 8px;
-  color: #82074a;
 
+.footer a {
+  text-decoration: none;
 }
-.address-links li i:nth-child(1){
-  padding-top: 9px;
-}
-.address-links .address1{
-  font-weight: 500;
-    font-size: 15px;
+
+.footer__nav {
   display: flex;
+  flex-flow: row wrap;
 }
-.address-links{
-      line-height: 32px;
-    color: #777777;
+
+.footer__nav > * {
+  flex: 1 50%;
+  margin-right: 1.25em;
 }
-.copy-right-sec{
-  padding: 1.8rem;
-    background: #82074a;
-    color: #fff;
-    text-align: center;
+
+.nav__ul a {
+  color: #999;
 }
-.copy-right-sec a{
-  color: #fcd462;
-    font-weight: 500;
+
+.nav__ul--extra {
+  column-count: 2;
+  column-gap: 1.25em;
 }
-a{
-  text-decoration:none;
+
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  color: #999;
+}
+  
+.legal__links {
+  display: flex;
+  align-items: center;
+}
+
+.heart {
+  color: #2f2f2f;
+}
+
+@media screen and (min-width: 24.375em) {
+  .legal .legal__links {
+    margin-left: auto;
+  }
+}
+
+@media screen and (min-width: 40.375em) {
+  .footer__nav > * {
+    flex: 1;
+  }
+  
+  .nav__item--extra {
+    flex-grow: 2;
+  }
+  
+  .footer__addr {
+    flex: 1 0px;
+  }
+  
+  .footer__nav {
+    flex: 2 0px;
+  }
 }
 `,
-            }
-        }
-    });
+      },
+    },
+  });
+
+  editor.Blocks.add('footer-two', {
+    media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
+    label: 'Footer Simple',
+    category: 'sections-footers',
+    select: true,
+    content: { type: 'footer-two' },
+  });
+
+  Components.addType('footer-two', {
+    model: {
+      defaults: {
+        droppable: false,
+        name: 'Footer One',
+        attributes: { class: 'footer-one' },
+        components: `  <!-- footer section start -->
+   <footer class="footer">
+  <div class="footer__redes">
+    <ul class="footer__redes-wrapper">
+      <li>
+        <a href="#" class="footer__link">
+      
+        <span>facebook</span>  
+        </a>
+      </li>
+      <li>
+        <a href="#" class="footer__link">
+        
+            <span>twitter</span>  
+        </a>
+      </li>
+      <li>
+        <a href="#" class="footer__link">
+    
+            <span>instagram</span>  
+        </a>
+      </li>
+      <li>
+        <a href="#" class="footer__link">
+     
+           <span>youtube</span>  
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="separador"></div>
+  <p class="footer__texto">Copyright @ 2024</p>
+</footer>
+    <!-- footer copy right section end -->`,
+        styles: `img {
+\t width: 100%;
+\t vertical-align: top;
+}
+ a {
+\t text-decoration: none;
+\t color: inherit;
+}
+ .footer {
+\t margin-top: 80px;
+}
+ .footer__redes-wrapper {
+\t display: flex;
+\t justify-content: center;
+\t gap: 40px;
+\t flex-wrap: wrap;
+\t max-width: 600px;
+\t margin: 45px auto;
+}
+ .footer__redes-wrapper li {
+\t display: inline-block;
+}
+ .footer__redes-wrapper li:hover {
+\t color: var(--gray);
+}
+ .footer__link {
+\t text-transform: uppercase;
+\t font-family: var(--title-font);
+\t font-size: rem(14);
+display:flex;
+align-items:center;
+gap:2;
+}
+ .footer .fab {
+\t margin-right: 8px;
+}
+ .footer__texto {
+\t color: var(--light-gray);
+\t text-align: center;
+}
+ .gallery__grid {
+\t display: grid;
+\t grid-template-columns: repeat(6, 1fr);
+}
+ .gallery__photo {
+\t position: relative;
+\t display: inline-block;
+}
+ .gallery__fade {
+\t position: absolute;
+\t top: 0;
+\t left: 0;
+\t width: 100%;
+\t height: 100%;
+\t background-color: var(--dark-fade);
+\t display: flex;
+\t justify-content: center;
+\t align-items: center;
+\t opacity: 0;
+}
+ .gallery__fade:hover {
+\t opacity: 1;
+}
+ .gallery__icon {
+\t color: #fff;
+\t width: 50px;
+\t height: 50px;
+}
+ .separador {
+\t background-color: gray;
+\t height: 2px;
+\t max-width: 30px;
+\t margin: 15px auto 20px;
+}
+ .footer__redes-wrapper li, .gallery__fade {
+\t transition: all ease 0.3s;
+}
+ 
+`,
+      },
+    },
+  });
+
 
 }

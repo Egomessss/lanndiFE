@@ -27,8 +27,8 @@ export default function CustomStyleManager({
   const selectedComponent = editor.StyleManager.getSelected()?.getStyle('display');
   const rule = editor.getSelected()?.parent()?.getClasses();
 
-  const selectedComponentParent = editor.Css.getRule(`.${rule}`)?.getStyle('display');
 
+  const selectedComponentParent = editor.Css.getRule(`.${rule}`)?.getStyle('display');
 
   // @ts-ignore
   if (selectedComponent === 'flex') {
@@ -42,24 +42,24 @@ export default function CustomStyleManager({
   }
 
 // @ts-ignore
-//   if (selectedComponent === 'grid') {
-//     const sector = sm?.getSector('gridProperties');
-//     sector?.setOpen(true);
-//     // @ts-ignore
-//   } else if (selectedComponent !== 'grid' || selectedComponent !== 'undefined') {
-//     const sector = sm?.getSector('gridProperties');
-//     sector?.setOpen(false);
-//   }
-//
-//   // @ts-ignore
-//   if (selectedComponentParent === 'grid') {
-//     const sector = sm?.getSector('gridItem');
-//     sector?.setOpen(true);
-//     // @ts-ignore
-//   } else if (selectedComponentParent !== 'grid' || selectedComponentParent !== 'undefined') {
-//     const sector = sm?.getSector('gridItem');
-//     sector?.setOpen(false);
-//   }
+  if (selectedComponent === 'grid') {
+    const sector = sm?.getSector('gridProperties');
+    sector?.setOpen(true);
+    // @ts-ignore
+  } else if (selectedComponent !== 'grid' || selectedComponent !== 'undefined') {
+    const sector = sm?.getSector('gridProperties');
+    sector?.setOpen(false);
+  }
+
+  // @ts-ignore
+  if (selectedComponentParent === 'grid') {
+    const sector = sm?.getSector('gridItem');
+    sector?.setOpen(true);
+    // @ts-ignore
+  } else if (selectedComponentParent !== 'grid' || selectedComponentParent !== 'undefined') {
+    const sector = sm?.getSector('gridItem');
+    sector?.setOpen(false);
+  }
 
 
   // Check if there are any sectors
@@ -106,14 +106,12 @@ export default function CustomStyleManager({
   });
 
 
-
-
   return (
     <div className="gjs-custom-style-manager text-left mt-2 ">
       {/* Render the first sector element */}
       {firstSectorElement}
       <Accordion value={value} onChange={setValue}
-                  classNames={classes}>
+                 classNames={classes}>
         {accordionItems}
       </Accordion>
       {/*<div className="gjs-custom-style-manager text-left">*/}

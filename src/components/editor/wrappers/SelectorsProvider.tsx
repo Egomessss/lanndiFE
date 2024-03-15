@@ -6,6 +6,12 @@ import { noop, isFunction } from "../utils"
 import { PortalContainerResult, portalContainer } from "../utils/react"
 
 export type SelectorsState = {
+
+    /**
+     * Array of current selectors.
+     */
+    selectors: Selector[],
+
     /**
      * Array of current selectors.
      */
@@ -66,6 +72,7 @@ const SelectorsProvider = memo(function ({ children }: SelectorsProviderProps) {
     const { editor } = useEditorInstance()
     const options = useEditorOptions()
     const [propState, setPropState] = useState<SelectorsState>(() => ({
+        selectors: [],
         selectedSelectors: [],
         states: [],
         selectedState: "",
@@ -86,6 +93,7 @@ const SelectorsProvider = memo(function ({ children }: SelectorsProviderProps) {
 
         const up = ({ container }: { container: HTMLElement }) => {
             setPropState({
+                selectors: Selectors.getSelected(),
                 selectedSelectors: Selectors.getSelected().filter((s:Selector) => s.get('type') === 1).map(s => s.toString()),
                 states: Selectors.getStates(),
                 selectedState: Selectors.getState(),

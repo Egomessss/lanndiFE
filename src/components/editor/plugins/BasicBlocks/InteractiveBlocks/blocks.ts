@@ -51,7 +51,7 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
         media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 15l6 -6" /><path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464" /><path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" /></svg>`,
         content: {
             type: 'link',
-            content: 'Link Content',
+            content: 'Link',
         },
     })
 
@@ -83,73 +83,73 @@ export default function (editor: Editor, opts: Required<PluginOptions>) {
 //         },
 //     })
 //
-//     editor.DomComponents.addType('link-box', {
-//
-//         model: {
-//             defaults: {
-//                 icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" /><path d="M11 13l9 -9" /><path d="M15 4h5v5" /></svg>`,
-//                 extend: 'link',
-//                 droppable:true,
-//                 attributes: { class: 'link-box' },
-//                 styles: `
-//                 .gjs-link-box {
-//     color: inherit;
-//     display: inline-block;
-//     vertical-align: top;
-//     padding: 10px;
-//     max-width: 100%;
-//     text-decoration: none;
-//     cursor: pointer;
-// }
-//                 .link-box:empty {
-//     text-decoration: none;
-//     padding: 5px;
-// }
-//
-//                 .link-box:empty:before {
-//       background-color: #ddd;
-//     color: #000;
-//     font-size: 16px;
-//     font-weight: bold;
-//     height: 100%;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     min-height: 30px;
-//     padding: 0 10px;
-//     opacity: 0.3;
-//     border-radius: 3px;
-//     white-space: nowrap;
-//     overflow: hidden;
-//     text-overflow: ellipsis;
-//     content: "Link Box";
-//     }
-//                 `,
-//                 traits: [
-//                     // The href trait, for the URL
-//                     {
-//                         type: 'text',
-//                         label: 'Target URL',
-//                         name: 'href',
-//                     },
-//                     // A select trait for additional IDs
-//                     {
-//                         type: 'text',
-//                         label: 'Select target ID',
-//                         name: 'select-id',
-//                     },
-//                     // A checkbox trait for opening the link in a new tab
-//                     {
-//                         type: 'checkbox',
-//                         label: 'Open in new tab',
-//                         name: 'target',
-//                         valueTrue: '_blank',
-//                         valueFalse: '_self',
-//                     },
-//                 ],
-//             },
-//         },
-//     })
+    editor.DomComponents.addType('link-box', {
+
+        model: {
+            defaults: {
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" /><path d="M11 13l9 -9" /><path d="M15 4h5v5" /></svg>`,
+                extend: 'link',
+                droppable:true,
+                attributes: { class: 'link-box' },
+                styles: `
+                .gjs-link-box {
+    color: inherit;
+    display: inline-block;
+    vertical-align: top;
+    padding: 10px;
+    max-width: 100%;
+    text-decoration: none;
+    cursor: pointer;
+}
+                .link-box:empty {
+    text-decoration: none;
+    padding: 5px;
+}
+
+                .link-box:empty:before {
+      background-color: #ddd;
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 30px;
+    padding: 0 10px;
+    opacity: 0.3;
+    border-radius: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    content: "Link Box";
+    }
+                `,
+                traits: [
+                    // The href trait, for the URL
+                    {
+                        type: 'text',
+                        label: 'Target URL',
+                        name: 'href',
+                    },
+                    // A select trait for additional IDs
+                    {
+                        type: 'text',
+                        label: 'Select target ID',
+                        name: 'select-id',
+                    },
+                    // A checkbox trait for opening the link in a new tab
+                    {
+                        type: 'checkbox',
+                        label: 'Open in new tab',
+                        name: 'target',
+                        valueTrue: '_blank',
+                        valueFalse: '_self',
+                    },
+                ],
+            },
+        },
+    })
 
 
     toAdd('link-box') &&

@@ -10,10 +10,8 @@ export default (editor: Editor) => {
 
 
   editor.Blocks.add('navbar-one', {
-    media: `<svg viewBox="0 0 24 24">
-        <path d="M22 9c0-.6-.5-1-1.25-1H3.25C2.5 8 2 8.4 2 9v6c0 .6.5 1 1.25 1h17.5c.75 0 1.25-.4 1.25-1V9Zm-1 6H3V9h18v6Z"/><path d="M15 10h5v1h-5zM15 13h5v1h-5zM15 11.5h5v1h-5z"/>
-      </svg>`,
-    label: 'Navbar One',
+    media: `<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-layout-navbar"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 9l16 0" /></svg>`,
+    label: 'Navbar Simple',
     category: 'sections-navbar',
     select: true,
     content: { type: id },
@@ -38,17 +36,12 @@ export default (editor: Editor) => {
         attributes: { class: navbarPfx },
         components: { type: idContainer },
         styles: (style || `
-          .${navbarPfx} {
-            background-color: #222;
-            color: #ddd;
-            min-height: 50px;
-            width: 100%;
-          }
-
+       
           .${navbarPfx}-container {
-            max-width: 950px;
-            margin: 0 auto;
-            width: 95%;
+          display:flex;
+          align-items:center;
+          justify-items:justify-between;
+           padding: 20px 40px
           }
 
           .${navbarPfx}-items-c {
@@ -138,7 +131,7 @@ export default (editor: Editor) => {
         components: [
           {
             type: 'link',
-            content:`<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-activity" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12h4l3 8l4 -16l3 8h4" /></svg>`,
+            content: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-activity" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12h4l3 8l4 -16l3 8h4" /></svg>`,
             attributes: { class: `${navbarPfx}-brand`, href: '/' },
           },
           { type: idBurgerMenu },
