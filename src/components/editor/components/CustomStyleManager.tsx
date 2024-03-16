@@ -1,4 +1,4 @@
-import { Accordion } from '@mantine/core';
+import { Accordion, Button } from '@mantine/core';
 import * as React from 'react';
 import { useState } from 'react';
 
@@ -22,8 +22,9 @@ export default function CustomStyleManager({
                                            }: Omit<StylesResultProps, 'Container'>) {
 
   const editor = useEditor();
+  const onClick = () => editor.Canvas.setCoords(-160, -80);
   const sm = editor.StyleManager;
-
+  console.log(editor.Canvas.getFrames());
   const selectedComponent = editor.StyleManager.getSelected()?.getStyle('display');
   const rule = editor.getSelected()?.parent()?.getClasses();
 
@@ -79,6 +80,7 @@ export default function CustomStyleManager({
     </div>
   );
 
+
   const [value, setValue] = useState<string | null>(null);
   // const [activeTab, setActiveTab] = useState(sectors.length > 0 ? sectors[0].getId().toString() : '');
   // Map the rest of the sectors to accordion items
@@ -108,6 +110,7 @@ export default function CustomStyleManager({
 
   return (
     <div className="gjs-custom-style-manager text-left mt-2 ">
+      <Button onClick={onClick}>Set</Button>
       {/* Render the first sector element */}
       {firstSectorElement}
       <Accordion value={value} onChange={setValue}

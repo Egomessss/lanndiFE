@@ -5,13 +5,13 @@ import {useEditor} from '../wrappers'
 import {
     IconArrowBackUp,
     IconArrowForwardUp,
-    IconBorderNone,
+    IconBorderNone, IconCode,
     IconTrash,
     IconVector,
     IconZoomIn,
     IconZoomOut,
     IconZoomReset,
-} from '@tabler/icons-react'
+} from '@tabler/icons-react';
 
 
 interface CommandButton {
@@ -113,9 +113,6 @@ export default function TopBarButtons() {
     const { UndoManager, Commands } = editor
 
 
-
-
-
     // editor.Commands.add('designer-mode', {
     //     run: () => {
     //         editor.setDragMode('absolute')
@@ -151,12 +148,12 @@ export default function TopBarButtons() {
             name: 'Clear Canvas',
 
         },
-        // {
-        //     id: 'core:open-code',
-        //     Icon: IconCode,
-        //     name: 'Code',
-        //
-        // },
+        {
+            id: 'core:open-code',
+            Icon: IconCode,
+            name: 'Code',
+
+        },
 
         {
             id: 'core:component-outline',
@@ -232,7 +229,6 @@ export default function TopBarButtons() {
                 <Tooltip label="Zoom in / Shift + ">
                     <ActionIcon
                         color="blue"
-
                         disabled={zoomValue > 199}
                         onClick={handleZoomIn}
                         variant="subtle"

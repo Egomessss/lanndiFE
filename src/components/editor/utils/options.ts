@@ -6,22 +6,20 @@ import MediaBlocks from '../plugins/BasicBlocks/MediaBlocks';
 import ListBlocks from '../plugins/BasicBlocks/ListBlocks';
 import CustomCode from '@/components/editor/plugins/utils/CustomCode';
 import BorderStyle from '@/components/editor/plugins/utils/BorderStyle';
-import { starterTemplate, styleStarterTemplate } from '@/components/editor/templates/Starter';
 import Sections from '@/components/editor/plugins/Sections';
 import { EditorData } from '@/hooks/use-editor-data';
 import UtilsPlugin from '@/components/editor/plugins/utils/UtilsPlugin/utilsPlugin';
 import GoogleIcons from '@/components/editor/plugins/utils/GoogleIcons';
 import ScriptEditor from '@/components/editor/plugins/utils/ScriptEditor';
 import PostCss from '../plugins/utils/PostCss';
-import Grid from '@/components/editor/plugins/BasicBlocks/Grid';
 
 
-export const editorConfigOptions = (data: EditorData) => ({
+export const editorConfigOptions = (data: EditorData , siteSlug:string) => ({
   height: '100vh',
   undoManager: { trackSelection: false },
 
   deviceManager: {
-    default: 'fit',
+    default: 'desktop',
     devices: [
       {
         id: 'desktop', name: 'Desktop', width: '1536px', widthMedia: '1536px',
@@ -44,9 +42,19 @@ export const editorConfigOptions = (data: EditorData) => ({
         width: '380px',
         widthMedia: '380px',
       },
-      { id: 'fit', name: 'Fit To Screen', width: '' },
+      // { id: 'fit', name: 'Fit To Screen', width: '' },
     ],
   },
+  assetManager: {
+    // customFetch: axios.post(`/api/v1/sites/assets/${siteSlug}/store`),
+    // Upload endpoint, set `false` to disable upload, default `false`
+    upload: 'https://endpoint/upload/assets',
+
+    // The name used in POST to pass uploaded files, default: `'files'`
+    uploadName: 'files',
+
+  },
+
   storageManager: {
     type: 'local', // Type of the storage, available: 'local' | 'remote'
     autosave: true, // Store data automatically
@@ -105,7 +113,7 @@ export const editorConfigOptions = (data: EditorData) => ({
     // SemanticBlocks,
     // IntegrationsBlocks,
     // ExtraBlocks,
-    // PostCss,
+    PostCss,
     ScriptEditor,
     CustomCode,
     GoogleIcons,
@@ -326,18 +334,18 @@ export const editorConfigOptions = (data: EditorData) => ({
             type: 'composite',
             label: 'Spacing', // Label for the property
             property: 'gap', // CSS property to change
-            // detached:false,
+            detached: true,
             properties: [
               {
-                label: 'Row',
-                property: 'row-gap',
+                label: 'Column',
+                property: 'column-gap',
                 type: 'base',
                 default: '0',
                 tooltip: 'Units available: px, %, em, rem',
               },
               {
-                label: 'Column',
-                property: 'column-gap',
+                label: 'Row',
+                property: 'row-gap',
                 type: 'base',
                 default: '0',
                 tooltip: 'Units available: px, %, em, rem',
@@ -447,6 +455,7 @@ export const editorConfigOptions = (data: EditorData) => ({
             type: 'composite',
             label: 'Spacing', // Label for the property
             property: 'gap', // CSS property to change
+            detached: true,
             properties: [{
               label: 'Row',
               property: 'row-gap',
@@ -523,6 +532,7 @@ export const editorConfigOptions = (data: EditorData) => ({
             type: 'composite',
             label: 'Margin', // Label for the property
             property: 'margin', // CSS property to change
+            detached: true,
             properties: [
               {
                 type: 'base',
@@ -558,6 +568,7 @@ export const editorConfigOptions = (data: EditorData) => ({
             type: 'composite',
             label: 'Padding', // Label for the property
             property: 'padding', // CSS property to change
+            detached:true,
             properties: [
               {
                 type: 'base',
@@ -655,6 +666,7 @@ export const editorConfigOptions = (data: EditorData) => ({
             label: 'Position',
             property: 'inset',
             type: 'composite',
+            detached: true,
             properties: [
               {
                 type: 'base',
@@ -763,6 +775,7 @@ export const editorConfigOptions = (data: EditorData) => ({
             'type': 'composite',
             'label': 'Border Width', // Label for the property
             'property': 'border-width', // CSS property to change
+            detached: true,
             'properties': [
               {
                 'type': 'base',
@@ -810,6 +823,7 @@ export const editorConfigOptions = (data: EditorData) => ({
             type: 'composite',
             label: 'Radius', // Label for the property
             property: 'border-radius', // CSS property to change
+            detached:true,
             properties: [
               {
                 type: 'base',
@@ -856,7 +870,7 @@ export const editorConfigOptions = (data: EditorData) => ({
             type: 'composite',
             property: 'font',
             label: 'Font',
-            detached: false,
+            detached: true,
             // Additional props
             properties: [
               {

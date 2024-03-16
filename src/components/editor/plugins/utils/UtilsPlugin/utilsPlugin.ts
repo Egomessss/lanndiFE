@@ -57,7 +57,7 @@ export default (editor: Editor, opts = {}) => {
   editor.on('load', () => {
     editor.runCommand('core:component-outline');
     // @ts-ignore
-    editor.getWrapper().set('stylable',  [ // Default attributes
+    editor.getWrapper().set('stylable', [ // Default attributes
       'background',
       'background-color',
       'background-image',
@@ -81,7 +81,7 @@ export default (editor: Editor, opts = {}) => {
       'padding-right',
       'padding-bottom',
       'padding-left',
-  ] );
+    ]);
   });
 
   // editor.StyleManager.addBuiltIn('font-family', {
@@ -90,10 +90,6 @@ export default (editor: Editor, opts = {}) => {
   //     default: 'inherit', // 'inherit' is more appropriate for font-family defaults
   // },)
 
-  editor.on('load', function() {
-    // @ts-ignore
-
-    //...
-  })
+  editor.Canvas.setZoom(50)
 
 }

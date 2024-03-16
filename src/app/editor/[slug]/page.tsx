@@ -41,7 +41,7 @@ export default function CustomEditor() {
             grapesjsCss="https://unpkg.com/grapesjs/dist/css/grapes.min.css"
             onEditor={onEditor}
             // @ts-ignore
-            options={editorConfigOptions(data!)}
+            options={editorConfigOptions(data!, siteSlug)}
         >
             <div className="absolute h-full w-full overflow-y-hidden">
                 <AppShell

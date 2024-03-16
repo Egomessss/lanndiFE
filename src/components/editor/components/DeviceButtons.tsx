@@ -18,9 +18,10 @@ const getDeviceIcon = (device: string) => {
         return <IconDeviceTablet size="1rem"/>
     } else if (device === 'mobile') {
         return <IconDeviceMobile size="1rem"/>
-    } else if (device === 'fit') {
-        return <IconArrowsHorizontal size="1rem"/>
     }
+    // else if (device === 'fit') {
+    //     return <IconArrowsHorizontal size="1rem"/>
+    // }
     return null // Fallback
 }
 

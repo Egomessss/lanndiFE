@@ -208,7 +208,7 @@ export default function(editor: Editor, opts: Required<PluginOptions>) {
                 name: 'Paragraph', // Default component name
                 tagName: 'p',
                 content: 'Insert your text here',
-                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-h-6" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19 14a2 2 0 1 0 0 4a2 2 0 0 0 0 -4z" /><path d="M21 12a2 2 0 1 0 -4 0v4" /><path d="M4 6v12" /><path d="M12 6v12" /><path d="M11 18h2" /><path d="M3 18h2" /><path d="M4 12h8" /><path d="M3 6h2" /><path d="M11 6h2" /></svg>`,
+                icon: `<svg  xmlns="http://www.w3.org/2000/svg"  width="12"  height="12"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-letter-p"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 20v-16h5.5a4 4 0 0 1 0 9h-5.5" /></svg>`,
                 droppable: false,
             },
 
@@ -221,7 +221,7 @@ export default function(editor: Editor, opts: Required<PluginOptions>) {
         ...commonBlockProps,
         activate: true,
         label: opts.labelParagraph,
-        media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-align-justified" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6l16 0" /><path d="M4 12l16 0" /><path d="M4 18l12 0" /></svg>`,
+        media: `<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-letter-p"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 20v-16h5.5a4 4 0 0 1 0 9h-5.5" /></svg>`,
         content: {
             type: 'paragraph',
 
