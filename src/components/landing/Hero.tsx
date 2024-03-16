@@ -14,7 +14,7 @@ const Hero = () => {
             className="underline decoration-blue-500 text-blue-500 ml-2">minutes</span>
           </h1>
           <p className="max-w-3xl font-medium">
-            Create, launch and share your fast, beautiful and responsive one page website effortlessly, with a super easy-to-use editor without needing code or design skills
+            Create, launch and share your fast, beautiful and responsive website effortlessly, with a super easy-to-use editor without needing code or design skills
           </p>
           <div className="flex gap-2 items-center">
             <Button

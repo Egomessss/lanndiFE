@@ -38,12 +38,12 @@ const Benefits = () => {
     //     'Use the designer mode to freely place your block elements wherever you want without limits, rules and awkward constraints.',
     //   thumbnail: 'https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/designermode.gif',
     // },
-    // {
-    //   heading: 'More websites for less.',
-    //   description:
-    //     'lanndi is made specifically for small websites be it a landing page, a portfolios or a link in bio, each site has a maximum of 10 pages per domain allowing you to have a ton of sites on single hosting plan.',
-    //   thumbnail: 'https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/sitesimage.jpg',
-    // },
+    {
+      heading: 'Simple websites for less.',
+      description:
+        "lanndi is made specifically so you don't overpay for simple websites be it a landing page, a portfolios or a link in bio, each site has a maximum of 10 pages per domain allowing you to have more websites on single hosting plan.",
+      thumbnail: 'https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/sitesimage.jpg',
+    },
   ];
 
 

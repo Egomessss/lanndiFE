@@ -36,40 +36,24 @@ export default (editor: Editor) => {
         attributes: { class: navbarPfx },
         components: { type: idContainer },
         styles: (style || `
-       
+      
           .${navbarPfx}-container {
           display:flex;
           align-items:center;
-          justify-items:justify-between;
-           padding: 20px 40px
-          }
-
-          .${navbarPfx}-items-c {
-            display: inline-block;
-            float: right;
-          }
-
-          .${navbarPfx}-container::after {
-            content: "";
-            clear: both;
-            display: block;
+         justify-content: space-between;
+           padding: 10px 40px 10px 40px;
+           width:100%;
           }
 
           .${navbarPfx}-brand {
-            vertical-align: top;
-            display: inline-block;
-            padding: 5px;
-            min-height: 50px;
-            min-width: 50px;
-            color: inherit;
             text-decoration: none;
           }
 
           .${navbarPfx}-menu {
-            padding: 10px 0;
-            display: block;
-            float: right;
-            margin: 0;
+            display: flex;
+            gap:2px;
+            align-items:center;
+          justify-items:center;
           }
 
           .${navbarPfx}-menu-link {
@@ -78,6 +62,7 @@ export default (editor: Editor) => {
             text-decoration: none;
             display: inline-block;
             padding: 10px 15px;
+             cursor: pointer;
           }
 
           .${navbarPfx}-burger {
@@ -111,6 +96,7 @@ export default (editor: Editor) => {
 
             .${navbarPfx}-menu-link {
               display: block;
+               cursor: pointer;
             }
           }
         `),
@@ -131,7 +117,7 @@ export default (editor: Editor) => {
         components: [
           {
             type: 'link',
-            content: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-activity" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12h4l3 8l4 -16l3 8h4" /></svg>`,
+            content: `lanndi`,
             attributes: { class: `${navbarPfx}-brand`, href: '/' },
           },
           { type: idBurgerMenu },
