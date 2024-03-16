@@ -12,6 +12,7 @@ import {
     IconZoomOut,
     IconZoomReset,
 } from '@tabler/icons-react';
+import { useAuth } from '@/hooks/auth';
 
 
 interface CommandButton {
@@ -113,16 +114,16 @@ export default function TopBarButtons() {
     const { UndoManager, Commands } = editor
 
 
-    // editor.Commands.add('designer-mode', {
-    //     run: () => {
-    //         editor.setDragMode('absolute')
-    //         // console.log(editor.el)
-    //     },
-    //     stop: () => {
-    //         editor.setDragMode('')
-    //         // console.log('translate')
-    //     },
-    // })
+    editor.Commands.add('designer-mode', {
+        run: () => {
+            editor.setDragMode('absolute')
+            // console.log(editor.el)
+        },
+        stop: () => {
+            editor.setDragMode('')
+            // console.log('translate')
+        },
+    })
 
     editor.Commands.extend('preview', {
         run: () => {
@@ -137,6 +138,8 @@ export default function TopBarButtons() {
         },
     })
 
+    const {user} = useAuth()
+
     // editor.select(undefined);
 
 
@@ -148,12 +151,12 @@ export default function TopBarButtons() {
             name: 'Clear Canvas',
 
         },
-        {
+        // Conditionally include the "Code" button if the user is an admin
+        ...(user?.isAdmin ? [{
             id: 'core:open-code',
             Icon: IconCode,
             name: 'Code',
-
-        },
+        }] : []),
 
         {
             id: 'core:component-outline',
