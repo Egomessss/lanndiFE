@@ -1,3 +1,12 @@
+export type User = {
+    name: string;
+    email: string;
+    email_verified_at: Date | null;
+    isAdmin: boolean;
+}
+
+
+
 export type DomainVerificationStatusProps =
     | "Valid Configuration"
     | "Invalid Configuration"

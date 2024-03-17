@@ -10,6 +10,7 @@ import { useMutation } from '@tanstack/react-query';
 import axios from '@/lib/axios';
 import { z } from 'zod';
 import { useParams } from 'next/navigation';
+import { useAuth } from '@/hooks/auth';
 
 // export type CustomAssetManagerProps = Pick<
 //     AssetsResultProps,
@@ -17,6 +18,7 @@ import { useParams } from 'next/navigation';
 // >;
 
 function SubmitAsset() {
+  const { user } = useAuth();
   const editor = useEditor();
   const params = useParams();
   const siteSlug = params.slug;
@@ -42,7 +44,7 @@ function SubmitAsset() {
     },
     validate: zodResolver(formSchema), // Here you integrate Zod's validation with useForm
   });
-
+  console.log(typeof form.values);
 
   const { mutate: submitSite, isPending } = useMutation({
       mutationFn: async () => {
@@ -96,15 +98,33 @@ function SubmitAsset() {
         },
     },
   );
-  console.log(isPending);
 
   const validateBeforeSubmit = () => {
     form.validate();
     const isValid = form.isValid();
-    if (isValid) {
+
+    // Immediately return if the form is not valid, reducing one level of nesting
+    if (!isValid) return;
+
+    // Handling when the user is logged in
+    if (user) {
       submitSite();
+      return; // Stop further execution
+    }
+
+    // At this point, the form is valid, and user exists
+    // Simplify conditions by directly using the valid field values for adding to AssetManager
+    const { value, fileValue } = form.values;
+
+    if (value !== '' && fileValue === null) {
+      editor.AssetManager.add(value);
+    } else if (value === '' && fileValue !== null) {
+      const fileUrl = URL.createObjectURL(fileValue);
+      editor.AssetManager.add(fileUrl);
     }
   };
+
+
   return <div className="flex justify-between  items-start">
     <div className="flex items-start gap-2 mb-8 ">
       <TextInput size="xs"
@@ -132,63 +152,11 @@ export default function CustomAssetManager({
                                              open,
                                              close,
                                            }: any) {
-  const editor = useEditor();
-  const params = useParams();
-  const siteSlug = params.slug;
-
-  // console.log(assets)
-  const formSchema = z.object({
-    value: z.string().url().or(z.string().length(0)).optional(),
-    fileValue: z.instanceof(File).refine((file) => {
-      return file.size <= 1024 * 1024; // Adjusting to 1MB in bytes
-    }, `File size should be less than 1mb.`).nullable().optional(),
-  }).refine((data) => {
-    // Check that only one of value or fileValue is provided
-    return (data.value === null || data.value === '') !== (data.fileValue === null);
-  }, {
-    message: 'Only one of \'value\' or \'fileValue\' can be provided, not both.',
-    path: ['value'], // This path is arbitrary; adjust based on which field you want to highlight in case of an error
-  });
-
-  const form = useForm({
-    initialValues: {
-      value: '',
-      fileValue: null,
-    },
-    validate: zodResolver(formSchema), // Here you integrate Zod's validation with useForm
-  });
 
 
-  const { mutate: deleteAsset, isPending } = useMutation({
-    mutationFn: async (assetSrc) => {
-      console.log('asset', assetSrc);
-      // Assuming `assetSrc` contains the identifier for the asset to delete
-      // Correctly append the asset ID (or source) to the URL
-      return await axios.delete(`/api/v1/sites/assets/${siteSlug}/delete`, { data: { assetSrc: assetSrc } });
-    },
-    onSuccess: (data) => {
-      // Handle success, such as updating the UI or showing a notification
-      notifications.show({
-        title: 'Success!',
-        message: 'Asset deleted successfully.',
-        color: 'green',
-      });
-      // editor.Assets.remove(assetSrc);
-    },
-    onError: (error) => {
-      // Handle error
-      notifications.show({
-        title: 'Error',
-        message: 'Something went wrong... Please try again!',
-        color: 'red',
-      });
-    },
-  });
-
-
-  const remove = (asset: Asset) => {
-    editor.Assets.remove(asset);
-  };
+  // const remove = (asset: Asset) => {
+  //   editor.Assets.remove(asset);
+  // };
 
   return (
     <Modal component={ScrollArea} size="xl" opened={open} onClose={close} title="Assets" centered
@@ -207,20 +175,20 @@ export default function CustomAssetManager({
               <div
                 className="flex gap-2 items-center justify-between">
                 <Button
-                  variant="subtle"
+                  fullWidth
                   size="xs"
                   onClick={() => select(asset, true)}
                 >
                   Select
                 </Button>
-                <ActionIcon
-                  variant="subtle"
-                  color="red"
-                  loading={isPending}
-                  onClick={() => deleteAsset(asset.getSrc())}
-                >
-                  <IconTrash size="1rem" />
-                </ActionIcon>
+                {/*<ActionIcon*/}
+                {/*  variant="subtle"*/}
+                {/*  color="red"*/}
+                {/*  loading={isPending}*/}
+                {/*  onClick={() => deleteAsset(asset.getSrc())}*/}
+                {/*>*/}
+                {/*  <IconTrash size="1rem" />*/}
+                {/*</ActionIcon>*/}
               </div>
             </div>
           ))}

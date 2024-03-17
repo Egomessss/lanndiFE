@@ -175,31 +175,29 @@ export default function(editor: Editor, opts: Required<PluginOptions>) {
       defaults: {
         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-transition-bottom" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 18a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3" /><path d="M3 3m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v0a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z" /><path d="M12 9v8" /><path d="M9 14l3 3l3 -3" /></svg>`,
         droppable: true,
-        attributes: { class: 'btn' },
+        attributes: { class: 'button' },
         styles: `
-                    .btn {
-                    width:fit-content;
-                    cursor: pointer;
-                    outline: 0;
-                    color: #fff;
-                    background-color: #0d6efd;
-                    border-color: #0d6efd;
-                    display: inline-block;
-                    font-weight: 400;
-                    line-height: 1.5;
-                    text-align: center;
-                    border: 1px solid transparent;
-                    padding: 4px 12px 4px 12px;
-                    font-size: 16px;
-                    border-radius: .25rem .25rem .25rem .25rem;
-                    }
-                    
-                    .btn:hover {
-                        color: #fff;
-                        background-color: darken(#0b5ed7, 10%);
-                        border-color: #0a58ca;
-                    }
-                
+                   .button{
+  width:fit-content;
+  cursor:pointer;
+  outline:0;
+  color:#fff;
+  background-color:#0d6efd;
+  border-color:#0d6efd;
+  display:inline-block;
+  font-weight:400;
+  line-height:1.5;
+  text-align:center;
+  border:1px solid transparent;
+  padding:4px 12px 4px 12px;
+  font-size:16px;
+  border-radius:.25rem .25rem .25rem .25rem;
+}
+.button:hover{
+  color:#fff;
+  background-color:darken(#0d6efd, 10%);
+  border-color:#0a58ca;
+}
                 `,
       },
       init() {

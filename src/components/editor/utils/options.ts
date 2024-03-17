@@ -22,25 +22,25 @@ export const editorConfigOptions = (data: EditorData , siteSlug:string) => ({
     default: 'desktop',
     devices: [
       {
-        id: 'desktop', name: 'Desktop', width: '1536px', widthMedia: '1536px',
+        id: 'desktop', name: 'Desktop', width: '1536px', widthMedia: '1560px',
       },
       {
         id: 'laptop',
         name: 'Laptop',
         width: '1280px',
-        widthMedia: '1280px',
+        widthMedia: '1290px',
       },
       {
         id: 'tablet',
         name: 'Tablet',
         width: '800px',
-        widthMedia: '800px',
+        widthMedia: '810px',
       },
       {
         id: 'mobile',
         name: 'Mobile',
         width: '380px',
-        widthMedia: '380px',
+        widthMedia: '390px',
       },
       // { id: 'fit', name: 'Fit To Screen', width: '' },
     ],

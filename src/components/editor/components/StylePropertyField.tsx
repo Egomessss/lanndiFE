@@ -186,6 +186,7 @@ export default function StylePropertyField({
           placeholder={value}
           value={value}
           onChange={onChange}
+          clearable
           data={selectProp.getOptions().map((option) => ({
             value: selectProp.getOptionId(option),
             label: selectProp.getOptionLabel(option),
@@ -230,7 +231,7 @@ export default function StylePropertyField({
                     size="xs">Pick</Button>
           </Popover.Target>
           <Popover.Dropdown>
-            <ColorPicker hideOpacity hideAdvancedSliders hideColorGuide height={200} width={280}
+            <ColorPicker hideOpacity hideAdvancedSliders hideColorGuide height={180} width={260}
                          value={value} onChange={onChange} />
           </Popover.Dropdown>
         </Popover>

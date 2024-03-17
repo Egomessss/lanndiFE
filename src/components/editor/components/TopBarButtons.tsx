@@ -1,11 +1,11 @@
-import {ActionIcon, Divider, NumberInput, rem, Tooltip,} from '@mantine/core'
+import { ActionIcon, Divider, NumberInput, rem, ThemeIcon, Tooltip } from '@mantine/core';
 import React, {useEffect, useState} from 'react'
 
 import {useEditor} from '../wrappers'
 import {
     IconArrowBackUp,
     IconArrowForwardUp,
-    IconBorderNone, IconCode,
+    IconBorderNone, IconCode, IconHandGrab,
     IconTrash,
     IconVector,
     IconZoomIn,
@@ -209,10 +209,17 @@ export default function TopBarButtons() {
         <div className="flex  w-full gap-2 items-center">
             <Divider orientation="vertical" />
             <div className="flex items-center justify-center gap-2  w-full">
+                <Tooltip color="gray" label="Use Left Mouse Click + Spacebar to drag canvas">
+                    <ActionIcon
+                      color="blue"
+                      variant="subtle"
+                    >
+                        <IconHandGrab size="1rem" />
+                    </ActionIcon>
+                </Tooltip>
                 <Tooltip label="Zoom out/ Shift -">
                     <ActionIcon
                         color="blue"
-
                         variant="subtle"
                         disabled={zoomValue < 51}
                         onClick={handleZoomOut}

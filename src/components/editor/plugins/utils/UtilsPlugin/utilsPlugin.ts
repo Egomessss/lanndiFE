@@ -92,4 +92,6 @@ export default (editor: Editor, opts = {}) => {
 
   editor.Canvas.setZoom(50)
   editor.Canvas.setCoords(-160, -80);
+
+
 }

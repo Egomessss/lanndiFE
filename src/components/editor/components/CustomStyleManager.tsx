@@ -23,6 +23,32 @@ export default function CustomStyleManager({
 
   const editor = useEditor();
 
+  // const bodyHeight = editor.Canvas.getBody().clientHeight;
+  //
+  // const onClick = () => editor.Canvas.getFrame().set('height', bodyHeight);
+// Function to update the frame height based on the body height
+  const updateFrameHeight = () => {
+    const bodyHeight = editor.Canvas.getBody().clientHeight;
+    editor.Canvas.getFrame().set('height', bodyHeight);
+  };
+
+// Use ResizeObserver to watch for changes in the body's size
+  const resizeObserver = new ResizeObserver(entries => {
+    // Assuming there's only one element (body) being observed
+    for (let entry of entries) {
+      // Check if the contentRect size is what we're observing
+      if (entry.contentRect) {
+        updateFrameHeight();
+      }
+    }
+  });
+
+// Start observing the body element
+  const bodyElement = editor.Canvas.getBody();
+  resizeObserver.observe(bodyElement);
+
+
+
   const sm = editor.StyleManager;
 
   const selectedComponent = editor.StyleManager.getSelected()?.getStyle('display');
@@ -110,6 +136,7 @@ export default function CustomStyleManager({
 
   return (
     <div className="gjs-custom-style-manager text-left mt-2 ">
+      {/*<Button onClick={onClick}>Set</Button>*/}
       {/* Render the first sector element */}
       {firstSectorElement}
       <Accordion value={value} onChange={setValue}

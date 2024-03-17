@@ -14,6 +14,8 @@ export default function Canvas({
         canvasRef.current && editorOptions.setRefCanvas(canvasRef.current)
     }, [canvasRef.current])
 
+
+
     return (
         <AppShell.Main component={ScrollArea}>
             <div
