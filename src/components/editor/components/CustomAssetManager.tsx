@@ -3,7 +3,7 @@ import * as React from 'react';
 import type { Asset } from 'grapesjs';
 import { useEditor } from '@/components/editor/context/EditorInstance';
 import { IconTrash } from '@tabler/icons-react';
-import { ActionIcon, Button, FileInput, Modal, ScrollArea, TextInput } from '@mantine/core';
+import { ActionIcon, Button, FileInput, Modal, ScrollArea, TextInput, Tooltip } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
 import { useForm, zodResolver } from '@mantine/form';
 import { useMutation } from '@tanstack/react-query';
@@ -100,6 +100,7 @@ function SubmitAsset() {
   );
 
   const validateBeforeSubmit = () => {
+
     form.validate();
     const isValid = form.isValid();
 
@@ -118,9 +119,6 @@ function SubmitAsset() {
 
     if (value !== '' && fileValue === null) {
       editor.AssetManager.add(value);
-    } else if (value === '' && fileValue !== null) {
-      const fileUrl = URL.createObjectURL(fileValue);
-      editor.AssetManager.add(fileUrl);
     }
   };
 
@@ -133,7 +131,10 @@ function SubmitAsset() {
         // rightSection={<ActionIcon><IconPlus size="1rem"/> </ActionIcon>}
       />
       <p>or</p>
-      <FileInput size="xs" clearable placeholder="Add file"   {...form.getInputProps('fileValue')} />
+      <Tooltip color="gray" label="Must be logged in to upload files">
+        <FileInput disabled={!user} size="xs" clearable placeholder="Add file"   {...form.getInputProps('fileValue')} />
+      </Tooltip>
+      {/*<Button size="xs">Log in</Button>*/}
     </div>
 
     <Button

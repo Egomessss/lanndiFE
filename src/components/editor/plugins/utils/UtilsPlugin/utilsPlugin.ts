@@ -12,9 +12,16 @@ export default (editor: Editor, opts = {}) => {
         return; // Exit if no components are selected
       }
 
+      const allWrappersClasses = editor.CssComposer.getRules('.wrapper');
+      const wrappersLength = allWrappersClasses.length;
+
+      console.log('wrapper', wrappersLength);
       // Create a new 'div' component
       const wrapperDiv = editor.DomComponents.addComponent({
         tagName: 'div',
+        name: 'Wrapper Div',
+        attributes: { class: wrappersLength === 0 ? 'wrapper' : `wrapper-${wrappersLength + 1}` },
+        icon:`<svg  xmlns="http://www.w3.org/2000/svg"  width="12"  height="12"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-box"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" /><path d="M12 12l8 -4.5" /><path d="M12 12l0 9" /><path d="M12 12l-8 -4.5" /></svg>`,
         // Additional properties for the 'div', like classes, styles, etc.
       });
 
@@ -62,15 +69,8 @@ export default (editor: Editor, opts = {}) => {
       'background-color',
       'background-image',
       'background-repeat',
-      'background-attachment',
-      'background-position',
-      'background-size',
-
       // Add the "Dimension" sector attributes
-      'width',
       'height',
-      'max-width',
-      'min-height',
       'margin',
       'margin-top',
       'margin-right',
@@ -81,6 +81,7 @@ export default (editor: Editor, opts = {}) => {
       'padding-right',
       'padding-bottom',
       'padding-left',
+      'font-family',
     ]);
   });
 
@@ -90,7 +91,7 @@ export default (editor: Editor, opts = {}) => {
   //     default: 'inherit', // 'inherit' is more appropriate for font-family defaults
   // },)
 
-  editor.Canvas.setZoom(50)
+  editor.Canvas.setZoom(50);
   editor.Canvas.setCoords(-160, -80);
 
 
