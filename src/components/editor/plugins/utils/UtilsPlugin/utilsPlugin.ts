@@ -64,12 +64,8 @@ export default (editor: Editor, opts = {}) => {
   editor.on('load', () => {
     editor.runCommand('core:component-outline');
     // @ts-ignore
-    editor.getWrapper().set('stylable', [ // Default attributes
-      'background',
-      'background-color',
-      'background-image',
-      'background-repeat',
-      // Add the "Dimension" sector attributes
+
+    editor.getWrapper()?.set('stylable', [
       'height',
       'margin',
       'margin-top',
@@ -81,8 +77,14 @@ export default (editor: Editor, opts = {}) => {
       'padding-right',
       'padding-bottom',
       'padding-left',
+      'background',
+      'background-color',
+      'background-image',
+      'background-repeat',
       'font-family',
     ]);
+
+    editor.getWrapper()?.setStyle({ height: '2000px' })
   });
 
   // editor.StyleManager.addBuiltIn('font-family', {
@@ -91,8 +93,7 @@ export default (editor: Editor, opts = {}) => {
   //     default: 'inherit', // 'inherit' is more appropriate for font-family defaults
   // },)
 
-  editor.Canvas.setZoom(50);
-  editor.Canvas.setCoords(-160, -80);
-
+  editor.Canvas.setZoom(60);
+  editor.Canvas.setCoords(-140, -100);
 
 }

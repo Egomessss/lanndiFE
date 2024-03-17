@@ -51,7 +51,7 @@ export default (editor: Editor, opts = {}) => {
   editor.Commands.add('zoomReset', {
     run: () => {
       editor.Canvas.setZoom(60);
-      editor.Canvas.setCoords(-180, -100);
+      editor.Canvas.setCoords(-140, -100);
     },
   });
 

@@ -9,7 +9,7 @@ import { useForm, zodResolver } from '@mantine/form';
 import { useMutation } from '@tanstack/react-query';
 import axios from '@/lib/axios';
 import { z } from 'zod';
-import { useParams } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 import { useAuth } from '@/hooks/auth';
 
 // export type CustomAssetManagerProps = Pick<
@@ -18,7 +18,11 @@ import { useAuth } from '@/hooks/auth';
 // >;
 
 function SubmitAsset() {
-  const { user } = useAuth();
+
+  const slug = usePathname()
+  console.log('slug',slug);
+  const user = slug === '/demo' ? null : true
+  console.log(user);
   const editor = useEditor();
   const params = useParams();
   const siteSlug = params.slug;
@@ -160,7 +164,7 @@ export default function CustomAssetManager({
   // };
 
   return (
-    <Modal component={ScrollArea} size="xl" opened={open} onClose={close} title="Assets" centered
+    <Modal scrollAreaComponent={ScrollArea.Autosize} size="xl" opened={open} onClose={close} title="Assets" centered
     >
       <div className="flex flex-col gap-4">
         <SubmitAsset />

@@ -19,6 +19,7 @@ export default function(editor: Editor, opts: Required<PluginOptions>) {
         },
         model: {
             defaults: {
+                attributes: { class: 'ordered-list' },
                 tagName: 'ol',
                 icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list-numbers" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11 6h9" /><path d="M11 12h9" /><path d="M12 18h8" /><path d="M4 16a2 2 0 1 1 4 0c0 .591 -.5 1 -1 1.5l-3 2.5h4" /><path d="M6 10v-6l-2 2" /></svg>`,
                 components:`<ol><li>List Item 1</li><li>List Item 2</li><li>List Item 3</li></ol>`,
@@ -45,6 +46,7 @@ export default function(editor: Editor, opts: Required<PluginOptions>) {
         },
         model: {
             defaults: {
+                attributes: { class: 'unordered-list' },
                 tagName: 'ul',
                 icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l11 0" /><path d="M9 12l11 0" /><path d="M9 18l11 0" /><path d="M5 6l0 .01" /><path d="M5 12l0 .01" /><path d="M5 18l0 .01" /></svg>`,
                 components:`<ul><li>List Item 1</li><li>List Item 2</li><li>List Item 3</li></ul>`,
