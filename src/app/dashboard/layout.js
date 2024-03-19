@@ -5,7 +5,14 @@ import { useAuth } from '../../hooks/auth';
 import Loading from './Loading';
 import { useDisclosure } from '@mantine/hooks';
 import { ActionIcon, AppShell, Avatar, Burger, Menu, NavLink, rem } from '@mantine/core';
-import { IconCreditCard, IconHome2, IconLogout, IconSettings, IconUser } from '@tabler/icons-react';
+import {
+  IconAdjustmentsDollar,
+  IconCreditCard,
+  IconHome2,
+  IconLogout,
+  IconSettings,
+  IconUser,
+} from '@tabler/icons-react';
 import Link from 'next/link';
 
 
@@ -61,10 +68,14 @@ const layout = ({ children }) => {
       <AppShell.Navbar>
         <NavLink
           href="/"
-          label="Dashboard"
+          label="Sites"
           leftSection={<IconHome2 size="1rem" stroke={1.5} />}
         />
-
+        <NavLink
+          href="/plans"
+          label="Plans"
+          leftSection={<IconAdjustmentsDollar size="1rem" stroke={1.5} />}
+        />
         <NavLink
           href="/billing"
           label="Billing"

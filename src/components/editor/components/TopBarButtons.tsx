@@ -13,6 +13,7 @@ import {
     IconZoomReset,
 } from '@tabler/icons-react';
 import { useAuth } from '@/hooks/auth';
+import { usePathname } from 'next/navigation';
 
 
 interface CommandButton {
@@ -138,7 +139,9 @@ export default function TopBarButtons() {
         },
     })
 
-    const {user} = useAuth()
+    const slug = usePathname()
+
+    const user = slug === '/demo' ? null : true
 
     // editor.select(undefined);
 

@@ -1,7 +1,7 @@
 import { ActionIcon, AppShell, Button, Tooltip } from '@mantine/core';
 import React, { useState } from 'react';
 import { IconArrowLeft, IconCheck, IconDeviceFloppy, IconExternalLink, IconFaceIdError } from '@tabler/icons-react';
-import { useParams } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 import { useEditorMaybe } from '@/components/editor/context/EditorInstance';
 import useEditorData from '@/hooks/use-editor-data';
 import { useMutation } from '@tanstack/react-query';
@@ -19,7 +19,9 @@ function SaveButton() {
   const params = useParams();
   const siteSlug = params.slug;
 
-  const { user } = useAuth();
+  const slug = usePathname()
+
+  const user = slug === '/demo' ? null : true
 
   const editor = useEditorMaybe();
 
@@ -92,7 +94,10 @@ function SaveButton() {
 }
 
 function PublishButton() {
-  const { user } = useAuth({ middleware: 'guest', redirectIfAuthenticated: '/' });
+  const slug = usePathname()
+
+  const user = slug === '/demo' ? null : true
+
   const [showSuccess, setShowSuccess] = useState(false);
   const params = useParams();
   const siteSlug = params.slug;
@@ -141,7 +146,10 @@ function PublishButton() {
 }
 
 function EditorHeader() {
-  const { user } = useAuth();
+  const slug = usePathname()
+
+  const user = slug === '/demo' ? null : true
+
   // console.log(user);
   return (
     <AppShell.Header>

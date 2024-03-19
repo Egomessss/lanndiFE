@@ -18,6 +18,7 @@ import { Roadmap } from '@/components/landing/Roadmap';
 import { Pricing } from '@/components/landing/Pricing';
 import Footer from '@/components/landing/Footer';
 import Head from 'next/head';
+import Plans from '@/components/common/Plans';
 
 
 type Page = {
@@ -131,6 +132,7 @@ const Homepage = ({
         {/*<WaitlistBanner />*/}
         <Features />
         <Roadmap />
+        <Plans/>
         <Pricing />
         {/*<WaitlistBanner />*/}
         <Footer />

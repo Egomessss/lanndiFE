@@ -20,9 +20,9 @@ import { useAuth } from '@/hooks/auth';
 function SubmitAsset() {
 
   const slug = usePathname()
-  console.log('slug',slug);
+
   const user = slug === '/demo' ? null : true
-  console.log(user);
+
   const editor = useEditor();
   const params = useParams();
   const siteSlug = params.slug;

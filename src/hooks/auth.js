@@ -1,13 +1,15 @@
 import useSWR from 'swr';
 import axios from '@/lib/axios';
 import { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation'
-
+import { useParams, useRouter } from 'next/navigation';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { notifications } from '@mantine/notifications';
 
 
 export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
   const router = useRouter();
   const params = useParams();
+
 
   const { data: user, error, mutate } = useSWR('/api/user', () =>
     axios
@@ -18,6 +20,17 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
         router.push('/verify-email');
       }),
   );
+
+  // const { data: user, mutate, error } = useMutation({
+  //     mutationFn: async () => axios.get('/api/user')
+  //       .then(res => res.data)
+  //       .catch(error => {
+  //         if (error.response.status !== 409) throw error;
+  //         router.push('/verify-email');
+  //       }),
+  //   },
+  // );
+
 
   const [isLoading, setIsLoading] = useState(false);
   // Add similar state variables for other actions...
@@ -40,7 +53,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
       .catch(error => {
         if (error.response.status !== 422) throw error;
         setErrors(error.response.data.errors);
-        setIsLoading(false)
+        setIsLoading(false);
       });
   };
 
@@ -49,7 +62,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 
     setErrors([]);
     setStatus(null);
-    setIsLoading(true)
+    setIsLoading(true);
 
     axios
       .post('/login', props)
@@ -58,7 +71,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
         const twoWeeksInSeconds = 60 * 60 * 24 * 14;
         // On successful login, set a cookie to last for 2 weeks
         document.cookie = `isLoggedIn=true; path=/; max-age=${twoWeeksInSeconds}; secure; samesite=Strict`;
-        // router.push('/');
+        router.push('/');
       })
       .catch(error => {
         if (error.response.status !== 422) throw error;

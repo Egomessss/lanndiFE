@@ -8,6 +8,7 @@ import { ModalsProvider } from '@mantine/modals';
 import { Notifications } from '@mantine/notifications';
 import TanstackProvider from '@/components/providers/TanstackProvider';
 import React from 'react';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -34,6 +35,7 @@ export default function RootLayout({
                     {children}
                 </ModalsProvider>
             </MantineProvider>
+            <ReactQueryDevtools initialIsOpen={false} />
         </TanstackProvider>
         </body>
         </html>
