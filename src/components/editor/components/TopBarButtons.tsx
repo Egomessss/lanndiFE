@@ -155,11 +155,11 @@ export default function TopBarButtons() {
 
         },
         // Conditionally include the "Code" button if the user is an admin
-        ...(user?.isAdmin ? [{
-            id: 'core:open-code',
-            Icon: IconCode,
-            name: 'Code',
-        }] : []),
+        // ...(user?.isAdmin ? [{
+        //     id: 'core:open-code',
+        //     Icon: IconCode,
+        //     name: 'Code',
+        // }] : []),
 
         {
             id: 'core:component-outline',
