@@ -1,5 +1,5 @@
 'use client';
-import { Button, Divider, Switch } from '@mantine/core';
+import { Badge, Button, Divider, Switch } from '@mantine/core';
 import React, { useState } from 'react';
 import { IconCheck } from '@tabler/icons-react';
 import Link from 'next/link';
@@ -9,7 +9,6 @@ import axios from '@/lib/axios';
 import Loading from '@/app/dashboard/Loading';
 import ErrorMessage from '@/app/dashboard/Error';
 import { SiteSettings } from '@/app/dashboard/sites/[slug]/page';
-
 
 
 const includedFeatures = [
@@ -23,7 +22,7 @@ const plans = [
     name: 'Free',
     priceMonthly: 0,
     priceAnnual: 0,
-    features: ['1 site','1 page max', 'lanndi badge', 'lanndi subdomain'],
+    features: ['1 site', '1 page max', 'lanndi badge', 'lanndi subdomain'],
     url: '/checkout/free',
   },
   {
@@ -52,26 +51,27 @@ const plans = [
 
 const PricingTable = () => {
   const [isAnnual, setIsAnnual] = useState(false);
-  // const { data, isLoading, isError } = useQuery({
-  //   queryKey: ['checkout'],
-  //   queryFn: async () => {
-  //     const { data } = await axios.get(`/api/v1/checkout`);
-  //     return data ;
-  //   },
-  //   staleTime: 0,
-  //   refetchOnWindowFocus: false,
-  // });
-  // console.log(data?.data?.attributes?.url);
-  //
-  // if (isLoading) return <Loading />;
-  // if (isError) return <ErrorMessage />;
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['checkout'],
+    queryFn: async () => {
+      const { data } = await axios.get(`/api/v1/checkout`);
+      return data;
+    },
+    staleTime: 0,
+    refetchOnWindowFocus: false,
+  });
+  console.log(data);
 
+  if (isLoading) return <Loading />;
+  if (isError) return <ErrorMessage />;
+
+  const plan = 'free'
 
   return (
     <div>
-
       <div className="flex justify-center flex-col items-center w-full gap-8 my-4">
-        <h1>Pricing plans that fit your needs</h1>
+        <h1>Plans that fit your needs</h1>
+        <Badge variant="light" size="lg">Current plan - {plan}</Badge>
         <div className="flex items-center gap-2">
           <p>Monthly</p>
           <Switch
@@ -136,9 +136,9 @@ const PricingTable = () => {
                   </ul>
 
                   <Button component="a"
-                          disabled
-                          // target="_blank"
-                          // href={data.attributes.url}
+                    // disabled
+                          target="_blank"
+                          href={data.checkoutUrl}
                   >
                     Buy lifetime deal
                   </Button>

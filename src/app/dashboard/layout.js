@@ -38,7 +38,7 @@ const layout = ({ children }) => {
       <AppShell.Header>
         <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
         <div className="w-full flex justify-between items-center h-full px-4">
-          <Link className="no-underline text-white font-bold text-xl" href="/public">
+          <Link className="no-underline text-white font-bold text-xl" href="/">
             lanndi
           </Link>
           <Menu trigger="hover" openDelay={100} closeDelay={400}>
@@ -78,7 +78,7 @@ const layout = ({ children }) => {
         />
         <NavLink
           href="/billing"
-          label="Billing"
+          label="Billing Portal"
           leftSection={<IconCreditCard size="1rem" stroke={1.5} />}
         />
         {/*<NavLink*/}

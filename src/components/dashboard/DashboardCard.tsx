@@ -62,7 +62,7 @@ const DashboardCard = ({ name, slug, ogImage, isLive }: Site) => {
           </Menu>
         </div>
         {isLive ? <Badge variant="light" color="green">Live</Badge> :
-          <Badge variant="light" color="green">Unpublished</Badge>}
+          <Badge variant="light" color="orange">Draft</Badge>}
 
       </div>
 
