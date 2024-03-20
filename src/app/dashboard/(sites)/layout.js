@@ -1,7 +1,7 @@
 'use client';
 
 
-import { useAuth } from '../../hooks/auth';
+import { useAuth } from '../../../hooks/auth';
 import Loading from './Loading';
 import { useDisclosure } from '@mantine/hooks';
 import { ActionIcon, AppShell, Avatar, Burger, Menu, NavLink, rem } from '@mantine/core';
@@ -38,7 +38,7 @@ const layout = ({ children }) => {
       <AppShell.Header>
         <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
         <div className="w-full flex justify-between items-center h-full px-4">
-          <Link className="no-underline text-white font-bold text-xl" href="/">
+          <Link className="no-underline text-white font-bold text-xl" href="/public">
             lanndi
           </Link>
           <Menu trigger="hover" openDelay={100} closeDelay={400}>

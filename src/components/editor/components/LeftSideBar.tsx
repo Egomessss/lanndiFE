@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {ActionIcon, AppShell, Box, Divider, ScrollArea, Tooltip} from "@mantine/core";
-import styles from "@/app/editor/[slug]/page.module.css";
+import styles from "@/app/dashboard/(editor)/editor/[slug]/page.module.css";
 import {IconFile, IconLayoutGridAdd, IconSection, IconStack2} from "@tabler/icons-react";
 import SettingsModal from "@/components/editor/components/SettingsModal";
 import BlockSideBar from "@/components/editor/components/BlockSideBar";

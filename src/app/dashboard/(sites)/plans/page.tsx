@@ -6,9 +6,9 @@ import Link from 'next/link';
 import Script from 'next/script';
 import { useQuery } from '@tanstack/react-query';
 import axios from '@/lib/axios';
-import Loading from '@/app/dashboard/Loading';
-import ErrorMessage from '@/app/dashboard/Error';
-import { SiteSettings } from '@/app/dashboard/sites/[slug]/page';
+import Loading from '@/app/dashboard/(sites)/Loading';
+import ErrorMessage from '@/app/dashboard/(sites)/Error';
+import { SiteSettings } from '@/app/dashboard/(sites)/sites/[slug]/page';
 
 
 const includedFeatures = [

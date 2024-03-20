@@ -11,15 +11,31 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from '@/lib/axios';
 import { z } from 'zod';
 
+type props = {
+  isOverMaxSitesAllowed: boolean
+}
 
-const CreateSiteModal = ({ isOverMaxSitesAllowed }) => {
+const CreateSiteModal = ({ isOverMaxSitesAllowed }: props) => {
   const [opened, { open, close }] = useDisclosure(false);
   const router = useRouter();
   const queryClient = useQueryClient();
-
+  const validSubdomainRegex = /^[a-zA-Z0-9]([a-zA-Z0-9-]{2,61}[a-zA-Z0-9])?$/;
   const formSchema = z.object({
     name: z.string().min(4, 'Name must have at least 4 letters').max(100, { message: 'Must be 100 or fewer characters long' }),
-    subdomain: z.string().min(4, 'Name must have at least 4 letters').max(63, { message: 'Must be 63 or fewer characters long' }),
+    subdomain: z.string()
+      .optional()
+      .refine((value) => !value || value.length > 3, {
+        message: 'Subdomains must have at least 4 letters',
+      })
+      .refine((value) => !value || value.length < 63, {
+        message: 'Subdomains must have at least 4 letters',
+      })
+      .refine((value) => !value || validSubdomainRegex.test(value), {
+        message: 'Invalid subdomain format',
+      })
+      .refine((value) => !value || !value.includes('lanndi.com'), {
+        message: 'Cannot use lanndi.com as your custom domain',
+      }),
   });
 
   const form = useForm({

@@ -43,10 +43,6 @@ export default function CustomStyleManager({
     }
   });
 
-// Start observing the body element
-  const bodyElement = editor.Canvas.getBody();
-  resizeObserver.observe(bodyElement);
-
 
 
   const sm = editor.StyleManager;

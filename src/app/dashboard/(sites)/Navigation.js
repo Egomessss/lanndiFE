@@ -5,12 +5,12 @@ import Link from 'next/link'
 
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { useAuth } from '../../hooks/auth'
-import ApplicationLogo from '../../components/common/ApplicationLogo'
+import { useAuth } from '../../../hooks/auth'
+import ApplicationLogo from '../../../components/common/ApplicationLogo'
 import { NavLink } from '@mantine/core'
-import Dropdown from '../../components/common/Dropdown'
-import { DropdownButton } from '../../components/common/DropdownLink'
-import ResponsiveNavLink, { ResponsiveNavButton } from '../../components/common/ResponsiveNavLink'
+import Dropdown from '../../../components/common/Dropdown'
+import { DropdownButton } from '../../../components/common/DropdownLink'
+import ResponsiveNavLink, { ResponsiveNavButton } from '../../../components/common/ResponsiveNavLink'
 
 const Navigation = ({ user }) => {
     const router = useRouter()

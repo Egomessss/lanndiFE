@@ -1,10 +1,10 @@
 import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import axios from '@/lib/axios';
-import Loading from '@/app/dashboard/Loading';
-import ErrorMessage from '@/app/dashboard/Error';
+import Loading from '@/app/dashboard/(sites)/Loading';
+import ErrorMessage from '@/app/dashboard/(sites)/Error';
 import React from 'react';
-import { SiteSettings } from '@/app/dashboard/sites/[slug]/page';
+import { SiteSettings } from '@/app/dashboard/(sites)/sites/[slug]/page';
 import { headers } from 'next/headers';
 import Script from 'next/script';
 import { Navbar } from '@/components/landing/Navbar';

@@ -6,15 +6,14 @@ import { langs } from '@uiw/codemirror-extensions-langs';
 import { useForm, zodResolver } from '@mantine/form';
 import { z } from 'zod';
 import { notifications } from '@mantine/notifications';
-import { SiteSettings } from '@/app/dashboard/sites/[slug]/page';
+import { SiteSettings } from '@/app/dashboard/(sites)/sites/[slug]/page';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import TextLength from '@/components/common/TextLength';
 import axios from '@/lib/axios';
 
 
-
 const SiteSettingsForm = ({
-  name,
+                            name,
                             title,
                             description,
                             favIcon,
@@ -143,7 +142,7 @@ const SiteSettingsForm = ({
                  rightSection={form.getInputProps('name').value &&
                    <TextLength maxLength={60} value={form.getInputProps('name').value} />}
       />
-      <Divider className="w-full" my="xs" label="Site metadata settings"/>
+      <Divider className="w-full" my="xs" label="Site metadata settings" />
       <TextInput className="w-full"
                  label="Title"
                  placeholder="Insert your title here..."

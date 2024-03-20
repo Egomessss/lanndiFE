@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 import axios from '@/lib/axios';
 import { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { notifications } from '@mantine/notifications';
 
@@ -9,9 +9,11 @@ import { notifications } from '@mantine/notifications';
 export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
   const router = useRouter();
   const params = useParams();
+  const slug = usePathname();
 
+  const isDemo = slug === '/demo';
 
-  const { data: user, error, mutate } = useSWR('/api/user', () =>
+  const { data: user, error, mutate } = useSWR(isDemo ? null : '/api/user', () =>
     axios
       .get('/api/user')
       .then(res => res.data)

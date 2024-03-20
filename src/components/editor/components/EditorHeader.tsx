@@ -1,4 +1,4 @@
-import { ActionIcon, AppShell, Button, Tooltip } from '@mantine/core';
+import { ActionIcon, AppShell, Button, Modal, ScrollArea, Tabs, Tooltip } from '@mantine/core';
 import React, { useState } from 'react';
 import { IconArrowLeft, IconCheck, IconDeviceFloppy, IconExternalLink, IconFaceIdError } from '@tabler/icons-react';
 import { useParams, usePathname } from 'next/navigation';
@@ -12,6 +12,8 @@ import { WithEditor } from '@/components/editor/wrappers';
 import CommandButtons from '@/components/editor/components/TopBarButtons';
 import DeviceButtons from '@/components/editor/components/DeviceButtons';
 import { useAuth } from '@/hooks/auth';
+import RegisterUserModal from '@/app/demo/_components/RegisterUserModal';
+import { useDisclosure } from '@mantine/hooks';
 
 
 function SaveButton() {
@@ -19,9 +21,9 @@ function SaveButton() {
   const params = useParams();
   const siteSlug = params.slug;
 
-  const slug = usePathname()
+  const slug = usePathname();
 
-  const user = slug === '/demo' ? null : true
+  const user = slug === '/demo' ? null : true;
 
   const editor = useEditorMaybe();
 
@@ -29,7 +31,7 @@ function SaveButton() {
   // console.log("data",data)
 
   // const { data: isFirstTimeSaving } = useEditorData();
-  const isFirstTimeSaving = true
+  const isFirstTimeSaving = true;
 
   const { mutate, isError, isPending } = useMutation({
       mutationFn: async () => {
@@ -66,38 +68,30 @@ function SaveButton() {
   console.log(isError);
   return (
     <>
-    {user ? <Tooltip label="Save changes">
-        {/*<CreateUserAndPageModal />*/}
-        <ActionIcon disabled={!user} loading={isPending} className={!showSuccess ? 'animate-pulse' : ''}
-                    color={color}
-                    onClick={() => mutate()}
-                    variant="subtle">
-          {isError && <IconFaceIdError size="1rem" />}
-          {!isPending && !isError && showSuccess ? <IconCheck size="1rem" /> : <IconDeviceFloppy size="1rem" />}
-        </ActionIcon>
-      </Tooltip> :
-      <div>
-        <Tooltip  label="Save changes">
-          {/*<CreateUserAndPageModal />*/}
-          <ActionIcon disabled={!user} loading={isPending} className={!showSuccess ? 'animate-pulse' : ''}
+      {user ? <Tooltip label="Save changes">
+          <ActionIcon loading={isPending} className={!showSuccess ? 'animate-pulse' : ''}
                       color={color}
                       onClick={() => mutate()}
                       variant="subtle">
             {isError && <IconFaceIdError size="1rem" />}
             {!isPending && !isError && showSuccess ? <IconCheck size="1rem" /> : <IconDeviceFloppy size="1rem" />}
           </ActionIcon>
-
+        </Tooltip> :
+        <Tooltip label="Register before you can save your site data">
+          <RegisterUserModal />
         </Tooltip>
-      </div>}
-  </>
+      }
+    </>
   );
 }
 
 function PublishButton() {
-  const slug = usePathname()
+  const slug = usePathname();
 
-  const user = slug === '/demo' ? null : true
 
+  const isDemo = slug === '/demo';
+  const { user } = useAuth();
+  const [opened, { open, close }] = useDisclosure(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const params = useParams();
   const siteSlug = params.slug;
@@ -138,25 +132,54 @@ function PublishButton() {
       },
     },
   );
+  console.log(user);
 
-  return <Tooltip label="Publish Site">
-    <Button disabled={!user} loading={isPending} size="xs" onClick={() => mutate()}>Publish</Button>
-  </Tooltip>;
+  return (<><Tooltip label={user ? 'Publish Site' : 'Register before you can publish your site'}>
+      <Button
+        // disabled={!user}
+        loading={isPending} size="xs" onClick={open}>Publish</Button>
+    </Tooltip>
+      <Modal
+        opened={opened}
+        onClose={close}
+        centered
+        size="xl"
+        title="Header is sticky"
+        scrollAreaComponent={ScrollArea.Autosize}
+      >
+        <Tabs >
+          <Tabs.List>
+            <Tabs.Tab value="first">Domains</Tabs.Tab>
+            <Tabs.Tab value="second">Settings</Tabs.Tab>
+          </Tabs.List>
+
+          <Tabs.Panel value="first">First panel</Tabs.Panel>
+          <Tabs.Panel value="second">Second panel</Tabs.Panel>
+        </Tabs>
+
+
+        <Button
+          disabled={!user}
+          loading={isPending} size="xs" onClick={() => mutate()}>Publish</Button>
+      </Modal>
+    </>
+  );
 
 }
 
 function EditorHeader() {
-  const slug = usePathname()
+  const slug = usePathname();
 
-  const user = slug === '/demo' ? null : true
+  const isDemo = slug === '/demo';
+  const user = useAuth();
 
-  // console.log(user);
+
   return (
     <AppShell.Header>
       <div className="gjs-top-sidebar flex h-full w-full items-center justify-between px-2">
         <div className="flex w-full items-center justify-start gap-2 py-2 ">
           <Button
-            // disabled={user === undefined}
+            disabled={!user}
             component={Link}
             href="https://lanndi.com"
             variant="subtle"
@@ -175,7 +198,10 @@ function EditorHeader() {
         </div>
 
         <div className="flex w-full items-center justify-end gap-4">
-          <Button color="red" component="a" target="_blank"  href="https://lanndi.lemonsqueezy.com/checkout/buy/2ddb7d73-91f4-4121-8413-c24ec6a3335c" size="xs">Get Lifetime deal 33% off</Button>
+          {isDemo && <Button color="red" component="a" target="_blank"
+                             href="https://lanndi.lemonsqueezy.com/checkout/buy/2ddb7d73-91f4-4121-8413-c24ec6a3335c"
+                             size="xs">Get
+            Lifetime deal 33% off</Button>}
           <Button disabled={!user} size="xs" variant="subtle"
                   leftSection={<IconExternalLink size="1rem" />}>Preview</Button>
           <SaveButton />
