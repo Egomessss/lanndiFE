@@ -1,10 +1,17 @@
-import { ActionIcon, AppShell, Button, Modal, ScrollArea, Tabs, Tooltip } from '@mantine/core';
+import { ActionIcon, AppShell, Button, Modal, Popover, ScrollArea, Tabs, Tooltip } from '@mantine/core';
 import React, { useState } from 'react';
-import { IconArrowLeft, IconCheck, IconDeviceFloppy, IconExternalLink, IconFaceIdError } from '@tabler/icons-react';
+import {
+  IconArrowLeft,
+  IconCheck,
+  IconDeviceFloppy,
+  IconExternalLink,
+  IconFaceIdError,
+  IconSettings,
+} from '@tabler/icons-react';
 import { useParams, usePathname } from 'next/navigation';
 import { useEditorMaybe } from '@/components/editor/context/EditorInstance';
 import useEditorData from '@/hooks/use-editor-data';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from '@/lib/axios';
 import { notifications } from '@mantine/notifications';
 import Link from 'next/link';
@@ -14,6 +21,12 @@ import DeviceButtons from '@/components/editor/components/DeviceButtons';
 import { useAuth } from '@/hooks/auth';
 import RegisterUserModal from '@/app/demo/_components/RegisterUserModal';
 import { useDisclosure } from '@mantine/hooks';
+import SiteSettingsForm from '@/app/dashboard/(sites)/sites/_components/SiteSettingsForm';
+import DomainSettingsForm from '@/app/dashboard/(sites)/sites/_components/DomainSettingsForm';
+import DomainConfiguration from '@/app/dashboard/(sites)/sites/_components/DomainConfiguration';
+import Loading from '@/app/dashboard/(sites)/Loading';
+import ErrorMessage from '@/app/dashboard/(sites)/Error';
+import { SiteSettings } from '@/app/dashboard/(sites)/sites/[slug]/page';
 
 
 function SaveButton() {
@@ -86,13 +99,9 @@ function SaveButton() {
 }
 
 function PublishButton() {
-  const slug = usePathname();
 
-
-  const isDemo = slug === '/demo';
   const { user } = useAuth();
-  const [opened, { open, close }] = useDisclosure(false);
-  const [showSuccess, setShowSuccess] = useState(false);
+
   const params = useParams();
   const siteSlug = params.slug;
 
@@ -116,55 +125,95 @@ function PublishButton() {
       mutationFn:
         async () => await axios.post(`api/v1/sites/${siteSlug}/publish`, { projectId: siteSlug, data, pagesData }),
       onError:
-        () => {
-          notifications.show({
-            title: 'Error',
-            message: 'Something went wrong... Please try again!',
-            color: 'red',
-          });
-
+        (error) => {
+          // @ts-ignore
+          if (error.response.status === 422) {
+            // Assuming error.response.data contains `message` and `missingFields`
+            // @ts-ignore
+            const errorMessage = error.response.data.message || 'Validation error occurred';
+            // @ts-ignore
+            const missingFieldsMessage = error.response.data.missingFields ? ` Missing fields: ${error.response.data.missingFields.join(', ')}.` : '';
+            notifications.show({
+              title: 'Error',
+              message: `${errorMessage}${missingFieldsMessage}`,
+              color: 'red',
+            });
+          } else {
+            notifications.show({
+              title: 'Error',
+              message: 'Something went wrong... Please try again!',
+              color: 'red',
+            });
+          }
         },
       onSuccess: () => {
-        // On success, show the check icon
-        setShowSuccess(true);
-        // And hide it after 2 seconds
-        setTimeout(() => setShowSuccess(false), 2000);
+        notifications.show({
+          title: 'Success',
+          message: 'Your website has been successfully published',
+          color: 'green',
+        });
       },
     },
   );
-  console.log(user);
 
-  return (<><Tooltip label={user ? 'Publish Site' : 'Register before you can publish your site'}>
-      <Button
-        // disabled={!user}
-        loading={isPending} size="xs" onClick={open}>Publish</Button>
-    </Tooltip>
-      <Modal
-        opened={opened}
-        onClose={close}
-        centered
-        size="xl"
-        title="Header is sticky"
-        scrollAreaComponent={ScrollArea.Autosize}
-      >
-        <Tabs >
-          <Tabs.List>
-            <Tabs.Tab value="first">Domains</Tabs.Tab>
-            <Tabs.Tab value="second">Settings</Tabs.Tab>
-          </Tabs.List>
+  return <Button
+    disabled={!user}
+    loading={isPending} size="xs" onClick={() => mutate()}>Publish</Button>;
+}
 
-          <Tabs.Panel value="first">First panel</Tabs.Panel>
-          <Tabs.Panel value="second">Second panel</Tabs.Panel>
-        </Tabs>
+function SiteSettingsModal(props: {
+  opened: boolean,
+  onClose: () => void
+}) {
+  const params = useParams();
+  const siteSlug = params.slug;
 
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['siteSettings', siteSlug],
+    queryFn: async () => {
+      const { data } = await axios.get(`/api/v1/sites/settings/${siteSlug}`);
+      return data as SiteSettings;
+    },
+    enabled: props.opened, // Only fetch when modal is opened
+  });
 
-        <Button
-          disabled={!user}
-          loading={isPending} size="xs" onClick={() => mutate()}>Publish</Button>
-      </Modal>
+  return <Modal
+    opened={props.opened}
+    onClose={props.onClose}
+    title="Site settings"
+    scrollAreaComponent={ScrollArea.Autosize}
+  >
+    {isLoading && <Loading />}
+    {isError && <ErrorMessage />}
+    {data && <Tabs keepMounted={false} defaultValue="first">
+      <Tabs.List>
+        <Tabs.Tab value="first">General</Tabs.Tab>
+        <Tabs.Tab value="second">Domain</Tabs.Tab>
+      </Tabs.List>
+      <Tabs.Panel value="first">
+        {data && <SiteSettingsForm {...data} />}
+      </Tabs.Panel>
+      <Tabs.Panel value="second">
+        {data && <DomainSettingsForm {...data} />}
+        {data && <DomainConfiguration {...data} />}
+      </Tabs.Panel>
+    </Tabs>}
+  </Modal>;
+}
+
+function SiteSettingsButton() {
+  const [opened, { open, close }] = useDisclosure(false);
+  const user = useAuth();
+  return (
+    <>
+      <Tooltip label="Site settings">
+        <ActionIcon disabled={!user} onClick={open} variant="subtle">
+          <IconSettings size="1rem" />
+        </ActionIcon>
+      </Tooltip>
+      <SiteSettingsModal opened={opened} onClose={close} />
     </>
   );
-
 }
 
 function EditorHeader() {
@@ -204,6 +253,7 @@ function EditorHeader() {
             Lifetime deal 33% off</Button>}
           <Button disabled={!user} size="xs" variant="subtle"
                   leftSection={<IconExternalLink size="1rem" />}>Preview</Button>
+          <SiteSettingsButton />
           <SaveButton />
           <PublishButton />
         </div>

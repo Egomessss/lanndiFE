@@ -55,9 +55,7 @@ const Page = () => {
           {data && <DomainSettingsForm {...data} />}
           {data && <DomainConfiguration {...data} />}
         </Tabs.Panel>
-
       </Tabs>
-
     </div>
   );
 };
