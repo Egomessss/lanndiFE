@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { FormEventHandler, useEffect, useState } from 'react';
 import { ActionIcon, Anchor, Button, Modal, PasswordInput, TextInput, Tooltip } from '@mantine/core';
 import { IconAt, IconDeviceFloppy, IconPlus } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
@@ -12,14 +12,18 @@ import axios from '@/lib/axios';
 import { z } from 'zod';
 import Link from 'next/link';
 import { useAuth } from '@/hooks/auth';
+import { useEditorMaybe } from '@/components/editor/context/EditorInstance';
 
 
 const CreateSiteModal = () => {
+  const editor = useEditorMaybe();
   const [opened, { open, close }] = useDisclosure(false);
   const router = useRouter();
-  const queryClient = useQueryClient();
+
   const validSubdomainRegex = /^[a-zA-Z0-9]([a-zA-Z0-9-]{2,61}[a-zA-Z0-9])?$/;
+
   const formSchema = z.object({
+    // editorData: z.array(),
     subdomain: z.string()
       .optional()
       .refine((value) => !value || value.length > 3, {
@@ -43,8 +47,11 @@ const CreateSiteModal = () => {
       .max(63, { message: 'Password must be 63 or fewer characters long' }), // Maximum length check
   });
 
+  const editorData = editor?.getProjectData();
+
   const form = useForm({
     initialValues: {
+      editorData: editorData,
       subdomain: '',
       email: '',
       password: '',
@@ -52,9 +59,19 @@ const CreateSiteModal = () => {
     validate: zodResolver(formSchema),
   });
 
+  console.log(form.values);
+
+  useEffect(() => {
+    console.log('set value');
+    // This assumes getProjectData is synchronous; if not, adjust accordingly.
+    form.setValues({ editorData: editorData });
+  }, [open, editor]);
+
   const { mutate: register, isPending } = useMutation({
       mutationFn:
-        async () => await axios.post('/register', form.values),
+        async () => await axios.post('/register-demo',
+          form.values,
+        ),
       onSuccess:
         () => {
           notifications.show({
@@ -62,8 +79,10 @@ const CreateSiteModal = () => {
             message: 'Redirecting...',
             color: 'green',
           });
+          const twoWeeksInSeconds = 60 * 60 * 24 * 14;
+          // On successful login, set a cookie to last for 2 weeks
+          document.cookie = `isLoggedIn=true; path=/; max-age=${twoWeeksInSeconds}; secure; samesite=Strict`;
           router.push(`/editor/${form.values.subdomain}`);
-
         }
       ,
       onError:
@@ -85,7 +104,8 @@ const CreateSiteModal = () => {
     },
   );
 
-  const validateBeforeSubmit = () => {
+  const validateBeforeSubmit: FormEventHandler = (e) => {
+    e.preventDefault();
     form.validate();
     const isValid = form.isValid();
     if (isValid) {

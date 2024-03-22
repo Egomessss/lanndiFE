@@ -1,8 +1,8 @@
-import { ActionIcon, AppShell, Button, Modal, Popover, ScrollArea, Tabs, Tooltip } from '@mantine/core';
-import React, { useState } from 'react';
+import { ActionIcon, Anchor, AppShell, Button, Modal, Popover, ScrollArea, Tabs, Tooltip } from '@mantine/core';
+import React, { useEffect, useState } from 'react';
 import {
   IconArrowLeft,
-  IconCheck,
+  IconCheck, IconChevronDown,
   IconDeviceFloppy,
   IconExternalLink,
   IconFaceIdError,
@@ -27,13 +27,14 @@ import DomainConfiguration from '@/app/dashboard/(sites)/sites/_components/Domai
 import Loading from '@/app/dashboard/(sites)/Loading';
 import ErrorMessage from '@/app/dashboard/(sites)/Error';
 import { SiteSettings } from '@/app/dashboard/(sites)/sites/[slug]/page';
+import useUser from '@/hooks/use-user';
 
 
 function SaveButton() {
   const [showSuccess, setShowSuccess] = useState(false);
   const params = useParams();
   const siteSlug = params.slug;
-
+  const [showNotification, setShowNotification] = useState(false);
   const slug = usePathname();
 
   const user = slug === '/demo' ? null : true;
@@ -62,9 +63,9 @@ function SaveButton() {
       onError:
         () => {
           notifications.show({
+            color: 'red',
             title: 'Error',
             message: 'Something went wrong... Please try again!',
-            color: 'red',
           });
 
         },
@@ -76,8 +77,30 @@ function SaveButton() {
       },
     },
   );
+
+  useEffect(() => {
+    // Interval to show a notification every 5 minutes
+    const notificationInterval = setInterval(() => {
+      notifications.show({
+        title: 'Save your code',
+        message: 'Hey there, don\'t forget to save your code!',
+      });
+    }, 300000); // 300000 milliseconds = 5 minutes
+
+    // Timeout to show the action icon in red after 3 minutes
+    const redIconTimeout = setTimeout(() => {
+      setShowNotification(true); // Assuming this state controls the red icon display
+    }, 180000); // 180000 milliseconds = 3 minutes
+
+    // Cleanup function to clear the interval and timeout when the component unmounts or re-initializes
+    return () => {
+      clearInterval(notificationInterval);
+      clearTimeout(redIconTimeout);
+    };
+  }, []); // Empty dependency array ensures this effect runs only once after the initial render
+
   // Determine the color based on the mutation's state
-  const color = isError ? 'red' : showSuccess ? 'green' : 'blue';
+  const color = isError ? 'red' : showSuccess ? 'green' : showNotification ? 'red' : 'blue';
   console.log(isError);
   return (
     <>
@@ -100,7 +123,7 @@ function SaveButton() {
 
 function PublishButton() {
 
-  const { user } = useAuth();
+  const { user } = useUser();
 
   const params = useParams();
   const siteSlug = params.slug;
@@ -156,9 +179,37 @@ function PublishButton() {
     },
   );
 
-  return <Button
-    disabled={!user}
-    loading={isPending} size="xs" onClick={() => mutate()}>Publish</Button>;
+  return (
+    <Popover width={200} position="bottom" withArrow shadow="md">
+      <Popover.Target>
+        <Button
+          disabled={!user}
+          size="xs" rightSection={<IconChevronDown size="1rem" />}>Publish</Button>
+      </Popover.Target>
+      <Popover.Dropdown>
+        <div className="flex items-start gap-4 flex-col justify-start">
+          <div>
+            <p className="text-sm">lanndi subdomain</p>
+            <Anchor href="https://mantine.dev/" target="_blank">
+              random.lanndi.com
+            </Anchor>
+          </div>
+          <div>
+            <p className="text-sm">Custom domain</p>
+            <Anchor href="https://mantine.dev/" target="_blank">
+              lanndi.com
+            </Anchor>
+
+          </div>
+          <Button
+            fullWidth
+            disabled={!user}
+            loading={isPending} size="xs" onClick={() => mutate()}>Publish</Button></div>
+
+      </Popover.Dropdown>
+    </Popover>
+
+  );
 }
 
 function SiteSettingsModal(props: {
@@ -203,7 +254,7 @@ function SiteSettingsModal(props: {
 
 function SiteSettingsButton() {
   const [opened, { open, close }] = useDisclosure(false);
-  const user = useAuth();
+  const { user } = useUser();
   return (
     <>
       <Tooltip label="Site settings">
@@ -220,7 +271,7 @@ function EditorHeader() {
   const slug = usePathname();
 
   const isDemo = slug === '/demo';
-  const user = useAuth();
+  const { user } = useUser();
 
 
   return (
@@ -230,12 +281,12 @@ function EditorHeader() {
           <Button
             disabled={!user}
             component={Link}
-            href="https://lanndi.com"
+            href={isDemo ? 'https://lanndi.com' : '/'}
             variant="subtle"
             size="xs"
             leftSection={<IconArrowLeft size="1rem" />}
           >
-            Homepage
+            {isDemo ? 'Homepage' : 'Dashboard'}
           </Button>
 
         </div>
@@ -251,8 +302,10 @@ function EditorHeader() {
                              href="https://lanndi.lemonsqueezy.com/checkout/buy/2ddb7d73-91f4-4121-8413-c24ec6a3335c"
                              size="xs">Get
             Lifetime deal 33% off</Button>}
-          <Button disabled={!user} size="xs" variant="subtle"
-                  leftSection={<IconExternalLink size="1rem" />}>Preview</Button>
+          <Tooltip label="Open latest save preview">
+            <Button disabled={!user} size="xs" variant="subtle"
+                    leftSection={<IconExternalLink size="1rem" />}>Preview</Button>
+          </Tooltip>
           <SiteSettingsButton />
           <SaveButton />
           <PublishButton />

@@ -1,29 +1,17 @@
 'use client';
 
 
-import { useAuth } from '../../../hooks/auth';
 import Loading from './Loading';
 import { useDisclosure } from '@mantine/hooks';
-import { ActionIcon, AppShell, Avatar, Burger, Menu, NavLink, rem } from '@mantine/core';
-import {
-  IconAdjustmentsDollar,
-  IconCreditCard,
-  IconHome2,
-  IconLogout,
-  IconSettings,
-  IconUser,
-} from '@tabler/icons-react';
+import { ActionIcon, AppShell, Avatar, Burger, Loader, Menu, NavLink, rem } from '@mantine/core';
+import { IconAdjustmentsDollar, IconCreditCard, IconHome2, IconLogout, IconUser } from '@tabler/icons-react';
 import Link from 'next/link';
+import useUser from '../../../hooks/use-user';
 
 
 const layout = ({ children }) => {
   const [opened, { toggle }] = useDisclosure();
-  const { user, logout } = useAuth();
-  // console.log(user);
-
-  if (!user) {
-    return <Loading />;
-  }
+  const { user, logout } = useUser();
 
   return (
     <AppShell
@@ -41,7 +29,7 @@ const layout = ({ children }) => {
           <Link className="no-underline text-white font-bold text-xl" href="/public">
             lanndi
           </Link>
-          <Menu trigger="hover" openDelay={100} closeDelay={400}>
+          {!user ? <Loader size="xs" /> : <Menu trigger="hover" openDelay={100} closeDelay={400}>
             <Menu.Target>
               <Avatar color="blue" radius="xl">
                 <ActionIcon variant="transparent">
@@ -54,14 +42,15 @@ const layout = ({ children }) => {
               {/*    Account Settings*/}
               {/*</Menu.Item>*/}
               {/*<Menu.Divider />*/}
-              <Menu.Item onClick={logout}
-                         color="red"
-                         leftSection={<IconLogout style={{ width: rem(14), height: rem(14) }} />}
+              <Menu.Item
+                onClick={logout}
+                color="red"
+                leftSection={<IconLogout style={{ width: rem(14), height: rem(14) }} />}
               >
                 Logout
               </Menu.Item>
             </Menu.Dropdown>
-          </Menu>
+          </Menu>}
         </div>
 
       </AppShell.Header>

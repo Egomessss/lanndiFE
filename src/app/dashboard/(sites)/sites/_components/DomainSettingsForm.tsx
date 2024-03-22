@@ -101,6 +101,7 @@ function DomainSettingsForm({ domain, subdomain, slug }: SiteSettings) {
     }
   };
 
+  const plan = 'free';
 
   return <div className="w-full flex flex-col gap-4 my-10">
     <h2>Domain settings</h2>
@@ -113,12 +114,12 @@ function DomainSettingsForm({ domain, subdomain, slug }: SiteSettings) {
         rightSectionWidth={120}
         rightSection={<div>lanndi.com</div>}
       />
-      <TextInput
+      {plan !== 'free' && <TextInput
         label="Domain"
         description="Leave empty to remove your domain"
         placeholder="Insert site domain here..."
         {...form.getInputProps('domain')}
-      />
+      />}
       <Button onClick={validateBeforeSubmit} loading={isPending}>Save Changes</Button>
     </div>
   </div>;

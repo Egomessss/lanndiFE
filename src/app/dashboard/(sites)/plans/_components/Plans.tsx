@@ -1,11 +1,16 @@
-'use client';
 import React, { useState } from 'react';
-import { Button, Divider, Switch } from '@mantine/core';
+import { useQuery } from '@tanstack/react-query';
+import axios from '@/lib/axios';
+import Loading from '@/app/dashboard/(sites)/Loading';
+import ErrorMessage from '@/app/dashboard/(sites)/Error';
+import { Badge, Button, Divider, Switch } from '@mantine/core';
 import { IconCheck } from '@tabler/icons-react';
 import Link from 'next/link';
+interface PlansProps {
+  currentPlan: string;
+}
 
-const Plans = () => {
-  const [isAnnual, setIsAnnual] = useState(false);
+const Plans: React.FC<PlansProps> = ({ currentPlan }) => {
   const includedFeatures = [
     '5 websites',
     'Priority support',
@@ -41,15 +46,30 @@ const Plans = () => {
       features: ['15 sites', '10 pages max', 'custom domain'],
       url: '/checkout/freelancer',
     },
+
   ];
 
+  const [isAnnual, setIsAnnual] = useState(false);
 
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['checkout'],
+    queryFn: async () => {
+      const { data } = await axios.get(`/api/v1/checkout`);
+      return data;
+    },
+    staleTime: 0,
+    refetchOnWindowFocus: false,
+  });
+  console.log(data);
+
+  if (isLoading) return <Loading />;
+  if (isError) return <ErrorMessage />;
 
   return (
-    <div>
-
+    <>
       <div className="flex justify-center flex-col items-center w-full gap-8 my-4">
-        <h1>Pricing plans that fit your needs</h1>
+        <h1>Plans that fit your needs</h1>
+        <Badge variant="light" size="lg">Current plan - {currentPlan}</Badge>
         <div className="flex items-center gap-2">
           <p>Monthly</p>
           <Switch
@@ -114,9 +134,9 @@ const Plans = () => {
                   </ul>
 
                   <Button component="a"
-                          disabled
-                    // target="_blank"
-                    // href={data.attributes.url}
+                    // disabled
+                          target="_blank"
+                          href={data.checkoutUrl}
                   >
                     Buy lifetime deal
                   </Button>
@@ -136,8 +156,9 @@ const Plans = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
+
 };
 
 export default Plans;
