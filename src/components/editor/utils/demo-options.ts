@@ -12,10 +12,10 @@ import UtilsPlugin from '@/components/editor/plugins/utils/UtilsPlugin/utilsPlug
 import GoogleIcons from '@/components/editor/plugins/utils/GoogleIcons';
 import ScriptEditor from '@/components/editor/plugins/utils/ScriptEditor';
 import PostCss from '../plugins/utils/PostCss';
-import { starterTemplate } from '@/components/editor/templates/Starter';
+import { starterTemplate, styleStarterTemplate } from '@/components/editor/templates/Starter';
 
 
-export const editorConfigOptions = (data: EditorData , siteSlug:string, isDemo:boolean) => ({
+export const demoEditorConfigOptions = () => ({
   height: '100vh',
   undoManager: { trackSelection: false },
   deviceManager: {
@@ -45,6 +45,27 @@ export const editorConfigOptions = (data: EditorData , siteSlug:string, isDemo:b
       // { id: 'fit', name: 'Fit To Screen', width: '' },
     ],
   },
+  storageManager: {
+    type: 'local', // Type of the storage, available: 'local' | 'remote'
+    autosave: true, // Store data automatically
+    autoload: true, // Autoload stored data on init
+    stepsBeforeSave: 5, // If autosave enabled, indicates how many changes are necessary before store method is triggered
+    options: {
+      local: { // Options for the `local` type
+        key: 'lanndiProject', // The key for the local storage
+      },
+    },
+  },
+  projectData: {
+    assets: [],
+    pages: [
+      {
+        name: '/',
+        component: starterTemplate,
+        styles: styleStarterTemplate,
+      },
+    ],
+  },
   selectorManager: {
     stylePrefix: 'lnd-', componentFirst: false, states: [
       { name: 'hover', label: 'Hover', info: 'Change styles on user hover' },
@@ -53,24 +74,6 @@ export const editorConfigOptions = (data: EditorData , siteSlug:string, isDemo:b
     ],
   },
 
-  projectData: data?.data || []
-  // {
-  //   assets: [
-  //     'https://via.placeholder.com/350x250/78c5d6/fff',
-  //     'https://via.placeholder.com/350x250/459ba8/fff',
-  //     'https://via.placeholder.com/350x250/79c267/fff',
-  //     'https://via.placeholder.com/350x250/c5d647/fff',
-  //     'https://via.placeholder.com/350x250/f28c33/fff',
-  //   ],
-  //   pages: [
-  //     {
-  //       name: '/',
-  //       component: starterTemplate,
-  //       styles: styleStarterTemplate,
-  //     },
-  //   ],
-  // }
-  ,
   plugins: [
     zoomPlugin,
     LayoutBlocks,
@@ -91,7 +94,6 @@ export const editorConfigOptions = (data: EditorData , siteSlug:string, isDemo:b
     UtilsPlugin,
     // Grid
   ],
-
   styleManager: {
     custom: true,
     sectors: [
@@ -537,7 +539,7 @@ export const editorConfigOptions = (data: EditorData , siteSlug:string, isDemo:b
             type: 'composite',
             label: 'Padding', // Label for the property
             property: 'padding', // CSS property to change
-            detached:true,
+            detached: true,
             properties: [
               {
                 type: 'base',
@@ -792,7 +794,7 @@ export const editorConfigOptions = (data: EditorData , siteSlug:string, isDemo:b
             type: 'composite',
             label: 'Radius', // Label for the property
             property: 'border-radius', // CSS property to change
-            detached:true,
+            detached: true,
             properties: [
               {
                 type: 'base',

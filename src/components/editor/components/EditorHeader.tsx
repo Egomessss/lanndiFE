@@ -45,14 +45,13 @@ function SaveButton() {
   const [notificationIntervalId, setNotificationIntervalId] = useState<NodeJS.Timeout | number | null>(null);
   const [redIconTimeoutId, setRedIconTimeoutId] = useState<NodeJS.Timeout | number | null>(null);
 
-
   const editor = useEditorMaybe();
 
   const data = editor?.getProjectData();
   // console.log("data",data)
 
-  // const { data: isFirstTimeSaving } = useEditorData();
-  const isFirstTimeSaving = true;
+  const { data: isNotFirstTimeSaving } = useEditorData();
+
   const resetTimers = () => {
     // Clear existing timers
     if (notificationIntervalId !== null) clearInterval(notificationIntervalId as number);
@@ -75,9 +74,9 @@ function SaveButton() {
 
   const { mutate, isError, isPending } = useMutation({
       mutationFn: async () => {
-        const endpoint = `api/v1/sites/editor/${siteSlug}/`;
-        const url = isFirstTimeSaving ? `${endpoint}update` : `${endpoint}store`; // Adjust 'update' and 'store' as per your API endpoints
-        const method = isFirstTimeSaving ? 'patch' : 'post';
+        const endpoint = `api/v1/editor/${siteSlug}/`;
+        const url = isNotFirstTimeSaving ? `${endpoint}update` : `${endpoint}store`; // Adjust 'update' and 'store' as per your API endpoints
+        const method = isNotFirstTimeSaving ? 'patch' : 'post';
 
         // Perform the request with the appropriate method and URL
         await axios({
@@ -106,7 +105,6 @@ function SaveButton() {
     },
   );
 
-
   useEffect(() => {
     resetTimers(); // Initialize timers
 
@@ -118,7 +116,7 @@ function SaveButton() {
   }, []); // Ensures this effect runs only once after the initial render
   // Determine the color based on the mutation's state
   const color = isError ? 'red' : showSuccess ? 'green' : showNotification ? 'red' : 'blue';
-  console.log(isError);
+
   return (
     <>
       {user ? <Tooltip label="Save changes">
@@ -138,7 +136,7 @@ function SaveButton() {
   );
 };
 
-function PublishButton() {
+function PublishButton({ siteData }: any) {
 
   const { user } = useUser();
 
@@ -197,7 +195,8 @@ function PublishButton() {
   );
 
   return (
-    <Popover width={200} position="bottom" withArrow shadow="md">
+    <Popover position="left-start"
+             offset={6} width={400} withArrow shadow="md">
       <Popover.Target>
         <Button
           disabled={!user}
@@ -205,23 +204,29 @@ function PublishButton() {
       </Popover.Target>
       <Popover.Dropdown>
         <div className="flex items-start gap-4 flex-col justify-start">
-          <div>
-            <p className="text-sm">lanndi subdomain</p>
-            <Anchor href="https://mantine.dev/" target="_blank">
-              random.lanndi.com
-            </Anchor>
-          </div>
-          <div>
-            <p className="text-sm">Custom domain</p>
-            <Anchor href="https://mantine.dev/" target="_blank">
-              lanndi.com
-            </Anchor>
+          {siteData ?
+            <div>
+              <p className="text-sm">lanndi subdomain</p>
+              <Anchor href="https://mantine.dev/" target="_blank">
+                {siteData.subdomain !== null ? siteData.subdomain : 'No subdomain yet'}
+              </Anchor>
+              <p className="text-sm">Custom domain</p>
+              <Anchor href="https://mantine.dev/" target="_blank">
+                {siteData.domain !== null ? siteData.domain : 'No domain assigned yet'}
+              </Anchor>
+            </div> : 'No domain or subdomain assigned yet'}
+          {siteData && <>
+            {!siteData.title && !siteData.description &&
+              <p className="text-xs text-red-500">Add a title and description to your site settings before you can
+                publish
+                your website</p>}
+            <Button
+              fullWidth
+              disabled={!user || !siteData.title && !siteData.description}
+              loading={isPending} size="xs" onClick={() => mutate()}>Publish</Button>
+          </>}
 
-          </div>
-          <Button
-            fullWidth
-            disabled={!user}
-            loading={isPending} size="xs" onClick={() => mutate()}>Publish</Button></div>
+        </div>
 
       </Popover.Dropdown>
     </Popover>
@@ -232,44 +237,37 @@ function PublishButton() {
 function SiteSettingsModal(props: {
   opened: boolean,
   onClose: () => void
+  data: SiteSettings
 }) {
-  const params = useParams();
-  const siteSlug = params.slug;
 
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ['siteSettings', siteSlug],
-    queryFn: async () => {
-      const { data } = await axios.get(`/api/v1/sites/settings/${siteSlug}`);
-      return data as SiteSettings;
-    },
-    enabled: props.opened, // Only fetch when modal is opened
-  });
+  const { opened, onClose, data } = props; // Destructuring for easier access
+
 
   return <Modal
-    opened={props.opened}
-    onClose={props.onClose}
+    opened={opened}
+    onClose={onClose}
     title="Site settings"
     scrollAreaComponent={ScrollArea.Autosize}
+    size="xl"
   >
-    {isLoading && <Loading />}
-    {isError && <ErrorMessage />}
-    {data && <Tabs keepMounted={false} defaultValue="first">
+
+    <Tabs keepMounted={false} defaultValue="first">
       <Tabs.List>
         <Tabs.Tab value="first">General</Tabs.Tab>
         <Tabs.Tab value="second">Domain</Tabs.Tab>
       </Tabs.List>
       <Tabs.Panel value="first">
-        {data && <SiteSettingsForm {...data} />}
+        <SiteSettingsForm {...data} />
       </Tabs.Panel>
       <Tabs.Panel value="second">
-        {data && <DomainSettingsForm {...data} />}
-        {data && <DomainConfiguration {...data} />}
+        <DomainSettingsForm {...data} />
+        <DomainConfiguration {...data} />
       </Tabs.Panel>
-    </Tabs>}
+    </Tabs>
   </Modal>;
 }
 
-function SiteSettingsButton() {
+function SiteSettingsButton({ data }: any) {
   const [opened, { open, close }] = useDisclosure(false);
   const { user } = useUser();
   return (
@@ -279,7 +277,7 @@ function SiteSettingsButton() {
           <IconSettings size="1rem" />
         </ActionIcon>
       </Tooltip>
-      <SiteSettingsModal opened={opened} onClose={close} />
+      {data && <SiteSettingsModal data={data} opened={opened} onClose={close} />}
     </>
   );
 }
@@ -290,6 +288,17 @@ function EditorHeader() {
   const isDemo = slug === '/demo';
   const { user } = useUser();
 
+  const params = useParams();
+  const siteSlug = params.slug;
+
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['siteSettings', siteSlug],
+    queryFn: async () => {
+      const { data } = await axios.get(`/api/v1/sites/settings/${siteSlug}`);
+      return data as SiteSettings;
+    },
+    enabled: !isDemo,
+  });
 
   return (
     <AppShell.Header>
@@ -319,13 +328,14 @@ function EditorHeader() {
                              href="https://lanndi.lemonsqueezy.com/checkout/buy/2ddb7d73-91f4-4121-8413-c24ec6a3335c"
                              size="xs">Get
             Lifetime deal 33% off</Button>}
-          <Tooltip label="Open latest save preview">
-            <Button disabled={!user} size="xs" variant="subtle"
+          <Tooltip color="gray" label="Open latest save preview">
+            <Button component="a" href={`https://preview.${data?.subdomain}.lanndi.com`} target="_blank"
+                    disabled={!user} size="xs" variant="subtle"
                     leftSection={<IconExternalLink size="1rem" />}>Preview</Button>
           </Tooltip>
-          <SiteSettingsButton />
+          <SiteSettingsButton data={data} />
           <SaveButton />
-          <PublishButton />
+          <PublishButton siteData={data} />
         </div>
       </div>
     </AppShell.Header>);

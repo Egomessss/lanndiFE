@@ -22,6 +22,9 @@ const CreateSiteModal = () => {
 
   const validSubdomainRegex = /^[a-zA-Z0-9]([a-zA-Z0-9-]{2,61}[a-zA-Z0-9])?$/;
 
+  const { csrf } = useAuth();
+
+
   const formSchema = z.object({
     // editorData: z.array(),
     subdomain: z.string()
@@ -59,21 +62,21 @@ const CreateSiteModal = () => {
     validate: zodResolver(formSchema),
   });
 
-  console.log(form.values);
 
   useEffect(() => {
-    console.log('set value');
     // This assumes getProjectData is synchronous; if not, adjust accordingly.
     form.setValues({ editorData: editorData });
   }, [open, editor]);
 
   const { mutate: register, isPending } = useMutation({
-      mutationFn:
-        async () => await axios.post('/register-demo',
-          form.values,
-        ),
-      onSuccess:
-        () => {
+    mutationFn: async () => {
+      await csrf(); // Ensure CSRF setup
+      const response = await axios.post('/register-demo', form.values);
+      return response.data; // Return the Axios response data
+    },
+    onSuccess: (data) => {
+          // @ts-ignore
+          console.log('response', data);
           notifications.show({
             title: 'Success!',
             message: 'Redirecting...',
@@ -82,7 +85,8 @@ const CreateSiteModal = () => {
           const twoWeeksInSeconds = 60 * 60 * 24 * 14;
           // On successful login, set a cookie to last for 2 weeks
           document.cookie = `isLoggedIn=true; path=/; max-age=${twoWeeksInSeconds}; secure; samesite=Strict`;
-          router.push(`/editor/${form.values.subdomain}`);
+          // @ts-ignore
+          router.push(`/editor/${data.slug}`);
         }
       ,
       onError:

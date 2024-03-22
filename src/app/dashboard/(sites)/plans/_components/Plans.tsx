@@ -29,7 +29,7 @@ const Plans: React.FC<PlansProps> = ({ currentPlan }) => {
       name: 'Basic',
       priceMonthly: 9,
       priceAnnual: 99,
-      features: ['1 site', '10 pages max', 'custom domain'],
+      features: ['2 sites', '10 pages max', 'custom domain'],
       url: '/checkout/basic',
     },
     {

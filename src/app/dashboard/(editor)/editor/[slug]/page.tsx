@@ -34,6 +34,7 @@ export default function CustomEditor() {
         return <EditorLoading />; // Replace this with your loading component
     }
 
+    const isDemo = false
 
     return (
         <GjsEditor
@@ -41,7 +42,7 @@ export default function CustomEditor() {
             grapesjsCss="https://unpkg.com/grapesjs/dist/css/grapes.min.css"
             onEditor={onEditor}
             // @ts-ignore
-            options={editorConfigOptions(data!, siteSlug)}
+            options={editorConfigOptions(data!, siteSlug, isDemo)}
         >
             <div className="absolute h-full w-full overflow-y-hidden">
                 <AppShell

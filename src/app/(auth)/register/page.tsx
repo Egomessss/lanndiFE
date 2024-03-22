@@ -11,10 +11,11 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { FormEventHandler } from 'react';
 import useUser from '@/hooks/use-user';
+import { useAuth } from '@/hooks/auth';
 
 const Page = () => {
   const router = useRouter();
-
+  const { csrf } = useAuth();
   const formSchema = z.object({
     email: z.string()
       .email({ message: 'Invalid email address' }) // Ensure the string is a valid email
@@ -35,8 +36,13 @@ const Page = () => {
 
 
   const { mutate: register, isPending } = useMutation({
-      mutationFn:
-        async () => await axios.post('/register', form.values),
+      mutationFn: async () => {
+        // Assuming crsf() is an async function that sets up CSRF tokens
+        await csrf();
+        // Now, make your Axios POST request
+        const response = await axios.post('/register', form.values);
+        return response.data;
+      },
       onSuccess:
         () => {
           const twoWeeksInSeconds = 60 * 60 * 24 * 14;
@@ -65,7 +71,7 @@ const Page = () => {
   );
 
   const validateBeforeSubmit: FormEventHandler = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     form.validate();
     const isValid = form.isValid();
     if (isValid) {
@@ -87,7 +93,7 @@ const Page = () => {
         label="Password"
         {...form.getInputProps('password')}
       />
-      <Anchor component={Link}  size="sm" href="/login">
+      <Anchor component={Link} size="sm" href="/login">
         Already registered?
       </Anchor>
       <Button loading={isPending} type="submit">Register</Button>

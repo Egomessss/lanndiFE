@@ -19,9 +19,9 @@ import { useAuth } from '@/hooks/auth';
 
 function SubmitAsset() {
 
-  const slug = usePathname()
+  const slug = usePathname();
 
-  const user = slug === '/demo' ? null : true
+  const user = slug === '/demo' ? null : true;
 
   const editor = useEditor();
   const params = useParams();
@@ -62,7 +62,7 @@ function SubmitAsset() {
         }
 
         // Use Axios to send formData
-        return await axios.post(`/api/v1/sites/assets/${siteSlug}/store`, formData, {
+        return await axios.post(`/api/v1/editor/assets/${siteSlug}/store`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data', // This is important
           },

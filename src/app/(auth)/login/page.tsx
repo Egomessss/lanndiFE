@@ -13,6 +13,7 @@ import { useMutation } from '@tanstack/react-query';
 import axios from '@/lib/axios';
 import { notifications } from '@mantine/notifications';
 import { SocialButtons } from '@/components/auth/SocialButtons/SocialButtons';
+import { useAuth } from '@/hooks/auth';
 
 interface FormErrors {
   email?: string;
@@ -24,6 +25,7 @@ const Login = () => {
 
 
   const router = useRouter();
+  const { csrf } = useAuth();
 
   const form = useForm({
     initialValues: {
@@ -34,8 +36,13 @@ const Login = () => {
   });
 
   const { mutate: login, isPending } = useMutation({
-      mutationFn:
-        async () => await axios.post('/login', form.values),
+      mutationFn: async () => {
+        // Assuming crsf() is an async function that sets up CSRF tokens
+        await csrf();
+        // Now, make your Axios POST request
+        const response = await axios.post('/login', form.values);
+        return response.data;
+      },
       onSuccess:
         () => {
           const twoWeeksInSeconds = 60 * 60 * 24 * 14;

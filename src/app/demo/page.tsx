@@ -1,22 +1,15 @@
 'use client';
 import grapesjs, { Editor } from 'grapesjs';
-import { AppShell, Loader } from '@mantine/core';
+import { AppShell } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import GjsEditor, { AssetsProvider, Canvas, ModalProvider } from '@/components/editor/wrappers';
 import LeftSideBar from '@/components/editor/components/LeftSideBar';
 import RightSideBar from '@/components/editor/components/RightSideBar';
 import EditorHeader from '@/components/editor/components/EditorHeader';
-import axios from '@/lib/axios';
-import { useQuery } from '@tanstack/react-query';
-import Loading from '@/app/dashboard/(sites)/Loading';
-import ErrorMessage from '@/app/dashboard/(sites)/Error';
-import { useParams } from 'next/navigation';
 import CustomAssetManager from '@/components/editor/components/CustomAssetManager';
 import CustomModal from '@/components/editor/components/CustomModal';
-import { editorConfigOptions } from '@/components/editor/utils/options';
-import useEditorData from '@/hooks/use-editor-data';
-import { useAuth } from '@/hooks/auth';
 import { EditorLoading } from '@/components/common/EditorLoading';
+import { demoEditorConfigOptions } from '@/components/editor/utils/demo-options';
 
 
 export default function CustomEditor() {
@@ -51,13 +44,15 @@ export default function CustomEditor() {
   }
 
 
+
+
   return (
     <GjsEditor
       grapesjs={grapesjs}
       grapesjsCss="https://unpkg.com/grapesjs/dist/css/grapes.min.css"
       onEditor={onEditor}
       // @ts-ignore
-      options={editorConfigOptions(data!)}
+      options={demoEditorConfigOptions()}
     >
       <div className="absolute h-full w-full overflow-y-hidden">
         <AppShell
