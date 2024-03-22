@@ -31,13 +31,20 @@ import useUser from '@/hooks/use-user';
 
 
 function SaveButton() {
-  const [showSuccess, setShowSuccess] = useState(false);
+
   const params = useParams();
   const siteSlug = params.slug;
-  const [showNotification, setShowNotification] = useState(false);
+
   const slug = usePathname();
 
   const user = slug === '/demo' ? null : true;
+
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
+  // Additional state to store interval and timeout IDs
+  const [notificationIntervalId, setNotificationIntervalId] = useState<NodeJS.Timeout | number | null>(null);
+  const [redIconTimeoutId, setRedIconTimeoutId] = useState<NodeJS.Timeout | number | null>(null);
+
 
   const editor = useEditorMaybe();
 
@@ -46,6 +53,25 @@ function SaveButton() {
 
   // const { data: isFirstTimeSaving } = useEditorData();
   const isFirstTimeSaving = true;
+  const resetTimers = () => {
+    // Clear existing timers
+    if (notificationIntervalId !== null) clearInterval(notificationIntervalId as number);
+    if (redIconTimeoutId !== null) clearTimeout(redIconTimeoutId as number);
+
+    // Set new timers
+    const newIntervalId = setInterval(() => {
+      // Notification logic
+    }, 300000); // 5 minutes
+
+    const newTimeoutId = setTimeout(() => {
+      setShowNotification(true);
+    }, 180000); // 3 minutes
+
+    // Save the IDs of the new timers
+    setNotificationIntervalId(newIntervalId);
+    setRedIconTimeoutId(newTimeoutId);
+  };
+
 
   const { mutate, isError, isPending } = useMutation({
       mutationFn: async () => {
@@ -74,31 +100,22 @@ function SaveButton() {
         setShowSuccess(true);
         // And hide it after 2 seconds
         setTimeout(() => setShowSuccess(false), 2000);
+        // Reset timers on success
+        resetTimers();
       },
     },
   );
 
+
   useEffect(() => {
-    // Interval to show a notification every 5 minutes
-    const notificationInterval = setInterval(() => {
-      notifications.show({
-        title: 'Save your code',
-        message: 'Hey there, don\'t forget to save your code!',
-      });
-    }, 300000); // 300000 milliseconds = 5 minutes
+    resetTimers(); // Initialize timers
 
-    // Timeout to show the action icon in red after 3 minutes
-    const redIconTimeout = setTimeout(() => {
-      setShowNotification(true); // Assuming this state controls the red icon display
-    }, 180000); // 180000 milliseconds = 3 minutes
-
-    // Cleanup function to clear the interval and timeout when the component unmounts or re-initializes
+    // Cleanup function to clear the interval and timeout
     return () => {
-      clearInterval(notificationInterval);
-      clearTimeout(redIconTimeout);
+      if (notificationIntervalId !== null) clearInterval(notificationIntervalId);
+      if (redIconTimeoutId !== null) clearTimeout(redIconTimeoutId);
     };
-  }, []); // Empty dependency array ensures this effect runs only once after the initial render
-
+  }, []); // Ensures this effect runs only once after the initial render
   // Determine the color based on the mutation's state
   const color = isError ? 'red' : showSuccess ? 'green' : showNotification ? 'red' : 'blue';
   console.log(isError);
@@ -119,7 +136,7 @@ function SaveButton() {
       }
     </>
   );
-}
+};
 
 function PublishButton() {
 
