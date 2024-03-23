@@ -105,7 +105,7 @@ export default function StylePropertyField({
   const value = prop.getValue();
   const valueString = hasValue ? value : '';
   const valueWithDef = hasValue ? value : defValue;
-  console.log('property', prop.getName(), 'value', value);
+  // console.log('property', prop.getName(), 'value', value);
 
   let inputToRender = (
     <Input

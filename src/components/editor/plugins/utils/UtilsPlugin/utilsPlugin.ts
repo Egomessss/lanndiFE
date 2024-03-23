@@ -21,7 +21,7 @@ export default (editor: Editor, opts = {}) => {
         tagName: 'div',
         name: 'Wrapper Div',
         attributes: { class: wrappersLength === 0 ? 'wrapper' : `wrapper-${wrappersLength + 1}` },
-        icon:`<svg  xmlns="http://www.w3.org/2000/svg"  width="12"  height="12"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-box"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" /><path d="M12 12l8 -4.5" /><path d="M12 12l0 9" /><path d="M12 12l-8 -4.5" /></svg>`,
+        icon: `<svg  xmlns="http://www.w3.org/2000/svg"  width="12"  height="12"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-box"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" /><path d="M12 12l8 -4.5" /><path d="M12 12l0 9" /><path d="M12 12l-8 -4.5" /></svg>`,
         // Additional properties for the 'div', like classes, styles, etc.
       });
 
@@ -84,7 +84,16 @@ export default (editor: Editor, opts = {}) => {
       'font-family',
     ]);
 
-    editor.getWrapper()?.setStyle({ height: '2000px' })
+    editor.getWrapper()?.setStyle({ height: '2000px' });
+
+    console.log('wrapper', editor.getWrapper()?.getStyle('height'));
+
+    const bodyHeight = editor.Canvas.getBody().clientHeight;
+
+    // const bodyHeight = editor.getWrapper()?.getStyle();
+    //
+    editor.Canvas.getFrame().set('height', bodyHeight);
+
   });
 
   // editor.StyleManager.addBuiltIn('font-family', {
@@ -95,5 +104,24 @@ export default (editor: Editor, opts = {}) => {
 
   editor.Canvas.setZoom(60);
   editor.Canvas.setCoords(-140, -100);
+
+  // Function to update the frame height based on the body's client height
+
+
+  // Use ResizeObserver to watch for changes in the body's size, if the editor exists
+  // const resizeObserver = new ResizeObserver(entries => {
+  //   // Assuming there's only one element (body) being observed
+  //   for (let entry of entries) {
+  //     // Check if the contentRect size is what we're observing
+  //     if (entry.contentRect) {
+  //       updateFrameHeight();
+  //     }
+  //   }
+  // });
+  //
+  // // Start observing the body element
+  // const bodyElement = editor.Canvas.getBody();
+  // resizeObserver.observe(bodyElement);
+
 
 }

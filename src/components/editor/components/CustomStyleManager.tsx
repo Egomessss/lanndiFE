@@ -24,25 +24,6 @@ export default function CustomStyleManager({
   const editor = useEditor();
 
 
-  const updateFrameHeight = () => {
-    const bodyHeight = editor.Canvas.getBody().clientHeight;
-    editor.Canvas.getFrame().set('height', bodyHeight);
-  };
-
-// Use ResizeObserver to watch for changes in the body's size
-  const resizeObserver = new ResizeObserver(entries => {
-    // Assuming there's only one element (body) being observed
-    for (let entry of entries) {
-      // Check if the contentRect size is what we're observing
-      if (entry.contentRect) {
-        updateFrameHeight();
-      }
-    }
-  });
-
-// Start observing the body element
-  const bodyElement = editor.Canvas.getBody();
-  resizeObserver.observe(bodyElement);
 
   const sm = editor.StyleManager;
 
@@ -82,7 +63,6 @@ export default function CustomStyleManager({
     const sector = sm?.getSector('gridItem');
     sector?.setOpen(false);
   }
-
 
   // Check if there are any sectors
   if (sectors.length === 0) {

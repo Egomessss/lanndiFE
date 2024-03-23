@@ -34,7 +34,7 @@ export default function CustomSelectorManager({
   });
 
   const [search, setSearch] = useState('');
-  console.log('search',search);
+
 
   const exactOptionMatch = allSelectors.some((item) => item === search);
 

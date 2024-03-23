@@ -20,7 +20,7 @@ import CommandButtons from '@/components/editor/components/TopBarButtons';
 import DeviceButtons from '@/components/editor/components/DeviceButtons';
 import { useAuth } from '@/hooks/auth';
 import RegisterUserModal from '@/app/demo/_components/RegisterUserModal';
-import { useDisclosure } from '@mantine/hooks';
+import { useDisclosure, useIdle } from '@mantine/hooks';
 import SiteSettingsForm from '@/app/dashboard/(sites)/sites/_components/SiteSettingsForm';
 import DomainSettingsForm from '@/app/dashboard/(sites)/sites/_components/DomainSettingsForm';
 import DomainConfiguration from '@/app/dashboard/(sites)/sites/_components/DomainConfiguration';
@@ -40,10 +40,6 @@ function SaveButton() {
   const user = slug === '/demo' ? null : true;
 
   const [showSuccess, setShowSuccess] = useState(false);
-  const [showNotification, setShowNotification] = useState(false);
-  // Additional state to store interval and timeout IDs
-  const [notificationIntervalId, setNotificationIntervalId] = useState<NodeJS.Timeout | number | null>(null);
-  const [redIconTimeoutId, setRedIconTimeoutId] = useState<NodeJS.Timeout | number | null>(null);
 
   const editor = useEditorMaybe();
 
@@ -51,25 +47,6 @@ function SaveButton() {
   // console.log("data",data)
 
   const { data: isNotFirstTimeSaving } = useEditorData();
-
-  const resetTimers = () => {
-    // Clear existing timers
-    if (notificationIntervalId !== null) clearInterval(notificationIntervalId as number);
-    if (redIconTimeoutId !== null) clearTimeout(redIconTimeoutId as number);
-
-    // Set new timers
-    const newIntervalId = setInterval(() => {
-      // Notification logic
-    }, 300000); // 5 minutes
-
-    const newTimeoutId = setTimeout(() => {
-      setShowNotification(true);
-    }, 180000); // 3 minutes
-
-    // Save the IDs of the new timers
-    setNotificationIntervalId(newIntervalId);
-    setRedIconTimeoutId(newTimeoutId);
-  };
 
 
   const { mutate, isError, isPending } = useMutation({
@@ -98,29 +75,34 @@ function SaveButton() {
         // On success, show the check icon
         setShowSuccess(true);
         // And hide it after 2 seconds
-        setTimeout(() => setShowSuccess(false), 2000);
+        setTimeout(() => setShowSuccess(false), 30000);
         // Reset timers on success
-        resetTimers();
       },
     },
   );
 
-  useEffect(() => {
-    resetTimers(); // Initialize timers
+  const idle = useIdle(1200000);
 
-    // Cleanup function to clear the interval and timeout
-    return () => {
-      if (notificationIntervalId !== null) clearInterval(notificationIntervalId);
-      if (redIconTimeoutId !== null) clearTimeout(redIconTimeoutId);
-    };
-  }, []); // Ensures this effect runs only once after the initial render
+  // Automatically save every 10 minutes, but only if the user has not been idle for over 20 minutes
+  useEffect(() => {
+    const saveIntervalId = setInterval(() => {
+      if (!idle) {
+        mutate(); // Only call mutate if the user is not idle
+      }
+    }, 600000); // 10 minutes in milliseconds
+
+    // Cleanup: Clear the interval when the component unmounts
+    return () => clearInterval(saveIntervalId);
+  }, [mutate, idle]); // Dependency array: this effect depends on the `mutate` function and `idle` state
+
+
   // Determine the color based on the mutation's state
-  const color = isError ? 'red' : showSuccess ? 'green' : showNotification ? 'red' : 'blue';
+  const color = isError ? 'red' : showSuccess ? 'green' : 'blue';
 
   return (
     <>
-      {user ? <Tooltip label="Save changes">
-          <ActionIcon loading={isPending} className={!showSuccess ? 'animate-pulse' : ''}
+      {user ? <Tooltip color="gray" label="Save changes - Saved automatically every 10 minutes">
+          <ActionIcon disabled={showSuccess} loading={isPending} className={!showSuccess ? 'animate-pulse' : ''}
                       color={color}
                       onClick={() => mutate()}
                       variant="subtle">
@@ -314,7 +296,10 @@ function EditorHeader() {
           >
             {isDemo ? 'Homepage' : 'Dashboard'}
           </Button>
-
+          {isDemo && <Button color="red" component="a" target="_blank"
+                             href="https://lanndi.lemonsqueezy.com/checkout/buy/2ddb7d73-91f4-4121-8413-c24ec6a3335c"
+                             size="xs">Get
+            lifetime deal 33% off</Button>}
         </div>
         <div className="flex items-center gap-4">
           <DeviceButtons />
@@ -324,10 +309,7 @@ function EditorHeader() {
         </div>
 
         <div className="flex w-full items-center justify-end gap-4">
-          {isDemo && <Button color="red" component="a" target="_blank"
-                             href="https://lanndi.lemonsqueezy.com/checkout/buy/2ddb7d73-91f4-4121-8413-c24ec6a3335c"
-                             size="xs">Get
-            Lifetime deal 33% off</Button>}
+
           <Tooltip color="gray" label="Open latest save preview">
             <Button component="a" href={`https://preview.${data?.subdomain}.lanndi.com`} target="_blank"
                     disabled={!user} size="xs" variant="subtle"
