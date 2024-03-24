@@ -11,18 +11,20 @@ import ErrorMessage from '@/app/dashboard/(sites)/Error';
 import { SiteSettings } from '@/app/dashboard/(sites)/sites/[slug]/page';
 import Plans from '@/app/dashboard/(sites)/plans/_components/Plans';
 
+type Plans = {
+  currentPlan: string
+  latestSavedSiteSlug: string | null
+}
+
 
 const PricingTable = () => {
 
-
-  const currentPlan = 'free';
-  const lastSiteSaved = 'random';
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['plans'],
     queryFn: async () => {
       const { data } = await axios.get(`/api/v1/plans`);
-      return data;
+      return data as Plans;
     },
   });
 
@@ -32,9 +34,10 @@ const PricingTable = () => {
 
   return (
     <div>
-      <Button href={data?.latestSavedSiteSlug} component={Link} leftSection={<IconArrowLeft size="1rem" />}>Back to
-        editor</Button>
-      <Plans currentPlan={currentPlan} />
+      {data?.latestSavedSiteSlug && <Button href={`editor/${data?.latestSavedSiteSlug}`} component={Link}
+                                            leftSection={<IconArrowLeft size="1rem" />}>Back to
+        editor</Button>}
+      {data && <Plans currentPlan={data.currentPlan} />}
     </div>
   );
 };

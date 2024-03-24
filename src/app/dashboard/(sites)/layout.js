@@ -12,7 +12,7 @@ import useUser from '../../../hooks/use-user';
 const layout = ({ children }) => {
   const [opened, { toggle }] = useDisclosure();
   const { user, logout } = useUser();
-
+  console.log(user);
   return (
     <AppShell
       header={{ height: { base: 60 } }}
@@ -56,16 +56,19 @@ const layout = ({ children }) => {
       </AppShell.Header>
       <AppShell.Navbar>
         <NavLink
+          component={Link}
           href="/"
           label="Sites"
           leftSection={<IconHome2 size="1rem" stroke={1.5} />}
         />
         <NavLink
+          component={Link}
           href="/plans"
           label="Plans"
           leftSection={<IconAdjustmentsDollar size="1rem" stroke={1.5} />}
         />
         <NavLink
+          component={Link}
           href="/billing"
           label="Billing Portal"
           leftSection={<IconCreditCard size="1rem" stroke={1.5} />}

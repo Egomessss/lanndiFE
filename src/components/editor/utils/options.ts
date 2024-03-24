@@ -15,7 +15,7 @@ import PostCss from '../plugins/utils/PostCss';
 import { starterTemplate } from '@/components/editor/templates/Starter';
 
 
-export const editorConfigOptions = (data: EditorData , siteSlug:string, isDemo:boolean) => ({
+export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: boolean) => ({
   height: '100vh',
   undoManager: { trackSelection: false },
   deviceManager: {
@@ -53,23 +53,22 @@ export const editorConfigOptions = (data: EditorData , siteSlug:string, isDemo:b
     ],
   },
 
-  projectData: data?.data || []
-  // {
-  //   assets: [
-  //     'https://via.placeholder.com/350x250/78c5d6/fff',
-  //     'https://via.placeholder.com/350x250/459ba8/fff',
-  //     'https://via.placeholder.com/350x250/79c267/fff',
-  //     'https://via.placeholder.com/350x250/c5d647/fff',
-  //     'https://via.placeholder.com/350x250/f28c33/fff',
-  //   ],
-  //   pages: [
-  //     {
-  //       name: '/',
-  //       component: starterTemplate,
-  //       styles: styleStarterTemplate,
-  //     },
-  //   ],
-  // }
+  projectData: data?.data ||
+    {
+      assets: [
+        'https://via.placeholder.com/350x250/78c5d6/fff',
+        'https://via.placeholder.com/350x250/459ba8/fff',
+        'https://via.placeholder.com/350x250/79c267/fff',
+        'https://via.placeholder.com/350x250/c5d647/fff',
+        'https://via.placeholder.com/350x250/f28c33/fff',
+      ],
+      pages: [
+        {
+          name: 'Home',
+          slug: 'index',
+        },
+      ],
+    }
   ,
   plugins: [
     zoomPlugin,
@@ -537,7 +536,7 @@ export const editorConfigOptions = (data: EditorData , siteSlug:string, isDemo:b
             type: 'composite',
             label: 'Padding', // Label for the property
             property: 'padding', // CSS property to change
-            detached:true,
+            detached: true,
             properties: [
               {
                 type: 'base',
@@ -792,7 +791,7 @@ export const editorConfigOptions = (data: EditorData , siteSlug:string, isDemo:b
             type: 'composite',
             label: 'Radius', // Label for the property
             property: 'border-radius', // CSS property to change
-            detached:true,
+            detached: true,
             properties: [
               {
                 type: 'base',

@@ -131,41 +131,51 @@ function PublishButton({ siteData }: any) {
 
   const pagesData = editor?.Pages.getAll().map(page => {
     const component = page.getMainComponent();
-    const slug = page.getName();
+    const pageData = page.attributes;
     return {
-      slug: slug,
+      pageId: pageData.id,
+      name: pageData.name,
+      slug: pageData.slug,
+      title: pageData.title,
+      description: pageData.description,
       html: editor.getHtml({ component }),
       css: editor.getCss({ component }),
     };
   });
 
-  // console.log("pageData",pagesData)
+
 
   const { mutate, isPending } = useMutation({
       mutationFn:
         async () => await axios.post(`api/v1/sites/${siteSlug}/publish`, { projectId: siteSlug, data, pagesData }),
-      onError:
-        (error) => {
+      onError: (error) => {
+        let errorMessage = 'Something went wrong... Please try again!';
+        // @ts-ignore
+        const status = error.response?.status;
+
+        if (status === 422) {
+          // Validation error handling
           // @ts-ignore
-          if (error.response.status === 422) {
-            // Assuming error.response.data contains `message` and `missingFields`
-            // @ts-ignore
-            const errorMessage = error.response.data.message || 'Validation error occurred';
-            // @ts-ignore
-            const missingFieldsMessage = error.response.data.missingFields ? ` Missing fields: ${error.response.data.missingFields.join(', ')}.` : '';
-            notifications.show({
-              title: 'Error',
-              message: `${errorMessage}${missingFieldsMessage}`,
-              color: 'red',
-            });
-          } else {
-            notifications.show({
-              title: 'Error',
-              message: 'Something went wrong... Please try again!',
-              color: 'red',
-            });
-          }
-        },
+          const errorData = error.response.data;
+          const missingFieldsMessage = errorData.missingFields ? ` Missing fields: ${errorData.missingFields.join(', ')}.` : '';
+          errorMessage = `${errorData.message || 'Validation error occurred'}${missingFieldsMessage}`;
+        } else if (status >= 500) {
+          // Server error handling
+          errorMessage = 'A server error occurred. Please try again later.';
+        } else if (status === 403) {
+          notifications.show({
+            title: 'Error',
+            message: 'You have reached the maximum number of live sites allowed for your subscription plan.',
+            color: 'red',
+          });
+        }
+
+        notifications.show({
+          title: 'Error',
+          message: errorMessage,
+          color: 'red',
+        });
+      },
       onSuccess: () => {
         notifications.show({
           title: 'Success',

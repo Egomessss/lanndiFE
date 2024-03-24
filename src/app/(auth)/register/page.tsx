@@ -81,7 +81,7 @@ const Page = () => {
 
 
   return (
-    <form onSubmit={validateBeforeSubmit} className="flex flex-col gap-4 ">
+    <form onSubmit={validateBeforeSubmit} className="flex flex-col gap-4 md:w-96">
       <TextInput
         type="email"
         leftSection={<IconAt size="1rem" />}
