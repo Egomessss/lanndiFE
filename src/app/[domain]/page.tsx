@@ -1,18 +1,10 @@
-import { useParams } from 'next/navigation';
-import { useQuery } from '@tanstack/react-query';
-import axios from '@/lib/axios';
-import Loading from '@/app/dashboard/(sites)/Loading';
-import ErrorMessage from '@/app/dashboard/(sites)/Error';
 import React from 'react';
-import { SiteSettings } from '@/app/dashboard/(sites)/sites/[slug]/page';
 import { headers } from 'next/headers';
 import Script from 'next/script';
 import { Navbar } from '@/components/landing/Navbar';
 import Hero from '@/components/landing/Hero';
-import PainPoints from '@/components/landing/PainPoints';
 import HowItWorks from '@/components/landing/HowItWorks';
 import Benefits from '@/components/landing/Benefits';
-import WaitlistBanner from '@/components/landing/WaitlistBanner';
 import Features from '@/components/landing/Features';
 import { Roadmap } from '@/components/landing/Roadmap';
 import { Pricing } from '@/components/landing/Pricing';
@@ -21,11 +13,25 @@ import Head from 'next/head';
 import Plans from '@/components/common/Plans';
 
 
-type Page = {
-  slug: string,
-  html: string,
-  css: string
-};
+interface SiteMetadata {
+  title: string;
+  description: string;
+  ogImage: string | null; // Assuming it could be null if not set
+  favIcon: string | null; // Assuming it could be null if not set
+  language: string;
+  headCode: string | null; // Assuming it could be null if not set
+  bodyCode: string | null; // Assuming it could be null if not set
+}
+
+interface PageContent {
+  html: string;
+  css: string;
+}
+
+interface DomainPageResponse {
+  siteMetadata: SiteMetadata;
+  pageContent: PageContent;
+}
 
 // export const metadata: Metadata = {
 //   title,
@@ -47,31 +53,56 @@ type Page = {
 // };
 
 
-const Homepage = ({
-                    params,
-                  }: {
-  params: { domain: string };
-}) => {
+const getSiteHomepageData = async (domain: string): Promise<DomainPageResponse | undefined> => {
+  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/domain/${domain}`;
 
-  const headerDomain = headers().has('apx-incoming-host')
-    ? headers().get('apx-incoming-host')
-    : headers().get('host');
+  try {
+    const res = await fetch(url, {
+      cache: 'no-store',
+      method: 'GET',
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+    });
 
-  // const { data, isLoading, isError } = useQuery({
-  //   queryKey: ['siteSettings', domain],
-  //   queryFn: async () => {
-  //     const { data } = await axios.get(`/api/v1/site/${domain}`);
-  //     return data as Page;
-  //   },
-  // });
-  // console.log(data);
+    if (!res.ok) {
+      throw new Error(`Network response was not ok: ${res.status} ${res.statusText}`);
+    }
 
-  // if (isLoading) return <Loading />
-  // if (isError) return <ErrorMessage />
+    const data: DomainPageResponse = await res.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error('There was an error fetching the data:', error);
+    return undefined; // or handle the error as appropriate for your app
+  }
+};
+
+
+const Homepage = async (
+//   {
+//                     params,
+//                   }: {
+//   params: { domain: string };
+// }
+) => {
+
+
+  // const headerDomain = headers().has('apx-incoming-host')
+  //   ? headers().get('apx-incoming-host')
+  //   : headers().get('host');
+
+  // const subdomain = 'random.lanndi.com';
+  // const previewDomain = 'preview-random.lanndi.com';
+  // const mainDomain = 'lanndi.com';
+
+  const domain = 'preview-random.lanndi.com';
+  // { metadata, css, html }
+  const data = await getSiteHomepageData(domain);
 
 
   return (
-    <div>
+    <>
       <Head>
         <title>Create your dream website in minutes</title>
         <meta
@@ -119,25 +150,28 @@ const Homepage = ({
           content="https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/metaimage.webp"
         />
       </Head>
-      {params.domain === 'lanndi.com' && <div className="px-4 md:px-8">
-        {process.env.NODE_ENV === 'production' && (
-          <Script defer src="https://eu.umami.is/script.js"
-                  data-website-id="926180c0-ced2-44d6-94a2-70149d477560"></Script>
-        )}
-        <Navbar />
-        <Hero />
-        {/*<PainPoints />*/}
-        <HowItWorks />
-        <Benefits />
-        {/*<WaitlistBanner />*/}
-        <Features />
-        <Roadmap />
-        <Plans/>
-        <Pricing />
-        {/*<WaitlistBanner />*/}
-        <Footer />
-      </div>}
-    </div>
+      <>
+        {data?.pageContent.html}
+      </>
+      {/*{domain === 'lanndi.com' && <div className="px-4 md:px-8">*/}
+      {/*  {process.env.NODE_ENV === 'production' && (*/}
+      {/*    <Script defer src="https://eu.umami.is/script.js"*/}
+      {/*            data-website-id="926180c0-ced2-44d6-94a2-70149d477560"></Script>*/}
+      {/*  )}*/}
+      {/*  <Navbar />*/}
+      {/*  <Hero />*/}
+      {/*  /!*<PainPoints />*!/*/}
+      {/*  <HowItWorks />*/}
+      {/*  <Benefits />*/}
+      {/*  /!*<WaitlistBanner />*!/*/}
+      {/*  <Features />*/}
+      {/*  <Roadmap />*/}
+      {/*  <Plans />*/}
+      {/*  <Pricing />*/}
+      {/*  /!*<WaitlistBanner />*!/*/}
+      {/*  <Footer />*/}
+      {/*</div>}*/}
+    </>
   );
 };
 

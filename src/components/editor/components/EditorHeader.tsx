@@ -9,7 +9,7 @@ import {
   IconSettings,
 } from '@tabler/icons-react';
 import { useParams, usePathname } from 'next/navigation';
-import { useEditorMaybe } from '@/components/editor/context/EditorInstance';
+import { useEditor, useEditorMaybe } from '@/components/editor/context/EditorInstance';
 import useEditorData from '@/hooks/use-editor-data';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from '@/lib/axios';
@@ -44,7 +44,20 @@ function SaveButton() {
   const editor = useEditorMaybe();
 
   const data = editor?.getProjectData();
-  // console.log("data",data)
+
+  const pagesData = editor?.Pages.getAll().map(page => {
+    const component = page.getMainComponent();
+    const pageData = page.attributes;
+    return {
+      pageId: pageData.id,
+      name: pageData.name,
+      slug: pageData.slug,
+      title: pageData.title,
+      description: pageData.description,
+      html: editor.getHtml({ component }),
+      css: editor.getCss({ component }),
+    };
+  });
 
   const { data: isNotFirstTimeSaving } = useEditorData();
 
@@ -54,12 +67,18 @@ function SaveButton() {
         const endpoint = `api/v1/editor/${siteSlug}/`;
         const url = isNotFirstTimeSaving ? `${endpoint}update` : `${endpoint}store`; // Adjust 'update' and 'store' as per your API endpoints
         const method = isNotFirstTimeSaving ? 'patch' : 'post';
+        // Prepare the payload
+        const payload = {
+          projectId: siteSlug, // Adjust this if necessary. Assuming 'projectId' should be part of the payload.
+          data, // Assuming 'data' is an object that contains the data you want to send.
+          pagesData, // Include 'pagesData' in the payload if needed.
+        };
 
         // Perform the request with the appropriate method and URL
         await axios({
           method: method,
           url: url,
-          data: { projectId: siteSlug, data: data }, // Assuming you want to send the same data for both requests
+          data: payload, // Send the prepared payload as the request body
         });
       },
       onError:
@@ -142,7 +161,6 @@ function PublishButton({ siteData }: any) {
       css: editor.getCss({ component }),
     };
   });
-
 
 
   const { mutate, isPending } = useMutation({

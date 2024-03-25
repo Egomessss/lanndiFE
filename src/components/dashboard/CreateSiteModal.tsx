@@ -15,7 +15,7 @@ type props = {
   isOverMaxSitesAllowed: boolean
 }
 
-const CreateSiteModal = ({ isOverMaxSitesAllowed }: props) => {
+const CreateSiteModal = (isOverMaxSitesAllowed: props) => {
   const [opened, { open, close }] = useDisclosure(false);
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -93,12 +93,12 @@ const CreateSiteModal = ({ isOverMaxSitesAllowed }: props) => {
       submitSite();
     }
   };
-
+  console.log(isOverMaxSitesAllowed);
 
   return (
     <>
-      {isOverMaxSitesAllowed ? <Tooltip label="Upgrade your plan so you can host more websites">
-          <Button onClick={open} disabled={isOverMaxSitesAllowed} rightSection={<IconPlus size="1rem" />}>
+      {!isOverMaxSitesAllowed ? <Tooltip label="Upgrade your plan so you can host more websites">
+          <Button onClick={open} disabled={!!isOverMaxSitesAllowed} rightSection={<IconPlus size="1rem" />}>
             New Site</Button>
         </Tooltip> :
         <Button onClick={open} rightSection={<IconPlus size="1rem" />}>New Site</Button>}

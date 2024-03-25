@@ -86,13 +86,12 @@ export default (editor: Editor, opts = {}) => {
 
     editor.getWrapper()?.setStyle({ height: '2000px' });
 
-    console.log('wrapper', editor.getWrapper()?.getStyle('height'));
-
     const bodyHeight = editor.Canvas.getBody().clientHeight;
 
     // const bodyHeight = editor.getWrapper()?.getStyle();
     //
     editor.Canvas.getFrame().set('height', bodyHeight);
+    editor.getWrapper()?.set({ tagName: 'div' });
 
   });
 

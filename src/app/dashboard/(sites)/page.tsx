@@ -46,7 +46,7 @@ const Dashboard = () => {
     <div>
       <div className="w-full flex justify-between items-center">
         <h1>Sites</h1>
-        <CreateSiteModal isOverMaxSitesAllowed={data?.isOverMaxSitesAllowed} />
+        {data && <CreateSiteModal isOverMaxSitesAllowed={data?.isOverMaxSitesAllowed} />}
       </div>
       <Badge variant="light">{data?.subscriptionPlan} Plan </Badge>
       {data?.sites.length === 0 ? <div>You have no sites yet!</div> :
