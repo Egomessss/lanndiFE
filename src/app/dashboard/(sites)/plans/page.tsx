@@ -10,9 +10,13 @@ import Loading from '@/app/dashboard/(sites)/Loading';
 import ErrorMessage from '@/app/dashboard/(sites)/Error';
 import { SiteSettings } from '@/app/dashboard/(sites)/sites/[slug]/page';
 import Plans from '@/app/dashboard/(sites)/plans/_components/Plans';
+import { useCreateCheckout } from '@/hooks/use-create-checkout';
+import CreateSiteModal from '@/components/dashboard/CreateSiteModal';
 
 type Plans = {
   currentPlan: string
+  sitesLimit: number | null
+  isUserSubscribed: boolean
   latestSavedSiteSlug: string | null
 }
 
@@ -28,16 +32,19 @@ const PricingTable = () => {
     },
   });
 
+  console.log(data);
+
 
   if (isLoading) return <Loading />;
   if (isError) return <ErrorMessage />;
 
   return (
     <div>
-      {data?.latestSavedSiteSlug && <Button href={`editor/${data?.latestSavedSiteSlug}`} component={Link}
-                                            leftSection={<IconArrowLeft size="1rem" />}>Back to
-        editor</Button>}
-      {data && <Plans currentPlan={data.currentPlan} />}
+      {data?.latestSavedSiteSlug ?
+        <Button href={`editor/${data?.latestSavedSiteSlug}`} component={Link}
+                leftSection={<IconArrowLeft size="1rem" />}>Back to
+          editor</Button> : <CreateSiteModal isOverMaxSitesAllowed={false} />}
+      {data && <Plans {...data} />}
     </div>
   );
 };

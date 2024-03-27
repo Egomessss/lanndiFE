@@ -6,11 +6,15 @@ import ErrorMessage from '@/app/dashboard/(sites)/Error';
 import { Badge, Button, Divider, Switch } from '@mantine/core';
 import { IconCheck } from '@tabler/icons-react';
 import Link from 'next/link';
-interface PlansProps {
-  currentPlan: string;
+
+type Plans = {
+  currentPlan: string
+  sitesLimit: number | null
+  isUserSubscribed: boolean
+  latestSavedSiteSlug: string | null
 }
 
-const Plans: React.FC<PlansProps> = ({ currentPlan }) => {
+const Plans: React.FC<Plans> = ({ currentPlan, isUserSubscribed, latestSavedSiteSlug, sitesLimit }) => {
   const includedFeatures = [
     '5 websites',
     'Priority support',
@@ -39,14 +43,13 @@ const Plans: React.FC<PlansProps> = ({ currentPlan }) => {
       features: ['5 sites', '10 pages max', 'custom domain'],
       url: '/checkout/indie',
     },
-    {
-      name: 'Freelancer',
-      priceMonthly: 49,
-      priceAnnual: 490,
-      features: ['15 sites', '10 pages max', 'custom domain'],
-      url: '/checkout/freelancer',
-    },
-
+    // {
+    //   name: 'Freelancer',
+    //   priceMonthly: 49,
+    //   priceAnnual: 490,
+    //   features: ['15 sites', '10 pages max', 'custom domain'],
+    //   url: '/checkout/freelancer',
+    // },
   ];
 
   const [isAnnual, setIsAnnual] = useState(false);
@@ -60,7 +63,7 @@ const Plans: React.FC<PlansProps> = ({ currentPlan }) => {
     staleTime: 0,
     refetchOnWindowFocus: false,
   });
-  console.log(data);
+  console.log('checkout', data);
 
   if (isLoading) return <Loading />;
   if (isError) return <ErrorMessage />;
@@ -69,7 +72,10 @@ const Plans: React.FC<PlansProps> = ({ currentPlan }) => {
     <>
       <div className="flex justify-center flex-col items-center w-full gap-8 my-4">
         <h1>Plans that fit your needs</h1>
-        <Badge variant="light" size="lg">Current plan - {currentPlan}</Badge>
+        <div className="flex items-center gap-2 flex-col">
+          <Badge color={isUserSubscribed ? 'blue' : 'red'} variant="light" size="lg">{isUserSubscribed ? 'Subscribed' : 'Not subscribed yet'}</Badge>
+          <Badge color={isUserSubscribed ? 'blue' : 'red'} variant="light" size="lg">Current plan - {currentPlan} -
+            Max {sitesLimit} {sitesLimit > 1 ? 'sites':'site and 1 page'} </Badge></div>
         <div className="flex items-center gap-2">
           <p>Monthly</p>
           <Switch
@@ -81,7 +87,7 @@ const Plans: React.FC<PlansProps> = ({ currentPlan }) => {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-4 gap-4 px-5">
+      <div className="grid md:grid-cols-3 gap-4 px-5">
         {plans.map((plan) => (
           <div key={plan.name}
                className="border rounded-lg p-4 flex flex-col items-center border-solid border-blue-500 ">

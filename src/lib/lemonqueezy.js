@@ -1,0 +1,12 @@
+import axios from "axios";
+
+export const LEMON_SQUEEZY_ENDPOINT = "https://api.lemonsqueezy.com/v1/";
+
+export const lemonSqueezyApiInstance = axios.create({
+  baseURL: LEMON_SQUEEZY_ENDPOINT,
+  headers: {
+    Accept: "application/vnd.api+json",
+    "Content-Type": "application/vnd.api+json",
+    Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5NGQ1OWNlZi1kYmI4LTRlYTUtYjE3OC1kMjU0MGZjZDY5MTkiLCJqdGkiOiI2NTU2NTViMDY3NGM2Nzk1MjEzNTNjNzFlODVlZmU3NGNmOGY4MTQ3MGI2NzFjN2JhNDk4YWY2OTQ4Mzg0YTJiOTdhYjBiNGRiMTU5N2RhZSIsImlhdCI6MTcxMDgxMDc2My4wMTcwOTksIm5iZiI6MTcxMDgxMDc2My4wMTcxMDEsImV4cCI6MjAyNjM0MzU2Mi45NzYyOCwic3ViIjoiMTUyODA1NyIsInNjb3BlcyI6W119.jAcjVDgqV2EgvBJZ1IIrZb56vCruCE2n2-7pg_sWbyOpyODQfnsxuYcSK8vXoa9GvxLTybjC0fq76PpHa9np-E8I4K8dTw8FUNcPDH3q158MzCF-ymZmHkRJpsNDjVkRd37dItFzS__-yN2KV5IXiS7Ff0t898JlpxYKrUT-WlG3hXoCOIRUIeK1j1gljl_znE-mUSJubtx-yhwHkGfBfyLUZQ5oMo7OL_kPQaG9N1SOTCoi57Ikb1znXoWfZSRKUqTFbYWAMz056kNWKVzSmaLxiq1DOpxwy2TxF_XmQKjEBZlT1EemB1FWy2DBFZthsuQzgEw4GR9b_ZojU-n3HkdOuqumQtUl0_y6oqaSvO60EuHAbLVUtk1_OjW-7MUvgR_OccR9FDiQ7JJsflxawEuw4rzAarlOz7UAYi1SE42IMr3H1dtr_kXYEZ1sIiOj_zfVUcTBsLJIoNaa3qdH7kXmM8VmEa9YIzd07YFS7SK__YsxN9Y2NDWp753jn9C3`,
+  },
+});

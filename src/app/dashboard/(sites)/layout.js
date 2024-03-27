@@ -12,7 +12,7 @@ import useUser from '../../../hooks/use-user';
 const layout = ({ children }) => {
   const [opened, { toggle }] = useDisclosure();
   const { user, logout } = useUser();
-  console.log(user);
+
   return (
     <AppShell
       header={{ height: { base: 60 } }}
