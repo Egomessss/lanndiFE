@@ -3,15 +3,53 @@
 
 import Loading from './Loading';
 import { useDisclosure } from '@mantine/hooks';
-import { ActionIcon, AppShell, Avatar, Burger, Loader, Menu, NavLink, rem } from '@mantine/core';
+import { ActionIcon, AppShell, Avatar, Burger, Button, Loader, Menu, NavLink, rem } from '@mantine/core';
 import { IconAdjustmentsDollar, IconCreditCard, IconHome2, IconLogout, IconUser } from '@tabler/icons-react';
 import Link from 'next/link';
 import useUser from '../../../hooks/use-user';
+import { useMutation } from '@tanstack/react-query';
+import axios from '../../../lib/axios';
+import { notifications } from '@mantine/notifications';
 
 
 const layout = ({ children }) => {
   const [opened, { toggle }] = useDisclosure();
   const { user, logout } = useUser();
+
+  const { mutate: getCustomerPortalUrl, isPending } = useMutation({
+    mutationFn: async () => {
+      const response = await axios.post('/api/v1/customer-portal');
+      return response.data; // Assuming the checkout URL is in the response data
+    },
+    onSuccess: (data) => {
+      const response = data.response;
+      if (response === null) {
+        notifications.show({
+          title: 'Error',
+          message: 'Make a purchase before being able to access your customer portal!',
+          color: 'red',
+        });
+      } else {
+        // data is the response from your POST request
+        // Open the customPortalUrl in a new tab
+        window.open(data.customPortalUrl, '_blank').focus();
+      }
+    },
+    // Optionally, you can handle errors here as well
+    onError: (error) => {
+      console.log(error);
+      notifications.show({
+        title: 'Error',
+        message: 'Something went wrong... Please try again!',
+        color: 'red',
+      });
+    },
+  });
+
+  const handleGetCustomerPortal = () => {
+    // @ts-ignore
+    getCustomerPortalUrl();
+  };
 
   return (
     <AppShell
@@ -68,9 +106,10 @@ const layout = ({ children }) => {
           leftSection={<IconAdjustmentsDollar size="1rem" stroke={1.5} />}
         />
         <NavLink
-          component={Link}
-          href="/billing"
-          label="Billing Portal"
+          component={Button}
+          loading={isPending}
+          onClick={handleGetCustomerPortal}
+          label="Customer Portal"
           leftSection={<IconCreditCard size="1rem" stroke={1.5} />}
         />
         {/*<NavLink*/}

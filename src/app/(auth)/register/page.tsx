@@ -48,7 +48,7 @@ const Page = () => {
           const twoWeeksInSeconds = 60 * 60 * 24 * 14;
           // On successful login, set a cookie to last for 2 weeks
           document.cookie = `isLoggedIn=true; path=/; max-age=${twoWeeksInSeconds}; secure; samesite=Strict`;
-          router.push('/');
+          router.push('/plans');
         }
       ,
       onError:

@@ -4,7 +4,7 @@ import { Button, Divider, Switch } from '@mantine/core';
 import { IconCheck } from '@tabler/icons-react';
 import Link from 'next/link';
 
-const Plans = () => {
+const Plans = ({}) => {
   const [isAnnual, setIsAnnual] = useState(false);
   const includedFeatures = [
     '5 websites',

@@ -15,7 +15,7 @@ const useUser = () => {
       const response = await axios.get('/api/user');
       return response.data as User;
     },
-    staleTime: 500000,
+    staleTime: Infinity,
     enabled: !isDemo,
   });
 

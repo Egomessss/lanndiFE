@@ -1,21 +1,19 @@
 'use client';
-import { Badge, Button, Divider, Switch } from '@mantine/core';
-import React, { useState } from 'react';
-import { IconArrowLeft, IconCheck } from '@tabler/icons-react';
+import { Button } from '@mantine/core';
+import React from 'react';
+import { IconArrowLeft } from '@tabler/icons-react';
 import Link from 'next/link';
-import Script from 'next/script';
 import { useQuery } from '@tanstack/react-query';
 import axios from '@/lib/axios';
 import Loading from '@/app/dashboard/(sites)/Loading';
 import ErrorMessage from '@/app/dashboard/(sites)/Error';
-import { SiteSettings } from '@/app/dashboard/(sites)/sites/[slug]/page';
-import Plans from '@/app/dashboard/(sites)/plans/_components/Plans';
-import { useCreateCheckout } from '@/hooks/use-create-checkout';
 import CreateSiteModal from '@/components/dashboard/CreateSiteModal';
+import Plans from '@/app/dashboard/(sites)/plans/_components/Plans';
 
-type Plans = {
+
+type PlansData = {
   currentPlan: string
-  sitesLimit: number | null
+  sitesLimit: number
   isUserSubscribed: boolean
   latestSavedSiteSlug: string | null
 }
@@ -28,11 +26,9 @@ const PricingTable = () => {
     queryKey: ['plans'],
     queryFn: async () => {
       const { data } = await axios.get(`/api/v1/plans`);
-      return data as Plans;
+      return data as PlansData;
     },
   });
-
-  console.log(data);
 
 
   if (isLoading) return <Loading />;
