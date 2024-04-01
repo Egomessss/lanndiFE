@@ -152,6 +152,7 @@ export default function DomainConfiguration({ domain, subdomain, slug }: SiteSet
         </div>
       </> : <Alert variant="light" color="pink" title="Alert title" icon={<IconInfoCircle />}>
         <p>Subscribe to a plan to be able to add custom domains</p>
+        <p className="font-bold text-red-500 my-10">PS: Save your settings/editor data before clicking the link button</p>
         <Button fullWidth component={Link} href="/plans">
           Buy a plan
         </Button>

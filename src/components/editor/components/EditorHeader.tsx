@@ -2,14 +2,15 @@ import { ActionIcon, Anchor, AppShell, Button, Modal, Popover, ScrollArea, Tabs,
 import React, { useEffect, useState } from 'react';
 import {
   IconArrowLeft,
-  IconCheck, IconChevronDown,
+  IconCheck,
+  IconChevronDown,
   IconDeviceFloppy,
   IconExternalLink,
   IconFaceIdError,
   IconSettings,
 } from '@tabler/icons-react';
 import { useParams, usePathname } from 'next/navigation';
-import { useEditor, useEditorMaybe } from '@/components/editor/context/EditorInstance';
+import { useEditorMaybe } from '@/components/editor/context/EditorInstance';
 import useEditorData from '@/hooks/use-editor-data';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from '@/lib/axios';
@@ -18,124 +19,128 @@ import Link from 'next/link';
 import { WithEditor } from '@/components/editor/wrappers';
 import CommandButtons from '@/components/editor/components/TopBarButtons';
 import DeviceButtons from '@/components/editor/components/DeviceButtons';
-import { useAuth } from '@/hooks/auth';
 import RegisterUserModal from '@/app/demo/_components/RegisterUserModal';
 import { useDisclosure, useIdle } from '@mantine/hooks';
 import SiteSettingsForm from '@/app/dashboard/(sites)/sites/_components/SiteSettingsForm';
 import DomainSettingsForm from '@/app/dashboard/(sites)/sites/_components/DomainSettingsForm';
 import DomainConfiguration from '@/app/dashboard/(sites)/sites/_components/DomainConfiguration';
-import Loading from '@/app/dashboard/(sites)/Loading';
-import ErrorMessage from '@/app/dashboard/(sites)/Error';
 import { SiteSettings } from '@/app/dashboard/(sites)/sites/[slug]/page';
 import useUser from '@/hooks/use-user';
+import { DarkModeButton } from '@/components/common/DarkModeButton/DarkModeButton';
 
 
 function SaveButton() {
-
+  const editor = useEditorMaybe();
   const params = useParams();
   const siteSlug = params.slug;
-
   const slug = usePathname();
-
   const user = slug === '/demo' ? null : true;
-
   const [showSuccess, setShowSuccess] = useState(false);
-
-  const editor = useEditorMaybe();
-
-  const data = editor?.getProjectData();
-
-  const pagesData = editor?.Pages.getAll().map(page => {
-    const component = page.getMainComponent();
-    const pageData = page.attributes;
-    return {
-      pageId: pageData.id,
-      name: pageData.name,
-      slug: pageData.slug,
-      title: pageData.title,
-      description: pageData.description,
-      html: editor.getHtml({ component }),
-      css: editor.getCss({ component }),
-    };
-  });
-
   const { data: isNotFirstTimeSaving } = useEditorData();
-
-
-  const { mutate, isError, isPending } = useMutation({
-      mutationFn: async () => {
-        const endpoint = `api/v1/editor/${siteSlug}/`;
-        const url = isNotFirstTimeSaving ? `${endpoint}update` : `${endpoint}store`; // Adjust 'update' and 'store' as per your API endpoints
-        const method = isNotFirstTimeSaving ? 'patch' : 'post';
-        // Prepare the payload
-        const payload = {
-          projectId: siteSlug, // Adjust this if necessary. Assuming 'projectId' should be part of the payload.
-          data, // Assuming 'data' is an object that contains the data you want to send.
-          pagesData, // Include 'pagesData' in the payload if needed.
-        };
-
-        // Perform the request with the appropriate method and URL
-        await axios({
-          method: method,
-          url: url,
-          data: payload, // Send the prepared payload as the request body
-        });
-      },
-      onError:
-        () => {
-          notifications.show({
-            color: 'red',
-            title: 'Error',
-            message: 'Something went wrong... Please try again!',
-          });
-
-        },
-      onSuccess: () => {
-        // On success, show the check icon
-        setShowSuccess(true);
-        // And hide it after 2 seconds
-        setTimeout(() => setShowSuccess(false), 30000);
-        // Reset timers on success
-      },
-    },
-  );
-
   const idle = useIdle(1200000);
 
-  // Automatically save every 10 minutes, but only if the user has not been idle for over 20 minutes
+  const getEditorData = () => {
+    const data = editor?.getProjectData();
+    const pagesData = editor?.Pages.getAll().map(page => {
+      const component = page.getMainComponent();
+      const pageData = page.attributes;
+      return {
+        pageId: pageData.id,
+        name: pageData.name,
+        slug: pageData.slug,
+        title: pageData.title,
+        description: pageData.description,
+        html: editor.getHtml({ component }),
+        css: editor.getCss({ component }),
+      };
+    });
+    return { data, pagesData };
+  };
+
+  const showNotification = (color, title, message) => {
+    notifications.show({
+      color,
+      title,
+      message,
+    });
+  };
+
+  const { mutate, isError, isPending } = useMutation({
+    mutationFn: async ({ data, pagesData }) => {
+      const endpoint = `api/v1/editor/${siteSlug}/`;
+      const url = isNotFirstTimeSaving.data ? `${endpoint}update` : `${endpoint}store`;
+      const method = isNotFirstTimeSaving.data ? 'patch' : 'post';
+      const payload = {
+        projectId: siteSlug,
+        data,
+        pagesData,
+      };
+      await axios({
+        method: method,
+        url: url,
+        data: payload,
+      });
+    },
+    onError: () => {
+      showNotification('red', 'Error', 'Something went wrong... Please try again!');
+    },
+    onSuccess: () => {
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 30000);
+    },
+  });
+
   useEffect(() => {
-    const saveIntervalId = setInterval(() => {
-      if (!idle) {
-        mutate(); // Only call mutate if the user is not idle
-      }
-    }, 600000); // 10 minutes in milliseconds
+    if (isNotFirstTimeSaving.data !== null) {
+      const { data, pagesData } = getEditorData();
+      const saveIntervalId = setInterval(() => {
+        if (!idle) {
+          mutate({ data, pagesData });
+        }
+      }, 600000);
+      return () => clearInterval(saveIntervalId);
+    }
+  }, [mutate, idle, isNotFirstTimeSaving.data]);
 
-    // Cleanup: Clear the interval when the component unmounts
-    return () => clearInterval(saveIntervalId);
-  }, [mutate, idle]); // Dependency array: this effect depends on the `mutate` function and `idle` state
+  const handleSave = () => {
+    const { data, pagesData } = getEditorData();
+    if (!editor) {
+      showNotification('red', 'Error', 'Editor is not available.');
+      return;
+    }
+    if (!data || !pagesData) {
+      showNotification('red', 'Error', 'Data is not available.');
+      return;
+    }
+    mutate({ data, pagesData });
+  };
 
-
-  // Determine the color based on the mutation's state
   const color = isError ? 'red' : showSuccess ? 'green' : 'blue';
 
   return (
     <>
-      {user ? <Tooltip color="gray" label="Save changes - Saved automatically every 10 minutes">
-          <ActionIcon disabled={showSuccess} loading={isPending} className={!showSuccess ? 'animate-pulse' : ''}
-                      color={color}
-                      onClick={() => mutate()}
-                      variant="subtle">
+      {user ? (
+        <Tooltip color="gray" label="Save changes - Saved automatically every 10 minutes">
+          <ActionIcon
+            disabled={showSuccess}
+            loading={isPending}
+            className={!showSuccess ? 'animate-pulse' : ''}
+            color={color}
+            onClick={handleSave}
+            variant="subtle"
+          >
             {isError && <IconFaceIdError size="1rem" />}
             {!isPending && !isError && showSuccess ? <IconCheck size="1rem" /> : <IconDeviceFloppy size="1rem" />}
           </ActionIcon>
-        </Tooltip> :
+        </Tooltip>
+      ) : (
         <Tooltip label="Register before you can save your site data">
           <RegisterUserModal />
         </Tooltip>
-      }
+      )}
     </>
   );
-};
+}
 
 function PublishButton({ siteData }: any) {
 
@@ -161,6 +166,8 @@ function PublishButton({ siteData }: any) {
       css: editor.getCss({ component }),
     };
   });
+
+  console.log(pagesData);
 
 
   const { mutate, isPending } = useMutation({
@@ -324,10 +331,11 @@ function EditorHeader() {
           >
             {isDemo ? 'Homepage' : 'Dashboard'}
           </Button>
+          <DarkModeButton />
           {isDemo && <Button color="red" component="a" target="_blank"
                              href="https://lanndi.lemonsqueezy.com/checkout/buy/2ddb7d73-91f4-4121-8413-c24ec6a3335c"
                              size="xs">Get
-            lifetime deal 33% off</Button>}
+            lifetime deal</Button>}
         </div>
         <div className="flex items-center gap-4">
           <DeviceButtons />

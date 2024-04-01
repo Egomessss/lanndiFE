@@ -28,10 +28,16 @@ interface PageContent {
   css: string;
 }
 
+interface DomainSubscriptionPlan {
+  subscriptionPlan: string;
+}
+
 interface DomainPageResponse {
   siteMetadata: SiteMetadata;
   pageContent: PageContent;
+  subscriptionPlan: DomainSubscriptionPlan;
 }
+
 
 // export const metadata: Metadata = {
 //   title,
@@ -99,7 +105,9 @@ const Homepage = async (
   const domain = 'preview-random.lanndi.com';
   // { metadata, css, html }
   const data = await getSiteHomepageData(domain);
-
+  const htmlContent = data?.pageContent.html;
+  const cssContent = data?.pageContent.css;
+  console.log(cssContent);
 
   return (
     <>
@@ -151,8 +159,14 @@ const Homepage = async (
         />
       </Head>
       <>
-        {data?.pageContent.html}
+        <div
+          dangerouslySetInnerHTML={{ __html: htmlContent! }}
+        />
+        <style jsx>
+          {cssContent}
+        </style>
       </>
+
       {/*{domain === 'lanndi.com' && <div className="px-4 md:px-8">*/}
       {/*  {process.env.NODE_ENV === 'production' && (*/}
       {/*    <Script defer src="https://eu.umami.is/script.js"*/}
@@ -171,6 +185,7 @@ const Homepage = async (
       {/*  /!*<WaitlistBanner />*!/*/}
       {/*  <Footer />*/}
       {/*</div>}*/}
+
     </>
   );
 };

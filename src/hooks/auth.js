@@ -1,9 +1,5 @@
-import useSWR from 'swr';
 import axios from '@/lib/axios';
-import { useEffect, useState } from 'react';
-import { useParams, usePathname, useRouter } from 'next/navigation';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { notifications } from '@mantine/notifications';
+import { useParams, useRouter } from 'next/navigation';
 
 
 export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {

@@ -1,7 +1,6 @@
 'use client';
 
 
-import Loading from './Loading';
 import { useDisclosure } from '@mantine/hooks';
 import { ActionIcon, AppShell, Avatar, Burger, Button, Loader, Menu, NavLink, rem } from '@mantine/core';
 import { IconAdjustmentsDollar, IconCreditCard, IconHome2, IconLogout, IconUser } from '@tabler/icons-react';
@@ -10,37 +9,50 @@ import useUser from '../../../hooks/use-user';
 import { useMutation } from '@tanstack/react-query';
 import axios from '../../../lib/axios';
 import { notifications } from '@mantine/notifications';
+import { useRouter } from 'next/navigation';
+import { DarkModeButton } from '../../../components/common/DarkModeButton/DarkModeButton';
+import React from 'react';
 
 
 const layout = ({ children }) => {
   const [opened, { toggle }] = useDisclosure();
   const { user, logout } = useUser();
+  const router = useRouter();
 
+  if (!user) {
+    router.push('/login');
+  }
+
+  console.log(user);
   const { mutate: getCustomerPortalUrl, isPending } = useMutation({
     mutationFn: async () => {
       const response = await axios.post('/api/v1/customer-portal');
       return response.data; // Assuming the checkout URL is in the response data
     },
     onSuccess: (data) => {
-      const response = data.response;
-      if (response === null) {
+      // If the customPortalUrl is null, handle it appropriately, e.g., show an error
+      if (!data.customPortalUrl) {
         notifications.show({
-          title: 'Error',
-          message: 'Make a purchase before being able to access your customer portal!',
+          title: 'Unavailable',
+          message: 'The customer portal is not available for your account.',
           color: 'red',
         });
-      } else {
-        // data is the response from your POST request
-        // Open the customPortalUrl in a new tab
-        window.open(data.customPortalUrl, '_blank').focus();
+        return;
       }
+
+      // Open the customPortalUrl in a new tab
+      window.open(data.customPortalUrl, '_blank').focus();
     },
     // Optionally, you can handle errors here as well
     onError: (error) => {
+      let message = 'Something went wrong... Please try again!';
+      if (error.response && error.response.status === 404) {
+        message = error.response.data.message || 'No purchase or subscription found.';
+      }
       console.log(error);
       notifications.show({
         title: 'Error',
-        message: 'Something went wrong... Please try again!',
+        message,
         color: 'red',
       });
     },
@@ -64,31 +76,35 @@ const layout = ({ children }) => {
       <AppShell.Header>
         <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
         <div className="w-full flex justify-between items-center h-full px-4">
-          <Link className="no-underline text-white font-bold text-xl" href="/public">
+          <Link className="no-underline text-inherit font-bold text-xl"
+                href="/">
             lanndi
           </Link>
-          {!user ? <Loader size="xs" /> : <Menu trigger="hover" openDelay={100} closeDelay={400}>
-            <Menu.Target>
-              <Avatar color="blue" radius="xl">
-                <ActionIcon variant="transparent">
-                  <IconUser size="1.5rem" />
-                </ActionIcon>
-              </Avatar>
-            </Menu.Target>
-            <Menu.Dropdown>
-              {/*<Menu.Item leftSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}>*/}
-              {/*    Account Settings*/}
-              {/*</Menu.Item>*/}
-              {/*<Menu.Divider />*/}
-              <Menu.Item
-                onClick={logout}
-                color="red"
-                leftSection={<IconLogout style={{ width: rem(14), height: rem(14) }} />}
-              >
-                Logout
-              </Menu.Item>
-            </Menu.Dropdown>
-          </Menu>}
+
+          <div className="flex items-center gap-6">
+            <DarkModeButton />
+            {!user ? <Loader size="xs" /> : <Menu trigger="hover" openDelay={100} closeDelay={400}>
+              <Menu.Target>
+                <Avatar color="blue" radius="xl">
+                  <ActionIcon variant="transparent">
+                    <IconUser size="1.5rem" />
+                  </ActionIcon>
+                </Avatar>
+              </Menu.Target>
+              <Menu.Dropdown>
+                {/*<Menu.Item leftSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}>*/}
+                {/*    Account Settings*/}
+                {/*</Menu.Item>*/}
+                {/*<Menu.Divider />*/}
+                <Menu.Item
+                  onClick={logout}
+                  color="red"
+                  leftSection={<IconLogout style={{ width: rem(14), height: rem(14) }} />}
+                >
+                  Logout
+                </Menu.Item>
+              </Menu.Dropdown>
+            </Menu>}</div>
         </div>
 
       </AppShell.Header>

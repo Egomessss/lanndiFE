@@ -1,78 +1,80 @@
-import * as React from 'react'
-import {useState} from 'react'
+import * as React from 'react';
+import { useState } from 'react';
 
-import {Button, Divider, Text,} from '@mantine/core'
-import {BlocksResultProps} from '@/components/editor/wrappers'
+import { Button, Divider, Text, Tooltip } from '@mantine/core';
+import { BlocksResultProps } from '@/components/editor/wrappers';
+import useUser from '@/hooks/use-user';
 
 
 export type CustomBlockManagerProps = Pick<
-    BlocksResultProps,
-    'mapCategoryBlocks' | 'dragStart' | 'dragStop'
+  BlocksResultProps,
+  'mapCategoryBlocks' | 'dragStart' | 'dragStop'
 >
 
 export default function CustomBlockManager({
-                                               mapCategoryBlocks,
-                                               dragStart,
-                                               dragStop,
+                                             mapCategoryBlocks,
+                                             dragStart,
+                                             dragStop,
                                            }: CustomBlockManagerProps) {
-    const [value, setValue] = useState('Basic')
-    // default-blocks-basic
-    // default-block-interactive
+  const { user } = useUser();
 
-    // default-sections-hero
+  return (
+    <div className="w-full">
+      {Array.from(mapCategoryBlocks)
+        .filter(([category, _]) => !category.startsWith('sections-')) // Filter out categories starting with "section-"
+        .map(([category, blocks]) => (
+          <div
+            key={category}
+          >
+            <div className="flex items-center gap-2 ">
+              <Text style={{ whiteSpace: 'nowrap', fontWeight: '600', fontSize: '0.8rem' }} c="blue.5">{category}</Text>
+              <Divider
+                variant="dashed"
+                className="w-full"
+                my="md"
+                size="xs"
+              />
+            </div>
 
-    // custom-blocks-basic
-    // custom-sections-basic
-    // custom-templates-basic
+            <div className="flex flex-col gap-2">
+              {blocks.map((block) => {
+                const isCustomCodeBlock = block.getLabel() === 'Custom Code';
+                const isFreePlan = user?.subscription === 'free';
+                const disabled = isFreePlan && isCustomCodeBlock;
 
-
-    return (
-        <div className="w-full">
-            {Array.from(mapCategoryBlocks)
-                .filter(([category, _]) => !category.startsWith('sections-')) // Filter out categories starting with "section-"
-                .map(([category, blocks]) => (
-                    <div
-                        key={category}
-                    >
-                        <div className="flex items-center gap-2 ">
-                            <Text style={{ whiteSpace: 'nowrap', fontWeight: '600', fontSize:'0.8rem' }} c="blue.5">{category}</Text>
-                            <Divider
-                                variant="dashed"
-                                className="w-full"
-                                my="md"
-                                size="xs"
-                            />
-                        </div>
-
-                        <div className="flex flex-col gap-2">
-                            {blocks.map((block) => (
-                                <Button variant="subtle"
-                                        style={{paddingLeft:'4px'}}
-                                        key={block.getId()}
-                                        draggable
-                                        justify="start" fullWidth
-                                        onDragStart={(ev) =>
-                                            dragStart(block, ev.nativeEvent)
-                                        }
-                                        onDragEnd={() => dragStop(false)}
-                                >
-                                    <div
-                                        className="flex h-4 w-4 items-center justify-center "
-                                        dangerouslySetInnerHTML={{
-                                            __html: block.getMedia()!,
-                                        }}
-                                    />
-                                    <p
-                                        className="w-full px-2 text-start text-xs"
-                                    >
-                                        {block.getLabel()}
-                                    </p>
-                                </Button>
-                            ))}
-                        </div>
+                return (
+                  <Tooltip
+                    label={isCustomCodeBlock && isFreePlan ? 'Get a subscription to use Custom Code' : ''}
+                    disabled={!disabled}
+                    key={block.getId()}
+                  >
+                    <div>
+                      <Button variant="subtle"
+                              style={{ paddingLeft: '4px' }}
+                              draggable={!disabled}
+                              justify="start" fullWidth
+                              onDragStart={(ev) => !disabled ? dragStart(block, ev.nativeEvent) : ev.preventDefault()}
+                              onDragEnd={() => dragStop(false)}
+                              disabled={disabled}
+                      >
+                        <div
+                          className="flex h-4 w-4 items-center justify-center"
+                          dangerouslySetInnerHTML={{
+                            __html: block.getMedia()!,
+                          }}
+                        />
+                        <p className={'w-full px-2 text-start text-xs' + (disabled ? ' text-gray-400' : '')}>
+                          {block.getLabel()}
+                        </p>
+                      </Button>
                     </div>
-                ))
-            }
-        </div>
-    )
+                  </Tooltip>
+                );
+              })}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  );
 }

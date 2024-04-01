@@ -14,6 +14,7 @@ import {
 } from '@tabler/icons-react';
 import { useAuth } from '@/hooks/auth';
 import { usePathname } from 'next/navigation';
+import useUser from '@/hooks/use-user';
 
 
 interface CommandButton {
@@ -140,7 +141,7 @@ export default function TopBarButtons() {
   });
 
 
-  const { user } = useAuth();
+  const { user } = useUser();
 
 
   const cmdButtons: CommandButton[] = [

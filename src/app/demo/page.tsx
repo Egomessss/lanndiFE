@@ -1,6 +1,6 @@
 'use client';
 import grapesjs, { Editor } from 'grapesjs';
-import { AppShell } from '@mantine/core';
+import { AppShell, useComputedColorScheme } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import GjsEditor, { AssetsProvider, Canvas, ModalProvider } from '@/components/editor/wrappers';
 import LeftSideBar from '@/components/editor/components/LeftSideBar';
@@ -19,6 +19,8 @@ export default function CustomEditor() {
   // after register they save their project which redirects to the editor with slug
 
   // let width;
+
+
 
   const onEditor = (editor: Editor) => {
     (window as any).editor = editor;
@@ -44,7 +46,7 @@ export default function CustomEditor() {
   }
 
 
-
+  const computedColorScheme = useComputedColorScheme('dark');
 
   return (
     <GjsEditor

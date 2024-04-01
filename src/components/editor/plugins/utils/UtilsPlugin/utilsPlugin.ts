@@ -81,6 +81,7 @@ export default (editor: Editor, opts = {}) => {
       'background-color',
       'background-image',
       'background-repeat',
+      'font',
       'font-family',
     ]);
 
@@ -91,7 +92,7 @@ export default (editor: Editor, opts = {}) => {
     // const bodyHeight = editor.getWrapper()?.getStyle();
     //
     editor.Canvas.getFrame().set('height', bodyHeight);
-    editor.getWrapper()?.set({ tagName: 'div' });
+    // editor.getWrapper()?.set({ tagName: 'div' });
 
   });
 
@@ -105,7 +106,6 @@ export default (editor: Editor, opts = {}) => {
   editor.Canvas.setCoords(-140, -100);
 
   // Function to update the frame height based on the body's client height
-
 
   // Use ResizeObserver to watch for changes in the body's size, if the editor exists
   // const resizeObserver = new ResizeObserver(entries => {
@@ -121,6 +121,4 @@ export default (editor: Editor, opts = {}) => {
   // // Start observing the body element
   // const bodyElement = editor.Canvas.getBody();
   // resizeObserver.observe(bodyElement);
-
-
 }

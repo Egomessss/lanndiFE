@@ -25,11 +25,11 @@ export default function RootLayout({
     return (
         <html lang="en">
         <head>
-            <ColorSchemeScript  defaultColorScheme="dark" />
+            <ColorSchemeScript   />
         </head>
         <body className={inter.className}>
         <TanstackProvider>
-            <MantineProvider defaultColorScheme="dark" >
+            <MantineProvider >
                 <Notifications />
                 <ModalsProvider>
                     {children}

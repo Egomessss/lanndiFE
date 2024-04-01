@@ -3,6 +3,7 @@ export type User = {
     email: string;
     email_verified_at: Date | null;
     isAdmin: boolean;
+    subscription: string;
 }
 
 

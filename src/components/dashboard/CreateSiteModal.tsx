@@ -86,7 +86,8 @@ const CreateSiteModal = (isOverMaxSitesAllowed: props) => {
     },
   );
 
-  const validateBeforeSubmit = () => {
+  const validateBeforeSubmit = (e) => {
+    e.preventDefault()
     form.validate();
     const isValid = form.isValid();
     if (isValid) {
@@ -103,7 +104,7 @@ const CreateSiteModal = (isOverMaxSitesAllowed: props) => {
         </Tooltip> :
         <Button onClick={open} rightSection={<IconPlus size="1rem" />}>New Site</Button>}
       <Modal centered opened={opened} onClose={close} title="Create your site">
-        <div className="gap-4 flex flex-col ">
+        <form onSubmit={validateBeforeSubmit} className="gap-4 flex flex-col ">
           <TextInput
             withAsterisk
             label="Site name"
@@ -117,8 +118,8 @@ const CreateSiteModal = (isOverMaxSitesAllowed: props) => {
             placeholder="Insert site subdomain here..."
             {...form.getInputProps('subdomain')}
           />
-          <Button onClick={validateBeforeSubmit} loading={isPending}>Create Site</Button>
-        </div>
+          <Button type="submit" loading={isPending}>Create Site</Button>
+        </form>
       </Modal>
     </>
   );

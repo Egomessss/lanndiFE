@@ -50,11 +50,7 @@ export function middleware(req: NextRequest) {
     '/home',
   ];
 
-  // add this back hostname !== 'localhost:3000'
-  if (hostname !== `app.${process.env.NEXT_PUBLIC_APP_PRIMARY_DOMAIN}` && hostname !== 'localhost:3000') {
-    console.log('Accessing domains', hostname);
-    return NextResponse.rewrite(new URL(`/${hostname}${path}`, req.url));
-  }
+
 
   // app.lanndi.com and localhost - dashboard
   // not app and localhost - either subdomain or domain
@@ -73,7 +69,6 @@ export function middleware(req: NextRequest) {
       console.log('Accessing unprotected route:', path);
       return NextResponse.next(); // Proceed without redirecting
     }
-
 
     return NextResponse.rewrite(new URL(`/dashboard${path === '/' ? '' : path}`, req.url));
   }

@@ -160,7 +160,7 @@ const Plans: React.FC<Plans> = ({ currentPlan, isUserSubscribed, latestSavedSite
                 ))}
               </ul>
               <Divider className="w-full" my="md" />
-              <Button loading={isPending} component="a"
+              <Button disabled={isUserSubscribed} loading={isPending} component="a"
                       onClick={() => handleSubscribe('lifetime')}
               >
                 Buy Lifetime Deal
