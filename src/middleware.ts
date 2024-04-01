@@ -50,8 +50,6 @@ export function middleware(req: NextRequest) {
     '/home',
   ];
 
-
-
   // app.lanndi.com and localhost - dashboard
   // not app and localhost - either subdomain or domain
 
