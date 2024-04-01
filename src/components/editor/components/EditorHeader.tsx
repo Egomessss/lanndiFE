@@ -34,6 +34,7 @@ function SaveButton() {
   const params = useParams();
   const siteSlug = params.slug;
   const slug = usePathname();
+
   const user = slug === '/demo' ? null : true;
   const [showSuccess, setShowSuccess] = useState(false);
   const { data: isNotFirstTimeSaving } = useEditorData();
