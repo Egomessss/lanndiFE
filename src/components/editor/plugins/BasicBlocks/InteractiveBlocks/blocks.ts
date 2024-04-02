@@ -1,7 +1,7 @@
 import { BlockProperties, Editor, grapesjs } from 'grapesjs';
 import { PluginOptions } from './index';
 
-export default function(editor: Editor, opts: Required<PluginOptions>) {
+const InteractiveBlocks =(editor: Editor, opts: Required<PluginOptions>)=> {
   const bm = editor.BlockManager;
   const { category, blocks } = opts;
 
@@ -222,3 +222,6 @@ export default function(editor: Editor, opts: Required<PluginOptions>) {
 
 
 }
+
+
+export default InteractiveBlocks;

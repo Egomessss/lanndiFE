@@ -4,6 +4,7 @@ import { useEditorInstance } from "../context/EditorInstance"
 import { useEditorOptions } from "../context/EditorOptions"
 import { noop, isFunction } from "../utils"
 import { PortalContainerResult, portalContainer } from "../utils/react"
+import StylesProvider from '@/components/editor/wrappers/StylesProvider';
 
 export type SelectorsState = {
 
@@ -117,5 +118,7 @@ const SelectorsProvider = memo(function ({ children }: SelectorsProviderProps) {
 
     return editor ? (isFunction(children) ? children(propState) : null) : null
 })
+
+SelectorsProvider.displayName = 'SelectorsProvider';
 
 export default SelectorsProvider

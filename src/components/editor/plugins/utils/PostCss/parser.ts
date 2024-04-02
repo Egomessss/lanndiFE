@@ -62,7 +62,7 @@ export const createAtRule = (node: AtRule, result: ParsedRule[]) => {
   }
 };
 
-export default (css: string, editor?: Editor) => {
+const parser = (css: string, editor?: Editor) => {
   const result: ParsedRule[] = [];
   log(editor, ['Input CSS', css]);
 
@@ -86,3 +86,6 @@ export default (css: string, editor?: Editor) => {
 
   return result;
 }
+
+
+export default parser;

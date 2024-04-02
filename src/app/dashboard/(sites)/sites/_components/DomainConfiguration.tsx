@@ -1,10 +1,9 @@
 'use client';
 
 
-import { IconAlertCircle, IconCheck, IconExternalLink, IconInfoCircle, IconRefresh } from '@tabler/icons-react';
-import { Alert, Badge, Button, Card, ThemeIcon } from '@mantine/core';
+import { IconAlertCircle, IconExternalLink, IconInfoCircle } from '@tabler/icons-react';
+import { Alert, Button, Card, ThemeIcon } from '@mantine/core';
 import React from 'react';
-import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import axios from '@/lib/axios';
 import Loading from '@/app/dashboard/(sites)/Loading';
@@ -140,7 +139,7 @@ export default function DomainConfiguration({ domain, subdomain, slug }: SiteSet
             If you already have an A record for that address, please change it to point at 137.66.32.37 and remove any
             other
             A, AAAA, or CNAME records for that exact address. It may take a few minutes for your SSL certificate to take
-            effect once you've pointed your DNS A record.
+            effect once you&apos;ve pointed your DNS A record.
           </p>
           <p>
             Sometimes DNS providers want the entire hostname written in the hostname field.

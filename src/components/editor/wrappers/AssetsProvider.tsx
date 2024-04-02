@@ -103,4 +103,6 @@ const AssetsProvider = memo(function ({ children }: AssetsProviderProps) {
         : null
 })
 
+AssetsProvider.displayName = 'AssetsProvider';
+
 export default AssetsProvider

@@ -50,10 +50,12 @@ const TraitsProvider = memo(function ({ children }: TraitsProviderProps) {
             editor.off(event, up)
         }
     }, [editor])
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => options.setCustomTraits(true), [])
 
     return editor ? (isFunction(children) ? children(propState) : null) : null
 })
+
+TraitsProvider.displayName = 'TraitsProvider';
 
 export default TraitsProvider

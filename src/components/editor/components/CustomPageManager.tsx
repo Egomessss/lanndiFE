@@ -133,7 +133,7 @@ function CreatePageModal({ editingPageId, pages, add, opened, onClose }: CreateP
       />
       <Textarea className="w-full"
                 label="Description"
-                placeholder="Insert your title here..."
+                placeholder="Insert your description here..."
                 {...form.getInputProps('description')}
                 rightSectionWidth="60"
                 rightSection={form.getInputProps('description').value &&

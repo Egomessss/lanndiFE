@@ -1,7 +1,7 @@
 import { BlockProperties, Editor } from 'grapesjs'
 import { PluginOptions } from './index'
 
-export default function(editor: Editor, opts: Required<PluginOptions>) {
+const ListBlocks =(editor: Editor, opts: Required<PluginOptions>)=> {
     const bm = editor.BlockManager
     const { category, blocks } = opts
 
@@ -64,3 +64,6 @@ export default function(editor: Editor, opts: Required<PluginOptions>) {
     })
 
 }
+
+
+export default ListBlocks

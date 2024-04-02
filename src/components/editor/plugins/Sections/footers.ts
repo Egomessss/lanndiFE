@@ -1,7 +1,7 @@
 import type { Editor } from 'grapesjs';
 import { RequiredPluginOptions } from './index';
 
-export default (editor: Editor) => {
+const footers = (editor: Editor) => {
   const { Components } = editor;
 
   editor.Blocks.add('footer-one', {
@@ -370,5 +370,6 @@ gap:2;
     },
   });
 
-
 }
+
+export default footers;

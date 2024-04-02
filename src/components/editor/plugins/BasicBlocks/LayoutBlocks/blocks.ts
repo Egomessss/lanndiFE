@@ -1,7 +1,7 @@
 import { BlockProperties, Editor } from 'grapesjs';
 
 
-export default function(editor: Editor, opts: any) {
+ const LayoutBlocks = (editor: Editor, opts: any) => {
 
   const {
     category,
@@ -327,4 +327,7 @@ export default function(editor: Editor, opts: any) {
   });
 
 
-}
+};
+
+
+export default LayoutBlocks;

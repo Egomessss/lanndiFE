@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Editor } from 'grapesjs';
 
-export default (editor: Editor, opts = {}) => {
+const ZoomPlugin = (editor: Editor, opts = {}) => {
   const options = {
     ...{
       // default options
@@ -71,3 +71,5 @@ export default (editor: Editor, opts = {}) => {
     }
   });
 }
+
+export default ZoomPlugin;

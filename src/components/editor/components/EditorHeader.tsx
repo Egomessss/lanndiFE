@@ -58,7 +58,7 @@ function SaveButton() {
     return { data, pagesData };
   };
 
-  const showNotification = (color, title, message) => {
+  const showNotification = (color: string, title: string, message: string) => {
     notifications.show({
       color,
       title,
@@ -66,11 +66,13 @@ function SaveButton() {
     });
   };
 
+
   const { mutate, isError, isPending } = useMutation({
+    // @ts-ignore
     mutationFn: async ({ data, pagesData }) => {
       const endpoint = `api/v1/editor/${siteSlug}/`;
-      const url = isNotFirstTimeSaving.data ? `${endpoint}update` : `${endpoint}store`;
-      const method = isNotFirstTimeSaving.data ? 'patch' : 'post';
+      const url = isNotFirstTimeSaving?.data ? `${endpoint}update` : `${endpoint}store`;
+      const method = isNotFirstTimeSaving?.data ? 'patch' : 'post';
       const payload = {
         projectId: siteSlug,
         data,
@@ -92,16 +94,17 @@ function SaveButton() {
   });
 
   useEffect(() => {
-    if (isNotFirstTimeSaving.data !== null) {
+    if (isNotFirstTimeSaving?.data !== null) {
       const { data, pagesData } = getEditorData();
       const saveIntervalId = setInterval(() => {
         if (!idle) {
+          // @ts-ignore
           mutate({ data, pagesData });
         }
       }, 600000);
       return () => clearInterval(saveIntervalId);
     }
-  }, [mutate, idle, isNotFirstTimeSaving.data]);
+  }, [mutate, idle, isNotFirstTimeSaving?.data]);
 
   const handleSave = () => {
     const { data, pagesData } = getEditorData();
@@ -113,6 +116,7 @@ function SaveButton() {
       showNotification('red', 'Error', 'Data is not available.');
       return;
     }
+    // @ts-ignore
     mutate({ data, pagesData });
   };
 

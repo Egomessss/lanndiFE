@@ -2,7 +2,7 @@ import type { Editor } from 'grapesjs';
 import { PluginOptions } from './index';
 import { keyCustomCode, commandNameCustomCode, typeCustomCode } from './utils';
 
-export default (editor: Editor, opts: PluginOptions = {}) => {
+const components = (editor: Editor, opts: PluginOptions = {}) => {
   const { Components } = editor;
   const { toolbarBtnCustomCode } = opts;
   let timedInterval: NodeJS.Timeout;
@@ -97,3 +97,5 @@ export default (editor: Editor, opts: PluginOptions = {}) => {
     },
   });
 }
+
+export default components;

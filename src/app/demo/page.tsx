@@ -21,7 +21,6 @@ export default function CustomEditor() {
   // let width;
 
 
-
   const onEditor = (editor: Editor) => {
     (window as any).editor = editor;
     // console.log('width', editor.Canvas.getFrame().width);
@@ -45,8 +44,6 @@ export default function CustomEditor() {
     return <EditorLoading />; // Replace this with your loading component
   }
 
-
-  const computedColorScheme = useComputedColorScheme('dark');
 
   return (
     <GjsEditor
@@ -79,21 +76,20 @@ export default function CustomEditor() {
             <CustomModal
               open={open}
               title={title}
-              children={content}
               close={close}
-            />
+            >{content}</CustomModal>
           )}
         </ModalProvider>
         <AssetsProvider>
-            {({assets, select, close, Container, open}) => (
-                <CustomAssetManager
-                    assets={assets}
-                    select={select}
-                    close={close}
-                    open={open}
-                />
+          {({ assets, select, close, Container, open }) => (
+            <CustomAssetManager
+              assets={assets}
+              select={select}
+              close={close}
+              open={open}
+            />
 
-            )}
+          )}
         </AssetsProvider>
       </div>
     </GjsEditor>

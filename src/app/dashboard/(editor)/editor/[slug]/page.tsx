@@ -16,7 +16,7 @@ import { EditorLoading } from '@/components/common/EditorLoading';
 
 
 export default function CustomEditor() {
-  const computedColorScheme = useComputedColorScheme('dark');
+
   const params = useParams();
   const siteSlug = params.slug;
 
@@ -67,9 +67,8 @@ export default function CustomEditor() {
             <CustomModal
               open={open}
               title={title}
-              children={content}
               close={close}
-            />
+            >{content}</CustomModal>
           )}
         </ModalProvider>
         {/*<AssetsProvider>*/}

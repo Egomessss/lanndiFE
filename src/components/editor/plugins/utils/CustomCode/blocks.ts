@@ -2,7 +2,7 @@ import type { Editor } from 'grapesjs';
 import { PluginOptions } from './index';
 import { typeCustomCode } from './utils';
 
-export default (editor: Editor, { blockCustomCode }: PluginOptions = {}) => {
+const CustomCode =  (editor: Editor, { blockCustomCode }: PluginOptions = {}) => {
   const { Blocks } = editor;
 
   blockCustomCode && Blocks.add(typeCustomCode, {
@@ -17,3 +17,5 @@ export default (editor: Editor, { blockCustomCode }: PluginOptions = {}) => {
     ...blockCustomCode
   });
 }
+
+export default CustomCode;

@@ -1,4 +1,4 @@
-import zoomPlugin from '@/components/editor/plugins/utils/ZoomPlugin/zoomPlugin';
+import zoomPlugin from '@/components/editor/plugins/utils/ZoomPlugin/zoom-plugin';
 import LayoutBlocks from '../plugins/BasicBlocks/LayoutBlocks';
 import TypographyBlocks from '../plugins/BasicBlocks/TypographyBlocks';
 import CoreBlocks from '../plugins/BasicBlocks/InteractiveBlocks';
@@ -8,7 +8,7 @@ import CustomCode from '@/components/editor/plugins/utils/CustomCode';
 import BorderStyle from '@/components/editor/plugins/utils/BorderStyle';
 import Sections from '@/components/editor/plugins/Sections';
 import { EditorData } from '@/hooks/use-editor-data';
-import UtilsPlugin from '@/components/editor/plugins/utils/UtilsPlugin/utilsPlugin';
+import UtilsPlugin from '@/components/editor/plugins/utils/UtilsPlugin/utils-plugin';
 import GoogleIcons from '@/components/editor/plugins/utils/GoogleIcons';
 import ScriptEditor from '@/components/editor/plugins/utils/ScriptEditor';
 import PostCss from '../plugins/utils/PostCss';

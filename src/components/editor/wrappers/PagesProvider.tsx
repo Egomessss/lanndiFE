@@ -2,6 +2,7 @@ import type { Editor, Page } from "grapesjs"
 import React, { memo, useEffect, useState } from "react"
 import { useEditorInstance } from "../context/EditorInstance"
 import { noop, isFunction } from "../utils"
+import SelectorsProvider from '@/components/editor/wrappers/SelectorsProvider';
 
 export type PagesState = {
     /**
@@ -71,5 +72,7 @@ const PagesProvider = memo(function ({ children }: PagesProviderProps) {
 
     return editor ? (isFunction(children) ? children(propState) : null) : null
 })
+
+PagesProvider.displayName = 'PagesProvider';
 
 export default PagesProvider

@@ -1,6 +1,6 @@
 import { groupRepeatedUnits, createRepetition } from './repetition';
 
-export default (editor, opts = {}) => {
+const store = () => {
     return {
         state: {
             auto: false,
@@ -94,9 +94,12 @@ export default (editor, opts = {}) => {
     }
 };
 
+export default store;
+
 //we start off with just a few rows and columns filled with 1fr units
 const createArr = (direction, arr) => {
     for (let i = 1; i <= direction; i++) {
         arr.push({ unit: "1fr" });
     }
 };
+

@@ -83,7 +83,7 @@ const ModalProvider = memo(function ({ children }: ModalProviderProps) {
             editor.off(event, toListen)
         }
     }, [editor])
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => options.setCustomModal(true), [])
 
     return editor
@@ -92,5 +92,7 @@ const ModalProvider = memo(function ({ children }: ModalProviderProps) {
             : null
         : null
 })
+
+ModalProvider.displayName = 'ModalProvider';
 
 export default ModalProvider

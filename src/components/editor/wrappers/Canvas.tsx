@@ -12,7 +12,7 @@ export default function Canvas({
 
     useEffect(() => {
         canvasRef.current && editorOptions.setRefCanvas(canvasRef.current)
-    }, [canvasRef.current])
+    }, [canvasRef.current, editorOptions])
 
 
 

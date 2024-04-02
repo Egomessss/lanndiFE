@@ -2,7 +2,7 @@ import {
     cmdId
 } from './consts';
 
-export default (editor, opts = {}) => {
+const commands = (editor, opts = {}) => {
     const cm = editor.Commands;
     const md = editor.Modal;
     const domc = editor.Components;
@@ -194,3 +194,5 @@ export default (editor, opts = {}) => {
         ...commandAttachScript,
     });
 }
+
+export default commands;

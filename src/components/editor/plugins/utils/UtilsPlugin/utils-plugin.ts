@@ -1,6 +1,6 @@
 import { Editor } from 'grapesjs';
 
-export default (editor: Editor, opts = {}) => {
+const UtilsPlugin = (editor: Editor, opts = {}) => {
   editor.Commands.add('wrapper', {
     run: () => {
       // Get all currently selected components
@@ -122,3 +122,8 @@ export default (editor: Editor, opts = {}) => {
   // const bodyElement = editor.Canvas.getBody();
   // resizeObserver.observe(bodyElement);
 }
+
+export default UtilsPlugin;
+
+
+

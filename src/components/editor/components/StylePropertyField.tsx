@@ -43,10 +43,11 @@ interface StylePropertyFieldProps extends React.HTMLProps<HTMLDivElement> {
 }
 
 
+
 export default function StylePropertyField({
                                              prop,
                                              ...rest
-                                           }: StylePropertyFieldProps) {
+                                           }: any) {
 
 
   const editor = useEditor();

@@ -103,4 +103,6 @@ const BlocksProvider = memo(function ({ children }: BlocksProviderProps) {
     return editor ? (isFunction(children) ? children(propState) : null) : null
 })
 
+BlocksProvider.displayName = "BlocksProvider"
+
 export default BlocksProvider

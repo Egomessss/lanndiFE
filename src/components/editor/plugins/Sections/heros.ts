@@ -1,7 +1,7 @@
 import type { Editor } from 'grapesjs';
 import { RequiredPluginOptions } from './index';
 
-export default (editor: Editor) => {
+const heros = (editor: Editor) => {
   const { Components } = editor;
 
 
@@ -112,3 +112,5 @@ export default (editor: Editor) => {
   });
 
 }
+
+export default heros;

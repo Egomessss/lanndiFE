@@ -60,4 +60,6 @@ const DevicesProvider = memo(function({ children }: DevicesProviderProps) {
     return editor ? (isFunction(children) ? children(propState) : null) : null
 })
 
+DevicesProvider.displayName = 'DevicesProvider';
+
 export default DevicesProvider

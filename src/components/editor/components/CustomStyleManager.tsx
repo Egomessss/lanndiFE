@@ -64,6 +64,8 @@ export default function CustomStyleManager({
     sector?.setOpen(false);
   }
 
+  const [value, setValue] = useState<string | null>(null);
+
   // Check if there are any sectors
   if (sectors.length === 0) {
     return null; // or some placeholder component
@@ -82,7 +84,7 @@ export default function CustomStyleManager({
   );
 
 
-  const [value, setValue] = useState<string | null>(null);
+
   // const [activeTab, setActiveTab] = useState(sectors.length > 0 ? sectors[0].getId().toString() : '');
   // Map the rest of the sectors to accordion items
   const accordionItems = otherSectors.filter(sector => sector.isOpen()).map((sector) => {

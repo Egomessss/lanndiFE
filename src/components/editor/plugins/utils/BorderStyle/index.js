@@ -1,4 +1,4 @@
-export default (
+const BorderStyle = (
     editor,
     opts
 ) => {
@@ -77,3 +77,5 @@ function setElementProperty(elem, properties) {
         }
     }
 }
+
+export default BorderStyle;

@@ -86,7 +86,7 @@ const CreateSiteModal = (isOverMaxSitesAllowed: props) => {
     },
   );
 
-  const validateBeforeSubmit = (e) => {
+  const validateBeforeSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     form.validate();
     const isValid = form.isValid();

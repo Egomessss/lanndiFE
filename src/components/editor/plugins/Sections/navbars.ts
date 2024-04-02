@@ -1,7 +1,7 @@
 import type { Editor } from 'grapesjs';
 
 
-export default (editor: Editor) => {
+const navbars = (editor: Editor) => {
 
   const id = 'navbar-one';
   const label = 'Navbar';
@@ -288,3 +288,5 @@ export default (editor: Editor) => {
     },
   });
 }
+
+export default navbars;

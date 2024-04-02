@@ -14,7 +14,7 @@ import { DarkModeButton } from '../../../components/common/DarkModeButton/DarkMo
 import React from 'react';
 
 
-const layout = ({ children }) => {
+const SiteLayout = ({ children }) => {
   const [opened, { toggle }] = useDisclosure();
   const { user, logout } = useUser();
   const router = useRouter();
@@ -139,4 +139,4 @@ const layout = ({ children }) => {
   );
 };
 
-export default layout;
+export default SiteLayout;

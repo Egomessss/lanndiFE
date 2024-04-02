@@ -175,7 +175,7 @@ export default function CustomAssetManager({
               key={asset.getSrc()}
               className=" rounded col-span-1 border-solid p-2"
             >
-              <img className="h-24 object-fill w-full rounded-sm" src={asset.getSrc()} />
+              <img className="h-24 object-fill w-full rounded-sm" src={asset.getSrc()}  alt={asset.getSrc()}/>
 
               <div
                 className="flex gap-2 items-center justify-between">

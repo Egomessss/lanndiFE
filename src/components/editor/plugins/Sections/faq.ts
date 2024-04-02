@@ -1,7 +1,7 @@
 import type { Editor } from 'grapesjs';
 import { RequiredPluginOptions } from './index';
 
-export default (editor: Editor) => {
+const faqs = (editor: Editor) => {
   const { Components } = editor;
   const script = function() {
     const accordionContent = document.querySelectorAll('.accordion-content');
@@ -201,3 +201,5 @@ export default (editor: Editor) => {
   });
 
 }
+
+export default faqs;

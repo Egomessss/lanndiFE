@@ -1,6 +1,6 @@
 import commands from './commands';
 
-export default (editor, opts = {}) => {
+const ScriptEditor = (editor, opts = {}) => {
     const options = {
         ...{
             // Starter code
@@ -44,3 +44,5 @@ export default (editor, opts = {}) => {
     // load commands
     commands(editor, options);
 };
+
+export default ScriptEditor;

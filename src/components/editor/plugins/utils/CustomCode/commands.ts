@@ -4,7 +4,7 @@ import { commandNameCustomCode, keyCustomCode } from './utils';
 
 type ContentTypes = HTMLElement | string | undefined;
 
-export default (editor: Editor, opts: PluginOptions = {}) => {
+const commands = (editor: Editor, opts: PluginOptions = {}) => {
   const { modalTitle, codeViewOptions, commandCustomCode } = opts;
 
   const appendToContent = (target: HTMLElement, content?: ContentTypes) => {
@@ -121,3 +121,6 @@ export default (editor: Editor, opts: PluginOptions = {}) => {
     ...commandCustomCode,
   });
 };
+
+
+export default commands;
