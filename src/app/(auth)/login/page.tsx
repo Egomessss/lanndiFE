@@ -62,7 +62,8 @@ const Login = () => {
           } else {
             notifications.show({
               title: 'Error',
-              message: 'Something went wrong... Please try again!',
+              message: error.toString(),
+              // message: 'Something went wrong... Please try again!',
               color: 'red',
             });
           }
