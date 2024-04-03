@@ -27,11 +27,6 @@ export function middleware(req: NextRequest) {
 
   const url = req.nextUrl;
 
-  const hostname = req.headers.has('apx-incoming-host')
-    ? req.headers.get('apx-incoming-host')
-    : req.headers.get('host');
-
-
   // do something with the "domain"
   const searchParams = req.nextUrl.searchParams.toString();
   // Get the pathname of the request (e.g. /, /about, /blog/first-post)
@@ -47,7 +42,6 @@ export function middleware(req: NextRequest) {
     '/verify-email',
     '/demo',
     '/forgot-password',
-    '/home',
   ];
 
   // app.lanndi.com and localhost - dashboard
