@@ -1,4 +1,4 @@
-defaultColorScheme = 'auto';
+
 import type { Metadata } from 'next';
 import './globals.css';
 import '@mantine/core/styles.css';
