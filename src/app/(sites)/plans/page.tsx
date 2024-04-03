@@ -5,10 +5,10 @@ import { IconArrowLeft } from '@tabler/icons-react';
 import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
 import axios from '@/lib/axios';
-import Loading from '@/app/dashboard/(sites)/Loading';
-import ErrorMessage from '@/app/dashboard/(sites)/Error';
+import Loading from '@/app/(sites)/Loading';
+import ErrorMessage from '@/app/(sites)/Error';
 import CreateSiteModal from '@/components/dashboard/CreateSiteModal';
-import Plans from '@/app/dashboard/(sites)/plans/_components/Plans';
+import Plans from '@/app/(sites)/plans/_components/Plans';
 
 
 type PlansData = {

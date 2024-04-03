@@ -1,8 +1,8 @@
 import React, { FormEventHandler, useState } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from '@/lib/axios';
-import Loading from '@/app/dashboard/(sites)/Loading';
-import ErrorMessage from '@/app/dashboard/(sites)/Error';
+import Loading from '@/app/(sites)/Loading';
+import ErrorMessage from '@/app/(sites)/Error';
 import { Badge, Button, Divider, Switch } from '@mantine/core';
 import { IconCheck } from '@tabler/icons-react';
 import Link from 'next/link';

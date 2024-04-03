@@ -7,8 +7,8 @@ import axios from '@/lib/axios';
 
 import ColorPicker from 'react-best-gradient-color-picker';
 import { useState } from 'react';
-import Loading from '@/app/dashboard/(sites)/Loading';
-import ErrorMessage from '@/app/dashboard/(sites)/Error';
+import Loading from '@/app/(sites)/Loading';
+import ErrorMessage from '@/app/(sites)/Error';
 import { Badge } from '@mantine/core';
 
 export type Site = {

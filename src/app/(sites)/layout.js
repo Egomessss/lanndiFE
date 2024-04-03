@@ -5,13 +5,13 @@ import { useDisclosure } from '@mantine/hooks';
 import { ActionIcon, AppShell, Avatar, Burger, Button, Loader, Menu, NavLink, rem } from '@mantine/core';
 import { IconAdjustmentsDollar, IconCreditCard, IconHome2, IconLogout, IconUser } from '@tabler/icons-react';
 import Link from 'next/link';
-import useUser from '../../../hooks/use-user';
+import useUser from '../../hooks/use-user';
 import { useMutation } from '@tanstack/react-query';
-import axios from '../../../lib/axios';
+import axios from '../../lib/axios';
 import { notifications } from '@mantine/notifications';
 import { useRouter } from 'next/navigation';
-import { DarkModeButton } from '../../../components/common/DarkModeButton/DarkModeButton';
-import React from 'react';
+import { DarkModeButton } from '../../components/common/DarkModeButton/DarkModeButton';
+import React, { useEffect } from 'react';
 
 
 const SiteLayout = ({ children }) => {
@@ -19,9 +19,13 @@ const SiteLayout = ({ children }) => {
   const { user, logout } = useUser();
   const router = useRouter();
 
-  if (!user) {
-    router.push('/login');
-  }
+
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    }
+  }, [user]);
+
 
   console.log(user);
   const { mutate: getCustomerPortalUrl, isPending } = useMutation({
@@ -77,7 +81,7 @@ const SiteLayout = ({ children }) => {
         <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
         <div className="w-full flex justify-between items-center h-full px-4">
           <Link className="no-underline text-inherit font-bold text-xl"
-                href="/">
+                href="/public">
             lanndi
           </Link>
 

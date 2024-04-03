@@ -6,9 +6,9 @@ import { Alert, Button, Card, ThemeIcon } from '@mantine/core';
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from '@/lib/axios';
-import Loading from '@/app/dashboard/(sites)/Loading';
-import ErrorMessage from '@/app/dashboard/(sites)/Error';
-import { SiteSettings } from '@/app/dashboard/(sites)/sites/[slug]/page';
+import Loading from '@/app/(sites)/Loading';
+import ErrorMessage from '@/app/(sites)/Error';
+import { SiteSettings } from '@/app/(sites)/sites/[slug]/page';
 import Link from 'next/link';
 
 

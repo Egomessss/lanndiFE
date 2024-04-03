@@ -21,10 +21,10 @@ import CommandButtons from '@/components/editor/components/TopBarButtons';
 import DeviceButtons from '@/components/editor/components/DeviceButtons';
 import RegisterUserModal from '@/app/demo/_components/RegisterUserModal';
 import { useDisclosure, useIdle } from '@mantine/hooks';
-import SiteSettingsForm from '@/app/dashboard/(sites)/sites/_components/SiteSettingsForm';
-import DomainSettingsForm from '@/app/dashboard/(sites)/sites/_components/DomainSettingsForm';
-import DomainConfiguration from '@/app/dashboard/(sites)/sites/_components/DomainConfiguration';
-import { SiteSettings } from '@/app/dashboard/(sites)/sites/[slug]/page';
+import SiteSettingsForm from '@/app/(sites)/sites/_components/SiteSettingsForm';
+import DomainSettingsForm from '@/app/(sites)/sites/_components/DomainSettingsForm';
+import DomainConfiguration from '@/app/(sites)/sites/_components/DomainConfiguration';
+import { SiteSettings } from '@/app/(sites)/sites/[slug]/page';
 import useUser from '@/hooks/use-user';
 import { DarkModeButton } from '@/components/common/DarkModeButton/DarkModeButton';
 
