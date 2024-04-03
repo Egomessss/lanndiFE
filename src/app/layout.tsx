@@ -1,3 +1,4 @@
+defaultColorScheme = 'auto';
 import type { Metadata } from 'next';
 import './globals.css';
 import '@mantine/core/styles.css';
@@ -10,35 +11,35 @@ import TanstackProvider from '@/components/providers/TanstackProvider';
 import React from 'react';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-    title: 'lanndi',
-    description: 'Create your dream website in minutes',
-}
+  title: 'lanndi',
+  description: 'Create your dream website in minutes',
+};
 
 export default function RootLayout({
-                                       children,
+                                     children,
                                    }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-    return (
-        <html lang="en">
-        <head>
-            <ColorSchemeScript   />
-        </head>
-        <body className={inter.className}>
-        <TanstackProvider>
-            <MantineProvider >
-                <Notifications />
-                <ModalsProvider>
-                    {children}
-                </ModalsProvider>
-            </MantineProvider>
-            <ReactQueryDevtools initialIsOpen={false} />
-        </TanstackProvider>
-        </body>
-        </html>
-    )
+  return (
+    <html lang="en">
+    <head>
+      <ColorSchemeScript defaultColorScheme="auto" />
+    </head>
+    <body className={inter.className}>
+    <TanstackProvider>
+      <MantineProvider defaultColorScheme="auto">
+        <Notifications />
+        <ModalsProvider>
+          {children}
+        </ModalsProvider>
+      </MantineProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </TanstackProvider>
+    </body>
+    </html>
+  );
 
 }
