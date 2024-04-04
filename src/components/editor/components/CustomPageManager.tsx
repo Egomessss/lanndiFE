@@ -239,12 +239,13 @@ export default function CustomPageManager({
             size="xs"
             variant={page === selected ? 'filled' : 'subtle'}
             onClick={() => select(page)}
-            rightSection={
+            rightSection={!isHomepage ?
               <Menu
                 shadow="md"
                 width={200}
                 position="right-start"
                 offset={10}
+                disabled={isHomepage}
               >
                 <Menu.Target>
                   <ActionIcon size="sm" variant="subtle">
@@ -255,15 +256,17 @@ export default function CustomPageManager({
                 <Menu.Dropdown>
                   <Menu.Label>Page Settings</Menu.Label>
                   <Menu.Item
+                    disabled={isHomepage}
                     onClick={() => {
                       setEditingPageId(page.getId());
                       open();
                     }
                     }
                   >
-                    Edit
+                    {isHomepage ? 'Edit homepage in site settings' : 'Edit'}
                   </Menu.Item>
                   <Menu.Item
+                    disabled={isHomepage}
                     onClick={() => duplicatePage(page)}
                   >
                     Duplicate
@@ -279,7 +282,11 @@ export default function CustomPageManager({
                     {isHomepage ? 'Can\'t delete homepage' : 'Delete page'}
                   </Menu.Item>
                 </Menu.Dropdown>
-              </Menu>
+              </Menu> :
+              <Tooltip label="Edit your homepage setting in site settings">
+                <IconExclamationCircle size="1rem"
+                                       className="text-red-500" />
+              </Tooltip>
             }
           >{page.getName() || 'Untitled page'}</Button>
         </div>

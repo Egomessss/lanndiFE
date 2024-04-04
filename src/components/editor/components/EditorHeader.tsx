@@ -264,26 +264,27 @@ function SiteSettingsModal(props: {
 
   const { opened, onClose, data } = props; // Destructuring for easier access
 
+  const { user } = useUser();
+  const plan = user?.subscription || 'free';
 
   return <Modal
     opened={opened}
     onClose={onClose}
     title="Site settings"
-    scrollAreaComponent={ScrollArea.Autosize}
+    // scrollAreaComponent={ScrollArea.Autosize}
     size="xl"
   >
-
     <Tabs keepMounted={false} defaultValue="first">
       <Tabs.List>
         <Tabs.Tab value="first">General</Tabs.Tab>
         <Tabs.Tab value="second">Domain</Tabs.Tab>
       </Tabs.List>
       <Tabs.Panel value="first">
-        <SiteSettingsForm {...data} />
+        <SiteSettingsForm plan={plan} data={data} />
       </Tabs.Panel>
       <Tabs.Panel value="second">
-        <DomainSettingsForm {...data} />
-        <DomainConfiguration {...data} />
+        <DomainSettingsForm plan={plan} data={data} />
+        <DomainConfiguration plan={plan} domainData={data} />
       </Tabs.Panel>
     </Tabs>
   </Modal>;

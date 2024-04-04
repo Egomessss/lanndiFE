@@ -1,11 +1,7 @@
-import { AppShell, Box, Divider, ScrollArea } from '@mantine/core'
-
-import CustomLayerManager from './CustomLayerManager'
-import CustomPageManager from './CustomPageManager'
-import { LayersProvider, PagesProvider } from '../wrappers'
-import React from 'react'
-
-import { IconPageBreak } from '@tabler/icons-react'
+import { AppShell } from '@mantine/core';
+import CustomPageManager from './CustomPageManager';
+import { PagesProvider } from '../wrappers';
+import React from 'react';
 
 export default function PagesLeftSideBar() {
     return (

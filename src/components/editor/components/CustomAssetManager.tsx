@@ -168,14 +168,13 @@ export default function CustomAssetManager({
     >
       <div className="flex flex-col gap-4">
         <SubmitAsset />
-
         <div className="grid grid-cols-4 gap-2 pr-2">
           {assets.map((asset: Asset) => (
             <div
               key={asset.getSrc()}
               className=" rounded col-span-1 border-solid p-2"
             >
-              <img className="h-24 object-fill w-full rounded-sm" src={asset.getSrc()}  alt={asset.getSrc()}/>
+              <img className="h-24 object-fill w-full rounded-sm" src={asset.getSrc()} alt={asset.getSrc()} />
 
               <div
                 className="flex gap-2 items-center justify-between">

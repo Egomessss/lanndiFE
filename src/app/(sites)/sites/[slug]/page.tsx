@@ -9,6 +9,7 @@ import axios from '@/lib/axios';
 import { useParams } from 'next/navigation';
 import DomainSettingsForm from '@/app/(sites)/sites/_components/DomainSettingsForm';
 import DomainConfiguration from '@/app/(sites)/sites/_components/DomainConfiguration';
+import useUser from '@/hooks/use-user';
 
 export type SiteSettings = {
   name: string,
@@ -38,8 +39,15 @@ const Page = () => {
   });
   console.log(data);
 
+  const { user } = useUser();
+
+  const plan = user?.subscription || 'free';
+
   if (isLoading) return <Loading />;
   if (isError) return <ErrorMessage />;
+
+
+
 
   return (
     <div>
@@ -49,11 +57,11 @@ const Page = () => {
           <Tabs.Tab value="second">Domain</Tabs.Tab>
         </Tabs.List>
         <Tabs.Panel value="first">
-          {data && <SiteSettingsForm {...data} />}
+          {data && <SiteSettingsForm plan={plan} data={data}/>}
         </Tabs.Panel>
         <Tabs.Panel value="second">
-          {data && <DomainSettingsForm {...data} />}
-          {data && <DomainConfiguration {...data} />}
+          {data && <DomainSettingsForm plan={plan} data={data} />}
+          {data && <DomainConfiguration plan={plan} domainData={data} />}
         </Tabs.Panel>
       </Tabs>
     </div>

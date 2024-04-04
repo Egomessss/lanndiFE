@@ -14,7 +14,10 @@ const validDomainRegex = new RegExp(
 
 const validSubdomainRegex = /^[a-zA-Z0-9]([a-zA-Z0-9-]{2,61}[a-zA-Z0-9])?$/;
 
-function DomainSettingsForm({ domain, subdomain, slug }: SiteSettings) {
+function DomainSettingsForm(props: { plan: string; data: SiteSettings }) {
+  const { plan, data } = props;
+  const { domain, subdomain, slug } = data;
+
 
   const queryClient = useQueryClient();
   console.log(slug);
@@ -31,8 +34,8 @@ function DomainSettingsForm({ domain, subdomain, slug }: SiteSettings) {
       .refine((value) => !value || validSubdomainRegex.test(value), {
         message: 'Invalid subdomain format',
       })
-      .refine((value) => !value || !value.includes('lanndi.com'), {
-        message: 'Cannot use lanndi.com as your custom domain',
+      .refine((value) => !value || plan === 'admin' || !value.includes('lanndi.com'), {
+        message: 'Cannot use lanndi.com as your custom subdomain',
       }),
     domain: z.string()
       .optional()
@@ -45,7 +48,7 @@ function DomainSettingsForm({ domain, subdomain, slug }: SiteSettings) {
       .refine((value) => !value || validDomainRegex.test(value), {
         message: 'Invalid domain format',
       })
-      .refine((value) => !value || !value.includes('lanndi.com'), {
+      .refine((value) => !value || plan === 'admin' || !value.includes('lanndi.com'), {
         message: 'Cannot use lanndi.com as your custom domain',
       }),
   });
@@ -101,7 +104,6 @@ function DomainSettingsForm({ domain, subdomain, slug }: SiteSettings) {
     }
   };
 
-  const plan = 'free';
 
   return <div className="w-full flex flex-col gap-4 my-10">
     <h2>Domain settings</h2>
@@ -112,7 +114,7 @@ function DomainSettingsForm({ domain, subdomain, slug }: SiteSettings) {
         placeholder="Insert site subdomain here..."
         {...form.getInputProps('subdomain')}
         rightSectionWidth={120}
-        rightSection={<div>lanndi.com</div>}
+        rightSection={<div>.lanndi.com</div>}
       />
       {plan !== 'free' && <TextInput
         label="Domain"

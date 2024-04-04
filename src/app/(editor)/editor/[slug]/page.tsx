@@ -2,7 +2,7 @@
 import grapesjs, { Editor } from 'grapesjs';
 import { AppShell, useComputedColorScheme } from '@mantine/core';
 import React from 'react';
-import GjsEditor, { Canvas, ModalProvider } from '@/components/editor/wrappers';
+import GjsEditor, { AssetsProvider, Canvas, ModalProvider } from '@/components/editor/wrappers';
 import LeftSideBar from '@/components/editor/components/LeftSideBar';
 import RightSideBar from '@/components/editor/components/RightSideBar';
 import EditorHeader from '@/components/editor/components/EditorHeader';
@@ -13,6 +13,7 @@ import CustomModal from '@/components/editor/components/CustomModal';
 import { editorConfigOptions } from '@/components/editor/utils/options';
 import useEditorData from '@/hooks/use-editor-data';
 import { EditorLoading } from '@/components/common/EditorLoading';
+import CustomAssetManager from '@/components/editor/components/CustomAssetManager';
 
 
 export default function CustomEditor() {
@@ -24,7 +25,6 @@ export default function CustomEditor() {
 
   if (isLoading) return <Loading />;
   if (isError) return <ErrorMessage />;
-
 
   const onEditor = (editor: Editor) => {
     (window as any).editor = editor;
@@ -68,23 +68,23 @@ export default function CustomEditor() {
               open={open}
               title={title}
               close={close}
-            >{content}</CustomModal>
+            >{content}
+            </CustomModal>
           )}
         </ModalProvider>
-        {/*<AssetsProvider>*/}
-        {/*    {({assets, select, close, Container, open}) => (*/}
-        {/*        <CustomAssetManager*/}
-        {/*            assets={assets}*/}
-        {/*            select={select}*/}
-        {/*            close={close}*/}
-        {/*            open={open}*/}
-        {/*        />*/}
+        <AssetsProvider>
+            {({assets, select, close, Container, open}) => (
+                <CustomAssetManager
+                    assets={assets}
+                    select={select}
+                    close={close}
+                    open={open}
+                />
 
-        {/*    )}*/}
-        {/*</AssetsProvider>*/}
+            )}
+        </AssetsProvider>
       </div>
     </GjsEditor>
-
   );
 }
 

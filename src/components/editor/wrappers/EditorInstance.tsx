@@ -185,24 +185,7 @@ const EditorInstance = memo(function({
 
     return () => editor?.destroy();
   }, [
-    editorOptions.ready,
-    editorOptions.customAssets,
-    editorOptions.customBlocks,
-    editorOptions.customLayers,
-    editorOptions.customModal,
-    editorOptions.customRte,
-    editorOptions.customSelectors,
-    editorOptions.customStyles,
-    editorOptions.customTraits,
-    editorOptions.refCanvas,
-    grapesjs,
-    grapesjsCss,
-    onEditor,
-    onReady,
-    onUpdate,
-    options,
-    plugins,
-    setEditor,
+    editorOptions.ready
   ]);
 
   const height = options.height ?? '100%';
