@@ -17,17 +17,17 @@ import React, { useEffect } from 'react';
 const SiteLayout = ({ children }) => {
   const [opened, { toggle }] = useDisclosure();
   const { user, logout } = useUser();
-  // const router = useRouter();
-  //
-  //
-  // useEffect(() => {
-  //   if (!user) {
-  //     router.push('/login');
-  //   }
-  // }, [user]);
-  //
-  //
-  // console.log(user);
+  const router = useRouter();
+
+
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    }
+  }, [user]);
+
+
+  console.log(user);
   const { mutate: getCustomerPortalUrl, isPending } = useMutation({
     mutationFn: async () => {
       const response = await axios.post('/api/v1/customer-portal');
