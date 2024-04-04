@@ -151,6 +151,58 @@ function SubmitAsset() {
   </div>;
 }
 
+function DeleteAsset({ asset }: { asset: Asset }) {
+
+  const params = useParams();
+  const siteSlug = params.slug;
+  const editor = useEditor();
+
+  const { mutate: deleteAsset, isPending } = useMutation({
+      mutationFn: async () => {
+        // Use Axios to send delete request
+        return await axios.delete(`/api/v1/editor/assets/${siteSlug}/delete`, {
+          data: { src: asset.getSrc() }, // Send the asset source in the request body
+          headers: {
+            'Content-Type': 'application/json', // This is important
+          },
+        });
+      },
+      onSuccess:
+        () => {
+          editor.Assets.remove(asset); // Remove the asset from the editor
+          notifications.show({
+            title: 'Success!',
+            message: 'Asset deleted successfully',
+            color: 'green',
+          });
+        }
+      ,
+      onError:
+        (error) => {
+          console.log('error', error);
+          notifications.show({
+            title: 'Error',
+            message: 'Something went wrong... Please try again!',
+            color: 'red',
+          });
+        },
+    },
+  );
+
+  const handleDelete = () => {
+    deleteAsset(); // Call the delete mutation
+  };
+
+  return <ActionIcon
+    variant="subtle"
+    color="red"
+    loading={isPending}
+    onClick={handleDelete} // Call handleDelete when the icon is clicked
+  >
+    <IconTrash size="1rem" />
+  </ActionIcon>;
+}
+
 export default function CustomAssetManager({
                                              assets,
                                              select,
@@ -185,14 +237,7 @@ export default function CustomAssetManager({
                 >
                   Select
                 </Button>
-                {/*<ActionIcon*/}
-                {/*  variant="subtle"*/}
-                {/*  color="red"*/}
-                {/*  loading={isPending}*/}
-                {/*  onClick={() => deleteAsset(asset.getSrc())}*/}
-                {/*>*/}
-                {/*  <IconTrash size="1rem" />*/}
-                {/*</ActionIcon>*/}
+                <DeleteAsset asset={asset} />
               </div>
             </div>
           ))}

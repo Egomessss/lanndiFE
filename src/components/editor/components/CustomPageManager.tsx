@@ -223,12 +223,13 @@ export default function CustomPageManager({
       className="gjs-custom-page-manager relative select-none text-left text-xs flex flex-col gap-2"
     >
       <Button leftSection={<IconPlus size="1rem" />}
-              rightSection={
-                <Tooltip w={200} multiline color="blue"
-                         label="The name represent the url slugs e.g: Homepage should be always '/', an about page '/about' ">
-                  <IconExclamationCircle size="1rem" />
-                </Tooltip>
-              } onClick={addNewPage} size="xs" variant="subtle">Add new page</Button>
+              // rightSection={
+              //   <Tooltip w={200} multiline color="blue"
+              //            label="The name represent the url slugs e.g: Homepage should be always '/', an about page '/about' ">
+              //     <IconExclamationCircle size="1rem" />
+              //   </Tooltip>
+              // }
+              onClick={addNewPage} size="xs" variant="subtle">Add page</Button>
       {pages.map((page, index) => (
         <div key={index}>
           <Button
