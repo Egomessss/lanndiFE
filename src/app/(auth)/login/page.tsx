@@ -40,7 +40,7 @@ const Login = () => {
         // Assuming crsf() is an async function that sets up CSRF tokens
         await csrf();
         // Now, make your Axios POST request
-        const response = await axios.post('/login', form.values);
+        const response = await axios.post('login', form.values);
         return response.data;
       },
       onSuccess:

@@ -7,7 +7,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
   const params = useParams();
 
 
-  const csrf = () => axios.get('/sanctum/csrf-cookie')
+  const csrf = () => axios.get('sanctum/csrf-cookie')
 
   const forgotPassword = async ({ setErrors, setStatus, email }) => {
     await csrf();
