@@ -39,7 +39,7 @@ const Login = () => {
         // Assuming crsf() is an async function that sets up CSRF tokens
         await axios.get('/sanctum/csrf-cookie');
         // Now, make your Axios POST request
-        await axios.post('/login', form.values);
+        // await axios.post('/login', form.values);
 
       },
       // onSuccess:
