@@ -18,7 +18,7 @@ const nextConfig = {
       return [
         {
           source: '/backend/:path*',
-          destination: `${process.env.NEXT_PUBLIC_BACKEND_URL}/:path*`,
+          destination: 'https://api.lanndi.com/:path*',
         },
       ];
     },

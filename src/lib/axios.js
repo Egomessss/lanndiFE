@@ -2,7 +2,7 @@
 import Axios from 'axios';
 
 const axios = Axios.create({
-  baseURL: '/backend',
+  baseURL: process.env.NODE_ENV === 'production' ? '/backend' : process.env.NEXT_PUBLIC_BACKEND_URL,
   headers: {
     // 'X-Requested-With': 'XMLHttpRequest',
     'Accept': 'application/json',
