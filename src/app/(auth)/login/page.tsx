@@ -39,15 +39,15 @@ const Login = () => {
         // Assuming crsf() is an async function that sets up CSRF tokens
         await csrf();
         // Now, make your Axios POST request
-        const response = await axios.post('/login', form.values);
-        return response.data;
+        await axios.post('/login', form.values);
+
       },
       onSuccess:
         () => {
           const twoWeeksInSeconds = 60 * 60 * 24 * 14;
           // On successful login, set a cookie to last for 2 weeks
           document.cookie = `isLoggedIn=true; path=/; max-age=${twoWeeksInSeconds}; secure; samesite=Strict`;
-          router.push('/');
+          // router.push('/');
         }
       ,
       onError:
