@@ -29,7 +29,7 @@ const CreateSiteModal = () => {
 
     const validSubdomainRegex = /^[a-zA-Z0-9]([a-zA-Z0-9-]{2,61}[a-zA-Z0-9])?$/;
 
-    const { csrf } = useAuth();
+    // const { csrf } = useAuth();
 
 
     const formSchema = z.object({
@@ -78,7 +78,7 @@ const CreateSiteModal = () => {
     const { mutate: register, isPending } = useMutation({
       mutationFn: async () => {
         try {
-          await csrf(); // Ensure CSRF setup
+          // await csrf(); // Ensure CSRF setup
           const response = await axios.post('/register-demo', form.values);
           return response.data; // Return the Axios response data
         } catch (error) {

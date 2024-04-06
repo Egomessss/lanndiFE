@@ -15,7 +15,7 @@ import { useAuth } from '@/hooks/auth';
 
 const Page = () => {
   const router = useRouter();
-  const { csrf } = useAuth();
+  // const { csrf } = useAuth();
   const formSchema = z.object({
     email: z.string()
       .email({ message: 'Invalid email address' }) // Ensure the string is a valid email
@@ -38,7 +38,7 @@ const Page = () => {
   const { mutate: register, isPending } = useMutation({
       mutationFn: async () => {
         // Assuming crsf() is an async function that sets up CSRF tokens
-        await csrf();
+        // await csrf();
         // Now, make your Axios POST request
         const response = await axios.post('/register', form.values);
         return response.data;
