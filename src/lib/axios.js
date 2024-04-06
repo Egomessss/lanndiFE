@@ -1,10 +1,10 @@
-'use client'
+'use client';
 import Axios from 'axios';
 
 const axios = Axios.create({
-  // baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
+  baseURL: '/backend',
   headers: {
-    'X-Requested-With': 'XMLHttpRequest',
+    // 'X-Requested-With': 'XMLHttpRequest',
     'Accept': 'application/json',
     'Content-Type': 'application/json',
     // 'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_BACKEND_URL, // replace this your actual origin
