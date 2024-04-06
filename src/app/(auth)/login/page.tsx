@@ -24,7 +24,7 @@ const Login = () => {
 
 
   const router = useRouter();
-  const { csrf } = useAuth();
+
 
   const form = useForm({
     initialValues: {
@@ -37,7 +37,7 @@ const Login = () => {
   const { mutate: login, isPending } = useMutation({
       mutationFn: async () => {
         // Assuming crsf() is an async function that sets up CSRF tokens
-        await csrf();
+        await axios.get('/sanctum/csrf-cookie');
         // Now, make your Axios POST request
         await axios.post('/login', form.values);
 
