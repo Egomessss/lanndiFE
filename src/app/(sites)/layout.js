@@ -81,7 +81,7 @@ const SiteLayout = ({ children }) => {
         <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
         <div className="w-full flex justify-between items-center h-full px-4">
           <Link className="no-underline text-inherit font-bold text-xl"
-                href="/public">
+                href="/">
             lanndi
           </Link>
 

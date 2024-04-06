@@ -2,8 +2,8 @@
 import Axios from 'axios';
 
 const axios = Axios.create({
-  baseURL: 'https://api.lanndi.com',
-  // baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
+  // if production localhost: 'http://localhost:8000' else https://api.lanndi.com
+  baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
   headers: {
     'X-Requested-With': 'XMLHttpRequest',
     'Accept': 'application/json',

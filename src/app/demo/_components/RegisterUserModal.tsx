@@ -130,7 +130,7 @@ const CreateSiteModal = () => {
       form.validate();
       const isValid = form.isValid();
       if (isValid) {
-        register();
+        // register();
       }
     };
 
@@ -164,7 +164,7 @@ const CreateSiteModal = () => {
               label="Password"
               {...form.getInputProps('password')}
             />
-            <Button loading={isPending} type="submit">Register</Button>
+            {/*<Button loading={isPending} type="submit">Register</Button>*/}
           </form>
         </Modal>
       </>
