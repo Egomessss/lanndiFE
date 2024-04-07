@@ -48,6 +48,7 @@ export function middleware(req: NextRequest) {
 
   // Check if the current path is an unprotected route
   const isUnprotectedRoute = unprotectedRoutes.includes(path);
+  console.log(process.env.NEXT_PUBLIC_BACKEND_URL);
 
   if (!session && !isUnprotectedRoute) {
     return NextResponse.redirect(new URL('/login', req.url));
