@@ -212,10 +212,10 @@ const SiteSettingsForm = (props: { plan: string; data: SiteSettings }) => {
           </div>
 
 
-          <TextInput className="w-full"
-                     label="Site language"
-                     {...form.getInputProps('language')}
-          />
+          {/*<TextInput className="w-full"*/}
+          {/*           label="Site language"*/}
+          {/*           {...form.getInputProps('language')}*/}
+          {/*/>*/}
 
           <div className="flex items-start gap-2 flex-col w-full">
             <h2>Custom head code</h2>
