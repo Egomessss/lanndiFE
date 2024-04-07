@@ -213,7 +213,6 @@ export default function CustomTraitManager({
       {/*<Button onClick={() => editor.runCommand('edit-script')} size="xs" mb="4">*/}
       {/*  Edit Script(JS)*/}
       {/*</Button>*/}
-
     </div>
   );
 }

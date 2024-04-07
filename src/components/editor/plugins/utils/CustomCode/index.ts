@@ -9,50 +9,50 @@ export type PluginOptions = {
    * @example
    * { label: 'Custom Code', category: 'Extra', ... }
    */
-   blockCustomCode?: Partial<BlockProperties>;
+  blockCustomCode?: Partial<BlockProperties>;
 
   /**
    * Object to extend the default custom code properties.
    * @example
    * { name: 'Custom Code', droppable: false, ... }
    */
-   propsCustomCode?: ComponentDefinition;
+  propsCustomCode?: ComponentDefinition;
 
   /**
    * Object to extend the default component's toolbar button for the code. Pass a falsy value to avoid adding the button
    * @example
    * { label: '</>', attributes: { title: 'Open custom code' } }
    */
-   toolbarBtnCustomCode?: Record<string, any>;
+  toolbarBtnCustomCode?: Record<string, any>;
 
-   /**
-    * Content to show when the custom code contains `<script>`
-    */
-   placeholderScript?: string;
+  /**
+   * Content to show when the custom code contains `<script>`
+   */
+  placeholderScript?: string;
 
-   /**
-    * Title for the custom code modal
-    * @default 'Insert your code'
-    */
-   modalTitle?: string;
+  /**
+   * Title for the custom code modal
+   * @default 'Insert your code'
+   */
+  modalTitle?: string;
 
-   /**
-    * Additional options for the code viewer.
-    * @example
-    * { theme: 'hopscotch', readOnly: 0 }
-    */
-   codeViewOptions?: Record<string, any>;
+  /**
+   * Additional options for the code viewer.
+   * @example
+   * { theme: 'hopscotch', readOnly: 0 }
+   */
+  codeViewOptions?: Record<string, any>;
 
-   /**
-    * Label for the default save button
-    * @default 'Save'
-    */
-    buttonLabel?: string;
+  /**
+   * Label for the default save button
+   * @default 'Save'
+   */
+  buttonLabel?: string;
 
-    /**
-     * Object to extend the default custom code command.
-     */
-    commandCustomCode?: Record<string, any>;
+  /**
+   * Object to extend the default custom code command.
+   */
+  commandCustomCode?: Record<string, any>;
 };
 
 const plugin: Plugin<PluginOptions> = (editor, opts = {}) => {
@@ -64,13 +64,13 @@ const plugin: Plugin<PluginOptions> = (editor, opts = {}) => {
       <svg viewBox="0 0 24 24" style="height: 30px; vertical-align: middle;">
         <path d="M13 14h-2v-4h2m0 8h-2v-2h2M1 21h22L12 2 1 21z"></path>
         </svg>
-      Custom code with <i>&lt;script&gt;</i> will only be shown in preview/live site
+      Custom code with <i>&lt;script&gt;</i> will only be shown in preview/published site
     </div>`,
-    modalTitle: 'Insert your code',
+    modalTitle: 'Insert your code - Html inside a div, CSS inside a style tag andJavascript inside a script tag.',
     codeViewOptions: {},
     buttonLabel: 'Save',
     commandCustomCode: {},
-    ...opts
+    ...opts,
   };
 
   // Add components

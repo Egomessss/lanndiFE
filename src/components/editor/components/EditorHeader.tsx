@@ -53,6 +53,7 @@ function SaveButton() {
         description: pageData.description,
         html: editor.getHtml({ component }),
         css: editor.getCss({ component }),
+        js: editor.getJs({ component }),
       };
     });
     return { data, pagesData };
@@ -169,10 +170,11 @@ function PublishButton({ siteData }: any) {
       description: pageData.description,
       html: editor.getHtml({ component }),
       css: editor.getCss({ component }),
+      js: editor.getJs({ component }),
     };
   });
 
-  console.log(pagesData);
+  console.log("pageData",pagesData);
 
 
   const { mutate, isPending } = useMutation({

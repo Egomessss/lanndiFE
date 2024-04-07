@@ -44,9 +44,9 @@ const Login = () => {
       },
       onSuccess:
         () => {
-          const twoWeeksInSeconds = 60 * 60 * 24 * 14;
-          // On successful login, set a cookie to last for 2 weeks
-          document.cookie = `isLoggedIn=true; path=/; max-age=${twoWeeksInSeconds}; secure; samesite=Strict`;
+          const fourHoursInSeconds = 60 * 60 * 4;
+          // On successful login, set a cookie to last for 4 hours
+          document.cookie = `isLoggedIn=true; path=/; max-age=${fourHoursInSeconds}; secure; samesite=Strict`;
           router.push('/');
         }
       ,
