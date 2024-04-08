@@ -5,8 +5,8 @@ import axios from '@/lib/axios';
 import { notifications } from '@mantine/notifications';
 import { Button, TextInput } from '@mantine/core';
 import React from 'react';
-import { SiteSettings } from '@/app/(sites)/sites/[slug]/page';
-import DomainConfiguration from '@/app/(sites)/sites/_components/DomainConfiguration';
+import { SiteSettings } from '@/app/(sites)/settings/[slug]/page';
+import DomainConfiguration from '@/app/(sites)/settings/_components/DomainConfiguration';
 
 const validDomainRegex = new RegExp(
   /^([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$/,

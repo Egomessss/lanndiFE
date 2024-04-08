@@ -1,14 +1,14 @@
 'use client';
 import React from 'react';
 import { Tabs } from '@mantine/core';
-import SiteSettingsForm from '@/app/(sites)/sites/_components/SiteSettingsForm';
+import SiteSettingsForm from '@/app/(sites)/settings/_components/SiteSettingsForm';
 import Loading from '@/app/(sites)/Loading';
 import ErrorMessage from '@/app/(sites)/Error';
 import { useQuery } from '@tanstack/react-query';
 import axios from '@/lib/axios';
 import { useParams } from 'next/navigation';
-import DomainSettingsForm from '@/app/(sites)/sites/_components/DomainSettingsForm';
-import DomainConfiguration from '@/app/(sites)/sites/_components/DomainConfiguration';
+import DomainSettingsForm from '@/app/(sites)/settings/_components/DomainSettingsForm';
+import DomainConfiguration from '@/app/(sites)/settings/_components/DomainConfiguration';
 import useUser from '@/hooks/use-user';
 
 export type SiteSettings = {

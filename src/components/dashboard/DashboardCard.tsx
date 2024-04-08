@@ -46,7 +46,7 @@ const DashboardCard = ({ name, slug, ogImage, isLive }: Site) => {
                            leftSection={<IconPencil size="1rem" />}>
                     Edit site
                 </Menu.Item>
-              <Menu.Item component={Link} href={`/sites/${slug}/settings`}
+              <Menu.Item component={Link} href={`/settings/${slug}`}
                          leftSection={<IconSettings size="1rem" />}>
                 Site Settings
               </Menu.Item>

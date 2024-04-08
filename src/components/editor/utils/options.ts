@@ -13,6 +13,7 @@ import GoogleIcons from '@/components/editor/plugins/utils/GoogleIcons';
 import ScriptEditor from '@/components/editor/plugins/utils/ScriptEditor';
 import PostCss from '../plugins/utils/PostCss';
 import { starterTemplate, styleStarterTemplate } from '@/components/editor/templates/Starter';
+import CssEditor from '@/components/editor/plugins/utils/CssEditor';
 
 
 export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: boolean) => ({
@@ -83,6 +84,7 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
     // IntegrationsBlocks,
     // ExtraBlocks,
     PostCss,
+    CssEditor,
     ScriptEditor,
     CustomCode,
     GoogleIcons,

@@ -8,7 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from '@/lib/axios';
 import Loading from '@/app/(sites)/Loading';
 import ErrorMessage from '@/app/(sites)/Error';
-import { SiteSettings } from '@/app/(sites)/sites/[slug]/page';
+import { SiteSettings } from '@/app/(sites)/settings/[slug]/page';
 import Link from 'next/link';
 import useUser from '@/hooks/use-user';
 
