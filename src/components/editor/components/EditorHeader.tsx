@@ -27,9 +27,11 @@ import DomainConfiguration from '@/app/(sites)/sites/_components/DomainConfigura
 import { SiteSettings } from '@/app/(sites)/sites/[slug]/page';
 import useUser from '@/hooks/use-user';
 import { DarkModeButton } from '@/components/common/DarkModeButton/DarkModeButton';
+import { timeSince } from '@/lib/utils';
 
 
 function SaveButton() {
+  const [lastSaved, setLastSaved] = useState<Date | null>(null);
   const editor = useEditorMaybe();
   const params = useParams();
   const siteSlug = params.slug;
@@ -90,6 +92,7 @@ function SaveButton() {
     },
     onSuccess: () => {
       setShowSuccess(true);
+      setLastSaved(new Date());
       setTimeout(() => setShowSuccess(false), 30000);
     },
   });
@@ -102,7 +105,7 @@ function SaveButton() {
           // @ts-ignore
           mutate({ data, pagesData });
         }
-      }, 600000);
+      }, 450000);
       return () => clearInterval(saveIntervalId);
     }
   }, [mutate, idle, isNotFirstTimeSaving?.data]);
@@ -126,7 +129,7 @@ function SaveButton() {
   return (
     <>
       {user ? (
-        <Tooltip color="gray" label="Save changes - Saved automatically every 10 minutes">
+        <Tooltip color="gray" label={`Save changes - Saved automatically every 10 minutes. Last saved: ${lastSaved ? timeSince(lastSaved) : 'Not yet saved'}`}>
           <ActionIcon
             disabled={showSuccess}
             loading={isPending}

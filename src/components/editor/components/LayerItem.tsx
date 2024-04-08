@@ -1,13 +1,12 @@
-
 import { HTMLProps, MouseEvent, useEffect, useMemo, useRef, useState } from 'react';
 import type { Component } from 'grapesjs';
-import { ActionIcon, Menu, ThemeIcon } from '@mantine/core';
+import { ActionIcon, Menu, TextInput, ThemeIcon } from '@mantine/core';
 import { useEditor } from '../wrappers';
 import {
-  IconBox,
+  IconBox, IconCheck,
   IconChevronDown,
   IconChevronRight,
-  IconDotsVertical,
+  IconDotsVertical, IconEdit,
   IconEye,
   IconLock,
   IconTrash,
@@ -36,6 +35,8 @@ export default function LayerItem({
   const [layerData, setLayerData] = useState(Layers.getLayerData(component));
   // console.log('layer', layerData);
 
+
+
   const { open, selected, hovered, components, visible, name, locked } =
     layerData;
   const componentsIds = components.map((cmp) => cmp.getId());
@@ -44,6 +45,16 @@ export default function LayerItem({
   const level = props.level + 1;
   const isHovered = hovered || dragParent === component;
 
+  const [layerName, setLayerName] = useState(name);
+  const [isEditingLayerName, setIsEditingLayerName] = useState(false);
+  console.log(layerName);
+
+  const changeLayerName = () => {
+    if (layerName.trim() !== '') {
+      Layers.setLayerData(component, { name: layerName });
+      setIsEditingLayerName(false);
+    }
+  };
 
   useEffect(() => {
     level === 0 && setLayerData(Layers.getLayerData(component));
@@ -110,6 +121,8 @@ export default function LayerItem({
   const wrapperCls = `layer-item flex flex-col rounded-lg  ${selected ? 'bg-[#228BE6]/20  ' : ''} ${(!visible || isDragging) ? 'opacity-40' : ''}`;
 
   const icon = component.get('icon');
+
+
   return (
     <div className={wrapperCls}>
       <div
@@ -143,12 +156,18 @@ export default function LayerItem({
           {icon && (
             <span className="pr-1" dangerouslySetInnerHTML={{ __html: icon }} />
           )}
-          <p
+          {isEditingLayerName ? <TextInput size="xs" value={layerName} onChange={(event) => setLayerName(event.currentTarget.value)}
+                                           rightSection={<ActionIcon
+                                             size="xs"
+                                             onClick={changeLayerName}
+                                           >
+                                             <IconCheck size="0.8rem" />
+                                           </ActionIcon>} /> : <p
             className="flex-grow truncate text-[10px] font-medium"
             style={itemStyle}
           >
             {name}
-          </p>
+          </p>}
           <Menu position="bottom-start" trigger="hover" openDelay={100} closeDelay={400} shadow="md" width={200}>
             <Menu.Target>
               <ActionIcon
@@ -162,6 +181,10 @@ export default function LayerItem({
             </Menu.Target>
 
             <Menu.Dropdown>
+              <Menu.Item rightSection={<ThemeIcon variant="subtle" color={locked ? 'red' : 'white'}><IconEdit
+                size="1rem" /></ThemeIcon>} onClick={() => setIsEditingLayerName(true)}>
+                Edit Layer Name
+              </Menu.Item>
               <Menu.Item rightSection={<ThemeIcon variant="subtle" color={locked ? 'red' : 'white'}><IconLock
                 size="1rem" /></ThemeIcon>} onClick={lockLayer}>
                 {locked ? 'Unlock Layer' : 'Lock Layer'}
@@ -190,46 +213,6 @@ export default function LayerItem({
               </Menu.Item>
             </Menu.Dropdown>
           </Menu>
-          {/*<div>*/}
-          {/*    <ActionIcon*/}
-          {/*    size="xs"*/}
-          {/*    variant="subtle"*/}
-          {/*    color="black"*/}
-          {/*    style={{ marginLeft: `${level * 6}px` }}*/}
-          {/*  */}
-          {/*>*/}
-          {/*    {open ? (*/}
-          {/*        <IconSquarePlus size="0.8rem"  />*/}
-          {/*    ) : (*/}
-          {/*        <IconSquarePlus size="0.8rem"  />*/}
-          {/*    )}*/}
-          {/*</ActionIcon>*/}
-          {/*    <ActionIcon*/}
-          {/*        size="xs"*/}
-          {/*        autoContrast*/}
-          {/*        variant="subtle"*/}
-          {/*        color="black"*/}
-          {/*     */}
-          {/*    >*/}
-          {/*        {locked ? (*/}
-          {/*            <IconLock size="0.8rem"  />*/}
-          {/*        ) : (*/}
-          {/*            <IconLockX size="0.8rem"  />*/}
-          {/*        )}*/}
-          {/*    </ActionIcon>*/}
-          {/*    <ActionIcon*/}
-          {/*        size="xs"*/}
-          {/*        autoContrast*/}
-          {/*        variant="subtle"*/}
-          {/*        color="black"*/}
-          {/*       */}
-          {/*    >*/}
-          {/*        {visible ? (*/}
-          {/*            <IconEye size="0.8rem"  />*/}
-          {/*        ) : (*/}
-          {/*            <IconEyeCancel size="0.8rem"  />*/}
-          {/*        )}*/}
-          {/*    </ActionIcon></div>*/}
 
         </div>
       </div>

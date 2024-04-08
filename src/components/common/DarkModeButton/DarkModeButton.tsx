@@ -11,8 +11,8 @@ export function DarkModeButton() {
         <>
             <ActionIcon
                 onClick={() => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')}
-                variant="default"
-                size=""
+                variant="subtle"
+                size="md"
                 aria-label="Toggle color scheme"
             >
                 <IconSun className={cx(classes.icon, classes.light)} stroke={1.5} />
