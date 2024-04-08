@@ -12,7 +12,7 @@ import UtilsPlugin from '@/components/editor/plugins/utils/UtilsPlugin/utils-plu
 import GoogleIcons from '@/components/editor/plugins/utils/GoogleIcons';
 import ScriptEditor from '@/components/editor/plugins/utils/ScriptEditor';
 import PostCss from '../plugins/utils/PostCss';
-import { starterTemplate } from '@/components/editor/templates/Starter';
+import { starterTemplate, styleStarterTemplate } from '@/components/editor/templates/Starter';
 
 
 export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: boolean) => ({
@@ -52,7 +52,6 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
       { name: 'active', label: 'Active', info: 'Change styles on active element' },
     ],
   },
-
   projectData: data?.data ||
     {
       assets: [
@@ -66,6 +65,8 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
         {
           name: 'Home',
           slug: 'index',
+          component: starterTemplate,
+          styles: styleStarterTemplate,
         },
       ],
     }

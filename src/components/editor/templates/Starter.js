@@ -1,9 +1,9 @@
 export const starterTemplate = '<body id="iau9">\n' +
-    '  <div id="i6po" class="gjs-grid-row">\n' +
-    '    <div id="itjq" class="gjs-grid-column">\n' +
-    '      <div id="iyd2" class="gjs-grid-row">\n' +
-    '        <div id="iqjl" class="gjs-grid-column"><a id="iucmr" href="/" class="gjs-link-box">\n' +
-    '            <div data-type-icon id="irfl3k" class="gjs-icon"><svg viewBox="0 0 202 40" fill="none">\n' +
+    '  <div id="i6po" class="lnd-grid-row">\n' +
+    '    <div id="itjq" class="lnd-grid-column">\n' +
+    '      <div id="iyd2" class="lnd-grid-row">\n' +
+    '        <div id="iqjl" class="lnd-grid-column"><a id="iucmr" href="/" class="lnd-link-box">\n' +
+    '            <div data-type-icon id="irfl3k" class="lnd-icon"><svg viewBox="0 0 202 40" fill="none">\n' +
     '                <path fill-rule="evenodd" clip-rule="evenodd"\n' +
     '                  d="M25.5557 11.6853C23.9112 10.5865 21.9778 10 20 10V0C23.9556 0 27.8224 1.17298 31.1114 3.37061C34.4004 5.56823 36.9638 8.69181 38.4776 12.3463C39.9913 16.0008 40.3874 20.0222 39.6157 23.9018C38.844 27.7814 36.9392 31.3451 34.1421 34.1421C31.3451 36.9392 27.7814 38.844 23.9018 39.6157C20.0222 40.3874 16.0008 39.9913 12.3463 38.4776C8.6918 36.9638 5.56823 34.4004 3.37061 31.1114C1.17298 27.8224 0 23.9556 0 20H10C10 21.9778 10.5865 23.9112 11.6853 25.5557C12.7841 27.2002 14.3459 28.4819 16.1732 29.2388C18.0004 29.9957 20.0111 30.1937 21.9509 29.8078C23.8907 29.422 25.6725 28.4696 27.0711 27.0711C28.4696 25.6725 29.422 23.8907 29.8078 21.9509C30.1937 20.0111 29.9957 18.0004 29.2388 16.1732C28.4819 14.3459 27.2002 12.7841 25.5557 11.6853Z"\n' +
     '                  fill="#007DFC" class="ccustom"></path>\n' +
@@ -39,106 +39,106 @@ export const starterTemplate = '<body id="iau9">\n' +
     '                  fill="#007DFC" class="ccustom"></path>\n' +
     '              </svg></div>\n' +
     '          </a></div>\n' +
-    '        <div id="iffs" class="gjs-grid-column">\n' +
-    '          <div id="it00l" class="gjs-grid-row">\n' +
-    '            <div id="irtfd" class="gjs-grid-column"><a id="icfyb" href="#feature-section" class="gjs-link">About</a><a\n' +
-    '                href="#feature-section" id="infmy1" class="gjs-link">Features</a></div>\n' +
-    '            <div id="icyzp" class="gjs-grid-column"><a id="i88iz" href="#testimonial-section"\n' +
-    '                class="gjs-link">Testimonials</a></div>\n' +
+    '        <div id="iffs" class="lnd-grid-column">\n' +
+    '          <div id="it00l" class="lnd-grid-row">\n' +
+    '            <div id="irtfd" class="lnd-grid-column"><a id="icfyb" href="#feature-section" class="lnd-link">About</a><a\n' +
+    '                href="#feature-section" id="infmy1" class="lnd-link">Features</a></div>\n' +
+    '            <div id="icyzp" class="lnd-grid-column"><a id="i88iz" href="#testimonial-section"\n' +
+    '                class="lnd-link">Testimonials</a></div>\n' +
     '          </div>\n' +
     '        </div>\n' +
-    '        <div id="id7x" class="gjs-grid-column"><a id="i1mew" class="gjs-button">Join Waitlist</a></div>\n' +
+    '        <div id="id7x" class="lnd-grid-column"><a id="i1mew" class="lnd-button">Join Waitlist</a></div>\n' +
     '      </div>\n' +
     '    </div>\n' +
     '  </div>\n' +
-    '  <div id="irz7b" class="gjs-grid-row">\n' +
-    '    <div id="iycz3" class="gjs-grid-column">\n' +
-    '      <h1 id="irjua" class="gjs-heading">Insert Hero <span id="i4jn1p" class="gjs-text-blue">text here</span></h1>\n' +
+    '  <div id="irz7b" class="lnd-grid-row">\n' +
+    '    <div id="iycz3" class="lnd-grid-column">\n' +
+    '      <h1 id="irjua" class="lnd-heading">Insert Hero <span id="i4jn1p" class="lnd-text-blue">text here</span></h1>\n' +
     '      <div id="itndw" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod\n' +
-    '        tempor incididunt ut labore et dolore magna aliqua.<br/></div><a id="iar3s" class="gjs-button">Join\n' +
+    '        tempor incididunt ut labore et dolore magna aliqua.<br/></div><a id="iar3s" class="lnd-button">Join\n' +
     '        Waitlist</a><img id="i3vvs" src="https://images.pexels.com/photos/7078666/pexels-photo-7078666.jpeg?auto=compress&cs=tinysrgb&w=800&dpr=2"/>\n' +
     '    </div>\n' +
     '  </div>\n' +
-    '  <div id="feature-section" class="gjs-grid-row">\n' +
-    '    <div id="imymf" class="gjs-grid-column">\n' +
-    '      <div id="ib541" class="gjs-grid-row">\n' +
-    '        <div id="iz8m8" class="gjs-grid-column">\n' +
-    '          <h4 id="ij2gh" class="gjs-heading gjs-text-blue">Feature One text</h4>\n' +
-    '          <h2 id="ism014" class="gjs-heading">Feature Text</h2>\n' +
+    '  <div id="feature-section" class="lnd-grid-row">\n' +
+    '    <div id="imymf" class="lnd-grid-column">\n' +
+    '      <div id="ib541" class="lnd-grid-row">\n' +
+    '        <div id="iz8m8" class="lnd-grid-column">\n' +
+    '          <h4 id="ij2gh" class="lnd-heading lnd-text-blue">Feature One text</h4>\n' +
+    '          <h2 id="ism014" class="lnd-heading">Feature Text</h2>\n' +
     '          <div id="igrx8" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n' +
-    '            eiusmod tempor incididunt ut labore et dolore magna aliqua.</div><a id="iqx3z1" class="gjs-button">Getting\n' +
+    '            eiusmod tempor incididunt ut labore et dolore magna aliqua.</div><a id="iqx3z1" class="lnd-button">Getting\n' +
     '            Started</a>\n' +
     '        </div>\n' +
-    '        <div id="iepks" class="gjs-grid-column"><img src="https://images.pexels.com/photos/2121640/pexels-photo-2121640.jpeg?auto=compress&cs=tinysrgb&w=500&dpr=2" id="i466d"/>\n' +
+    '        <div id="iepks" class="lnd-grid-column"><img src="https://images.pexels.com/photos/2121640/pexels-photo-2121640.jpeg?auto=compress&cs=tinysrgb&w=500&dpr=2" id="i466d"/>\n' +
     '        </div>\n' +
     '      </div>\n' +
     '    </div>\n' +
     '  </div>\n' +
-    '  <div id="ioyxg" class="gjs-grid-row">\n' +
-    '    <div id="i8w4i" class="gjs-grid-column">\n' +
-    '      <h4 id="ihs4lb" class="gjs-heading gjs-text-blue">More Features</h4>\n' +
-    '      <h2 id="iiacm" class="gjs-heading">Put here the text describing why your features are\n' +
-    '        <span id="icxfor" class="gjs-text-blue">so amazing</span></h2>\n' +
+    '  <div id="ioyxg" class="lnd-grid-row">\n' +
+    '    <div id="i8w4i" class="lnd-grid-column">\n' +
+    '      <h4 id="ihs4lb" class="lnd-heading lnd-text-blue">More Features</h4>\n' +
+    '      <h2 id="iiacm" class="lnd-heading">Put here the text describing why your features are\n' +
+    '        <span id="icxfor" class="lnd-text-blue">so amazing</span></h2>\n' +
     '      <div id="ia21sa" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod\n' +
     '        tempor incididunt ut labore et dolore magna aliqua.</div>\n' +
-    '      <div id="ixzh1" class="gjs-grid-row">\n' +
-    '        <div id="ilpi3" class="gjs-grid-column feature-item">\n' +
-    '          <div data-type-icon id="ipmqo6" class="gjs-icon gjs-feature-icon"><svg viewBox="0 0 24 24">\n' +
+    '      <div id="ixzh1" class="lnd-grid-row">\n' +
+    '        <div id="ilpi3" class="lnd-grid-column feature-item">\n' +
+    '          <div data-type-icon id="ipmqo6" class="lnd-icon lnd-feature-icon"><svg viewBox="0 0 24 24">\n' +
     '              <path\n' +
     '                d="M16 9h3l-5 7m-4-7h4l-2 8M5 9h3l2 7m5-12h2l2 3h-3m-5-3h2l1 3h-4M7 4h2L8 7H5m1-5L2 8l10 14L22 8l-4-6H6z">\n' +
     '              </path>\n' +
     '            </svg></div>\n' +
-    '          <h3 id="in9ef" class="gjs-heading">Feature text</h3>\n' +
+    '          <h3 id="in9ef" class="lnd-heading">Feature text</h3>\n' +
     '          <div id="i8isa" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n' +
     '            eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>\n' +
     '        </div>\n' +
-    '        <div id="ic57kq" class="gjs-grid-column feature-item">\n' +
-    '          <div data-type-icon id="ibdusm" class="gjs-icon gjs-feature-icon"><svg viewBox="0 0 24 24">\n' +
+    '        <div id="ic57kq" class="lnd-grid-column feature-item">\n' +
+    '          <div data-type-icon id="ibdusm" class="lnd-icon lnd-feature-icon"><svg viewBox="0 0 24 24">\n' +
     '              <path\n' +
     '                d="M16 9h3l-5 7m-4-7h4l-2 8M5 9h3l2 7m5-12h2l2 3h-3m-5-3h2l1 3h-4M7 4h2L8 7H5m1-5L2 8l10 14L22 8l-4-6H6z">\n' +
     '              </path>\n' +
     '            </svg></div>\n' +
-    '          <h3 id="ica43q" class="gjs-heading">Feature text</h3>\n' +
+    '          <h3 id="ica43q" class="lnd-heading">Feature text</h3>\n' +
     '          <div id="ickn3f" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n' +
     '            eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>\n' +
     '        </div>\n' +
-    '        <div id="idv32l" class="gjs-grid-column feature-item">\n' +
-    '          <div data-type-icon id="ipmept" class="gjs-icon gjs-feature-icon"><svg viewBox="0 0 24 24">\n' +
+    '        <div id="idv32l" class="lnd-grid-column feature-item">\n' +
+    '          <div data-type-icon id="ipmept" class="lnd-icon lnd-feature-icon"><svg viewBox="0 0 24 24">\n' +
     '              <path\n' +
     '                d="M16 9h3l-5 7m-4-7h4l-2 8M5 9h3l2 7m5-12h2l2 3h-3m-5-3h2l1 3h-4M7 4h2L8 7H5m1-5L2 8l10 14L22 8l-4-6H6z">\n' +
     '              </path>\n' +
     '            </svg></div>\n' +
-    '          <h3 id="ieu6p6" class="gjs-heading">Feature text</h3>\n' +
+    '          <h3 id="ieu6p6" class="lnd-heading">Feature text</h3>\n' +
     '          <div id="izqkf7" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n' +
     '            eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>\n' +
     '        </div>\n' +
     '      </div>\n' +
     '    </div>\n' +
     '  </div>\n' +
-    '  <div id="testimonial-section" class="gjs-grid-row">\n' +
-    '    <div id="infwen" class="gjs-grid-column">\n' +
-    '      <h2 id="ihap8q" class="gjs-heading">Testimonial section</h2>\n' +
+    '  <div id="testimonial-section" class="lnd-grid-row">\n' +
+    '    <div id="infwen" class="lnd-grid-column">\n' +
+    '      <h2 id="ihap8q" class="lnd-heading">Testimonial section</h2>\n' +
     '      <div id="i6fjjy" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod\n' +
     '        tempor incididunt ut labore et dolore magna aliqua.</div>\n' +
-    '      <div id="i5k4nf" class="gjs-grid-row">\n' +
-    '        <div id="inea73" class="gjs-grid-column testimonial-item">\n' +
-    '          <div id="i2d7qp" class="gjs-grid-row">\n' +
-    '            <div id="idva29" class="gjs-grid-column"><img src="https://source.unsplash.com/random/200x200/?profile,person,business" id="ia7pcr"/>\n' +
+    '      <div id="i5k4nf" class="lnd-grid-row">\n' +
+    '        <div id="inea73" class="lnd-grid-column testimonial-item">\n' +
+    '          <div id="i2d7qp" class="lnd-grid-row">\n' +
+    '            <div id="idva29" class="lnd-grid-column"><img src="https://source.unsplash.com/random/200x200/?profile,person,business" id="ia7pcr"/>\n' +
     '            </div>\n' +
-    '            <div id="i4djop" class="gjs-grid-column">\n' +
-    '              <h4 id="iqroa4" class="gjs-heading">Full name</h4>\n' +
+    '            <div id="i4djop" class="lnd-grid-column">\n' +
+    '              <h4 id="iqroa4" class="lnd-heading">Full name</h4>\n' +
     '              <div id="iaqf2c" class="text-main-content">Role / Company</div>\n' +
     '            </div>\n' +
     '          </div>\n' +
     '          <div id="it3yug" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n' +
     '            eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>\n' +
     '        </div>\n' +
-    '        <div id="idndjn" class="gjs-grid-column testimonial-item">\n' +
-    '          <div id="ish0zj" class="gjs-grid-row">\n' +
-    '            <div id="inucqu" class="gjs-grid-column"><img src="https://source.unsplash.com/random/200x200/?profile,person,business" id="ixzdlj"/>\n' +
+    '        <div id="idndjn" class="lnd-grid-column testimonial-item">\n' +
+    '          <div id="ish0zj" class="lnd-grid-row">\n' +
+    '            <div id="inucqu" class="lnd-grid-column"><img src="https://source.unsplash.com/random/200x200/?profile,person,business" id="ixzdlj"/>\n' +
     '            </div>\n' +
-    '            <div id="iuk8ib" class="gjs-grid-column">\n' +
-    '              <h4 id="i04ztt" class="gjs-heading">Full name</h4>\n' +
+    '            <div id="iuk8ib" class="lnd-grid-column">\n' +
+    '              <h4 id="i04ztt" class="lnd-heading">Full name</h4>\n' +
     '              <div id="ia9ts3" class="text-main-content">Role / Company</div>\n' +
     '            </div>\n' +
     '          </div>\n' +
@@ -148,20 +148,20 @@ export const starterTemplate = '<body id="iau9">\n' +
     '      </div>\n' +
     '    </div>\n' +
     '  </div>\n' +
-    '  <div id="iz29ek" class="gjs-grid-row">\n' +
-    '    <div id="ik2rdi" class="gjs-grid-column">\n' +
-    '      <h2 id="i83vu9" class="gjs-heading">Put here your description <br/>for\n' +
-    '        <span id="i7owfh" class="gjs-text-blue">this section</span></h2>\n' +
+    '  <div id="iz29ek" class="lnd-grid-row">\n' +
+    '    <div id="ik2rdi" class="lnd-grid-column">\n' +
+    '      <h2 id="i83vu9" class="lnd-heading">Put here your description <br/>for\n' +
+    '        <span id="i7owfh" class="lnd-text-blue">this section</span></h2>\n' +
     '      <div id="in201n" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod\n' +
-    '        tempor incididunt ut labore et dolore magna aliqua.<br/></div><a id="iwgwt5" class="gjs-button">Join\n' +
+    '        tempor incididunt ut labore et dolore magna aliqua.<br/></div><a id="iwgwt5" class="lnd-button">Join\n' +
     '        Waitlist</a>\n' +
     '    </div>\n' +
     '  </div>\n' +
-    '  <div id="iv3be5" class="gjs-grid-row">\n' +
-    '    <div id="ilriti" class="gjs-grid-column">\n' +
-    '      <div id="im0rle" class="gjs-grid-row">\n' +
-    '        <div id="iotp6j" class="gjs-grid-column"><a href="/" id="iih6cv" class="gjs-link-box">\n' +
-    '            <div data-type-icon id="ip6zoj" class="gjs-icon"><svg viewBox="0 0 202 40" fill="none">\n' +
+    '  <div id="iv3be5" class="lnd-grid-row">\n' +
+    '    <div id="ilriti" class="lnd-grid-column">\n' +
+    '      <div id="im0rle" class="lnd-grid-row">\n' +
+    '        <div id="iotp6j" class="lnd-grid-column"><a href="/" id="iih6cv" class="lnd-link-box">\n' +
+    '            <div data-type-icon id="ip6zoj" class="lnd-icon"><svg viewBox="0 0 202 40" fill="none">\n' +
     '                <path fill-rule="evenodd" clip-rule="evenodd"\n' +
     '                  d="M25.5557 11.6853C23.9112 10.5865 21.9778 10 20 10V0C23.9556 0 27.8224 1.17298 31.1114 3.37061C34.4004 5.56823 36.9638 8.69181 38.4776 12.3463C39.9913 16.0008 40.3874 20.0222 39.6157 23.9018C38.844 27.7814 36.9392 31.3451 34.1421 34.1421C31.3451 36.9392 27.7814 38.844 23.9018 39.6157C20.0222 40.3874 16.0008 39.9913 12.3463 38.4776C8.6918 36.9638 5.56823 34.4004 3.37061 31.1114C1.17298 27.8224 0 23.9556 0 20H10C10 21.9778 10.5865 23.9112 11.6853 25.5557C12.7841 27.2002 14.3459 28.4819 16.1732 29.2388C18.0004 29.9957 20.0111 30.1937 21.9509 29.8078C23.8907 29.422 25.6725 28.4696 27.0711 27.0711C28.4696 25.6725 29.422 23.8907 29.8078 21.9509C30.1937 20.0111 29.9957 18.0004 29.2388 16.1732C28.4819 14.3459 27.2002 12.7841 25.5557 11.6853Z"\n' +
     '                  fill="#007DFC" class="ccustom"></path>\n' +
@@ -197,11 +197,11 @@ export const starterTemplate = '<body id="iau9">\n' +
     '                  fill="#007DFC" class="ccustom"></path>\n' +
     '              </svg></div>\n' +
     '          </a></div>\n' +
-    '        <div id="i1hx7l" class="gjs-grid-column"><a id="ij7g8t" title="" href="##" class="gjs-link">Pricing<br/></a><a\n' +
-    '            id="ipjdtn" href="##" class="gjs-link">Terms &amp; Conditions<br/></a><a id="ikj01e" href="##"\n' +
-    '            class="gjs-link">Refund Policy<br/></a><a id="i2sl68" href="##" class="gjs-link">Contact Us<br/></a></div>\n' +
+    '        <div id="i1hx7l" class="lnd-grid-column"><a id="ij7g8t" title="" href="##" class="lnd-link">Pricing<br/></a><a\n' +
+    '            id="ipjdtn" href="##" class="lnd-link">Terms &amp; Conditions<br/></a><a id="ikj01e" href="##"\n' +
+    '            class="lnd-link">Refund Policy<br/></a><a id="i2sl68" href="##" class="lnd-link">Contact Us<br/></a></div>\n' +
     '      </div>\n' +
-    '      <div id="it6g1v" class="gjs-text-blue">Copyright © YEAR Company name</div>\n' +
+    '      <div id="it6g1v" class="lnd-text-blue">Copyright © YEAR Company name</div>\n' +
     '    </div>\n' +
     '  </div>\n' +
     '</body>'
@@ -212,7 +212,7 @@ export const styleStarterTemplate = "* {\n" +
     "body {\n" +
     "\tmargin:0;\n" +
     "}\n" +
-    ".gjs-icon {\n" +
+    ".lnd-icon {\n" +
     "\tdisplay:inline-block;\n" +
     "\ttext-decoration:none;\n" +
     "\tcolor:inherit;\n" +
@@ -221,7 +221,7 @@ export const styleStarterTemplate = "* {\n" +
     "\twidth:50px;\n" +
     "\theight:50px;\n" +
     "}\n" +
-    ".gjs-link-box {\n" +
+    ".lnd-link-box {\n" +
     "\tcolor:inherit;\n" +
     "\tdisplay:inline-block;\n" +
     "\tvertical-align:top;\n" +
@@ -229,18 +229,18 @@ export const styleStarterTemplate = "* {\n" +
     "\tmax-width:100%;\n" +
     "\ttext-decoration:none;\n" +
     "}\n" +
-    ".gjs-grid-column {\n" +
+    ".lnd-grid-column {\n" +
     "\tflex:1 1 0%;\n" +
     "\tpadding:5px 0;\n" +
     "}\n" +
-    ".gjs-link {\n" +
+    ".lnd-link {\n" +
     "\tvertical-align:top;\n" +
     "\tmax-width:100%;\n" +
     "\tdisplay:inline-block;\n" +
     "\ttext-decoration:none;\n" +
     "\tcolor:inherit;\n" +
     "}\n" +
-    ".gjs-grid-row {\n" +
+    ".lnd-grid-row {\n" +
     "\tdisplay:flex;\n" +
     "\tjustify-content:flex-start;\n" +
     "\talign-items:stretch;\n" +
@@ -248,18 +248,18 @@ export const styleStarterTemplate = "* {\n" +
     "\tmin-height:auto;\n" +
     "\tpadding:10px 0;\n" +
     "}\n" +
-    ".gjs-heading {\n" +
+    ".lnd-heading {\n" +
     "\tmargin:0;\n" +
     "}\n" +
-    ".gjs-heading {\n" +
+    ".lnd-heading {\n" +
     "\tmargin:0;\n" +
     "\tcolor:rgba(29,40,55,1);\n" +
     "}\n" +
-    ".gjs-grid-column {\n" +
+    ".lnd-grid-column {\n" +
     "\tflex:1 1 0%;\n" +
     "\tpadding:5px 0;\n" +
     "}\n" +
-    ".gjs-grid-row {\n" +
+    ".lnd-grid-row {\n" +
     "\tdisplay:flex;\n" +
     "\tjustify-content:flex-start;\n" +
     "\talign-items:stretch;\n" +
@@ -270,7 +270,7 @@ export const styleStarterTemplate = "* {\n" +
     "#iqjl {\n" +
     "\tflex:0 1 auto;\n" +
     "}\n" +
-    ".gjs-link-box {\n" +
+    ".lnd-link-box {\n" +
     "\tcolor:inherit;\n" +
     "\tdisplay:inline-block;\n" +
     "\tvertical-align:top;\n" +
@@ -278,7 +278,7 @@ export const styleStarterTemplate = "* {\n" +
     "\tmax-width:100%;\n" +
     "\ttext-decoration:none;\n" +
     "}\n" +
-    ".gjs-link {\n" +
+    ".lnd-link {\n" +
     "\tvertical-align:top;\n" +
     "\tmax-width:100%;\n" +
     "\tdisplay:inline-block;\n" +
@@ -471,7 +471,7 @@ export const styleStarterTemplate = "* {\n" +
     "\tjustify-content:flex-start;\n" +
     "\tgap:50px;\n" +
     "}\n" +
-    ".gjs-grid-column.feature-item {\n" +
+    ".lnd-grid-column.feature-item {\n" +
     "\tpadding-top:15px;\n" +
     "\tpadding-right:15px;\n" +
     "\tpadding-bottom:15px;\n" +
@@ -547,7 +547,7 @@ export const styleStarterTemplate = "* {\n" +
     "#inea73 {\n" +
     "\tjustify-content:space-between;\n" +
     "}\n" +
-    ".gjs-grid-column.testimonial-item {\n" +
+    ".lnd-grid-column.testimonial-item {\n" +
     "\tpadding-top:15px;\n" +
     "\tpadding-right:15px;\n" +
     "\tpadding-bottom:15px;\n" +
@@ -684,7 +684,7 @@ export const styleStarterTemplate = "* {\n" +
     "#i2sl68 {\n" +
     "\tdisplay:block;\n" +
     "}\n" +
-    ".gjs-button {\n" +
+    ".lnd-button {\n" +
     "\tvertical-align:top;\n" +
     "\tmax-width:100%;\n" +
     "\tdisplay:inline-block;\n" +
@@ -702,7 +702,7 @@ export const styleStarterTemplate = "* {\n" +
     "\tfont-size:1.1rem;\n" +
     "\ttext-align:center;\n" +
     "}\n" +
-    ".gjs-text-blue {\n" +
+    ".lnd-text-blue {\n" +
     "\tcolor:rgb(36,99,235);\n" +
     "}\n" +
     "#ism014 {\n" +
@@ -757,11 +757,11 @@ export const styleStarterTemplate = "* {\n" +
     "\tpadding-left:20px;\n" +
     "\tpadding-right:20px;\n" +
     "}\n" +
-    ".gjs-link:hover {\n" +
+    ".lnd-link:hover {\n" +
     "\tcolor:rgb(36,99,235);\n" +
     "\ttext-decoration:underline;\n" +
     "}\n" +
-    ".gjs-icon {\n" +
+    ".lnd-icon {\n" +
     "\tdisplay:inline-block;\n" +
     "\ttext-decoration:none;\n" +
     "\tcolor:inherit;\n" +
@@ -782,7 +782,7 @@ export const styleStarterTemplate = "* {\n" +
     "\tfont-size:1.2rem;\n" +
     "\tmargin-bottom:15px;\n" +
     "}\n" +
-    ".gjs-icon.gjs-feature-icon {\n" +
+    ".lnd-icon.lnd-feature-icon {\n" +
     "\tpadding-top:10px;\n" +
     "\tpadding-right:10px;\n" +
     "\tpadding-bottom:10px;\n" +
@@ -821,10 +821,10 @@ export const styleStarterTemplate = "* {\n" +
     "\tpadding-right:20px;\n" +
     "}\n" +
     "@media (max-width:992px) {\n" +
-    "\t.gjs-grid-row {\n" +
+    "\t.lnd-grid-row {\n" +
     "\tflex-direction:column;\n" +
     "}\n" +
-    ".gjs-grid-row {\n" +
+    ".lnd-grid-row {\n" +
     "\tflex-direction:column;\n" +
     "}\n" +
     "#i2d7qp {\n" +
