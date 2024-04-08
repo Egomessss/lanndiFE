@@ -21,10 +21,10 @@ const Plans = ({}) => {
       url: '/checkout/free',
     },
     {
-      name: 'Basic',
-      priceMonthly: 9,
-      priceAnnual: 99,
-      features: ['1 site', '10 pages max', 'custom domain'],
+      name: 'Indie',
+      priceMonthly: 15,
+      priceAnnual: 150,
+      features: ['5 site', '10 pages max', 'custom domain'],
       url: '/checkout/basic',
     },
     {
