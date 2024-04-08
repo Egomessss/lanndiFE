@@ -230,7 +230,7 @@ export const styleStarterTemplate = "* {\n" +
     "\ttext-decoration:none;\n" +
     "}\n" +
     ".lnd-grid-column {\n" +
-    "\tflex:1 1 0%;\n" +
+
     "\tpadding:5px 0;\n" +
     "}\n" +
     ".lnd-link {\n" +
@@ -256,7 +256,7 @@ export const styleStarterTemplate = "* {\n" +
     "\tcolor:rgba(29,40,55,1);\n" +
     "}\n" +
     ".lnd-grid-column {\n" +
-    "\tflex:1 1 0%;\n" +
+
     "\tpadding:5px 0;\n" +
     "}\n" +
     ".lnd-grid-row {\n" +
@@ -268,7 +268,7 @@ export const styleStarterTemplate = "* {\n" +
     "\tpadding:10px 0;\n" +
     "}\n" +
     "#iqjl {\n" +
-    "\tflex:0 1 auto;\n" +
+
     "}\n" +
     ".lnd-link-box {\n" +
     "\tcolor:inherit;\n" +
@@ -287,13 +287,13 @@ export const styleStarterTemplate = "* {\n" +
     "\ttransition:color 0.3s ease 0s;\n" +
     "}\n" +
     "#id7x {\n" +
-    "\tflex:0 1 auto;\n" +
+
     "\tdisplay:block;\n" +
     "\tpadding-left:10px;\n" +
     "\tpadding-right:10px;\n" +
     "}\n" +
     "#iffs {\n" +
-    "\tflex:0 1 auto;\n" +
+
     "}\n" +
     "#iyd2 {\n" +
     "\talign-items:center;\n" +
@@ -337,7 +337,7 @@ export const styleStarterTemplate = "* {\n" +
     "\tpadding-right:20px;\n" +
     "}\n" +
     "#irtfd {\n" +
-    "\tflex:0 1 auto;\n" +
+
     "}\n" +
     "#i88iz {\n" +
     "\tpadding:10px;\n" +
@@ -346,7 +346,7 @@ export const styleStarterTemplate = "* {\n" +
     "\tpadding-right:20px;\n" +
     "}\n" +
     "#icyzp {\n" +
-    "\tflex:0 1 auto;\n" +
+
     "}\n" +
     "#irz7b {\n" +
     "\tjustify-content:center;\n" +
@@ -576,7 +576,7 @@ export const styleStarterTemplate = "* {\n" +
     "\tborder-left-color:rgba(0,0,0,0.06);\n" +
     "}\n" +
     "#idva29 {\n" +
-    "\tflex:0 1 auto;\n" +
+
     "}\n" +
     "#i2d7qp {\n" +
     "\twidth:100%;\n" +
@@ -618,7 +618,7 @@ export const styleStarterTemplate = "* {\n" +
     "\tborder-left-style:solid;\n" +
     "}\n" +
     "#inucqu {\n" +
-    "\tflex:0 1 auto;\n" +
+
     "}\n" +
     "#i04ztt {\n" +
     "\tfont-size:1.5rem;\n" +
@@ -676,7 +676,7 @@ export const styleStarterTemplate = "* {\n" +
     "#i1hx7l {\n" +
     "\tdisplay:flex;\n" +
     "\tgap:30px;\n" +
-    "\tflex:0 1 auto;\n" +
+
     "\tjustify-content:center;\n" +
     "\tmargin-top:30px;\n" +
     "\tmargin-bottom:30px;\n" +
