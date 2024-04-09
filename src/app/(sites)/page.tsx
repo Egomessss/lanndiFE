@@ -44,12 +44,12 @@ function VerifyEmail({ user }: { user: User }) {
         <Alert variant="light" color="red" title="Alert title" icon={<IconInfoCircle size="1rem" />}>
           <div className="flex items-center gap-4 flex-col">
             <p>Verify your email to be able to publish your website!</p>
-          {status === 'verification-link-sent' && (
-            <p>
-              A new verification link has been sent to the email address
-              address you provided during registration.
-            </p>
-          )}
+            {status === 'verification-link-sent' && (
+              <p>
+                A new verification link has been sent to the email address
+                address you provided during registration.
+              </p>
+            )}
             <Button onClick={resendEmailVerification}>
               Resend Verification Email
             </Button>
@@ -81,7 +81,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <VerifyEmail user={user} />
+      {user && <VerifyEmail user={user} />}
       <div className="w-full flex justify-between items-center">
         <h1>Sites</h1>
         {data && <CreateSiteModal isOverMaxSitesAllowed={data?.isOverMaxSitesAllowed} />}
