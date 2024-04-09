@@ -12,25 +12,19 @@ const useUser = () => {
   const slug = usePathname();
   const isDemo = slug === '/demo';
 
-  const { data: user, isLoading, error, refetch } = useQuery({
+  const { data: user, isLoading, error } = useQuery({
     queryKey: ['user'],
     queryFn: async () => {
       const response = await axios.get('/api/user');
       return response.data as User;
     },
-    // staleTime: Infinity,
+    staleTime: Infinity,
     enabled: !isDemo,
+    retry:3,
   });
 
-  console.log('query error',error);
+  // console.log('query error',error);
 
-  useEffect(() => {
-    // Check if the user is not authenticated
-    if (!user) {
-      // Delete the cookie
-      document.cookie = 'isLoggedIn=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; secure; samesite=lax';
-    }
-  }, [user]);
 
 
 
@@ -43,8 +37,10 @@ const useUser = () => {
   };
 
 
+  // @ts-ignore
+  // error?.status === 401 && logout();
 
-  return { user, isLoading, error, logout, refetch };
+  return { user, isLoading, error, logout };
 };
 
 export default useUser;

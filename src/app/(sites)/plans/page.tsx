@@ -28,6 +28,7 @@ const PricingTable = () => {
       const { data } = await axios.get(`/api/v1/plans`);
       return data as PlansData;
     },
+
   });
 
 

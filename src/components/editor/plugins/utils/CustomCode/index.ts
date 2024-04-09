@@ -64,9 +64,9 @@ const plugin: Plugin<PluginOptions> = (editor, opts = {}) => {
       <svg viewBox="0 0 24 24" style="height: 30px; vertical-align: middle;">
         <path d="M13 14h-2v-4h2m0 8h-2v-2h2M1 21h22L12 2 1 21z"></path>
         </svg>
-      Custom code with <i>&lt;script&gt;</i> will only be shown in preview/published site
+      Custom code with <i>&lt;script&gt;</i> or <i>iframe> </i> tags will only be shown in preview/published site
     </div>`,
-    modalTitle: 'Insert your code - Html inside a div, CSS inside a style tag andJavascript inside a script tag.',
+    modalTitle: 'Insert your code - Html inside a div, CSS inside a style tag and Javascript inside a script tag. p.s: Your custom code should come styled - editor styles might not work.',
     codeViewOptions: {},
     buttonLabel: 'Save',
     commandCustomCode: {},

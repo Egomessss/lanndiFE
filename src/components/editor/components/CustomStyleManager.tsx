@@ -24,45 +24,63 @@ export default function CustomStyleManager({
   const editor = useEditor();
 
 
-
-  const sm = editor.StyleManager;
-
-  const selectedComponent = editor.StyleManager.getSelected()?.getStyle('display');
-  const rule = editor.getSelected()?.parent()?.getClasses();
-
-
-  const selectedComponentParent = editor.Css.getRule(`.${rule}`)?.getStyle('display');
-
-  // @ts-ignore
-  if (selectedComponent === 'flex') {
-    const sector = sm?.getSector('flexProperties');
-    sector?.setOpen(true);
-
-    // @ts-ignore
-  } else if (selectedComponent !== 'flex' || selectedComponent !== 'undefined') {
-    const sector = sm?.getSector('flexProperties');
-    sector?.setOpen(false);
-  }
-
-// @ts-ignore
-  if (selectedComponent === 'grid') {
-    const sector = sm?.getSector('gridProperties');
-    sector?.setOpen(true);
-    // @ts-ignore
-  } else if (selectedComponent !== 'grid' || selectedComponent !== 'undefined') {
-    const sector = sm?.getSector('gridProperties');
-    sector?.setOpen(false);
-  }
-
-  // @ts-ignore
-  if (selectedComponentParent === 'grid') {
-    const sector = sm?.getSector('gridItem');
-    sector?.setOpen(true);
-    // @ts-ignore
-  } else if (selectedComponentParent !== 'grid' || selectedComponentParent !== 'undefined') {
-    const sector = sm?.getSector('gridItem');
-    sector?.setOpen(false);
-  }
+  // const sm = editor.StyleManager;
+  // console.log();
+  //
+  //
+  // // console.log('selected component', selectedComponent);
+  // const childRule = editor.getSelected()?.getClasses();
+  // console.log('parent rules', sm.getSelectedParents().map(rule => rule.toCSS()))
+  // const parentClass = editor.getSelected()?.parent()?.getClasses();
+  //
+  //
+  // const selectedComponentChildRule = sm.getProperty('layout', 'display')?.getValue();
+  // const selectedComponentParentRule = editor.Css.getRule(`.${parentClass}`)?.getStyle();
+  // // console.log('selectedComponentChildRule', selectedComponentChildRule);
+  // // console.log('selectedComponentParent', selectedComponentParentRule);
+  //
+  //
+  // // @ts-ignore
+  // if (selectedComponentChildRule === 'flex') {
+  //   const sector = editor.StyleManager?.getSector('flexProperties');
+  //   sector?.setOpen(true);
+  //
+  //   // @ts-ignore
+  // } else if (selectedComponentChildRule !== 'flex' || selectedComponentChildRule !== 'undefined') {
+  //   const sector = editor.StyleManager?.getSector('flexProperties');
+  //   sector?.setOpen(false);
+  // }
+  //
+  // // @ts-ignore
+  // if (selectedComponentChildRule === 'grid') {
+  //   const sector = editor.StyleManager?.getSector('gridProperties');
+  //   sector?.setOpen(true);
+  //   // @ts-ignore
+  // } else if (selectedComponentChildRule !== 'grid' || selectedComponentChildRule !== 'undefined') {
+  //   const sector = editor.StyleManager?.getSector('gridProperties');
+  //   sector?.setOpen(false);
+  // }
+  //
+  //
+  // // @ts-ignore
+  // if (selectedComponentParentRule === 'grid' ) {
+  //   const sector = sm?.getSector('gridItem');
+  //   sector?.setOpen(true);
+  //   // @ts-ignore
+  // } else if (selectedComponentParentRule !== 'grid' || selectedComponentParentRule !== 'undefined') {
+  //   const sector = sm?.getSector('gridItem');
+  //   sector?.setOpen(false);
+  // }
+  //
+  // // @ts-ignore
+  // if (selectedComponentParentRule === 'flex' ) {
+  //   const sector = sm?.getSector('flexItem');
+  //   sector?.setOpen(true);
+  //   // @ts-ignore
+  // } else if (selectedComponentParentRule !== 'flex' || selectedComponentParentRule !== 'undefined') {
+  //   const sector = sm?.getSector('flexItem');
+  //   sector?.setOpen(false);
+  // }
 
   const [value, setValue] = useState<string | null>(null);
 
@@ -84,10 +102,11 @@ export default function CustomStyleManager({
   );
 
 
-
   // const [activeTab, setActiveTab] = useState(sectors.length > 0 ? sectors[0].getId().toString() : '');
   // Map the rest of the sectors to accordion items
-  const accordionItems = otherSectors.filter(sector => sector.isOpen()).map((sector) => {
+  const accordionItems = otherSectors
+    // .filter(sector => sector.isOpen())
+    .map((sector) => {
 
     const propertiesLength = sector.getProperties().length;
     const className = getClassName(propertiesLength);

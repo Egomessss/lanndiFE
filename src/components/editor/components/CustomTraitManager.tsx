@@ -137,18 +137,21 @@ function CustomAttributes() {
     <div className="flex flex-col gap-2 justify-end">
       <div>
         {Object.entries(attributes || {}).map(([key, value]) => {
+
           return (
             <div key={key} className="flex  gap-4 justify-end flex-wrap  items-center ">
               <TextInput
                 size="xs"
+                // readOnly
                 className="w-full"
-                label="Attribute Key"
+                label={key}
                 placeholder="Attribute Key"
-                value={`${key}: "${value}"`}
+                // @ts-ignore
+                value={value}
                 // onChange={(event) => setAttributeKey(event.currentTarget.value)}
-                rightSection={<ActionIcon size="sm" onClick={handleAddAttribute}>
-                  <IconCheck size="1rem" />
-                </ActionIcon>}
+                // rightSection={<ActionIcon size="sm" onClick={handleAddAttribute}>
+                //   <IconCheck size="1rem" />
+                // </ActionIcon>}
               />
 
               <ActionIcon color="red" size="sm"

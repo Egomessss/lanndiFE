@@ -102,6 +102,8 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
   //     default: 'inherit', // 'inherit' is more appropriate for font-family defaults
   // },)
 
+  // editor.Selectors.setComponentFirst(true);
+
   editor.Canvas.setZoom(60);
   editor.Canvas.setCoords(-140, -100);
 
@@ -121,7 +123,7 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
   // // Start observing the body element
   // const bodyElement = editor.Canvas.getBody();
   // resizeObserver.observe(bodyElement);
-}
+};
 
 export default UtilsPlugin;
 

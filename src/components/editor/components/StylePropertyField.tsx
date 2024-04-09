@@ -54,6 +54,9 @@ export default function StylePropertyField({
 
 
 
+
+
+
   const handleChange = (value: any) => {
     prop.upValue(value);
 
@@ -107,6 +110,8 @@ export default function StylePropertyField({
   const valueString = hasValue ? value : '';
   const valueWithDef = hasValue ? value : defValue;
   // console.log('property', prop.getName(), 'value', value);
+
+
 
   let inputToRender = (
     <Input

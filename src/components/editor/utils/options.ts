@@ -66,8 +66,8 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
         {
           name: 'Home',
           slug: 'index',
-          component: starterTemplate,
-          styles: styleStarterTemplate,
+          // component: starterTemplate,
+          // styles: styleStarterTemplate,
         },
       ],
     }
@@ -144,70 +144,8 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
         ],
       },
       {
-        id: 'gridItem',
-        name: 'Grid Item Properties',
-        open: false,
-        visible: false,
-        properties: [
-          {
-            label: 'Column span',
-            property: 'grid-column',
-            type: 'base',
-            tooltip: 'Starts/spans - e.g. 2/span 2 - starts in row 2 and spans 2 rows',
-          },
-          {
-            label: 'Row span',
-            property: 'grid-row',
-            type: 'base',
-            tooltip: 'Starts/spans - e.g. 1/span 1 - starts in column 1 and spans 1 column',
-          },
-          {
-            label: 'Justify',
-            property: 'justify-self',
-            type: 'radio',
-            default: 'start',
-            options: [
-              {
-                id: 'start',
-                label: 'Start',
-                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-box-align-left" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.002 20.003v-16h-5a1 1 0 0 0 -1 1v14a1 1 0 0 0 1 1h5z" /><path d="M15.002 20.003h-.01" /><path d="M20.003 20.003h-.011" /><path d="M20.003 15.002h-.011" /><path d="M20.003 9.002h-.011" /><path d="M20.003 4.002h-.011" /><path d="M15.002 4.002h-.01" /></svg>`,
-              }, {
-                id: 'center',
-                label: 'Center',
-                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-middle" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 12l5 0" /><path d="M15 12l5 0" /><path d="M9 6m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
-              }, {
-                id: 'end',
-                label: 'End',
-                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-box-align-right" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13.998 20.003v-16h5a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-5z" /><path d="M8.998 20.003h.01" /><path d="M3.997 20.003h.011" /><path d="M3.997 15.002h.011" /><path d="M3.997 9.002h.011" /><path d="M3.997 4.002h.011" /><path d="M8.998 4.002h.01" /></svg>`,
-              },
-            ],
-          },
-          {
-            label: 'Align',
-            property: 'align-self',
-            type: 'radio',
-            default: 'start',
-            options: [
-              {
-                id: 'start',
-                label: 'Top',
-                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-top" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l16 0" /><path d="M9 8m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
-              }, {
-                id: 'center',
-                label: 'Center',
-                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-center" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 4l0 5" /><path d="M12 15l0 5" /><path d="M6 9m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z" /></svg>`,
-              }, {
-                id: 'end',
-                label: 'Bottom',
-                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-bottom" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20l16 0" /><path d="M9 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
-              },
-            ],
-          },
-        ],
-      },
-      {
         id: 'flexProperties',
-        name: 'Flex Properties',
+        name: 'Flex',
         open: false,
         visible: false,
         properties: [
@@ -327,8 +265,70 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
         ],
       },
       {
+        id: 'flexItem',
+        name: 'Flex Child',
+        open: false,
+        visible: false,
+        properties: [
+          {
+            label: 'Order',
+            property: 'order',
+            type: 'base',
+            tooltip: 'Controls the order in which this item appears in the flex container',
+          },
+          {
+            label: 'Flex Grow',
+            property: 'flex-grow',
+            type: 'base',
+            tooltip: 'Defines the ability for a flex item to grow if necessary',
+          },
+          {
+            label: 'Flex Shrink',
+            property: 'flex-shrink',
+            type: 'base',
+            tooltip: 'Defines the ability for a flex item to shrink if necessary',
+          },
+          {
+            label: 'Flex Basis',
+            property: 'flex-basis',
+            type: 'base',
+            tooltip: 'Defines the default size of an element before the remaining space is distributed',
+          },
+          {
+            label: 'Align Self',
+            property: 'align-self',
+            type: 'radio',
+            default: 'auto',
+            options: [
+              {
+                id: 'auto',
+                label: 'Auto',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-align-center" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 4l0 5" /><path d="M12 15l0 5" /><path d="M6 9m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z" /></svg>`,
+              }, {
+                id: 'start',
+                label: 'Start',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-align-top" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l16 0" /><path d="M9 8m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
+              }, {
+                id: 'end',
+                label: 'End',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-align-bottom" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20l16 0" /><path d="M9 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
+              }, {
+                id: 'center',
+                label: 'Center',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-align-center" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 4l0 5" /><path d="M12 15l0 5" /><path d="M6 9m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z" /></svg>`,
+              }, {
+                id: 'stretch',
+                label: 'Stretch',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-align-stretch" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l0 16" /><path d="M20 4l0 16" /><path d="M9 6m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
+              },
+            ],
+          },
+        ],
+      },
+
+      {
         id: 'gridProperties',
-        name: 'Grid Properties',
+        name: 'Grid',
         open: false,
         visible: false,
         properties: [
@@ -441,6 +441,68 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
                 default: '0',
                 tooltip: 'Units available: px, %, em, rem',
               }],
+          },
+        ],
+      },
+      {
+        id: 'gridItem',
+        name: 'Grid Child',
+        open: false,
+        visible: false,
+        properties: [
+          {
+            label: 'Column span',
+            property: 'grid-column',
+            type: 'base',
+            tooltip: 'Starts/spans - e.g. 2/span 2 - starts in row 2 and spans 2 rows',
+          },
+          {
+            label: 'Row span',
+            property: 'grid-row',
+            type: 'base',
+            tooltip: 'Starts/spans - e.g. 1/span 1 - starts in column 1 and spans 1 column',
+          },
+          {
+            label: 'Justify',
+            property: 'justify-self',
+            type: 'radio',
+            default: 'start',
+            options: [
+              {
+                id: 'start',
+                label: 'Start',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-box-align-left" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.002 20.003v-16h-5a1 1 0 0 0 -1 1v14a1 1 0 0 0 1 1h5z" /><path d="M15.002 20.003h-.01" /><path d="M20.003 20.003h-.011" /><path d="M20.003 15.002h-.011" /><path d="M20.003 9.002h-.011" /><path d="M20.003 4.002h-.011" /><path d="M15.002 4.002h-.01" /></svg>`,
+              }, {
+                id: 'center',
+                label: 'Center',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-middle" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 12l5 0" /><path d="M15 12l5 0" /><path d="M9 6m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
+              }, {
+                id: 'end',
+                label: 'End',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-box-align-right" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13.998 20.003v-16h5a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-5z" /><path d="M8.998 20.003h.01" /><path d="M3.997 20.003h.011" /><path d="M3.997 15.002h.011" /><path d="M3.997 9.002h.011" /><path d="M3.997 4.002h.011" /><path d="M8.998 4.002h.01" /></svg>`,
+              },
+            ],
+          },
+          {
+            label: 'Align',
+            property: 'align-self',
+            type: 'radio',
+            default: 'start',
+            options: [
+              {
+                id: 'start',
+                label: 'Top',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-top" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l16 0" /><path d="M9 8m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
+              }, {
+                id: 'center',
+                label: 'Center',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-center" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 4l0 5" /><path d="M12 15l0 5" /><path d="M6 9m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z" /></svg>`,
+              }, {
+                id: 'end',
+                label: 'Bottom',
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-align-bottom" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20l16 0" /><path d="M9 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg>`,
+              },
+            ],
           },
         ],
       },
@@ -980,6 +1042,42 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
               { id: 'zoom-in', label: 'Zoom in' },
               { id: 'grab', label: 'Grab' },
               { id: 'move', label: 'Move' },
+            ],
+          },
+          {
+            type: 'composite',
+            property: 'transition',
+            label: 'Transition',
+            detached: true,
+            // Additional props
+            properties: [
+              {
+                type: 'base',
+                label: 'Transition property', // Label for the property
+                property: 'transition-property', // CSS property to change
+              },
+              {
+                type: 'base',
+                label: 'Transition duration', // Label for the property
+                property: 'transition-duration', // CSS property to change
+              },
+              {
+                type: 'base',
+                label: 'Transition delay', // Label for the property
+                property: 'transition-delay', // CSS property to change
+              },
+              {
+                type: 'select',
+                label: 'Transition timing function', // Label for the property
+                property: 'transition-timing-function', // CSS property to change
+                options: [
+                  { id: 'linear', label: 'Linear' },
+                  { id: 'ease', label: 'Ease' },
+                  { id: 'ease-in', label: 'Ease in' },
+                  { id: 'ease-out', label: 'Ease out' },
+                  { id: 'ease-in-out', label: 'Ease in out' },
+                ],
+              },
             ],
           },
           {
