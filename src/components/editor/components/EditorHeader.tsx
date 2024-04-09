@@ -189,7 +189,6 @@ function PublishButton({ siteData }: any) {
         let errorMessage = 'Something went wrong... Please try again!';
         // @ts-ignore
         const status = error.response?.status;
-
         if (status === 422) {
           // Validation error handling
           // @ts-ignore
@@ -202,7 +201,7 @@ function PublishButton({ siteData }: any) {
         } else if (status === 403) {
           notifications.show({
             title: 'Error',
-            message: 'You have reached the maximum number of live sites allowed for your subscription plan.',
+            message: error.message,
             color: 'red',
           });
         }
@@ -358,10 +357,10 @@ function EditorHeader() {
         </div>
 
         <div className="flex w-full items-center justify-end gap-4">
-          <Tooltip color={!data?.title && !data?.description || !user ? 'red' : 'gray'}
-                   label={!data?.title && !data?.description ? 'Add a title and description to your site settings before you can publish your website' : 'Open latest save preview'}>
-            <Button disabled={!data?.title && !data?.description || !user} component="a"
-                    href={!data?.title && !data?.description || !user ? '' : `https://preview.${data?.subdomain}.lanndi.com`}
+          <Tooltip color={!data?.title && !data?.description || !user || user.subscription === 'free' ? 'red' : 'gray'}
+                   label={!data?.title && !data?.description ? 'Add a title and description to your site settings before you can publish your website' : user?.subscription === 'free' ? 'Free users are not allowed preview domains' : 'Open latest save preview'}>
+            <Button disabled={!data?.title && !data?.description || !user || user.subscription === 'free'} component="a"
+                    href={!data?.title && !data?.description || !user || user.subscription === 'free' ? '' : `https://preview.${data?.subdomain}.lanndi.com`}
                     target="_blank"
                     size="xs" variant="subtle"
                     leftSection={<IconExternalLink size="1rem" />}>Preview</Button>

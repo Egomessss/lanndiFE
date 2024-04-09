@@ -3,12 +3,18 @@
 
 import { useState } from 'react';
 import { Button } from '@mantine/core';
+import axios from '../../../lib/axios';
 
 
 const Page = () => {
 
-
   const [status, setStatus] = useState(null);
+
+  const resendEmailVerification = () => {
+    axios
+      .post('/email/verification-notification')
+      .then(response => setStatus(response.data.status));
+  };
 
   return (
     <div className="max-w-96 flex flex-col gap-4 ">
