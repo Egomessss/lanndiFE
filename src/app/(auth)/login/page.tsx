@@ -13,6 +13,7 @@ import axios from '@/lib/axios';
 import { notifications } from '@mantine/notifications';
 import { SocialButtons } from '@/components/auth/SocialButtons/SocialButtons';
 import { useAuth } from '@/hooks/auth';
+import useUser from '@/hooks/use-user';
 
 interface FormErrors {
   email?: string;
@@ -25,6 +26,7 @@ const Login = () => {
 
   const router = useRouter();
 
+  const { refetch } = useUser();
 
   const form = useForm({
     initialValues: {
@@ -40,7 +42,7 @@ const Login = () => {
         await axios.get('/sanctum/csrf-cookie');
         // Now, make your Axios POST request
         await axios.post('/login', form.values);
-
+        refetch();
       },
       onSuccess:
         () => {

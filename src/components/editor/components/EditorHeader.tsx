@@ -358,10 +358,12 @@ function EditorHeader() {
         </div>
 
         <div className="flex w-full items-center justify-end gap-4">
-
-          <Tooltip color="gray" label="Open latest save preview">
-            <Button component="a" href={`https://preview.${data?.subdomain}.lanndi.com`} target="_blank"
-                    disabled={!user} size="xs" variant="subtle"
+          <Tooltip color={!data?.title && !data?.description || !user ? 'red' : 'gray'}
+                   label={!data?.title && !data?.description ? 'Add a title and description to your site settings before you can publish your website' : 'Open latest save preview'}>
+            <Button disabled={!data?.title && !data?.description || !user} component="a"
+                    href={!data?.title && !data?.description || !user ? '' : `https://preview.${data?.subdomain}.lanndi.com`}
+                    target="_blank"
+                    size="xs" variant="subtle"
                     leftSection={<IconExternalLink size="1rem" />}>Preview</Button>
           </Tooltip>
           <SiteSettingsButton data={data} />

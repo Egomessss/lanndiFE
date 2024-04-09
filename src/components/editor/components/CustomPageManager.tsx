@@ -161,7 +161,9 @@ export default function CustomPageManager({
   const [opened, { open, close }] = useDisclosure(false);
   const editor = useEditor();
 
+
   const isHomepage = editor.Pages.get(editingPageId)?.attributes.slug === 'index';
+  console.log('isHomepage', isHomepage);
 
   const openModal = (pageToDelete: Page) => {
 
@@ -198,24 +200,30 @@ export default function CustomPageManager({
 
 
   const addNewPage = () => {
-    const nextIndex = pages.length + 1;
-    add({
-      name: `page ${pages.length + 1}`,
-      slug: '',
-      component: `<h1>Page content ${nextIndex}</h1>`,
-      title: '',
-      description: '',
-    });
+    if (!isHomepage) {
+      // Homepage already exists, do not allow to add new homepage
+      const nextIndex = pages.length + 1;
+      add({
+        name: `page ${pages.length + 1}`,
+        slug: '',
+        component: `<h1>Page content ${nextIndex}</h1>`,
+        title: '',
+        description: '',
+      });
+    }
+
   };
 
   const duplicatePage = (pageToDuplicate: any) => {
-    add({
-      name: `${pageToDuplicate.getName()} (Copy)`,
-      component: pageToDuplicate.component, // Assuming component data is stored like this
-      slug: '',
-      title: '',
-      description: '',
-    });
+    if (!isHomepage) {
+      add({
+        name: `${pageToDuplicate.getName()} (Copy)`,
+        component: pageToDuplicate.component, // Assuming component data is stored like this
+        slug: '',
+        title: '',
+        description: '',
+      });
+    }
   };
 
   return (
@@ -223,12 +231,12 @@ export default function CustomPageManager({
       className="gjs-custom-page-manager relative select-none text-left text-xs flex flex-col gap-2"
     >
       <Button leftSection={<IconPlus size="1rem" />}
-              // rightSection={
-              //   <Tooltip w={200} multiline color="blue"
-              //            label="The name represent the url slugs e.g: Homepage should be always '/', an about page '/about' ">
-              //     <IconExclamationCircle size="1rem" />
-              //   </Tooltip>
-              // }
+        // rightSection={
+        //   <Tooltip w={200} multiline color="blue"
+        //            label="The name represent the url slugs e.g: Homepage should be always '/', an about page '/about' ">
+        //     <IconExclamationCircle size="1rem" />
+        //   </Tooltip>
+        // }
               onClick={addNewPage} size="xs" variant="subtle">Add page</Button>
       {pages.map((page, index) => (
         <div key={index}>

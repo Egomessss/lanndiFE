@@ -12,12 +12,12 @@ import { notifications } from '@mantine/notifications';
 import { useRouter } from 'next/navigation';
 import { DarkModeButton } from '../../components/common/DarkModeButton/DarkModeButton';
 import React, { useEffect } from 'react';
+import Loading from './Loading';
 
 
 const SiteLayout = ({ children }) => {
   const [opened, { toggle }] = useDisclosure();
   const { user, logout } = useUser();
-
 
 
   const { mutate: getCustomerPortalUrl, isPending } = useMutation({
@@ -58,6 +58,11 @@ const SiteLayout = ({ children }) => {
     // @ts-ignore
     getCustomerPortalUrl();
   };
+
+  if (!user) {
+    return <Loading />;
+  }
+
 
   return (
     <AppShell

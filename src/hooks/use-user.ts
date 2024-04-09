@@ -12,7 +12,7 @@ const useUser = () => {
   const slug = usePathname();
   const isDemo = slug === '/demo';
 
-  const { data: user, isLoading, error } = useQuery({
+  const { data: user, isLoading, error, refetch } = useQuery({
     queryKey: ['user'],
     queryFn: async () => {
       const response = await axios.get('/api/user');
@@ -20,14 +20,11 @@ const useUser = () => {
     },
     staleTime: Infinity,
     enabled: !isDemo,
-    retry:3,
+    retry: 3,
   });
 
+
   // console.log('query error',error);
-
-
-
-
 
   const logout = async () => {
     await axios.post('/logout').then(() => {
@@ -36,11 +33,16 @@ const useUser = () => {
     router.push('/login');
   };
 
+  useEffect(() => {
+    if (error && !user) {
+      document.cookie = 'isLoggedIn=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; secure; samesite=lax';
 
-  // @ts-ignore
-  // error?.status === 401 && logout();
+      router.push('/login');
+    }
+  }, [error, user]);
 
-  return { user, isLoading, error, logout };
+
+  return { user, isLoading, error, logout, refetch };
 };
 
 export default useUser;
