@@ -1,17 +1,18 @@
-'use client'
+'use client';
 
 import { useQuery } from '@tanstack/react-query';
 
 import axios from '@/lib/axios';
 import { User } from '@/lib/types';
 import { usePathname, useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 const useUser = () => {
   const router = useRouter();
   const slug = usePathname();
   const isDemo = slug === '/demo';
 
-  const { data: user, isLoading, error } = useQuery({
+  const { data: user, isLoading, error, refetch } = useQuery({
     queryKey: ['user'],
     queryFn: async () => {
       const response = await axios.get('/api/user');
@@ -21,14 +22,29 @@ const useUser = () => {
     enabled: !isDemo,
   });
 
+  console.log('query error',error);
+
+  useEffect(() => {
+    // Check if the user is not authenticated
+    if (!user) {
+      // Delete the cookie
+      document.cookie = 'isLoggedIn=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; secure; samesite=lax';
+    }
+  }, [user]);
+
+
+
+
   const logout = async () => {
     await axios.post('/logout').then(() => {
-      document.cookie = 'isLoggedIn=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; secure; samesite=Strict';
+      document.cookie = 'isLoggedIn=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; secure; samesite=lax';
     });
     router.push('/login');
   };
 
-  return { user, isLoading, error, logout };
+
+
+  return { user, isLoading, error, logout, refetch };
 };
 
 export default useUser;

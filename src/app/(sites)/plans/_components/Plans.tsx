@@ -144,7 +144,7 @@ const Plans: React.FC<Plans> = ({ currentPlan, isUserSubscribed, latestSavedSite
               <p className="text-xl font-semibold ">Pay once, own it forever</p>
               <p className="text-base font-semibold text-red-500">Only 20 deals left</p>
               <p className="mt-6 flex items-baseline justify-center gap-x-2">
-                <span className="text-5xl font-bold tracking-tight text-blue-500">€399</span>
+                <span className="text-5xl font-bold tracking-tight text-blue-500">€299</span>
                 <span className="text-sm font-semibold leading-6 tracking-wide ">EUR</span>
               </p>
               <Divider className="w-full" my="md" />

@@ -96,7 +96,7 @@ const CreateSiteModal = () => {
       onSuccess: (data) => {
         console.log('response', data);
         const twoWeeksInSeconds = 60 * 60 * 24 * 14;
-        document.cookie = `isLoggedIn=true; path=/; max-age=${twoWeeksInSeconds}; secure; samesite=Strict`;
+        document.cookie = `isLoggedIn=true; path=/; max-age=${twoWeeksInSeconds}; secure; samesite=lax`;
         router.push(`/editor/${data.slug}`);
         notifications.show({
           title: 'Success',
