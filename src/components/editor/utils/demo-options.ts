@@ -17,6 +17,11 @@ import { starterTemplate, styleStarterTemplate } from '@/components/editor/templ
 
 export const demoEditorConfigOptions = () => ({
   height: '100vh',
+  jsInHtml: false,
+  optsHtml: { cleanId: true },
+  optsCss: { onlyMatched: true, keepUnusedStyles: true },
+  clearStyles: true,
+  showOffsetsSelected: true,
   undoManager: { trackSelection: false },
   deviceManager: {
     default: 'desktop',

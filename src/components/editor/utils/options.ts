@@ -18,6 +18,11 @@ import CssEditor from '@/components/editor/plugins/utils/CssEditor';
 
 export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: boolean) => ({
   height: '100vh',
+  jsInHtml: false,
+  optsHtml: { cleanId: true },
+  optsCss: { onlyMatched: true, keepUnusedStyles: true },
+  clearStyles: true,
+  showOffsetsSelected: true,
   undoManager: { trackSelection: false },
   deviceManager: {
     default: 'desktop',

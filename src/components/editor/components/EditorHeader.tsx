@@ -58,6 +58,7 @@ function SaveButton() {
         js: editor.getJs({ component }),
       };
     });
+    console.log('pageData', pagesData);
     return { data, pagesData };
   };
 
@@ -129,7 +130,8 @@ function SaveButton() {
   return (
     <>
       {user ? (
-        <Tooltip color="gray" label={`Save changes - Saved automatically every 10 minutes. Last saved: ${lastSaved ? timeSince(lastSaved) : 'Not yet saved'}`}>
+        <Tooltip color="gray"
+                 label={`Save changes - Saved automatically every 10 minutes. Last saved: ${lastSaved ? timeSince(lastSaved) : 'Not yet saved'}`}>
           <ActionIcon
             disabled={showSuccess}
             loading={isPending}
@@ -177,7 +179,7 @@ function PublishButton({ siteData }: any) {
     };
   });
 
-  console.log("pageData",pagesData);
+  console.log('pageData', pagesData);
 
 
   const { mutate, isPending } = useMutation({
