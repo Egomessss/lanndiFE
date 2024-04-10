@@ -123,6 +123,12 @@ const SiteLayout = ({ children }) => {
           leftSection={<IconAdjustmentsDollar size="1rem" stroke={1.5} />}
         />
         <NavLink
+          component={Link}
+          href="/profile"
+          label="Profile Settings"
+          leftSection={<IconUser size="1rem" stroke={1.5} />}
+        />
+        <NavLink
           component={Button}
           loading={isPending}
           onClick={handleGetCustomerPortal}

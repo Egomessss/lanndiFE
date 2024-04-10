@@ -33,6 +33,7 @@ import TextLength from '@/components/common/TextLength';
 import CodeMirror from '@uiw/react-codemirror';
 import { langs } from '@uiw/codemirror-extensions-langs';
 import { notifications } from '@mantine/notifications';
+import useUser from '@/hooks/use-user';
 
 type CreatePageProps = {
   editingPageId: string
@@ -87,7 +88,7 @@ function CreatePageModal({ editingPageId, pages, add, opened, onClose }: CreateP
   const validateBeforeSubmit = () => {
     form.validate();
     const isValid = form.isValid();
-    if (isValid) {
+    if (isValid && page?.attributes.slug !== 'index') {
       page?.set(form.values);
       notifications.show({
         title: 'Success!',
@@ -159,15 +160,11 @@ export default function CustomPageManager({
                                           }: PagesResultProps) {
   const [editingPageId, setEditingPageId] = useState<string>('');
   const [opened, { open, close }] = useDisclosure(false);
-  const editor = useEditor();
-
-
-  const isHomepage = editor.Pages.get(editingPageId)?.attributes.slug === 'index';
-  console.log('isHomepage', isHomepage);
+  const { user } = useUser();
 
   const openModal = (pageToDelete: Page) => {
 
-    if (isHomepage) {
+    if (pageToDelete.attributes.slug === 'index') {
       modals.openConfirmModal({
         centered: true,
         title: 'Action not allowed',
@@ -200,8 +197,8 @@ export default function CustomPageManager({
 
 
   const addNewPage = () => {
-    if (!isHomepage) {
-      // Homepage already exists, do not allow to add new homepage
+    const maxPages = user?.subscription === 'admin' ? Infinity : user?.subscription === 'free' ? 1 : 10;
+    if (pages.length < maxPages) {
       const nextIndex = pages.length + 1;
       add({
         name: `page ${pages.length + 1}`,
@@ -211,11 +208,11 @@ export default function CustomPageManager({
         description: '',
       });
     }
-
   };
 
   const duplicatePage = (pageToDuplicate: any) => {
-    if (!isHomepage) {
+    const maxPages = user?.subscription === 'admin' ? Infinity : user?.subscription === 'free' ? 1 : 10;
+    if (pages.length < maxPages) {
       add({
         name: `${pageToDuplicate.getName()} (Copy)`,
         component: pageToDuplicate.component, // Assuming component data is stored like this
@@ -226,18 +223,26 @@ export default function CustomPageManager({
     }
   };
 
+
+  // user is free subscription dont allow more than one page
+
   return (
     <div
       className="gjs-custom-page-manager relative select-none text-left text-xs flex flex-col gap-2"
     >
-      <Button leftSection={<IconPlus size="1rem" />}
-        // rightSection={
-        //   <Tooltip w={200} multiline color="blue"
-        //            label="The name represent the url slugs e.g: Homepage should be always '/', an about page '/about' ">
-        //     <IconExclamationCircle size="1rem" />
-        //   </Tooltip>
-        // }
-              onClick={addNewPage} size="xs" variant="subtle">Add page</Button>
+      <Tooltip
+        label={user?.subscription === 'free' && 'Free users cannot add more pages. Subscribe to a plan to add more pages.'}
+        color="red"
+      >
+        <Button disabled={user?.subscription === 'free'} leftSection={<IconPlus size="1rem" />}
+          // rightSection={
+          //   <Tooltip w={200} multiline color="blue"
+          //            label="The name represent the url slugs e.g: Homepage should be always '/', an about page '/about' ">
+          //     <IconExclamationCircle size="1rem" />
+          //   </Tooltip>
+          // }
+                onClick={addNewPage} size="xs" variant="subtle">Add page</Button>
+      </Tooltip>
       {pages.map((page, index) => (
         <div key={index}>
           <Button
@@ -248,13 +253,13 @@ export default function CustomPageManager({
             size="xs"
             variant={page === selected ? 'filled' : 'subtle'}
             onClick={() => select(page)}
-            rightSection={!isHomepage ?
+            rightSection={page.attributes.slug !== 'index' || user?.subscription !== 'free' ?
               <Menu
                 shadow="md"
                 width={200}
                 position="right-start"
                 offset={10}
-                disabled={isHomepage}
+                disabled={page.attributes.slug !== 'index'}
               >
                 <Menu.Target>
                   <ActionIcon size="sm" variant="subtle">
@@ -294,7 +299,7 @@ export default function CustomPageManager({
               </Menu> :
               <Tooltip label="Edit your homepage setting in site settings">
                 <IconExclamationCircle size="1rem"
-                                       className="text-red-500" />
+                />
               </Tooltip>
             }
           >{page.getName() || 'Untitled page'}</Button>

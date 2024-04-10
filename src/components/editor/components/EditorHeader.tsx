@@ -88,8 +88,26 @@ function SaveButton() {
         data: payload,
       });
     },
-    onError: () => {
-      showNotification('red', 'Error', 'Something went wrong... Please try again!');
+    onError: (error) => {
+      // @ts-ignore
+      const status = error.response?.status;
+      let errorMessage = 'Something went wrong... Please try again!';
+      if (status === 422) {
+        // Validation error handling
+        // @ts-ignore
+        const errorData = error.response.data;
+        const missingFieldsMessage = errorData.missingFields ? ` Missing fields: ${errorData.missingFields.join(', ')}.` : '';
+        errorMessage = `${errorData.message || 'Validation error occurred'}${missingFieldsMessage}`;
+      } else if (status >= 500) {
+        // Server error handling
+        errorMessage = 'A server error occurred. Please try again later.';
+      } else if (status === 403) {
+        errorMessage = 'You do not have the necessary permissions.';
+      } else if (status === 404) {
+        // Handle 404 error
+        errorMessage = 'The requested resource could not be found.';
+      }
+      showNotification('red', 'Error', errorMessage);
     },
     onSuccess: () => {
       setShowSuccess(true);
@@ -179,8 +197,6 @@ function PublishButton({ siteData }: any) {
     };
   });
 
-  console.log('pageData', pagesData);
-
 
   const { mutate, isPending } = useMutation({
       mutationFn:
@@ -204,6 +220,9 @@ function PublishButton({ siteData }: any) {
             message: error.message,
             color: 'red',
           });
+        } else if (status === 404) {
+          // Handle 404 error
+          errorMessage = 'The requested resource could not be found.';
         }
 
         notifications.show({
