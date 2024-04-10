@@ -111,7 +111,7 @@ const Plans: React.FC<Plans> = ({ currentPlan, isUserSubscribed, latestSavedSite
                className="border rounded-lg p-4 flex flex-col items-center border-solid border-blue-500 ">
             <h2 className="text-lg font-bold">{plan.name}</h2>
             <p className="my-2">
-              ${isAnnual ? plan.priceAnnual : plan.priceMonthly}
+              €{isAnnual ? plan.priceAnnual : plan.priceMonthly}
               <span className="text-sm font-normal">/{isAnnual ? 'yr' : 'mo'}</span>
             </p>
             <Divider className="w-full" my="md" />
