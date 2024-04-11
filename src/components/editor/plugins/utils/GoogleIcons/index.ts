@@ -25,7 +25,6 @@ const plugin = (editor: IEditor, opts = {}) => {
     <span 
       data-gjs-type="materialIcons" 
       class="material-icons material-symbols-outlined"
-      style="font-variation-settings: 'FILL' var(--fill), 'wght' var(--weight), 'GRAD' var(--grade), 'opsz' var(--opticalsize);"
     >
       home
     </span>`,

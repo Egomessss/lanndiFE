@@ -239,8 +239,8 @@ const SiteSettingsForm = (props: { plan: string; data: SiteSettings }) => {
               />
             </div>
           </div>
-        </> : <Alert variant="light" color="pink" title="Alert title" icon={<IconInfoCircle size="1rem" />}>
-          Buy a subscription plan to take advantage of custom code and all the metadata options
+        </> : <Alert className="w-full" variant="light" color="pink" title="Alert title" icon={<IconInfoCircle size="1rem" />}>
+          Buy a subscription plan to take advantage of custom code and all the metadata options such as custom head and body code and favicon.
         </Alert>}
         <div className="flex items-end justify-end w-full">
           <Button onClick={validateBeforeSubmit} loading={isPending}>Save Changes</Button>

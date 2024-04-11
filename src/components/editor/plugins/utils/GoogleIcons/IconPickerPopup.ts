@@ -68,41 +68,10 @@ const IconPickerPopup = (editor: IEditor) => {
             </div>
 
 
-            <div id="gjs-clm-input-c" data-states-c="">
-              <label>Grade</label>
-
-              <div class="gjs-field gjs-select">
-                <span id="gjs-input-holder">
-                  <select name="grade" title="Grade">
-                    <option value="-25">-25</option>
-                    <option value="0" selected>0</option>
-                    <option value="200">200</option>
-                  </select>
-                </span>
-                <div class="gjs-sel-arrow">
-                  <div class="gjs-d-s-arrow"></div>
-                </div>
-              </div>
-            </div>
+      
 
             
-            <div id="gjs-clm-input-c" data-states-c="">
-              <label>Optical Size</label>
-
-              <div class="gjs-field gjs-select">
-                <span id="gjs-input-holder">
-                  <select name="opticalSize" title="Optical Size">
-                    <option value="20">20</option>
-                    <option value="24">24</option>
-                    <option value="40">40</option>
-                    <option value="48" selected>48</option>
-                  </select>
-                </span>
-                <div class="gjs-sel-arrow">
-                  <div class="gjs-d-s-arrow"></div>
-                </div>
-              </div>
-            </div>
+        
           </div>
         </div>
         <div class="googleIconPicker__icons icons">

@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { ActionIcon, Badge, Button, Menu, Text, TextInput } from '@mantine/core';
+import { ActionIcon, Badge, Button, Menu, Modal, Text, TextInput } from '@mantine/core';
 import { IconDots, IconPencil, IconSettings, IconTrash } from '@tabler/icons-react';
 import Link from 'next/link';
 import { modals } from '@mantine/modals';
@@ -10,33 +10,38 @@ import { useForm, zodResolver } from '@mantine/form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from '@/lib/axios';
 import { notifications } from '@mantine/notifications';
+import { useDisclosure } from '@mantine/hooks';
 
 
 const DashboardCard = ({ name, slug, ogImage, isLive }: Site) => {
+  console.log(ogImage);
+  const [opened, { open, close }] = useDisclosure(false);
   const [siteName, setSiteName] = useState('');
   const queryClient = useQueryClient();
   const { mutate: deleteSite, isPending } = useMutation({
       mutationFn:
-        async () => await axios.delete(`/api/v1/sites/settings/${slug}/delete`),
+        async () => await axios.post(`/api/v1/sites/settings/${slug}/delete`, { siteName }),
       onSuccess:
         (data) => {
-          const responseData = data?.data; // Assuming your data is nested under a 'data' key
-          if (responseData) {
-            notifications.show({
-              title: 'Success!',
-              message: 'Site deleted successfully',
-              color: 'green',
-            });
-            queryClient.invalidateQueries({ queryKey: ['userSites'] });
-          }
+          // Assuming your data is nested under a 'data' key
+          console.log(data);
+          notifications.show({
+            title: 'Success!',
+            message: 'Site deletion in progress...',
+            color: 'green',
+          });
+          queryClient.invalidateQueries({ queryKey: ['userSites'] });
+
         }
       ,
       onError:
         (error) => {
           console.log('error', error);
+
           notifications.show({
             title: 'Error',
-            message: error.message,
+            // @ts-ignore
+            message: error.response.data.message,
             color: 'red',
           });
 
@@ -44,43 +49,12 @@ const DashboardCard = ({ name, slug, ogImage, isLive }: Site) => {
     },
   );
 
-  console.log('isEqual', siteName === name);
-  const openDeleteModal = () =>
-    modals.openConfirmModal({
-      title: 'Delete your site',
-      centered: true,
-      closeOnConfirm:false,
-      children: (
-        <div className="flex flex-col gap-4">
-          <Text size="sm">
-            Are you sure you want to delete your site? This action is destructive and irreversible!.
-          </Text>
-          <TextInput
-            label={<p>Write <span className="font-bold text-red-500">{name}</span> to delete your site</p>}
-            placeholder="Enter site name to confirm"
-            onChange={(event) => setSiteName(event.currentTarget.value)}
-          />
-        </div>
-      ),
-      labels: { confirm: 'Delete site', cancel: 'No don\'t delete it' },
-      confirmProps: { color: 'red' },
-      onCancel: () => {
-        console.log('Cancel');
-        setSiteName(''); // Reset the input field on cancel
-      },
-      onConfirm: () => {
-        if (siteName.length === name.length) {
-        deleteSite();
-        } else {
-          notifications.show({
-            title: 'Error',
-            message: 'Site name does not match. Please try again!',
-            color: 'red',
-          });
-        }
-        setSiteName(''); // Reset the input field on confirm
-      },
-    });
+
+  const handleDelete = () => {
+    deleteSite();
+    close()
+  };
+
 
   return (
     <div className="flex flex-col col-span-1 w-full">
@@ -111,7 +85,7 @@ const DashboardCard = ({ name, slug, ogImage, isLive }: Site) => {
               <Menu.Divider />
               <Menu.Item
                 disabled={isPending}
-                onClick={openDeleteModal}
+                onClick={open}
                 color="red"
                 leftSection={<IconTrash size="1rem" />}
               >
@@ -123,6 +97,22 @@ const DashboardCard = ({ name, slug, ogImage, isLive }: Site) => {
         {isLive ? <Badge variant="light" color="green">Live</Badge> :
           <Badge variant="light" color="orange">Draft</Badge>}
       </div>
+      <Modal centered opened={opened} onClose={close} title="Authentication">
+        <div className="flex flex-col gap-4">
+          <Text size="sm">
+            Are you sure you want to delete your site? This action is destructive and irreversible!.
+          </Text>
+          <TextInput
+            label={<p>Write <span className="font-bold text-red-500">{name}</span> to delete your site</p>}
+            placeholder="Enter site name to confirm"
+            onChange={(event) => setSiteName(event.currentTarget.value)}
+          />
+        </div>
+        <div className="flex gap-4 w-full justify-end mt-4 ">
+          <Button variant="subtle" color="red" onClick={close}>Cancel</Button>
+          <Button color="red" loading={isPending} onClick={handleDelete}>Delete Site</Button>
+        </div>
+      </Modal>
     </div>
   );
 };

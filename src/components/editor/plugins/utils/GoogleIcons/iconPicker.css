@@ -6,6 +6,7 @@
   position: relative;
   overflow: hidden;
   max-width: none;
+  background: #242424;
 }
 
 .close {
@@ -17,13 +18,12 @@
 
 .close:hover,
 .close:focus {
-  color: black;
+  color: white;
   text-decoration: none;
   cursor: pointer;
 }
 
 .googleIconPicker {
-  background: #fcfcfc;
   padding: 20px;
   z-index: 100;
   position: fixed;
@@ -36,7 +36,7 @@
 }
 
 .googleIconPicker__iconWrapper {
-  font-variation-settings: 'FILL' var(--fill), 'wght' var(--weight), 'GRAD' var(--grade), 'opsz' var(--opticalsize);
+  /*font-variation-settings: 'FILL' var(--fill), 'wght' var(--weight), 'GRAD' var(--grade), 'opsz' var(--opticalsize);*/
   background: transparent;
   border: 0;
   border-radius: 8px;
@@ -83,6 +83,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  padding: 10px 10px;
 }
 
 .googleIconPicker__iconName {
@@ -97,6 +98,7 @@
   left: 0;
   height: 100%;
   width: 100%;
+  /*z-index: 50;*/
 }
 
 .googleIconPicker__filterBar {
@@ -124,5 +126,5 @@
 }
 
 .googleIconPicker__customization .gjs-select {
-  min-width: 75px;
+  min-width: 90px;
 }

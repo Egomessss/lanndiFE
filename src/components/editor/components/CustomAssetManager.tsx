@@ -77,11 +77,11 @@ function SubmitAsset() {
             editor.Assets.add(responseData.url);
             notifications.show({
               title: 'Success!',
-              message: 'Success',
+              message: 'Asset uploaded successfully',
               color: 'green',
             });
           }
-
+          form.reset();
         }
       ,
       onError:
@@ -175,6 +175,7 @@ function DeleteAsset({ asset }: { asset: Asset }) {
             message: 'Asset deleted successfully',
             color: 'green',
           });
+
         }
       ,
       onError:
