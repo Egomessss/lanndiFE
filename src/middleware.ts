@@ -41,13 +41,14 @@ export function middleware(req: NextRequest) {
     '/verify-email',
     '/demo',
     '/forgot-password',
+    '/password-reset'
   ];
 
   // app.lanndi.com and localhost - dashboard
   // not app and localhost - either subdomain or domain
 
   // Check if the current path is an unprotected route
-  const isUnprotectedRoute = unprotectedRoutes.includes(path);
+  const isUnprotectedRoute = unprotectedRoutes.some(route => path.startsWith(route));
   console.log(process.env.NEXT_PUBLIC_BACKEND_URL);
 
   if (!session && !isUnprotectedRoute) {

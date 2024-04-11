@@ -5,11 +5,8 @@ import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { useAuth } from '../../../../hooks/auth'
 import AuthSessionStatus from '../../AuthSessionStatus'
-import Label from '../../../../components/common/Label'
-import Input from '../../../../components/common/Input'
-import InputError from '../../../../components/common/InputError'
-import Button from '../../../../components/common/Button'
-import { PasswordInput, TextInput } from '@mantine/core';
+
+import { Button, PasswordInput, TextInput } from '@mantine/core';
 import { IconAt } from '@tabler/icons-react';
 
 
@@ -45,7 +42,7 @@ const PasswordReset = () => {
             {/* Session Status */}
             <AuthSessionStatus className="mb-4" status={status} />
 
-            <form onSubmit={submitForm}>
+            <form onSubmit={submitForm} className="flex flex-col md:w-96 gap-4 ">
                 {/* Email Address */}
                 <TextInput
                   type="email"
@@ -73,7 +70,7 @@ const PasswordReset = () => {
                 />
 
                 <div className="flex items-center justify-end mt-4">
-                    <Button>Reset Password</Button>
+                    <Button type="submit">Reset Password</Button>
                 </div>
             </form>
         </>
