@@ -109,6 +109,7 @@ function CreatePageModal({ editingPageId, pages, add, opened, onClose }: CreateP
                  {...form.getInputProps('name')}
                  rightSectionWidth="40"
       />
+      {form.getInputProps('slug').value === 'index' &&<p className="text-red-500 text-xs">Set homepage settings in site settings</p>}
       <div className="flex  gap-2 flex-col w-full">
         <TextInput className="w-full"
                    disabled={form.getInputProps('slug').value === 'index'}
@@ -126,6 +127,7 @@ function CreatePageModal({ editingPageId, pages, add, opened, onClose }: CreateP
       <Divider className="w-full" my="xs" label="Page metadata settings" />
       <TextInput className="w-full"
                  label="Title"
+                 disabled={form.getInputProps('slug').value === 'index'}
                  placeholder="Insert your title here..."
                  {...form.getInputProps('title')}
                  rightSectionWidth="40"
@@ -134,6 +136,7 @@ function CreatePageModal({ editingPageId, pages, add, opened, onClose }: CreateP
       />
       <Textarea className="w-full"
                 label="Description"
+                disabled={form.getInputProps('slug').value === 'index'}
                 placeholder="Insert your description here..."
                 {...form.getInputProps('description')}
                 rightSectionWidth="60"
@@ -270,17 +273,17 @@ export default function CustomPageManager({
                 <Menu.Dropdown>
                   <Menu.Label>Page Settings</Menu.Label>
                   <Menu.Item
-                    disabled={isHomepage}
+                    disabled={page.attributes.slug !== 'index' }
                     onClick={() => {
                       setEditingPageId(page.getId());
                       open();
                     }
                     }
                   >
-                    {isHomepage ? 'Edit homepage in site settings' : 'Edit'}
+                    {page.attributes.slug !== 'index'  ? 'Edit homepage in site settings' : 'Edit'}
                   </Menu.Item>
                   <Menu.Item
-                    disabled={isHomepage}
+                    disabled={page.attributes.slug !== 'index' }
                     onClick={() => duplicatePage(page)}
                   >
                     Duplicate
@@ -288,12 +291,12 @@ export default function CustomPageManager({
                   <Menu.Divider />
                   <Menu.Label>Danger zone</Menu.Label>
                   <Menu.Item
-                    disabled={isHomepage}
+                    disabled={page.attributes.slug !== 'index' }
                     onClick={() => openModal(page)}
                     color="red"
                     leftSection={<IconTrash size="1rem" />}
                   >
-                    {isHomepage ? 'Can\'t delete homepage' : 'Delete page'}
+                    {page.attributes.slug !== 'index'  ? 'Can\'t delete homepage' : 'Delete page'}
                   </Menu.Item>
                 </Menu.Dropdown>
               </Menu> :
