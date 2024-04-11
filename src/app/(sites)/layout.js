@@ -9,9 +9,8 @@ import useUser from '../../hooks/use-user';
 import { useMutation } from '@tanstack/react-query';
 import axios from '../../lib/axios';
 import { notifications } from '@mantine/notifications';
-import { useRouter } from 'next/navigation';
 import { DarkModeButton } from '../../components/common/DarkModeButton/DarkModeButton';
-import React, { useEffect } from 'react';
+import React from 'react';
 import Loading from './Loading';
 
 

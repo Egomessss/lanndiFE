@@ -7,15 +7,17 @@ import { Badge, Button, Divider, Switch } from '@mantine/core';
 import { IconCheck } from '@tabler/icons-react';
 import Link from 'next/link';
 import { notifications } from '@mantine/notifications';
+import { PlansData } from '@/app/(sites)/plans/page';
 
-type Plans = {
-  currentPlan: string
-  sitesLimit: number
-  isUserSubscribed: boolean
-  latestSavedSiteSlug: string | null
-}
 
-const Plans: React.FC<Plans> = ({ currentPlan, isUserSubscribed, latestSavedSiteSlug, sitesLimit }) => {
+const Plans: React.FC<PlansData> = ({
+                                      currentPlan,
+                                      isUserSubscribed,
+                                      latestSavedSiteSlug,
+                                      sitesLimit,
+                                      userCanceledPlan,
+                                      gracePeriod,
+                                    }) => {
   const includedFeatures = [
     'Unlimited websites',
     'Priority support',
@@ -32,7 +34,7 @@ const Plans: React.FC<Plans> = ({ currentPlan, isUserSubscribed, latestSavedSite
       variantAnnual: 'free-annually',
     },
     {
-      name: 'Basic',
+      name: 'Indie',
       priceMonthly: 15,
       priceAnnual: 150,
       features: ['5 sites', '10 pages max', 'custom domain', 'custom code'],
@@ -40,7 +42,7 @@ const Plans: React.FC<Plans> = ({ currentPlan, isUserSubscribed, latestSavedSite
       variantAnnual: 'indie-annually',
     },
     {
-      name: 'Indie',
+      name: 'Freelancer',
       priceMonthly: 39,
       priceAnnual: 390,
       features: ['15 sites', '10 pages max', 'custom domain', 'custom code'],
@@ -78,7 +80,7 @@ const Plans: React.FC<Plans> = ({ currentPlan, isUserSubscribed, latestSavedSite
     // @ts-ignore
     getCheckoutUrl(variant);
   };
-
+  console.log(currentPlan);
 
   // if (isPending) return <Loading />;
   // if (isError) return <ErrorMessage />;
@@ -88,13 +90,30 @@ const Plans: React.FC<Plans> = ({ currentPlan, isUserSubscribed, latestSavedSite
       <div className="flex justify-center flex-col items-center w-full gap-8 my-4">
         <h1>Plans that fit your needs</h1>
         <div className="flex items-center gap-2 flex-col">
-          <Badge color={isUserSubscribed ? 'blue' : 'red'} variant="light"
-                 size="lg">{isUserSubscribed ? 'Status - Subscribed' : 'Status - Not subscribed yet'}</Badge>
-          <Badge color={isUserSubscribed ? 'blue' : 'red'} variant="light" size="lg">Current plan - {currentPlan} -
-            Max {sitesLimit} {sitesLimit > 1 ? 'sites' : 'site'} </Badge>
-          <p className="text-xs">You can change your plan in your customer portal</p>
+          {userCanceledPlan && <Badge color="red" variant="light"
+                                      size="lg">Cancelled</Badge>}
+          {userCanceledPlan && <p className="text-xs">Available until end of billing data</p>}
+          {currentPlan === 'lifetime' ? <div className="flex flex-col gap-2 justify-center items-center">
+              <Badge variant="light"
+                     size="lg">Lifetime Deal</Badge>
+              <Badge
+                variant="light" size="lg">Unlimited Websites</Badge>
+            </div> :
+
+            <div className="flex flex-col gap-2 justify-center items-center">
+              <Badge color={isUserSubscribed ? 'blue' : 'red'} variant="light"
+                     size="lg">{isUserSubscribed ? 'Status - Subscribed' : 'Status - Not subscribed yet'}</Badge>
+              <Badge color={isUserSubscribed ? 'blue' : 'red'} variant="light" size="lg">Current plan - {currentPlan} -
+                Max {sitesLimit} {sitesLimit > 1 ? 'sites' : 'site'} </Badge>
+              <p className="text-xs">You can change or cancel your plan in your customer portal</p>
+            </div>
+          }
+
         </div>
-        <div className="flex items-center gap-2">
+        <
+          div className
+                =
+                "flex items-center gap-2">
           <p>Monthly</p>
           <Switch
             size="md"
@@ -124,17 +143,20 @@ const Plans: React.FC<Plans> = ({ currentPlan, isUserSubscribed, latestSavedSite
               ))}
             </ul>
             <Divider className="w-full" my="md" />
-            <div className="h-10"> {isAnnual ? <Button loading={isPending} disabled={plan.name === 'Free'}
-                                                       onClick={() => handleSubscribe(plan.variantMonthly)}>
+            <div className="h-10"> {isAnnual ? <Button loading={isPending}
+                                                       disabled={plan.name === 'Free' || isUserSubscribed || currentPlan === 'lifetime'}
+                                                       onClick={() => handleSubscribe(plan.variantAnnual)}>
               {isUserSubscribed ? 'Subscribed' : 'Subscribe To a Plan'}
-            </Button> : <Button loading={isPending} disabled={plan.name === 'Free' || isUserSubscribed}
-                                onClick={() => handleSubscribe(plan.variantAnnual)}>
+            </Button> : <Button loading={isPending}
+                                disabled={plan.name === 'Free' || isUserSubscribed || currentPlan === 'lifetime'}
+                                onClick={() => handleSubscribe(plan.variantMonthly)}>
               {isUserSubscribed ? 'Subscribed' : 'Subscribe To a Plan'}
             </Button>}</div>
 
           </div>
         ))}
       </div>
+
       <p className="text-3xl w-full my-8 text-center font-bold">Or</p>
       <div className="w-full flex items-center justify-center">
         <div className="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
@@ -160,7 +182,7 @@ const Plans: React.FC<Plans> = ({ currentPlan, isUserSubscribed, latestSavedSite
                 ))}
               </ul>
               <Divider className="w-full" my="md" />
-              <Button disabled={isUserSubscribed} loading={isPending} component="a"
+              <Button disabled={isUserSubscribed || currentPlan === 'lifetime'} loading={isPending} component="a"
                       onClick={() => handleSubscribe('lifetime')}
               >
                 Buy Lifetime Deal
@@ -173,10 +195,8 @@ const Plans: React.FC<Plans> = ({ currentPlan, isUserSubscribed, latestSavedSite
           </div>
         </div>
       </div>
-
-
     </>
-  );
+)
 
 };
 

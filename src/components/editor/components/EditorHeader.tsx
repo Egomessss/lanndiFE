@@ -252,16 +252,33 @@ function PublishButton({ siteData }: any) {
       <Popover.Dropdown>
         <div className="flex items-start gap-4 flex-col justify-start">
           {siteData ?
-            <div>
+            <div className="flex flex-col gap-2 w-full justify-start items-start">
               <p className="text-sm">lanndi subdomain</p>
-              <Anchor href="https://mantine.dev/" target="_blank">
+              <Anchor href={`https://${siteData.subdomain}.lanndi.com`} target="_blank">
                 {siteData.subdomain !== null ? siteData.subdomain : 'No subdomain yet'}
               </Anchor>
               <p className="text-sm">Custom domain</p>
               <Anchor href="https://mantine.dev/" target="_blank">
                 {siteData.domain !== null ? siteData.domain : 'No domain assigned yet'}
               </Anchor>
+              {user?.subscription === 'free' && <>
+                <Button fullWidth component="a" href="/plans">Upgrade Your Plan</Button>
+                <ul className="flex gap-2 list-none text-xs justify-center w-full">
+                  <li className="flex items-center gap-1">
+                    <IconCheck size="1rem" />
+                    More Websites
+                  </li>
+                  <li className="flex items-center gap-1">
+                    <IconCheck size="1rem" />Custom Domains
+                  </li>
+                  <li className="flex items-center gap-1">
+                    <IconCheck size="1rem" />Custom Code
+                  </li>
+
+                </ul>
+              </>}
             </div> : 'No domain or subdomain assigned yet'}
+
           {siteData && <>
             {!siteData.title && !siteData.description &&
               <p className="text-xs text-red-500">Add a title and description to your site settings before you can

@@ -11,11 +11,14 @@ import CreateSiteModal from '@/components/dashboard/CreateSiteModal';
 import Plans from '@/app/(sites)/plans/_components/Plans';
 
 
-type PlansData = {
+export type PlansData = {
   currentPlan: string
   sitesLimit: number
   isUserSubscribed: boolean
+  userHasLifetimeDeal: boolean
   latestSavedSiteSlug: string | null
+  gracePeriod: boolean,
+  userCanceledPlan: boolean
 }
 
 
@@ -28,9 +31,10 @@ const PricingTable = () => {
       const { data } = await axios.get(`/api/v1/plans`);
       return data as PlansData;
     },
-
+    refetchOnWindowFocus: true,
   });
 
+  console.log(data);
 
   if (isLoading) return <Loading />;
   if (isError) return <ErrorMessage />;
