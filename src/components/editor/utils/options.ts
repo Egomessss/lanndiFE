@@ -67,8 +67,8 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
         {
           name: 'Home',
           slug: 'index',
-          // component: starterTemplate,
-          // styles: styleStarterTemplate,
+          component: starterTemplate,
+          styles: styleStarterTemplate,
         },
       ],
     }

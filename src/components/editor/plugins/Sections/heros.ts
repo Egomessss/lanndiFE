@@ -1,5 +1,4 @@
 import type { Editor } from 'grapesjs';
-import { RequiredPluginOptions } from './index';
 
 const heros = (editor: Editor) => {
   const { Components } = editor;
