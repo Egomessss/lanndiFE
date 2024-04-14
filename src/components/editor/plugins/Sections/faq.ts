@@ -1,5 +1,4 @@
 import type { Editor } from 'grapesjs';
-import { RequiredPluginOptions } from './index';
 
 const faqs = (editor: Editor) => {
   const { Components } = editor;
@@ -65,7 +64,6 @@ const faqs = (editor: Editor) => {
         script: script,
         droppable: false,
         name: 'FAQ One',
-        attributes: { class: 'faq-one' },
         components: `  
   <div class="accordion-wrapper">
      <div class="accordion">

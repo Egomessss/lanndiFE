@@ -12,15 +12,17 @@ const useUser = () => {
   const slug = usePathname();
   const isDemo = slug === '/demo';
 
+
   const { data: user, isLoading, error, refetch } = useQuery({
     queryKey: ['user'],
     queryFn: async () => {
       const response = await axios.get('/api/user');
       return response.data as User;
     },
+    // @ts-ignore
+    cacheTime:Infinity,
     staleTime: Infinity,
     enabled: !isDemo,
-    retry: 3,
   });
 
 

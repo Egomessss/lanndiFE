@@ -208,7 +208,7 @@ export default function CustomTraitManager({
           />
         ))
       )}
-      <CustomAttributes />
+      {/*<CustomAttributes />*/}
       {['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(value!) && <HeadingTypeSelector />}
       <HtmlElementSelector />
       {value === 'svg' && <SvgContentCode />}

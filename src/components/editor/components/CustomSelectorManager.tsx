@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { SelectorsResultProps, useEditor } from '../wrappers';
 import {
+  ActionIcon,
   CheckIcon,
   Combobox,
   Group,
@@ -13,7 +14,7 @@ import {
   Tooltip,
   useCombobox,
 } from '@mantine/core';
-import { IconExclamationCircle, IconHash, IconTags } from '@tabler/icons-react';
+import { IconExclamationCircle, IconFocus, IconHash, IconTags } from '@tabler/icons-react';
 
 
 export default function CustomSelectorManager({
@@ -27,6 +28,8 @@ export default function CustomSelectorManager({
                                                 addSelector,
                                                 removeSelector,
                                               }: Omit<SelectorsResultProps, 'Container'>) {
+
+  const editor = useEditor();
 
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
@@ -60,6 +63,13 @@ export default function CustomSelectorManager({
       </Combobox.Option>
     ));
 
+  const isComponentFirst = editor.Selectors.getComponentFirst();
+
+  const setComponentFirst = () => {
+    editor.Selectors.setComponentFirst(!isComponentFirst);
+  };
+
+  console.log(selectedSelectors);
   return (
     <div className=" flex flex-col  gap-2 text-left">
       <div className="flex items-center gap-2">
@@ -90,16 +100,20 @@ export default function CustomSelectorManager({
 
       <div className="flex gap-2 items-start w-full h-full">
         <div className="flex gap-5 h-full  flex-col">
-          <Tooltip color="blue" multiline w={200} label="Classes - Applies styles changes to all blocks with the same class">
-            <ThemeIcon variant="light">
+          <Tooltip color="blue"
+                   label={`block classes -[${selectors.map((s) => s.toString())}] | block ID - #${targetsIds.toString()}`}>
+            <ThemeIcon
+
+              variant="light">
               <IconTags size="1rem" />
             </ThemeIcon>
           </Tooltip>
-          <Tooltip color="blue" label={`block ID - #${targetsIds.toString()}`}>
-            <ThemeIcon
-              variant="light">
-              <IconHash size="1rem" />
-            </ThemeIcon>
+          <Tooltip color="blue" multiline w={200}
+                   label="If enabled, all the style changes will be applied on selected components (ID rules) instead of selectors (which would change styles on all components with those classes)">
+            <ActionIcon onClick={setComponentFirst}
+                        variant={isComponentFirst ? 'filled' : 'subtle'}>
+              <IconFocus size="1rem" />
+            </ActionIcon>
           </Tooltip>
         </div>
 
@@ -107,9 +121,9 @@ export default function CustomSelectorManager({
           dropdown: { width: '100%' },
         }} store={combobox} onOptionSubmit={handleValueSelect} withinPortal={false}>
           <Combobox.DropdownTarget>
-            <PillsInput  size="xs"  onClick={() => combobox.openDropdown()}>
-              <Pill.Group >
-                <ScrollArea.Autosize  type="hover" h={40}>
+            <PillsInput size="xs" onClick={() => combobox.openDropdown()}>
+              <Pill.Group>
+                <ScrollArea.Autosize type="hover" h={40}>
                   {values}
                 </ScrollArea.Autosize>
                 <Combobox.EventsTarget>

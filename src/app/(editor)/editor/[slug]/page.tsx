@@ -16,7 +16,7 @@ import { EditorLoading } from '@/components/common/EditorLoading';
 import CustomAssetManager from '@/components/editor/components/CustomAssetManager';
 import { IconExclamationCircle } from '@tabler/icons-react';
 
-
+// export const dynamic = 'force-dynamic'
 export default function CustomEditor() {
 
   const params = useParams();
@@ -30,6 +30,7 @@ export default function CustomEditor() {
   const onEditor = (editor: Editor) => {
     (window as any).editor = editor;
   };
+  console.log('editorData', data);
 
   if (isLoading) {
     return <EditorLoading />; // Replace this with your loading component

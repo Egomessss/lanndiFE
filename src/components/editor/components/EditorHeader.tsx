@@ -12,7 +12,7 @@ import {
 import { useParams, usePathname } from 'next/navigation';
 import { useEditorMaybe } from '@/components/editor/context/EditorInstance';
 import useEditorData from '@/hooks/use-editor-data';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from '@/lib/axios';
 import { notifications } from '@mantine/notifications';
 import Link from 'next/link';
@@ -36,13 +36,14 @@ function SaveButton() {
   const params = useParams();
   const siteSlug = params.slug;
   const slug = usePathname();
-
+  const queryClient = useQueryClient();
   const user = slug === '/demo' ? null : true;
   const [showSuccess, setShowSuccess] = useState(false);
   const { data: isNotFirstTimeSaving } = useEditorData();
   const idle = useIdle(1200000);
 
   const getEditorData = () => {
+    console.log('editor data fetched');
     const data = editor?.getProjectData();
     const pagesData = editor?.Pages.getAll().map(page => {
       const component = page.getMainComponent();
@@ -58,7 +59,7 @@ function SaveButton() {
         js: editor.getJs({ component }),
       };
     });
-    console.log('pageData', pagesData);
+    // console.log('pageData', pagesData);
     return { data, pagesData };
   };
 
@@ -113,6 +114,7 @@ function SaveButton() {
       setShowSuccess(true);
       setLastSaved(new Date());
       setTimeout(() => setShowSuccess(false), 30000);
+      queryClient.invalidateQueries({ queryKey: ['editorData', siteSlug] });
     },
   });
 
@@ -177,7 +179,7 @@ function PublishButton({ siteData }: any) {
 
   const params = useParams();
   const siteSlug = params.slug;
-
+  const queryClient = useQueryClient();
   const editor = useEditorMaybe();
 
   const data = editor?.getProjectData();
@@ -237,6 +239,7 @@ function PublishButton({ siteData }: any) {
           message: 'Your website has been successfully published',
           color: 'green',
         });
+        queryClient.invalidateQueries({ queryKey: ['editorData', siteSlug] });
       },
     },
   );

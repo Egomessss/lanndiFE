@@ -272,9 +272,8 @@ export default function StylePropertyField({
       <div
         className={`mb-2 flex items-center justify-between w-full text-xs  whitespace-nowrap  ${canClear ? 'text-blue-300' : ''}`}
       >
-        <div className="flex-grow capitalize flex gap-1 items-center text-xs">
+        <div className="flex-grow capitalize flex gap-1 items-center text-[8px]">
           <span>{prop.getLabel()}</span>
-
           <Tooltip position="left" className="cursor-pointer" multiline w={500} openDelay={180} color="gray"
             //@ts-ignore
                    label={`${prop.attributes.tooltip} * css -${style}*`}><IconExclamationCircle
