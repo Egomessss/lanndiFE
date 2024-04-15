@@ -82,7 +82,7 @@ export default function StylePropertyField({
     const { Assets } = editor;
     Assets.open({
       select: (asset, complete) => {
-        console.log({ complete });
+        // console.log({ complete });
         prop.upValue(asset.getSrc(), { partial: !complete });
         complete && Assets.close();
       },
@@ -102,6 +102,7 @@ export default function StylePropertyField({
   const valueString = hasValue ? value : '';
   const valueWithDef = hasValue ? value : defValue;
   // console.log('property', prop.getName(), 'value', value);
+
 
 
 
@@ -224,12 +225,12 @@ export default function StylePropertyField({
           <Popover.Target>
             <Button justify="space-between" leftSection={<IconPalette size="1rem" />}
                     rightSection={
-                      <IconCircleFilled className={`text-[${value}]`} size="1rem" />} variant="default"
+                      <IconCircleFilled className={`text-[rgb(140, 36, 193)]`} size="1rem" />} variant="default"
                     fullWidth
                     size="xs">Pick</Button>
           </Popover.Target>
           <Popover.Dropdown>
-            <ColorPicker hideOpacity hideAdvancedSliders hideColorGuide height={180} width={260}
+            <ColorPicker className="text-xs" hidePresets  hideAdvancedSliders hideColorGuide height={180} width={280}
                          value={value} onChange={onChange} />
           </Popover.Dropdown>
         </Popover>

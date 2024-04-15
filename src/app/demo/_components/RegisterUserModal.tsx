@@ -138,10 +138,11 @@ const CreateSiteModal = () => {
     return (
       <>
         <Tooltip label="Register before you can save your data">
-          <ActionIcon loading={isPending} onClick={open} className="animate-pulse"
-                      variant="subtle">
-            <IconDeviceFloppy size="1rem" />
-          </ActionIcon>
+          <Button rightSection={<IconDeviceFloppy size="1rem" />} size="xs" loading={isPending} onClick={open}>Sign Up To Save Your Data</Button>
+          {/*<ActionIcon  className="animate-pulse"*/}
+          {/*            variant="subtle">*/}
+          {/*  <IconDeviceFloppy size="1rem" />*/}
+          {/*</ActionIcon>*/}
         </Tooltip>
 
         <Modal centered opened={opened} onClose={close} title="User & Site Creation">

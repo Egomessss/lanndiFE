@@ -48,7 +48,7 @@ function SubmitAsset() {
     },
     validate: zodResolver(formSchema), // Here you integrate Zod's validation with useForm
   });
-  console.log(typeof form.values);
+  // console.log(typeof form.values);
 
   const { mutate: submitSite, isPending } = useMutation({
       mutationFn: async () => {

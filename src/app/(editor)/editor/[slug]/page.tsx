@@ -30,7 +30,7 @@ export default function CustomEditor() {
   const onEditor = (editor: Editor) => {
     (window as any).editor = editor;
   };
-  console.log('editorData', data);
+  // console.log('editorData', data);
 
   if (isLoading) {
     return <EditorLoading />; // Replace this with your loading component
