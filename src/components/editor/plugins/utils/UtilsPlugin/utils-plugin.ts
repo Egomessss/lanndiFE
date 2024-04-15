@@ -87,15 +87,19 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
 
     // editor.getWrapper()?.setStyle({ height: '2000px' });
 
-    const bodyHeight = editor.Canvas.getBody().clientHeight;
+    // editor.on('body')
+
+    // const bodyHeight = editor.Canvas.getBody().clientHeight;
     // console.log(editor.Canvas);
-    console.log('body height', bodyHeight);
+    // console.log('body height', bodyHeight);
     // const bodyHeight = editor.getWrapper()?.getStyle();
     //
     // if(bodyHeight > 2000){
     //
     // }
-    editor.Canvas.getFrame().set('height', bodyHeight);
+
+
+    // editor.Canvas.getFrame().set('height', bodyHeight);
     // editor.getWrapper()?.set({ tagName: 'div' });
 
   });
@@ -108,8 +112,8 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
 
   // editor.Selectors.setComponentFirst(true);
 
-  editor.Canvas.setZoom(60);
-  editor.Canvas.setCoords(-140, -100);
+  // editor.Canvas.setZoom(60);
+  // editor.Canvas.setCoords(-140, -100);
 
   // Function to update the frame height based on the body's client height
 

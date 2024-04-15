@@ -17,7 +17,7 @@ import { styles } from '@/components/editor/utils/styles';
 
 
 export const demoEditorConfigOptions = () => ({
-  height: '100vh',
+  height: '92svh',
   jsInHtml: false,
   optsHtml: { cleanId: true },
   optsCss: { onlyMatched: true, keepUnusedStyles: true },
@@ -25,8 +25,13 @@ export const demoEditorConfigOptions = () => ({
   showOffsetsSelected: true,
   undoManager: { trackSelection: false },
   deviceManager: {
-    default: 'desktop',
+    default: 'fit',
     devices: [
+      {
+        id: 'fit',
+        name: 'Fit to Screen',
+        width: '',
+      },
       {
         id: 'desktop', name: 'Desktop', width: '1536px', widthMedia: '1560px',
       },

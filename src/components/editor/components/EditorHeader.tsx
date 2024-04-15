@@ -389,8 +389,8 @@ function EditorHeader() {
             lifetime deal</Button>}
         </div>
         <div className="flex items-center gap-4">
-          <DeviceButtons />
           <WithEditor>
+          <DeviceButtons />
             <CommandButtons />
           </WithEditor>
         </div>

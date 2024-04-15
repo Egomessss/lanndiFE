@@ -211,10 +211,11 @@ export default function CustomAssetManager({
                                              close,
                                            }: any) {
 
+  const editor = useEditor();
 
-  // const remove = (asset: Asset) => {
-  //   editor.Assets.remove(asset);
-  // };
+  const remove = (asset: Asset) => {
+    editor.Assets.remove(asset);
+  };
 
   return (
     <Modal scrollAreaComponent={ScrollArea.Autosize} size="xl" opened={open} onClose={close} title="Assets" centered
@@ -238,6 +239,13 @@ export default function CustomAssetManager({
                 >
                   Select
                 </Button>
+                <ActionIcon
+                  variant="subtle"
+                  color="red"
+                  onClick={() => remove(asset)} // Call handleDelete when the icon is clicked
+                >
+                  <IconTrash size="1rem" />
+                </ActionIcon>
                 <DeleteAsset asset={asset} />
               </div>
             </div>
