@@ -17,11 +17,11 @@ export default function Canvas({
 
 
     return (
-        <AppShell.Main component={ScrollArea}>
+        <AppShell.Main className="overflow-hidden" >
             <div
                 {...rest}
                 ref={canvasRef}
-                className="w-full h-full "
+                // className="w-full h-full overflow-hidden "
             >
                 {children}
             </div>

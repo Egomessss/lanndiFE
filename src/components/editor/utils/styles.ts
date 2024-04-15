@@ -976,22 +976,22 @@ export const styles = {
           properties: [
             {
               type: 'base',
-              label: 'Transition property', // Label for the property
+              label: 'Property', // Label for the property
               property: 'transition-property', // CSS property to change
             },
             {
               type: 'base',
-              label: 'Transition duration', // Label for the property
+              label: 'Duration', // Label for the property
               property: 'transition-duration', // CSS property to change
             },
             {
               type: 'base',
-              label: 'Transition delay', // Label for the property
+              label: 'Delay', // Label for the property
               property: 'transition-delay', // CSS property to change
             },
             {
               type: 'select',
-              label: 'Transition timing function', // Label for the property
+              label: 'Timing function', // Label for the property
               property: 'transition-timing-function', // CSS property to change
               options: [
                 { id: 'linear', label: 'Linear' },

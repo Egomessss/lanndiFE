@@ -85,12 +85,16 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
       'font-family',
     ]);
 
-    editor.getWrapper()?.setStyle({ height: '2000px' });
+    // editor.getWrapper()?.setStyle({ height: '2000px' });
 
     const bodyHeight = editor.Canvas.getBody().clientHeight;
-
+    // console.log(editor.Canvas);
+    console.log('body height', bodyHeight);
     // const bodyHeight = editor.getWrapper()?.getStyle();
     //
+    // if(bodyHeight > 2000){
+    //
+    // }
     editor.Canvas.getFrame().set('height', bodyHeight);
     // editor.getWrapper()?.set({ tagName: 'div' });
 

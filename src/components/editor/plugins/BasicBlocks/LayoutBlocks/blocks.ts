@@ -40,11 +40,9 @@ import { BlockProperties, Editor } from 'grapesjs';
         // Avoid defining 'components' here to prevent recursive nesting of containers
         styles: `
                 .block {
-                  height: 80px;
-                  width: 100%;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
+                   height: 80px;
+                    max-height: 100%;
+                    width: 100%;
                 }
                 `,
       },
@@ -62,6 +60,8 @@ import { BlockProperties, Editor } from 'grapesjs';
       // Content for the container, avoid nesting containers inside each other
     },
   });
+
+
 
   editor.DomComponents.addType('container', {
     // isComponent: el => {

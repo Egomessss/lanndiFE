@@ -25,6 +25,7 @@ const MediaBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
     content: {
       attributes: { class: 'image' },
       type: 'image',
+      activate:true,
     },
   });
 

@@ -53,27 +53,19 @@ export default function StylePropertyField({
   const editor = useEditor();
 
 
-
-
-
-
   const handleChange = (value: any) => {
     prop.upValue(value);
-
   };
 
   const onChange = (ev: any) => {
-
     handleChange(ev);
   };
 
   const onChangeNumber = (value: string | number) => {
-
     handleChange(value);
   };
 
   const onChangeText = (ev: any) => {
-
     handleChange(ev.currentTarget.value);
   };
 
@@ -118,11 +110,11 @@ export default function StylePropertyField({
       className="col-span-1"
       // default={valueWithDef}
       // @ts-ignore
-
-      // placeholder={defValue}
+      placeholder={defValue}
       value={valueString}
       onChange={onChangeText}
       size="xs"
+
     />
   );
 
@@ -272,7 +264,7 @@ export default function StylePropertyField({
       <div
         className={`mb-2 flex items-center justify-between w-full text-xs  whitespace-nowrap  ${canClear ? 'text-blue-300' : ''}`}
       >
-        <div className="flex-grow capitalize flex gap-1 items-center text-[8px]">
+        <div className="flex-grow capitalize flex gap-1 items-center  ">
           <span>{prop.getLabel()}</span>
           <Tooltip position="left" className="cursor-pointer" multiline w={500} openDelay={180} color="gray"
             //@ts-ignore
