@@ -17,11 +17,11 @@ export default function Canvas({
 
 
     return (
-        <AppShell.Main className="overflow-hidden" >
+        <AppShell.Main >
             <div
                 {...rest}
                 ref={canvasRef}
-                // className="w-full h-full overflow-hidden "
+                className="w-full h-full "
             >
                 {children}
             </div>

@@ -87,7 +87,15 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
 
     // editor.getWrapper()?.setStyle({ height: '2000px' });
 
-    // editor.on('body')
+    // editor.on('device:select', (device) => {
+    //   console.log('device selected', device);
+    //   console.log('offeset',editor.Canvas.canvasRectOffset())
+    //   // editor.Canvas.setZoom(100);
+    //   // const bodyHeight = editor.Canvas.getBody().clientHeight
+    //   // console.log('coords world',editor.Canvas.getWorldRectToScreen());
+    //   console.log('coords',editor.Canvas.getCoords());
+    //   editor.Canvas.setCoords(0, 0);
+    // });
 
     // const bodyHeight = editor.Canvas.getBody().clientHeight;
     // console.log(editor.Canvas);

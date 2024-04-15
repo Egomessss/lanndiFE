@@ -210,7 +210,7 @@ export default function TopBarButtons() {
     <div className="flex  w-full gap-2 items-center">
       <Divider orientation="vertical" />
       <div className="flex items-center justify-center gap-2  w-full">
-        <Tooltip color="gray" label="Use Left Mouse Click + Spacebar to drag canvas">
+        <Tooltip color="gray" label="Use Left Mouse Click + Spacebar to drag canvas - Zoom must be less than 100%">
           <ActionIcon
             color="blue"
             variant="subtle"
