@@ -109,7 +109,8 @@ function CreatePageModal({ editingPageId, pages, add, opened, onClose }: CreateP
                  {...form.getInputProps('name')}
                  rightSectionWidth="40"
       />
-      {form.getInputProps('slug').value === 'index' &&<p className="text-red-500 text-xs">Set homepage settings in site settings</p>}
+      {form.getInputProps('slug').value === 'index' &&
+        <p className="text-red-500 text-xs">Set homepage settings in site settings</p>}
       <div className="flex  gap-2 flex-col w-full">
         <TextInput className="w-full"
                    disabled={form.getInputProps('slug').value === 'index'}
@@ -233,19 +234,16 @@ export default function CustomPageManager({
     <div
       className="gjs-custom-page-manager relative select-none text-left text-xs flex flex-col gap-2"
     >
-      <Tooltip
-        label={user?.subscription === 'free' && 'Free users cannot add more pages. Subscribe to a plan to add more pages.'}
+      {user?.subscription === 'free' ? <Tooltip
+        label="Free users cannot add more pages. Subscribe to a plan to add more pages."
         color="red"
       >
         <Button disabled={user?.subscription === 'free'} leftSection={<IconPlus size="1rem" />}
-          // rightSection={
-          //   <Tooltip w={200} multiline color="blue"
-          //            label="The name represent the url slugs e.g: Homepage should be always '/', an about page '/about' ">
-          //     <IconExclamationCircle size="1rem" />
-          //   </Tooltip>
-          // }
+
                 onClick={addNewPage} size="xs" variant="subtle">Add page</Button>
-      </Tooltip>
+      </Tooltip> : <Button disabled={user?.subscription === 'free'} leftSection={<IconPlus size="1rem" />}
+
+                           onClick={addNewPage} size="xs" variant="subtle">Add page</Button>}
       {pages.map((page, index) => (
         <div key={index}>
           <Button
@@ -256,13 +254,13 @@ export default function CustomPageManager({
             size="xs"
             variant={page === selected ? 'filled' : 'subtle'}
             onClick={() => select(page)}
-            rightSection={page.attributes.slug !== 'index' || user?.subscription !== 'free' ?
+            rightSection={page.attributes.slug === 'index' || user?.subscription !== 'free' ?
               <Menu
                 shadow="md"
                 width={200}
                 position="right-start"
                 offset={10}
-                disabled={page.attributes.slug !== 'index'}
+                // disabled={page.attributes.slug === 'index'}
               >
                 <Menu.Target>
                   <ActionIcon size="sm" variant="subtle">
@@ -273,14 +271,14 @@ export default function CustomPageManager({
                 <Menu.Dropdown>
                   <Menu.Label>Page Settings</Menu.Label>
                   <Menu.Item
-                    disabled={page.attributes.slug !== 'index' }
+                    disabled={page.attributes.slug === 'index'}
                     onClick={() => {
                       setEditingPageId(page.getId());
                       open();
                     }
                     }
                   >
-                    {page.attributes.slug !== 'index'  ? 'Edit homepage in site settings' : 'Edit'}
+                    {page.attributes.slug === 'index' ? 'Edit homepage in site settings' : 'Edit'}
                   </Menu.Item>
                   {/*<Menu.Item*/}
                   {/*  disabled={page.attributes.slug !== 'index' }*/}
@@ -291,12 +289,12 @@ export default function CustomPageManager({
                   <Menu.Divider />
                   <Menu.Label>Danger zone</Menu.Label>
                   <Menu.Item
-                    disabled={page.attributes.slug !== 'index' }
+                    disabled={page.attributes.slug === 'index'}
                     onClick={() => openModal(page)}
                     color="red"
                     leftSection={<IconTrash size="1rem" />}
                   >
-                    {page.attributes.slug !== 'index'  ? 'Can\'t delete homepage' : 'Delete page'}
+                    {page.attributes.slug === 'index' ? 'Can\'t delete homepage' : 'Delete page'}
                   </Menu.Item>
                 </Menu.Dropdown>
               </Menu> :
