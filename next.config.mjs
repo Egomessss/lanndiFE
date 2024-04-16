@@ -22,9 +22,12 @@ const nextConfig = {
   //     },
   //   ];
   // },
-  compiler: {
-    removeConsole: true,
-  },
+
+  // compiler: {
+  //   removeConsole: process.env.NODE_ENV === 'production',
+  // },
 };
+
+if (process.env.NODE_ENV === 'production') nextConfig.compiler = { removeConsole: true };
 
 export default nextConfig;

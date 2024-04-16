@@ -18,7 +18,7 @@ import React, { useEffect, useState } from 'react';
 import { PagesResultProps, useEditor } from '../wrappers';
 import {
   IconCheck,
-  IconDots,
+  IconDots, IconDotsVertical,
   IconExclamationCircle,
   IconFile,
   IconLink,
@@ -266,7 +266,7 @@ export default function CustomPageManager({
               >
                 <Menu.Target>
                   <ActionIcon size="sm" variant="subtle">
-                    <IconDots size="1rem"
+                    <IconDotsVertical size="1rem"
                     />
                   </ActionIcon>
                 </Menu.Target>
@@ -282,12 +282,12 @@ export default function CustomPageManager({
                   >
                     {page.attributes.slug !== 'index'  ? 'Edit homepage in site settings' : 'Edit'}
                   </Menu.Item>
-                  <Menu.Item
-                    disabled={page.attributes.slug !== 'index' }
-                    onClick={() => duplicatePage(page)}
-                  >
-                    Duplicate
-                  </Menu.Item>
+                  {/*<Menu.Item*/}
+                  {/*  disabled={page.attributes.slug !== 'index' }*/}
+                  {/*  onClick={() => duplicatePage(page)}*/}
+                  {/*>*/}
+                  {/*  Duplicate*/}
+                  {/*</Menu.Item>*/}
                   <Menu.Divider />
                   <Menu.Label>Danger zone</Menu.Label>
                   <Menu.Item
