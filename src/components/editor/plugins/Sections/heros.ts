@@ -5,111 +5,358 @@ const heros = (editor: Editor) => {
 
 
   editor.Blocks.add('hero-one', {
-    label: 'FAQ Simple',
+    label: 'Hero Image Bottom',
     category: 'sections-heros',
     select: true,
     content: { type: 'hero-one' },
   });
 
-  Components.addType('hero-one', {
+Components.addType('hero-one', {
     model: {
       defaults: {
         droppable: false,
-        name: 'FAQ One',
-        attributes: { class: 'hero-one' },
-        components: `  
-  <div class="container">
-    <div class="block">
-      <div id="im3n">
-        <h1 id="i7vj">Create your dream website
-          <br/> in minutes
+        name: 'Hero Image Bottom',
+        components: ` <div class="hero-one">
+    <div class="hero-one-container">
+      <div class="hero-text-container">
+        <h1 id="irjua" draggable="false" class="gjs-heading">Insert Hero 
+          <span id="i4jn1p" draggable="true" class="gjs-text-blue">text here</span>
         </h1>
-        <p id="i30t">Create, launch and share your fast, beautiful and responsive website effortlessly, with a super easy-to-use editor without needing code or design skills
-          <!-- notionvc: 28f945b7-a712-442e-8c2a-3354ca2f6bac -->
+        <p id="it2f" class="hero-description">
+          <span id="i09aq">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
         </p>
-        <div class="btn">Join The Waitlist
-        </div>
+        <button class="button">Button
+        </button>
+        <img src="https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/placeholder.webp" class="hero-image"/>
+      </div>
+      <div class="image-container">
       </div>
     </div>
   </div>`,
         styles: `
-        .accordion-wrapper {
-        height:500px;
-        width:100%;
-        display:flex;
-        justify-items:center;
-        align-items:center;
-        }
-        
-        
-.accordion{
-    max-width: 530px;
-    width: 100%;
-    background: #fff;
-    margin: 0 15px;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+        .hero-one-container{
+  height:fit-content;
 }
-
-.accordion .accordion-content{
-    background: #fff6ee;
-    border-left: 4px solid #efc6a1;
-    border-radius: 4px;
-    overflow: hidden;
-    margin: 10px 0;
+.hero-text-container{
+  height:833px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
 }
-
-.accordion .accordion-content:nth-child(2){
-    background: #f1f1fe;
-    border-left: 4px solid #928edf;
+#irjua{
+  margin:0px;
+  color:rgb(29, 40, 55);
+  font-size:3rem;
+  font-family:Arial, Helvetica, sans-serif;
 }
-
-.accordion .accordion-content:nth-child(3){
-    background: #fef0f5;
-    border-left: 4px solid #e696a8;
+#i4jn1p{
+  color:rgb(36, 99, 235);
 }
-
-.accordion .accordion-content:nth-child(4){
-    background: #f0f9ff;
-    border-left: 4px solid #9ecfec;
+.hero-description{
+  width:462px;
+  text-align:center;
+  font-size:1rem;
 }
-
-.accordion-content header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 50px;
-    padding: 0 15px;
-    cursor: pointer;
-    transition: all 0.2s linear;
+#i09aq{
+  color:rgb(71, 85, 105);
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:19.2px;
 }
-
-.accordion-content header .title{
-    font-size: 14px;
-    font-weight: 500;
-    color: #333;
+.button{
+  width:fit-content;
+  cursor:pointer;
+  outline:0;
+  color:#fff;
+  background-color:#0d6efd;
+  border-color:#0d6efd;
+  display:inline-block;
+  font-weight:400;
+  line-height:1.5;
+  text-align:center;
+  border:1px solid transparent;
+  padding:4px 12px 4px 12px;
+  font-size:16px;
+  border-radius:.25rem .25rem .25rem .25rem;
 }
-
-.accordion-content header i{
-    font-size: 15px;
-    color: #333;
-    transition: all 0.1s linear;
+.button:hover{
+  opacity:0.9;
 }
-
-.accordion-content .description{
-    padding: 0 15px;
-    font-size: 12px;
-    font-weight: 400;
-    color: #333;
-    height: 0;
-    transition: all 0.2s linear;
+.hero-image{
+  width:725px;
+  height:369px;
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items:center;
+  border-top-left-radius:5px;
+  border-top-right-radius:5px;
+  border-bottom-right-radius:5px;
+  border-bottom-left-radius:5px;
+  margin-top:2rem;
+}
+.image-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:fit-content;
 }
 `,
       },
     },
   });
 
+
+  Components.addType('hero-two', {
+    model: {
+      defaults: {
+        droppable: false,
+        name: 'Hero Image Side',
+        // attributes: { class: 'hero-three' },
+        components: `<div class="hero-two">
+    <div class="hero-two-container">
+      <div class="hero-text-container">
+        <h1 id="iyi6" class="heading-hero">
+        </h1>
+        <h1 class="heading-one" id="im2wi">Insert Hero text here
+        </h1>
+        <p id="it2f" class="hero-description">
+          <span id="i09aq">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+        </p>
+        <button class="button">Button
+        </button>
+      </div>
+      <img src="https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/placeholder.webp" class="hero-image"/>
+    </div>
+  </div>`,
+        styles: `.hero-two-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  column-gap:2rem;
+  height:559px;
 }
+.hero-text-container{
+  height:359px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  width:457px;
+}
+.heading-hero{
+  width:571px;
+  text-align:center;
+  font-size:3rem;
+}
+
+.heading-one{
+  font-size:3rem;
+}
+.hero-description{
+  width:100%;
+  text-align:center;
+  font-size:1rem;
+}
+
+#i09aq{
+  color:rgb(71, 85, 105);
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:1rem;
+}
+.button{
+  width:fit-content;
+  cursor:pointer;
+  outline:0;
+  color:#fff;
+  background-color:#0d6efd;
+  border-color:#0d6efd;
+  display:inline-block;
+  font-weight:400;
+  line-height:1.5;
+  text-align:center;
+  border:1px solid transparent;
+  padding:4px 12px 4px 12px;
+  font-size:16px;
+  border-radius:.25rem .25rem .25rem .25rem;
+}
+.button:hover{
+  opacity:0.9;
+}
+.image-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:fit-content;
+}
+.hero-image{
+  width:450px;
+  height:361px;
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items:center;
+  border-top-left-radius:5px;
+  border-top-right-radius:5px;
+  border-bottom-right-radius:5px;
+  border-bottom-left-radius:5px;
+  object-fit:cover;
+}
+@media (max-width: 810px){
+  .hero-two-container{
+    flex-direction:column;
+    row-gap:2rem;
+    height:823px;
+  }
+  .hero-text-container{
+    width:649px;
+  }
+  .hero-image{
+    width:645px;
+  }
+}
+@media (max-width: 390px){
+  .hero-text-container{
+    width:90%;
+    text-align:center;
+    height:344px;
+    align-items:center;
+    justify-content:center;
+  }
+  .heading-one{
+    height:88px;
+    font-size:2.5rem;
+    line-height:2.5rem;
+  }
+  .hero-image{
+    width:90%;
+    height:254px;
+  }
+}
+`,
+      },
+    },
+  });
+
+  editor.Blocks.add('hero-two', {
+    label: 'Hero No Image',
+    category: 'sections-heros',
+    select: true,
+    content: { type: 'hero-two' },
+  });
+
+  Components.addType('hero-three', {
+    model: {
+      defaults: {
+        droppable: false,
+        name: 'Hero No Image',
+        // attributes: { class: 'hero-three' },
+        components: ` <div class="hero-three">
+    <div class="hero-three-container">
+      <div class="hero-text-container">
+        <h1 id="iyi6" class="heading-hero">
+          Insert Hero 
+          <span id="i4jn1p" draggable="true" class="gjs-text-blue">text here</span>
+        </h1>
+        <p id="it2f" class="hero-description">
+          <span id="i09aq">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+        </p>
+        <button class="button">Button
+        </button>
+      </div>
+    </div>
+  </div>`,
+        styles: `.hero-three-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:569px;
+}
+.hero-text-container{
+  height:359px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  width:771px;
+}
+.heading-hero{
+  width:571px;
+  text-align:center;
+  font-size:3rem;
+  margin:0px;
+  color:rgb(29, 40, 55);
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+#i4jn1p{
+  color:rgb(36, 99, 235);
+}
+.hero-description{
+  width:462px;
+  text-align:center;
+  font-size:1rem;
+}
+
+#i09aq{
+  color:rgb(71, 85, 105);
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:19.2px;
+}
+.button{
+  width:fit-content;
+  cursor:pointer;
+  outline:0;
+  color:#fff;
+  background-color:#0d6efd;
+  border-color:#0d6efd;
+  display:inline-block;
+  font-weight:400;
+  line-height:1.5;
+  text-align:center;
+  border:1px solid transparent;
+  padding:4px 12px 4px 12px;
+  font-size:16px;
+  border-radius:.25rem .25rem .25rem .25rem;
+}
+.button:hover{
+  opacity:0.9;
+}
+@media (max-width: 810px){
+  .hero-text-container{
+    width:728px;
+  }
+}
+@media (max-width: 390px){
+  .hero-text-container{
+    width:90%;
+    height:397px;
+  }
+  .heading-hero{
+    font-size:2rem;
+    width:100%;
+  }
+  .hero-description{
+    width:100%;
+  }
+  #i09aq{
+    font-size:1rem;
+  }
+}
+
+`,
+      },
+    },
+  });
+
+  editor.Blocks.add('hero-three', {
+    label: 'Hero Image Side',
+    category: 'sections-heros',
+    select: true,
+    content: { type: 'hero-three' },
+  });
+
+
+};
 
 export default heros;

@@ -3,50 +3,35 @@ import type { Editor } from 'grapesjs';
 const faqs = (editor: Editor) => {
   const { Components } = editor;
   const script = function() {
-    const accordionContent = document.querySelectorAll('.accordion-content');
+    const accordionContent = document.querySelectorAll(".accordion-content");
 
     accordionContent.forEach((item, index) => {
-      let header = item.querySelector('header');
-      header?.addEventListener('click', () => {
+      let header = item.querySelector("header");
+      header.addEventListener("click", () =>{
+        item.classList.toggle("open");
 
-        item.classList.toggle('open');
-
-        let description = item.querySelector('.description');
-        let icon = item.querySelector('.fa-angle-down');
-
-        if (item.classList.contains('open')) {
-          // @ts-ignore
-          description.style.height = `${description.scrollHeight + 10}px`;
-          // @ts-ignore
-          icon.style.transform = 'rotate(180deg)';
-        } else {
-          // @ts-ignore
-          description.style.height = '0px';
-          // @ts-ignore
-          icon.style.transform = 'rotate(0deg)';
+        let description = item.querySelector(".description");
+        if(item.classList.contains("open")){
+          description.style.height = `${description.scrollHeight}px`; //scrollHeight property returns the height of an element including padding , but excluding borders, scrollbar or margin
+          item.querySelector("i").classList.replace("fa-plus", "fa-minus");
+        }else{
+          description.style.height = "0px";
+          item.querySelector("i").classList.replace("fa-minus", "fa-plus");
         }
+        removeOpen(index); //calling the funtion and also passing the index number of the clicked header
+      })
+    })
 
-        removeOpen(index);
-      });
-
-    });
-
-    function removeOpen(index1: number) {
-
+    function removeOpen(index1){
       accordionContent.forEach((item2, index2) => {
+        if(index1 != index2){
+          item2.classList.remove("open");
 
-        if (index1 != index2) {
-          item2.classList.remove('open');
-
-          let des = item2.querySelector('.description');
-          // @ts-ignore
-          des.style.height = '0px';
-
-          let icon = item2.querySelector('.fa-angle-down');
-          // @ts-ignore
-          icon.style.transform = 'rotate(0deg)';
+          let des = item2.querySelector(".description");
+          des.style.height = "0px";
+          item2.querySelector("i").classList.replace("fa-minus", "fa-plus");
         }
-      });
+      })
     }
   };
 
@@ -64,133 +49,111 @@ const faqs = (editor: Editor) => {
         script: script,
         droppable: false,
         name: 'FAQ One',
+        // attributes: { class: 'faq-one' },
         components: `  
-  <div class="accordion-wrapper">
-     <div class="accordion">
+ <div class="accordion">
         <div class="accordion-content">
             <header>
                 <span class="title">What do you mean by Accordion?</span>
-                <i class="fa-solid fa-angle-down"></i>
+                <i class="fa-solid fa-plus"></i>
             </header>
 
             <p class="description">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod inventore repudiandae repellendus
-                possimus voluptates nobis quisquam, ipsam natus laboriosam! Sed, pariatur! Maxime aut reiciendis libero,
-                omnis debitis expedita consectetur eos!
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus nobis ut perspiciatis minima quidem nisi, obcaecati, delectus consequatur fuga nostrum iusto ipsam ducimus quibusdam possimus. Maiores non enim numquam voluptatem?
             </p>
         </div>
 
         <div class="accordion-content">
             <header>
-                <span class="title">What do you mean by Footer?</span>
-                <i class="fa-solid fa-angle-down"></i>
+                <span class="title">What do you mean by Accordion?</span>
+                <i class="fa-solid fa-plus"></i>
             </header>
 
             <p class="description">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod inventore repudiandae repellendus
-                possimus voluptates nobis quisquam, ipsam natus laboriosam! Sed, pariatur! Maxime aut reiciendis libero,
-                omnis debitis expedita consectetur eos!
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus nobis ut perspiciatis minima quidem nisi, obcaecati, delectus consequatur fuga nostrum iusto ipsam ducimus quibusdam possimus. Maiores non enim numquam voluptatem?
             </p>
         </div>
-
         <div class="accordion-content">
             <header>
-                <span class="title">What do you mean by Navbar?</span>
-                <i class="fa-solid fa-angle-down"></i>
+                <span class="title">What do you mean by Accordion?</span>
+                <i class="fa-solid fa-plus"></i>
             </header>
 
             <p class="description">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod inventore repudiandae repellendus
-                possimus voluptates nobis quisquam, ipsam natus laboriosam! Sed, pariatur! Maxime aut reiciendis libero,
-                omnis debitis expedita consectetur eos!
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus nobis ut perspiciatis minima quidem nisi, obcaecati, delectus consequatur fuga nostrum iusto ipsam ducimus quibusdam possimus. Maiores non enim numquam voluptatem?
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto neque, sed inventore illum ut quis ducimus deleniti temporibus maiores? At nisi sed pariatur cupiditate quidem quod adipisci aut, eos quis minima voluptates non veniam ipsam quasi architecto ducimus error eum id ab, suscipit doloribus, ut accusantium consequuntur voluptate! Unde, hic sed rerum officia totam id libero officiis nihil rem sequi porro labore praesentium repudiandae a blanditiis molestias nisi beatae natus! Ea, ut voluptates, natus harum nesciunt odio hic eveniet reprehenderit veritatis, possimus tempora magni soluta eaque quidem neque maxime nostrum sapiente commodi? Earum ex cumque cupiditate dicta, tempora temporibus quaerat.
             </p>
         </div>
-
         <div class="accordion-content">
             <header>
-                <span class="title">What do you mean by Sidebar?</span>
-                <i class="fa-solid fa-angle-down"></i>
+                <span class="title">What do you mean by Accordion?</span>
+                <i class="fa-solid fa-plus"></i>
             </header>
 
             <p class="description">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod inventore repudiandae repellendus
-                possimus voluptates nobis quisquam, ipsam natus laboriosam! Sed, pariatur! Maxime aut reiciendis libero,
-                omnis debitis expedita consectetur eos!
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus nobis ut perspiciatis minima quidem nisi, obcaecati, delectus consequatur fuga nostrum iusto ipsam ducimus quibusdam possimus. Maiores non enim numquam voluptatem?
             </p>
         </div>
-    </div></div>
-    <!-- footer copy right section end -->`,
+    </div>`,
         styles: `
-        .accordion-wrapper {
-        height:500px;
-        width:100%;
-        display:flex;
-        justify-items:center;
-        align-items:center;
-        }
-        
-        
-.accordion{
+     .accordion{
     max-width: 530px;
     width: 100%;
-    background: #fff;
+    background: #FFF;
     margin: 0 15px;
-    border-radius: 8px;
     padding: 15px;
-    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    box-shadow:  0 0 4px rgba(0,0,0,0.2);
 }
-
 .accordion .accordion-content{
-    background: #fff6ee;
-    border-left: 4px solid #efc6a1;
-    border-radius: 4px;
-    overflow: hidden;
     margin: 10px 0;
+    border-radius: 4px;
+    background: #FFF7F0;
+    border: 1px solid #FFD6B3;
+    overflow: hidden;
 }
-
-.accordion .accordion-content:nth-child(2){
-    background: #f1f1fe;
-    border-left: 4px solid #928edf;
+.accordion-content:nth-child(2){
+    background-color: #F0FAFF;
+    border-color: #CCEEFF;
 }
-
-.accordion .accordion-content:nth-child(3){
-    background: #fef0f5;
-    border-left: 4px solid #e696a8;
+.accordion-content:nth-child(3){
+    background-color: #FFF0F3;
+    border-color: #FFCCD6;
 }
-
-.accordion .accordion-content:nth-child(4){
-    background: #f0f9ff;
-    border-left: 4px solid #9ecfec;
+.accordion-content:nth-child(4){
+    background-color: #F0F0FF;
+    border-color: #CCCCFF;
 }
-
+.accordion-content.open{
+    padding-bottom: 10px;
+}
 .accordion-content header{
     display: flex;
-    align-items: center;
-    justify-content: space-between;
     min-height: 50px;
     padding: 0 15px;
     cursor: pointer;
+    align-items: center;
+    justify-content: space-between;
     transition: all 0.2s linear;
 }
-
+.accordion-content.open header{
+    min-height: 35px;
+}
 .accordion-content header .title{
     font-size: 14px;
     font-weight: 500;
     color: #333;
 }
-
 .accordion-content header i{
     font-size: 15px;
     color: #333;
-    transition: all 0.1s linear;
 }
-
 .accordion-content .description{
-    padding: 0 15px;
-    font-size: 12px;
-    font-weight: 400;
-    color: #333;
     height: 0;
+    font-size: 12px;
+    color: #333;
+    font-weight: 400;
+    padding: 0 15px;
     transition: all 0.2s linear;
 }
 `,

@@ -3,15 +3,15 @@ import type { Editor } from 'grapesjs';
 
 const navbars = (editor: Editor) => {
 
-  const id = 'navbar-one';
+  const id = 'navbar';
   const label = 'Navbar';
   const style = '';
-  const classPrefix = 'navbar-one';
 
 
-  editor.Blocks.add('navbar-one', {
+
+  editor.Blocks.add('navbar', {
     media: `<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-layout-navbar"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 9l16 0" /></svg>`,
-    label: 'Navbar Simple',
+    label: 'Navbar',
     category: 'sections-navbar',
     select: true,
     content: { type: id },
@@ -21,7 +21,7 @@ const navbars = (editor: Editor) => {
   const { Components } = editor;
 
 
-  const navbarPfx = classPrefix;
+  const navbarPfx = id;
   const idContainer = `${id}-container`;
   const idNavMenu = `${id}-nav-menu`;
   const idNavMenuLink = `${id}-nav-menu-link`;
@@ -35,25 +35,47 @@ const navbars = (editor: Editor) => {
         name: label,
         attributes: { class: navbarPfx },
         components: { type: idContainer },
-        styles: (style || `
-      
+        styles:  `
+          .${navbarPfx} {
+            background-color: white;
+            color: black;
+            min-height: 50px;
+            width: 100%;
+          }
+
           .${navbarPfx}-container {
-          display:flex;
-          align-items:center;
-         justify-content: space-between;
-           padding: 10px 40px 10px 40px;
-           width:100%;
+            max-width: 950px;
+            margin: 0 auto;
+            width: 95%;
+          }
+
+          .${navbarPfx}-items-c {
+            display: inline-block;
+            float: right;
+          }
+
+          .${navbarPfx}-container::after {
+            content: "";
+            clear: both;
+            display: block;
           }
 
           .${navbarPfx}-brand {
+            vertical-align: top;
+            display: inline-block;
+            padding: 10px 10px 10px 10px;
+            min-height: 50px;
+            margin-top:4px;
+            min-width: 50px;
+            color: inherit;
             text-decoration: none;
           }
 
           .${navbarPfx}-menu {
-            display: flex;
-            gap:2px;
-            align-items:center;
-          justify-items:center;
+            padding: 10px 0 10px 0;
+            display: block;
+            float: right;
+            margin: 0;
           }
 
           .${navbarPfx}-menu-link {
@@ -62,7 +84,6 @@ const navbars = (editor: Editor) => {
             text-decoration: none;
             display: inline-block;
             padding: 10px 15px;
-             cursor: pointer;
           }
 
           .${navbarPfx}-burger {
@@ -76,7 +97,7 @@ const navbars = (editor: Editor) => {
 
           .${navbarPfx}-burger-line {
             padding: 1px;
-            background-color: white;
+            background-color: black;
             margin: 5px 0;
           }
 
@@ -96,12 +117,11 @@ const navbars = (editor: Editor) => {
 
             .${navbarPfx}-menu-link {
               display: block;
-               cursor: pointer;
             }
           }
-        `),
+        `
       },
-    },
+    }
   });
 
   Components.addType(idContainer, {
@@ -117,17 +137,16 @@ const navbars = (editor: Editor) => {
         components: [
           {
             type: 'link',
-            content: `lanndi`,
             attributes: { class: `${navbarPfx}-brand`, href: '/' },
           },
           { type: idBurgerMenu },
           {
             attributes: { class: `${navbarPfx}-items-c`, 'data-gjs': 'navbar-items' },
             components: { type: idNavMenu },
-          },
-        ],
-      },
-    },
+          }
+        ]
+      }
+    }
   });
 
   Components.addType(idNavMenu, {
@@ -140,9 +159,9 @@ const navbars = (editor: Editor) => {
           { type: idNavMenuLink, components: 'Home' },
           { type: idNavMenuLink, components: 'About' },
           { type: idNavMenuLink, components: 'Contact' },
-        ],
-      },
-    },
+        ]
+      }
+    }
   });
 
   Components.addType(idNavMenuLink, {
@@ -152,8 +171,8 @@ const navbars = (editor: Editor) => {
         name: 'Menu link',
         draggable: `[data-gjs-type="${idNavMenu}"]`,
         attributes: { class: `${navbarPfx}-menu-link` },
-      },
-    },
+      }
+    }
   });
 
   Components.addType(idBurgerMenu, {
@@ -164,7 +183,7 @@ const navbars = (editor: Editor) => {
         droppable: false,
         copyable: false,
         removable: false,
-        script: function() {
+        script: function () {
           // @ts-ignore
           const currentEl = this as HTMLElement;
           const stringCollapse = 'gjs-collapse';
@@ -179,16 +198,16 @@ const navbars = (editor: Editor) => {
               'transition': 'transitionend',
               'OTransition': 'oTransitionEnd',
               'MozTransition': 'transitionend',
-              'WebkitTransition': 'webkitTransitionEnd',
-            };
+              'WebkitTransition': 'webkitTransitionEnd'
+            }
 
             for (let t in transitions) {
               // @ts-ignore
-              if (el.style[t] !== undefined) {
+              if (el.style[t] !== undefined){
                 return transitions[t];
               }
             }
-          };
+          }
 
           const transitEndEvent = getTransitionEvent();
 
@@ -235,7 +254,7 @@ const navbars = (editor: Editor) => {
             } else {
               elStyle[transitProp] = '0';
             }
-          };
+          }
 
           const toggle = function(ev: Event) {
             ev.preventDefault();
@@ -259,7 +278,7 @@ const navbars = (editor: Editor) => {
             }
           };
 
-          if (!(stringCollapse in currentEl)) {
+          if ( !(stringCollapse in currentEl) ) {
             currentEl.addEventListener(clickEvent, toggle);
           }
 
@@ -271,7 +290,7 @@ const navbars = (editor: Editor) => {
           { type: idBurgerMenuLine },
           { type: idBurgerMenuLine },
           { type: idBurgerMenuLine },
-        ],
+        ]
       },
     },
   });

@@ -23,12 +23,12 @@ import { BlockProperties, Editor } from 'grapesjs';
   const toAdd = (name: string) => blocks.indexOf(name) >= 0;
 
   editor.DomComponents.addType('block', {
-    // isComponent: el => {
-    //     // This will treat every 'div' element as a 'container' component
-    //     if (el.tagName === 'DIV') {
-    //         return { type: 'container' }
-    //     }
-    // },
+    isComponent: el => {
+        // This will treat every 'div' element as a 'container' component
+        if (el.tagName === 'DIV') {
+            return { type: 'block' }
+        }
+    },
     model: {
       tagName: 'div',
       defaults: {

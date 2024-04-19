@@ -182,6 +182,7 @@ const InteractiveBlocks =(editor: Editor, opts: Required<PluginOptions>)=> {
         droppable: true,
         resizable:true,
         attributes: { class: 'button' },
+        components: `<button class="button">Button</button>`,
         styles: `
                    .button{
   width:fit-content;
@@ -200,18 +201,16 @@ const InteractiveBlocks =(editor: Editor, opts: Required<PluginOptions>)=> {
   border-radius:.25rem .25rem .25rem .25rem;
 }
 .button:hover{
-  color:#fff;
-  background-color:darken(#0d6efd, 10%);
-  border-color:#0a58ca;
+  opacity:0.9;
 }
                 `,
       },
-      init() {
-        this.on('change:attributes:text', this.onTextChange);
-      },
-      onTextChange() {
-        this.components(this.getAttributes().text);
-      },
+      // init() {
+      //   this.on('change:attributes:text', this.onTextChange);
+      // },
+      // onTextChange() {
+      //   this.components(this.getAttributes().text);
+      // },
     },
 
   });
@@ -222,7 +221,7 @@ const InteractiveBlocks =(editor: Editor, opts: Required<PluginOptions>)=> {
     ...commonBlockProps,
     label: opts.labelButton,
     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-transition-bottom" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 18a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3" /><path d="M3 3m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v0a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z" /><path d="M12 9v8" /><path d="M9 14l3 3l3 -3" /></svg>`,
-    content: { type: 'button', content: 'Button' },
+    content: { type: 'button' },
   });
 
 
