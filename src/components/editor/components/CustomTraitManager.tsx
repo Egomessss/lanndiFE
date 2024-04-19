@@ -1,69 +1,113 @@
 import { TraitsResultProps, useEditor } from '@/components/editor/wrappers';
 import TraitPropertyField from '@/components/editor/components/TraitPropertyField';
-import { ActionIcon, Button, TextInput } from '@mantine/core';
+import { ActionIcon, Button, Modal, TextInput } from '@mantine/core';
 import { HeadingTypeSelector } from '@/components/editor/components/HeadingTypeSelector';
 import { HtmlElementSelector } from '@/components/editor/components/HtmlElementSelector';
 import CodeMirror, { EditorView } from '@uiw/react-codemirror';
 import { langs } from '@uiw/codemirror-extensions-langs';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IconCheck, IconTrash } from '@tabler/icons-react';
+import { useDisclosure } from '@mantine/hooks';
 
-// function formatCSS(cssString: string): string {
-//   // Split the input string into individual block sections (selectors + declarations)
-//   const blocks = cssString.split('}').filter(Boolean); // Remove any empty strings
-//
-//   let formattedCSS = '';
-//
-//   blocks.forEach((block) => {
-//     const [selectors, declarations] = block.split('{');
-//     const formattedDeclarations = declarations
-//       .trim()
-//       .split(';')
-//       .filter(Boolean) // Remove any empty strings resulting from split
-//       .map((declaration) => `  ${declaration.trim()};\n`) // Add indentation and newline to each declaration
-//       .join('');
-//
-//     formattedCSS += `${selectors.trim()} {\n${formattedDeclarations}}\n\n`;
-//   });
-//
-//   return formattedCSS;
-// }
-//
-// export const CssCode = () => {
-//
-//   const editor = useEditor();
-//
-//
-//   const component = editor.getSelected();
-//   let componentCss = editor.CodeManager.getCode(component, 'css', {
-//     cssc: editor.CssComposer,
-//   });
-//
-//   const formattedCSS: string = formatCSS(componentCss);
-//
-//   const [value, setValue] = useState(componentCss || '');
-//   // console.log("value",value);
-//   console.log('css', componentCss);
-//
-//   const handleClick = () => {
-//     console.log('css', value);
-//     // editor.Css.addRules(value);
-//     // setValue('')
+// const data = editor?.getProjectData();
+// const pagesData = editor?.Pages.getAll().map(page => {
+//   const component = page.getMainComponent();
+//   const pageData = page.attributes;
+//   return {
+//     pageId: pageData.id,
+//     name: pageData.name,
+//     slug: pageData.slug,
+//     title: pageData.title,
+//     description: pageData.description,
+//     html: editor.getHtml({ component }),
+//     css: editor.getCss({ component }),
+//     js: editor.getJs({ component }),
 //   };
-//
-//
-//   return <div className="flex items-start gap-2 flex-col w-full ">
-//     <p>CSS Editor</p>
-//     <div className="w-full text-xs">
-//       <CodeMirror
-//         value={formattedCSS} height="200px" theme="dark"
-//         extensions={[langs.css(), EditorView.lineWrapping]}
-//         onChange={setValue}
-//       />
-//     </div>
-//     <Button fullWidth onClick={handleClick} size="xs">Save CSS Changes</Button>
-//   </div>;
-// };
+
+function removeCSSRules(cssString:string) {
+  const rulesToRemove = [
+    /\*\s*\{\s*box-sizing:\s*border-box;\s*\}/g,
+    /body\s*\{\s*margin:\s*0;\s*\}/g,
+  ];
+
+  let cleanedCSS = cssString;
+
+  rulesToRemove.forEach((rule) => {
+    cleanedCSS = cleanedCSS.replace(rule, '');
+  });
+
+  return cleanedCSS;
+}
+function formatCSS(cssString: string): string {
+  // Split the input string into individual block sections (selectors + declarations)
+  // First, remove the unwanted CSS rules
+  const cleanedCSS = removeCSSRules(cssString);
+
+  // Split the cleaned CSS string into individual block sections (selectors + declarations)
+  const blocks = cleanedCSS.split('}').filter(Boolean); // Remove any empty strings
+
+
+  let formattedCSS = '';
+
+  blocks.forEach((block) => {
+    const splitBlock = block.split('{');
+    if (splitBlock.length < 2) return; // Skip this iteration if there's no '{'
+
+    const [selectors, declarations] = splitBlock;
+    const formattedDeclarations = declarations
+      .trim()
+      .split(';')
+      .filter(Boolean) // Remove any empty strings resulting from split
+      .map((declaration) => `  ${declaration.trim()};\n`) // Add indentation and newline to each declaration
+      .join('');
+
+    formattedCSS += `${selectors.trim()} {\n${formattedDeclarations}}\n\n`;
+  });
+
+  return formattedCSS;
+}
+
+export const CssCode = () => {
+  const [opened, { open, close }] = useDisclosure(false);
+  const [value, setValue] = useState('');
+
+  const editor = useEditor();
+  const component = editor.getSelected();
+
+  useEffect(() => {
+    if (component) {
+      // @ts-ignore
+      const formatedCss = formatCSS(editor.getCss({ component }));
+
+      setValue(formatedCss);
+    }
+  }, [component]);
+
+
+
+  // console.log("value",value);
+  // console.log('css', componentCss);
+
+  const handleClick = () => {
+    console.log('css', value);
+    editor.Css.addRules(value);
+    // setValue('')
+  };
+
+
+  return <div className="flex items-start gap-2 flex-col w-full ">
+    <p>CSS Editor</p>
+    <Modal opened={opened} size="xl" centered onClose={close} title="Block CSS">
+      <CodeMirror
+        value={value} height="400px"  theme="dark"
+        extensions={[langs.css(), EditorView.lineWrapping]}
+        onChange={setValue}
+      />
+      <Button my="1rem" fullWidth onClick={handleClick} size="xs">Save CSS Changes</Button>
+    </Modal>
+    <Button fullWidth onClick={open} size="xs">Edit CSS</Button>
+  </div>;
+};
 
 export const SvgContentCode = () => {
 
@@ -73,7 +117,7 @@ export const SvgContentCode = () => {
   const [value, setValue] = useState(() => editor.getSelected()?.toHTML());
 
 
-  const onChange = React.useCallback((val:string) => {
+  const onChange = React.useCallback((val: string) => {
     setValue(val);
   }, []);
 
@@ -93,7 +137,7 @@ export const SvgContentCode = () => {
   </div>;
 };
 
-function removeAttributes(attributes:any) {
+function removeAttributes(attributes: any) {
   // Clone the attributes object to avoid mutating the original object
   const clonedAttributes = { ...attributes };
 
@@ -212,13 +256,10 @@ export default function CustomTraitManager({
       {['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(value!) && <HeadingTypeSelector />}
       <HtmlElementSelector />
       {value === 'svg' && <SvgContentCode />}
-      {/*<CssCode />*/}
-      {/*<Button onClick={() => editor.runCommand('edit-script')} size="xs" mb="4">*/}
-      {/*  Edit Script(JS)*/}
-      {/*</Button>*/}
-      {/*<Button onClick={() => editor.runCommand('edit-css')} size="xs" mb="4">*/}
-      {/*  Edit CSS*/}
-      {/*</Button>*/}
+      <CssCode />
+      <Button onClick={() => editor.runCommand('edit-script')} size="xs" mb="4">
+        Edit Javascript
+      </Button>
     </div>
   );
 }
