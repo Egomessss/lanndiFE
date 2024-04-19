@@ -239,7 +239,7 @@ Components.addType('hero-one', {
   });
 
   editor.Blocks.add('hero-two', {
-    label: 'Hero No Image',
+    label: 'Hero Image Side',
     category: 'sections-heros',
     select: true,
     content: { type: 'hero-two' },
@@ -350,7 +350,7 @@ Components.addType('hero-one', {
   });
 
   editor.Blocks.add('hero-three', {
-    label: 'Hero Image Side',
+    label: 'Hero No Image',
     category: 'sections-heros',
     select: true,
     content: { type: 'hero-three' },

@@ -14,6 +14,7 @@ import ScriptEditor from '@/components/editor/plugins/utils/ScriptEditor';
 import PostCss from '../plugins/utils/PostCss';
 import { starterTemplate, styleStarterTemplate } from '@/components/editor/templates/Starter';
 import { styles } from '@/components/editor/utils/styles';
+import FormBlocks from '@/components/editor/plugins/BasicBlocks/FormsBlocks';
 
 
 export const demoEditorConfigOptions = () => ({
@@ -104,6 +105,7 @@ export const demoEditorConfigOptions = () => ({
     BorderStyle,
     Sections,
     UtilsPlugin,
+    // FormBlocks,
     // Grid
   ],
   styleManager:styles,

@@ -29,7 +29,7 @@ const TypographyBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
         droppable: false,
         style: `
         .heading-one{
-        margin:0;
+        margin:0 0 0 0;
         }
         `,
       },
@@ -65,7 +65,7 @@ const TypographyBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
         droppable: false,
         style: `
         .heading-two{
-        margin:0;
+        margin:0 0 0 0;
         }
         `,
       },
@@ -102,7 +102,7 @@ const TypographyBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
         droppable: false,
         style: `
         .heading-three{
-        margin:0;
+        margin:0 0 0 0;
         }
         `,
       },
@@ -140,7 +140,7 @@ const TypographyBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
         droppable: false,
         style: `
         .heading-four{
-        margin:0;
+        margin:0 0 0 0;
         }
         `,
       },
@@ -177,7 +177,7 @@ const TypographyBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
         droppable: false,
         style: `
         .heading-five{
-        margin:0;
+        margin:0 0 0 0;
         }
         `,
       },
@@ -215,7 +215,7 @@ const TypographyBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
         droppable: false,
         style: `
         .heading-six{
-        margin:0;
+        margin:0 0 0 0;
         }
         `,
       },
@@ -251,7 +251,7 @@ const TypographyBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
         droppable: false,
         style: `
         .paragraph{
-        margin:0;
+        margin:0 0 0 0;
         }
         `,
       },

@@ -63,6 +63,7 @@ import { BlockProperties, Editor } from 'grapesjs';
 
 
 
+
   editor.DomComponents.addType('container', {
     // isComponent: el => {
     //     // This will treat every 'div' element as a 'container' component

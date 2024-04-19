@@ -31,7 +31,7 @@ const StylesProvider = memo(function ({ children }: StylesProviderProps) {
         sectors: [],
         Container: () => null,
     }));
-
+    // console.log('StylesProvider');
     useEffect(() => {
         if (!editor) return;
         const { Styles } = editor;

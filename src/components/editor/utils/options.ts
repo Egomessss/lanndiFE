@@ -15,6 +15,7 @@ import PostCss from '../plugins/utils/PostCss';
 import { starterTemplate, styleStarterTemplate } from '@/components/editor/templates/Starter';
 import CssEditor from '@/components/editor/plugins/utils/CssEditor';
 import { styles } from '@/components/editor/utils/styles';
+import FormBlocks from '@/components/editor/plugins/BasicBlocks/FormsBlocks';
 
 
 export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: boolean) => ({
@@ -90,13 +91,14 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
     // IntegrationsBlocks,
     // ExtraBlocks,
     PostCss,
-    CssEditor,
+    // CssEditor,
     ScriptEditor,
     CustomCode,
     GoogleIcons,
     BorderStyle,
     Sections,
     UtilsPlugin,
+    // FormBlocks,
     // Grid
   ],
   styleManager:

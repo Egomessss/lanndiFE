@@ -8,6 +8,8 @@ import { langs } from '@uiw/codemirror-extensions-langs';
 import React, { useEffect, useState } from 'react';
 import { IconCheck, IconTrash } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
+import useUser from '@/hooks/use-user';
+import Link from 'next/link';
 
 // const data = editor?.getProjectData();
 // const pagesData = editor?.Pages.getAll().map(page => {
@@ -24,7 +26,7 @@ import { useDisclosure } from '@mantine/hooks';
 //     js: editor.getJs({ component }),
 //   };
 
-function removeCSSRules(cssString:string) {
+function removeCSSRules(cssString: string) {
   const rulesToRemove = [
     /\*\s*\{\s*box-sizing:\s*border-box;\s*\}/g,
     /body\s*\{\s*margin:\s*0;\s*\}/g,
@@ -38,6 +40,7 @@ function removeCSSRules(cssString:string) {
 
   return cleanedCSS;
 }
+
 function formatCSS(cssString: string): string {
   // Split the input string into individual block sections (selectors + declarations)
   // First, remove the unwanted CSS rules
@@ -84,7 +87,6 @@ export const CssCode = () => {
   }, [component]);
 
 
-
   // console.log("value",value);
   // console.log('css', componentCss);
 
@@ -99,7 +101,7 @@ export const CssCode = () => {
     <p>CSS Editor</p>
     <Modal opened={opened} size="xl" centered onClose={close} title="Block CSS">
       <CodeMirror
-        value={value} height="400px"  theme="dark"
+        value={value} height="400px" theme="dark"
         extensions={[langs.css(), EditorView.lineWrapping]}
         onChange={setValue}
       />
@@ -235,7 +237,7 @@ function CustomAttributes() {
 export default function CustomTraitManager({
                                              traits,
                                            }: Omit<TraitsResultProps, 'Container'>) {
-
+  const { user } = useUser();
   const editor = useEditor();
   const value = editor.getSelected()?.get('tagName');
 
@@ -256,10 +258,26 @@ export default function CustomTraitManager({
       {['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(value!) && <HeadingTypeSelector />}
       <HtmlElementSelector />
       {value === 'svg' && <SvgContentCode />}
-      <CssCode />
-      <Button onClick={() => editor.runCommand('edit-script')} size="xs" mb="4">
-        Edit Javascript
-      </Button>
+      {
+        user?.subscription === 'free' ? <>
+          <CssCode />
+          <Button onClick={() => editor.runCommand('edit-script')} size="xs" mb="4">
+            Edit Javascript
+          </Button>
+        </> : <>
+          <p className="text-xs text-red-500">You must be subscribed for further customization</p>
+          <Button component={Link} href="/plans" size="xs" mb="4">
+            Subscribe Now
+          </Button>
+          <Button disabled size="xs" mb="4">
+            Edit CSS
+          </Button>
+          <Button disabled size="xs" mb="4">
+            Edit Javascript
+          </Button>
+        </>
+      }
+
     </div>
   );
 }
