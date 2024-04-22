@@ -1,19 +1,38 @@
 import IconPickerPopupType from './IconPickerPopupType';
 import './iconPicker.css';
 import IEditor from './types/editor';
+import { ClbObj } from 'grapesjs';
 
 const plugin = (editor: IEditor, opts = {}) => {
 
   editor.DomComponents.addType('materialIcons', {
+    model:{
+      defaults: {
+        traits: [
+          {
+            type: 'button',
+            // ...
+            label: 'Open Icon Picker',
+            full: true, // Full width button
+            // or you can just specify the Command ID
+            command: 'open:icon-picker',
+          },
+          ],
+      },
+    },
     view: {
       events: {
         // TODO: Fix here after this is fixed https://github.com/GrapesJS/grapesjs/blob/9314b57ac91e370bc0adb9ea958e9201dd0a468a/src/asset_manager/view/AssetImageView.ts#L93C16-L93C16
         // @ts-ignore
+        // click: 'onActive',
         dblclick: 'onActive',
       },
-      onActive(e: any) {
+      onActive() {
         editor.Commands.run('open:icon-picker')
       },
+      // onRender() {
+      //   editor.Commands.run('open:icon-picker')
+      // }
     },
   });
 

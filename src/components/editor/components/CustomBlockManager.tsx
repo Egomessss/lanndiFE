@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Button, Divider, Text, Tooltip } from '@mantine/core';
 import { BlocksResultProps } from '@/components/editor/wrappers';
 import useUser from '@/hooks/use-user';
+import { IconExclamationCircle } from '@tabler/icons-react';
 
 
 export type CustomBlockManagerProps = Pick<
@@ -66,6 +67,11 @@ export default function CustomBlockManager({
                         <p className={'w-full px-2 text-start text-xs' + (disabled ? ' text-gray-400' : '')}>
                           {block.getLabel()}
                         </p>
+                        {(block.getLabel() === 'Material Icons' || block.getLabel() === 'Image') &&
+                          <Tooltip label="Double click to open the picker">
+                            <IconExclamationCircle size="1rem" />
+                          </Tooltip>
+                        }
                       </Button>
                     </div>
                   </Tooltip>

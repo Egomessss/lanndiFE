@@ -199,7 +199,7 @@ const features = (editor: Editor) => {
 
   editor.Blocks.add('feature-three', {
     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
-    label: 'List',
+    label: 'Features With Icons',
     category: 'sections-features',
     select: true,
     content: { type: 'feature-three' },
@@ -212,203 +212,185 @@ const features = (editor: Editor) => {
         droppable: false,
         name: 'List',
         components: `  
-   <div id="ioyxg" class="gjs-grid-row">
-    <div id="i8w4i" class="gjs-grid-column">
-      <h4 id="ihs4lb" class="gjs-heading gjs-text-blue">More Features</h4>
-      <h2 id="iiacm" class="gjs-heading">Put here the text describing why your features are
-        <span id="icxfor" class="gjs-text-blue">so amazing</span>
-      </h2>
-      <div id="ia21sa" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.</div>
-      <div id="ixzh1" class="gjs-grid-row">
-        <div id="ilpi3" class="gjs-grid-column feature-item">
-          <div data-type-icon id="ipmqo6" class="gjs-icon gjs-feature-icon"><svg viewBox="0 0 24 24">
-              <path
-                d="M16 9h3l-5 7m-4-7h4l-2 8M5 9h3l2 7m5-12h2l2 3h-3m-5-3h2l1 3h-4M7 4h2L8 7H5m1-5L2 8l10 14L22 8l-4-6H6z">
-              </path>
-            </svg></div>
-          <h3 id="in9ef" class="gjs-heading">Feature text</h3>
-          <div id="i8isa" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+    <div>
+    <div id="ioyxg" class="gjs-grid-row">
+      <div id="i8w4i" class="gjs-grid-column">
+        <h4 id="ihs4lb" class="gjs-heading gjs-text-blue">More Features
+        </h4>
+        <h2 id="iiacm" class="gjs-heading">Put here the text describing why your features are
+          <span id="icxfor" class="gjs-text-blue">so amazing</span>
+        </h2>
+        <div id="ia21sa" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.
         </div>
-        <div id="ic57kq" class="gjs-grid-column feature-item">
-          <div data-type-icon id="ibdusm" class="gjs-icon gjs-feature-icon"><svg viewBox="0 0 24 24">
-              <path
-                d="M16 9h3l-5 7m-4-7h4l-2 8M5 9h3l2 7m5-12h2l2 3h-3m-5-3h2l1 3h-4M7 4h2L8 7H5m1-5L2 8l10 14L22 8l-4-6H6z">
-              </path>
-            </svg></div>
-          <h3 id="ica43q" class="gjs-heading">Feature text</h3>
-          <div id="ickn3f" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-        </div>
-        <div id="idv32l" class="gjs-grid-column feature-item">
-          <div data-type-icon id="ipmept" class="gjs-icon gjs-feature-icon"><svg viewBox="0 0 24 24">
-              <path
-                d="M16 9h3l-5 7m-4-7h4l-2 8M5 9h3l2 7m5-12h2l2 3h-3m-5-3h2l1 3h-4M7 4h2L8 7H5m1-5L2 8l10 14L22 8l-4-6H6z">
-              </path>
-            </svg></div>
-          <h3 id="ieu6p6" class="gjs-heading">Feature text</h3>
-          <div id="izqkf7" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+        <div id="ixzh1" class="gjs-grid-row">
+          <div id="ilpi3" class="gjs-grid-column feature-item">
+            <div data-type-icon="" id="ipmqo6" class="gjs-icon gjs-feature-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M16 9h3l-5 7m-4-7h4l-2 8M5 9h3l2 7m5-12h2l2 3h-3m-5-3h2l1 3h-4M7 4h2L8 7H5m1-5L2 8l10 14L22 8l-4-6H6z">
+                </path>
+              </svg>
+              <span class="material-icons material-symbols-outlined">check</span>
+            </div>
+            <h3 id="in9ef" class="gjs-heading">Feature text
+            </h3>
+            <div id="i8isa" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </div>
+          </div>
+          <div id="ic57kq" class="gjs-grid-column feature-item">
+            <div data-type-icon="" class="gjs-icon gjs-feature-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M16 9h3l-5 7m-4-7h4l-2 8M5 9h3l2 7m5-12h2l2 3h-3m-5-3h2l1 3h-4M7 4h2L8 7H5m1-5L2 8l10 14L22 8l-4-6H6z">
+                </path>
+              </svg>
+              <span class="material-icons material-symbols-outlined">check</span>
+            </div>
+            <h3 id="ica43q" class="gjs-heading">Feature text
+            </h3>
+            <div id="ickn3f" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </div>
+          </div>
+          <div id="idv32l" class="gjs-grid-column feature-item">
+            <div data-type-icon="" class="gjs-icon gjs-feature-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M16 9h3l-5 7m-4-7h4l-2 8M5 9h3l2 7m5-12h2l2 3h-3m-5-3h2l1 3h-4M7 4h2L8 7H5m1-5L2 8l10 14L22 8l-4-6H6z">
+                </path>
+              </svg>
+              <span class="material-icons material-symbols-outlined">check</span>
+            </div>
+            <h3 id="ieu6p6" class="gjs-heading">Feature text
+            </h3>
+            <div id="izqkf7" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>`,
         styles: `
-       .gjs-heading {
-\tmargin:0;
-\tcolor:rgba(29,40,55,1);
+       .gjs-grid-row{
+  display:flex;
+  justify-content:flex-start;
+  align-items:stretch;
+  flex-direction:row;
+  min-height:auto;
+  padding:10px 0;
 }
-.gjs-grid-column {
-\tflex:1 1 0%;
-\tpadding:5px 0;
+#ioyxg{
+  justify-content:center;
+  padding-top:80px;
+  padding-bottom:80px;
+  padding-left:20px;
+  padding-right:20px;
 }
-.gjs-grid-row {
-\tdisplay:flex;
-\tjustify-content:flex-start;
-\talign-items:stretch;
-\tflex-direction:row;
-\tmin-height:auto;
-\tpadding:10px 0;
+.gjs-grid-column{
+  flex:1 1 0%;
+  padding:5px 0;
 }
-.text-main-content {
-\tline-height:30px;
-\tfont-size:1.2rem;
+#i8w4i{
+  max-width:1200px;
+  display:flex;
+  flex-direction:column;
 }
-#iau9 {
-\tfont-family:Arial,Helvetica,sans-serif;
-\tbackground-image:linear-gradient(180deg,rgba(59,130,245,0.11),white 14%);
-\tbackground-position:0px 0px;
-\tbackground-size:100% 100%;
-\tbackground-repeat:repeat;
-\tbackground-attachment:scroll;
-\tbackground-origin:padding-box;
-\tcolor:#475569;
+.gjs-heading{
+  margin:0;
+  color:rgba(29,40,55,1);
 }
-#in9ef {
-\tfont-size:1.5rem;
+.gjs-text-blue{
+  color:rgb(36,99,235);
 }
-#i8isa {
-\tpadding:10px;
-\tpadding-left:0px;
-\tpadding-right:0px;
+#ihs4lb{
+  font-size:1.2rem;
+  margin-bottom:15px;
 }
-#i8w4i {
-\tmax-width:1200px;
-\tdisplay:flex;
-\tflex-direction:column;
+#iiacm{
+  font-size:2.5rem;
+  margin-bottom:10px;
+  max-width:750px;
 }
-#ioyxg {
-\tjustify-content:center;
-\tpadding-top:80px;
-\tpadding-bottom:80px;
-\tpadding-left:20px;
-\tpadding-right:20px;
+.text-main-content{
+  line-height:30px;
+  font-size:1.2rem;
 }
-#iiacm {
-\tfont-size:2.5rem;
-\tmargin-bottom:10px;
-\tmax-width:750px;
+#ia21sa{
+  padding:10px;
+  max-width:750px;
+  margin-bottom:70px;
+  padding-left:0px;
+  padding-right:0px;
 }
-#ixzh1 {
-\twidth:100%;
-\tflex-wrap:wrap;
-\tjustify-content:flex-start;
-\tgap:50px;
+#ixzh1{
+  width:100%;
+  flex-wrap:wrap;
+  justify-content:flex-start;
+  gap:50px;
 }
-.gjs-grid-column.feature-item {
-\tpadding-top:15px;
-\tpadding-right:15px;
-\tpadding-bottom:15px;
-\tpadding-left:15px;
-\tdisplay:flex;
-\tflex-direction:column;
-\tgap:15px;
-\tmin-width:30%;
+.gjs-grid-column.feature-item{
+  padding-top:15px;
+  padding-right:15px;
+  padding-bottom:15px;
+  padding-left:15px;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  min-width:30%;
 }
-#ia21sa {
-\tpadding:10px;
-\tmax-width:750px;
-\tmargin-bottom:70px;
-\tpadding-left:0px;
-\tpadding-right:0px;
+.gjs-icon{
+  display:inline-block;
+  text-decoration:none;
+  color:inherit;
+  vertical-align:middle;
+  fill:currentColor;
+  width:50px;
+  height:50px;
 }
-.gjs-grid-column.testimonial-item {
-\tpadding-top:15px;
-\tpadding-right:15px;
-\tpadding-bottom:15px;
-\tpadding-left:15px;
-\tdisplay:flex;
-\tflex-direction:column;
-\tgap:15px;
-\tmin-width:45%;
-\tbackground-color:rgba(247,247,247,0.23);
-\tborder-top-left-radius:5px;
-\tborder-top-right-radius:5px;
-\tborder-bottom-right-radius:5px;
-\tborder-bottom-left-radius:5px;
-\talign-items:flex-start;
-\tborder-top-width:1px;
-\tborder-right-width:1px;
-\tborder-bottom-width:1px;
-\tborder-left-width:1px;
-\tborder-top-style:solid;
-\tborder-right-style:solid;
-\tborder-bottom-style:solid;
-\tborder-left-style:solid;
-\tborder-top-color:rgba(0,0,0,0.06);
-\tborder-right-color:rgba(0,0,0,0.06);
-\tborder-bottom-color:rgba(0,0,0,0.06);
-\tborder-left-color:rgba(0,0,0,0.06);
+.gjs-icon.gjs-feature-icon{
+  padding-top:10px;
+  padding-right:10px;
+  padding-bottom:10px;
+  padding-left:10px;
+  background-color:rgb(36,99,235);
+  color:white;
+  border-top-left-radius:10px;
+  border-top-right-radius:10px;
+  border-bottom-right-radius:10px;
+  border-bottom-left-radius:10px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
 }
-.gjs-text-blue {
-\tcolor:rgb(36,99,235);
+#in9ef{
+  font-size:1.5rem;
 }
-.gjs-icon {
-\tdisplay:inline-block;
-\ttext-decoration:none;
-\tcolor:inherit;
-\tvertical-align:middle;
-\tfill:currentColor;
-\twidth:50px;
-\theight:50px;
+#i8isa{
+  padding:10px;
+  padding-left:0px;
+  padding-right:0px;
 }
-#ihs4lb {
-\tfont-size:1.2rem;
-\tmargin-bottom:15px;
+#ica43q{
+  font-size:1.5rem;
 }
-.gjs-icon.gjs-feature-icon {
-\tpadding-top:10px;
-\tpadding-right:10px;
-\tpadding-bottom:10px;
-\tpadding-left:10px;
-\tbackground-color:rgb(36,99,235);
-\tcolor:white;
-\tborder-top-left-radius:10px;
-\tborder-top-right-radius:10px;
-\tborder-bottom-right-radius:10px;
-\tborder-bottom-left-radius:10px;
+#ickn3f{
+  padding:10px;
+  padding-left:0px;
+  padding-right:0px;
 }
-#ieu6p6 {
-\tfont-size:1.5rem;
+#ieu6p6{
+  font-size:1.5rem;
 }
-#izqkf7 {
-\tpadding:10px;
-\tpadding-left:0px;
-\tpadding-right:0px;
+#izqkf7{
+  padding:10px;
+  padding-left:0px;
+  padding-right:0px;
 }
-#ica43q {
-\tfont-size:1.5rem;
-}
-#ickn3f {
-\tpadding:10px;
-\tpadding-left:0px;
-\tpadding-right:0px;
-}
-@media (max-width:992px) {
-\t.gjs-grid-row {
-\tflex-direction:column;
-}
+@media (max-width:992px){
+  .gjs-grid-row{
+    flex-direction:column;
+  }
 }
 `,
       },

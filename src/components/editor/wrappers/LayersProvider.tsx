@@ -36,7 +36,7 @@ const LayersProvider = memo(function ({ children }: LayersProviderProps) {
         if (!editor) return
         const { Layers } = editor
         const event = Layers.events.custom
-
+        // console.log('event',event)
         const up = ({ container }: { container: HTMLElement }) => {
             setPropState({
                 root: Layers.getRoot(),

@@ -49,12 +49,12 @@ export default function CustomSectionsBlockManager({
                                         }
                                         onDragEnd={() => dragStop(false)}
                                 >
-                                    <div
-                                        className="flex h-4 w-4 items-center justify-center "
-                                        dangerouslySetInnerHTML={{
-                                            __html: block.getMedia()!,
-                                        }}
-                                    />
+                                    {/*<div*/}
+                                    {/*    className="flex h-4 w-4 items-center justify-center "*/}
+                                    {/*    dangerouslySetInnerHTML={{*/}
+                                    {/*        __html: block.getMedia()!,*/}
+                                    {/*    }}*/}
+                                    {/*/>*/}
                                     <p
                                         className="w-full px-2 text-start text-xs"
                                     >

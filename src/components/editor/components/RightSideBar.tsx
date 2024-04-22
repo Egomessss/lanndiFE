@@ -15,13 +15,13 @@ function RightSideBar() {
 
   return <AppShell.Aside>
     <AppShell.Section grow component={ScrollArea}>
-      <Tabs >
+      <Tabs defaultValue="first" >
         <Tabs.List justify="space-between" grow>
           <Tabs.Tab value="first">Styles</Tabs.Tab>
           <Tabs.Tab value="second">Settings</Tabs.Tab>
         </Tabs.List>
         <Tabs.Panel  value="first">
-          <ScrollArea offsetScrollbars mt={6} pl={4}>
+          <ScrollArea offsetScrollbars mt={6} pl={2}>
             <SelectorsProvider>
               {(props) => <CustomSelectorManager {...props} />}
             </SelectorsProvider>
@@ -35,8 +35,8 @@ function RightSideBar() {
             <TraitsProvider>
               {(props) => <CustomTraitManager {...props} />}
             </TraitsProvider>
-          </ScrollArea></Tabs.Panel>
-
+          </ScrollArea>
+        </Tabs.Panel>
       </Tabs>
     </AppShell.Section>
 

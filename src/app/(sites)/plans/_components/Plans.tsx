@@ -34,6 +34,14 @@ const Plans: React.FC<PlansData> = ({
       variantAnnual: 'free-annually',
     },
     {
+      name: 'Basic',
+      priceMonthly: 0,
+      priceAnnual: 0,
+      features: ['1 site', '10 page max'],
+      variantMonthly: 'basic-monthly',
+      variantAnnual: 'basic-annually',
+    },
+    {
       name: 'Indie',
       priceMonthly: 15,
       priceAnnual: 150,

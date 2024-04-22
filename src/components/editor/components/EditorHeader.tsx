@@ -103,6 +103,8 @@ function SaveButton() {
       } else if (status >= 500) {
         // Server error handling
         errorMessage = 'A server error occurred. Please try again later.';
+      } else if (status === 401|| status === 419) {
+          errorMessage = 'Log in before you can save your data.';
       } else if (status === 403) {
         errorMessage = 'You do not have the necessary permissions.';
       } else if (status === 404) {

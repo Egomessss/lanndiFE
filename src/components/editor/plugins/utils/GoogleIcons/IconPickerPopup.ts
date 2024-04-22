@@ -5,7 +5,7 @@ const IconPickerPopup = (editor: IEditor) => {
   return (
     `<div id="googleIconPicker" class="googleIconPicker items-center justify-center" ref={wrapperRef}>
       <div class="googleIconPicker__overlay"></div>
-      <div class="googleIconPicker__content gjs-one-bg gjs-two-color gjs-mdl-dialog">
+      <div class="googleIconPicker__content  gjs-mdl-dialog">
         <span class="close flex justify-end googleIconPicker__close gjs-mdl-btn-close">⨯</span>
         <div class="googleIconPicker__filterBar gjs-mdl-header">
           <div class="googleIconPicker__search gjs-field gjs-am-add-field">

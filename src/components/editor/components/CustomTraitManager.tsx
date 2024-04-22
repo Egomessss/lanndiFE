@@ -243,7 +243,7 @@ export default function CustomTraitManager({
 
 
   return (
-    <div className="gjs-custom-trait-manager text-left w-full flex flex-col gap-4">
+    <div className="gjs-custom-trait-manager text-left w-full flex flex-col gap-4 my-4">
       {!traits.length ? (
         <div>No properties available</div>
       ) : (
@@ -258,6 +258,7 @@ export default function CustomTraitManager({
       {['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(value!) && <HeadingTypeSelector />}
       <HtmlElementSelector />
       {value === 'svg' && <SvgContentCode />}
+
       {
         user?.subscription === 'free' ? <>
           <CssCode />
