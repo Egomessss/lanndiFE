@@ -16,6 +16,8 @@ import { starterTemplate, styleStarterTemplate } from '@/components/editor/templ
 import CssEditor from '@/components/editor/plugins/utils/CssEditor';
 import { styles } from '@/components/editor/utils/styles';
 import FormBlocks from '@/components/editor/plugins/BasicBlocks/FormsBlocks';
+import Accordion from '@/components/editor/plugins/BasicBlocks/Accordion';
+import Tabs from '@/components/editor/plugins/BasicBlocks/Tabs';
 
 
 export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: boolean) => ({
@@ -26,6 +28,9 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
   clearStyles: true,
   showOffsetsSelected: true,
   undoManager: { trackSelection: false },
+  canvas:{
+    scripts:["https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"]
+  },
   deviceManager: {
     default: 'fit',
     devices: [
@@ -98,8 +103,10 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
     BorderStyle,
     Sections,
     UtilsPlugin,
-    // FormBlocks,
+    FormBlocks,
     // Grid
+    // Accordion,
+    Tabs
   ],
   styleManager:
   styles

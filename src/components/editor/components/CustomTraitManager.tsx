@@ -113,30 +113,40 @@ export const CssCode = () => {
 
 export const SvgContentCode = () => {
 
+  const [opened, { open, close }] = useDisclosure(false);
   const editor = useEditor();
 
+  const component = editor.getSelected();
+  const [value, setValue] = useState('');
 
-  const [value, setValue] = useState(() => editor.getSelected()?.toHTML());
+  useEffect(() => {
+    if (component) {
+      // @ts-ignore
+      setValue(editor.getHtml({ component }));
+    }
+  }, [component]);
 
-
-  const onChange = React.useCallback((val: string) => {
-    setValue(val);
-  }, []);
-
+  // console.log("value",value);
+  // console.log('css', componentCss);
   const handleClick = () => {
     editor.getSelected()?.set({ content: value });
+    close()
   };
 
-  return <div className="flex items-start gap-2 flex-col w-full">
-    <p>Svg content</p>
-    <div className="w-full text-xs">
+  return <div className="flex items-start gap-2 flex-col w-full ">
+    <p>SVG Editor</p>
+    <Modal opened={opened} size="xl" centered onClose={close} title="SVG Content">
       <CodeMirror
-        value={value} height="200px" theme="dark"
+        value={value} height="400px" theme="dark"
         extensions={[langs.html(), EditorView.lineWrapping]}
-        onChange={onChange} />
-    </div>
-    <Button onClick={handleClick} size="xs">Save Changes</Button>
+        onChange={setValue}
+      />
+      <Button my="1rem" fullWidth onClick={handleClick} size="xs">Save SVG Changes</Button>
+    </Modal>
+    <Button fullWidth onClick={open} size="xs">Edit SVG</Button>
   </div>;
+
+
 };
 
 function removeAttributes(attributes: any) {
@@ -153,7 +163,8 @@ function removeAttributes(attributes: any) {
 function CustomAttributes() {
 
   const editor = useEditor(); // Custom hook to access the GrapeJS editor instance
-
+  const { user } = useUser();
+  const component = editor.getSelected();
   const [attributeKey, setAttributeKey] = useState('');
   const [attributeValue, setAttributeValue] = useState('');
 
@@ -162,7 +173,7 @@ function CustomAttributes() {
   // console.log('attrbiutes', attributes);
   // Function to handle adding attributes
   const handleAddAttribute = () => {
-    const component = editor.getSelected(); // Get the currently selected component
+    // Get the currently selected component
     if (component) {
       component.addAttributes({ [attributeKey]: attributeValue }); // Add custom attribute
       setAttributeKey(''); // Reset attribute key input
@@ -187,6 +198,7 @@ function CustomAttributes() {
           return (
             <div key={key} className="flex  gap-4 justify-end flex-wrap  items-center ">
               <TextInput
+                disabled={user?.subscription === 'free'}
                 size="xs"
                 // readOnly
                 className="w-full"
@@ -200,7 +212,7 @@ function CustomAttributes() {
                 // </ActionIcon>}
               />
 
-              <ActionIcon color="red" size="sm"
+              <ActionIcon disabled={user?.subscription === 'free'} color="red" size="sm"
                           onClick={handleRemoveAttribute}>
                 <IconTrash size="1rem" />
               </ActionIcon>
@@ -210,6 +222,7 @@ function CustomAttributes() {
         })}
       </div>
       <TextInput
+        disabled={user?.subscription === 'free'}
         size="xs"
         label="Attribute Key"
         placeholder="Attribute Key"
@@ -254,22 +267,22 @@ export default function CustomTraitManager({
           />
         ))
       )}
-      {/*<CustomAttributes />*/}
+      {user?.subscription === 'free' && <> <p className="text-xs text-red-500">You must be subscribed for further
+        customization</p>
+        <Button component={Link} href="/plans" size="xs" mb="4">
+          Subscribe Now
+        </Button></>}
+      <CustomAttributes />
       {['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(value!) && <HeadingTypeSelector />}
       <HtmlElementSelector />
       {value === 'svg' && <SvgContentCode />}
-
       {
-        user?.subscription === 'free' ? <>
+        user?.subscription !== 'free' ? <>
           <CssCode />
           <Button onClick={() => editor.runCommand('edit-script')} size="xs" mb="4">
             Edit Javascript
           </Button>
         </> : <>
-          <p className="text-xs text-red-500">You must be subscribed for further customization</p>
-          <Button component={Link} href="/plans" size="xs" mb="4">
-            Subscribe Now
-          </Button>
           <Button disabled size="xs" mb="4">
             Edit CSS
           </Button>

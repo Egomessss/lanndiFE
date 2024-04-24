@@ -140,6 +140,24 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
   // // Start observing the body element
   // const bodyElement = editor.Canvas.getBody();
   // resizeObserver.observe(bodyElement);
+//   editor.Keymaps.add('ns:redo', 'ctrl+z', editor => {
+//     editor.UndoManager.redo()
+//     // prevent: true,
+//   });
+// // or
+//   // resizeObserver.observe(bodyElement);
+//   editor.Keymaps.add('ns:undo', 'ctrl+y', editor => {
+//     editor.UndoManager.undo()
+//     // prevent: true,
+//   });
+
+  // listen to events
+  // editor.on('keymap:emit', (id, shortcut, event) => {
+  //   // ...
+  // })
+
+
+
 };
 
 export default UtilsPlugin;

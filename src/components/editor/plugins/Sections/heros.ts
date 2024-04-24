@@ -245,6 +245,13 @@ Components.addType('hero-one', {
     content: { type: 'hero-two' },
   });
 
+  editor.Blocks.add('hero-three', {
+    label: 'Hero No Image',
+    category: 'sections-heros',
+    select: true,
+    content: { type: 'hero-three' },
+  });
+
   Components.addType('hero-three', {
     model: {
       defaults: {
@@ -349,12 +356,50 @@ Components.addType('hero-one', {
     },
   });
 
-  editor.Blocks.add('hero-three', {
-    label: 'Hero No Image',
-    category: 'sections-heros',
-    select: true,
-    content: { type: 'hero-three' },
-  });
+
+
+  // editor.Blocks.add('hero-four', {
+  //   label: 'Alpine',
+  //   category: 'sections-heros',
+  //   select: true,
+  //   content: { type: 'hero-four' },
+  // });
+  //
+  // Components.addType('hero-four', {
+  //   model: {
+  //     defaults: {
+  //       droppable: false,
+  //       name: 'Alpine',
+  //       // attributes: { class: 'hero-three' },
+  //       components: `  <ul class="block w-11/12 my-4 mx-auto" x-data="{selected:null}">
+  //           <li class="flex align-center flex-col">
+  //               <h4 @click="selected !== 0 ? selected = 0 : selected = null"
+  //                   class="cursor-pointer px-5 py-3 bg-indigo-300 text-white text-center inline-block hover:opacity-75 hover:shadow hover:-mb-3 rounded-t">Accordion item 1</h4>
+  //               <p x-show="selected == 0" class="border py-4 px-2">
+  //                   This is made with Alpine JS and Tailwind CSS
+  //               </p>
+  //           </li>
+  //           <li class="flex align-center flex-col">
+  //               <h4 @click="selected !== 1 ? selected = 1 : selected = null"
+  //                   class="cursor-pointer px-5 py-3 bg-indigo-400 text-white text-center inline-block hover:opacity-75 hover:shadow hover:-mb-3">Accordion item 2</h4>
+  //               <p x-show="selected == 1" class="border py-4 px-2">
+  //                    There's no external CSS or JS
+  //               </p>
+  //           </li>
+  //           <li class="flex align-center flex-col">
+  //               <h4 @click="selected !== 2 ? selected = 2 : selected = null"
+  //                   :class="{'cursor-pointer px-5 py-3 bg-indigo-500 text-white text-center inline-block hover:opacity-75 hover:shadow hover:-mb-3': true, 'rounded-b': selected != 2}">Accordion item 3</h4>
+  //               <p x-show="selected == 2" :class="{'border py-4 px-2': true, 'rounded-b': selected == 2}">
+  //                   Pretty cool huh?
+  //               </p>
+  //           </li>
+  //       </ul>`,
+  //     },
+  //   },
+  // });
+
+
+
 
 
 };

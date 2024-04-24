@@ -15,6 +15,8 @@ import PostCss from '../plugins/utils/PostCss';
 import { starterTemplate, styleStarterTemplate } from '@/components/editor/templates/Starter';
 import { styles } from '@/components/editor/utils/styles';
 import FormBlocks from '@/components/editor/plugins/BasicBlocks/FormsBlocks';
+import Accordion from '@/components/editor/plugins/BasicBlocks/Accordion';
+import Tabs from '@/components/editor/plugins/BasicBlocks/Tabs';
 
 
 export const demoEditorConfigOptions = () => ({
@@ -25,6 +27,9 @@ export const demoEditorConfigOptions = () => ({
   clearStyles: true,
   showOffsetsSelected: true,
   undoManager: { trackSelection: false },
+  // canvas:{
+  //   scripts:["https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"]
+  // },
   deviceManager: {
     default: 'fit',
     devices: [
@@ -57,16 +62,12 @@ export const demoEditorConfigOptions = () => ({
       // { id: 'fit', name: 'Fit To Screen', width: '' },
     ],
   },
-  storageManager: {
-    type: 'local', // Type of the storage, available: 'local' | 'remote'
-    autosave: true, // Store data automatically
-    autoload: true, // Autoload stored data on init
-    stepsBeforeSave: 5, // If autosave enabled, indicates how many changes are necessary before store method is triggered
-    options: {
-      local: { // Options for the `local` type
-        key: 'lanndiProject', // The key for the local storage
-      },
-    },
+  selectorManager: {
+    stylePrefix: 'lnd-', componentFirst: false, states: [
+      { name: 'hover', label: 'Hover', info: 'Change styles on user hover' },
+      { name: 'focus', label: 'Focus', info: 'Change styles on user focus' },
+      { name: 'active', label: 'Active', info: 'Change styles on active element' },
+    ],
   },
   projectData: {
     assets: [],
@@ -77,13 +78,6 @@ export const demoEditorConfigOptions = () => ({
         // component: starterTemplate,
         // styles: styleStarterTemplate,
       },
-    ],
-  },
-  selectorManager: {
-    stylePrefix: 'lnd-', componentFirst: false, states: [
-      { name: 'hover', label: 'Hover', info: 'Change styles on user hover' },
-      { name: 'focus', label: 'Focus', info: 'Change styles on user focus' },
-      { name: 'active', label: 'Active', info: 'Change styles on active element' },
     ],
   },
 
@@ -107,6 +101,8 @@ export const demoEditorConfigOptions = () => ({
     UtilsPlugin,
     // FormBlocks,
     // Grid
+    // Accordion,
+    Tabs
   ],
   styleManager:styles,
 
