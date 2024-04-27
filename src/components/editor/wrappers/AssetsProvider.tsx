@@ -67,7 +67,7 @@ const AssetsProvider = memo(function ({ children }: AssetsProviderProps) {
     useEffect(() => {
         if (!editor) return
         const event = editor.Assets.events.custom
-
+        // console.log('event', event);
         const toListen = ({
             open,
             assets,
@@ -86,7 +86,7 @@ const AssetsProvider = memo(function ({ children }: AssetsProviderProps) {
                 })
             setOpen(open)
         }
-
+        // console.log('boolean oepn',open);
         editor.on(event, toListen)
 
         return () => {

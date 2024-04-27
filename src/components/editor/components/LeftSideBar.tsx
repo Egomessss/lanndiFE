@@ -7,10 +7,10 @@ import BlockSideBar from '@/components/editor/components/BlockSideBar';
 import LayersLeftSideBar from '@/components/editor/components/LayersLeftSideBar';
 import PagesLeftSideBar from '@/components/editor/components/PagesLeftSideBar';
 import { usePathname } from 'next/navigation';
+import { useEditor, useEditorMaybe } from '@/components/editor/context/EditorInstance';
 
 function LeftSideBar() {
   const [selected, setSelected] = useState('Blocks');
-
 
   const icons = [
     { label: 'Blocks', Icon: IconLayoutGridAdd, selectedValue: 'Blocks' },

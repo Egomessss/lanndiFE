@@ -111,7 +111,7 @@ const features = (editor: Editor) => {
   line-height:1.5;
   text-align:center;
   border:1px solid transparent;
-  padding:4px 12px 4px 12px;
+ padding:2px 8px 2px 8px;
   font-size:16px;
   border-radius:.25rem .25rem .25rem .25rem;
 }

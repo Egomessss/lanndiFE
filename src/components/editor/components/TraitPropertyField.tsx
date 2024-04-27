@@ -13,7 +13,7 @@ export default function TraitPropertyField({
     ...rest
 }: StylePropertyFieldProps) {
     const editor = useEditor()
-    console.log(trait);
+    // console.log(trait);
     const handleChange = (value: any) => {
         // console.log('value', value)
         trait.setValue(value)

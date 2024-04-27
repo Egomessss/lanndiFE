@@ -66,7 +66,14 @@ const plugin: Plugin<PluginOptions> = (editor, opts = {}) => {
         </svg>
       Custom code with <i>&lt;script&gt;</i> or <i>iframe> </i> tags will only be shown in preview/published site
     </div>`,
-    modalTitle: 'Insert your code - Html inside a div, CSS inside a style tag and Javascript inside a script tag. p.s: Your custom code should come styled - editor styles might not work.',
+    modalTitle: 'Insert your custom code here:\n' +
+      '- HTML inside a div\n' +
+      '- CSS inside a style tag\n' +
+      '- JavaScript inside a script tag\n' +
+      'Please note:\n' +
+      '1. Your custom code should come styled - editor styles might not work.\n' +
+      '2. Custom code with <script> or <iframe> tags will only be shown in preview/published site.\n' +
+      '3. Scripts and links should be added to site settings custom head code for them to work.',
     codeViewOptions: {},
     buttonLabel: 'Save',
     commandCustomCode: {},

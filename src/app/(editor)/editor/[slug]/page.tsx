@@ -15,12 +15,16 @@ import useEditorData from '@/hooks/use-editor-data';
 import { EditorLoading } from '@/components/common/EditorLoading';
 import CustomAssetManager from '@/components/editor/components/CustomAssetManager';
 import { IconExclamationCircle } from '@tabler/icons-react';
+import { SidePanelProvider, useSidePanel } from '@/contexts/SidePanelPreviewContext';
 
 // export const dynamic = 'force-dynamic'
 export default function CustomEditor() {
-
+  const { isSidePanelOpen } = useSidePanel();
+  console.log('isSidePanel', isSidePanelOpen);
   const params = useParams();
   const siteSlug = params.slug;
+
+
 
   const { data, isLoading, isError } = useEditorData();
 
@@ -50,14 +54,16 @@ export default function CustomEditor() {
       >
         <div className="absolute h-full w-full overflow-y-hidden">
           <AppShell
-            header={{ height: 50 }}
+            header={{ height: 40 }}
             navbar={{
               width: 220,
               breakpoint: 'sm',
+              collapsed: { desktop: !isSidePanelOpen, mobile: !isSidePanelOpen },
             }}
             aside={{
               width: 220,
               breakpoint: 'sm',
+              collapsed: { desktop: !isSidePanelOpen, mobile: !isSidePanelOpen },
             }}
             transitionDuration={1000}
           >
@@ -98,7 +104,9 @@ export default function CustomEditor() {
           <Button component="a" href="https://app.lanndi.com/login">Signup</Button></div>
 
       </div>
+
     </>
+
   )
     ;
 }

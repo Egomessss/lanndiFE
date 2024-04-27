@@ -10,6 +10,7 @@ import { Notifications } from '@mantine/notifications';
 import TanstackProvider from '@/components/providers/TanstackProvider';
 import React from 'react';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { SidePanelProvider } from '@/contexts/SidePanelPreviewContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -33,7 +34,9 @@ export default function RootLayout({
       <MantineProvider defaultColorScheme="auto">
         <Notifications />
         <ModalsProvider>
+          <SidePanelProvider>
           {children}
+          </SidePanelProvider>
         </ModalsProvider>
       </MantineProvider>
       <ReactQueryDevtools initialIsOpen={false} />

@@ -23,7 +23,7 @@ export default function CustomStyleManager({
 
   const editor = useEditor();
 
-  console.log('style manager');
+  // console.log('style manager');
 
   // const sm = editor.StyleManager;
   // console.log();

@@ -5,12 +5,12 @@ import {
   IconCheck,
   IconChevronDown,
   IconDeviceFloppy,
-  IconExternalLink,
+  IconExternalLink, IconEye,
   IconFaceIdError,
   IconSettings,
 } from '@tabler/icons-react';
 import { useParams, usePathname } from 'next/navigation';
-import { useEditorMaybe } from '@/components/editor/context/EditorInstance';
+import { useEditor, useEditorMaybe } from '@/components/editor/context/EditorInstance';
 import useEditorData from '@/hooks/use-editor-data';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from '@/lib/axios';
@@ -28,6 +28,7 @@ import { SiteSettings } from '@/app/(sites)/settings/[slug]/page';
 import useUser from '@/hooks/use-user';
 import { DarkModeButton } from '@/components/common/DarkModeButton/DarkModeButton';
 import { timeSince } from '@/lib/utils';
+import { useSidePanel } from '@/contexts/SidePanelPreviewContext';
 
 
 function SaveButton() {
@@ -43,7 +44,7 @@ function SaveButton() {
   const idle = useIdle(1200000);
 
   const getEditorData = () => {
-    console.log('editor data fetched');
+    // console.log('editor data fetched');
     const data = editor?.getProjectData();
     const pagesData = editor?.Pages.getAll().map(page => {
       const component = page.getMainComponent();
@@ -103,8 +104,8 @@ function SaveButton() {
       } else if (status >= 500) {
         // Server error handling
         errorMessage = 'A server error occurred. Please try again later.';
-      } else if (status === 401|| status === 419) {
-          errorMessage = 'Log in before you can save your data.';
+      } else if (status === 401 || status === 419) {
+        errorMessage = 'Log in before you can save your data.';
       } else if (status === 403) {
         errorMessage = 'You do not have the necessary permissions.';
       } else if (status === 404) {
@@ -355,7 +356,9 @@ function SiteSettingsButton({ data }: any) {
 
 function EditorHeader() {
   const slug = usePathname();
-
+  const { openSidePanel, closeSidePanel } = useSidePanel();
+  const editor = useEditor();
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const isDemo = slug === '/demo';
   const { user } = useUser();
 
@@ -393,20 +396,49 @@ function EditorHeader() {
         </div>
         <div className="flex items-center gap-4">
           <WithEditor>
-          <DeviceButtons />
+            <DeviceButtons />
             <CommandButtons />
           </WithEditor>
         </div>
 
         <div className="flex w-full items-center justify-end gap-4">
-          <Tooltip color={!data?.title && !data?.description || !user || user.subscription === 'free' ? 'red' : 'gray'}
-                   label={!data?.title && !data?.description ? 'Add a title and description to your site settings before you can publish your website' : user?.subscription === 'free' ? 'Free users are not allowed preview domains' : 'Open latest save preview'}>
-            <Button disabled={!data?.title && !data?.description || !user || user.subscription === 'free'} component="a"
-                    href={!data?.title && !data?.description || !user || user.subscription === 'free' ? '' : `https://preview.${data?.subdomain}.lanndi.com`}
+          <Tooltip label="Preview Interactions">
+            <ActionIcon
+              color="blue"
+              variant={
+                isPreviewOpen ? 'filled' : 'subtle'
+              }
+              onClick={() => {
+                if (isPreviewOpen) {
+                  editor.stopCommand('core:preview');
+                  setIsPreviewOpen(false);
+                  openSidePanel();
+                } else {
+                  editor.runCommand('core:preview');
+                  setIsPreviewOpen(true);
+                  closeSidePanel();
+                }
+              }}
+            >
+              <IconEye size="1rem" />
+            </ActionIcon>
+          </Tooltip>
+          <Tooltip color={!data?.title && !data?.description ? 'red' : 'gray'}
+                   label={!data?.title && !data?.description ? 'Add a title and description to your site settings before you can publish your website' : 'Open latest save preview'}>
+            <Button disabled={!data?.title && !data?.description || !user} component="a"
+                    href={!data?.title && !data?.description || !user ? '' : `https://preview.${data?.subdomain}.lanndi.com`}
                     target="_blank"
                     size="xs" variant="subtle"
                     leftSection={<IconExternalLink size="1rem" />}>Preview</Button>
           </Tooltip>
+          {/*<Tooltip color={!data?.title && !data?.description || !user || user.subscription === 'free' ? 'red' : 'gray'}*/}
+          {/*         label={!data?.title && !data?.description ? 'Add a title and description to your site settings before you can publish your website' : user?.subscription === 'free' ? 'Free users are not allowed preview domains' : 'Open latest save preview'}>*/}
+          {/*  <Button disabled={!data?.title && !data?.description || !user || user.subscription === 'free'} component="a"*/}
+          {/*          href={!data?.title && !data?.description || !user || user.subscription === 'free' ? '' : `https://preview.${data?.subdomain}.lanndi.com`}*/}
+          {/*          target="_blank"*/}
+          {/*          size="xs" variant="subtle"*/}
+          {/*          leftSection={<IconExternalLink size="1rem" />}>Preview</Button>*/}
+          {/*</Tooltip>*/}
           <SiteSettingsButton data={data} />
           <SaveButton />
           <PublishButton siteData={data} />

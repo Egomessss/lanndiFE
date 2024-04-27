@@ -5,7 +5,7 @@ import { useEditor } from '../wrappers';
 import {
   IconArrowBackUp,
   IconArrowForwardUp,
-  IconBorderNone, IconCode, IconHandGrab,
+  IconBorderNone, IconCode, IconEye, IconHandGrab,
   IconTrash,
   IconVector,
   IconZoomIn,
@@ -15,6 +15,7 @@ import {
 import { useAuth } from '@/hooks/auth';
 import { usePathname } from 'next/navigation';
 import useUser from '@/hooks/use-user';
+import { useSidePanel } from '@/contexts/SidePanelPreviewContext';
 
 
 interface CommandButton {
@@ -45,7 +46,7 @@ export default function TopBarButtons() {
     const currentZoom = editor.Canvas.getZoom();
     const step = 5; // Define the zoom step
     const newZoom = isZoomIn ? currentZoom + step : currentZoom - step;
-    console.log(newZoom);
+    // console.log(newZoom);
     editor.Canvas.setZoom(newZoom);
     setZoomValue(newZoom);
   }
@@ -127,18 +128,20 @@ export default function TopBarButtons() {
     },
   });
 
-  editor.Commands.extend('preview', {
-    run: () => {
-      editor.runCommand('core:preview');
-      // Adding a specific class to hide elements
-      editor.refresh();
+  // editor.Commands.extend('core:preview', {
+  //   run: () => {
+  //     editor.runCommand('core:preview');
+  //     // Adding a specific class to hide elements
+  //     editor.refresh();
+  //   },
+  //   stop: () => {
+  //     // closeSidePanel();
+  //     editor.stopCommand('core:preview');
+  //     editor.refresh();
+  //   },
+  // });
 
-    },
-    stop: () => {
-      editor.stopCommand('core:preview');
-      editor.refresh();
-    },
-  });
+
 
 
   const { user } = useUser();
@@ -204,6 +207,8 @@ export default function TopBarButtons() {
       editor.off(updateEvent, updateCounter);
     };
   }, [cmdButtons, editor]);
+
+
 
 
   return (

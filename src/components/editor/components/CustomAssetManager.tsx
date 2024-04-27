@@ -212,7 +212,7 @@ export default function CustomAssetManager({
                                            }: any) {
 
   const editor = useEditor();
-
+  // console.log('open', open);
   const remove = (asset: Asset) => {
     editor.Assets.remove(asset);
   };

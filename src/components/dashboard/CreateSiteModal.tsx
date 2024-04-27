@@ -94,7 +94,7 @@ const CreateSiteModal = (isOverMaxSitesAllowed: props) => {
       submitSite();
     }
   };
-  console.log(isOverMaxSitesAllowed);
+  // console.log(isOverMaxSitesAllowed);
 
   return (
     <>

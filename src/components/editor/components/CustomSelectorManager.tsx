@@ -6,15 +6,17 @@ import {
   CheckIcon,
   Combobox,
   Group,
+  Menu,
   Pill,
   PillsInput,
   ScrollArea,
-  Select,
+  Select, TextInput,
   ThemeIcon,
   Tooltip,
   useCombobox,
 } from '@mantine/core';
-import { IconExclamationCircle, IconFocus, IconHash, IconTags } from '@tabler/icons-react';
+import { IconCheck, IconDotsVertical, IconExclamationCircle, IconFocus, IconHash, IconTags } from '@tabler/icons-react';
+import { Selector } from 'grapesjs';
 
 
 export default function CustomSelectorManager({
@@ -47,11 +49,96 @@ export default function CustomSelectorManager({
 
   };
 
+  const deleteSelector = (selector: Selector) => {
+    removeSelector(selector);
+    editor.Css.remove(selector.getName());
+  };
+
+  // const duplicateSelector = (selector:Selector) => {
+  //     addSelector(selector)
+  // }
+
+  const disableSelector = (selector: Selector) => {
+    const isDisabled = selector.getActive();
+
+    if (isDisabled) {
+      selector.setActive(false);
+    } else {
+      selector.setActive(true);
+    }
+  };
+
+  const [selector, setSelector] = useState<null | Selector>(null);
+  const [selectorName, setSelectorName] = useState('');
+
+  const [isRenamingSelector, setIsRenamingSelector] = useState(false);
+  console.log(isRenamingSelector, selectorName);
+
+  const renameSelector = () => {
+    if (selector) {
+      selector.set('name', selectorName);
+      setSelector(null);
+      setIsRenamingSelector(false);
+      setSelectorName('');
+    }
+  };
+
+
   const values = selectors.map((selector) => (
-    <Pill radius="xs" key={selector.toString()} withRemoveButton onRemove={() => removeSelector(selector)}>
-      {selector.toString()}
-    </Pill>
-  ));
+      <div key={selector.toString()} className="flex gap-1 items-center w-full">
+        <Pill
+          style={selector.getActive() ? {} : { opacity: 0.5 }}
+          disabled={!selector.getActive()}
+          radius="xs"
+        >
+          <span>{selector.toString()}</span>
+        </Pill>
+        <Menu shadow="md">
+          <Menu.Target>
+            <ActionIcon variant="subtle" size="xs">
+              <IconDotsVertical size="0.7rem" /></ActionIcon>
+          </Menu.Target>
+          <Menu.Dropdown>
+            <Menu.Label>Application</Menu.Label>
+            <Menu.Item onClick={() => {
+              setIsRenamingSelector(true);
+              setSelector(selector);
+            }
+            }>
+              Rename
+            </Menu.Item>
+            <Menu.Item onClick={() => disableSelector(selector)}>
+              Disable
+            </Menu.Item>
+            <Menu.Divider />
+            <Menu.Label>Danger zone</Menu.Label>
+            <Menu.Item
+              color="red"
+              onClick={() => removeSelector(selector)}
+              // add tooltip
+            >
+              <div className="flex items-center justify-between w-full"><span>Remove</span>
+                <Tooltip label="Removes the class from the selected blocks">
+                  <IconExclamationCircle size="1rem" />
+                </Tooltip>
+              </div>
+
+            </Menu.Item>
+            <Menu.Item
+              color="red"
+              onClick={() => deleteSelector(selector)}
+              // add tooltip
+            >
+              <div className="flex items-center justify-between w-full"><span>Delete</span>
+                <Tooltip label="Deletes the class from the project">
+                  <IconExclamationCircle size="1rem" />
+                </Tooltip>
+              </div>
+            </Menu.Item>
+          </Menu.Dropdown>
+        </Menu></div>
+    ))
+  ;
 
   const options = allSelectors
     .filter((item) => item.toLowerCase().includes(search.trim().toLowerCase()))
@@ -63,13 +150,13 @@ export default function CustomSelectorManager({
       </Combobox.Option>
     ));
 
+
   const isComponentFirst = editor.Selectors.getComponentFirst();
 
   const setComponentFirst = () => {
     editor.Selectors.setComponentFirst(!isComponentFirst);
   };
 
-  console.log(selectedSelectors);
   return (
     <div className=" flex flex-col  gap-2 text-left">
       <div className="flex items-center gap-2">
@@ -97,13 +184,16 @@ export default function CustomSelectorManager({
           placeholder="-No state-"
         />
       </div>
-
+      {isRenamingSelector &&
+        <TextInput placeholder="Insert new selector name" size="xs" value={selectorName}
+                   onChange={(event) => setSelectorName(event.currentTarget.value)}
+                   rightSection={<ActionIcon size="sm" onClick={() => renameSelector()}><IconCheck
+                     size="1rem" /></ActionIcon>} />}
       <div className="flex gap-2 items-start w-full h-full">
         <div className="flex gap-5 h-full  flex-col">
           <Tooltip color="blue"
                    label={`block classes -[${selectors.map((s) => s.toString())}] | block ID - #${targetsIds.toString()}`}>
             <ThemeIcon
-
               variant="light">
               <IconTags size="1rem" />
             </ThemeIcon>
@@ -123,7 +213,7 @@ export default function CustomSelectorManager({
           <Combobox.DropdownTarget>
             <PillsInput size="xs" onClick={() => combobox.openDropdown()}>
               <Pill.Group>
-                <ScrollArea.Autosize type="hover" h={40}>
+                <ScrollArea.Autosize type="hover" h={40} w={145}>
                   {values}
                 </ScrollArea.Autosize>
                 <Combobox.EventsTarget>

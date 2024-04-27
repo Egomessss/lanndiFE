@@ -91,8 +91,6 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
     CoreBlocks,
     MediaBlocks,
     ListBlocks,
-    // FormBlocks,
-    // SemanticBlocks,
     // IntegrationsBlocks,
     // ExtraBlocks,
     PostCss,
@@ -103,7 +101,7 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
     BorderStyle,
     Sections,
     UtilsPlugin,
-    FormBlocks,
+    // FormBlocks,
     // Grid
     // Accordion,
     Tabs

@@ -27,6 +27,14 @@ const components = (editor: Editor, opts: PluginOptions = {}) => {
           components: { type: 'textnode', content: 'Insert here your custom code' }
         } as any,
         ...opts.propsCustomCode,
+        traits: [
+          {
+            // lazy load
+            type: 'button',
+            label: 'Open Custom Code Editor',
+            command:'custom-code:open-modal'
+          },
+        ],
       },
 
       /**

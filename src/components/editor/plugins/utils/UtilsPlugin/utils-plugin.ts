@@ -156,7 +156,33 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
   //   // ...
   // })
 
+  editor.on('load', () => {
+    // This overload the select type
 
+    editor.DomComponents.addType('select', {
+      model: {
+        defaults: {
+          enableEvents: false
+        },
+
+        init() {
+          // Maybe better to use (this.listenTo)
+          editor.on('run:preview', () => this.set('enableEvents', true));
+          editor.on('stop:preview', () => this.set('enableEvents', false));
+        },
+      },
+      view: {
+        events: {
+          // @ts-ignore
+          mousedown: function(e) {
+            if (!this.model.get('enableEvents')) {
+              e.preventDefault();
+            }
+          }
+        }
+      }
+    });
+  });
 
 };
 

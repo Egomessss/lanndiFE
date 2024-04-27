@@ -16,7 +16,7 @@ Components.addType('hero-one', {
       defaults: {
         droppable: false,
         name: 'Hero Image Bottom',
-        components: ` <div class="hero-one">
+        components: `<div class="hero-one">
     <div class="hero-one-container">
       <div class="hero-text-container">
         <h1 id="irjua" draggable="false" class="gjs-heading">Insert Hero 
@@ -27,7 +27,7 @@ Components.addType('hero-one', {
         </p>
         <button class="button">Button
         </button>
-        <img src="https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/placeholder.webp" class="hero-image"/>
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="hero-image"/>
       </div>
       <div class="image-container">
       </div>
@@ -75,7 +75,7 @@ Components.addType('hero-one', {
   line-height:1.5;
   text-align:center;
   border:1px solid transparent;
-  padding:4px 12px 4px 12px;
+  padding:2px 8px 2px 8px;
   font-size:16px;
   border-radius:.25rem .25rem .25rem .25rem;
 }
@@ -176,7 +176,7 @@ Components.addType('hero-one', {
   line-height:1.5;
   text-align:center;
   border:1px solid transparent;
-  padding:4px 12px 4px 12px;
+  padding:2px 8px 2px 8px;
   font-size:16px;
   border-radius:.25rem .25rem .25rem .25rem;
 }
@@ -322,7 +322,7 @@ Components.addType('hero-one', {
   line-height:1.5;
   text-align:center;
   border:1px solid transparent;
-  padding:4px 12px 4px 12px;
+  padding:2px 8px 2px 8px;
   font-size:16px;
   border-radius:.25rem .25rem .25rem .25rem;
 }

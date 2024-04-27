@@ -228,17 +228,17 @@ const SiteSettingsForm = (props: { plan: string; data: SiteSettings }) => {
             </div>
           </div>
 
-          <div className="flex items-start gap-2 flex-col w-full">
-            <h2>Custom body code</h2>
+          {/*<div className="flex items-start gap-2 flex-col w-full">*/}
+          {/*  <h2>Custom body code</h2>*/}
 
-            <div className="w-full">
-              <CodeMirror
-                value={form.values.bodyCode} height="200px" theme="dark"
-                extensions={[langs.javascript()]}
-                onChange={onChangeBody}
-              />
-            </div>
-          </div>
+          {/*  <div className="w-full">*/}
+          {/*    <CodeMirror*/}
+          {/*      value={form.values.bodyCode} height="200px" theme="dark"*/}
+          {/*      extensions={[langs.javascript()]}*/}
+          {/*      onChange={onChangeBody}*/}
+          {/*    />*/}
+          {/*  </div>*/}
+          {/*</div>*/}
         </> : <Alert className="w-full" variant="light" color="pink" title="Alert title" icon={<IconInfoCircle size="1rem" />}>
           Buy a subscription plan to take advantage of custom code and all the metadata options such as custom head and body code and favicon.
         </Alert>}

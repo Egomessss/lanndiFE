@@ -1,6 +1,6 @@
 import { TraitsResultProps, useEditor } from '@/components/editor/wrappers';
 import TraitPropertyField from '@/components/editor/components/TraitPropertyField';
-import { ActionIcon, Button, Modal, TextInput } from '@mantine/core';
+import { ActionIcon, Button, Divider, Modal, TextInput } from '@mantine/core';
 import { HeadingTypeSelector } from '@/components/editor/components/HeadingTypeSelector';
 import { HtmlElementSelector } from '@/components/editor/components/HtmlElementSelector';
 import CodeMirror, { EditorView } from '@uiw/react-codemirror';
@@ -98,7 +98,6 @@ export const CssCode = () => {
 
 
   return <div className="flex items-start gap-2 flex-col w-full ">
-    <p>CSS Editor</p>
     <Modal opened={opened} size="xl" centered onClose={close} title="Block CSS">
       <CodeMirror
         value={value} height="400px" theme="dark"
@@ -221,6 +220,7 @@ function CustomAttributes() {
             </div>);
         })}
       </div>
+
       <TextInput
         disabled={user?.subscription === 'free'}
         size="xs"
@@ -272,7 +272,9 @@ export default function CustomTraitManager({
         <Button component={Link} href="/plans" size="xs" mb="4">
           Subscribe Now
         </Button></>}
+      <Divider className="w-full"  label="Custom attributes" />
       <CustomAttributes />
+      <Divider className="w-full"  label="Extra Customization" />
       {['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(value!) && <HeadingTypeSelector />}
       <HtmlElementSelector />
       {value === 'svg' && <SvgContentCode />}
