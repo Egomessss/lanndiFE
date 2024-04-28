@@ -44,13 +44,11 @@ export default function DomainConfiguration(props: { plan: string; domainData: S
 
 
 
-  console.log(data);
+  console.log('plan', plan);
 
   if (isLoading) return <Loading />;
-  if (!data) return <Loading />;
-  if (isError) return <ErrorMessage />;
 
-  console.log(plan);
+  if (isError) return <ErrorMessage />;
 
   return (
     <div className="border-solid w-full h-fit rounded-lg p-4">

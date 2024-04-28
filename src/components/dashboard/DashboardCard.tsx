@@ -22,7 +22,7 @@ const DashboardCard = ({ name, slug, ogImage, isLive }: Site) => {
       mutationFn:
         async () => await axios.post(`/api/v1/sites/settings/${slug}/delete`, { siteName }),
       onSuccess:
-        (data) => {
+        () => {
           // Assuming your data is nested under a 'data' key
           // console.log(data);
           notifications.show({
@@ -61,7 +61,7 @@ const DashboardCard = ({ name, slug, ogImage, isLive }: Site) => {
       <Link href={`/editor/${slug}`}>
         <img
           src={ogImage ? ogImage : 'https://images.pexels.com/photos/14577237/pexels-photo-14577237.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'}
-          className="w-full h-44 rounded-lg mb-2"
+          className="w-full h-44 rounded-lg mb-2  hover:border-solid"
           alt={name}
         />
       </Link>

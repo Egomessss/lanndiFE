@@ -12,7 +12,7 @@ const SidePanelContext = createContext<SidePanelContextType | undefined>(undefin
 
 // Step 2: Create a provider component
 export function SidePanelProvider({ children }: { children: ReactNode }) {
-  const [isSidePanelOpen, setSidePanelOpen] = useState(false);
+  const [isSidePanelOpen, setSidePanelOpen] = useState(true);
 
   const openSidePanel = () => setSidePanelOpen(true);
   const closeSidePanel = () => setSidePanelOpen(false);

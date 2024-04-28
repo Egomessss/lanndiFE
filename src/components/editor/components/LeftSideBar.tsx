@@ -49,7 +49,7 @@ function LeftSideBar() {
           {/*<SettingsModal />*/}
         </div>
         <Divider orientation="vertical" my="xs" />
-        <Box component={ScrollArea} className="p-2 w-full">{renderSelectedComponent()}</Box>
+        <Box component={ScrollArea} className="p-1 w-full">{renderSelectedComponent()}</Box>
       </div>
     </AppShell.Navbar>
   );

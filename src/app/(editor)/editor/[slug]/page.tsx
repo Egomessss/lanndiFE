@@ -20,7 +20,6 @@ import { SidePanelProvider, useSidePanel } from '@/contexts/SidePanelPreviewCont
 // export const dynamic = 'force-dynamic'
 export default function CustomEditor() {
   const { isSidePanelOpen } = useSidePanel();
-  console.log('isSidePanel', isSidePanelOpen);
   const params = useParams();
   const siteSlug = params.slug;
 

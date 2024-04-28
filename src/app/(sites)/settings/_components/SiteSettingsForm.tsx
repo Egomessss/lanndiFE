@@ -10,6 +10,7 @@ import { SiteSettings } from '@/app/(sites)/settings/[slug]/page';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import TextLength from '@/components/common/TextLength';
 import axios from '@/lib/axios';
+import Link from 'next/link';
 
 
 const SiteSettingsForm = (props: { plan: string; data: SiteSettings }) => {
@@ -239,8 +240,16 @@ const SiteSettingsForm = (props: { plan: string; data: SiteSettings }) => {
           {/*    />*/}
           {/*  </div>*/}
           {/*</div>*/}
-        </> : <Alert className="w-full" variant="light" color="pink" title="Alert title" icon={<IconInfoCircle size="1rem" />}>
-          Buy a subscription plan to take advantage of custom code and all the metadata options such as custom head and body code and favicon.
+        </> : <Alert className="w-full" variant="light" color="red" title="Alert title"
+                     icon={<IconInfoCircle size="1rem" />}>
+          <p>Buy a subscription plan to take advantage of custom code and all the metadata options such as custom head
+            code
+            and favicon.</p>
+          <p className="font-bold text-red-500 my-10">PS: Save your settings/editor data before clicking the link
+            button</p>
+          <Button fullWidth component={Link} href="/plans">
+            Buy a plan
+          </Button>
         </Alert>}
         <div className="flex items-end justify-end w-full">
           <Button onClick={validateBeforeSubmit} loading={isPending}>Save Changes</Button>

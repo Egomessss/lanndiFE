@@ -35,9 +35,9 @@ const Plans: React.FC<PlansData> = ({
     },
     {
       name: 'Basic',
-      priceMonthly: 0,
-      priceAnnual: 0,
-      features: ['1 site', '10 page max'],
+      priceMonthly: 5,
+      priceAnnual: 50,
+      features: ['1 site', '10 page max', 'custom domain', 'custom code'],
       variantMonthly: 'basic-monthly',
       variantAnnual: 'basic-annually',
     },
@@ -204,7 +204,7 @@ const Plans: React.FC<PlansData> = ({
         </div>
       </div>
     </>
-)
+  );
 
 };
 

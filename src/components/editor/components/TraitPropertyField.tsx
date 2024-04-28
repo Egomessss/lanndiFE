@@ -36,7 +36,7 @@ export default function TraitPropertyField({
         <TextInput
             label={trait.getLabel()}
             size="xs"
-            placeholder={defValue}
+            placeholder={defValue || ''}
             value={value}
             onChange={(event)=> trait.setValue(event.currentTarget.value)}
         />

@@ -21,7 +21,7 @@ import Tabs from '@/components/editor/plugins/BasicBlocks/Tabs';
 
 
 export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: boolean) => ({
-  height: '92svh',
+  height: '96vh',
   jsInHtml: false,
   optsHtml: { cleanId: true },
   optsCss: { onlyMatched: true, keepUnusedStyles: true },
@@ -78,8 +78,8 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
         {
           name: 'Home',
           slug: 'index',
-          component: starterTemplate,
-          styles: styleStarterTemplate,
+          // component: starterTemplate,
+          // styles: styleStarterTemplate,
         },
       ],
     }

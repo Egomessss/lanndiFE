@@ -356,8 +356,8 @@ function SiteSettingsButton({ data }: any) {
 
 function EditorHeader() {
   const slug = usePathname();
+  const editor = useEditorMaybe();
   const { openSidePanel, closeSidePanel } = useSidePanel();
-  const editor = useEditor();
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const isDemo = slug === '/demo';
   const { user } = useUser();
@@ -373,6 +373,12 @@ function EditorHeader() {
     },
     enabled: !isDemo,
   });
+
+  const isDisabled = !data?.title && !data?.description && user && user.subscription !== 'free' || !user || user.subscription === 'free';
+  const tooltipColor = isDisabled ? 'red' : 'gray';
+  const tooltipLabel = user?.subscription === 'free' ? 'Free users are not allowed preview domains' : (!data?.title && !data?.description ? 'Add a title and description to your site settings before you can preview your website(paid feature)' : 'Open latest saved preview');
+  const buttonHref = isDisabled ? '' : `https://preview.${data?.subdomain}.lanndi.com`;
+
 
   return (
     <AppShell.Header>
@@ -410,11 +416,11 @@ function EditorHeader() {
               }
               onClick={() => {
                 if (isPreviewOpen) {
-                  editor.stopCommand('core:preview');
+                  editor?.stopCommand('core:preview');
                   setIsPreviewOpen(false);
                   openSidePanel();
                 } else {
-                  editor.runCommand('core:preview');
+                  editor?.runCommand('core:preview');
                   setIsPreviewOpen(true);
                   closeSidePanel();
                 }
@@ -423,22 +429,20 @@ function EditorHeader() {
               <IconEye size="1rem" />
             </ActionIcon>
           </Tooltip>
-          <Tooltip color={!data?.title && !data?.description ? 'red' : 'gray'}
-                   label={!data?.title && !data?.description ? 'Add a title and description to your site settings before you can publish your website' : 'Open latest save preview'}>
-            <Button disabled={!data?.title && !data?.description || !user} component="a"
-                    href={!data?.title && !data?.description || !user ? '' : `https://preview.${data?.subdomain}.lanndi.com`}
-                    target="_blank"
-                    size="xs" variant="subtle"
-                    leftSection={<IconExternalLink size="1rem" />}>Preview</Button>
-          </Tooltip>
-          {/*<Tooltip color={!data?.title && !data?.description || !user || user.subscription === 'free' ? 'red' : 'gray'}*/}
-          {/*         label={!data?.title && !data?.description ? 'Add a title and description to your site settings before you can publish your website' : user?.subscription === 'free' ? 'Free users are not allowed preview domains' : 'Open latest save preview'}>*/}
-          {/*  <Button disabled={!data?.title && !data?.description || !user || user.subscription === 'free'} component="a"*/}
-          {/*          href={!data?.title && !data?.description || !user || user.subscription === 'free' ? '' : `https://preview.${data?.subdomain}.lanndi.com`}*/}
+          {/*<Tooltip color={!data?.title && !data?.description ? 'red' : 'gray'}*/}
+          {/*         label={!data?.title && !data?.description ? 'Add a title and description to your site settings before you can publish your website' : 'Open latest saved preview'}>*/}
+          {/*  <Button disabled={!data?.title && !data?.description || !user} component="a"*/}
+          {/*          href={!data?.title && !data?.description || !user ? '' : `https://preview.${data?.subdomain}.lanndi.com`}*/}
           {/*          target="_blank"*/}
           {/*          size="xs" variant="subtle"*/}
           {/*          leftSection={<IconExternalLink size="1rem" />}>Preview</Button>*/}
           {/*</Tooltip>*/}
+          <Tooltip color={tooltipColor} label={tooltipLabel}>
+            <Button disabled={isDisabled} component="a" href={buttonHref} target="_blank" size="xs" variant="subtle"
+                    leftSection={<IconExternalLink size="1rem" />}>
+              Preview
+            </Button>
+          </Tooltip>
           <SiteSettingsButton data={data} />
           <SaveButton />
           <PublishButton siteData={data} />

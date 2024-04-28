@@ -15,7 +15,7 @@ import { SidePanelProvider, useSidePanel } from '@/contexts/SidePanelPreviewCont
 
 
 export default function CustomEditor() {
-
+  const { isSidePanelOpen } = useSidePanel();
   // if not user they have to pay which also registers them
   // after register they save their project which redirects to the editor with slug
 
@@ -49,62 +49,64 @@ export default function CustomEditor() {
   return (
     <>
 
-        <GjsEditor
-          grapesjs={grapesjs}
-          grapesjsCss="https://unpkg.com/grapesjs/dist/css/grapes.min.css"
-          onEditor={onEditor}
-          // @ts-ignore
-          options={demoEditorConfigOptions()} className="hidden md:block w-full h-full overflow-hidden"
-        >
-          <div className="absolute h-full w-full overflow-y-hidden">
-            <AppShell
-              header={{ height: 50 }}
-              navbar={{
-                width: 220,
-                breakpoint: 'sm',
-              }}
-              aside={{
-                width: 220,
-                breakpoint: 'sm',
-              }}
-              transitionDuration={1000}
-            >
-              <EditorHeader />
-              {!isSidePanelOpen && <LeftSideBar />}
-              {!isSidePanelOpen && <RightSideBar />}
-              <Canvas />
-            </AppShell>
-            <ModalProvider>
-              {({ open, title, content, close }) => (
-                <CustomModal
-                  open={open}
-                  title={title}
-                  close={close}
-                >{content}</CustomModal>
-              )}
-            </ModalProvider>
-            <AssetsProvider>
-              {({ assets, select, close, Container, open }) => (
-                <CustomAssetManager
-                  assets={assets}
-                  select={select}
-                  close={close}
-                  open={open}
-                />
+      <GjsEditor
+        grapesjs={grapesjs}
+        grapesjsCss="https://unpkg.com/grapesjs/dist/css/grapes.min.css"
+        onEditor={onEditor}
+        // @ts-ignore
+        options={demoEditorConfigOptions()} className="hidden md:block w-full h-full overflow-hidden"
+      >
+        <div className="absolute h-full w-full overflow-y-hidden">
+          <AppShell
+            header={{ height: 50 }}
+            navbar={{
+              width: 220,
+              breakpoint: 'sm',
+              collapsed: { desktop: !isSidePanelOpen, mobile: !isSidePanelOpen },
+            }}
+            aside={{
+              width: 220,
+              breakpoint: 'sm',
+              collapsed: { desktop: !isSidePanelOpen, mobile: !isSidePanelOpen },
+            }}
+            transitionDuration={1000}
+          >
+            <EditorHeader />
+            <LeftSideBar />
+            <RightSideBar />
+            <Canvas />
+          </AppShell>
+          <ModalProvider>
+            {({ open, title, content, close }) => (
+              <CustomModal
+                open={open}
+                title={title}
+                close={close}
+              >{content}</CustomModal>
+            )}
+          </ModalProvider>
+          <AssetsProvider>
+            {({ assets, select, close, Container, open }) => (
+              <CustomAssetManager
+                assets={assets}
+                select={select}
+                close={close}
+                open={open}
+              />
 
-              )}
-            </AssetsProvider>
-          </div>
-        </GjsEditor>
-        <div className="md:hidden h-[100svh] w-full flex justify-center items-center flex-col gap-8 text-xl">
-          <IconExclamationCircle size="4rem" className="text-red-500" />
-          <p>Editor is not available for mobile devices</p>
-          <div className="flex items-center gap-2">
-            <Button component="a" href="https://lanndi.com"
-                    variant="subtle">Homepage</Button>
-            <Button component="a" href="https://app.lanndi.com/login">Signup</Button></div>
-
+            )}
+          </AssetsProvider>
         </div>
+      </GjsEditor>
+      <div className="md:hidden h-[100svh] w-full flex justify-center items-center flex-col gap-8 text-xl">
+        <IconExclamationCircle size="4rem" className="text-red-500" />
+        <p>Editor is not available for mobile devices</p>
+        <div className="flex items-center gap-2">
+          <Button component="a" href="https://lanndi.com"
+                  variant="subtle">Homepage</Button>
+          <Button component="a" href="https://app.lanndi.com/login">Signup</Button></div>
+
+      </div>
 
     </>
 

@@ -6,7 +6,7 @@ const features = (editor: Editor) => {
 
   editor.Blocks.add('feature-one', {
     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
-    label: 'Image Side',
+    label: 'Features Image Side',
     category: 'sections-features',
     select: true,
     content: { type: 'feature-one' },
@@ -17,87 +17,59 @@ const features = (editor: Editor) => {
       defaults: {
         // script: script,
         droppable: false,
-        name: 'Image Side',
+        name: 'Features Image Side',
         components: `  
-    <div id="feature-section" class="lnd-feature-grid-row">
-      <div id="imymf" class="lnd-feature-grid-column">
-        <div id="ib541" class="lnd-feature-grid-row">
-          <div id="iz8m8" class="lnd-feature-grid-column">
-            <h4 id="ij2gh" class="lnd-heading lnd-text-blue">Feature One text
-            </h4>
-            <h2 id="ism014" class="lnd-heading">Feature Text
-            </h2>
-            <div id="igrx8" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </div>
-            <div class="button">
-              <button class="button">Button</button>
-            </div>
-          </div>
-          <div id="iepks" class="lnd-feature-grid-column">
-            <img src="https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/placeholder.webp" id="i466d"/>
-          </div>
-        </div>
+  <div class="feature-two">
+    <div class="feature-two-container">
+      <div class="feature-text-container">
+        <h1 id="iyi6" class="heading-feature">
+        </h1>
+        <h1 class="heading-one" id="im2wi">Insert feature text here
+        </h1>
+        <p id="it2f" class="feature-description">
+          <span id="i09aq">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+        </p>
+        <button class="button">Button
+        </button>
       </div>
-    </div>`,
+      <img src="https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/placeholder.webp" class="feature-image"/>
+    </div>
+  </div>`,
         styles: `
-       .lnd-feature-grid-row{
+       .feature-two-container{
   display:flex;
   justify-content:center;
   align-items:center;
-  flex-direction:row;
-  min-height:auto;
-  padding:10px 0;
+  column-gap:2rem;
+  height:559px;
 }
-#feature-section{
+.feature-text-container{
+  height:359px;
+  display:flex;
+  flex-direction:column;
   justify-content:center;
-  padding-top:80px;
-  padding-bottom:80px;
-  padding-left:20px;
-  padding-right:20px;
-}
-.lnd-feature-grid-column{
-  padding:5px 0;
-}
-#imymf{
-  max-width:1200px;
   align-items:center;
-  display:flex;
-  flex-direction:column;
+  width:457px;
 }
-#ib541{
-  gap:100px;
-  justify-content:space-between;
+.heading-feature{
+  width:571px;
+  text-align:center;
+  font-size:3rem;
 }
-#iz8m8{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  justify-content:center;
+
+.heading-one{
+  font-size:3rem;
 }
-.lnd-heading{
-  margin:0;
+.feature-description{
+  width:100%;
+  text-align:center;
+  font-size:1rem;
 }
-#ij2gh{
-  font-size:1.2rem;
-  margin-bottom:15px;
-}
-.lnd-text-blue{
-  color:rgb(36,99,235);
-}
-#ism014{
-  font-size:2.5rem;
-}
-.text-main-content{
-  line-height:30px;
-  font-size:1.2rem;
-}
-#igrx8{
-  padding:10px;
-  max-width:750px;
-  margin-bottom:25px;
-  padding-left:0px;
-  padding-right:0px;
+
+#i09aq{
+  color:rgb(71, 85, 105);
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:1rem;
 }
 .button{
   width:fit-content;
@@ -111,21 +83,62 @@ const features = (editor: Editor) => {
   line-height:1.5;
   text-align:center;
   border:1px solid transparent;
- padding:2px 8px 2px 8px;
+  padding:2px 8px 2px 8px;
   font-size:16px;
   border-radius:.25rem .25rem .25rem .25rem;
 }
 .button:hover{
   opacity:0.9;
 }
-#i466d{
-  color:black;
-  border-top-left-radius:35px;
-  border-top-right-radius:35px;
-  border-bottom-right-radius:35px;
-  border-bottom-left-radius:35px;
-  max-width:100%;
-  width:829px;
+.image-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:fit-content;
+}
+.feature-image{
+  width:450px;
+  height:361px;
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items:center;
+  border-top-left-radius:5px;
+  border-top-right-radius:5px;
+  border-bottom-right-radius:5px;
+  border-bottom-left-radius:5px;
+  object-fit:cover;
+}
+@media (max-width: 810px){
+  .feature-two-container{
+    flex-direction:column;
+    row-gap:2rem;
+    height:823px;
+  }
+  .feature-text-container{
+    width:649px;
+  }
+  .feature-image{
+    width:645px;
+  }
+}
+@media (max-width: 390px){
+  .feature-text-container{
+    width:90%;
+    text-align:center;
+    height:344px;
+    align-items:center;
+    justify-content:center;
+  }
+  .heading-one{
+    height:88px;
+    font-size:2.5rem;
+    line-height:2.5rem;
+  }
+  .feature-image{
+    width:90%;
+    height:254px;
+  }
 }
 `,
       },
@@ -134,7 +147,7 @@ const features = (editor: Editor) => {
 
   editor.Blocks.add('feature-two', {
     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
-    label: 'Image Bottom',
+    label: 'Features Image Bottom',
     category: 'sections-features',
     select: true,
     content: { type: 'feature-two' },
@@ -145,7 +158,7 @@ const features = (editor: Editor) => {
       defaults: {
         // script: script,
         droppable: false,
-        name: 'Image Bottom',
+        name: 'Features Image Bottom',
         components: `  
    <div class="block">
     <h4 class="sub-heading" id="ic2u">Insert Your Sub-Heading
@@ -199,7 +212,7 @@ const features = (editor: Editor) => {
 
   editor.Blocks.add('feature-three', {
     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
-    label: 'Features With Icons',
+    label: 'Feature Grid With Icons',
     category: 'sections-features',
     select: true,
     content: { type: 'feature-three' },
@@ -400,7 +413,7 @@ const features = (editor: Editor) => {
 
   editor.Blocks.add('feature-four', {
     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
-    label: 'Grid With Image',
+    label: 'Features Grid Images',
     category: 'sections-features',
     select: true,
     content: { type: 'feature-four' },
@@ -411,7 +424,7 @@ const features = (editor: Editor) => {
       defaults: {
         // script: script,
         droppable: false,
-        name: 'Grid With Image',
+        name: 'Features Grid Images',
         components: `  
   <section class="flex-sect" id="iaxad">
     <div class="container-width" id="izopk">
@@ -448,39 +461,6 @@ const features = (editor: Editor) => {
             <h3 class="card-title">Title three
             </h3>
             <p class="card-sub-title">Subtitle three
-            </p>
-            <p class="card-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-            </p>
-          </div>
-        </div>
-        <div class="card">
-           <img class="card-header" src="https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/placeholder.webp" alt="">
-          <div class="card-body">
-            <h3 class="card-title">Title four
-            </h3>
-            <p class="card-sub-title">Subtitle four
-            </p>
-            <p class="card-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-            </p>
-          </div>
-        </div>
-        <div class="card">
-           <img class="card-header" src="https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/placeholder.webp" alt="">
-          <div class="card-body">
-            <h3 class="card-title">Title five
-            </h3>
-            <p class="card-sub-title">Subtitle five
-            </p>
-            <p class="card-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-            </p>
-          </div>
-        </div>
-        <div class="card">
-          <img class="card-header" src="https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/placeholder.webp" alt="">
-          <div class="card-body">
-            <h3 class="card-title">Title six
-            </h3>
-            <p class="card-sub-title">Subtitle six
             </p>
             <p class="card-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
             </p>
@@ -561,6 +541,6 @@ const features = (editor: Editor) => {
     },
   });
 
-}
+};
 
 export default features;
