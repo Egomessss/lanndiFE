@@ -85,7 +85,7 @@ export default function CustomSelectorManager({
 
 
   const values = selectors.map((selector) => (
-      <div key={selector.toString()} className="flex gap-1 items-center w-full">
+      <div key={selector.toString()} className="flex gap-1 items-center w-full overflow-hidden">
         <Pill
           style={selector.getActive() ? {} : { opacity: 0.5 }}
           disabled={!selector.getActive()}
@@ -213,9 +213,9 @@ export default function CustomSelectorManager({
           <Combobox.DropdownTarget>
             <PillsInput size="xs" onClick={() => combobox.openDropdown()}>
               <Pill.Group>
-                <ScrollArea.Autosize type="hover" h={40} w={145}>
+                <ScrollArea type="hover" h={40} w="100%">
                   {values}
-                </ScrollArea.Autosize>
+                </ScrollArea>
                 <Combobox.EventsTarget>
                   <PillsInput.Field
                     onFocus={() => combobox.openDropdown()}

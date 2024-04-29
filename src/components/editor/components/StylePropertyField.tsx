@@ -72,7 +72,6 @@ export default function StylePropertyField({
 
   // Handle change in select value
   const handleSizeChange = (newValue: any) => {
-
     // @ts-ignore
     prop.upUnit(newValue);
 
@@ -111,7 +110,8 @@ export default function StylePropertyField({
       className="col-span-1"
       // default={valueWithDef}
       // @ts-ignore
-      placeholder={defValue}
+      defaultValue=""
+      placeholder={valueWithDef}
       value={valueString}
       onChange={onChangeText}
       size="xs"
