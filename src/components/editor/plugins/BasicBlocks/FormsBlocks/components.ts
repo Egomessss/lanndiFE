@@ -67,8 +67,8 @@ export default function(editor: Editor) {
           type: 'select',
           name: 'method',
           options: [
-            {value: 'get', name: 'GET'},
-            {value: 'post', name: 'POST'},
+            { id: '1', value: 'get', name: 'GET' },
+            { id: '2', value: 'post', name: 'POST' },
           ],
         }, {
           name: 'action',
@@ -81,12 +81,9 @@ export default function(editor: Editor) {
         // The submit of the form might redirect the user from the editor so
         // we should always prevent the default here.
         submit: (e: Event) => e.preventDefault(),
-      } as any
+      } as any,
     },
   });
-
-
-
 
 
   // INPUT
@@ -107,13 +104,13 @@ export default function(editor: Editor) {
             type: 'select',
             name: 'type',
             options: [
-              { value: 'text' },
-              { value: 'email' },
-              { value: 'password' },
-              { value: 'number' },
-            ]
+              { id: '1', value: 'text' },
+              { id: '2', value: 'email' },
+              { id: '3', value: 'password' },
+              { id: '4', value: 'number' },
+            ],
           },
-          requiredTrait
+          requiredTrait,
         ],
       },
     },
@@ -123,11 +120,8 @@ export default function(editor: Editor) {
       updateAttributes() {
         this.el.setAttribute('autocomplete', 'off');
       },
-    }
+    },
   });
-
-
-
 
 
   // TEXTAREA
@@ -142,14 +136,11 @@ export default function(editor: Editor) {
         traits: [
           nameTrait,
           placeholderTrait,
-          requiredTrait
-        ]
+          requiredTrait,
+        ],
       },
     },
   });
-
-
-
 
 
   // OPTION
@@ -166,9 +157,6 @@ export default function(editor: Editor) {
       },
     },
   });
-
-
-
 
 
   // SELECT
@@ -188,9 +176,9 @@ export default function(editor: Editor) {
           nameTrait,
           {
             name: 'options',
-            type: 'select-options'
+            type: 'select-options',
           },
-          requiredTrait
+          requiredTrait,
         ],
       },
     },
@@ -201,9 +189,6 @@ export default function(editor: Editor) {
       } as any,
     },
   });
-
-
-
 
 
   // CHECKBOX
@@ -220,7 +205,7 @@ export default function(editor: Editor) {
           nameTrait,
           valueTrait,
           requiredTrait,
-          checkedTrait
+          checkedTrait,
         ],
       },
     },
@@ -241,9 +226,6 @@ export default function(editor: Editor) {
   });
 
 
-
-
-
   // RADIO
   Components.addType(typeRadio, {
     extend: typeCheckbox,
@@ -255,9 +237,6 @@ export default function(editor: Editor) {
       },
     },
   });
-
-
-
 
 
   Components.addType(typeButton, {
@@ -277,15 +256,15 @@ export default function(editor: Editor) {
             type: 'select',
             name: 'type',
             options: [
-              { value: 'submit' },
-              { value: 'reset' },
-            ]
-        }]
+              { id: '1', value: 'submit' },
+              { id: '2', value: 'reset' },
+            ],
+          }],
       },
 
       init() {
         const comps = this.components();
-        const tChild =  comps.length === 1 && comps.models[0];
+        const tChild = comps.length === 1 && comps.models[0];
         const chCnt = (tChild && tChild.is('textnode') && tChild.get('content')) || '';
         const text = chCnt || this.get('text');
         this.set('text', text);
@@ -304,9 +283,6 @@ export default function(editor: Editor) {
       } as any,
     },
   });
-
-
-
 
 
   // LABEL

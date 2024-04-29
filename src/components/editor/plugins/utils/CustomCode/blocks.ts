@@ -12,6 +12,7 @@ const CustomCode =  (editor: Editor, { blockCustomCode }: PluginOptions = {}) =>
     category: 'Extra',
     activate: true,
     select: true,
+
     content: { type: typeCustomCode },
     ...blockCustomCode
   });

@@ -23,7 +23,7 @@ const ScriptEditor = (editor, opts = {}) => {
             onError: err => console.log('error', err),
 
             // Title for the custom code modal
-            modalTitle: 'Script',
+            modalTitle: 'Javascript Editor',
 
             // Textarea label
             codeLabel: 'JS',

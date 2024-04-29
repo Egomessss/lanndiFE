@@ -167,7 +167,7 @@ import { BlockProperties, Editor } from 'grapesjs';
         display:flex;
         flex-direction:column; 
         width: 100%;
-        height:100px;
+        height:300px;
         gap:8px 8px;
         padding:10px 10px 10px 10px;
        }

@@ -72,11 +72,11 @@ export default function DomainConfiguration(props: { plan: string; domainData: S
 
       </div>
       {plan !== 'free' ? <>
-        {data.success ? <Card my="5" shadow="sm" padding="lg">
-            {data.data?.dns_pointed_at && <div className="flex items-center gap-2"><p>DNS: Verified</p></div>}
-            {data.data?.has_ssl && <div className="flex items-center gap-2"><p>SSL: Active</p></div>}
-            <p>Last Checked: {data.data?.last_monitored_humanized}</p>
-            <p>Status: {data.data?.status_message}</p>
+        {data?.success ? <Card my="5" shadow="sm" padding="lg">
+            {data?.data?.dns_pointed_at && <div className="flex items-center gap-2"><p>DNS: Verified</p></div>}
+            {data?.data?.has_ssl && <div className="flex items-center gap-2"><p>SSL: Active</p></div>}
+            <p>Last Checked: {data?.data?.last_monitored_humanized}</p>
+            <p>Status: {data?.data?.status_message}</p>
           </Card> :
           <Alert my="5" icon={<IconAlertCircle size={16} />} title="Error!" color="red">{data?.message}</Alert>}
 

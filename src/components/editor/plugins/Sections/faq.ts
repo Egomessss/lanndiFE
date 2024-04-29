@@ -84,7 +84,7 @@ const faqs = (editor: Editor) => {
 }
 
 .faq-content {
-  margin: 0 auto;
+  margin: 0 auto 0 auto;
 }
 
 .faq-question {

@@ -30,7 +30,7 @@ const testimonials = (editor: Editor) => {
         <div id="inea73" class="lnd-grid-column testimonial-item">
           <div id="i2d7qp" class="lnd-grid-row">
             <div id="idva29" class="lnd-grid-column">
-              <img src="https://source.unsplash.com/random/200x200/?profile,person,business" id="ia7pcr"/>
+              <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+"/>
             </div>
             <div id="i4djop" class="lnd-grid-column">
               <h4 id="iqroa4" class="lnd-heading">Full name
@@ -46,7 +46,7 @@ const testimonials = (editor: Editor) => {
         <div id="idndjn" class="lnd-grid-column testimonial-item">
           <div id="ish0zj" class="lnd-grid-row">
             <div id="inucqu" class="lnd-grid-column">
-              <img src="https://source.unsplash.com/random/200x200/?profile,person,business" id="ixzdlj"/>
+              <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+"/>
             </div>
             <div id="iuk8ib" class="lnd-grid-column">
               <h4 id="i04ztt" class="lnd-heading">Full name
@@ -286,7 +286,7 @@ const testimonials = (editor: Editor) => {
     <div id="inea73" class="lnd-grid-column testimonial-item">
       <div id="i2d7qp" class="lnd-grid-row">
         <div id="idva29" class="lnd-grid-column">
-          <img src="https://source.unsplash.com/random/200x200/?profile,person,business" id="ia7pcr"/>
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+"/>
         </div>
         <div id="i4djop" class="lnd-grid-column">
           <h4 id="iqroa4" class="lnd-heading">Full name
