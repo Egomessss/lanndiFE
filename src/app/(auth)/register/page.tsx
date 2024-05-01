@@ -43,14 +43,14 @@ const Page = () => {
         const response = await axios.post('/register', form.values);
         return response.data;
       },
-      onSuccess:
-        () => {
-          const twoWeeksInSeconds = 60 * 60 * 24 * 14;
-          // On successful login, set a cookie to last for 2 weeks
-          document.cookie = `isLoggedIn=true; path=/; max-age=${twoWeeksInSeconds}; secure; samesite=lax`;
-          router.push('/plans');
-        }
-      ,
+    onSuccess:
+      () => {
+        const thirtyDaysInSeconds = 60 * 60 * 24 * 30;
+        // On successful login, set a cookie to last for 30 days
+        document.cookie = `isLoggedIn=true; path=/; max-age=${thirtyDaysInSeconds}; secure; samesite=lax`;
+        router.push('/');
+      }
+    ,
       onError:
         (error) => {
           console.log('error', error);

@@ -95,8 +95,9 @@ const CreateSiteModal = () => {
       },
       onSuccess: (data) => {
         console.log('response', data);
-        const twoWeeksInSeconds = 60 * 60 * 24 * 14;
-        document.cookie = `isLoggedIn=true; path=/; max-age=${twoWeeksInSeconds}; secure; samesite=lax`;
+        const thirtyDaysInSeconds = 60 * 60 * 24 * 30;
+        // On successful login, set a cookie to last for 30 days
+        document.cookie = `isLoggedIn=true; path=/; max-age=${thirtyDaysInSeconds}; secure; samesite=lax`;
         router.push(`/editor/${data.slug}`);
         notifications.show({
           title: 'Success',
@@ -138,7 +139,8 @@ const CreateSiteModal = () => {
     return (
       <>
         <Tooltip label="Register before you can save your data">
-          <Button rightSection={<IconDeviceFloppy size="1rem" />} size="xs" loading={isPending} onClick={open}>Sign Up To Save Your Data</Button>
+          <Button rightSection={<IconDeviceFloppy size="1rem" />} size="xs" loading={isPending} onClick={open}>Sign Up To
+            Save Your Data</Button>
           {/*<ActionIcon  className="animate-pulse"*/}
           {/*            variant="subtle">*/}
           {/*  <IconDeviceFloppy size="1rem" />*/}

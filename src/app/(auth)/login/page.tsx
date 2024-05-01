@@ -46,9 +46,9 @@ const Login = () => {
       },
       onSuccess:
         () => {
-          const fourHoursInSeconds = 60 * 60 * 4;
-          // On successful login, set a cookie to last for 4 hours
-          document.cookie = `isLoggedIn=true; path=/; max-age=${fourHoursInSeconds}; secure; samesite=lax`;
+          const thirtyDaysInSeconds = 60 * 60 * 24 * 30;
+          // On successful login, set a cookie to last for 30 days
+          document.cookie = `isLoggedIn=true; path=/; max-age=${thirtyDaysInSeconds}; secure; samesite=lax`;
           router.push('/');
         }
       ,
@@ -56,17 +56,26 @@ const Login = () => {
         (error) => {
           console.log('error', error);
           // @ts-ignore
-          if (error.response.status === 422) {
-            // Handle Laravel validation errors
+          if (error.response) {
             // @ts-ignore
-            form.setErrors(error.response.data.errors || {});
-          } else {
-            notifications.show({
-              title: 'Error',
-              message: error.toString(),
-              // message: 'Something went wrong... Please try again!',
-              color: 'red',
-            });
+            const status = error.response.status;
+            if (status === 422) {
+              // Handle Laravel validation errors
+              // @ts-ignore
+              form.setErrors(error.response.data.errors || {});
+            } else if (status === 405 || status === 419) {
+              notifications.show({
+                title: 'Error',
+                message: 'An error occurred. Please try again or clear your browser cookies.',
+                color: 'red',
+              });
+            } else {
+              notifications.show({
+                title: 'Error',
+                message: error.toString(),
+                color: 'red',
+              });
+            }
           }
         },
     },
