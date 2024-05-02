@@ -43,7 +43,7 @@ export const HeadingTypeSelector = () => {
     if (selectedElement) {
 
       const newHeading = selectedElement.replaceWith(`<${selectedValue} >${selectedElementInnerHtml}</${selectedValue}>`);
-
+     setValue(selectedValue);
       editor.select(newHeading);
     }
   };

@@ -43,7 +43,6 @@ interface StylePropertyFieldProps extends React.HTMLProps<HTMLDivElement> {
 }
 
 
-
 export default function StylePropertyField({
                                              prop,
                                              ...rest
@@ -101,8 +100,6 @@ export default function StylePropertyField({
   const valueString = hasValue ? value : '';
   const valueWithDef = hasValue ? value : defValue;
   // console.log('property', prop.getName(), 'value', value);
-
-
 
 
   let inputToRender = (
@@ -230,7 +227,7 @@ export default function StylePropertyField({
                     size="xs">Pick</Button>
           </Popover.Target>
           <Popover.Dropdown>
-            <ColorPicker className="text-xs" hidePresets  hideAdvancedSliders hideColorGuide height={180} width={280}
+            <ColorPicker className="text-xs" hidePresets hideAdvancedSliders hideColorGuide height={180} width={280}
                          value={value} onChange={onChange} />
           </Popover.Dropdown>
         </Popover>
@@ -266,11 +263,10 @@ export default function StylePropertyField({
         className={`mb-2 flex items-center justify-between w-full text-xs  whitespace-nowrap  ${canClear ? 'text-blue-300' : ''}`}
       >
         <div className="flex-grow capitalize flex gap-1 items-center  ">
-          <span>{prop.getLabel()}</span>
-          <Tooltip position="left" className="cursor-pointer" multiline w={500} openDelay={180} color="gray"
+          {/* if the prop.attributes.tooltip doesnt exist dont render the tooltip*/}
+          <Tooltip position="left" className="cursor-pointer" multiline w={200} openDelay={180} color="gray"
             //@ts-ignore
-                   label={`${prop.attributes.tooltip} * css -${style}*`}><IconExclamationCircle
-            size="0.7rem" /></Tooltip>
+                   label={`${prop.attributes.tooltip} * css -${style}*`}><span>{prop.getLabel()}</span></Tooltip>
         </div>
         {canClear && (
           <ActionIcon size="xs" variant="subtle" onClick={() => prop.clear()}>

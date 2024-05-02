@@ -12,11 +12,7 @@ import UtilsPlugin from '@/components/editor/plugins/utils/UtilsPlugin/utils-plu
 import GoogleIcons from '@/components/editor/plugins/utils/GoogleIcons';
 import ScriptEditor from '@/components/editor/plugins/utils/ScriptEditor';
 import PostCss from '../plugins/utils/PostCss';
-import { starterTemplate, styleStarterTemplate } from '@/components/editor/templates/Starter';
-import CssEditor from '@/components/editor/plugins/utils/CssEditor';
 import { styles } from '@/components/editor/utils/styles';
-import FormBlocks from '@/components/editor/plugins/BasicBlocks/FormsBlocks';
-import Accordion from '@/components/editor/plugins/BasicBlocks/Accordion';
 import Tabs from '@/components/editor/plugins/BasicBlocks/Tabs';
 
 
