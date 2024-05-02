@@ -272,11 +272,11 @@ export default function CustomTraitManager({
         <Button component={Link} href="/plans" size="xs" mb="4">
           Subscribe Now
         </Button></>}
-      <Divider className="w-full"  label="Custom attributes" />
-      <CustomAttributes />
+      {/*<Divider className="w-full"  label="Custom attributes" />*/}
+      {/*<CustomAttributes />*/}
       <Divider className="w-full"  label="Extra Customization" />
       {['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(value!) && <HeadingTypeSelector />}
-      <HtmlElementSelector />
+      {/*<HtmlElementSelector />*/}
       {value === 'svg' && <SvgContentCode />}
       {
         user?.subscription !== 'free' ? <>
