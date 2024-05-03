@@ -39,7 +39,7 @@ export default function RootLayout({
           </SidePanelProvider>
         </ModalsProvider>
       </MantineProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/*<ReactQueryDevtools initialIsOpen={false} />*/}
     </TanstackProvider>
     </body>
     </html>

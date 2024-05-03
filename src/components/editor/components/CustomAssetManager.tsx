@@ -11,6 +11,7 @@ import axios from '@/lib/axios';
 import { z } from 'zod';
 import { useParams, usePathname } from 'next/navigation';
 import { useAuth } from '@/hooks/auth';
+import RegisterUserModal from '@/app/demo/_components/RegisterUserModal';
 
 // export type CustomAssetManagerProps = Pick<
 //     AssetsResultProps,
@@ -135,10 +136,13 @@ function SubmitAsset() {
         // rightSection={<ActionIcon><IconPlus size="1rem"/> </ActionIcon>}
       />
       <p>or</p>
-      <Tooltip color="gray" label="Must be logged in to upload files">
+      {user ?
         <FileInput disabled={!user} size="xs" clearable placeholder="Add file"   {...form.getInputProps('fileValue')} />
-      </Tooltip>
-      {/*<Button size="xs">Log in</Button>*/}
+        : <div>
+          <Tooltip color="gray" label="Must be logged in to upload files">
+            <RegisterUserModal />
+          </Tooltip>
+        </div>}
     </div>
 
     <Button
