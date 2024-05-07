@@ -18,7 +18,7 @@ export default function TraitPropertyField({
         // console.log('value', value)
         trait.setValue(value)
     }
-
+    // console.log(trait);
     const handleButtonClick = () => {
         const command = trait.get('command')
         if (command) {
@@ -31,7 +31,11 @@ export default function TraitPropertyField({
     const type = trait.getType()
     const defValue = trait.getDefault() || trait.attributes.placeholder
     const value = trait.getValue()
-
+    const options = trait.getOptions().map((option) => ({
+        value: trait.getOptionId(option),
+        label: trait.getOptionLabel(option),
+    }))
+    console.log(options);
     let inputToRender = (
         <TextInput
             label={trait.getLabel()}
@@ -41,15 +45,10 @@ export default function TraitPropertyField({
             onChange={(event)=> trait.setValue(event.currentTarget.value)}
         />
     )
-    const data = trait.getOptions().map((option) => ({
-        value: trait.getOptionId(option),
-        label: trait.getOptionLabel(option),
-    }))
 
     // console.log('traitpropertyfield', value)
 
     switch (type) {
-
         case 'select':
             {
                 inputToRender = (
@@ -58,7 +57,7 @@ export default function TraitPropertyField({
                         size="xs"
                         value={value}
                         onChange={handleChange}
-                        data={data}
+                        data={options}
                     />
                 )
             }
@@ -82,7 +81,7 @@ export default function TraitPropertyField({
                     <Checkbox
                         label={trait.getLabel()}
                         size="xs"
-                        checked={value === '_blank'}
+                        checked={value}
                         onChange={(event) =>
                             trait.setValue(event.currentTarget.checked)
                         }
