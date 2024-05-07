@@ -87,7 +87,7 @@ export const demoEditorConfigOptions = () => ({
     TypographyBlocks,
     CoreBlocks,
     MediaBlocks,
-    ListBlocks,
+    // ListBlocks,
     // FormBlocks,
     // SemanticBlocks,
     // IntegrationsBlocks,
@@ -102,7 +102,7 @@ export const demoEditorConfigOptions = () => ({
     // FormBlocks,
     // Grid
     // Accordion,
-    Tabs
+    // Tabs
   ],
   styleManager:styles,
 

@@ -86,7 +86,7 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
     TypographyBlocks,
     CoreBlocks,
     MediaBlocks,
-    ListBlocks,
+    // ListBlocks,
     // IntegrationsBlocks,
     // ExtraBlocks,
     PostCss,
@@ -100,7 +100,7 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
     // FormBlocks,
     // Grid
     // Accordion,
-    Tabs
+    // Tabs
   ],
   styleManager:
   styles
