@@ -23,7 +23,7 @@ import {
   Tooltip,
 } from '@mantine/core';
 import { useEditor } from '../wrappers';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import {
   IconArrowDown,
   IconArrowUp,
@@ -50,25 +50,18 @@ export default function StylePropertyField({
 
   // get value from editor
   // when user input new value delay 1 sec after typing
-  // send new value after delay to editor
+  // send value after delay
 
   const editor = useEditor();
-  const timeoutRef = useRef<number | null>(null);
+
 
   const handleChange = (value: any) => {
-    if (timeoutRef.current !== null) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    timeoutRef.current = window.setTimeout(() => {
-      prop.upValue(value);
-    }, 2000);
+    prop.upValue(value);
   };
 
   const onChange = (ev: any) => {
     handleChange(ev);
   };
-
 
   const onChangeNumber = (value: string | number) => {
     handleChange(value);
@@ -117,9 +110,9 @@ export default function StylePropertyField({
       className="col-span-1"
       // default={valueWithDef}
       // @ts-ignore
-      defaultValue=""
+      defaultValue={valueString}
       placeholder={valueWithDef}
-      value={valueString}
+      // value={valueString}
       onChange={onChangeText}
       size="xs"
 
@@ -136,7 +129,7 @@ export default function StylePropertyField({
           stepHoldDelay={500}
           stepHoldInterval={(t) => Math.max(1000 / t ** 2, 25)}
           placeholder={defValue}
-          value={value}
+          defaultValue={value}
           onChange={onChangeNumber}
           rightSectionWidth={30}
           min={numberProp.getMin()}
