@@ -49,14 +49,14 @@ const Plans: React.FC<PlansData> = ({
       variantMonthly: 'indie-monthly',
       variantAnnual: 'indie-annually',
     },
-    {
-      name: 'Freelancer',
-      priceMonthly: 39,
-      priceAnnual: 390,
-      features: ['15 sites', '10 pages max', 'custom domain', 'custom code'],
-      variantMonthly: 'freelancer-monthly',
-      variantAnnual: 'freelancer-annually',
-    },
+    // {
+    //   name: 'Freelancer',
+    //   priceMonthly: 39,
+    //   priceAnnual: 390,
+    //   features: ['15 sites', '10 pages max', 'custom domain', 'custom code'],
+    //   variantMonthly: 'freelancer-monthly',
+    //   variantAnnual: 'freelancer-annually',
+    // },
     // {
     //   name: 'Freelancer',
     //   priceMonthly: 49,
@@ -128,7 +128,8 @@ const Plans: React.FC<PlansData> = ({
             checked={isAnnual}
             onChange={(event) => setIsAnnual(event.currentTarget.checked)}
           />
-          <p>Annual - 2 months free</p>
+          <p>Annual</p>
+          <Badge color="green"> 2 months free</Badge>
         </div>
       </div>
       {isError && <p className="text-red-500">There was an error with your request please try again</p>}

@@ -2,8 +2,15 @@
 
 
 import { useDisclosure } from '@mantine/hooks';
-import { ActionIcon, AppShell, Avatar, Burger, Button, Loader, Menu, NavLink, rem } from '@mantine/core';
-import { IconAdjustmentsDollar, IconCreditCard, IconHome2, IconLogout, IconUser } from '@tabler/icons-react';
+import { ActionIcon, AppShell, Avatar, Burger, Button, Loader, Menu, NavLink, rem, ScrollArea } from '@mantine/core';
+import {
+  IconAdjustmentsDollar, IconAt,
+  IconCreditCard,
+  IconHome2,
+  IconLogout,
+  IconMessage,
+  IconUser,
+} from '@tabler/icons-react';
 import Link from 'next/link';
 import useUser from '../../hooks/use-user';
 import { useMutation } from '@tanstack/react-query';
@@ -109,36 +116,56 @@ const SiteLayout = ({ children }) => {
 
       </AppShell.Header>
       <AppShell.Navbar>
+        <AppShell.Section grow my="md" component={ScrollArea}>
+          <NavLink
+            component={Link}
+            href="/"
+            label="Sites"
+            leftSection={<IconHome2 size="1rem" stroke={1.5} />}
+          />
+          <NavLink
+            component={Link}
+            href="/plans"
+            label="Plans"
+            leftSection={<IconAdjustmentsDollar size="1rem" stroke={1.5} />}
+          />
+        </AppShell.Section>
         <NavLink
-          component={Link}
-          href="/"
-          label="Sites"
-          leftSection={<IconHome2 size="1rem" stroke={1.5} />}
+          color="green"
+          active
+          component="a"
+          href="mailto:help@gmail.com"
+          label={<div className="flex flex-col gap-2"><p>
+            Contact Us
+          </p>
+            <p>help@lanndi.com</p>
+          </div>}
+          childrenOffset={28}
+          leftSection={<IconAt size="1rem" stroke={1.5} />}
         />
         <NavLink
-          component={Link}
-          href="/plans"
-          label="Plans"
-          leftSection={<IconAdjustmentsDollar size="1rem" stroke={1.5} />}
+          color="blue"
+          active
+          component="a"
+          href="/profile"
+          label="Provide Feedback"
+          leftSection={<IconMessage size="1rem" stroke={1.5} />}
         />
-        <NavLink
+        <AppShell.Section> <NavLink
           component={Link}
           href="/profile"
           label="Profile Settings"
           leftSection={<IconUser size="1rem" stroke={1.5} />}
         />
-        <NavLink
-          component={Button}
-          loading={isPending}
-          onClick={handleGetCustomerPortal}
-          label="Customer Portal"
-          leftSection={<IconCreditCard size="1rem" stroke={1.5} />}
-        />
-        {/*<NavLink*/}
-        {/*    href="/account-settings"*/}
-        {/*    label="Account Settings"*/}
-        {/*    leftSection={<IconSettings size="1rem" stroke={1.5} />}*/}
-        {/*/>*/}
+          <NavLink
+            component={Button}
+            loading={isPending}
+            onClick={handleGetCustomerPortal}
+            label="Customer Portal"
+            leftSection={<IconCreditCard size="1rem" stroke={1.5} />}
+          />
+        </AppShell.Section>
+
       </AppShell.Navbar>
       <AppShell.Main>{children}</AppShell.Main>
     </AppShell>

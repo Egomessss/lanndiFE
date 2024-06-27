@@ -23,7 +23,7 @@ import {
   Tooltip,
 } from '@mantine/core';
 import { useEditor } from '../wrappers';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   IconArrowDown,
   IconArrowUp,
@@ -48,17 +48,27 @@ export default function StylePropertyField({
                                              ...rest
                                            }: any) {
 
+  // get value from editor
+  // when user input new value delay 1 sec after typing
+  // send new value after delay to editor
 
   const editor = useEditor();
-
+  const timeoutRef = useRef<number | null>(null);
 
   const handleChange = (value: any) => {
-    prop.upValue(value);
+    if (timeoutRef.current !== null) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = window.setTimeout(() => {
+      prop.upValue(value);
+    }, 2000);
   };
 
   const onChange = (ev: any) => {
     handleChange(ev);
   };
+
 
   const onChangeNumber = (value: string | number) => {
     handleChange(value);
@@ -266,7 +276,8 @@ export default function StylePropertyField({
           {/* if the prop.attributes.tooltip doesnt exist dont render the tooltip*/}
           <Tooltip position="left" className="cursor-pointer" multiline w={200} openDelay={180} color="gray"
             //@ts-ignore
-                   label={`${prop.attributes.tooltip} * css -${style}*`}><span>{prop.getLabel()}</span></Tooltip>
+                   label={<div className="flex flex-col gap-2"><span>{prop.attributes.tooltip}</span>CSS property
+                     - {style}<span></span></div>}><span>{prop.getLabel()}</span></Tooltip>
         </div>
         {canClear && (
           <ActionIcon size="xs" variant="subtle" onClick={() => prop.clear()}>

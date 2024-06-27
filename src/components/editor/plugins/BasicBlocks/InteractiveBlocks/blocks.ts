@@ -56,31 +56,25 @@ const InteractiveBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
       type: 'link',
       content: 'Link',
       traits: [
-        {
-          type: 'text',
-          label: 'id',
-          name: 'id',
-        },
+        // The href trait, for the URL
         {
           type: 'text',
           label: 'Target URL',
           name: 'href',
         },
-        // {
-        //   type: 'checkbox',
-        //   label: 'Open in new tab',
-        //   name: 'target',
-        //   valueTrue: '_blank',
-        //   valueFalse: '_self',
-        // },
+        // A select trait for additional IDs
         {
-          type: 'select',
-          label: 'Target',
+          type: 'text',
+          label: 'Select target ID',
+          name: 'select-id',
+        },
+        // A checkbox trait for opening the link in a new tab
+        {
+          type: 'checkbox',
+          label: 'Open in new tab',
           name: 'target',
-          options: [ // Array of options
-            { id: '_blank', label: 'Open in new tab'},
-            { id: '_self', label: 'Open in current tab'},
-          ],
+          valueTrue: '_blank',
+          valueFalse: '',
         },
       ],
     },
@@ -174,7 +168,7 @@ const InteractiveBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
             label: 'Open in new tab',
             name: 'target',
             valueTrue: '_blank',
-            valueFalse: '_self',
+            valueFalse: '',
           },
         ],
       },
