@@ -158,7 +158,7 @@ const SiteLayout = ({ children }) => {
           leftSection={<IconUser size="1rem" stroke={1.5} />}
         />
           <NavLink
-            component={Button}
+            // component={Button}
             loading={isPending}
             onClick={handleGetCustomerPortal}
             label="Customer Portal"

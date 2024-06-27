@@ -1,4 +1,3 @@
-
 import type { Metadata } from 'next';
 import './globals.css';
 import '@mantine/core/styles.css';
@@ -11,6 +10,7 @@ import TanstackProvider from '@/components/providers/TanstackProvider';
 import React from 'react';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { SidePanelProvider } from '@/contexts/SidePanelPreviewContext';
+import { CSPostHogProvider } from '@/contexts/PostHogProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -35,7 +35,9 @@ export default function RootLayout({
         <Notifications />
         <ModalsProvider>
           <SidePanelProvider>
-          {children}
+            {/*<CSPostHogProvider>*/}
+              {children}
+            {/*</CSPostHogProvider>*/}
           </SidePanelProvider>
         </ModalsProvider>
       </MantineProvider>
