@@ -145,70 +145,70 @@ const features = (editor: Editor) => {
     },
   });
 
-  editor.Blocks.add('feature-two', {
-    media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
-    label: 'Features Image Bottom',
-    category: 'sections-features',
-    select: true,
-    content: { type: 'feature-two' },
-  });
-
-  Components.addType('feature-two', {
-    model: {
-      defaults: {
-        // script: script,
-        droppable: false,
-        name: 'Features Image Bottom',
-        components: `  
-   <div class="block">
-    <h4 class="sub-heading" id="ic2u">Insert Your Sub-Heading
-    </h4>
-    <h1 class="heading-one" id="i1cu">Insert Your Heading Here
-    </h1>
-    <p class="paragraph" id="iab4">Insert your description here
-    </p>
-    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="image"/>
-  </div>`,
-        styles: `
-       .block{
-  height:649px;
-  max-height:100%;
-  width:100%;
-  text-align:center;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  row-gap:1rem;
-}
-
-.sub-heading{
-  margin-top:0;
-  margin-bottom:0;
-}
-.heading-one{
-  margin-top:0;
-  margin-bottom:0;
-  font-size:3rem;
-}
-
-
-.paragraph{
-  margin-top:0;
-  margin-bottom:0;
-}
-.image{
-  width:721px;
-  height:403px;
-  border-top-left-radius:8px;
-  border-top-right-radius:8px;
-  border-bottom-right-radius:8px;
-  border-bottom-left-radius:8px;
-}
-`,
-      },
-    },
-  });
+//   editor.Blocks.add('feature-two', {
+//     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
+//     label: 'Features Image Bottom',
+//     category: 'sections-features',
+//     select: true,
+//     content: { type: 'feature-two' },
+//   });
+//
+//   Components.addType('feature-two', {
+//     model: {
+//       defaults: {
+//         // script: script,
+//         droppable: false,
+//         name: 'Features Image Bottom',
+//         components: `
+//    <div class="block">
+//     <h4 class="sub-heading" id="ic2u">Insert Your Sub-Heading
+//     </h4>
+//     <h1 class="heading-one" id="i1cu">Insert Your Heading Here
+//     </h1>
+//     <p class="paragraph" id="iab4">Insert your description here
+//     </p>
+//     <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="image"/>
+//   </div>`,
+//         styles: `
+//        .block{
+//   height:649px;
+//   max-height:100%;
+//   width:100%;
+//   text-align:center;
+//   display:flex;
+//   flex-direction:column;
+//   justify-content:center;
+//   align-items:center;
+//   row-gap:1rem;
+// }
+//
+// .sub-heading{
+//   margin-top:0;
+//   margin-bottom:0;
+// }
+// .heading-one{
+//   margin-top:0;
+//   margin-bottom:0;
+//   font-size:3rem;
+// }
+//
+//
+// .paragraph{
+//   margin-top:0;
+//   margin-bottom:0;
+// }
+// .image{
+//   width:721px;
+//   height:403px;
+//   border-top-left-radius:8px;
+//   border-top-right-radius:8px;
+//   border-bottom-right-radius:8px;
+//   border-bottom-left-radius:8px;
+// }
+// `,
+//       },
+//     },
+//   });
 
   editor.Blocks.add('feature-three', {
     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,

@@ -70,11 +70,13 @@ const InteractiveBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
         },
         // A checkbox trait for opening the link in a new tab
         {
-          type: 'checkbox',
-          label: 'Open in new tab',
+          type: 'select',
+          label: 'Target tab',
           name: 'target',
-          valueTrue: '_blank',
-          valueFalse: '',
+          options: [ // Array of options
+            { id: '_blank', label: 'Open in new tab'},
+            { id: '_self', label: 'Open in current tab'},
+          ]
         },
       ],
     },
@@ -164,11 +166,13 @@ const InteractiveBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
           },
           // A checkbox trait for opening the link in a new tab
           {
-            type: 'checkbox',
-            label: 'Open in new tab',
+            type: 'select',
+            label: 'Target tab',
             name: 'target',
-            valueTrue: '_blank',
-            valueFalse: '',
+            options: [ // Array of options
+              { id: '_blank', label: 'Open in new tab'},
+              { id: '_self', label: 'Open in current tab'},
+            ]
           },
         ],
       },
