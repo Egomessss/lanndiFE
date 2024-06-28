@@ -75,7 +75,7 @@ const Page = () => {
     form.validate();
     const isValid = form.isValid();
     if (isValid) {
-      // register();
+      register();
     }
   };
 
@@ -96,7 +96,7 @@ const Page = () => {
       <Anchor component={Link} size="sm" href="/login">
         Already registered?
       </Anchor>
-      {/*<Button loading={isPending} type="submit">Register</Button>*/}
+      <Button loading={isPending} type="submit">Register</Button>
     </form>
   );
 };
