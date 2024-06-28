@@ -46,13 +46,15 @@ export const createAtRule = (node: AtRule, result: ParsedRule[]) => {
   const isNested = ['media', 'keyframes'].indexOf(name) >= 0;
 
   if (isNested) {
-    node.nodes.forEach(node => {
-      result.push({
-        ...createRule(node as Rule),
-        atRule: name,
-        params,
-      })
-    });
+    if (node.nodes) {
+      node.nodes.forEach(node => {
+        result.push({
+          ...createRule(node as Rule),
+          atRule: name,
+          params,
+        });
+      });
+    }
   } else {
     result.push({
       // @ts-ignore

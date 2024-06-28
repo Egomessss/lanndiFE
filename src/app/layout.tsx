@@ -8,9 +8,8 @@ import { ModalsProvider } from '@mantine/modals';
 import { Notifications } from '@mantine/notifications';
 import TanstackProvider from '@/components/providers/TanstackProvider';
 import React from 'react';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { SidePanelProvider } from '@/contexts/SidePanelPreviewContext';
-import { CSPostHogProvider } from '@/contexts/PostHogProvider';
+// import { CSPostHogProvider } from '@/contexts/PostHogProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
