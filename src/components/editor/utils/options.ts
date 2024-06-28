@@ -3,7 +3,6 @@ import LayoutBlocks from '../plugins/BasicBlocks/LayoutBlocks';
 import TypographyBlocks from '../plugins/BasicBlocks/TypographyBlocks';
 import CoreBlocks from '../plugins/BasicBlocks/InteractiveBlocks';
 import MediaBlocks from '../plugins/BasicBlocks/MediaBlocks';
-import ListBlocks from '../plugins/BasicBlocks/ListBlocks';
 import CustomCode from '@/components/editor/plugins/utils/CustomCode';
 import BorderStyle from '@/components/editor/plugins/utils/BorderStyle';
 import Sections from '@/components/editor/plugins/Sections';
@@ -13,7 +12,6 @@ import GoogleIcons from '@/components/editor/plugins/utils/GoogleIcons';
 import ScriptEditor from '@/components/editor/plugins/utils/ScriptEditor';
 import PostCss from '../plugins/utils/PostCss';
 import { styles } from '@/components/editor/utils/styles';
-import Tabs from '@/components/editor/plugins/BasicBlocks/Tabs';
 
 
 export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: boolean) => ({

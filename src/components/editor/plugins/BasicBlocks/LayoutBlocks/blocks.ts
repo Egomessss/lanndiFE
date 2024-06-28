@@ -1,15 +1,11 @@
 import { BlockProperties, Editor } from 'grapesjs';
 
 
- const LayoutBlocks = (editor: Editor, opts: any) => {
+const LayoutBlocks = (editor: Editor, opts: any) => {
 
   const {
     category,
     blocks,
-    stylePrefix,
-    flexGrid,
-    rowHeight,
-    addBasicStyle,
   } = opts;
 
   const commonBlockProps: Partial<BlockProperties> = {
@@ -19,15 +15,14 @@ import { BlockProperties, Editor } from 'grapesjs';
 
   const bm = editor.BlockManager;
 
-
   const toAdd = (name: string) => blocks.indexOf(name) >= 0;
 
   editor.DomComponents.addType('block', {
     isComponent: el => {
-        // This will treat every 'div' element as a 'container' component
-        if (el.tagName === 'DIV') {
-            return { type: 'block' }
-        }
+      // This will treat every 'div' element as a 'container' component
+      if (el.tagName === 'DIV') {
+        return { type: 'block' };
+      }
     },
     model: {
       tagName: 'div',
@@ -36,18 +31,18 @@ import { BlockProperties, Editor } from 'grapesjs';
         resizable: true,
         droppable: true,
         // Define default properties for your container component
-        attributes: { class: 'block' },
+        // attributes: { class: 'block' },
         // Avoid defining 'components' here to prevent recursive nesting of containers
-        styles: `
-                .block {
-                   height: 80px;
-                    max-height: 100%;
-                    width: 100%;
-                }
-                `,
+        style: {
+          height: '80px',
+          'max-height': '100%',
+          width: '100%',
+        }
+        ,
       },
     },
-  });
+  })
+  ;
 
 // When adding a 'container' block
   toAdd('block') &&
@@ -60,8 +55,6 @@ import { BlockProperties, Editor } from 'grapesjs';
       // Content for the container, avoid nesting containers inside each other
     },
   });
-
-
 
 
   editor.DomComponents.addType('container', {
@@ -81,16 +74,15 @@ import { BlockProperties, Editor } from 'grapesjs';
         attributes: { class: 'container' },
         components: [{ type: 'block' }],
         // Avoid defining 'components' here to prevent recursive nesting of containers
-        styles: `
-                .container{
-                 height: 100px;
-                  width: 100%;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  padding: 10px 10px 10px 10px;
-                }
-                `,
+        style: {
+          height: '100px',
+          width: '100%',
+          display: 'flex',
+          'align-items': 'center',
+          'justify-content': 'center',
+          padding: '10px 10px 10px 10px',
+        }
+        ,
       },
     },
   });
