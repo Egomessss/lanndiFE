@@ -33,11 +33,11 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
         // Define default properties for your container component
         // attributes: { class: 'block' },
         // Avoid defining 'components' here to prevent recursive nesting of containers
-        style: {
-          height: '80px',
-          'max-height': '100%',
-          width: '100%',
-        }
+        styles: `.block {
+          height: 80px;
+          max-height: 100%;
+  width: 100%;
+}`
         ,
       },
     },
@@ -66,22 +66,22 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
     // },
     model: {
       defaults: {
-        tagName: 'div',
         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-container" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 4v.01" /><path d="M20 20v.01" /><path d="M20 16v.01" /><path d="M20 12v.01" /><path d="M20 8v.01" /><path d="M8 4m0 1a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1z" /><path d="M4 4v.01" /><path d="M4 20v.01" /><path d="M4 16v.01" /><path d="M4 12v.01" /><path d="M4 8v.01" /></svg>`,
         resizable: true,
         droppable: true,
         // Define default properties for your container component
-        // attributes: { class: 'container' },
+        attributes: { class: 'container' },
         components: [{ type: 'block' }],
         // Avoid defining 'components' here to prevent recursive nesting of containers
-        style: {
-          height: '100px',
-          width: '100%',
-          display: 'flex',
-          'align-items': 'center',
-          'justify-content': 'center',
-          padding: '10px 10px 10px 10px',
-        }
+        styles: `
+                .container{
+                 height: 100px;
+                  width: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  padding: 10px 10px 10px 10px;
+                }`
         ,
       },
     },
@@ -91,7 +91,7 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
   toAdd('container') &&
   bm.add('container', {
     ...commonBlockProps,
-    label: 'Container',
+    label: opts.labelContainer,
     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-container" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 4v.01" /><path d="M20 20v.01" /><path d="M20 16v.01" /><path d="M20 12v.01" /><path d="M20 8v.01" /><path d="M8 4m0 1a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1z" /><path d="M4 4v.01" /><path d="M4 20v.01" /><path d="M4 16v.01" /><path d="M4 12v.01" /><path d="M4 8v.01" /></svg>`, // Your SVG icon
     content: {
       type: 'container',
@@ -103,7 +103,7 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
   toAdd('columns') &&
   bm.add('columns', {
     ...commonBlockProps,
-    label: 'Rows',
+    label: opts.labelRows,
     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-rows" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 12l16 0" /></svg>`,
     content: { type: 'columns' },
   });
@@ -141,7 +141,7 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
   toAdd('rows') &&
   bm.add('rows', {
     ...commonBlockProps,
-    label: 'Columns',
+    label: opts.labelColumns,
     media: ` <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-columns" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M12 4l0 16" /></svg>`,
     content: { type: 'rows' },
   });
@@ -208,7 +208,7 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
   toAdd('grid') &&
   bm.add('grid', {
     ...commonBlockProps,
-    label: 'Grid',
+    label: opts.labelGrid,
     category: 'Layout',
     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-grid" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /></svg>`,
     content: { type: 'grid' },
