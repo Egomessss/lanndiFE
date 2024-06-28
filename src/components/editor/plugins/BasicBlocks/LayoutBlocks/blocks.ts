@@ -71,7 +71,7 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
         resizable: true,
         droppable: true,
         // Define default properties for your container component
-        attributes: { class: 'container' },
+        // attributes: { class: 'container' },
         components: [{ type: 'block' }],
         // Avoid defining 'components' here to prevent recursive nesting of containers
         style: {
