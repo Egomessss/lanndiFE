@@ -44,6 +44,7 @@ function VerifyEmail({ user }: { user: User }) {
         <Alert variant="light" color="red" title="Alert title" icon={<IconInfoCircle size="1rem" />}>
           <div className="flex items-center gap-4 flex-col">
             <p>Verify your email to be able to publish your website!</p>
+            <p>Check your spam folder if you don't see the email right away!</p>
             {status === 'verification-link-sent' && (
               <p>
                 A new verification link has been sent to the email address
