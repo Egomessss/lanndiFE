@@ -50,14 +50,14 @@ export const demoEditorConfigOptions = () => ({
       {
         id: 'tablet',
         name: 'Tablet',
-        width: '800px',
-        widthMedia: '810px',
+        width: '700px',
+        widthMedia: '710px',
       },
       {
         id: 'mobile',
         name: 'Mobile',
-        width: '380px',
-        widthMedia: '390px',
+        width: '420px',
+        widthMedia: '430px',
       },
       // { id: 'fit', name: 'Fit To Screen', width: '' },
     ],
