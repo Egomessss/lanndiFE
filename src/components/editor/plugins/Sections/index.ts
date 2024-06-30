@@ -13,13 +13,13 @@ import loadCtas from './ctas';
 const SectionBlocks: Plugin = (editor) => {
 
     loadNavbars(editor);
-    loadHeros(editor);
-    loadFeatures(editor);
-    loadTestimonials(editor);
-    loadCtas(editor);
-    loadPricings(editor);
-    loadFaqs(editor);
-    loadFooters(editor);
+    // loadHeros(editor);
+    // loadFeatures(editor);
+    // loadTestimonials(editor);
+    // loadCtas(editor);
+    // loadPricings(editor);
+    // loadFaqs(editor);
+    // loadFooters(editor);
 };
 
 export default SectionBlocks;

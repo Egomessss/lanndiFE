@@ -137,6 +137,7 @@ const navbars = (editor: Editor) => {
         components: [
           {
             type: 'link',
+            content:'Brand',
             attributes: { class: `${navbarPfx}-brand`, href: '/' },
           },
           { type: idBurgerMenu },

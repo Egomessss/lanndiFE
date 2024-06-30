@@ -108,6 +108,7 @@ const footers = (editor: Editor) => {
 </footer>
     `,
         styles: `.footer {
+        font-family: sans-serif;
   display: flex;
   flex-flow: row wrap;
   padding: 30px 30px 20px 30px;
@@ -126,7 +127,7 @@ const footers = (editor: Editor) => {
 }
 
 .footer__logo {
-  font-family: 'Pacifico', cursive;
+  
   font-weight: 400;
   text-transform: lowercase;
   font-size: 1.5rem;
@@ -249,121 +250,40 @@ const footers = (editor: Editor) => {
   Components.addType('footer-two', {
     model: {
       defaults: {
-        droppable: false,
         name: 'Footer One',
-        attributes: { class: 'footer-one' },
-        components: `  <!-- footer section start -->
-   <footer class="footer">
-  <div class="footer__redes">
-    <ul class="footer__redes-wrapper">
-      <li>
-        <a href="#" class="footer__link">
-      
-        <span>facebook</span>  
-        </a>
-      </li>
-      <li>
-        <a href="#" class="footer__link">
-        
-            <span>twitter</span>  
-        </a>
-      </li>
-      <li>
-        <a href="#" class="footer__link">
-    
-            <span>instagram</span>  
-        </a>
-      </li>
-      <li>
-        <a href="#" class="footer__link">
-     
-           <span>youtube</span>  
-        </a>
-      </li>
-    </ul>
-  </div>
-  <div class="separador"></div>
-  <p class="footer__texto">Copyright @ 2024</p>
-</footer>
-    <!-- footer copy right section end -->`,
-        styles: `img {
-\t width: 100%;
-\t vertical-align: top;
+        // attributes: { class: 'footer-one' },
+        components: `<div id="i7j2">
+    <div id="is7i">
+      <a id="i4d5" href="#">Features</a>
+      <a id="is0m9" href="#">Pricing</a>
+      <a id="ivkdr" href="#">About</a>
+      <a id="iklqy" href="#">Contact</a>
+    </div>
+    <p id="ioy3" class="paragraph">© 2024 lanndi. All rights reserved.
+    </p>
+  </div>`,
+        styles: `#i7j2{
+  height:187px;
+  max-height:100%;
+  width:90%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  max-width:1200px;
+  margin-right:auto;
+  margin-left:auto;
 }
- a {
-\t text-decoration: none;
-\t color: inherit;
+#is7i{
+  height:80px;
+  max-height:100%;
+  width:100%;
+  flex-direction:row;
+  justify-content:center;
+  align-items:center;
+  display:flex;
+  column-gap:2rem;
 }
- .footer {
-\t margin-top: 80px;
-}
- .footer__redes-wrapper {
-\t display: flex;
-\t justify-content: center;
-\t gap: 40px;
-\t flex-wrap: wrap;
-\t max-width: 600px;
-\t margin: 45px auto;
-}
- .footer__redes-wrapper li {
-\t display: inline-block;
-}
- .footer__redes-wrapper li:hover {
-\t color: var(--gray);
-}
- .footer__link {
-\t text-transform: uppercase;
-\t font-family: var(--title-font);
-\t font-size: rem(14);
-display:flex;
-align-items:center;
-gap:2;
-}
- .footer .fab {
-\t margin-right: 8px;
-}
- .footer__texto {
-\t color: var(--light-gray);
-\t text-align: center;
-}
- .gallery__grid {
-\t display: grid;
-\t grid-template-columns: repeat(6, 1fr);
-}
- .gallery__photo {
-\t position: relative;
-\t display: inline-block;
-}
- .gallery__fade {
-\t position: absolute;
-\t top: 0;
-\t left: 0;
-\t width: 100%;
-\t height: 100%;
-\t background-color: var(--dark-fade);
-\t display: flex;
-\t justify-content: center;
-\t align-items: center;
-\t opacity: 0;
-}
- .gallery__fade:hover {
-\t opacity: 1;
-}
- .gallery__icon {
-\t color: #fff;
-\t width: 50px;
-\t height: 50px;
-}
- .separador {
-\t background-color: gray;
-\t height: 2px;
-\t max-width: 30px;
-\t margin: 15px auto 20px;
-}
- .footer__redes-wrapper li, .gallery__fade {
-\t transition: all ease 0.3s;
-}
- 
 `,
       },
     },

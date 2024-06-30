@@ -20,7 +20,7 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
       const wrapperDiv = editor.DomComponents.addComponent({
         tagName: 'div',
         name: 'Wrapper',
-        resizable:true,
+        resizable: true,
         attributes: { class: wrappersLength === 0 ? 'wrapper' : `wrapper-${wrappersLength + 1}` },
         icon: `<svg  xmlns="http://www.w3.org/2000/svg"  width="12"  height="12"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-box"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" /><path d="M12 12l8 -4.5" /><path d="M12 12l0 9" /><path d="M12 12l-8 -4.5" /></svg>`,
         // Additional properties for the 'div', like classes, styles, etc.
@@ -61,6 +61,29 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
 
   // Keymap for the 'Esc' key to trigger the deselect command
   editor.Keymaps.add('deselect-components', 'esc', 'deselect-components');
+
+  editor.on('page:select', () => {
+    editor.getWrapper()?.set('stylable', [
+      'height',
+      'margin',
+      'margin-top',
+      'margin-right',
+      'margin-bottom',
+      'margin-left',
+      'padding',
+      'padding-top',
+      'padding-right',
+      'padding-bottom',
+      'padding-left',
+      'background',
+      'background-color',
+      'background-image',
+      'background-repeat',
+      'font',
+      'font-family',
+    ]);
+  });
+
 
   editor.on('load', () => {
     editor.runCommand('core:component-outline');
@@ -162,7 +185,7 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
     editor.DomComponents.addType('select', {
       model: {
         defaults: {
-          enableEvents: false
+          enableEvents: false,
         },
 
         init() {
@@ -178,12 +201,11 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
             if (!this.model.get('enableEvents')) {
               e.preventDefault();
             }
-          }
-        }
-      }
+          },
+        },
+      },
     });
   });
-
 
 
 };

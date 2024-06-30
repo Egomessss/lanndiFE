@@ -15,7 +15,15 @@ import {
   Tooltip,
   useCombobox,
 } from '@mantine/core';
-import { IconCheck, IconDotsVertical, IconExclamationCircle, IconFocus, IconHash, IconTags } from '@tabler/icons-react';
+import {
+  IconCheck,
+  IconDotsVertical,
+  IconExclamationCircle,
+  IconFocus,
+  IconFocus2,
+  IconHash,
+  IconTags,
+} from '@tabler/icons-react';
 import { Selector } from 'grapesjs';
 
 
@@ -202,7 +210,7 @@ export default function CustomSelectorManager({
                    label="If enabled, all the style changes will be applied on selected components (ID rules) instead of selectors (which would change styles on all components with those classes)">
             <ActionIcon onClick={setComponentFirst}
                         variant={isComponentFirst ? 'filled' : 'subtle'}>
-              <IconFocus size="1rem" />
+              <IconFocus2 size="1rem" />
             </ActionIcon>
           </Tooltip>
         </div>

@@ -39,33 +39,33 @@ export const demoEditorConfigOptions = () => ({
         width: '',
       },
       {
-        id: 'desktop', name: 'Desktop', width: '1536px',
-        // widthMedia: '1560px',
+        id: 'desktop', name: 'Desktop(XL)', width: '1536px',
+        // widthMedia: '1536px',
       },
       {
         id: 'laptop',
-        name: 'Laptop',
-        width: '1280px',
-        // widthMedia: '1290px',
+        name: 'Laptop(LG)',
+        width: '1080px',
+        // widthMedia: '1080px',
       },
       {
         id: 'tablet',
-        name: 'Tablet',
-        width: '768px',
-        // widthMedia: '778px',
+        name: 'Tablet(MD)',
+        width: '844px',
+        // widthMedia: '810px',
       },
       {
         id: 'mobile',
-        name: 'Mobile',
-        width: '640px',
-        // widthMedia: '430px',
+        name: 'Mobile(SM)',
+        width: '400px',
+        widthMedia: '600px',
         height:'600px'
       },
       // { id: 'fit', name: 'Fit To Screen', width: '' },
     ],
   },
   selectorManager: {
-    stylePrefix: 'lnd-', componentFirst: false, states: [
+    stylePrefix: 'lnd-', componentFirst: true, states: [
       { name: 'hover', label: 'Hover', info: 'Change styles on user hover' },
       { name: 'focus', label: 'Focus', info: 'Change styles on user focus' },
       { name: 'active', label: 'Active', info: 'Change styles on active element' },
