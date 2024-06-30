@@ -6,7 +6,7 @@ import {
   IconChevronDown,
   IconDeviceFloppy,
   IconExternalLink, IconEye,
-  IconFaceIdError,
+  IconFaceIdError, IconQuestionMark,
   IconSettings,
 } from '@tabler/icons-react';
 import { useParams, usePathname } from 'next/navigation';
@@ -408,6 +408,19 @@ function EditorHeader() {
         </div>
 
         <div className="flex w-full items-center justify-end gap-4">
+          <Tooltip
+            color="dark"
+            label={<div><p>Help us improve our editor by providing feedback, report bugs and ask for features</p><p>If
+              you need help you can contact us at help@lanndi.com - we respond in less than 24h</p></div>}>
+            <ActionIcon
+              color="blue"
+              component="a"
+              target="_blank"
+              href="https://lanndi.featurebase.app"
+            >
+              <IconQuestionMark size="1rem" />
+            </ActionIcon>
+          </Tooltip>
           <Tooltip label="Preview Interactions">
             <ActionIcon
               color="blue"

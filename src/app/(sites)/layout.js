@@ -147,13 +147,15 @@ const SiteLayout = ({ children }) => {
           color="blue"
           active
           component="a"
-          href="/profile"
+          target="_blank"
+          href="https://lanndi.featurebase.app"
           label="Provide Feedback"
           leftSection={<IconMessage size="1rem" stroke={1.5} />}
         />
         <AppShell.Section> <NavLink
           component={Link}
           href="/profile"
+          target="blank"
           label="Profile Settings"
           leftSection={<IconUser size="1rem" stroke={1.5} />}
         />
