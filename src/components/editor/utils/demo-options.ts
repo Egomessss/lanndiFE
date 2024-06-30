@@ -39,25 +39,27 @@ export const demoEditorConfigOptions = () => ({
         width: '',
       },
       {
-        id: 'desktop', name: 'Desktop', width: '1536px', widthMedia: '1560px',
+        id: 'desktop', name: 'Desktop', width: '1536px',
+        // widthMedia: '1560px',
       },
       {
         id: 'laptop',
         name: 'Laptop',
         width: '1280px',
-        widthMedia: '1290px',
+        // widthMedia: '1290px',
       },
       {
         id: 'tablet',
         name: 'Tablet',
-        width: '700px',
-        widthMedia: '710px',
+        width: '768px',
+        // widthMedia: '778px',
       },
       {
         id: 'mobile',
         name: 'Mobile',
-        width: '420px',
-        widthMedia: '430px',
+        width: '640px',
+        // widthMedia: '430px',
+        height:'600px'
       },
       // { id: 'fit', name: 'Fit To Screen', width: '' },
     ],

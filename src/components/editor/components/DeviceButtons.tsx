@@ -40,7 +40,7 @@ const DeviceButtons = () => {
               return (
                 <Tooltip
                   key={device.id}
-                  label={device.id === 'fit' ? `${device.getName()} - ${width}px` : `${device.getName()} - ${device.getWidthMedia()}`}
+                  label={device.id === 'fit' ? `${device.getName()} - ${width}px` : `${device.getName()} up to ${device.getWidthMedia()}`}
                 >
                   <ActionIcon
                     key={device.id}
