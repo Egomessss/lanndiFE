@@ -568,7 +568,7 @@ export const styles = {
             },
           ],
         },
-       ],
+      ],
     },
     {
       name: 'Position',
@@ -671,6 +671,41 @@ export const styles = {
             { 'id': 'space repeat', 'label': 'Space repeat' }, // Image is repeated vertically
           ],
         },
+        {
+          label: 'Box Shadow',
+          property: 'box-shadow',
+          type: 'composite',
+          detached: false,
+          properties: [
+            {
+              type: 'color',
+              property: 'box-shadow-color',
+              label: 'Color',
+            },
+            {
+              type: 'base',
+              property: 'box-shadow-offset-x',
+              label: 'Offset X',
+            },
+            {
+              type: 'base',
+              property: 'box-shadow-offset-y',
+              label: 'Offset Y',
+            },
+            {
+              type: 'base',
+              property: 'box-shadow-blur',
+              label: 'Blur',
+            },
+            {
+              type: 'base',
+              property: 'box-shadow-spread',
+              label: 'Spread',
+            },
+
+          ],
+        }
+        ,
       ],
 
     },
@@ -924,8 +959,34 @@ export const styles = {
             { id: 'line-through', label: 'Line through' },
           ],
         },
-
-
+        {
+          label: 'Text Shadow',
+          property: 'text-shadow',
+          type: 'composite',
+          detached: false,
+          properties: [
+            {
+              type: 'color',
+              property: 'text-shadow-color',
+              label: 'Color',
+            },
+            {
+              type: 'base',
+              property: 'text-shadow-offset-x',
+              label: 'Offset X',
+            },
+            {
+              type: 'base',
+              property: 'text-shadow-offset-y',
+              label: 'Offset Y',
+            },
+            {
+              type: 'base',
+              property: 'text-shadow-blur',
+              label: 'Blur',
+            },
+          ],
+        },
       ],
     },
     {

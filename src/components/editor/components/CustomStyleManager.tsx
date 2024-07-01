@@ -1,6 +1,6 @@
 import { Accordion, Button } from '@mantine/core';
 import * as React from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import StylePropertyField from './StylePropertyField';
 import { StylesResultProps } from '../wrappers/StylesProvider';
@@ -22,6 +22,10 @@ export default function CustomStyleManager({
                                            }: Omit<StylesResultProps, 'Container'>) {
 
   const editor = useEditor();
+
+  const selected = editor.getSelected();
+
+
 
   // console.log('style manager');
 
@@ -84,6 +88,11 @@ export default function CustomStyleManager({
   // }
 
   const [value, setValue] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Reset the value state when selected changes
+    setValue(null);
+  }, [selected]);
 
   // Check if there are any sectors
   if (sectors.length === 0) {
