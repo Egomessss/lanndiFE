@@ -27,7 +27,7 @@ const DashboardCard = ({ name, slug, ogImage, isLive }: Site) => {
           // console.log(data);
           notifications.show({
             title: 'Success!',
-            message: 'Site deletion in progress...',
+            message: 'Site deletion in progress! Please wait a few minutes...',
             color: 'green',
           });
           queryClient.invalidateQueries({ queryKey: ['userSites'] });
