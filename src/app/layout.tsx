@@ -27,8 +27,8 @@ export default function RootLayout({
   return (
     <html lang="en">
     <head>
-      <script defer src="https://cloud.umami.is/script.js"
-              data-website-id="926180c0-ced2-44d6-94a2-70149d477560"></script>
+      {process.env.NODE_ENV === 'production' && <script defer src="https://cloud.umami.is/script.js"
+                                                        data-website-id="926180c0-ced2-44d6-94a2-70149d477560"></script>}
       <ColorSchemeScript defaultColorScheme="auto" />
     </head>
     <body className={inter.className}>
