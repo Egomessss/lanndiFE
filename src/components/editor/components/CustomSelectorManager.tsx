@@ -160,7 +160,7 @@ export default function CustomSelectorManager({
 
 
   const isComponentFirst = editor.Selectors.getComponentFirst();
-
+  console.log('isComp', isComponentFirst);
   const setComponentFirst = () => {
     editor.Selectors.setComponentFirst(!isComponentFirst);
   };
@@ -206,8 +206,16 @@ export default function CustomSelectorManager({
               <IconTags size="1rem" />
             </ThemeIcon>
           </Tooltip>
-          <Tooltip color="blue" multiline w={200}
-                   label="If enabled, all the style changes will be applied on selected components (ID rules) instead of selectors (which would change styles on all components with those classes)">
+          <Tooltip color="dark" multiline w={400}
+                   label={
+                     <div clasName="flex flex-col gap-2"><p>Enabled: All the style changes will be applied on selected
+                       blocks (ID rules)</p>
+                       <p>Disabled: All the style changes will be applied on selected blocks with same
+                         selectors(classes)</p>
+                     <p>Tip 1: Use ID to style a single component independently</p>
+                     <p>Tip 2: Use classes/selectors to style multiple component simultaneously</p>
+                     <p>Tip 3: ID always takes precedent in styling over classes. e.g. if you style a block height using its ID you won&apos;t be able to change the height using class.</p>
+                     </div>}>
             <ActionIcon onClick={setComponentFirst}
                         variant={isComponentFirst ? 'filled' : 'subtle'}>
               <IconFocus2 size="1rem" />

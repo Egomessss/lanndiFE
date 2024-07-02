@@ -26,6 +26,7 @@ export const demoEditorConfigOptions = () => ({
   optsCss: { onlyMatched: true, keepUnusedStyles: true },
   clearStyles: true,
   showOffsetsSelected: true,
+  avoidInlineStyle:true,
   undoManager: { trackSelection: false },
   // canvas:{
   //   scripts:["https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"]

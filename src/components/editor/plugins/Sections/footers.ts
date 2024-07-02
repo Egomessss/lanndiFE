@@ -252,8 +252,8 @@ const footers = (editor: Editor) => {
       defaults: {
         name: 'Footer One',
         // attributes: { class: 'footer-one' },
-        components: `<div id="i7j2">
-    <div id="is7i">
+        components: `<div class="footer-container" data-gjs-resizable="true">
+    <div class="footer-links" data-gjs-resizable="true">
       <a id="i4d5" href="#">Features</a>
       <a id="is0m9" href="#">Pricing</a>
       <a id="ivkdr" href="#">About</a>
@@ -262,8 +262,8 @@ const footers = (editor: Editor) => {
     <p id="ioy3" class="paragraph">© 2024 lanndi. All rights reserved.
     </p>
   </div>`,
-        styles: `#i7j2{
-  height:187px;
+        styles: `.footer-container{
+  height:250px;
   max-height:100%;
   width:90%;
   display:flex;
@@ -274,7 +274,7 @@ const footers = (editor: Editor) => {
   margin-right:auto;
   margin-left:auto;
 }
-#is7i{
+.footer-links{
   height:80px;
   max-height:100%;
   width:100%;
