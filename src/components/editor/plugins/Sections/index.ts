@@ -13,8 +13,8 @@ import loadCtas from './ctas';
 const SectionBlocks: Plugin = (editor) => {
 
     loadNavbars(editor);
-    // loadHeros(editor);
-    // loadFeatures(editor);
+    loadHeros(editor);
+    loadFeatures(editor);
     // loadTestimonials(editor);
     // loadCtas(editor);
     // loadPricings(editor);

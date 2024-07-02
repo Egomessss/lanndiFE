@@ -11,57 +11,68 @@ const heros = (editor: Editor) => {
     content: { type: 'hero-one' },
   });
 
-Components.addType('hero-one', {
+  Components.addType('hero-one', {
     model: {
       defaults: {
-        droppable: false,
         name: 'Hero Image Bottom',
-        components: `<div class="hero-one">
-    <div class="hero-one-container">
-      <div class="hero-text-container">
-        <h1 id="irjua" draggable="false" class="gjs-heading">Insert Hero 
-          <span id="i4jn1p" draggable="true" class="gjs-text-blue">text here</span>
-        </h1>
-        <p id="it2f" class="hero-description">
-          <span id="i09aq">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
-        </p>
-        <button class="button">Button
-        </button>
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="hero-image"/>
-      </div>
-      <div class="image-container">
-      </div>
+        components: `<div class="block" id="ixrq">
+    <div class="block" id="i68h">
+      <h1 class="heading-one" id="i3pn">Create, launch and share your dream website in minutes
+      </h1>
+      <p class="paragraph">
+      <p class="paragraph">lanndi helps you create launch and share your beautiful and responsive website effortlessly, with a super easy-to-use editor without needing code or design skills
+        <br/>
+        <br/>
+      </p>
+      </p>
+    <div class="button">
+      <button class="button">Button</button>
     </div>
+  </div>
+  <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="ictil"/>
   </div>`,
         styles: `
-        .hero-one-container{
-  height:fit-content;
+     .block{
+  height:80px;
+  max-height:100%;
+  width:100%;
 }
-.hero-text-container{
-  height:833px;
+#ixrq{
+  height:1009px;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
+  row-gap:2rem;
+  max-width:1200px;
+  margin-right:auto;
+  margin-left:auto;
+  width:90%;
 }
-#irjua{
-  margin:0px;
-  color:rgb(29, 40, 55);
-  font-size:3rem;
-  font-family:Arial, Helvetica, sans-serif;
-}
-#i4jn1p{
-  color:rgb(36, 99, 235);
-}
-.hero-description{
-  width:462px;
+#i68h{
+  height:338px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  width:662px;
+  row-gap:1rem;
   text-align:center;
-  font-size:1rem;
 }
-#i09aq{
-  color:rgb(71, 85, 105);
-  font-family:Arial, Helvetica, sans-serif;
-  font-size:19.2px;
+.heading-one{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+}
+#i3pn{
+  font-size:3rem;
+}
+.paragraph{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
 }
 .button{
   width:fit-content;
@@ -82,24 +93,39 @@ Components.addType('hero-one', {
 .button:hover{
   opacity:0.9;
 }
-.hero-image{
-  width:725px;
-  height:369px;
-  display:flex;
-  flex-direction:row;
-  justify-content:center;
-  align-items:center;
-  border-top-left-radius:5px;
-  border-top-right-radius:5px;
-  border-bottom-right-radius:5px;
-  border-bottom-left-radius:5px;
-  margin-top:2rem;
+#ictil{
+  width:858px;
+  height:391px;
+  border-top-left-radius:1rem;
+  border-top-right-radius:1rem;
+  border-bottom-right-radius:1rem;
+  border-bottom-left-radius:1rem;
 }
-.image-container{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:fit-content;
+@media (max-width: 810px){
+  #ixrq{
+    height:809px;
+  }
+  #ictil{
+    width:662px;
+    height:302px;
+  }
+}
+@media (max-width: 600px){
+  #ixrq{
+    height:699px;
+  }
+  #i68h{
+    width:100%;
+    height:285px;
+  }
+  #i3pn{
+    font-size:1.5rem;
+    width:100%;
+  }
+  #ictil{
+    width:100%;
+    height:177px;
+  }
 }
 `,
       },
@@ -110,59 +136,69 @@ Components.addType('hero-one', {
   Components.addType('hero-two', {
     model: {
       defaults: {
-        droppable: false,
         name: 'Hero Image Side',
         // attributes: { class: 'hero-three' },
-        components: `<div class="hero-two">
-    <div class="hero-two-container">
-      <div class="hero-text-container">
-        <h1 id="iyi6" class="heading-hero">
+        components: `
+    <div id="ixrq" class="block">
+      <div id="i68h" class="block">
+        <h1 id="i3pn" class="heading-one">Create, launch and share your dream website in minutes
         </h1>
-        <h1 class="heading-one" id="im2wi">Insert Hero text here
-        </h1>
-        <p id="it2f" class="hero-description">
-          <span id="i09aq">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+        <p class="paragraph">
         </p>
-        <button class="button">Button
-        </button>
+        <p class="paragraph">lanndi helps you create launch and share your beautiful and responsive website effortlessly, with a super easy-to-use editor without needing code or design skills
+          <br/>
+          <br/>
+        </p>
+        <p class="paragraph">
+        </p>
+        <div class="button">
+          <button class="button">Button</button>
+        </div>
       </div>
-      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+"/>
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="ictil"/>
     </div>
-  </div>`,
-        styles: `.hero-two-container{
+  `,
+        styles: `.block{
+  height:80px;
+  max-height:100%;
+  width:100%;
+}
+#ixrq{
+  height:710px;
   display:flex;
+  flex-direction:row;
   justify-content:center;
   align-items:center;
-  column-gap:2rem;
-  height:559px;
+  max-width:1200px;
+  margin-right:auto;
+  margin-left:auto;
+  width:90%;
+  column-gap:02rem;
 }
-.hero-text-container{
-  height:359px;
+#i68h{
+  height:394px;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  width:457px;
-}
-.heading-hero{
-  width:571px;
+  width:788px;
+  row-gap:1rem;
   text-align:center;
-  font-size:3rem;
 }
-
 .heading-one{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+}
+#i3pn{
   font-size:3rem;
 }
-.hero-description{
-  width:100%;
-  text-align:center;
-  font-size:1rem;
-}
-
-#i09aq{
-  color:rgb(71, 85, 105);
-  font-family:Arial, Helvetica, sans-serif;
-  font-size:1rem;
+.paragraph{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
 }
 .button{
   width:fit-content;
@@ -183,54 +219,42 @@ Components.addType('hero-one', {
 .button:hover{
   opacity:0.9;
 }
-.image-container{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:fit-content;
-}
-.hero-image{
-  width:450px;
-  height:361px;
-  display:flex;
-  flex-direction:row;
-  justify-content:center;
-  align-items:center;
-  border-top-left-radius:5px;
-  border-top-right-radius:5px;
-  border-bottom-right-radius:5px;
-  border-bottom-left-radius:5px;
-  object-fit:cover;
+#ictil{
+  width:704px;
+  height:395px;
+  border-top-left-radius:1rem;
+  border-top-right-radius:1rem;
+  border-bottom-right-radius:1rem;
+  border-bottom-left-radius:1rem;
 }
 @media (max-width: 810px){
-  .hero-two-container{
+  #ixrq{
+    height:809px;
     flex-direction:column;
-    row-gap:2rem;
-    height:823px;
   }
-  .hero-text-container{
-    width:649px;
+  #i68h{
+    width:100%;
   }
-  .hero-image{
-    width:645px;
+  #ictil{
+    width:100%;
+    height:302px;
   }
 }
-@media (max-width: 390px){
-  .hero-text-container{
-    width:90%;
-    text-align:center;
-    height:344px;
-    align-items:center;
-    justify-content:center;
+@media (max-width: 600px){
+  #ixrq{
+    height:699px;
   }
-  .heading-one{
-    height:88px;
-    font-size:2.5rem;
-    line-height:2.5rem;
+  #i68h{
+    width:100%;
+    height:285px;
   }
-  .hero-image{
-    width:90%;
-    height:254px;
+  #i3pn{
+    font-size:1.5rem;
+    width:100%;
+  }
+  #ictil{
+    width:100%;
+    height:177px;
   }
 }
 `,
@@ -255,60 +279,67 @@ Components.addType('hero-one', {
   Components.addType('hero-three', {
     model: {
       defaults: {
-        droppable: false,
+
         name: 'Hero No Image',
         // attributes: { class: 'hero-three' },
-        components: ` <div class="hero-three">
-    <div class="hero-three-container">
-      <div class="hero-text-container">
-        <h1 id="iyi6" class="heading-hero">
-          Insert Hero 
-          <span id="i4jn1p" draggable="true" class="gjs-text-blue">text here</span>
+        components: `<div id="ixrq" class="block">
+      <div id="i68h" class="block">
+        <h1 id="i3pn" class="heading-one">Create, launch and share your dream website in minutes
         </h1>
-        <p id="it2f" class="hero-description">
-          <span id="i09aq">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+        <p class="paragraph">
         </p>
-        <button class="button">Button
-        </button>
+        <p class="paragraph">lanndi helps you create launch and share your beautiful and responsive website effortlessly, with a super easy-to-use editor without needing code or design skills
+          <br/>
+          <br/>
+        </p>
+        <p class="paragraph">
+        </p>
+        <div class="button">
+          <button class="button">Button</button>
+        </div>
       </div>
-    </div>
-  </div>`,
-        styles: `.hero-three-container{
+    </div>`,
+        styles: `.block{
+  height:10px;
+  max-height:100%;
+  width:100%;
+}
+#ixrq{
+  height:644px;
   display:flex;
+  flex-direction:row;
   justify-content:center;
   align-items:center;
-  height:569px;
+  max-width:1200px;
+  margin-right:auto;
+  margin-left:auto;
+  width:90%;
+  column-gap:02rem;
 }
-.hero-text-container{
-  height:359px;
+#i68h{
+  height:394px;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  width:771px;
-}
-.heading-hero{
-  width:571px;
+  width:788px;
+  row-gap:1rem;
   text-align:center;
+}
+.heading-one{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+}
+#i3pn{
   font-size:3rem;
-  margin:0px;
-  color:rgb(29, 40, 55);
-  font-family:Arial, Helvetica, sans-serif;
 }
-
-#i4jn1p{
-  color:rgb(36, 99, 235);
-}
-.hero-description{
-  width:462px;
-  text-align:center;
-  font-size:1rem;
-}
-
-#i09aq{
-  color:rgb(71, 85, 105);
-  font-family:Arial, Helvetica, sans-serif;
-  font-size:19.2px;
+.paragraph{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
 }
 .button{
   width:fit-content;
@@ -330,32 +361,31 @@ Components.addType('hero-one', {
   opacity:0.9;
 }
 @media (max-width: 810px){
-  .hero-text-container{
-    width:728px;
+  #ixrq{
+    height:597px;
+    flex-direction:column;
   }
-}
-@media (max-width: 390px){
-  .hero-text-container{
-    width:90%;
-    height:397px;
-  }
-  .heading-hero{
-    font-size:2rem;
+  #i68h{
     width:100%;
   }
-  .hero-description{
+}
+@media (max-width: 600px){
+  #ixrq{
+    height:526px;
+  }
+  #i68h{
+    width:100%;
+    height:285px;
+  }
+  #i3pn{
+    font-size:1.5rem;
     width:100%;
   }
-  #i09aq{
-    font-size:1rem;
-  }
 }
-
 `,
       },
     },
   });
-
 
 
   // editor.Blocks.add('hero-four', {
@@ -368,7 +398,7 @@ Components.addType('hero-one', {
   // Components.addType('hero-four', {
   //   model: {
   //     defaults: {
-  //       droppable: false,
+  //
   //       name: 'Alpine',
   //       // attributes: { class: 'hero-three' },
   //       components: `  <ul class="block w-11/12 my-4 mx-auto" x-data="{selected:null}">
@@ -397,9 +427,6 @@ Components.addType('hero-one', {
   //     },
   //   },
   // });
-
-
-
 
 
 };

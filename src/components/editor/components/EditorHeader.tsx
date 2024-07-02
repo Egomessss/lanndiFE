@@ -130,7 +130,7 @@ function SaveButton() {
           // @ts-ignore
           mutate({ data, pagesData });
         }
-      }, 450000);
+      }, 300000);
       return () => clearInterval(saveIntervalId);
     }
   }, [mutate, idle, isNotFirstTimeSaving?.data]);
@@ -155,7 +155,7 @@ function SaveButton() {
     <>
       {user ? (
         <Tooltip color="gray"
-                 label={`Save changes - Saved automatically every 10 minutes. Last saved: ${lastSaved ? timeSince(lastSaved) : 'Not yet saved'}`}>
+                 label={`Save changes - Saved automatically every 5 minutes. Last saved: ${lastSaved ? timeSince(lastSaved) : 'Not yet saved'}`}>
           <ActionIcon
             disabled={showSuccess}
             loading={isPending}

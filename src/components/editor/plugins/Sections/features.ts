@@ -428,9 +428,9 @@ const features = (editor: Editor) => {
         components: `  
   <section class="flex-sect" id="iaxad">
     <div class="container-width" id="izopk">
-      <h2 class="flex-title">Flex is the new black
+      <h2 class="flex-title">Lorem ipsum dolor sit amet.
       </h2>
-      <p class="flex-desc">With flexbox system you're able to build complex layouts easily and with free responsivity
+      <p class="flex-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
       </p>
       <div class="cards">
         <div class="card">
@@ -478,7 +478,6 @@ const features = (editor: Editor) => {
 .flex-sect{
   background-color:#fafafa;
   padding:100px 0;
-  font-family:Helvetica, serif;
 }
 .flex-title{
   margin-bottom:15px;
@@ -491,7 +490,6 @@ const features = (editor: Editor) => {
 .flex-desc{
   margin-bottom:55px;
   font-size:1em;
-  color:rgba(0, 0, 0, 0.5);
   text-align:center;
   padding:5px;
 }
