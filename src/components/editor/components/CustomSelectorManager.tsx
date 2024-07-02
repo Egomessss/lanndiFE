@@ -206,9 +206,9 @@ export default function CustomSelectorManager({
               <IconTags size="1rem" />
             </ThemeIcon>
           </Tooltip>
-          <Tooltip color="dark" multiline w={400}
+          <Tooltip position="left" color="dark" multiline w={400}
                    label={
-                     <div clasName="flex flex-col gap-2"><p>Enabled: All the style changes will be applied on selected
+                     <div className="flex flex-col gap-2"><p>Enabled: All the style changes will be applied on selected
                        blocks (ID rules)</p>
                        <p>Disabled: All the style changes will be applied on selected blocks with same
                          selectors(classes)</p>
