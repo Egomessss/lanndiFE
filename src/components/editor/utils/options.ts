@@ -53,7 +53,7 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
       {
         id: 'mobile',
         name: 'Mobile(SM)',
-        width: '440px',
+        width: '400px',
         widthMedia: '600px',
         height:'600px'
       },
