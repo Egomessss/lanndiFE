@@ -72,6 +72,16 @@ export default function CustomBlockManager({
                             <IconExclamationCircle size="1rem" />
                           </Tooltip>
                         }
+                        {block.getLabel() === 'SVG'  &&
+                          <Tooltip label="You can edit your SVG content in the settings tab">
+                            <IconExclamationCircle size="1rem" />
+                          </Tooltip>
+                        }
+                        {block.getLabel() === 'Heading'  &&
+                          <Tooltip label="You can edit the type of heading in the settings">
+                            <IconExclamationCircle size="1rem" />
+                          </Tooltip>
+                        }
                       </Button>
                     </div>
                   </Tooltip>

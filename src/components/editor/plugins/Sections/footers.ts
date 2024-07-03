@@ -254,7 +254,8 @@ const footers = (editor: Editor) => {
         // attributes: { class: 'footer-one' },
         components: `<div class="footer-container" data-gjs-resizable="true">
     <div class="footer-links" data-gjs-resizable="true">
-      <a id="i4d5" href="#">Features</a>
+      <a id="i4d5" href="#">Privacy Policy</a>
+      <a id="i4d5" href="#">Terms & Conditions</a>
       <a id="is0m9" href="#">Pricing</a>
       <a id="ivkdr" href="#">About</a>
       <a id="iklqy" href="#">Contact</a>

@@ -14,14 +14,14 @@ import loadHowItWorks from './how-it-works';
 const SectionBlocks: Plugin = (editor) => {
 
     loadNavbars(editor);
-    // loadHeros(editor);
+    loadHeros(editor);
     // loadFeatures(editor);
-    // loadHowItWorks(editor);
+    loadHowItWorks(editor);
     // loadTestimonials(editor);
     // loadCtas(editor);
     // loadPricings(editor);
     // loadFaqs(editor);
-    // loadFooters(editor);
+    loadFooters(editor);
 };
 
 export default SectionBlocks;
