@@ -18,12 +18,12 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
   const toAdd = (name: string) => blocks.indexOf(name) >= 0;
 
   editor.DomComponents.addType('block', {
-    isComponent: el => {
-      // This will treat every 'div' element as a 'block' component
-      if (el.tagName === 'DIV') {
-        return { type: 'block' };
-      }
-    },
+    // isComponent: el => {
+    //   // This will treat every 'div' element as a 'block' component
+    //   if (el.tagName === 'DIV') {
+    //     return { type: 'block' };
+    //   }
+    // },
 
     model: {
       defaults: {
