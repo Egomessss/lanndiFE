@@ -183,14 +183,14 @@ const SiteSettingsForm = (props: { plan: string; data: SiteSettings }) => {
                alt="post thumbnail preview image"
              />
            )}
-          {favIcon !== null && (
+          {ogImage !== null && (
             <div>
               <p>Previous Social Media Image</p>
               <img
                 className="w-[120px] h-[80px] rounded-lg object-contain"
                 //@ts-ignore
-                src={favIcon}
-                alt="post favicon previous image"
+                src={ogImage}
+                alt="post social media previous image"
               />
             </div>
           )}
@@ -209,13 +209,13 @@ const SiteSettingsForm = (props: { plan: string; data: SiteSettings }) => {
                          {...form.getInputProps('favIcon')} />
               <p>Preview</p>
               <img className="w-[32px] h-[32px] rounded-lg"
-                   src="https://images.pexels.com/photos/14577237/pexels-photo-14577237.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                   alt="" />
-              {ogImage !== null && (<div><p>Previous Favicon</p>
+                   src={favIcon}
+                   alt='post favicon image ' />
+              {favIcon !== null && (<div><p>Previous Favicon</p>
                 <img className="w-[32px] h-[32px] rounded-lg object-contain"
                   //@ts-ignore
-                     src={ogImage}
-                     alt="" /></div>)}
+                     src={favIcon}
+                     alt="post previous favicon image " /></div>)}
             </div>
 
 
