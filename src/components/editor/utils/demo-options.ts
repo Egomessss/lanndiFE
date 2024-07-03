@@ -53,7 +53,7 @@ export const demoEditorConfigOptions = () => ({
         id: 'tablet',
         name: 'Tablet(MD)',
         width: '768px',
-        widthMedia: '810px',
+        widthMedia: '880px',
       },
       {
         id: 'mobile',

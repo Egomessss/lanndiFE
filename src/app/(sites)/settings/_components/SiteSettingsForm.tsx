@@ -175,17 +175,17 @@ const SiteSettingsForm = (props: { plan: string; data: SiteSettings }) => {
                      leftSection={<IconFile size="1rem" />}
                      placeholder="Upload file"
                      {...form.getInputProps('ogImage')} />
-          {/*<p>Image preview</p>*/}
-          {/* {form.values.ogImage && (*/}
-          {/*   <img*/}
-          {/*     className="h-[515px] w-[270px] rounded-lg object-contain"*/}
-          {/*     src={URL.createObjectURL(form.values.ogImage)}*/}
-          {/*     alt="post thumbnail preview image"*/}
-          {/*   />*/}
-          {/* )}*/}
+          <p>Image preview</p>
+           {form.values.ogImage && (
+             <img
+               className="w-[160px] h-[90px] rounded-lg object-contain"
+               src={URL.createObjectURL(form.values.ogImage)}
+               alt="post thumbnail preview image"
+             />
+           )}
           {favIcon !== null && (
             <div>
-              <p>Previous Favicon</p>
+              <p>Previous Social Media Image</p>
               <img
                 className="w-[120px] h-[80px] rounded-lg object-contain"
                 //@ts-ignore
@@ -207,12 +207,12 @@ const SiteSettingsForm = (props: { plan: string; data: SiteSettings }) => {
                          leftSection={<IconFile size="1rem" />}
                          placeholder="Upload file"
                          {...form.getInputProps('favIcon')} />
-              {/*<p>Preview</p>*/}
-              {/*<img className="w-[120px] h-[80px] rounded-lg"*/}
-              {/*     src="https://images.pexels.com/photos/14577237/pexels-photo-14577237.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"*/}
-              {/*     alt="" />*/}
-              {ogImage !== null && (<div><p>Previous Social Media Image</p>
-                <img className="w-[120px] h-[80px] rounded-lg object-contain"
+              <p>Preview</p>
+              <img className="w-[32px] h-[32px] rounded-lg"
+                   src="https://images.pexels.com/photos/14577237/pexels-photo-14577237.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                   alt="" />
+              {ogImage !== null && (<div><p>Previous Favicon</p>
+                <img className="w-[32px] h-[32px] rounded-lg object-contain"
                   //@ts-ignore
                      src={ogImage}
                      alt="" /></div>)}

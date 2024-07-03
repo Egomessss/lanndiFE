@@ -48,7 +48,7 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
         id: 'tablet',
         name: 'Tablet(MD)',
         width: '768px',
-        widthMedia: '810px',
+        widthMedia: '880px',
       },
       {
         id: 'mobile',
