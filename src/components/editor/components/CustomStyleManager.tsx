@@ -9,6 +9,7 @@ import { useEditor } from '@/components/editor/context/EditorInstance';
 
 
 function getClassName(propertiesLength: number) {
+  console.log(propertiesLength);
   if (propertiesLength > 8) {
     return 'flex flex-wrap items-center';
   } else if (propertiesLength === 6) {
@@ -24,7 +25,6 @@ export default function CustomStyleManager({
   const editor = useEditor();
 
   const selected = editor.getSelected();
-
 
 
   // console.log('style manager');
@@ -117,27 +117,27 @@ export default function CustomStyleManager({
   const accordionItems = otherSectors
     // .filter(sector => sector.isOpen())
     .map((sector) => {
+      console.log(sector);
+      const propertiesLength = sector.getProperties().length;
+      const className = getClassName(propertiesLength);
 
-    const propertiesLength = sector.getProperties().length;
-    const className = getClassName(propertiesLength);
-
-    return (
-      <Accordion.Item key={sector.getId()} value={sector.getId()}>
-        <Accordion.Control>
-          {sector.getName()}
-        </Accordion.Control>
-        {value === sector.getId() && ( // Conditionally render Accordion.Panel based on value state
-          <Accordion.Panel>
-            <div className={className}>
-              {sector.getProperties().map((prop) => (
-                <StylePropertyField key={prop.getId()} prop={prop} />
-              ))}
-            </div>
-          </Accordion.Panel>
-        )}
-      </Accordion.Item>
-    );
-  });
+      return (
+        <Accordion.Item key={sector.getId()} value={sector.getId()}>
+          <Accordion.Control>
+            {sector.getName()}
+          </Accordion.Control>
+          {value === sector.getId() && ( // Conditionally render Accordion.Panel based on value state
+            <Accordion.Panel>
+              <div className={className}>
+                {sector.getProperties().map((prop) => (
+                  <StylePropertyField key={prop.getId()} prop={prop} />
+                ))}
+              </div>
+            </Accordion.Panel>
+          )}
+        </Accordion.Item>
+      );
+    });
 
 
   return (

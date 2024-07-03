@@ -1032,6 +1032,18 @@ export const styles = {
           ],
         },
         {
+          type: 'select',
+          label: 'List style', // Label for the property
+          property: 'list-style', // CSS property to change
+          options: [
+            { id: 'none', label: 'None' },
+            { id: 'square', label: 'Square' },
+            { id: 'circle', label: 'Circle' },
+            { id: 'upper-roman', label: 'Roman' },
+            { id: 'lower-alpha', label: 'Alpha' },
+          ],
+        },
+        {
           type: 'composite',
           property: 'transition',
           label: 'Transition',
@@ -1075,17 +1087,14 @@ export const styles = {
           type: 'base',
         },
         {
-          type: 'select',
-          label: 'List style', // Label for the property
-          property: 'list-style', // CSS property to change
-          options: [
-            { id: 'none', label: 'None' },
-            { id: 'square', label: 'Square' },
-            { id: 'circle', label: 'Circle' },
-            { id: 'upper-roman', label: 'Roman' },
-            { id: 'lower-alpha', label: 'Alpha' },
-          ],
+          label: 'Clip Path', // Label for the property
+          property: 'clip-path', // CSS property to change
+          default: 'none', // Default value to display
+          tooltip: 'Use to create complex shapes, e.g., circle(90%), ellipse(30px 140px at 10% 20%)',
+          type: 'base',
         },
+
+
       ],
     },
   ],

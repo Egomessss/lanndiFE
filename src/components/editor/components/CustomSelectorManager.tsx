@@ -172,7 +172,7 @@ export default function CustomSelectorManager({
                  w={200} position="left-end"
                  withArrow openDelay={400}
                  label="Use this to change how your block reacts with a user action. e.g. Change background colour on hover">
-          <ThemeIcon variant="light">
+          <ThemeIcon variant="light" >
             <IconExclamationCircle size="1rem" />
           </ThemeIcon>
         </Tooltip>
@@ -197,8 +197,9 @@ export default function CustomSelectorManager({
                    onChange={(event) => setSelectorName(event.currentTarget.value)}
                    rightSection={<ActionIcon size="sm" onClick={() => renameSelector()}><IconCheck
                      size="1rem" /></ActionIcon>} />}
-      <div className="flex gap-2 items-start w-full h-full">
-        <div className="flex gap-5 h-full  flex-col">
+      <div className="flex flex-col gap-2 items-start w-full h-full">
+        <div className="flex justify-between w-full h-full ">
+
           <Tooltip color="blue"
                    label={`block classes -[${selectors.map((s) => s.toString())}] | block ID - #${targetsIds.toString()}`}>
             <ThemeIcon
@@ -208,19 +209,31 @@ export default function CustomSelectorManager({
           </Tooltip>
           <Tooltip position="left" color="dark" multiline w={400}
                    label={
-                     <div className="flex flex-col gap-2"><p>Enabled: All the style changes will be applied on selected
+                     <div className="flex flex-col gap-2"><p>Enabled: All the style changes will be applied on
+                       selected
                        blocks (ID rules)</p>
                        <p>Disabled: All the style changes will be applied on selected blocks with same
                          selectors(classes)</p>
-                     <p>Tip 1: Use ID to style a single component independently</p>
-                     <p>Tip 2: Use classes/selectors to style multiple component simultaneously</p>
-                     <p>Tip 3: ID always takes precedent in styling over classes. e.g. if you style a block height using its ID you won&apos;t be able to change the height using class.</p>
+                       <p>Tip 1: Use ID to style a single component independently</p>
+                       <p>Tip 2: Use classes/selectors to style multiple component simultaneously</p>
+                       <p>Tip 3: ID always takes precedent in styling over classes. e.g. if you style a block
+                         height
+                         using its ID you won&apos;t be able to change the height using class.</p>
                      </div>}>
             <ActionIcon onClick={setComponentFirst}
                         variant={isComponentFirst ? 'filled' : 'subtle'}>
               <IconFocus2 size="1rem" />
             </ActionIcon>
           </Tooltip>
+          <div>
+            <Tooltip color="dark"
+                     label="On top of each style property there&apos;s a tooltip that explains how each can be used to it's maximum potential">
+              <ThemeIcon
+                color="red"
+                variant="outline">
+                <IconExclamationCircle size="1rem" />
+              </ThemeIcon>
+            </Tooltip></div>
         </div>
 
         <Combobox styles={{
