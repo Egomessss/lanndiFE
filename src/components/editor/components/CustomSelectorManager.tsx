@@ -172,7 +172,7 @@ export default function CustomSelectorManager({
                  w={200} position="left-end"
                  withArrow openDelay={400}
                  label="Use this to change how your block reacts with a user action. e.g. Change background colour on hover">
-          <ThemeIcon variant="light" >
+          <ThemeIcon variant="light">
             <IconExclamationCircle size="1rem" />
           </ThemeIcon>
         </Tooltip>
@@ -218,7 +218,9 @@ export default function CustomSelectorManager({
                        <p>Tip 2: Use classes/selectors to style multiple component simultaneously</p>
                        <p>Tip 3: ID always takes precedent in styling over classes. e.g. if you style a block
                          height
-                         using its ID you won&apos;t be able to change the height using class.</p>
+                         using its ID you won&apos;t be able to change the height using class, only if you remove that
+                         value from the ID e.g: if you had styled a block with 100px height using its ID you&apos;d have
+                         to remove(leave the input empty) that style before styling the height by class.</p>
                      </div>}>
             <ActionIcon onClick={setComponentFirst}
                         variant={isComponentFirst ? 'filled' : 'subtle'}>
@@ -240,7 +242,7 @@ export default function CustomSelectorManager({
           dropdown: { width: '100%' },
         }} store={combobox} onOptionSubmit={handleValueSelect} withinPortal={false}>
           <Combobox.DropdownTarget>
-            <PillsInput size="xs" onClick={() => combobox.openDropdown()}>
+            <PillsInput size="xs" className="w-full" onClick={() => combobox.openDropdown()}>
               <Pill.Group>
                 <ScrollArea type="hover" h={40} w="100%">
                   {values}

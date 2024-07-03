@@ -7,14 +7,16 @@ import loadHeros from './heros';
 import loadTestimonials from './testimonials';
 import loadFeatures from './features';
 import loadCtas from './ctas';
+import loadHowItWorks from './how-it-works';
 
 
 
 const SectionBlocks: Plugin = (editor) => {
 
     loadNavbars(editor);
-    loadHeros(editor);
-    loadFeatures(editor);
+    // loadHeros(editor);
+    // loadFeatures(editor);
+    // loadHowItWorks(editor);
     // loadTestimonials(editor);
     // loadCtas(editor);
     // loadPricings(editor);

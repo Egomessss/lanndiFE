@@ -410,11 +410,12 @@ function EditorHeader() {
         <div className="flex w-full items-center justify-end gap-4">
           <Tooltip
             color="dark"
-            label={<div className="flex gap-2 flex-col"><p>Help us improve our editor by providing feedback, report bugs and ask for features</p><p>If
+            label={<div className="flex gap-2 flex-col"><p>Click to help us improve our editor by providing feedback, report bugs
+              and ask for features</p><p>If
               you need help you can contact us at help@lanndi.com - we respond in less than 24h</p>
             </div>}>
             <ActionIcon
-              color="blue"
+              color="red"
               component="a"
               target="_blank"
               href="https://lanndi.featurebase.app"
