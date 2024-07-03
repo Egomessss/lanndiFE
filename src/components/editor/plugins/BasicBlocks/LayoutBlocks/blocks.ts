@@ -18,12 +18,12 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
   const toAdd = (name: string) => blocks.indexOf(name) >= 0;
 
   editor.DomComponents.addType('block', {
-    // isComponent: el => {
-    //   // This will treat every 'div' element as a 'container' component
-    //   if (el.tagName === 'DIV') {
-    //     return { type: 'block' };
-    //   }
-    // },
+    isComponent: el => {
+      // This will treat every 'div' element as a 'block' component
+      if (el.tagName === 'DIV') {
+        return { type: 'block' };
+      }
+    },
 
     model: {
       defaults: {
@@ -31,15 +31,14 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
         name: 'Block',
         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /></svg>`,
         resizable: true,
-        droppable: true,
         // Define default properties for your container component
         attributes: { class: 'block' },
         // Avoid defining 'components' here to prevent recursive nesting of containers
         styles: `.block {
           height: 80px;
           max-height: 100%;
-  width: 100%;
-}`,
+          width: 100%;
+        }`,
       },
     },
   })
