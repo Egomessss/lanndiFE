@@ -110,6 +110,86 @@ export const CssCode = () => {
   </div>;
 };
 
+export const GlobalCssCode = () => {
+  const [opened, { open, close }] = useDisclosure(false);
+  const [value, setValue] = useState('');
+
+  const editor = useEditor();
+  const component = editor.Pages.getSelected()?.getMainComponent();
+
+  useEffect(() => {
+    if (component) {
+      // @ts-ignore
+      const formatedCss = formatCSS(editor.getCss({ component }));
+
+      setValue(formatedCss);
+    }
+  }, [component]);
+
+
+  // console.log("value",value);
+  // console.log('css', componentCss);
+
+  const handleClick = () => {
+    console.log('css', value);
+    editor.Css.addRules(value);
+    // setValue('')
+  };
+
+
+  return <div className="flex items-start gap-2 flex-col w-full ">
+    <Modal opened={opened} size="xl" centered onClose={close} title="Global CSS">
+      <CodeMirror
+        value={value} height="400px" theme="dark"
+        extensions={[langs.css(), EditorView.lineWrapping]}
+        onChange={setValue}
+      />
+      <Button my="1rem" fullWidth onClick={handleClick} size="xs">Save Global CSS Changes</Button>
+    </Modal>
+    <Button fullWidth onClick={open} size="xs">Edit Global CSS</Button>
+  </div>;
+};
+
+export const GlobalJsCode = () => {
+  const [opened, { open, close }] = useDisclosure(false);
+  const [value, setValue] = useState('');
+
+  const editor = useEditor();
+  const component = editor.Pages.getSelected()?.getMainComponent();
+
+  useEffect(() => {
+    if (component) {
+      // @ts-ignore
+      const globalJs = editor.getJs({ component });
+      console.log('global js', globalJs);
+      setValue(globalJs);
+    }
+  }, [component]);
+
+
+  // console.log("value",value);
+  // console.log('css', componentCss);
+
+  const handleClick = () => {
+    console.log('global js', value);
+    component?.set('script', value);
+    // setValue('')
+  };
+
+
+  return <div className="flex items-start gap-2 flex-col w-full ">
+    <Modal opened={opened} size="xl" centered onClose={close} title="Global Javascript">
+      <CodeMirror
+        value={value} height="400px" theme="dark"
+        extensions={[langs.javascript(), EditorView.lineWrapping]}
+        onChange={setValue}
+      />
+      <Button my="1rem" fullWidth onClick={handleClick} size="xs">Save Global Js Changes</Button>
+    </Modal>
+    <Button fullWidth onClick={open} size="xs">Edit Global Javascript</Button>
+  </div>;
+};
+
 export const SvgContentCode = () => {
 
   const [opened, { open, close }] = useDisclosure(false);
@@ -129,7 +209,7 @@ export const SvgContentCode = () => {
   // console.log('css', componentCss);
   const handleClick = () => {
     editor.getSelected()?.set({ content: value });
-    close()
+    close();
   };
 
   return <div className="flex items-start gap-2 flex-col w-full ">
@@ -274,7 +354,7 @@ export default function CustomTraitManager({
         </Button></>}
       {/*<Divider className="w-full"  label="Custom attributes" />*/}
       {/*<CustomAttributes />*/}
-      <Divider className="w-full"  label="Extra Customization" />
+      <Divider className="w-full" label="Extra Customization" />
       {['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(value!) && <HeadingTypeSelector />}
       {/*<HtmlElementSelector />*/}
       {value === 'svg' && <SvgContentCode />}
@@ -284,6 +364,9 @@ export default function CustomTraitManager({
           <Button onClick={() => editor.runCommand('edit-script')} size="xs" mb="4">
             Edit Javascript
           </Button>
+          {/*<Divider className="w-full" label="Global Customization" />*/}
+          {/*<GlobalCssCode />*/}
+          {/*<GlobalJsCode />*/}
         </> : <>
           <Button disabled size="xs" mb="4">
             Edit CSS
