@@ -26,7 +26,7 @@ const SiteSettingsForm = (props: { plan: string; data: SiteSettings }) => {
       bodyCode,
       slug,
     } = data;
-
+    console.log(favIcon, ogImage);
 
     const queryClient = useQueryClient();
 
@@ -36,10 +36,10 @@ const SiteSettingsForm = (props: { plan: string; data: SiteSettings }) => {
       description: z.string().max(160, 'Description must be at most 160 characters'),
       favIcon: z.instanceof(File).refine((file) => {
         return file.size <= 1024 * 1024; // Adjusting to 1MB in bytes
-      }, `File size should be less than 1mb.`).nullable().optional(),
+      }, `File size should be less than 1mb.`).nullable(),
       ogImage: z.instanceof(File).refine((file) => {
         return file.size <= 1024 * 1024; // Adjusting to 1MB in bytes
-      }, `File size should be less than 1mb.`).nullable().optional(),
+      }, `File size should be less than 1mb.`).nullable(),
       language: z.string().length(2, 'Language must be exactly 2 letters').regex(/^[A-Za-z]{2}$/, 'Language must use ISO Country Codes'),
       headCode: z.string().optional(), // Optional since it can be empty
       bodyCode: z.string().optional(), // Optional since it can be empty
@@ -52,8 +52,8 @@ const SiteSettingsForm = (props: { plan: string; data: SiteSettings }) => {
         name: name || '', // Shorthand for title: title
         title: title || '', // Shorthand for title: title
         description: description || '', // Defaults to what's passed in, or you can provide a fallback
-        favIcon: favIcon || null, // Defaults to null if favIco is not provided
-        ogImage: ogImage || null, // Defaults to null if ogImage is not provided
+        favIcon: null, // Defaults to null if favIco is not provided
+        ogImage: null, // Defaults to null if ogImage is not provided
         language: language || 'en', // Default to 'en' if language is not provided
         headCode: headCode || '', // Shorthand for headCode: headCode
         bodyCode: bodyCode || '', // Shorthand for bodyCode: bodyCode
@@ -76,6 +76,7 @@ const SiteSettingsForm = (props: { plan: string; data: SiteSettings }) => {
           if (form.values.favIcon) {
             formData.append('favIcon', form.values.favIcon);
           }
+
           if (form.values.ogImage) {
             formData.append('ogImage', form.values.ogImage);
           }
@@ -167,9 +168,10 @@ const SiteSettingsForm = (props: { plan: string; data: SiteSettings }) => {
         />
         <div className="flex items-start gap-2 flex-col justify-start w-full">
           <FileInput className="w-full"
+                     clearable
                      label="Social media image"
-                     accept="image/png,image/jpeg, image/webp, image/"
-                     description="1200 x 630 pixels. PNG, SVG, JPG or Webp. Shown when shared on social media."
+            // accept="image/png,image/jpeg, image/jpg"
+                     description="1200 x 630 pixels. PNG, JPEG or JPG. Shown when shared on social media."
                      leftSection={<IconFile size="1rem" />}
                      placeholder="Upload file"
                      {...form.getInputProps('ogImage')} />
@@ -181,76 +183,81 @@ const SiteSettingsForm = (props: { plan: string; data: SiteSettings }) => {
           {/*     alt="post thumbnail preview image"*/}
           {/*   />*/}
           {/* )}*/}
-          {/*{favIcon !== undefined && (*/}
-          {/*    <div>*/}
-          {/*        <p>Previous Image</p>*/}
-          {/*        <img*/}
-          {/*             className="h-[515px] w-[270px] rounded-lg object-contain"*/}
-          {/*                    src={favIcon}*/}
-          {/*            alt="post thumbnail previous image"*/}
-          {/*        />*/}
-          {/*    </div>*/}
-          {/*)}*/}
+          {favIcon !== null && (
+            <div>
+              <p>Previous Favicon</p>
+              <img
+                className="w-[120px] h-[80px] rounded-lg object-contain"
+                //@ts-ignore
+                src={favIcon}
+                alt="post favicon previous image"
+              />
+            </div>
+          )}
 
         </div>
         {plan !== 'free' ? <>
-          <div className="flex items-start gap-2 flex-col justify-start w-full">
-            <FileInput className="w-full"
-                       label="Favicon"
-                       accept="image/png,image/jpeg, image/webp"
-                       description="32 x 32 pixels. ICO, PNG, SVG, or JPG. Shown in browser tabs."
-                       leftSection={<IconFile size="1rem" />}
-                       placeholder="Upload file"
-                       {...form.getInputProps('favIcon')} />
-            {/*<p>Preview</p>*/}
-            {/*<img className="w-[120px] h-[80px] rounded-lg"*/}
-            {/*     src="https://images.pexels.com/photos/14577237/pexels-photo-14577237.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"*/}
-            {/*     alt="" />*/}
-            {/*<p>Previous</p>*/}
-            {/*<img className="w-[120px] h-[80px] rounded-lg"*/}
-            {/*     src="https://images.pexels.com/photos/14577237/pexels-photo-14577237.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"*/}
-            {/*     alt="" />*/}
-          </div>
-
-
-          {/*<TextInput className="w-full"*/}
-          {/*           label="Site language"*/}
-          {/*           {...form.getInputProps('language')}*/}
-          {/*/>*/}
-
-          <div className="flex items-start gap-2 flex-col w-full">
-            <h2>Custom head code</h2>
-
-            <div className="w-full">
-              <CodeMirror
-                value={form.values.headCode} height="200px" theme="dark"
-                extensions={[langs.javascript()]}
-                onChange={onChangeHead} />
+            <div className="flex items-start gap-2 flex-col justify-start w-full">
+              <FileInput className="w-full"
+                         label="Favicon"
+                         clearable
+                // accept="image/png,image/jpeg,image/jpg, image/webp, image/svg+xml, image/x-icon"
+                // accept="image/png,image/jpeg, image/webp"
+                         description="32 x 32 pixels. ICO, PNG, SVG, or JPG. Shown in browser tabs."
+                         leftSection={<IconFile size="1rem" />}
+                         placeholder="Upload file"
+                         {...form.getInputProps('favIcon')} />
+              {/*<p>Preview</p>*/}
+              {/*<img className="w-[120px] h-[80px] rounded-lg"*/}
+              {/*     src="https://images.pexels.com/photos/14577237/pexels-photo-14577237.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"*/}
+              {/*     alt="" />*/}
+              {ogImage !== null && (<div><p>Previous Social Media Image</p>
+                <img className="w-[120px] h-[80px] rounded-lg object-contain"
+                  //@ts-ignore
+                     src={ogImage}
+                     alt="" /></div>)}
             </div>
-          </div>
 
-          {/*<div className="flex items-start gap-2 flex-col w-full">*/}
-          {/*  <h2>Custom body code</h2>*/}
 
-          {/*  <div className="w-full">*/}
-          {/*    <CodeMirror*/}
-          {/*      value={form.values.bodyCode} height="200px" theme="dark"*/}
-          {/*      extensions={[langs.javascript()]}*/}
-          {/*      onChange={onChangeBody}*/}
-          {/*    />*/}
-          {/*  </div>*/}
-          {/*</div>*/}
-        </> : <Alert className="w-full" variant="light" color="red" title="Alert title"
-                     icon={<IconInfoCircle size="1rem" />}>
-          <p>Buy a subscription plan to take advantage of custom code and all the metadata options such as custom head
-            code
-            and favicon.</p>
-          <p className="font-bold text-red-500 my-10">PS: Save your settings/editor data before clicking the link
-            button</p>
-          <Button fullWidth component={Link} href="/plans">
-            Buy a plan
-          </Button>
-        </Alert>}
+            {/*<TextInput className="w-full"*/}
+            {/*           label="Site language"*/}
+            {/*           {...form.getInputProps('language')}*/}
+            {/*/>*/}
+
+            <div className="flex items-start gap-2 flex-col w-full">
+              <h2>Custom head code</h2>
+
+              <div className="w-full">
+                <CodeMirror
+                  value={form.values.headCode} height="200px" theme="dark"
+                  extensions={[langs.javascript()]}
+                  onChange={onChangeHead} />
+              </div>
+            </div>
+
+            {/*<div className="flex items-start gap-2 flex-col w-full">*/}
+            {/*  <h2>Custom body code</h2>*/}
+
+            {/*  <div className="w-full">*/}
+            {/*    <CodeMirror*/}
+            {/*      value={form.values.bodyCode} height="200px" theme="dark"*/}
+            {/*      extensions={[langs.javascript()]}*/}
+            {/*      onChange={onChangeBody}*/}
+            {/*    />*/}
+            {/*  </div>*/}
+            {/*</div>*/}
+          </>
+          : <Alert className="w-full" variant="light" color="red" title="Alert title"
+                   icon={<IconInfoCircle size="1rem" />}>
+            <p>Buy a subscription plan to take advantage of custom code and all the metadata options such as custom head
+              code
+              and favicon.</p>
+            <p className="font-bold text-red-500 my-10">PS: Save your settings/editor data before clicking the link
+              button</p>
+            <Button fullWidth component={Link} href="/plans">
+              Buy a plan
+            </Button>
+          </Alert>}
         <div className="flex items-end justify-end w-full">
           <Button onClick={validateBeforeSubmit} loading={isPending}>Save Changes</Button>
         </div>
