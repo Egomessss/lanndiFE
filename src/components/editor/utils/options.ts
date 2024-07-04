@@ -12,6 +12,7 @@ import GoogleIcons from '@/components/editor/plugins/utils/GoogleIcons';
 import ScriptEditor from '@/components/editor/plugins/utils/ScriptEditor';
 import PostCss from '../plugins/utils/PostCss';
 import { styles } from '@/components/editor/utils/styles';
+import FormBlocks from '@/components/editor/plugins/BasicBlocks/FormsBlocks';
 
 
 export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: boolean) => ({
@@ -100,7 +101,7 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
     BorderStyle,
     Sections,
     UtilsPlugin,
-    // FormBlocks,
+    FormBlocks,
     // Grid
     // Accordion,
     // Tabs

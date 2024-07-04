@@ -47,7 +47,7 @@ function formatCSS(cssString: string): string {
   const cleanedCSS = removeCSSRules(cssString);
 
   // Split the cleaned CSS string into individual block sections (selectors + declarations)
-  const blocks = cleanedCSS.split('}').filter(Boolean); // Remove any empty strings
+  const blocks = cssString.split('}').filter(Boolean); // Remove any empty strings
 
 
   let formattedCSS = '';
@@ -91,7 +91,7 @@ export const CssCode = () => {
   // console.log('css', componentCss);
 
   const handleClick = () => {
-    console.log('css', value);
+    // console.log('css', value);
     editor.Css.addRules(value);
     // setValue('')
   };
@@ -171,7 +171,7 @@ export const GlobalJsCode = () => {
   // console.log('css', componentCss);
 
   const handleClick = () => {
-    console.log('global js', value);
+    // console.log('global js', value);
     component?.set('script', value);
     // setValue('')
   };
@@ -360,7 +360,7 @@ export default function CustomTraitManager({
       {value === 'svg' && <SvgContentCode />}
       {
         user?.subscription !== 'free' ? <>
-          <CssCode />
+          {/*<CssCode />*/}
           <Button onClick={() => editor.runCommand('edit-script')} size="xs" mb="4">
             Edit Javascript
           </Button>
@@ -368,9 +368,9 @@ export default function CustomTraitManager({
           {/*<GlobalCssCode />*/}
           {/*<GlobalJsCode />*/}
         </> : <>
-          <Button disabled size="xs" mb="4">
-            Edit CSS
-          </Button>
+          {/*<Button disabled size="xs" mb="4">*/}
+          {/*  Edit CSS*/}
+          {/*</Button>*/}
           <Button disabled size="xs" mb="4">
             Edit Javascript
           </Button>

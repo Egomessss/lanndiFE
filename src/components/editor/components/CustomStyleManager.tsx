@@ -9,7 +9,7 @@ import { useEditor } from '@/components/editor/context/EditorInstance';
 
 
 function getClassName(propertiesLength: number) {
-  console.log(propertiesLength);
+  // console.log(propertiesLength);
   if (propertiesLength > 8) {
     return 'flex flex-wrap items-center';
   } else if (propertiesLength === 6) {
@@ -117,7 +117,7 @@ export default function CustomStyleManager({
   const accordionItems = otherSectors
     // .filter(sector => sector.isOpen())
     .map((sector) => {
-      console.log(sector);
+      // console.log(sector);
       const propertiesLength = sector.getProperties().length;
       const className = getClassName(propertiesLength);
 

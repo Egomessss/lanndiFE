@@ -102,7 +102,7 @@ export const demoEditorConfigOptions = () => ({
     BorderStyle,
     Sections,
     UtilsPlugin,
-    // FormBlocks,
+    FormBlocks,
     // Grid
     // Accordion,
     // Tabs

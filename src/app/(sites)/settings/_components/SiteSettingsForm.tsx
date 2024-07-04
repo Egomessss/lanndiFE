@@ -176,13 +176,13 @@ const SiteSettingsForm = (props: { plan: string; data: SiteSettings }) => {
                      placeholder="Upload file"
                      {...form.getInputProps('ogImage')} />
           <p>Image preview</p>
-           {form.values.ogImage && (
-             <img
-               className="w-[160px] h-[90px] rounded-lg object-contain"
-               src={URL.createObjectURL(form.values.ogImage)}
-               alt="post thumbnail preview image"
-             />
-           )}
+          {form.values.ogImage && (
+            <img
+              className="w-[160px] h-[90px] rounded-lg object-contain"
+              src={URL.createObjectURL(form.values.ogImage)}
+              alt="post thumbnail preview image"
+            />
+          )}
           {ogImage !== null && (
             <div>
               <p>Previous Social Media Image</p>
@@ -208,9 +208,10 @@ const SiteSettingsForm = (props: { plan: string; data: SiteSettings }) => {
                          placeholder="Upload file"
                          {...form.getInputProps('favIcon')} />
               <p>Preview</p>
-              <img className="w-[32px] h-[32px] rounded-lg"
-                   src={favIcon}
-                   alt='post favicon image ' />
+              {form.values.favIcon && (
+                <img className="w-[32px] h-[32px] rounded-lg"
+                     src={URL.createObjectURL(form.values.favIcon)}
+                     alt="post favicon image " />)}
               {favIcon !== null && (<div><p>Previous Favicon</p>
                 <img className="w-[32px] h-[32px] rounded-lg object-contain"
                   //@ts-ignore

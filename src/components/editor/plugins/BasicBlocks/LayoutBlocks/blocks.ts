@@ -76,8 +76,11 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
         styles: `
                 .container{
                  height: 100px;
-                  width: 100%;
-                  display: flex;
+                  width: 90%;
+                  max-width:1200px;
+                  margin-right:auto;
+                  margin-left:auto;
+                               display: flex;
                   align-items: center;
                   justify-content: center;
                   padding: 10px 10px 10px 10px;

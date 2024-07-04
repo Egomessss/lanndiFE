@@ -50,7 +50,7 @@ export default function CustomBlockManager({
                     key={block.getId()}
                   >
                     <div>
-                      <Button variant="subtle"
+                      <Button variant="subtle" size="xs"
                               style={{ paddingLeft: '4px' }}
                               draggable={!disabled}
                               justify="start" fullWidth

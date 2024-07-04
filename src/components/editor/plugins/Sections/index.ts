@@ -18,8 +18,8 @@ const SectionBlocks: Plugin = (editor) => {
     loadHowItWorks(editor);
     loadFeatures(editor);
     loadTestimonials(editor);
-    // loadCtas(editor);
-    // loadPricings(editor);
+    loadCtas(editor);
+    loadPricings(editor);
     // loadFaqs(editor);
     loadFooters(editor);
 };

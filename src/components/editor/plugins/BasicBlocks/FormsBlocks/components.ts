@@ -54,6 +54,12 @@ export default function(editor: Editor) {
     }
   };
 
+  const eventsWithoutPreview = (ev: Event) => {
+
+      ev.preventDefault();
+
+  };
+
   Components.addType(typeForm, {
     isComponent: el => el.tagName == 'FORM',
 
@@ -212,15 +218,26 @@ export default function(editor: Editor) {
 
     view: {
       events: {
-        click: checkIfInPreview,
+        click: 'checkIfInPreview',
       } as any,
 
+      // handleClick: function(e) {
+      //   e.preventDefault();
+      //   // Assuming 'this' refers to the view context where 'model' is accessible
+      //   const isChecked = this.model.get('attributes').checked;
+      //
+      //   // Toggle the checkbox state
+      //   this.model.set('attributes', { ...this.model.get('attributes'), checked: !isChecked });
+      //
+      //   // Perform actions based on the checkbox state
+      // },
       init() {
         this.listenTo(this.model, 'change:attributes:checked', this.handleChecked);
       },
 
       handleChecked() {
-        (this.el as any).checked = !!this.model.get('attributes')?.checked;
+        this.model.set('attributes', { ...this.model.get('attributes'), checked: !isChecked });
+        // (this.el as any).checked = !!this.model.get('attributes')?.checked;
       },
     },
   });

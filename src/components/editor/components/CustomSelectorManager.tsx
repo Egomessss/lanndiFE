@@ -160,7 +160,7 @@ export default function CustomSelectorManager({
 
 
   const isComponentFirst = editor.Selectors.getComponentFirst();
-  console.log('isComp', isComponentFirst);
+  // console.log('isComp', isComponentFirst);
   const setComponentFirst = () => {
     editor.Selectors.setComponentFirst(!isComponentFirst);
   };
@@ -221,6 +221,7 @@ export default function CustomSelectorManager({
                          using its ID you won&apos;t be able to change the height using class, only if you remove that
                          value from the ID e.g: if you had styled a block with 100px height using its ID you&apos;d have
                          to remove(leave the input empty) that style before styling the height by class.</p>
+                       <p>Tip 4: Use  ID for solo blocks and classes for blocks that are used multiple time and share the same style.</p>
                      </div>}>
             <ActionIcon onClick={setComponentFirst}
                         variant={isComponentFirst ? 'filled' : 'subtle'}>
