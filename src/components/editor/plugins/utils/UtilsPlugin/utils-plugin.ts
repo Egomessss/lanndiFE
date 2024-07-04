@@ -178,9 +178,25 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
   // editor.on('keymap:emit', (id, shortcut, event) => {
   //   // ...
   // })
+  // const loadStyling = () => {
+  //   const head = editor.Canvas.getDocument().head;
+  //   const urls = [
+  //     "//fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&v=1704404084845",
+  //     // "//fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&v=1704404087635",
+  //     // "//fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&v=1704404089108"
+  //   ]
+  //
+  //   urls.forEach(url => {
+  //     head.insertAdjacentHTML('beforeend', `<link rel="stylesheet" href="${url}" />`);
+  //     document.head.insertAdjacentHTML('beforeend', `<link rel="stylesheet" href="${url}" />`);
+  //   });
+  // }
 
   editor.on('load', () => {
+    // loadStyling()
     // This overload the select type
+
+
 
     editor.DomComponents.addType('select', {
       model: {

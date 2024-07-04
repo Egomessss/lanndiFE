@@ -97,6 +97,20 @@ const MediaBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
       },
 
     },
+    // view: {
+    //   events: {
+    //     // TODO: Fix here after this is fixed https://github.com/GrapesJS/grapesjs/blob/9314b57ac91e370bc0adb9ea958e9201dd0a468a/src/asset_manager/view/AssetImageView.ts#L93C16-L93C16
+    //     // @ts-ignore
+    //     // click: 'onActive',
+    //     dblclick: 'onActive',
+    //   },
+    //   onActive() {
+    //     editor.Commands.run('open:icon-picker')
+    //   },
+    //   // onRender() {
+    //   //   editor.Commands.run('open:icon-picker')
+    //   // }
+    // },
   });
 
   // toAdd('icon') &&
@@ -120,11 +134,11 @@ const MediaBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
   });
 
   editor.DomComponents.addType('svg', {
-    isComponent: el => {
-      if (el.tagName === 'SVG') { // Corrected the condition to check for H1 tag
-        return { type: 'svg' };
-      }
-    },
+    // isComponent: el => {
+    //   if (el.tagName === 'SVG') { // Corrected the condition to check for H1 tag
+    //     return { type: 'svg' };
+    //   }
+    // },
     // extend: 'svg',
     model: {
       defaults: {
