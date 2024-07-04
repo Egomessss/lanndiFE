@@ -224,7 +224,7 @@ export default function(editor: Editor) {
       // handleClick: function(e) {
       //   e.preventDefault();
       //   // Assuming 'this' refers to the view context where 'model' is accessible
-      //   const isChecked = this.model.get('attributes').checked;
+      //
       //
       //   // Toggle the checkbox state
       //   this.model.set('attributes', { ...this.model.get('attributes'), checked: !isChecked });
@@ -236,6 +236,7 @@ export default function(editor: Editor) {
       },
 
       handleChecked() {
+        const isChecked = this?.model.get('attributes')?.checked;
         this.model.set('attributes', { ...this.model.get('attributes'), checked: !isChecked });
         // (this.el as any).checked = !!this.model.get('attributes')?.checked;
       },

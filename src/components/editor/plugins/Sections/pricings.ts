@@ -4,6 +4,7 @@ const pricings = (editor: Editor) => {
   const { Components } = editor;
 
   const script = function() {
+    // @ts-ignore
     document.getElementById('togglePricing').addEventListener('change', function() {
 
       const monthlyElements = document.querySelectorAll('.monthly');
@@ -13,10 +14,12 @@ const pricings = (editor: Editor) => {
       console.log('elements', monthlyElements, annualElements);
 
       monthlyElements.forEach(el => {
+        // @ts-ignore
         el.style.display = this.checked ? 'none' : 'block'; // Explicitly set to 'block'
       });
 
       annualElements.forEach(el => {
+        // @ts-ignore
         el.style.display = this.checked ? 'block' : 'none'; // Explicitly set to 'block' when checked
       });
 
@@ -758,7 +761,7 @@ const pricings = (editor: Editor) => {
     category: 'sections-pricing',
     select: true,
     content: { type: 'pricing-three-columns-switch' },
-    tooltip:'To use the checkbox event switch to preview mode, if you want to change annual values just double click them on preview mode'
+    // tooltip:'To use the checkbox event switch to preview mode, if you want to change annual values just double click them on preview mode'
   });
 
   Components.addType('pricing-three-columns-switch', {
