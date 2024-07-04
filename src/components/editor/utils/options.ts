@@ -15,7 +15,7 @@ import { styles } from '@/components/editor/utils/styles';
 
 
 export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: boolean) => ({
-  height: '96vh',
+  height: '94vh',
   jsInHtml: false,
   optsHtml: { cleanId: true },
   optsCss: { onlyMatched: true, keepUnusedStyles: true },

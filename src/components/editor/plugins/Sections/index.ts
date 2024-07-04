@@ -15,9 +15,9 @@ const SectionBlocks: Plugin = (editor) => {
 
     loadNavbars(editor);
     loadHeros(editor);
-    // loadFeatures(editor);
     loadHowItWorks(editor);
-    // loadTestimonials(editor);
+    loadFeatures(editor);
+    loadTestimonials(editor);
     // loadCtas(editor);
     // loadPricings(editor);
     // loadFaqs(editor);

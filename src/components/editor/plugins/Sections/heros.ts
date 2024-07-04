@@ -5,7 +5,7 @@ const heros = (editor: Editor) => {
 
 
   editor.Blocks.add('hero-one', {
-    label: 'Hero Image Bottom',
+    label: 'Image Bottom',
     category: 'sections-heros',
     select: true,
     content: { type: 'hero-one' },
@@ -263,7 +263,7 @@ const heros = (editor: Editor) => {
   });
 
   editor.Blocks.add('hero-two', {
-    label: 'Hero Image Side',
+    label: 'Image Side',
     category: 'sections-heros',
     select: true,
     content: { type: 'hero-two' },

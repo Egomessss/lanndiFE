@@ -6,7 +6,7 @@ const features = (editor: Editor) => {
 
   editor.Blocks.add('feature-one', {
     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
-    label: 'Features Image Side',
+    label: '3 Rows W/Icons',
     category: 'sections-features',
     select: true,
     content: { type: 'feature-one' },
@@ -15,129 +15,132 @@ const features = (editor: Editor) => {
   Components.addType('feature-one', {
     model: {
       defaults: {
-        // script: script,
-        droppable: false,
-        name: 'Features Image Side',
+        name: 'Features 3 Rows W/Icons',
         components: `  
-  <div class="feature-two">
-    <div class="feature-two-container">
-      <div class="feature-text-container">
-        <h1 id="iyi6" class="heading-feature">
-        </h1>
-        <h1 class="heading-one" id="im2wi">Insert feature text here
-        </h1>
-        <p id="it2f" class="feature-description">
-          <span id="i09aq">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
-        </p>
-        <button class="button">Button
-        </button>
-      </div>
-      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="feature-image"/>
-    </div>
-  </div>`,
+  <div class="block" id="izpc">
+    <div class="block" id="irf4">
+      <p class="paragraph" id="ihfmp">
+     Subheading
+      </p>
+    <h2 class="heading-two">Feature Heading
+    </h2>
+    <p class="paragraph">
+    Insert your text here
+    </p>
+  </div>
+<div class="block" id="i1vi">
+  <div class="feature-container">
+    <span class="material-icons material-symbols-outlined">
+      home
+    </span>
+    <h4 class="heading-four">Heading
+    </h4>
+    <p class="paragraph">
+    Insert your feature or benefit text here
+    </p>
+</div>
+<div class="feature-container">
+  <span class="material-icons material-symbols-outlined">
+    home
+  </span>
+  <h4 class="heading-four">Heading
+  </h4>
+  <p class="paragraph">Insert your feature or benefit text here
+  </p>
+</div>
+<div class="feature-container">
+  <span class="material-icons material-symbols-outlined">
+    home
+  </span>
+  <h4 class="heading-four">Heading
+  </h4>
+  <p class="paragraph">Insert your feature or benefit text here
+  </p>
+</div>
+</div>
+</div>`,
         styles: `
-       .feature-two-container{
+       .block{
+  height:11px;
+  max-height:100%;
+  width:100%;
+}
+#izpc{
+  height:453px;
+  max-width:1200px;
+  width:90%;
+  margin-right:auto;
+  margin-left:auto;
+  display:flex;
+  justify-content:start;
+  align-items:center;
+  flex-direction:column;
+}
+#irf4{
+  text-align:center;
   display:flex;
   justify-content:center;
+  flex-direction:column;
+  align-items:center;
+  row-gap:1rem;
+  height:fit-content;
+  margin-top:2rem;
+  margin-bottom:2rem;
+}
+.paragraph{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+}
+#ihfmp{
+  font-weight:700;
+}
+.heading-two{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+}
+#i1vi{
+  height:257px;
+  display:flex;
+  flex-direction:row-reverse;
+  justify-content:space-between;
   align-items:center;
   column-gap:2rem;
-  height:559px;
 }
-.feature-text-container{
-  height:359px;
+.feature-container{
+  width:100%;
+  padding-top:1rem;
+  padding-right:1rem;
+  padding-bottom:1rem;
+  padding-left:1rem;
   display:flex;
   flex-direction:column;
   justify-content:center;
-  align-items:center;
-  width:457px;
+  align-items:start;
+  row-gap:0.7rem;
 }
-.heading-feature{
-  width:571px;
-  text-align:center;
-  font-size:3rem;
+.heading-four{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
 }
-
-.heading-one{
-  font-size:3rem;
-}
-.feature-description{
-  width:100%;
-  text-align:center;
-  font-size:1rem;
-}
-
-#i09aq{
-  color:rgb(71, 85, 105);
-  font-family:Arial, Helvetica, sans-serif;
-  font-size:1rem;
-}
-.button{
-  width:fit-content;
-  cursor:pointer;
-  outline:0;
-  color:#fff;
-  background-color:#0d6efd;
-  border-color:#0d6efd;
-  display:inline-block;
-  font-weight:400;
-  line-height:1.5;
-  text-align:center;
-  border:1px solid transparent;
-  padding:2px 8px 2px 8px;
-  font-size:16px;
-  border-radius:.25rem .25rem .25rem .25rem;
-}
-.button:hover{
-  opacity:0.9;
-}
-.image-container{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:fit-content;
-}
-.feature-image{
-  width:450px;
-  height:361px;
-  display:flex;
-  flex-direction:row;
-  justify-content:center;
-  align-items:center;
-  border-top-left-radius:5px;
-  border-top-right-radius:5px;
-  border-bottom-right-radius:5px;
-  border-bottom-left-radius:5px;
-  object-fit:cover;
-}
-@media (max-width: 810px){
-  .feature-two-container{
+@media (max-width: 600px){
+  #izpc{
+    height:fit-content;
+    margin-top:2rem;
+    margin-bottom:2rem;
+  }
+  #irf4{
+    height:165px;
+  }
+  #i1vi{
     flex-direction:column;
+    height:fit-content;
     row-gap:2rem;
-    height:823px;
-  }
-  .feature-text-container{
-    width:649px;
-  }
-  .feature-image{
-    width:645px;
-  }
-}
-@media (max-width: 390px){
-  .feature-text-container{
-    width:90%;
-    text-align:center;
-    height:344px;
-    align-items:center;
-    justify-content:center;
-  }
-  .heading-one{
-    height:88px;
-    font-size:2.5rem;
-    line-height:2.5rem;
-  }
-  .feature-image{
-    width:90%;
-    height:254px;
   }
 }
 `,
@@ -145,74 +148,193 @@ const features = (editor: Editor) => {
     },
   });
 
-//   editor.Blocks.add('feature-two', {
-//     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
-//     label: 'Features Image Bottom',
-//     category: 'sections-features',
-//     select: true,
-//     content: { type: 'feature-two' },
-//   });
-//
-//   Components.addType('feature-two', {
-//     model: {
-//       defaults: {
-//         // script: script,
-//         droppable: false,
-//         name: 'Features Image Bottom',
-//         components: `
-//    <div class="block">
-//     <h4 class="sub-heading" id="ic2u">Insert Your Sub-Heading
-//     </h4>
-//     <h1 class="heading-one" id="i1cu">Insert Your Heading Here
-//     </h1>
-//     <p class="paragraph" id="iab4">Insert your description here
-//     </p>
-//     <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="image"/>
-//   </div>`,
-//         styles: `
-//        .block{
-//   height:649px;
-//   max-height:100%;
-//   width:100%;
-//   text-align:center;
-//   display:flex;
-//   flex-direction:column;
-//   justify-content:center;
-//   align-items:center;
-//   row-gap:1rem;
-// }
-//
-// .sub-heading{
-//   margin-top:0;
-//   margin-bottom:0;
-// }
-// .heading-one{
-//   margin-top:0;
-//   margin-bottom:0;
-//   font-size:3rem;
-// }
-//
-//
-// .paragraph{
-//   margin-top:0;
-//   margin-bottom:0;
-// }
-// .image{
-//   width:721px;
-//   height:403px;
-//   border-top-left-radius:8px;
-//   border-top-right-radius:8px;
-//   border-bottom-right-radius:8px;
-//   border-bottom-left-radius:8px;
-// }
-// `,
-//       },
-//     },
-//   });
+  editor.Blocks.add('feature-two', {
+    media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
+    label: 'Big Image and Grid',
+    category: 'sections-features',
+    select: true,
+    content: { type: 'feature-two' },
+  });
+
+  Components.addType('feature-two', {
+    model: {
+      defaults: {
+        name: 'Features With Big Image and Grid',
+        components: `  
+   <div id="izpc" class="block">
+    <div id="irf4" class="block">
+      <p id="ihfmp" class="paragraph">
+     Subheading  
+      </p>
+    <h2 id="ilin1" class="heading-two">Feature Heading
+    </h2>
+    <p id="iqpcl" class="paragraph">Insert your text here
+    </p>
+  </div>
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="iadpd"/>
+<div id="i1vi" class="block">
+  <div id="imqcm" class="feature-container">
+    <span class="material-icons material-symbols-outlined">home</span>
+    <h4 class="heading-four">Heading
+    </h4>
+    <p class="paragraph">
+    Insert your feature or benefit text here
+    </p>
+</div>
+<div id="iqbmj" class="feature-container">
+  <span class="material-icons material-symbols-outlined">home</span>
+  <h4 class="heading-four">Heading
+  </h4>
+  <p class="paragraph">
+  Insert your feature or benefit text here
+  </p>
+</div>
+<div id="izjku" class="feature-container">
+  <span class="material-icons material-symbols-outlined">home</span>
+  <h4 class="heading-four">Heading
+  </h4>
+  <p class="paragraph">
+  Insert your feature or benefit text here
+  </p>
+</div>
+<div id="iazbj" class="feature-container">
+  <span class="material-icons material-symbols-outlined">home</span>
+  <h4 class="heading-four">Heading
+  </h4>
+  <p class="paragraph">
+  Insert your feature or benefit text here
+  </p>
+</div>
+<div id="iminn" class="feature-container">
+  <span class="material-icons material-symbols-outlined">home</span>
+  <h4 class="heading-four">Heading
+  </h4>
+  <p class="paragraph">
+  Insert your feature or benefit text here
+  </p>
+</div>
+<div id="i21q6" class="feature-container">
+  <span class="material-icons material-symbols-outlined">home</span>
+  <h4 class="heading-four">Heading
+  </h4>
+  <p class="paragraph">
+  Insert your feature or benefit text here
+  </p>
+</div>
+</div>
+</div>`,
+        styles: `
+       .block{
+  height:11px;
+  max-height:100%;
+  width:100%;
+}
+#izpc{
+  height:fit-content;
+  max-width:1200px;
+  width:90%;
+  margin-right:auto;
+  margin-left:auto;
+  display:flex;
+  justify-content:start;
+  align-items:center;
+  flex-direction:column;
+  margin-top:2rem;
+  margin-bottom:2rem;
+}
+#irf4{
+  text-align:center;
+  display:flex;
+  justify-content:center;
+  flex-direction:column;
+  align-items:center;
+  row-gap:1rem;
+  height:fit-content;
+  margin-top:2rem;
+  margin-bottom:2rem;
+}
+.paragraph{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+}
+#ihfmp{
+  font-weight:700;
+}
+.heading-two{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+}
+#iadpd{
+  width:671px;
+  height:343px;
+  border-top-left-radius:1rem;
+  border-top-right-radius:1rem;
+  box-shadow:0 0 20p 20px;
+  border-bottom-right-radius:1rem;
+  border-bottom-left-radius:1rem;
+}
+#i1vi{
+  height:fit-content;
+  display:grid;
+  flex-direction:row-reverse;
+  justify-content:space-between;
+  align-items:center;
+  column-gap:2rem;
+  grid-template-columns:1fr 1fr 1fr;
+  row-gap:2rem;
+  margin-top:2rem;
+  margin-bottom:2rem;
+}
+.feature-container{
+  width:100%;
+  padding-top:1rem;
+  padding-right:1rem;
+  padding-bottom:1rem;
+  padding-left:1rem;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:start;
+  row-gap:0.7rem;
+}
+.heading-four{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+}
+@media (max-width: 600px){
+  #izpc{
+    height:fit-content;
+    margin-top:2rem;
+    margin-bottom:2rem;
+  }
+  #irf4{
+    height:165px;
+  }
+  #iadpd{
+    width:100%;
+    height:220px;
+  }
+  #i1vi{
+    flex-direction:column;
+    height:fit-content;
+    row-gap:2rem;
+    grid-template-columns:1fr ;
+  }
+}
+`,
+      },
+    },
+  });
 
   editor.Blocks.add('feature-three', {
     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
-    label: 'Feature Grid With Icons',
+    label: 'Image With List',
     category: 'sections-features',
     select: true,
     content: { type: 'feature-three' },
@@ -221,188 +343,172 @@ const features = (editor: Editor) => {
   Components.addType('feature-three', {
     model: {
       defaults: {
-        // script: script,
-        droppable: false,
-        name: 'List',
+        name: 'Features With Image and List',
         components: `  
-    <div>
-    <div id="ioyxg" class="gjs-grid-row">
-      <div id="i8w4i" class="gjs-grid-column">
-        <h4 id="ihs4lb" class="gjs-heading gjs-text-blue">More Features
-        </h4>
-        <h2 id="iiacm" class="gjs-heading">Put here the text describing why your features are
-          <span id="icxfor" class="gjs-text-blue">so amazing</span>
+    <div id="ixrq" class="block">
+      <div id="i68h" class="block">
+        <p class="paragraph" id="inolr">Subtitle
+        </p>
+        <h2 class="heading-two">Feature Heading
         </h2>
-        <div id="ia21sa" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua.
-        </div>
-        <div id="ixzh1" class="gjs-grid-row">
-          <div id="ilpi3" class="gjs-grid-column feature-item">
-            <div data-type-icon="" id="ipmqo6" class="gjs-icon gjs-feature-icon">
-              <svg viewBox="0 0 24 24">
-                <path d="M16 9h3l-5 7m-4-7h4l-2 8M5 9h3l2 7m5-12h2l2 3h-3m-5-3h2l1 3h-4M7 4h2L8 7H5m1-5L2 8l10 14L22 8l-4-6H6z">
-                </path>
-              </svg>
-              <span class="material-icons material-symbols-outlined">check</span>
-            </div>
-            <h3 id="in9ef" class="gjs-heading">Feature text
-            </h3>
-            <div id="i8isa" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </div>
-          </div>
-          <div id="ic57kq" class="gjs-grid-column feature-item">
-            <div data-type-icon="" class="gjs-icon gjs-feature-icon">
-              <svg viewBox="0 0 24 24">
-                <path d="M16 9h3l-5 7m-4-7h4l-2 8M5 9h3l2 7m5-12h2l2 3h-3m-5-3h2l1 3h-4M7 4h2L8 7H5m1-5L2 8l10 14L22 8l-4-6H6z">
-                </path>
-              </svg>
-              <span class="material-icons material-symbols-outlined">check</span>
-            </div>
-            <h3 id="ica43q" class="gjs-heading">Feature text
-            </h3>
-            <div id="ickn3f" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        <p class="paragraph">
+        </p>
+        <p class="paragraph">lanndi helps you create launch and share your beautiful and responsive website effortlessly, with a super easy-to-use editor without needing code or design skills
+          <br/>
+          <br/>
+        </p>
+        <div class="block" id="i97a3">
+          <div class="small-feature-container" id="i0jcx">
+            <span class="material-icons material-symbols-outlined">
+              home
+            </span>
+            <div class="block">
+              <p class="paragraph bolden">Feature title
+              </p>
+              <p class="paragraph">Insert your feature description text here
+              </p>
             </div>
           </div>
-          <div id="idv32l" class="gjs-grid-column feature-item">
-            <div data-type-icon="" class="gjs-icon gjs-feature-icon">
-              <svg viewBox="0 0 24 24">
-                <path d="M16 9h3l-5 7m-4-7h4l-2 8M5 9h3l2 7m5-12h2l2 3h-3m-5-3h2l1 3h-4M7 4h2L8 7H5m1-5L2 8l10 14L22 8l-4-6H6z">
-                </path>
-              </svg>
-              <span class="material-icons material-symbols-outlined">check</span>
+          <div class="small-feature-container" id="iq0hd">
+            <span class="material-icons material-symbols-outlined">
+              home
+            </span>
+            <div class="block">
+              <p class="paragraph bolden">Feature title
+              </p>
+              <p class="paragraph">Insert your feature description text here
+              </p>
             </div>
-            <h3 id="ieu6p6" class="gjs-heading">Feature text
-            </h3>
-            <div id="izqkf7" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </div>
+          <div class="small-feature-container" id="imf6o">
+            <span class="material-icons material-symbols-outlined">
+              home
+            </span>
+            <div class="block">
+              <p class="paragraph bolden">Feature title
+              </p>
+              <p class="paragraph">Insert your feature description text here
+              </p>
             </div>
           </div>
         </div>
+        <p class="paragraph">
+        </p>
       </div>
-    </div>
-  </div>`,
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="irqac"/>
+    </div>`,
         styles: `
-       .gjs-grid-row{
-  display:flex;
-  justify-content:flex-start;
-  align-items:stretch;
-  flex-direction:row;
-  min-height:auto;
-  padding:10px 0;
-}
-#ioyxg{
-  justify-content:center;
-  padding-top:80px;
-  padding-bottom:80px;
-  padding-left:20px;
-  padding-right:20px;
-}
-.gjs-grid-column{
-  flex:1 1 0%;
-  padding:5px 0;
-}
-#i8w4i{
-  max-width:1200px;
-  display:flex;
-  flex-direction:column;
-}
-.gjs-heading{
-  margin:0;
-  color:rgba(29,40,55,1);
-}
-.gjs-text-blue{
-  color:rgb(36,99,235);
-}
-#ihs4lb{
-  font-size:1.2rem;
-  margin-bottom:15px;
-}
-#iiacm{
-  font-size:2.5rem;
-  margin-bottom:10px;
-  max-width:750px;
-}
-.text-main-content{
-  line-height:30px;
-  font-size:1.2rem;
-}
-#ia21sa{
-  padding:10px;
-  max-width:750px;
-  margin-bottom:70px;
-  padding-left:0px;
-  padding-right:0px;
-}
-#ixzh1{
+      .block{
+  height:80px;
+  max-height:100%;
   width:100%;
-  flex-wrap:wrap;
-  justify-content:flex-start;
-  gap:50px;
-}
-.gjs-grid-column.feature-item{
-  padding-top:15px;
-  padding-right:15px;
-  padding-bottom:15px;
-  padding-left:15px;
   display:flex;
   flex-direction:column;
-  gap:15px;
-  min-width:30%;
+  justify-content:start;
+  row-gap:1rem;
 }
-.gjs-icon{
-  display:inline-block;
-  text-decoration:none;
-  color:inherit;
-  vertical-align:middle;
-  fill:currentColor;
-  width:50px;
-  height:50px;
+#ixrq{
+  height:710px;
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items:center;
+  max-width:1200px;
+  margin-right:auto;
+  margin-left:auto;
+  width:90%;
+  column-gap:02rem;
 }
-.gjs-icon.gjs-feature-icon{
-  padding-top:10px;
-  padding-right:10px;
-  padding-bottom:10px;
-  padding-left:10px;
-  background-color:rgb(36,99,235);
-  color:white;
-  border-top-left-radius:10px;
-  border-top-right-radius:10px;
-  border-bottom-right-radius:10px;
-  border-bottom-left-radius:10px;
+#i68h{
+  height:fit-content;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:start;
+  width:788px;
+  row-gap:1rem;
+  text-align:left;
+  padding-top:1rem;
+  padding-bottom:1rem;
+}
+.paragraph{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+}
+#inolr{
+  font-weight:700;
+}
+.heading-two{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+}
+#i97a3{
+  height:fit-content;
+  margin-top:1rem;
+  margin-bottom:1rem;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
+  row-gap:1rem;
 }
-#in9ef{
-  font-size:1.5rem;
+#i0jcx{
+  width:1;
 }
-#i8isa{
-  padding:10px;
-  padding-left:0px;
-  padding-right:0px;
+.small-feature-container{
+  width:100%;
+  display:flex;
+  flex-direction:row;
+  justify-content:start;
+  align-items:start;
 }
-#ica43q{
-  font-size:1.5rem;
+.paragraph.bolden{
+  font-weight:600;
+  font-size:1.2rem;
 }
-#ickn3f{
-  padding:10px;
-  padding-left:0px;
-  padding-right:0px;
+#iq0hd{
+  width:1;
 }
-#ieu6p6{
-  font-size:1.5rem;
+#imf6o{
+  width:1;
 }
-#izqkf7{
-  padding:10px;
-  padding-left:0px;
-  padding-right:0px;
+#irqac{
+  width:441px;
+  height:561px;
 }
-@media (max-width:992px){
-  .gjs-grid-row{
+@media (max-width: 880px){
+  #ixrq{
+    height:fit-content;
+    margin-top:2rem;
+    margin-bottom:2rem;
+    padding-top:2rem;
+    padding-bottom:2rem;
+  }
+  #irqac{
+    width:100%;
+    height:327px;
+  }
+}
+@media (max-width: 810px){
+  #ixrq{
+    height:809px;
     flex-direction:column;
+  }
+  #i68h{
+    width:100%;
+  }
+}
+@media (max-width: 600px){
+  #ixrq{
+    height:699px;
+  }
+  #i68h{
+    width:100%;
+    height:285px;
   }
 }
 `,
@@ -410,10 +516,9 @@ const features = (editor: Editor) => {
     },
   });
 
-
   editor.Blocks.add('feature-four', {
     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
-    label: 'Features Grid Images',
+    label: 'Image Grid',
     category: 'sections-features',
     select: true,
     content: { type: 'feature-four' },
@@ -422,122 +527,821 @@ const features = (editor: Editor) => {
   Components.addType('feature-four', {
     model: {
       defaults: {
-        // script: script,
-        droppable: false,
-        name: 'Features Grid Images',
+        name: 'Features With Image Grid',
         components: `  
-  <section class="flex-sect" id="iaxad">
-    <div class="container-width" id="izopk">
-      <h2 class="flex-title">Lorem ipsum dolor sit amet.
-      </h2>
-      <p class="flex-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-      </p>
-      <div class="cards">
-        <div class="card">
-        <img class="card-header" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" alt="">
-          <div class="card-body">
-            <h3 class="card-title">Title one
-            </h3>
-            <p class="card-sub-title">Subtitle one
-            </p>
-            <p class="card-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-            </p>
-          </div>
-        </div>
-        <div class="card">
-           <img class="card-header" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" alt="">
-          <div class="card-body">
-            <h3 class="card-title">Title two
-            </h3>
-            <p class="card-sub-title">Subtitle two
-            </p>
-            <p class="card-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+     <div id="izpc" class="block">
+      <div id="irf4" class="block">
+        <h2 id="ilin1" class="heading-two">Feature Heading
+        </h2>
+        <p id="iqpcl" class="paragraph">Insert your text here
+        </p>
+      </div>
+      <div id="i1vi" class="block">
+        <div id="imqcm" class="feature-container">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="i7c2of"/>
+          <div class="container-text" id="ii7jva">
+            <h4 class="heading-four">Heading
+            </h4>
+            <p class="paragraph">
+              Insert your feature or benefit text here
             </p>
           </div>
         </div>
-        <div class="card">
-          <img class="card-header" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" alt="">
-          <div class="card-body">
-            <h3 class="card-title">Title three
-            </h3>
-            <p class="card-sub-title">Subtitle three
+        <div class="feature-container" id="icrkto">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="ivrf71"/>
+          <div class="container-text" id="i2p5j7">
+            <h4 class="heading-four">Heading
+            </h4>
+            <p class="paragraph">
+              Insert your feature or benefit text here
             </p>
-            <p class="card-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+          </div>
+        </div>
+        <div class="feature-container" id="i24cem">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="i51qns"/>
+          <div class="container-text" id="iq2ip1">
+            <h4 class="heading-four">Heading
+            </h4>
+            <p class="paragraph">
+              Insert your feature or benefit text here
+            </p>
+          </div>
+        </div>
+        <div class="feature-container" id="iihcj">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="iwz4k"/>
+          <div class="container-text" id="imp4c">
+            <h4 class="heading-four">Heading
+            </h4>
+            <p class="paragraph">
+              Insert your feature or benefit text here
+            </p>
+          </div>
+        </div>
+        <div class="feature-container" id="i4fa8">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="irc6b"/>
+          <div class="container-text" id="ilx4k">
+            <h4 class="heading-four">Heading
+            </h4>
+            <p class="paragraph">
+              Insert your feature or benefit text here
+            </p>
+          </div>
+        </div>
+        <div class="feature-container" id="iylww">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="ivvzh"/>
+          <div class="container-text" id="iqsxg">
+            <h4 class="heading-four">Heading
+            </h4>
+            <p class="paragraph">
+              Insert your feature or benefit text here
             </p>
           </div>
         </div>
       </div>
-    </div>
-  </section>`,
+    </div>`,
         styles: `
-       .container-width{
-  width:90%;
-  max-width:1150px;
-  margin:0 auto;
-}
-.flex-sect{
-  background-color:#fafafa;
-  padding:100px 0;
-}
-.flex-title{
-  margin-bottom:15px;
-  font-size:2em;
-  text-align:center;
-  font-weight:700;
-  color:#555;
-  padding:5px;
-}
-.flex-desc{
-  margin-bottom:55px;
-  font-size:1em;
-  text-align:center;
-  padding:5px;
-}
-.cards{
-  padding:20px 0;
-  display:flex;
-  justify-content:space-around;
-  flex-flow:wrap;
-}
-.card{
-  background-color:white;
-  height:340px;
-  width:300px;
-  margin-bottom:30px;
-  box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.2);
-  border-radius:2px;
-  transition:all 0.5s ease;
-  font-weight:100;
-  overflow:hidden;
-}
-
-.card-header{
-  height:155px;
+     .block{
+  height:11px;
+  max-height:100%;
   width:100%;
 }
-
-.card-body{
-  padding:15px 15px 5px 15px;
-  color:#555;
+#izpc{
+  height:fit-content;
+  max-width:1200px;
+  width:90%;
+  margin-right:auto;
+  margin-left:auto;
+  display:flex;
+  justify-content:start;
+  align-items:center;
+  flex-direction:column;
+  margin-top:2rem;
+  margin-bottom:2rem;
 }
-.card-title{
-  font-size:1.4em;
-  margin-bottom:5px;
+#irf4{
+  text-align:center;
+  display:flex;
+  justify-content:center;
+  flex-direction:column;
+  align-items:center;
+  row-gap:1rem;
+  height:fit-content;
+  margin-top:2rem;
+  margin-bottom:2rem;
 }
-.card-sub-title{
-  color:#b3b3b3;
-  font-size:1em;
-  margin-bottom:15px;
+.heading-two{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
 }
-.card-desc{
-  font-size:0.85rem;
-  line-height:17px;
+.paragraph{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
 }
-
+#i1vi{
+  height:fit-content;
+  display:grid;
+  flex-direction:row-reverse;
+  justify-content:space-between;
+  align-items:center;
+  column-gap:2rem;
+  grid-template-columns:1fr 1fr 1fr;
+  row-gap:2rem;
+  margin-top:2rem;
+  margin-bottom:2rem;
+}
+.feature-container{
+  width:100%;
+  padding-top:1rem;
+  padding-right:1rem;
+  padding-bottom:1rem;
+  padding-left:1rem;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:start;
+  row-gap:0.7rem;
+}
+#imqcm{
+  padding-top:0;
+  padding-right:0;
+  padding-bottom:0;
+  padding-left:0;
+}
+#i7c2of{
+  width:100%;
+  height:167px;
+}
+#ii7jva{
+  height:80px;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:start;
+  row-gap:1rem;
+  padding-top:1rem;
+  padding-right:1rem;
+  padding-bottom:1rem;
+  padding-left:1rem;
+}
+.heading-four{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+}
+#icrkto{
+  padding-top:0;
+  padding-right:0;
+  padding-bottom:0;
+  padding-left:0;
+}
+#ivrf71{
+  width:100%;
+  height:167px;
+}
+#i2p5j7{
+  height:80px;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:start;
+  row-gap:1rem;
+  padding-top:1rem;
+  padding-right:1rem;
+  padding-bottom:1rem;
+  padding-left:1rem;
+}
+#i24cem{
+  padding-top:0;
+  padding-right:0;
+  padding-bottom:0;
+  padding-left:0;
+}
+#i51qns{
+  width:100%;
+  height:167px;
+}
+#iq2ip1{
+  height:80px;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:start;
+  row-gap:1rem;
+  padding-top:1rem;
+  padding-right:1rem;
+  padding-bottom:1rem;
+  padding-left:1rem;
+}
+#iihcj{
+  padding-top:0;
+  padding-right:0;
+  padding-bottom:0;
+  padding-left:0;
+}
+#iwz4k{
+  width:100%;
+  height:167px;
+}
+#imp4c{
+  height:80px;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:start;
+  row-gap:1rem;
+  padding-top:1rem;
+  padding-right:1rem;
+  padding-bottom:1rem;
+  padding-left:1rem;
+}
+#i4fa8{
+  padding-top:0;
+  padding-right:0;
+  padding-bottom:0;
+  padding-left:0;
+}
+#irc6b{
+  width:100%;
+  height:167px;
+}
+#ilx4k{
+  height:80px;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:start;
+  row-gap:1rem;
+  padding-top:1rem;
+  padding-right:1rem;
+  padding-bottom:1rem;
+  padding-left:1rem;
+}
+#iylww{
+  padding-top:0;
+  padding-right:0;
+  padding-bottom:0;
+  padding-left:0;
+}
+#ivvzh{
+  width:100%;
+  height:167px;
+}
+#iqsxg{
+  height:80px;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:start;
+  row-gap:1rem;
+  padding-top:1rem;
+  padding-right:1rem;
+  padding-bottom:1rem;
+  padding-left:1rem;
+}
+@media (max-width: 880px){
+  #i1vi{
+    grid-template-columns:1fr 1fr;
+  }
+}
+@media (max-width: 600px){
+  #izpc{
+    height:fit-content;
+    margin-top:2rem;
+    margin-bottom:2rem;
+  }
+  #irf4{
+    height:165px;
+  }
+  #i1vi{
+    flex-direction:column;
+    height:fit-content;
+    row-gap:2rem;
+    grid-template-columns:1fr;
+  }
+}
 `,
       },
     },
   });
+
+
+
+  Components.addType('feature-five', {
+    model: {
+      defaults: {
+        name: 'Features With Bento Grid',
+        components: `  
+    <div id="izpc" class="block">
+      <div id="irf4" class="block">
+        <h2 id="ilin1" class="heading-two">Feature Heading
+        </h2>
+        <p id="iqpcl" class="paragraph">Insert your text here
+        </p>
+      </div>
+      <div id="i1vi" class="block">
+        <div id="imqcm" class="feature-container">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="i7c2of" class="grid-image"/>
+          <div id="ii7jva" class="container-text">
+            <h4 class="heading-four">Heading
+            </h4>
+            <p class="paragraph">Insert your feature or benefit text here
+            </p>
+          </div>
+        </div>
+        <div id="iao4q" class="feature-container">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="grid-image"/>
+          <div id="iggbk" class="container-text">
+            <h4 class="heading-four">Heading
+            </h4>
+            <p class="paragraph">Insert your feature or benefit text here
+            </p>
+          </div>
+        </div>
+        <div id="icrkto" class="feature-container">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="grid-image"/>
+          <div id="i2p5j7" class="container-text">
+            <h4 class="heading-four">Heading
+            </h4>
+            <p class="paragraph">Insert your feature or benefit text here
+            </p>
+          </div>
+        </div>
+        <div id="i9l9x" class="feature-container">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="grid-image"/>
+          <div id="ijxkn" class="container-text">
+            <h4 class="heading-four">Heading
+            </h4>
+            <p class="paragraph">Insert your feature or benefit text here
+            </p>
+          </div>
+        </div>
+        <div id="iihcj" class="feature-container">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="grid-image"/>
+          <div id="imp4c" class="container-text">
+            <h4 class="heading-four">Heading
+            </h4>
+            <p class="paragraph">Insert your feature or benefit text here
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>`,
+        styles: `
+     .block{
+  height:11px;
+  max-height:100%;
+  width:100%;
+  grid-template-rows:1fr 1fr 1fr 1f;
+}
+#izpc{
+  height:fit-content;
+  max-width:1200px;
+  width:90%;
+  margin-right:auto;
+  margin-left:auto;
+  display:flex;
+  justify-content:start;
+  align-items:center;
+  flex-direction:column;
+  margin-top:2rem;
+  margin-bottom:2rem;
+}
+#irf4{
+  text-align:center;
+  display:flex;
+  justify-content:center;
+  flex-direction:column;
+  align-items:center;
+  row-gap:1rem;
+  height:fit-content;
+  margin-top:2rem;
+  margin-bottom:2rem;
+}
+.heading-two{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+}
+.paragraph{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+}
+#i1vi{
+  height:fit-content;
+  display:grid;
+  flex-direction:row-reverse;
+  justify-content:space-between;
+  align-items:center;
+  column-gap:2rem;
+  grid-template-columns:1fr 1fr 1fr;
+  row-gap:2rem;
+  margin-top:2rem;
+  margin-bottom:2rem;
+  grid-template-rows:1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.feature-container{
+  width:100%;
+  padding-right:1rem;
+  padding-bottom:1rem;
+  padding-left:1rem;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  align-items:start;
+  row-gap:0.7rem;
+  height:400px;
+  padding-top:1rem;
+}
+#imqcm{
+  padding-top:0;
+  padding-right:0;
+  padding-bottom:0;
+  padding-left:0;
+  grid-column:span 1;
+  grid-row:span 2;
+  height:800p;
+}
+.grid-image{
+  width:100%;
+  height:75%;
+}
+#ii7jva{
+  height:80px;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:start;
+  row-gap:1rem;
+  padding-top:1rem;
+  padding-right:1rem;
+  padding-bottom:1rem;
+  padding-left:1rem;
+}
+.heading-four{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+}
+#iao4q{
+  padding-top:0;
+  padding-right:0;
+  padding-bottom:0;
+  padding-left:0;
+  grid-column:span 2;
+  grid-row:span 2;
+}
+#iggbk{
+  height:80px;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:start;
+  row-gap:1rem;
+  padding-top:1rem;
+  padding-right:1rem;
+  padding-bottom:1rem;
+  padding-left:1rem;
+}
+#icrkto{
+  padding-top:0;
+  padding-right:0;
+  padding-bottom:0;
+  padding-left:0;
+  grid-column:span 3;
+  grid-row:span 2;
+}
+#i2p5j7{
+  height:80px;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:start;
+  row-gap:1rem;
+  padding-top:1rem;
+  padding-right:1rem;
+  padding-bottom:1rem;
+  padding-left:1rem;
+}
+#i9l9x{
+  padding-top:0;
+  padding-right:0;
+  padding-bottom:0;
+  padding-left:0;
+  grid-column:span 2;
+  grid-row:span 2;
+}
+#ijxkn{
+  height:80px;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:start;
+  row-gap:1rem;
+  padding-top:1rem;
+  padding-right:1rem;
+  padding-bottom:1rem;
+  padding-left:1rem;
+}
+#iihcj{
+  padding-top:0;
+  padding-right:0;
+  padding-bottom:0;
+  padding-left:0;
+  grid-column:span 1;
+  grid-row:span 2;
+}
+#imp4c{
+  height:80px;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:start;
+  row-gap:1rem;
+  padding-top:1rem;
+  padding-right:1rem;
+  padding-bottom:1rem;
+  padding-left:1rem;
+}
+@media (max-width: 880px){
+  #i1vi{
+    grid-template-columns:1fr 1fr 1fr 1fr;
+  }
+  .feature-container{
+    grid-column:span 1;
+  }
+  #imqcm{
+    grid-column:span 2;
+  }
+  #iao4q{
+    grid-column:span 2;
+  }
+  #icrkto{
+    grid-column:span 4;
+  }
+  #iihcj{
+    grid-column:span 2;
+  }
+}
+@media (max-width: 600px){
+  #izpc{
+    height:fit-content;
+    margin-top:2rem;
+    margin-bottom:2rem;
+  }
+  #irf4{
+    height:165px;
+  }
+  #i1vi{
+    flex-direction:column;
+    height:fit-content;
+    row-gap:2rem;
+    grid-template-columns:1fr;
+  }
+  #imqcm{
+    grid-column:span 4;
+  }
+  #iao4q{
+    grid-column:span 4;
+  }
+  #i9l9x{
+    grid-column:span 4;
+  }
+  #iihcj{
+    grid-column:span 4;
+  }
+}
+`,
+      },
+    },
+  });
+
+  editor.Blocks.add('feature-five', {
+    media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
+    label: 'Bento Grid',
+    category: 'sections-features',
+    select: true,
+    content: { type: 'feature-five' },
+  });
+
+
+
+  editor.Blocks.add('feature-six', {
+    media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
+    label: 'Image Bento Grid',
+    category: 'sections-features',
+    select: true,
+    content: { type: 'feature-six' },
+  });
+
+  Components.addType('feature-six', {
+    model: {
+      defaults: {
+        name: 'Features With Image Bento Grid',
+        components: `  
+     <div id="izpc" class="block">
+      <div id="irf4" class="block">
+        <h2 id="ilin1" class="heading-two">Feature Heading
+        </h2>
+        <p id="iqpcl" class="paragraph">Insert your text here
+        </p>
+      </div>
+      <div id="i1vi" class="block">
+        <div id="imqcm" class="feature-container">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="i7c2of" class="grid-image"/>
+        </div>
+        <div id="iao4q" class="feature-container">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="grid-image"/>
+        </div>
+        <div id="icrkto" class="feature-container">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="grid-image"/>
+        </div>
+        <div id="i9l9x" class="feature-container">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="grid-image"/>
+        </div>
+        <div id="iihcj" class="feature-container">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="grid-image"/>
+        </div>
+      </div>
+    </div>`,
+        styles: `
+     .block{
+  height:11px;
+  max-height:100%;
+  width:100%;
+  grid-template-rows:1fr 1fr 1fr 1f;
+}
+#izpc{
+  height:fit-content;
+  max-width:1200px;
+  width:90%;
+  margin-right:auto;
+  margin-left:auto;
+  display:flex;
+  justify-content:start;
+  align-items:center;
+  flex-direction:column;
+  margin-top:2rem;
+  margin-bottom:2rem;
+}
+#irf4{
+  text-align:center;
+  display:flex;
+  justify-content:center;
+  flex-direction:column;
+  align-items:center;
+  row-gap:1rem;
+  height:fit-content;
+  margin-top:2rem;
+  margin-bottom:2rem;
+}
+.heading-two{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+}
+.paragraph{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+}
+#i1vi{
+  height:fit-content;
+  display:grid;
+  flex-direction:row-reverse;
+  justify-content:space-between;
+  align-items:center;
+  column-gap:2rem;
+  grid-template-columns:1fr 1fr 1fr;
+  row-gap:2rem;
+  margin-top:2rem;
+  margin-bottom:2rem;
+  grid-template-rows:1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.feature-container{
+  width:100%;
+  padding-right:1rem;
+  padding-bottom:1rem;
+  padding-left:1rem;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  align-items:start;
+  row-gap:0.7rem;
+  height:400px;
+  padding-top:1rem;
+}
+#imqcm{
+  padding-top:0;
+  padding-right:0;
+  padding-bottom:0;
+  padding-left:0;
+  grid-column:span 1;
+  grid-row:span 2;
+  height:800p;
+}
+.grid-image{
+  width:100%;
+  height:100%;
+}
+#i7c2of{
+  height:100;
+}
+#iao4q{
+  padding-top:0;
+  padding-right:0;
+  padding-bottom:0;
+  padding-left:0;
+  grid-column:span 2;
+  grid-row:span 2;
+}
+#icrkto{
+  padding-top:0;
+  padding-right:0;
+  padding-bottom:0;
+  padding-left:0;
+  grid-column:span 3;
+  grid-row:span 2;
+}
+#i9l9x{
+  padding-top:0;
+  padding-right:0;
+  padding-bottom:0;
+  padding-left:0;
+  grid-column:span 2;
+  grid-row:span 2;
+}
+#iihcj{
+  padding-top:0;
+  padding-right:0;
+  padding-bottom:0;
+  padding-left:0;
+  grid-column:span 1;
+  grid-row:span 2;
+}
+@media (max-width: 880px){
+  #i1vi{
+    grid-template-columns:1fr 1fr 1fr 1fr;
+  }
+  .feature-container{
+    grid-column:span 1;
+  }
+  #imqcm{
+    grid-column:span 2;
+  }
+  #iao4q{
+    grid-column:span 2;
+  }
+  #icrkto{
+    grid-column:span 4;
+  }
+  #iihcj{
+    grid-column:span 2;
+  }
+}
+@media (max-width: 600px){
+  #izpc{
+    height:fit-content;
+    margin-top:2rem;
+    margin-bottom:2rem;
+  }
+  #irf4{
+    height:165px;
+  }
+  #i1vi{
+    flex-direction:column;
+    height:fit-content;
+    row-gap:2rem;
+    grid-template-columns:1fr;
+  }
+  #imqcm{
+    grid-column:span 4;
+  }
+  #iao4q{
+    grid-column:span 4;
+  }
+  #i9l9x{
+    grid-column:span 4;
+  }
+  #iihcj{
+    grid-column:span 4;
+  }
+}
+`,
+      },
+    },
+  });
+
 
 };
 

@@ -264,9 +264,8 @@ const TypographyBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
         resizable: true,
         name: 'Paragraph', // Default component name
         tagName: 'p',
-        components: `<p>Insert your text here</p>` ,
+        components: 'Insert your text here' ,
         icon: `<svg  xmlns="http://www.w3.org/2000/svg"  width="12"  height="12"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-letter-p"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 20v-16h5.5a4 4 0 0 1 0 9h-5.5" /></svg>`,
-        droppable: false,
         styles: `
         .paragraph{
         margin-top:0 ;

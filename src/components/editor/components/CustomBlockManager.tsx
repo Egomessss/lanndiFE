@@ -20,7 +20,7 @@ export default function CustomBlockManager({
   const { user } = useUser();
 
   return (
-    <div className="w-full">
+    <div className="w-full ">
       {Array.from(mapCategoryBlocks)
         .filter(([category, _]) => !category.startsWith('sections-')) // Filter out categories starting with "section-"
         .map(([category, blocks]) => (

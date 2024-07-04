@@ -361,13 +361,13 @@ export const styles = {
           label: 'Column span',
           property: 'grid-column',
           type: 'base',
-          tooltip: 'Starts/spans - e.g. 2/span 2 - starts in row 2 and spans 2 rows',
+          tooltip: 'Starts/spans - e.g.1: span 2 - span 2 columns  e.g.2: 2/span 2 - starts in row 2 and spans 2 rows',
         },
         {
           label: 'Row span',
           property: 'grid-row',
           type: 'base',
-          tooltip: 'Starts/spans - e.g. 1/span 1 - starts in column 1 and spans 1 column',
+          tooltip: 'Starts/spans - e.g.1: span 2 - span 2 rows  e.g.2: 2/span 2 - starts in column 2 and spans 2 columns',
         },
         {
           label: 'Justify',
@@ -681,11 +681,6 @@ export const styles = {
           detached: false,
           properties: [
             {
-              type: 'color',
-              property: 'box-shadow-color',
-              label: 'Color',
-            },
-            {
               type: 'base',
               property: 'box-shadow-offset-x',
               label: 'Offset X',
@@ -696,6 +691,11 @@ export const styles = {
               label: 'Offset Y',
             },
             {
+              type: 'color',
+              property: 'box-shadow-color',
+              label: 'Color',
+            },
+            {
               type: 'base',
               property: 'box-shadow-blur',
               label: 'Blur',
@@ -704,6 +704,15 @@ export const styles = {
               type: 'base',
               property: 'box-shadow-spread',
               label: 'Spread',
+            },
+            {
+              type: 'select',
+              property: 'inset',
+              label: 'Inset',
+              options: [
+                { id: '', label: 'Default' },
+                { id: 'inset', label: 'Shadow Inside Element' },
+              ]
             },
 
           ],

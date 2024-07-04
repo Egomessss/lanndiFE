@@ -4,409 +4,571 @@ const testimonials = (editor: Editor) => {
   const { Components } = editor;
 
 
-  // editor.Blocks.add('testimonial-one', {
-  //   media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
-  //   label: 'Testimonial Section',
-  //   category: 'sections-testimonials',
-  //   select: true,
-  //   content: { type: 'testimonial-one' },
-  // });
+  editor.Blocks.add('testimonial-one', {
+    media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
+    label: 'Image, Quote and Rating',
+    category: 'sections-testimonials',
+    select: true,
+    content: { type: 'testimonial-one' },
+  });
 
   Components.addType('testimonial-one', {
     model: {
       defaults: {
-        // script: script,
-        droppable: false,
-        name: 'Testimonial Section',
+        name: 'Testimonial With Image, Quote and Rating',
         components: `  
-   <div id="testimonial-section" class="lnd-grid-row">
-    <div id="infwen" class="lnd-grid-column">
-      <h2 id="ihap8q" class="lnd-heading">Testimonial section
-      </h2>
-      <p id="i6fjjy" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
-      </p>
-      <div id="i5k4nf" class="lnd-grid-row">
-        <div id="inea73" class="lnd-grid-column testimonial-item">
-          <div id="i2d7qp" class="lnd-grid-row">
-            <div id="idva29" class="lnd-grid-column">
-              <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+"/>
-            </div>
-            <div id="i4djop" class="lnd-grid-column">
-              <h4 id="iqroa4" class="lnd-heading">Full name
-              </h4>
-              <p id="iaqf2c" class="text-main-content">Role / Company
-              </p>
-            </div>
-          </div>
-          <p id="it3yug" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-        </div>
-        <div id="idndjn" class="lnd-grid-column testimonial-item">
-          <div id="ish0zj" class="lnd-grid-row">
-            <div id="inucqu" class="lnd-grid-column">
-              <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+"/>
-            </div>
-            <div id="iuk8ib" class="lnd-grid-column">
-              <h4 id="i04ztt" class="lnd-heading">Full name
-              </h4>
-              <p id="ia9ts3" class="text-main-content">Role / Company
-              </p>
-            </div>
-          </div>
-          <p id="i8gt4n" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-        </div>
+   <div id="ifjmk">
+    <div id="iegcj" class="block">
+      <span id="iqujl" class="material-icons material-symbols-outlined star-filled">star</span>
+      <span id="iemjs" class="material-icons material-symbols-outlined star-filled">star</span>
+      <span id="im35v" class="material-icons material-symbols-outlined star-filled">star</span>
+      <span id="isgss" class="material-icons material-symbols-outlined star-filled">star</span>
+      <span id="iydsg" class="material-icons material-symbols-outlined star-filled">star</span>
+    </div>
+    <p id="irzj2" class="paragraph">
+      <b>HUGE
+      </b>fan of the lanndi. Less than a month into using lanndi and I've already seen a tangible impact on my ability to produce beautiful, responsive and fast websites.
+    </p>
+    <div id="i2cti" class="block">
+      <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" id="ir7qp"/>
+      <div id="i2h12" class="block">
+        <p id="ihfmp" class="paragraph">Person Name
+        </p>
+        <p id="ichu5" class="paragraph">10k followers on X/Twitter, Founder, Ceo
+        </p>
       </div>
     </div>
   </div>`,
         styles: `
-       .lnd-grid-row{
+     #ifjmk{
+  height:fit-content;
   display:flex;
-  justify-content:flex-start;
-  align-items:stretch;
-  flex-direction:row;
-  min-height:auto;
-  padding:10px 0;
-}
-.lnd-grid-row{
-  display:flex;
-  justify-content:flex-start;
-  align-items:stretch;
-  flex-direction:row;
-  min-height:auto;
-  padding:10px 0;
-}
-#i6po{
+  flex-direction:column;
   justify-content:center;
-  position:sticky;
-  top:15px;
-  padding-top:0px;
-  padding-bottom:0px;
-  padding-left:20px;
-  padding-right:20px;
-}
-#testimonial-section{
-  justify-content:center;
-  padding-top:80px;
-  padding-bottom:80px;
-  padding-left:20px;
-  padding-right:20px;
-}
-.lnd-grid-column{
-  padding:5px 0;
-}
-.lnd-grid-column{
-  padding:5px 0;
-}
-#infwen{
+  align-items:center;
+  row-gap:1rem;
+  margin-top:2rem;
+  margin-bottom:2rem;
+  width:90%;
   max-width:1200px;
-  align-items:center;
+  margin-right:auto;
+  margin-left:auto;
+}
+.block{
+  height:fit-conten;
+  max-height:100%;
+  width:100%;
+}
+#iegcj{
   display:flex;
-  flex-direction:column;
+  flex-direction:row-reverse;
+  justify-content:center;
+  width:255px;
+  height:fit-t;
 }
-.lnd-heading{
-  margin:0;
+.material-icons.material-symbols-outlined.star-filled{
+  color:rgb(250, 199, 30);
+  height:24px;
 }
-.lnd-heading{
-  margin:0;
-  color:rgba(29,40,55,1);
+.paragraph{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
 }
-#ihap8q{
-  font-size:2.5rem;
-  margin-bottom:10px;
+#irzj2{
   text-align:center;
+  width:496px;
 }
-.text-main-content{
-  line-height:30px;
-  font-size:1.2rem;
-}
-#i6fjjy{
-  padding:10px;
-  max-width:750px;
-  margin-bottom:70px;
-  padding-left:0px;
-  padding-right:0px;
-  text-align:center;
-}
-#i5k4nf{
-  width:100%;
-  flex-wrap:wrap;
-  justify-content:flex-start;
-  gap:50px;
-}
-#inea73{
-  justify-content:space-between;
-}
-.lnd-grid-column.testimonial-item{
-  padding-top:15px;
-  padding-right:15px;
-  padding-bottom:15px;
-  padding-left:15px;
+#i2cti{
+  height:fit-content;
+  margin-bottom:2rem;
+  padding-top:1rem;
+  padding-bottom:1rem;
   display:flex;
-  flex-direction:column;
-  gap:15px;
-  min-width:45%;
-  background-color:rgba(247,247,247,0.23);
-  border-top-left-radius:5px;
-  border-top-right-radius:5px;
-  border-bottom-right-radius:5px;
-  border-bottom-left-radius:5px;
-  align-items:flex-start;
-  border-top-width:1px;
-  border-right-width:1px;
-  border-bottom-width:1px;
-  border-left-width:1px;
-  border-top-style:solid;
-  border-right-style:solid;
-  border-bottom-style:solid;
-  border-left-style:solid;
-  border-top-color:rgba(0,0,0,0.06);
-  border-right-color:rgba(0,0,0,0.06);
-  border-bottom-color:rgba(0,0,0,0.06);
-  border-left-color:rgba(0,0,0,0.06);
-}
-#i2d7qp{
-  width:100%;
-  gap:20px;
+  justify-content:center;
   align-items:center;
 }
-#ia7pcr{
-  color:black;
-  border-top-left-radius:100%;
-  border-top-right-radius:100%;
-  border-bottom-right-radius:100%;
-  border-bottom-left-radius:100%;
-  max-width:100%;
-  width:75px;
-  border-top-width:3px;
-  border-right-width:3px;
-  border-bottom-width:3px;
-  border-left-width:3px;
-  border-top-style:solid;
-  border-right-style:solid;
-  border-bottom-style:solid;
-  border-left-style:solid;
-  border-top-color:rgb(36,99,235);
-  border-right-color:rgb(36,99,235);
-  border-bottom-color:rgb(36,99,235);
-  border-left-color:rgb(36,99,235);
+#ir7qp{
+  width:30px;
+  height:30px;
+  border-top-left-radius:50%;
+  border-top-right-radius:50%;
+  border-bottom-right-radius:50%;
+  border-bottom-left-radius:50%;
+  object-fit:cover;
 }
-#iqroa4{
-  font-size:1.5rem;
+#i2h12{
+  height:fit-content;
+  width:357px;
 }
-#iaqf2c{
-  color:rgba(0,0,0,0.5);
+#ihfmp{
+  font-weight:700;
 }
-#it3yug{
-  padding:10px;
-  padding-left:0px;
-  padding-right:0px;
-}
-#idndjn{
-  justify-content:space-between;
-}
-#ish0zj{
-  width:100%;
-  gap:20px;
-  align-items:center;
-}
-#ixzdlj{
-  color:black;
-  border-top-left-radius:100%;
-  border-top-right-radius:100%;
-  border-bottom-right-radius:100%;
-  border-bottom-left-radius:100%;
-  max-width:100%;
-  width:75px;
-  border-top-width:3px;
-  border-right-width:3px;
-  border-bottom-width:3px;
-  border-left-width:3px;
-  border-top-color:rgb(36,99,235);
-  border-right-color:rgb(36,99,235);
-  border-bottom-color:rgb(36,99,235);
-  border-left-color:rgb(36,99,235);
-  border-top-style:solid;
-  border-right-style:solid;
-  border-bottom-style:solid;
-  border-left-style:solid;
-}
-#i04ztt{
- 
-  font-size:1.5rem;
-}
-#ia9ts3{
-  color:rgba(0,0,0,0.5);
-}
-#i8gt4n{
-  padding:10px;
-  padding-left:0px;
-  padding-right:0px;
-}
-@media (max-width:992px){
-  .lnd-grid-row{
-    flex-direction:column;
-  }
-  .lnd-grid-row{
-    flex-direction:column;
-  }
-  #i2d7qp{
-    flex-direction:row;
-  }
-  #ish0zj{
-    flex-direction:row;
+@media (max-width: 600px){
+  #irzj2{
+    width:100%;
   }
 }
+
 `,
       },
     },
   });
 
-  // editor.Blocks.add('testimonial-two', {
-  //   media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
-  //   label: 'Testimonial Simple',
-  //   category: 'sections-testimonials',
-  //   select: true,
-  //   content: { type: 'testimonial-two' },
-  // });
+  editor.Blocks.add('testimonial-two', {
+    media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
+    label: 'Avatar Group and Rating',
+    category: 'sections-testimonials',
+    select: true,
+    content: { type: 'testimonial-two' },
+  });
 
   Components.addType('testimonial-two', {
     model: {
       defaults: {
-        // script: script,
-        droppable: false,
-        name: 'Testimonial Simple',
+        name: 'Testimonial With Avatar Group and Rating',
         components: `  
-   <div>
-  </div>
-  <div id="testimonial-section" class="lnd-grid-row">
-    <div id="inea73" class="lnd-grid-column testimonial-item">
-      <div id="i2d7qp" class="lnd-grid-row">
-        <div id="idva29" class="lnd-grid-column">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+"/>
-        </div>
-        <div id="i4djop" class="lnd-grid-column">
-          <h4 id="iqroa4" class="lnd-heading">Full name
-          </h4>
-          <p id="iaqf2c" class="text-main-content">Role / Company
-          </p>
-        </div>
+ <div id="ifjmk" class="container">
+    <div id="i2cti" class="testimonial-container">
+      <div id="iab5f" class="block">
+        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" id="ir7qp" class="testimonail-image-group"/>
+        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" id="inw1h" class="testimonail-image-group"/>
+        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" id="ilqup" class="testimonail-image-group"/>
+        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" id="i495a" class="testimonail-image-group"/>
+        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" id="i88fu" class="testimonail-image-group"/>
       </div>
-      <p id="it3yug" class="text-main-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-        eiusmod tempor incididunt ut labore et dolore magna aliqua.
-      </p>
+      <div id="i2h12" class="block">
+        <div id="iegcj" class="block">
+          <span id="iqujl" class="material-icons material-symbols-outlined star-filled">star</span>
+          <span id="iemjs" class="material-icons material-symbols-outlined star-filled">star</span>
+          <span id="im35v" class="material-icons material-symbols-outlined star-filled">star</span>
+          <span id="isgss" class="material-icons material-symbols-outlined star-filled">star</span>
+          <span id="iydsg" class="material-icons material-symbols-outlined star-filled">star</span>
+        </div>
+        <p id="ichu5" class="paragraph">100+ people use this app
+        </p>
+      </div>
     </div>
   </div>`,
         styles: `
-      .lnd-grid-row{
-  display:flex;
-  justify-content:flex-start;
-  align-items:stretch;
-  flex-direction:row;
-  min-height:auto;
-  padding:10px 0;
-}
-#testimonial-section{
-  justify-content:center;
-  padding-top:80px;
-  padding-bottom:80px;
-  padding-left:20px;
-  padding-right:20px;
-}
-.lnd-grid-column{
-  padding:5px 0;
-}
-#inea73{
-  justify-content:space-between;
-}
-.lnd-grid-column.testimonial-item{
-  padding-top:15px;
-  padding-right:15px;
-  padding-bottom:15px;
-  padding-left:15px;
+    #ifjmk{
+  height:fit-content;
   display:flex;
   flex-direction:column;
-  gap:15px;
-  min-width:45%;
-  background-color:rgba(247,247,247,0.23);
-  border-top-left-radius:5px;
-  border-top-right-radius:5px;
-  border-bottom-right-radius:5px;
-  border-bottom-left-radius:5px;
-  align-items:flex-start;
-  border-top-width:1px;
-  border-right-width:1px;
-  border-bottom-width:1px;
-  border-left-width:1px;
-  border-top-style:solid;
-  border-right-style:solid;
-  border-bottom-style:solid;
-  border-left-style:solid;
-  border-top-color:rgba(0,0,0,0.06);
-  border-right-color:rgba(0,0,0,0.06);
-  border-bottom-color:rgba(0,0,0,0.06);
-  border-left-color:rgba(0,0,0,0.06);
-}
-#i2d7qp{
-  width:100%;
-  gap:20px;
+  justify-content:center;
   align-items:center;
+  row-gap:1rem;
+  margin-top:2rem;
+  margin-bottom:2rem;
+  width:90%;
+  max-width:1200px;
+  margin-right:auto;
+  margin-left:auto;
 }
-#ia7pcr{
-  color:black;
-  border-top-left-radius:100%;
-  border-top-right-radius:100%;
-  border-bottom-right-radius:100%;
-  border-bottom-left-radius:100%;
-  max-width:100%;
-  width:75px;
-  border-top-width:3px;
-  border-right-width:3px;
-  border-bottom-width:3px;
-  border-left-width:3px;
-  border-top-style:solid;
-  border-right-style:solid;
-  border-bottom-style:solid;
-  border-left-style:solid;
-  border-top-color:rgb(36,99,235);
-  border-right-color:rgb(36,99,235);
-  border-bottom-color:rgb(36,99,235);
-  border-left-color:rgb(36,99,235);
+#i2cti{
+  height:fit-content;
+  padding-top:1rem;
+  padding-bottom:1rem;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  column-gap:1rem;
+  width:fit-content;
 }
-.lnd-heading{
-  margin:0;
+.block{
+  height:fit-conten;
+  max-height:100%;
+  width:99%;
 }
-#iqroa4{
-  font-size:1.5rem;
+#iab5f{
+  height:fit-content;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:fit-content;
 }
-.text-main-content{
-  line-height:30px;
-  font-size:1.2rem;
+#ir7qp{
+  width:30px;
+  height:30px;
+  border-top-left-radius:50%;
+  border-top-right-radius:50%;
+  border-bottom-right-radius:50%;
+  border-bottom-left-radius:50%;
+  object-fit:cover;
 }
-#iaqf2c{
-  color:rgba(0,0,0,0.5);
+.testimonail-image-group{
+  margin-left:-10px;
 }
-#it3yug{
-  padding:10px;
-  padding-left:0px;
-  padding-right:0px;
+#inw1h{
+  width:30px;
+  height:30px;
+  border-top-left-radius:50%;
+  border-top-right-radius:50%;
+  border-bottom-right-radius:50%;
+  border-bottom-left-radius:50%;
+  object-fit:cover;
 }
-@media (max-width:992px){
-  .lnd-grid-row{
-    flex-direction:column;
-  }
-  #i2d7qp{
-    flex-direction:row;
-  }
+#ilqup{
+  width:30px;
+  height:30px;
+  border-top-left-radius:50%;
+  border-top-right-radius:50%;
+  border-bottom-right-radius:50%;
+  border-bottom-left-radius:50%;
+  object-fit:cover;
 }
-
+#i495a{
+  width:30px;
+  height:30px;
+  border-top-left-radius:50%;
+  border-top-right-radius:50%;
+  border-bottom-right-radius:50%;
+  border-bottom-left-radius:50%;
+  object-fit:cover;
+}
+#i88fu{
+  width:30px;
+  height:30px;
+  border-top-left-radius:50%;
+  border-top-right-radius:50%;
+  border-bottom-right-radius:50%;
+  border-bottom-left-radius:50%;
+  object-fit:cover;
+}
+#i2h12{
+  height:fit-content;
+  width:fit-content;
+}
+#iegcj{
+  display:flex;
+  flex-direction:row-reverse;
+  justify-content:start;
+  width:fit-content;
+  height:f;
+}
+.material-icons.material-symbols-outlined.star-filled{
+  color:rgb(250, 199, 30);
+  height:24px;
+}
+.paragraph{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+}
 `,
       },
     },
   });
+
+  editor.Blocks.add('testimonial-three', {
+    media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
+    label: 'Grid',
+    category: 'sections-testimonials',
+    select: true,
+    content: { type: 'testimonial-three' },
+  });
+
+  Components.addType('testimonial-three', {
+    model: {
+      defaults: {
+        name: 'Testimonial Grid',
+        components: `  
+  <div class="container" id="i3lg">
+    <div class="grid-block-container">
+      <div id="iegcj">
+        <span id="iqujl" class="material-icons material-symbols-outlined star-filled">star</span>
+        <span id="iemjs" class="material-icons material-symbols-outlined star-filled">star</span>
+        <span id="im35v" class="material-icons material-symbols-outlined star-filled">star</span>
+        <span id="isgss" class="material-icons material-symbols-outlined star-filled">star</span>
+        <span id="iydsg" class="material-icons material-symbols-outlined star-filled">star</span>
+      </div>
+      <p id="irzj2" class="paragraph italic">
+        <span>"</span>
+        <b draggable="true">HUGE
+        </b>fan of the lanndi. Less than a month into using lanndi and I've already seen a tangible impact on my ability to produce beautiful, responsive and fast websites."
+      </p>
+      <div id="i2cti">
+        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" id="ir7qp"/>
+        <div id="i2h12">
+          <p id="ihfmp" class="paragraph">Person Name
+          </p>
+          <p id="ichu5" class="paragraph">10k followers on X/Twitter, Founder, Ceo
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="grid-block-container">
+      <div id="injjcp">
+        <span class="material-icons material-symbols-outlined star-filled">star</span>
+        <span class="material-icons material-symbols-outlined star-filled">star</span>
+        <span class="material-icons material-symbols-outlined star-filled">star</span>
+        <span class="material-icons material-symbols-outlined star-filled">star</span>
+        <span class="material-icons material-symbols-outlined star-filled">star</span>
+      </div>
+      <p class="paragraph italic" id="iuiaby">
+        <span>"</span>
+        <b draggable="true">HUGE
+        </b>fan of the lanndi. Less than a month into using lanndi and I've already seen a tangible impact on my ability to produce beautiful, responsive and fast websites."
+      </p>
+      <div id="ig8ff6">
+        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" id="israhy"/>
+        <div id="i7p13p">
+          <p class="paragraph" id="ihx1ht">Person Name
+          </p>
+          <p class="paragraph">10k followers on X/Twitter, Founder, Ceo
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="grid-block-container">
+      <div id="igx0cl">
+        <span class="material-icons material-symbols-outlined star-filled">star</span>
+        <span class="material-icons material-symbols-outlined star-filled">star</span>
+        <span class="material-icons material-symbols-outlined star-filled">star</span>
+        <span class="material-icons material-symbols-outlined star-filled">star</span>
+        <span class="material-icons material-symbols-outlined star-filled">star</span>
+      </div>
+      <p class="paragraph italic" id="itlsob">
+        <span>"</span>
+        <b draggable="true">HUGE
+        </b>fan of the lanndi. Less than a month into using lanndi and I've already seen a tangible impact on my ability to produce beautiful, responsive and fast websites."
+      </p>
+      <div id="i1yx05">
+        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" id="iy6jt7"/>
+        <div id="i25gai">
+          <p class="paragraph" id="ih5hoc">Person Name
+          </p>
+          <p class="paragraph">10k followers on X/Twitter, Founder, Ceo
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="grid-block-container">
+      <div id="iksny9">
+        <span class="material-icons material-symbols-outlined star-filled">star</span>
+        <span class="material-icons material-symbols-outlined star-filled">star</span>
+        <span class="material-icons material-symbols-outlined star-filled">star</span>
+        <span class="material-icons material-symbols-outlined star-filled">star</span>
+        <span class="material-icons material-symbols-outlined star-filled">star</span>
+      </div>
+      <p class="paragraph italic" id="i601az">
+        <span>"</span>
+        <b draggable="true">HUGE
+        </b>fan of the lanndi. Less than a month into using lanndi and I've already seen a tangible impact on my ability to produce beautiful, responsive and fast websites."
+      </p>
+      <div id="i7bcn1">
+        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" id="iad3jm"/>
+        <div id="ishnt2">
+          <p class="paragraph" id="ildy09">Person Name
+          </p>
+          <p class="paragraph">10k followers on X/Twitter, Founder, Ceo
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>`,
+        styles: `
+ #i3lg{
+  display:grid;
+  grid-template-columns:1fr 1fr ;
+  column-gap:1rem;
+  row-gap:1rem;
+}
+.container{
+  margin-top:2rem;
+  margin-bottom:2rem;
+  max-width:1200px;
+  width:90%;
+  margin-right:auto;
+  margin-left:auto;
+  grid-template-columns:1fr 1fr ;
+}
+.grid-block-container{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  row-gap:1rem;
+  height:243px;
+  grid-column:span 1;
+  font-style:italic;
+}
+#iegcj{
+  display:flex;
+  flex-direction:row-reverse;
+  justify-content:center;
+  width:255px;
+  height:fit-t;
+}
+.material-icons.material-symbols-outlined.star-filled{
+  color:rgb(250, 199, 30);
+  height:24px;
+}
+.paragraph{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+  font-style:normal;
+}
+#irzj2{
+  text-align:center;
+  width:100%;
+}
+.paragraph.italic{
+  font-style:italic;
+}
+#i2cti{
+  height:fit-content;
+  padding-top:1rem;
+  padding-bottom:1rem;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+#ir7qp{
+  width:30px;
+  height:30px;
+  border-top-left-radius:50%;
+  border-top-right-radius:50%;
+  border-bottom-right-radius:50%;
+  border-bottom-left-radius:50%;
+  object-fit:cover;
+}
+#i2h12{
+  height:fit-content;
+  width:357px;
+}
+#ihfmp{
+  font-weight:700;
+}
+#injjcp{
+  display:flex;
+  flex-direction:row-reverse;
+  justify-content:center;
+  width:255px;
+  height:fit-t;
+}
+#iuiaby{
+  text-align:center;
+  width:100%;
+}
+#ig8ff6{
+  height:fit-content;
+  padding-top:1rem;
+  padding-bottom:1rem;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+#israhy{
+  width:30px;
+  height:30px;
+  border-top-left-radius:50%;
+  border-top-right-radius:50%;
+  border-bottom-right-radius:50%;
+  border-bottom-left-radius:50%;
+  object-fit:cover;
+}
+#i7p13p{
+  height:fit-content;
+  width:357px;
+}
+#ihx1ht{
+  font-weight:700;
+}
+#igx0cl{
+  display:flex;
+  flex-direction:row-reverse;
+  justify-content:center;
+  width:255px;
+  height:fit-t;
+}
+#itlsob{
+  text-align:center;
+  width:100%;
+}
+#i1yx05{
+  height:fit-content;
+  padding-top:1rem;
+  padding-bottom:1rem;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+#iy6jt7{
+  width:30px;
+  height:30px;
+  border-top-left-radius:50%;
+  border-top-right-radius:50%;
+  border-bottom-right-radius:50%;
+  border-bottom-left-radius:50%;
+  object-fit:cover;
+}
+#i25gai{
+  height:fit-content;
+  width:357px;
+}
+#ih5hoc{
+  font-weight:700;
+}
+#iksny9{
+  display:flex;
+  flex-direction:row-reverse;
+  justify-content:center;
+  width:255px;
+  height:fit-t;
+}
+#i601az{
+  text-align:center;
+  width:100%;
+}
+#i7bcn1{
+  height:fit-content;
+  padding-top:1rem;
+  padding-bottom:1rem;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+#iad3jm{
+  width:30px;
+  height:30px;
+  border-top-left-radius:50%;
+  border-top-right-radius:50%;
+  border-bottom-right-radius:50%;
+  border-bottom-left-radius:50%;
+  object-fit:cover;
+}
+#ishnt2{
+  height:fit-content;
+  width:357px;
+}
+#ildy09{
+  font-weight:700;
+}
+@media (max-width: 600px){
+  #irzj2{
+    width:100%;
+  }
+  #iuiaby{
+    width:100%;
+  }
+  #itlsob{
+    width:100%;
+  }
+  #i601az{
+    width:100%;
+  }
+}
+`,
+      },
+    },
+  });
+
+
 
 }
 

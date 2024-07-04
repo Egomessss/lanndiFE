@@ -20,7 +20,7 @@ import Tabs from '@/components/editor/plugins/BasicBlocks/Tabs';
 
 
 export const demoEditorConfigOptions = () => ({
-  height: '96vh',
+  height: '94vh',
   jsInHtml: false,
   optsHtml: { cleanId: true },
   optsCss: { onlyMatched: true, keepUnusedStyles: true },

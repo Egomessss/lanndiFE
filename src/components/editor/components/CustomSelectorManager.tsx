@@ -229,13 +229,17 @@ export default function CustomSelectorManager({
           </Tooltip>
           <div>
             <Tooltip color="dark"
+                     position="left"
+                     multiline
+                     w={300}
                      label="On top of each style property there&apos;s a tooltip that explains how each can be used to it's maximum potential">
               <ThemeIcon
                 color="red"
-                variant="outline">
+                variant="light">
                 <IconExclamationCircle size="1rem" />
               </ThemeIcon>
-            </Tooltip></div>
+            </Tooltip>
+          </div>
         </div>
 
         <Combobox styles={{
