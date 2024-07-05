@@ -164,7 +164,7 @@ export const GlobalJsCode = () => {
       console.log('global js', globalJs);
       setValue(globalJs);
     }
-  }, [component]);
+  }, [component, opened]);
 
 
   // console.log("value",value);
@@ -354,19 +354,19 @@ export default function CustomTraitManager({
         </Button></>}
       {/*<Divider className="w-full"  label="Custom attributes" />*/}
       {/*<CustomAttributes />*/}
-      <Divider className="w-full" label="Extra Customization" />
+      <Divider className="w-full" label="Selected Block Customization" />
       {['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(value!) && <HeadingTypeSelector />}
       {/*<HtmlElementSelector />*/}
       {value === 'svg' && <SvgContentCode />}
       {
         user?.subscription !== 'free' ? <>
-          {/*<CssCode />*/}
+          <CssCode />
           <Button onClick={() => editor.runCommand('edit-script')} size="xs" mb="4">
             Edit Javascript
           </Button>
-          {/*<Divider className="w-full" label="Global Customization" />*/}
-          {/*<GlobalCssCode />*/}
-          {/*<GlobalJsCode />*/}
+          <Divider className="w-full" label="Global Customization" />
+          <GlobalCssCode />
+          <GlobalJsCode />
         </> : <>
           {/*<Button disabled size="xs" mb="4">*/}
           {/*  Edit CSS*/}

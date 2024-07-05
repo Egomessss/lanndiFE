@@ -20,7 +20,7 @@ const SectionBlocks: Plugin = (editor) => {
     loadTestimonials(editor);
     loadCtas(editor);
     loadPricings(editor);
-    // loadFaqs(editor);
+    loadFaqs(editor);
     loadFooters(editor);
 };
 

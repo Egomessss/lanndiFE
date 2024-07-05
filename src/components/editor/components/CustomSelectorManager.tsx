@@ -59,7 +59,10 @@ export default function CustomSelectorManager({
 
   const deleteSelector = (selector: Selector) => {
     removeSelector(selector);
-    editor.Css.remove(selector.getName());
+    const cssToRemove = editor.Css.getRules(`.${selector.getName()}`)
+    // console.log(cssToRemove);
+    // @ts-ignore
+    editor.Css.remove(cssToRemove);
   };
 
   // const duplicateSelector = (selector:Selector) => {
@@ -107,14 +110,20 @@ export default function CustomSelectorManager({
               <IconDotsVertical size="0.7rem" /></ActionIcon>
           </Menu.Target>
           <Menu.Dropdown>
-            <Menu.Label>Application</Menu.Label>
-            <Menu.Item onClick={() => {
+            <Menu.Label>Utility</Menu.Label>
+            <Menu.Item onClick={(e) => {
+              e.stopPropagation()
               setIsRenamingSelector(true);
               setSelector(selector);
             }
             }>
-              Rename
+              <div className="flex items-center justify-between w-full"><span>Rename</span>
+                <Tooltip label="This will rename all the classes not just one">
+                  <IconExclamationCircle size="1rem" />
+                </Tooltip>
+              </div>
             </Menu.Item>
+
             <Menu.Item onClick={() => disableSelector(selector)}>
               Disable
             </Menu.Item>
@@ -152,7 +161,7 @@ export default function CustomSelectorManager({
     .filter((item) => item.toLowerCase().includes(search.trim().toLowerCase()))
     .map((item) => (
       <Combobox.Option onClick={() => addSelector(item)} value={item} key={item}>
-        <Group gap="sm">
+      <Group gap="sm">
           <span>{item}</span>
         </Group>
       </Combobox.Option>
@@ -192,11 +201,7 @@ export default function CustomSelectorManager({
           placeholder="-No state-"
         />
       </div>
-      {isRenamingSelector &&
-        <TextInput placeholder="Insert new selector name" size="xs" value={selectorName}
-                   onChange={(event) => setSelectorName(event.currentTarget.value)}
-                   rightSection={<ActionIcon size="sm" onClick={() => renameSelector()}><IconCheck
-                     size="1rem" /></ActionIcon>} />}
+
       <div className="flex flex-col gap-2 items-start w-full h-full">
         <div className="flex justify-between w-full h-full ">
 
@@ -287,7 +292,11 @@ export default function CustomSelectorManager({
             </Combobox.Options>
           </Combobox.Dropdown>
         </Combobox>
-
+        {isRenamingSelector &&
+          <TextInput autoFocus className="w-full" placeholder="Insert new class name" size="xs" my={8} value={selectorName}
+                     onChange={(event) => setSelectorName(event.currentTarget.value)}
+                     rightSection={<ActionIcon size="sm" onClick={() => renameSelector()}><IconCheck
+                       size="1rem" /></ActionIcon>} />}
       </div>
 
     </div>

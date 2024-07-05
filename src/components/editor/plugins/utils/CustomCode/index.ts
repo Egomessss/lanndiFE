@@ -73,7 +73,7 @@ const plugin: Plugin<PluginOptions> = (editor, opts = {}) => {
       'Please note:\n' +
       '1. Your custom code should come styled - editor styles might not work.\n' +
       '2. Custom code with <script> or <iframe> tags will only be shown in preview/published site.\n' +
-      '3. Scripts and links should be added to site settings custom head code for them to work.',
+      '3. Scripts and links should be added to site settings custom head code for them to work on the live website.',
     codeViewOptions: {},
     buttonLabel: 'Save',
     commandCustomCode: {},

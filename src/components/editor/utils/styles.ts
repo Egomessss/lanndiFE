@@ -693,7 +693,7 @@ export const styles = {
             {
               type: 'color',
               property: 'box-shadow-color',
-              label: 'Color',
+              label: 'Colour',
             },
             {
               type: 'base',
@@ -904,6 +904,37 @@ export const styles = {
           ],
         },
         {
+          type: 'color',
+          label: 'Colour', // Label for the property
+          property: 'color', // CSS property to change
+        },
+        {
+          label: 'Align',
+          property: 'text-align',
+          type: 'radio',
+          default: 'start',
+          options: [
+            {
+              id: 'left',
+              label: 'Left',
+              icon: `<svg  xmlns="http://www.w3.org/2000/svg"  width="12"  height="12"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-align-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6l16 0" /><path d="M4 12l10 0" /><path d="M4 18l14 0" /></svg>`,
+            }, {
+              id: 'center',
+              label: 'Center',
+              icon: `<svg  xmlns="http://www.w3.org/2000/svg"  width="12"  height="12"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-align-center"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6l16 0" /><path d="M8 12l8 0" /><path d="M6 18l12 0" /></svg>`,
+            }, {
+              id: 'right',
+              label: 'Right',
+              icon: `<svg  xmlns="http://www.w3.org/2000/svg"  width="12"  height="12"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-align-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6l16 0" /><path d="M10 12l10 0" /><path d="M6 18l14 0" /></svg>`,
+            },
+            {
+              id: 'justify',
+              label: 'Justify',
+              icon: `<svg  xmlns="http://www.w3.org/2000/svg"  width="12"  height="12"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-align-justified"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6l16 0" /><path d="M4 12l16 0" /><path d="M4 18l12 0" /></svg>`,
+            },
+          ],
+        },
+        {
           type: 'base',
           label: 'Line spacing', // Label for the property
           property: 'line-height', // CSS property to change
@@ -917,17 +948,7 @@ export const styles = {
           units: ['px', '%', 'em', 'rem'], // Units (available only for the 'number' type)
           min: 0, // Min value (available only for the 'number' type)
         },
-        {
-          type: 'select',
-          label: 'Align', // Label for the property
-          property: 'text-align', // CSS property to change
-          options: [
-            { id: 'left', label: 'Left' },
-            { id: 'center', label: 'Center' },
-            { id: 'right', label: 'Right' },
-            { id: 'justify', label: 'Justify' },
-          ],
-        },
+
         {
           type: 'select',
           label: 'White space', // Label for the property
@@ -941,13 +962,7 @@ export const styles = {
             { id: 'break-space', label: 'Spaces & Breaks' },
           ],
         },
-        {
-          type: 'color',
-          label: 'Colour', // Label for the property
-          property: 'color', // CSS property to change
-          units: ['px', '%', 'em', 'rem'], // Units (available only for the 'number' type)
-          min: 0, // Min value (available only for the 'number' type)
-        },
+
         {
           type: 'select',
           label: 'Decoration', // Label for the property
@@ -958,6 +973,11 @@ export const styles = {
             { id: 'overline', label: 'Overline' },
             { id: 'line-through', label: 'Line through' },
           ],
+        },
+        {
+          type: 'color',
+          label: 'Decoration Colour', // Label for the property
+          property: 'text-decoration-color', // CSS property to change
         },
         {
           type: 'select',
@@ -980,7 +1000,7 @@ export const styles = {
             {
               type: 'color',
               property: 'text-shadow-color',
-              label: 'Color',
+              label: 'Colour',
             },
             {
               type: 'base',
