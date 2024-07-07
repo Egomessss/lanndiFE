@@ -23,8 +23,6 @@ export default function CustomEditor() {
   const params = useParams();
   const siteSlug = params.slug;
 
-
-
   const { data, isLoading, isError } = useEditorData();
 
   if (isLoading) return <Loading />;

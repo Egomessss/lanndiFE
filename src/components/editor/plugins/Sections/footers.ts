@@ -14,13 +14,11 @@ const footers = (editor: Editor) => {
   Components.addType('footer-one', {
     model: {
       defaults: {
-        droppable: false,
         name: 'Footer Multi-column',
-        attributes: { class: 'footer-one' },
-        components: `<footer class="footer-container" id="iv2o">
-      <div class="block" id="ibn4f">
-        <div class="footer-links" id="iecim">
-          <svg id="ihalr" class="svg">
+        components: `<footer class="fmc-container" >
+      <div class="fmc-links-container" >
+        <div class="fmc-footer-links" >
+          <svg  class="fmc-svg">
             <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-border-all">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
               <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
@@ -28,14 +26,14 @@ const footers = (editor: Editor) => {
               <path d="M12 4l0 16" />
             </svg>
           </svg>
-          <h3 class="footer-heading">Footer heading
+          <h3 class="fmc-footer-heading">Footer heading
           </h3>
-          <p class="paragraph">
+          <p class="fmc-paragraph">
           Insert your text here
           </p>
       </div>
-      <div class="footer-links" id="i99qc">
-        <h3 class="footer-heading">Footer heading
+      <div class="fmc-footer-links" >
+        <h3 class="fmc-footer-heading">Footer heading
         </h3>
         <a href="#">Privacy Policy</a>
         <a href="#">Terms &amp; Conditions</a>
@@ -43,8 +41,8 @@ const footers = (editor: Editor) => {
         <a href="#">About</a>
         <a href="#">Contact</a>
       </div>
-      <div class="footer-links" id="iiwz9">
-        <h3 class="footer-heading">Footer heading
+      <div class="fmc-footer-links" >
+        <h3 class="fmc-footer-heading">Footer heading
         </h3>
         <a href="#">Privacy Policy</a>
         <a href="#">Terms &amp; Conditions</a>
@@ -52,8 +50,8 @@ const footers = (editor: Editor) => {
         <a href="#">About</a>
         <a href="#">Contact</a>
       </div>
-      <div class="footer-links" id="i0s05">
-        <h3 class="footer-heading">Footer heading
+      <div class="fmc-footer-links" >
+        <h3 class="fmc-footer-heading">Footer heading
         </h3>
         <a href="#">Privacy Policy</a>
         <a href="#">Terms &amp; Conditions</a>
@@ -62,11 +60,11 @@ const footers = (editor: Editor) => {
         <a href="#">Contact</a>
       </div>
     </div>
-    <p id="ioy3" class="paragraph">© 2024 lanndi. All rights reserved.
+    <p  class="fmc-paragraph">© 2024 lanndi. All rights reserved.
     </p>
   </footer>
     `,
-        styles: `.footer-container{
+        styles: `.fmc-container{
   height:250px;
   max-height:100%;
   width:90%;
@@ -75,99 +73,71 @@ const footers = (editor: Editor) => {
   justify-content:center;
   align-items:center;
   max-width:1200px;
+  margin-top:2rem;
+  margin-bottom:2rem;
   margin-right:auto;
   margin-left:auto;
+   height:380px;
+   border:solid;
+   border-top-width:1px;
+   border-right-width:0;
+   border-bottom-width:0;
+   border-left-width:0;
+   border-color:gray;
 }
-#iv2o{
-  height:380px;
-}
-.block{
-  height:139px;
-  max-height:100%;
-  width:100%;
-  justify-content:center;
-}
-#ibn4f{
+
+.fmc-links-container{
   height:fit-content;
   display:flex;
-  justify-content:space-between;
   align-items:center;
   padding-top:2rem;
   padding-bottom:2rem;
+  width:100%;
+  justify-content:space-between;
 }
-.footer-links{
-  height:80px;
-  max-height:100%;
+.fmc-footer-links{
   width:20%;
   flex-direction:column;
   justify-content:start;
   align-items:start;
   display:flex;
   column-gap:2rem;
-}
-#iecim{
-  height:fit-content;
+   height:fit-content;
   padding-top:1rem;
   padding-right:1rem;
   padding-bottom:1rem;
   padding-left:1rem;
   row-gap:1rem;
 }
-#ihalr{
+
+.fmc-svg{
   height:24px;
   width:24px;
 }
-.paragraph{
+.fmc-paragraph{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-#i99qc{
-  height:fit-content;
-  padding-top:1rem;
-  padding-right:1rem;
-  padding-bottom:1rem;
-  padding-left:1rem;
-  row-gap:1rem;
-}
-#iiwz9{
-  height:fit-content;
-  padding-top:1rem;
-  padding-right:1rem;
-  padding-bottom:1rem;
-  padding-left:1rem;
-  row-gap:1rem;
-}
-#i0s05{
-  height:fit-content;
-  padding-top:1rem;
-  padding-right:1rem;
-  padding-bottom:1rem;
-  padding-left:1rem;
-  row-gap:1rem;
-}
+
 @media (max-width: 880px){
-  #imnf{
+
+  .ftm-container{
     height:fit-content;
   }
-  #iv2o{
-    height:fit-content;
-  }
-  .footer-container{
+  .fmc-container{
     margin-top:2rem;
     margin-bottom:2rem;
   }
-  #ibn4f{
+  .fmc-links-container{
     flex-direction:column;
   }
-  .block{
-    height:fit-content;
-  }
-  .footer-links{
+
+  .fmc-footer-links{
     width:90%;
   }
-  .paragraph{
+  .fmc-paragraph{
     margin-top:2rem;
     margin-bottom:2rem;
   }
@@ -179,7 +149,7 @@ const footers = (editor: Editor) => {
 
   editor.Blocks.add('footer-two', {
     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
-    label: 'Simple',
+    label: 'Simple Centered',
     category: 'sections-footers',
     select: true,
     content: { type: 'footer-two' },
@@ -188,10 +158,10 @@ const footers = (editor: Editor) => {
   Components.addType('footer-two', {
     model: {
       defaults: {
-        name: 'Footer One',
+        name: 'Footer Simple Centered',
         // attributes: { class: 'footer-one' },
-        components: `<div class="footer-container" data-gjs-resizable="true">
-    <div class="footer-links" data-gjs-resizable="true">
+        components: `<div class="fsc-footer-container" >
+    <div class="fsc-footer-links" >
       <a id="i4d5" href="#">Privacy Policy</a>
       <a id="i4d5" href="#">Terms & Conditions</a>
       <a id="is0m9" href="#">Pricing</a>
@@ -201,7 +171,7 @@ const footers = (editor: Editor) => {
     <p id="ioy3" class="paragraph">© 2024 lanndi. All rights reserved.
     </p>
   </div>`,
-        styles: `.footer-container{
+        styles: `.fsc-footer-container{
   height:250px;
   max-height:100%;
   width:90%;
@@ -213,7 +183,7 @@ const footers = (editor: Editor) => {
   margin-right:auto;
   margin-left:auto;
 }
-.footer-links{
+.fsc-footer-links{
   height:80px;
   max-height:100%;
   width:100%;
