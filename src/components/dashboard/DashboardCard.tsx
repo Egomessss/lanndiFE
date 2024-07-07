@@ -62,7 +62,7 @@ const DashboardCard = ({ name, slug, ogImage, isLive }: Site) => {
       <Link href={user?.isAdmin ? `/admin-editor/${slug}` : `/editor/${slug}`}>
         <img
           src={ogImage ? ogImage : 'https://images.pexels.com/photos/14577237/pexels-photo-14577237.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'}
-          className="w-full h-44 rounded-lg mb-2  hover:border-solid"
+          className="w-full h-44 rounded-lg mb-2 object-contain hover:border-solid"
           alt={name}
         />
       </Link>
