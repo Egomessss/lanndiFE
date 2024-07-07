@@ -78,7 +78,8 @@ export const CssCode = () => {
 
   const handleClick = () => {
     console.log('css', value);
-    // editor.Css.addRules(value);
+    const trimmedCssCode = value.trim();
+    editor.Css.addRules(trimmedCssCode);
     setValue('')
     close();
   };

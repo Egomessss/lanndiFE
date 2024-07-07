@@ -5,10 +5,10 @@ const pricings = (editor: Editor) => {
 
   const script = function() {
     // @ts-ignore
-    document.getElementById('togglePricing').addEventListener('change', function() {
+    document.getElementById('pws-togglePricing').addEventListener('change', function() {
 
-      const monthlyElements = document.querySelectorAll('.monthly');
-      const annualElements = document.querySelectorAll('.annual');
+      const monthlyElements = document.querySelectorAll('.pws-price-monthly');
+      const annualElements = document.querySelectorAll('.pws-price-annual');
 
 
       console.log('elements', monthlyElements, annualElements);
@@ -40,65 +40,64 @@ const pricings = (editor: Editor) => {
       defaults: {
         name: 'Lifetime Pricing',
         // Define default values for your custom properties
-        components: `<div class="container" id="id7a">
-    <h2 class="heading-two">Simple no tricks pricing
+        components: `<div class="ltp-container">
+    <h2 class="ltp-heading-two">Simple no tricks pricing
     </h2>
-    <p class="paragraph" id="ibq3">Quasi est quaerat. Sit molestiae et. Provident ad dolorem occaecati eos iste. Soluta rerum quidem minus ut molestiae velit error quod.
+    <p class="ltp-subheading-text" >Quasi est quaerat. Sit molestiae et. Provident ad dolorem occaecati eos iste. Soluta rerum quidem minus ut molestiae velit error quod.
     </p>
-    <div class="block" id="ickt">
-      <div class="block" id="irkq2">
-        <h3 class="heading-three">Heading
+    <div class="ltp-pricing-columns-container" >
+      <div class="ltp-features-text" >
+        <h3 class="ltp-heading-three">Heading
         </h3>
-        <p class="paragraph" id="iowbj">Quasi est quaerat. Sit molestiae et. Provident ad dolorem occaecati eos iste. Soluta rerum quidem minus ut molestiae velit error quod.
+        <p class="ltp-paragraph ltp-features-pricing-text" >Quasi est quaerat. Sit molestiae et. Provident ad dolorem occaecati eos iste. Soluta rerum quidem minus ut molestiae velit error quod.
         </p>
-        <div class="block" id="ii4hh">
-          <div class="feature-box">
+        <div class="ltp-features-container" >
+          <div class="ltp-feature-box">
             <span class="material-icons material-symbols-outlined">check</span>
-            <p class="paragraph" id="in6fg">Insert your text here
+            <p class="ltp-paragraph ltp-text-size">Insert your text here
             </p>
           </div>
-          <div class="feature-box">
+          <div class="ltp-feature-box">
             <span class="material-icons material-symbols-outlined">check</span>
-            <p class="paragraph" id="isw0z">Insert your text here
+            <p class="ltp-paragraph ltp-text-size" >Insert your text here
             </p>
           </div>
-          <div class="feature-box">
+          <div class="ltp-feature-box">
             <span class="material-icons material-symbols-outlined">check</span>
-            <p class="paragraph" id="ivs1l">Insert your text here
+            <p class="ltp-paragraph ltp-text-size" >Insert your text here
             </p>
           </div>
-          <div class="feature-box">
+          <div class="ltp-feature-box">
             <span class="material-icons material-symbols-outlined">check</span>
-            <p class="paragraph" id="ixbxn">Insert your text here
+            <p class="ltp-paragraph ltp-text-size">Insert your text here
             </p>
           </div>
         </div>
       </div>
-      <div class="block" id="ikx8v">
-        <p class="paragraph" id="ij8r9">Lifetime deal
+      <div class="ltp-price-container" >
+        <p class="ltp-paragraph ltp-price-deal">Lifetime deal
         </p>
-        <p class="paragraph" id="iwerr">$299
+        <p class="ltp-paragraph ltp-price" id=.>$299
         </p>
-        <div class="button">
-          <button class="button">Buy Now</button>
+        <div class="ltp-button">
+          <button class="ltp-button">Buy Now</button>
         </div>
-        <div class="block" id="iqt06">
-          <a id="isnyz" href="#">Terms</a>
-          <a id="ive7h" href="#">Privacy Policy</a>
+        <div class="ltp-links" >
+          <a  href="#">Terms</a>
+          <a  href="#">Privacy Policy</a>
         </div>
       </div>
     </div>
   </div>`,
         styles: `
-        .container{
-  height:100px;
-  width:100%;
+        .ltp-container{
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:10px 10px 10px 10px;
-}
-#id7a{
+  padding-top:10px;
+  padding-right:10px;
+  padding-bottom:10px;
+  padding-left:10px;
   height:fit-content;
   flex-direction:column;
   row-gap:2rem;
@@ -109,31 +108,27 @@ const pricings = (editor: Editor) => {
   margin-top:2rem;
   margin-bottom:2rem;
 }
-.heading-two{
+
+ 
+.ltp-heading-two{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-.paragraph{
+.ltp-paragraph{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
   width:193px;
 }
-#ibq3{
+.ltp-subheading-text{
   width:557px;
   text-align:center;
 }
-.block{
-  height:80px;
-  max-height:100%;
-  width:100%;
-  display:grid;
-  grid-template-rows:1fr 1fr;
-}
-#ickt{
+
+.ltp-pricing-columns-container{
   height:fit-content;
   display:grid;
   flex-direction:column;
@@ -153,7 +148,7 @@ const pricings = (editor: Editor) => {
   border-bottom-left-radius:10px;
   border-color:rgb(222, 212, 227);
 }
-#irkq2{
+.ltp-features-text{
   height:fit-content;
   grid-column:span 2;
   display:flex;
@@ -161,23 +156,24 @@ const pricings = (editor: Editor) => {
   justify-content:start;
   row-gap:1rem;
 }
-.heading-three{
+.ltp-heading-three{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-#iowbj{
+.ltp-features-pricing-text{
   width:504px;
 }
-#ii4hh{
+.ltp-features-container{
+display:grid;
   width:515px;
   height:100%;
   grid-template-columns:1fr 1fr;
   row-gap:1rem;
   column-gap:1rem;
 }
-.feature-box{
+.ltp-feature-box{
   display:flex;
   flex-direction:row;
   height:100%;
@@ -189,19 +185,11 @@ const pricings = (editor: Editor) => {
   width:100%;
   column-gap:1rem;
 }
-#in6fg{
+.ltp-text-size{
   width:133px;
 }
-#isw0z{
-  width:133px;
-}
-#ivs1l{
-  width:133px;
-}
-#ixbxn{
-  width:133px;
-}
-#ikx8v{
+
+.ltp-price-container{
   grid-column:span 1;
   height:100%;
   display:flex;
@@ -216,14 +204,14 @@ const pricings = (editor: Editor) => {
   border-bottom-right-radius:1rem;
   border-bottom-left-radius:1rem;
 }
-#ij8r9{
+.ltp-price-deal{
   height:fit-content;
 }
-#iwerr{
+.ltp-price{
   font-size:2.5rem;
   font-weight:700;
 }
-.button{
+.ltp-button{
   width:fit-content;
   cursor:pointer;
   outline:0;
@@ -239,10 +227,10 @@ const pricings = (editor: Editor) => {
   font-size:16px;
   border-radius:.25rem .25rem .25rem .25rem;
 }
-.button:hover{
+.ltp-button:hover{
   opacity:0.9;
 }
-#iqt06{
+.ltp-links{
   display:flex;
   flex-direction:row;
   justify-content:center;
@@ -252,17 +240,17 @@ const pricings = (editor: Editor) => {
   width:fit-content;
 }
 @media (max-width: 880px){
-  #ickt{
+  .ltp-pricing-columns-container{
     grid-template-columns:1fr 1fr ;
     row-gap:2rem;
   }
-  #iowbj{
+  .ltp-features-pricing-text{
     width:fit-content;
   }
-  #ii4hh{
+  .ltp-features-container{
     width:100%;
   }
-  #ikx8v{
+ .ltp-price-container{
     padding-top:1rem;
     padding-right:1rem;
     padding-bottom:1rem;
@@ -271,10 +259,10 @@ const pricings = (editor: Editor) => {
   }
 }
 @media (max-width: 600px){
-  #ibq3{
+  .ltp-subheading-text{
     width:fit-content;
   }
-  #ii4hh{
+  .ltp-features-container{
     grid-template-columns:1fr ;
   }
 }
@@ -297,180 +285,161 @@ const pricings = (editor: Editor) => {
       defaults: {
         name: 'Pricing 3 Columns Highlighted',
         // Define default values for your custom properties
-        components: `<div id="id7a" class="container">
-    <h2 id="ihhff" class="heading-two">Simple no tricks pricing
-    </h2>
-    <p id="ibq3" class="paragraph">Quasi est quaerat. Sit molestiae et. Provident ad dolorem occaecati eos iste. Soluta rerum quidem minus ut molestiae velit error quod.
-    </p>
-    <div id="ickt" class="pricing-container">
-      <div id="irkq2" class="pricing-box">
-        <h3 id="iqmsf" class="heading-three">Basic
-        </h3>
-        <p id="iowbj" class="paragraph">Sit molestiae et. Provident ad dolorem occaecati eos iste.
-        </p>
-        <p id="iwerr" class="paragraph">$29/month
-        </p>
-        <div id="ii4hh" class="pricing-container">
-          <div id="iwphn" class="feature-box">
-            <span id="ixcwu" class="material-icons material-symbols-outlined">check</span>
-            <p id="in6fg" class="paragraph">Insert your text here
-            </p>
+        components: ` 
+   <div class="p3h-container">
+      <h2 class="p3h-heading-two">Simple no tricks pricing
+      </h2>
+      <p class="p3h-heading-subtext">Quasi est quaerat. Sit molestiae et. Provident ad dolorem occaecati eos iste. Soluta rerum quidem minus ut molestiae velit error quod.
+      </p>
+      <div class="p3h-pricing-container">
+        <div class="p3h-pricing-text-container">
+          <h3 class="p3h-heading-three">Basic
+          </h3>
+          <p class="p3h-column-p">Sit molestiae et. Provident ad dolorem occaecati eos iste.
+          </p>
+          <p class="p3h-monthly-big">$29/month
+          </p>
+          <p class="p3h-price-annual">$290/month
+          </p>
+          <div class="p3h-features-container">
+            <div id="iq39i" class="p3h-feature-box">
+              <span class="material-icons material-symbols-outlined">check</span>
+              <p id="ijita" class="p3h-feature-p">Insert your text here
+              </p>
+            </div>
+            <div id="i4bsr" class="p3h-feature-box">
+              <span class="material-icons material-symbols-outlined">check</span>
+              <p id="in8kg" class="p3h-feature-p">Insert your text here
+              </p>
+            </div>
+            <div id="il9cg" class="p3h-feature-box">
+              <span id="ifbec" class="material-icons material-symbols-outlined">check</span>
+              <p id="ivs1l" class="p3h-feature-p">Insert your text here
+              </p>
+            </div>
           </div>
-          <div id="iq39i" class="feature-box">
-            <span class="material-icons material-symbols-outlined">check</span>
-            <p id="ijita" class="paragraph">Insert your text here
-            </p>
-          </div>
-          <div id="i4bsr" class="feature-box">
-            <span class="material-icons material-symbols-outlined">check</span>
-            <p id="in8kg" class="paragraph">Insert your text here
-            </p>
-          </div>
-          <div id="il9cg" class="feature-box">
-            <span id="ifbec" class="material-icons material-symbols-outlined">check</span>
-            <p id="ivs1l" class="paragraph">Insert your text here
-            </p>
-          </div>
+          <a class="p3h-link-box"><button type="button" class="p3h-button">Buy Now</button></a>
+          <a class="link-box"></a>
         </div>
-        <a id="ihugse" class="link-box"><div id="i44cv" class="button">
-          <button id="iuro6" class="button">Buy Now</button>
-          </div></a>
+        <div class="p3h-highlighted p3h-pricing-text-container highlighted-box">
+          <h3 class="p3h-heading-three">Pro
+          </h3>
+          <p class="p3h-column-p">Sit molestiae et. Provident ad dolorem occaecati eos iste.
+          </p>
+          <p class="p3h-monthly-big">$49/month
+          </p>
+          <p class="p3h-price-annual">$490/month
+          </p>
+          <div class="p3h-features-container">
+            <div id="i7bv6i" class="p3h-feature-box">
+              <span class="material-icons material-symbols-outlined">check</span>
+              <p id="ir35pq" class="p3h-feature-p">Insert your text here
+              </p>
+            </div>
+            <div id="ivy0u4" class="p3h-feature-box">
+              <span class="material-icons material-symbols-outlined">check</span>
+              <p id="iryct6" class="p3h-feature-p">Insert your text here
+              </p>
+            </div>
+            <div id="izlff6" class="p3h-feature-box">
+              <span class="material-icons material-symbols-outlined">check</span>
+              <p id="i58igh" class="p3h-feature-p">Insert your text here
+              </p>
+            </div>
+            <div class="p3h-feature-box">
+              <span class="material-icons material-symbols-outlined">check</span>
+              <p id="ifh2c7" class="p3h-feature-p">Insert your text here
+              </p>
+            </div>
+            <div id="i9o5tl" class="p3h-feature-box">
+              <span class="material-icons material-symbols-outlined">check</span>
+              <p id="ial8lb" class="p3h-feature-p">Insert your text here
+              </p>
+            </div>
+          </div>
+          <a class="p3h-link-box"><button type="button" class="p3h-button">Buy Now</button></a>
+        </div>
+        <div class="p3h-pricing-text-container">
+          <h3 class="p3h-heading-three">Business
+          </h3>
+          <p class="p3h-column-p">Sit molestiae et. Provident ad dolorem occaecati eos iste.
+          </p>
+          <p class="p3h-monthly-big">$99/month
+          </p>
+          <p class="p3h-price-annual">$990/month
+          </p>
+          <div class="p3h-features-container">
+            <div class="p3h-feature-box">
+              <span class="material-icons material-symbols-outlined">check</span>
+              <p class="p3h-feature-p">Insert your text here
+              </p>
+            </div>
+            <div class="p3h-feature-box">
+              <span class="material-icons material-symbols-outlined">check</span>
+              <p class="p3h-feature-p">Insert your text here
+              </p>
+            </div>
+            <div class="p3h-feature-box">
+              <span class="material-icons material-symbols-outlined">check</span>
+              <p class="p3h-feature-p">Insert your text here
+              </p>
+            </div>
+          </div>
+          <a class="p3h-link-box"><button type="button" class="p3h-button">Buy Now</button></a>
+        </div>
       </div>
-      <div id="i3og3b" class="pricing-box highlighted-box">
-        <h3 id="ijyaj7" class="heading-three">Pro
-        </h3>
-        <p id="ioq1d6" class="paragraph">Sit molestiae et. Provident ad dolorem occaecati eos iste.
-        </p>
-        <p id="if8tsj" class="paragraph">$29/month
-        </p>
-        <div id="i81q4l" class="pricing-container">
-          <div id="i7bv6i" class="feature-box">
-            <span class="material-icons material-symbols-outlined">check</span>
-            <p id="ir35pq" class="paragraph">Insert your text here
-            </p>
-          </div>
-          <div id="ivy0u4" class="feature-box">
-            <span class="material-icons material-symbols-outlined">check</span>
-            <p id="iryct6" class="paragraph">Insert your text here
-            </p>
-          </div>
-          <div id="izlff6" class="feature-box">
-            <span class="material-icons material-symbols-outlined">check</span>
-            <p id="i58igh" class="paragraph">Insert your text here
-            </p>
-          </div>
-          <div class="feature-box">
-            <span class="material-icons material-symbols-outlined">check</span>
-            <p id="ifh2c7" class="paragraph">Insert your text here
-            </p>
-          </div>
-          <div id="iwe4sm" class="feature-box">
-            <span class="material-icons material-symbols-outlined">check</span>
-            <p id="iy5yof" class="paragraph">Insert your text here
-            </p>
-          </div>
-          <div id="i9o5tl" class="feature-box">
-            <span class="material-icons material-symbols-outlined">check</span>
-            <p id="ial8lb" class="paragraph">Insert your text here
-            </p>
-          </div>
-        </div>
-        <a id="ibtrkj" class="link-box"><div id="ia7l0p" class="button">
-          <button id="i03m1p" class="button">Buy Now</button>
-          </div></a>
-      </div>
-      <div id="ib9ttc" class="pricing-box">
-        <h3 id="ip1wns" class="heading-three">Business
-        </h3>
-        <p id="i7e68a" class="paragraph">Sit molestiae et. Provident ad dolorem occaecati eos iste.
-        </p>
-        <p id="inqrci" class="paragraph">$29/month
-        </p>
-        <div id="ip235d" class="pricing-container">
-          <div id="i2l0zt" class="feature-box">
-            <span class="material-icons material-symbols-outlined">check</span>
-            <p id="ifrwkg" class="paragraph">Insert your text here
-            </p>
-          </div>
-          <div id="iucp2p" class="feature-box">
-            <span class="material-icons material-symbols-outlined">check</span>
-            <p id="igz37i" class="paragraph">Insert your text here
-            </p>
-          </div>
-          <div id="i4pu8j" class="feature-box">
-            <span class="material-icons material-symbols-outlined">check</span>
-            <p id="imzkhx" class="paragraph">Insert your text here
-            </p>
-          </div>
-          <div class="feature-box">
-            <span class="material-icons material-symbols-outlined">check</span>
-            <p id="ius7c8" class="paragraph">Insert your text here
-            </p>
-          </div>
-        </div>
-        <a id="imlptp" class="link-box"><div id="i33ya2" class="button">
-          <button id="iciil6" class="button">Buy Now</button>
-          </div></a>
+      <div class="p3h-links-container">
+        <a href="#">Terms</a>
+        <a href="#">Privacy Policy</a>
       </div>
     </div>
-    <div id="iqt06" class="pricing-container">
-      <a id="isnyz" href="#">Terms</a>
-      <a id="ive7h" href="#">Privacy Policy</a>
-    </div>
-  </div>`,
-        styles: `
-       .container{
-  height:100px;
-  width:100%;
+  `,
+        styles:`
+     .p3h-container{
+  height:fit-content;
+  width:90%;
   display:flex;
   align-items:center;
   justify-content:center;
   padding:10px 10px 10px 10px;
-}
-#id7a{
-  height:fit-content;
   flex-direction:column;
   row-gap:2rem;
-  width:90%;
   max-width:1200px;
   margin-right:auto;
   margin-left:auto;
   margin-top:2rem;
   margin-bottom:2rem;
 }
-.heading-two{
+.p3h-heading-two{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-.paragraph{
-  margin-top:0;
-  margin-right:0;
-  margin-bottom:0;
-  margin-left:0;
-  width:100%;
-}
-#ibq3{
+.p3h-heading-subtext{
   width:557px;
   text-align:center;
 }
-.pricing-container{
-  height:80px;
-  max-height:100%;
+.p3h-input-label{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  column-gap:1rem;
+  width:160px;
+}
+#p3h-togglePricing{
+  width:20px;
+  height:20px;
+}
+.p3h-annual-text{
+  font-weight:700;
+}
+.p3h-pricing-container{
+  height:fit-content;
   width:100%;
   display:grid;
-  grid-template-rows:1fr 1fr;
-  grid-template-columns:1fr 1fr 1fr;
-  grid-column:span;
-}
-#ickt{
-  height:fit-content;
-  display:grid;
-  flex-direction:column;
-  align-items:end;
-  grid-template-columns:1fr 1fr 1fr;
   grid-template-rows:1fr;
+  grid-template-columns:1fr 1fr 1fr;
   column-gap:1rem;
   padding-top:1rem;
   padding-right:1rem;
@@ -482,8 +451,11 @@ const pricings = (editor: Editor) => {
   border-bottom-right-radius:10px;
   border-bottom-left-radius:10px;
   border-color:rgb(222, 212, 227);
+  flex-direction:row;
+  justify-items:center;
+  align-items:end;
 }
-#irkq2{
+.p3h-pricing-text-container{
   height:fit-content;
   display:flex;
   flex-direction:column;
@@ -500,24 +472,43 @@ const pricings = (editor: Editor) => {
   border-bottom-left-radius:1rem;
   border-color:rgb(225, 218, 230);
 }
-.pricing-box{
-  grid-column:span 1;
-}
-.heading-three{
+.p3h-heading-three{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
+  text-align:center;
 }
-#iowbj{
+.p3h-column-p{
   width:100%;
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+  text-align:center;
 }
-#iwerr{
+.p3h-monthly-big{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+  width:100%;
   font-size:2.5rem;
   font-weight:700;
   text-align:center;
 }
-#ii4hh{
+.p3h-price-annual{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+  width:100%;
+  font-size:2.5rem;
+  font-weight:700;
+  text-align:center;
+  display:none;
+}
+.p3h-features-container{
   width:100%;
   height:100%;
   grid-template-columns:1fr 1fr;
@@ -526,7 +517,7 @@ const pricings = (editor: Editor) => {
   display:flex;
   flex-direction:column;
 }
-.feature-box{
+.p3h-feature-box{
   display:flex;
   flex-direction:row;
   height:100%;
@@ -535,20 +526,13 @@ const pricings = (editor: Editor) => {
   grid-column:span 1;
   width:100%;
   column-gap:1rem;
+  justify-content:start;
+  align-items:center;
 }
-#in6fg{
+.p3h-feature-p{
   width:133px;
 }
-#ijita{
-  width:133px;
-}
-#in8kg{
-  width:133px;
-}
-#ivs1l{
-  width:133px;
-}
-.link-box{
+.p3h-link-box{
   color:inherit;
   display:inline-block;
   vertical-align:top;
@@ -557,11 +541,11 @@ const pricings = (editor: Editor) => {
   text-decoration:none;
   cursor:pointer;
 }
-.link-box:empty{
+.p3h-link-box:empty{
   text-decoration:none;
   padding:5px;
 }
-.link-box:empty:before{
+.p3h-link-box:empty:before{
   background-color:#ddd;
   color:#000;
   font-size:16px;
@@ -579,7 +563,7 @@ const pricings = (editor: Editor) => {
   text-overflow:ellipsis;
   content:"Link Box";
 }
-.button{
+.p3h-button{
   cursor:pointer;
   outline:0;
   color:#fff;
@@ -595,10 +579,10 @@ const pricings = (editor: Editor) => {
   border-radius:.25rem .25rem .25rem .25rem;
   width:100%;
 }
-.button:hover{
+.p3h-button:hover{
   opacity:0.9;
 }
-#i3og3b{
+.p3h-highlighted{
   height:fit-content;
   display:flex;
   flex-direction:column;
@@ -615,92 +599,14 @@ const pricings = (editor: Editor) => {
   border-bottom-left-radius:1rem;
   border-color:rgb(225, 218, 230);
 }
-.pricing-box.highlighted-box{
+.p3h-pricing-text-container.highlighted-box{
   background:rgb(244, 244, 245);
   height:478px;
 }
-#ioq1d6{
-  width:100%;
-}
-#if8tsj{
-  font-size:2.5rem;
-  font-weight:700;
-  text-align:center;
-}
-#i81q4l{
-  width:100%;
-  height:100%;
-  grid-template-columns:1fr 1fr;
-  row-gap:1rem;
-  column-gap:1rem;
-  display:flex;
-  flex-direction:column;
-}
-#ir35pq{
-  width:133px;
-}
-#iryct6{
-  width:133px;
-}
-#i58igh{
-  width:133px;
-}
-#ifh2c7{
-  width:133px;
-}
-#iy5yof{
-  width:133px;
-}
-#ial8lb{
-  width:133px;
-}
-#ib9ttc{
+.p3h-highlighted.p3h-pricing-text-container.highlighted-box{
   height:fit-content;
-  display:flex;
-  flex-direction:column;
-  justify-content:start;
-  row-gap:1rem;
-  padding-top:1rem;
-  padding-right:1rem;
-  padding-bottom:1rem;
-  padding-left:1rem;
-  border-style:solid;
-  border-top-left-radius:1rem;
-  border-top-right-radius:1rem;
-  border-bottom-right-radius:1rem;
-  border-bottom-left-radius:1rem;
-  border-color:rgb(225, 218, 230);
 }
-#i7e68a{
-  width:100%;
-}
-#inqrci{
-  font-size:2.5rem;
-  font-weight:700;
-  text-align:center;
-}
-#ip235d{
-  width:100%;
-  height:100%;
-  grid-template-columns:1fr 1fr;
-  row-gap:1rem;
-  column-gap:1rem;
-  display:flex;
-  flex-direction:column;
-}
-#ifrwkg{
-  width:133px;
-}
-#igz37i{
-  width:133px;
-}
-#imzkhx{
-  width:133px;
-}
-#ius7c8{
-  width:133px;
-}
-#iqt06{
+.p3h-links-container{
   display:flex;
   flex-direction:row;
   justify-content:center;
@@ -710,46 +616,21 @@ const pricings = (editor: Editor) => {
   width:fit-content;
 }
 @media (max-width: 880px){
-  #ickt{
+  .p3h-pricing-container{
     grid-template-columns:1fr 1fr;
+    grid-template-rows:1fr ;
     row-gap:2rem;
-  }
-  #iowbj{
-    width:fit-content;
-  }
-  #ii4hh{
-    width:100%;
-  }
-  #ioq1d6{
-    width:fit-content;
-  }
-  #i81q4l{
-    width:100%;
-  }
-  #i7e68a{
-    width:fit-content;
-  }
-  #ip235d{
-    width:100%;
   }
 }
 @media (max-width: 600px){
-  #ibq3{
+  .p3h-heading-subtext{
     width:fit-content;
   }
-  #ickt{
-    grid-template-columns:1fr;
-  }
-  #ii4hh{
-    grid-template-columns:1fr;
-  }
-  #i81q4l{
-    grid-template-columns:1fr;
-  }
-  #ip235d{
+  .p3h-pricing-container{
     grid-template-columns:1fr;
   }
 }
+
 `,
       },
     },
@@ -770,204 +651,164 @@ const pricings = (editor: Editor) => {
         script: script,
         name: 'Pricing With Monthly/Annual Switch',
         // Define default values for your custom properties
-        components: ` <div id="i9e6">
-    <div id="id7a" class="container">
-      <h2 id="ihhff" class="heading-two">Simple no tricks pricing
+        components: ` 
+   <div class="pws-container">
+      <h2 class="pws-heading-two">Simple no tricks pricing
       </h2>
-      <p id="ibq3" class="paragraph">Quasi est quaerat. Sit molestiae et. Provident ad dolorem occaecati eos iste. Soluta rerum quidem minus ut molestiae velit error quod.
+      <p class="pws-heading-subtext">Quasi est quaerat. Sit molestiae et. Provident ad dolorem occaecati eos iste. Soluta rerum quidem minus ut molestiae velit error quod.
       </p>
-      <div class="pricing-option">
-        <label id="i6gi9"><input type="checkbox" id="togglePricing" autocomplete="off"/><span id="iwixn" class="annual-text">Annual 20% off</span></label>
+      <div class="pws-pricing-option">
+        <label class="pws-input-label"><input type="checkbox" id="pws-togglePricing" autocomplete="off"/><span class="pws-annual-text">Annual 20% off</span></label>
       </div>
-      <div id="ickt" class="pricing-container">
-        <div id="irkq2" class="pricing-box">
-          <h3 id="iqmsf" class="heading-three">Basic
+      <div class="pws-pricing-container">
+        <div class="pws-pricing-text-container">
+          <h3 class="pws-heading-three">Basic
           </h3>
-          <p id="iowbj" class="paragraph">Sit molestiae et. Provident ad dolorem occaecati eos iste.
+          <p class="pws-column-p">Sit molestiae et. Provident ad dolorem occaecati eos iste.
           </p>
-          <p id="iwerr" class="monthly">$29/month
+          <p class="pws-price-monthly">$29/month
           </p>
-          <p id="iwerr-2" class="annual">$290/month
+          <p class="pws-price-annual">$290/month
           </p>
-          <div id="ii4hh" class="pricing-container">
-            <div id="iwphn" class="feature-box">
-              <span id="ixcwu" class="material-icons material-symbols-outlined">check</span>
-              <p id="in6fg" class="paragraph">Insert your text here
-              </p>
-            </div>
-            <div id="iq39i" class="feature-box">
+          <div class="pws-features-container">
+            <div id="iq39i" class="pws-feature-box">
               <span class="material-icons material-symbols-outlined">check</span>
-              <p id="ijita" class="paragraph">Insert your text here
+              <p id="ijita" class="pws-feature-p">Insert your text here
               </p>
             </div>
-            <div id="i4bsr" class="feature-box">
+            <div id="i4bsr" class="pws-feature-box">
               <span class="material-icons material-symbols-outlined">check</span>
-              <p id="in8kg" class="paragraph">Insert your text here
+              <p id="in8kg" class="pws-feature-p">Insert your text here
               </p>
             </div>
-            <div id="il9cg" class="feature-box">
+            <div id="il9cg" class="pws-feature-box">
               <span id="ifbec" class="material-icons material-symbols-outlined">check</span>
-              <p id="ivs1l" class="paragraph">Insert your text here
+              <p id="ivs1l" class="pws-feature-p">Insert your text here
               </p>
             </div>
           </div>
-          <a id="ihugse" class="link-box"><div id="i44cv" class="button">
-            <button type="button" id="iuro6" class="button">Buy Now</button>
-            </div></a>
+          <a class="pws-link-box"><button type="button" class="pws-button">Buy Now</button></a>
+          <a class="link-box"></a>
         </div>
-        <div id="i3og3b" class="pricing-box highlighted-box">
-          <h3 id="ijyaj7" class="heading-three">Pro
+        <div class="pws-highlighted pws-pricing-text-container highlighted-box">
+          <h3 class="pws-heading-three">Pro
           </h3>
-          <p id="ioq1d6" class="paragraph">Sit molestiae et. Provident ad dolorem occaecati eos iste.
+          <p class="pws-column-p">Sit molestiae et. Provident ad dolorem occaecati eos iste.
           </p>
-          <p id="if8tsj" class="monthly">$49/month
+          <p class="pws-price-monthly">$49/month
           </p>
-          <p id="iwerr-3" class="annual">$490/month
+          <p class="pws-price-annual">$490/month
           </p>
-          <div id="i81q4l" class="pricing-container">
-            <div id="i7bv6i" class="feature-box">
+          <div class="pws-features-container">
+            <div id="i7bv6i" class="pws-feature-box">
               <span class="material-icons material-symbols-outlined">check</span>
-              <p id="ir35pq" class="paragraph">Insert your text here
+              <p id="ir35pq" class="pws-feature-p">Insert your text here
               </p>
             </div>
-            <div id="ivy0u4" class="feature-box">
+            <div id="ivy0u4" class="pws-feature-box">
               <span class="material-icons material-symbols-outlined">check</span>
-              <p id="iryct6" class="paragraph">Insert your text here
+              <p id="iryct6" class="pws-feature-p">Insert your text here
               </p>
             </div>
-            <div id="izlff6" class="feature-box">
+            <div id="izlff6" class="pws-feature-box">
               <span class="material-icons material-symbols-outlined">check</span>
-              <p id="i58igh" class="paragraph">Insert your text here
+              <p id="i58igh" class="pws-feature-p">Insert your text here
               </p>
             </div>
-            <div class="feature-box">
+            <div class="pws-feature-box">
               <span class="material-icons material-symbols-outlined">check</span>
-              <p id="ifh2c7" class="paragraph">Insert your text here
+              <p id="ifh2c7" class="pws-feature-p">Insert your text here
               </p>
             </div>
-            <div id="iwe4sm" class="feature-box">
+            <div id="i9o5tl" class="pws-feature-box">
               <span class="material-icons material-symbols-outlined">check</span>
-              <p id="iy5yof" class="paragraph">Insert your text here
-              </p>
-            </div>
-            <div id="i9o5tl" class="feature-box">
-              <span class="material-icons material-symbols-outlined">check</span>
-              <p id="ial8lb" class="paragraph">Insert your text here
+              <p id="ial8lb" class="pws-feature-p">Insert your text here
               </p>
             </div>
           </div>
-          <a id="ibtrkj" class="link-box"><div id="ia7l0p" class="button">
-            <button type="button" id="i03m1p" class="button">Buy Now</button>
-            </div></a>
+          <a class="pws-link-box"><button type="button" class="pws-button">Buy Now</button></a>
         </div>
-        <div id="ib9ttc" class="pricing-box">
-          <h3 id="ip1wns" class="heading-three">Business
+        <div class="pws-pricing-text-container">
+          <h3 class="pws-heading-three">Business
           </h3>
-          <p id="i7e68a" class="paragraph">Sit molestiae et. Provident ad dolorem occaecati eos iste.
+          <p class="pws-column-p">Sit molestiae et. Provident ad dolorem occaecati eos iste.
           </p>
-          <p id="inqrci" class="monthly">$99/month
+          <p class="pws-price-monthly">$99/month
           </p>
-          <p id="iwerr-4" class="annual">$990/month
+          <p class="pws-price-annual">$990/month
           </p>
-          <div id="ip235d" class="pricing-container">
-            <div id="i2l0zt" class="feature-box">
+          <div class="pws-features-container">
+            <div class="pws-feature-box">
               <span class="material-icons material-symbols-outlined">check</span>
-              <p id="ifrwkg" class="paragraph">Insert your text here
+              <p class="pws-feature-p">Insert your text here
               </p>
             </div>
-            <div id="iucp2p" class="feature-box">
+            <div class="pws-feature-box">
               <span class="material-icons material-symbols-outlined">check</span>
-              <p id="igz37i" class="paragraph">Insert your text here
+              <p class="pws-feature-p">Insert your text here
               </p>
             </div>
-            <div id="i4pu8j" class="feature-box">
+            <div class="pws-feature-box">
               <span class="material-icons material-symbols-outlined">check</span>
-              <p id="imzkhx" class="paragraph">Insert your text here
-              </p>
-            </div>
-            <div class="feature-box">
-              <span class="material-icons material-symbols-outlined">check</span>
-              <p id="ius7c8" class="paragraph">Insert your text here
+              <p class="pws-feature-p">Insert your text here
               </p>
             </div>
           </div>
-          <a id="imlptp" class="link-box"><div id="i33ya2" class="button">
-            <button type="button" id="iciil6" class="button">Buy Now</button>
-            </div></a>
+          <a class="pws-link-box"><button type="button" class="pws-button">Buy Now</button></a>
         </div>
       </div>
-      <div id="iqt06" class="pricing-container">
-        <a id="isnyz" href="#">Terms</a>
-        <a id="ive7h" href="#">Privacy Policy</a>
+      <div class="pws-links-container">
+        <a href="#">Terms</a>
+        <a href="#">Privacy Policy</a>
       </div>
     </div>
-  </div>`,
-        styles: `
-      .container{
-  height:100px;
-  width:100%;
+  `,
+        styles:`
+     .pws-container{
+  height:fit-content;
+  width:90%;
   display:flex;
   align-items:center;
   justify-content:center;
   padding:10px 10px 10px 10px;
-}
-#id7a{
-  height:fit-content;
   flex-direction:column;
   row-gap:2rem;
-  width:90%;
   max-width:1200px;
   margin-right:auto;
   margin-left:auto;
   margin-top:2rem;
   margin-bottom:2rem;
 }
-.heading-two{
+.pws-heading-two{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-.paragraph{
-  margin-top:0;
-  margin-right:0;
-  margin-bottom:0;
-  margin-left:0;
-}
-#ibq3{
+.pws-heading-subtext{
   width:557px;
   text-align:center;
 }
-#i6gi9{
+.pws-input-label{
   display:flex;
   justify-content:center;
   align-items:center;
   column-gap:1rem;
   width:160px;
 }
-#togglePricing{
+#pws-togglePricing{
   width:20px;
   height:20px;
 }
-#iwixn{
+.pws-annual-text{
   font-weight:700;
 }
-.pricing-container{
-  height:80px;
-  max-height:100%;
+.pws-pricing-container{
+  height:fit-content;
   width:100%;
   display:grid;
-  grid-template-rows:1fr 1fr;
-  grid-template-columns:1fr 1fr 1fr;
-  grid-column:span;
-}
-#ickt{
-  height:fit-content;
-  display:grid;
-  flex-direction:column;
-  align-items:end;
-  grid-template-columns:1fr 1fr 1fr;
   grid-template-rows:1fr;
+  grid-template-columns:1fr 1fr 1fr;
   column-gap:1rem;
   padding-top:1rem;
   padding-right:1rem;
@@ -979,8 +820,11 @@ const pricings = (editor: Editor) => {
   border-bottom-right-radius:10px;
   border-bottom-left-radius:10px;
   border-color:rgb(222, 212, 227);
+  flex-direction:row;
+  justify-items:center;
+  align-items:end;
 }
-#irkq2{
+.pws-pricing-text-container{
   height:fit-content;
   display:flex;
   flex-direction:column;
@@ -997,19 +841,22 @@ const pricings = (editor: Editor) => {
   border-bottom-left-radius:1rem;
   border-color:rgb(225, 218, 230);
 }
-.pricing-box{
-  grid-column:span 1;
-}
-.heading-three{
+.pws-heading-three{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
+  text-align:center;
 }
-#iowbj{
+.pws-column-p{
   width:100%;
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+  text-align:center;
 }
-.monthly{
+.pws-price-monthly{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
@@ -1019,7 +866,7 @@ const pricings = (editor: Editor) => {
   font-weight:700;
   text-align:center;
 }
-.annual{
+.pws-price-annual{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
@@ -1029,12 +876,8 @@ const pricings = (editor: Editor) => {
   font-weight:700;
   text-align:center;
   display:none;
-  undefined:undefined;
 }
-#iwerr-2{
-  display:none;
-}
-#ii4hh{
+.pws-features-container{
   width:100%;
   height:100%;
   grid-template-columns:1fr 1fr;
@@ -1043,7 +886,7 @@ const pricings = (editor: Editor) => {
   display:flex;
   flex-direction:column;
 }
-.feature-box{
+.pws-feature-box{
   display:flex;
   flex-direction:row;
   height:100%;
@@ -1052,20 +895,13 @@ const pricings = (editor: Editor) => {
   grid-column:span 1;
   width:100%;
   column-gap:1rem;
+  justify-content:start;
+  align-items:center;
 }
-#in6fg{
+.pws-feature-p{
   width:133px;
 }
-#ijita{
-  width:133px;
-}
-#in8kg{
-  width:133px;
-}
-#ivs1l{
-  width:133px;
-}
-.link-box{
+.pws-link-box{
   color:inherit;
   display:inline-block;
   vertical-align:top;
@@ -1074,11 +910,11 @@ const pricings = (editor: Editor) => {
   text-decoration:none;
   cursor:pointer;
 }
-.link-box:empty{
+.pws-link-box:empty{
   text-decoration:none;
   padding:5px;
 }
-.link-box:empty:before{
+.pws-link-box:empty:before{
   background-color:#ddd;
   color:#000;
   font-size:16px;
@@ -1096,7 +932,7 @@ const pricings = (editor: Editor) => {
   text-overflow:ellipsis;
   content:"Link Box";
 }
-.button{
+.pws-button{
   cursor:pointer;
   outline:0;
   color:#fff;
@@ -1112,10 +948,10 @@ const pricings = (editor: Editor) => {
   border-radius:.25rem .25rem .25rem .25rem;
   width:100%;
 }
-.button:hover{
+.pws-button:hover{
   opacity:0.9;
 }
-#i3og3b{
+.pws-highlighted{
   height:fit-content;
   display:flex;
   flex-direction:column;
@@ -1132,88 +968,14 @@ const pricings = (editor: Editor) => {
   border-bottom-left-radius:1rem;
   border-color:rgb(225, 218, 230);
 }
-.pricing-box.highlighted-box{
+.pws-pricing-text-container.highlighted-box{
   background:rgb(244, 244, 245);
   height:478px;
 }
-#ioq1d6{
-  width:100%;
-}
-#iwerr-3{
-  display:none;
-}
-#i81q4l{
-  width:100%;
-  height:100%;
-  grid-template-columns:1fr 1fr;
-  row-gap:1rem;
-  column-gap:1rem;
-  display:flex;
-  flex-direction:column;
-}
-#ir35pq{
-  width:133px;
-}
-#iryct6{
-  width:133px;
-}
-#i58igh{
-  width:133px;
-}
-#ifh2c7{
-  width:133px;
-}
-#iy5yof{
-  width:133px;
-}
-#ial8lb{
-  width:133px;
-}
-#ib9ttc{
+.pws-highlighted.pws-pricing-text-container.highlighted-box{
   height:fit-content;
-  display:flex;
-  flex-direction:column;
-  justify-content:start;
-  row-gap:1rem;
-  padding-top:1rem;
-  padding-right:1rem;
-  padding-bottom:1rem;
-  padding-left:1rem;
-  border-style:solid;
-  border-top-left-radius:1rem;
-  border-top-right-radius:1rem;
-  border-bottom-right-radius:1rem;
-  border-bottom-left-radius:1rem;
-  border-color:rgb(225, 218, 230);
 }
-#i7e68a{
-  width:100%;
-}
-#iwerr-4{
-  display:none;
-}
-#ip235d{
-  width:100%;
-  height:100%;
-  grid-template-columns:1fr 1fr;
-  row-gap:1rem;
-  column-gap:1rem;
-  display:flex;
-  flex-direction:column;
-}
-#ifrwkg{
-  width:133px;
-}
-#igz37i{
-  width:133px;
-}
-#imzkhx{
-  width:133px;
-}
-#ius7c8{
-  width:133px;
-}
-#iqt06{
+.pws-links-container{
   display:flex;
   flex-direction:row;
   justify-content:center;
@@ -1223,46 +985,21 @@ const pricings = (editor: Editor) => {
   width:fit-content;
 }
 @media (max-width: 880px){
-  #ickt{
+  .pws-pricing-container{
     grid-template-columns:1fr 1fr;
+    grid-template-rows:1fr ;
     row-gap:2rem;
-  }
-  #iowbj{
-    width:fit-content;
-  }
-  #ii4hh{
-    width:100%;
-  }
-  #ioq1d6{
-    width:fit-content;
-  }
-  #i81q4l{
-    width:100%;
-  }
-  #i7e68a{
-    width:fit-content;
-  }
-  #ip235d{
-    width:100%;
   }
 }
 @media (max-width: 600px){
-  #ibq3{
+  .pws-heading-subtext{
     width:fit-content;
   }
-  #ickt{
-    grid-template-columns:1fr;
-  }
-  #ii4hh{
-    grid-template-columns:1fr;
-  }
-  #i81q4l{
-    grid-template-columns:1fr;
-  }
-  #ip235d{
+  .pws-pricing-container{
     grid-template-columns:1fr;
   }
 }
+
 `,
       },
     },
