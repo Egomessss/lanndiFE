@@ -6,25 +6,11 @@ import { HtmlElementSelector } from '@/components/editor/components/HtmlElementS
 import CodeMirror, { EditorView } from '@uiw/react-codemirror';
 import { langs } from '@uiw/codemirror-extensions-langs';
 import React, { useEffect, useState } from 'react';
-import { IconCheck, IconTrash } from '@tabler/icons-react';
+import { IconCheck, IconEdit, IconTrash } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
 import useUser from '@/hooks/use-user';
 import Link from 'next/link';
 
-// const data = editor?.getProjectData();
-// const pagesData = editor?.Pages.getAll().map(page => {
-//   const component = page.getMainComponent();
-//   const pageData = page.attributes;
-//   return {
-//     pageId: pageData.id,
-//     name: pageData.name,
-//     slug: pageData.slug,
-//     title: pageData.title,
-//     description: pageData.description,
-//     html: editor.getHtml({ component }),
-//     css: editor.getCss({ component }),
-//     js: editor.getJs({ component }),
-//   };
 
 function removeCSSRules(cssString: string) {
   const rulesToRemove = [
@@ -228,101 +214,139 @@ export const SvgContentCode = () => {
 
 };
 
-function removeAttributes(attributes: any) {
-  // Clone the attributes object to avoid mutating the original object
-  const clonedAttributes = { ...attributes };
-
-  // Remove 'id' and 'class' keys if they exist
-  delete clonedAttributes.id;
-  delete clonedAttributes.class;
-
-  return clonedAttributes;
-}
 
 function CustomAttributes() {
 
+  // open a modal to change already existing keys, filter out id, class
+
   const editor = useEditor(); // Custom hook to access the GrapeJS editor instance
   const { user } = useUser();
+  const [opened, { open, close }] = useDisclosure(false);
   const component = editor.getSelected();
   const [attributeKey, setAttributeKey] = useState('');
   const [attributeValue, setAttributeValue] = useState('');
+  const [refreshCounter, setRefreshCounter] = useState(0); // State to track changes
 
 
-  const attributes = removeAttributes(editor.getSelected()?.getAttributes());
+
+// if changing an already added attribute get the key also
+
+  const attributes = editor.getSelected()?.getAttributes();
+
+  const filteredAttributes = Object.entries(attributes || {}).reduce((acc, [key, value]) => {
+    if (key !== 'id' && key !== 'class') {
+      // @ts-ignore
+      acc[key] = value;
+    }
+    return acc;
+  }, {});
+
   // console.log('attrbiutes', attributes);
   // Function to handle adding attributes
   const handleAddAttribute = () => {
-    // Get the currently selected component
     if (component) {
-      component.addAttributes({ [attributeKey]: attributeValue }); // Add custom attribute
-      setAttributeKey(''); // Reset attribute key input
-      setAttributeValue(''); // Reset attribute value input
+      component.addAttributes({ [attributeKey]: attributeValue });
+      setAttributeKey('');
+      setAttributeValue('');
+      setRefreshCounter((prev) => prev + 1); // Trigger re-render
+    }
+    if (opened) {
+      close();
     }
   };
 
   // Function to handle removing attributes
-  const handleRemoveAttribute = () => {
-    const component = editor.getSelected(); // Get the currently selected component
+  const handleRemoveAttribute = (keyToRemove: string) => {
     if (component) {
-      component.removeAttributes([attributeKey]); // Remove specified attribute
-      setAttributeKey(''); // Reset attribute key input
+      component.removeAttributes([keyToRemove]);
+      if (keyToRemove === attributeKey) {
+        setAttributeKey('');
+        setAttributeValue('');
+      }
+      setRefreshCounter((prev) => prev + 1); // Trigger re-render
+      if (opened) {
+        close();
+      }
     }
+  };
+  const openModalWithAttribute = (key: string, value: string) => {
+    setAttributeKey(key);
+    setAttributeValue(value);
+    open();
   };
 
   return (
-    <div className="flex flex-col gap-2 justify-end">
-      <div>
-        {Object.entries(attributes || {}).map(([key, value]) => {
+    <>
+      <Modal opened={opened} onClose={close} title="Edit Attribute">
+        <TextInput
+          disabled={user?.subscription === 'free'}
+          size="xs"
+          className="w-full"
+          label="Attribute Key"
+          value={attributeKey}
+          readOnly
+        />
+        <TextInput
+          size="xs"
+          className="w-full mt-2"
+          label="Attribute Value"
+          value={attributeValue}
+          onChange={(event) => setAttributeValue(event.currentTarget.value)}
+        />
+        <div className="flex gap-1 items-center w-full justify-end">
+        <Button size="xs" my="md" onClick={() => handleAddAttribute()}>
+          Save Changes
+        </Button>
+        <Button color="red" size="xs" onClick={() => handleRemoveAttribute(attributeKey)}>
+          Delete Attribute
+        </Button>
+        </div>
+      </Modal>
+      <div className="flex flex-col gap-2 justify-end">
 
-          return (
-            <div key={key} className="flex  gap-4 justify-end flex-wrap  items-center ">
-              <TextInput
-                disabled={user?.subscription === 'free'}
-                size="xs"
-                // readOnly
-                className="w-full"
-                label={key}
-                placeholder="Attribute Key"
-                // @ts-ignore
-                value={value}
-                // onChange={(event) => setAttributeKey(event.currentTarget.value)}
-                // rightSection={<ActionIcon size="sm" onClick={handleAddAttribute}>
-                //   <IconCheck size="1rem" />
-                // </ActionIcon>}
-              />
+        <div>
+          {Object.entries(filteredAttributes).map(([key, value]) => {
+            return (
+              <div key={key} className="flex gap-4 justify-end flex-wrap items-center">
+                <div className="flex gap-1 flex-col justify-start w-full text-sm">
+                  <p className="font-bold">{key}</p>
+                  {/*// @ts-ignore*/}
+                  <p className="text-xs">{value}</p>
+                </div>
+                {/*// @ts-ignore*/}
+                <ActionIcon size="sm" onClick={() => openModalWithAttribute(key, value)}>
+                  <IconEdit size="1rem" />
+                </ActionIcon>
+                <ActionIcon disabled={user?.subscription === 'free'} color="red" size="sm"
+                            onClick={() => handleRemoveAttribute(key)}>
+                  <IconTrash size="1rem" />
+                </ActionIcon>
+              </div>
+            );
+          })}
+        </div>
 
-              <ActionIcon disabled={user?.subscription === 'free'} color="red" size="sm"
-                          onClick={handleRemoveAttribute}>
-                <IconTrash size="1rem" />
-              </ActionIcon>
-
-
-            </div>);
-        })}
+        <TextInput
+          disabled={user?.subscription === 'free'}
+          size="xs"
+          label="Attribute Key"
+          placeholder="Attribute Key"
+          value={attributeKey}
+          onChange={(event) => setAttributeKey(event.currentTarget.value)}
+        />
+        <TextInput
+          size="xs"
+          label="Attribute Value"
+          placeholder="Attribute Value"
+          value={attributeValue}
+          onChange={(event) => setAttributeValue(event.currentTarget.value)}
+        />
+        <Button size="xs" onClick={handleAddAttribute}>
+          Add Attribute
+        </Button>
       </div>
+    </>
 
-      <TextInput
-        disabled={user?.subscription === 'free'}
-        size="xs"
-        label="Attribute Key"
-        placeholder="Attribute Key"
-        value={attributeKey}
-        onChange={(event) => setAttributeKey(event.currentTarget.value)}
-      />
-      <TextInput
-        size="xs"
-        label="Attribute Value"
-        placeholder="Attribute Value"
-        value={attributeValue}
-        onChange={(event) => setAttributeValue(event.currentTarget.value)}
-      />
-      <Button size="xs" onClick={handleAddAttribute}>
-        Add Attribute
-      </Button>
-      {/*<ActionIcon onClick={handleRemoveAttribute}>*/}
-      {/*  <IconTrash size="1rem" />*/}
-      {/*</ActionIcon>*/}
-    </div>
   );
 
 }
@@ -352,8 +376,8 @@ export default function CustomTraitManager({
         <Button component={Link} href="/plans" size="xs" mb="4">
           Subscribe Now
         </Button></>}
-      {/*<Divider className="w-full"  label="Custom attributes" />*/}
-      {/*<CustomAttributes />*/}
+      <Divider className="w-full" label="Custom attributes" />
+      <CustomAttributes />
       <Divider className="w-full" label="Selected Block Customization" />
       {['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(value!) && <HeadingTypeSelector />}
       {/*<HtmlElementSelector />*/}

@@ -17,9 +17,9 @@ const features = (editor: Editor) => {
       defaults: {
         name: 'Features 3 Rows W/Icons',
         components: `  
-  <div class="block" id="izpc">
-    <div class="block" id="irf4">
-      <p class="paragraph" id="ihfmp">
+  <div class="block" id="izpcew">
+    <div class="block" id="irf41rw">
+      <p class="paragraph" id="ihfmplq">
      Subheading
       </p>
     <h2 class="heading-two">Feature Heading
@@ -28,7 +28,7 @@ const features = (editor: Editor) => {
     Insert your text here
     </p>
   </div>
-<div class="block" id="i1vi">
+<div class="block" id="i1viasd">
   <div class="feature-container">
     <span class="material-icons material-symbols-outlined">
       home
@@ -65,7 +65,7 @@ const features = (editor: Editor) => {
   max-height:100%;
   width:100%;
 }
-#izpc{
+#izpcew{
   height:453px;
   max-width:1200px;
   width:90%;
@@ -76,7 +76,7 @@ const features = (editor: Editor) => {
   align-items:center;
   flex-direction:column;
 }
-#irf4{
+#irf41rw{
   text-align:center;
   display:flex;
   justify-content:center;
@@ -93,7 +93,7 @@ const features = (editor: Editor) => {
   margin-bottom:0;
   margin-left:0;
 }
-#ihfmp{
+#ihfmplq{
   font-weight:700;
 }
 .heading-two{
@@ -102,7 +102,7 @@ const features = (editor: Editor) => {
   margin-bottom:0;
   margin-left:0;
 }
-#i1vi{
+#i1viasd{
   height:257px;
   display:flex;
   flex-direction:row-reverse;
@@ -129,15 +129,15 @@ const features = (editor: Editor) => {
   margin-left:0;
 }
 @media (max-width: 600px){
-  #izpc{
+  #izpcew{
     height:fit-content;
     margin-top:2rem;
     margin-bottom:2rem;
   }
-  #irf4{
+  #irf41rw{
     height:165px;
   }
-  #i1vi{
+  #i1viasd{
     flex-direction:column;
     height:fit-content;
     row-gap:2rem;
@@ -161,19 +161,19 @@ const features = (editor: Editor) => {
       defaults: {
         name: 'Features With Big Image and Grid',
         components: `  
-   <div id="izpc" class="block">
-    <div id="irf4" class="block">
+   <div id="izpcmh" class="block">
+    <div id="irf4dg" class="block">
       <p id="ihfmp" class="paragraph">
      Subheading  
       </p>
-    <h2 id="ilin1" class="heading-two">Feature Heading
+    <h2 id="ilin12" class="heading-two">Feature Heading
     </h2>
-    <p id="iqpcl" class="paragraph">Insert your text here
+    <p id="iqpclx" class="paragraph">Insert your text here
     </p>
   </div>
-<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="iadpd"/>
-<div id="i1vi" class="block">
-  <div id="imqcm" class="feature-container">
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="iadpdd"/>
+<div id="i1vif" class="block">
+  <div id="imqcmm" class="feature-container">
     <span class="material-icons material-symbols-outlined">home</span>
     <h4 class="heading-four">Heading
     </h4>
@@ -229,7 +229,7 @@ const features = (editor: Editor) => {
   max-height:100%;
   width:100%;
 }
-#izpc{
+#izpcmh{
   height:fit-content;
   max-width:1200px;
   width:90%;
@@ -242,7 +242,7 @@ const features = (editor: Editor) => {
   margin-top:2rem;
   margin-bottom:2rem;
 }
-#irf4{
+#irf4dg{
   text-align:center;
   display:flex;
   justify-content:center;
@@ -268,7 +268,7 @@ const features = (editor: Editor) => {
   margin-bottom:0;
   margin-left:0;
 }
-#iadpd{
+#iadpdd{
   width:671px;
   height:343px;
   border-top-left-radius:1rem;
@@ -277,7 +277,7 @@ const features = (editor: Editor) => {
   border-bottom-right-radius:1rem;
   border-bottom-left-radius:1rem;
 }
-#i1vi{
+#i1vif{
   height:fit-content;
   display:grid;
   flex-direction:row-reverse;
@@ -308,19 +308,19 @@ const features = (editor: Editor) => {
   margin-left:0;
 }
 @media (max-width: 600px){
-  #izpc{
+  #izpcmh{
     height:fit-content;
     margin-top:2rem;
     margin-bottom:2rem;
   }
-  #irf4{
+  #irf4dg{
     height:165px;
   }
-  #iadpd{
+  #iadpdd{
     width:100%;
     height:220px;
   }
-  #i1vi{
+  #i1vif{
     flex-direction:column;
     height:fit-content;
     row-gap:2rem;
@@ -345,7 +345,7 @@ const features = (editor: Editor) => {
       defaults: {
         name: 'Features With Image and List',
         components: `  
-    <div id="ixrq" class="block">
+    <div id="ixrq8gq" class="block">
       <div id="i68h" class="block">
         <p class="paragraph" id="inolr">Subtitle
         </p>
@@ -407,7 +407,7 @@ const features = (editor: Editor) => {
   justify-content:start;
   row-gap:1rem;
 }
-#ixrq{
+#ixrq8gq{
   height:710px;
   display:flex;
   flex-direction:row;
@@ -481,7 +481,7 @@ const features = (editor: Editor) => {
   height:561px;
 }
 @media (max-width: 880px){
-  #ixrq{
+  #ixrq8gq{
     height:fit-content;
     margin-top:2rem;
     margin-bottom:2rem;
@@ -494,7 +494,7 @@ const features = (editor: Editor) => {
   }
 }
 @media (max-width: 810px){
-  #ixrq{
+  #ixrq8gq{
     height:809px;
     flex-direction:column;
   }
@@ -503,7 +503,7 @@ const features = (editor: Editor) => {
   }
 }
 @media (max-width: 600px){
-  #ixrq{
+  #ixrq8gq{
     height:699px;
   }
   #i68h{
@@ -529,17 +529,17 @@ const features = (editor: Editor) => {
       defaults: {
         name: 'Features With Image Grid',
         components: `  
-     <div id="izpc" class="block">
-      <div id="irf4" class="block">
-        <h2 id="ilin1" class="heading-two">Feature Heading
+     <div id="izpccn" class="block">
+      <div id="irf47hg" class="block">
+        <h2 id="ilin13" class="heading-two">Feature Heading
         </h2>
-        <p id="iqpcl" class="paragraph">Insert your text here
+        <p id="iqpcla" class="paragraph">Insert your text here
         </p>
       </div>
       <div id="i1vi" class="block">
-        <div id="imqcm" class="feature-container">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="i7c2of"/>
-          <div class="container-text" id="ii7jva">
+        <div id="imqcmw" class="feature-container">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="i7c2ofas"/>
+          <div class="container-text" id="ii7jval">
             <h4 class="heading-four">Heading
             </h4>
             <p class="paragraph">
@@ -547,9 +547,9 @@ const features = (editor: Editor) => {
             </p>
           </div>
         </div>
-        <div class="feature-container" id="icrkto">
+        <div class="feature-container" id="icrktoo">
           <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="ivrf71"/>
-          <div class="container-text" id="i2p5j7">
+          <div class="container-text" id="i2p5j7ns">
             <h4 class="heading-four">Heading
             </h4>
             <p class="paragraph">
@@ -567,9 +567,9 @@ const features = (editor: Editor) => {
             </p>
           </div>
         </div>
-        <div class="feature-container" id="iihcj">
+        <div class="feature-container" id="iihcjjt">
           <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="iwz4k"/>
-          <div class="container-text" id="imp4c">
+          <div class="container-text" id="imp4cce">
             <h4 class="heading-four">Heading
             </h4>
             <p class="paragraph">
@@ -605,7 +605,7 @@ const features = (editor: Editor) => {
   max-height:100%;
   width:100%;
 }
-#izpc{
+#izpccn{
   height:fit-content;
   max-width:1200px;
   width:90%;
@@ -618,7 +618,7 @@ const features = (editor: Editor) => {
   margin-top:2rem;
   margin-bottom:2rem;
 }
-#irf4{
+#irf47hg{
   text-align:center;
   display:flex;
   justify-content:center;
@@ -665,17 +665,17 @@ const features = (editor: Editor) => {
   align-items:start;
   row-gap:0.7rem;
 }
-#imqcm{
+#imqcmw{
   padding-top:0;
   padding-right:0;
   padding-bottom:0;
   padding-left:0;
 }
-#i7c2of{
+#i7c2ofas{
   width:100%;
   height:167px;
 }
-#ii7jva{
+#ii7jval{
   height:80px;
   width:100%;
   display:flex;
@@ -693,7 +693,7 @@ const features = (editor: Editor) => {
   margin-bottom:0;
   margin-left:0;
 }
-#icrkto{
+#icrktoo{
   padding-top:0;
   padding-right:0;
   padding-bottom:0;
@@ -703,7 +703,7 @@ const features = (editor: Editor) => {
   width:100%;
   height:167px;
 }
-#i2p5j7{
+#i2p5j7ns{
   height:80px;
   width:100%;
   display:flex;
@@ -737,7 +737,7 @@ const features = (editor: Editor) => {
   padding-bottom:1rem;
   padding-left:1rem;
 }
-#iihcj{
+#iihcjjt{
   padding-top:0;
   padding-right:0;
   padding-bottom:0;
@@ -747,7 +747,7 @@ const features = (editor: Editor) => {
   width:100%;
   height:167px;
 }
-#imp4c{
+#imp4cce{
   height:80px;
   width:100%;
   display:flex;
@@ -809,12 +809,12 @@ const features = (editor: Editor) => {
   }
 }
 @media (max-width: 600px){
-  #izpc{
+  #izpccn{
     height:fit-content;
     margin-top:2rem;
     margin-bottom:2rem;
   }
-  #irf4{
+  #irf47hg{
     height:165px;
   }
   #i1vi{
@@ -836,16 +836,16 @@ const features = (editor: Editor) => {
       defaults: {
         name: 'Features With Bento Grid',
         components: `  
-    <div id="izpc" class="block">
-      <div id="irf4" class="block">
-        <h2 id="ilin1" class="heading-two">Feature Heading
+    <div id="izpcyt" class="block">
+      <div id="irf4qwe" class="block">
+        <h2 id="ilin15" class="heading-two">Feature Heading
         </h2>
-        <p id="iqpcl" class="paragraph">Insert your text here
+        <p id="iqpclq" class="paragraph">Insert your text here
         </p>
       </div>
-      <div id="i1vi" class="block">
-        <div id="imqcm" class="feature-container">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="i7c2of" class="grid-image"/>
+      <div id="i1viloy" class="block">
+        <div id="imqcmwq" class="feature-container">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="i7c2ofgs" class="grid-image"/>
           <div id="ii7jva" class="container-text">
             <h4 class="heading-four">Heading
             </h4>
@@ -853,7 +853,7 @@ const features = (editor: Editor) => {
             </p>
           </div>
         </div>
-        <div id="iao4q" class="feature-container">
+        <div id="iao4qlky" class="feature-container">
           <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="grid-image"/>
           <div id="iggbk" class="container-text">
             <h4 class="heading-four">Heading
@@ -862,7 +862,7 @@ const features = (editor: Editor) => {
             </p>
           </div>
         </div>
-        <div id="icrkto" class="feature-container">
+        <div id="icrktoxz" class="feature-container">
           <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="grid-image"/>
           <div id="i2p5j7" class="container-text">
             <h4 class="heading-four">Heading
@@ -871,7 +871,7 @@ const features = (editor: Editor) => {
             </p>
           </div>
         </div>
-        <div id="i9l9x" class="feature-container">
+        <div id="i9l9xzw" class="feature-container">
           <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="grid-image"/>
           <div id="ijxkn" class="container-text">
             <h4 class="heading-four">Heading
@@ -880,7 +880,7 @@ const features = (editor: Editor) => {
             </p>
           </div>
         </div>
-        <div id="iihcj" class="feature-container">
+        <div id="iihcjmnst" class="feature-container">
           <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="grid-image"/>
           <div id="imp4c" class="container-text">
             <h4 class="heading-four">Heading
@@ -898,7 +898,7 @@ const features = (editor: Editor) => {
   width:100%;
   grid-template-rows:1fr 1fr 1fr 1f;
 }
-#izpc{
+#izpcyt{
   height:fit-content;
   max-width:1200px;
   width:90%;
@@ -911,7 +911,7 @@ const features = (editor: Editor) => {
   margin-top:2rem;
   margin-bottom:2rem;
 }
-#irf4{
+#irf4qwe{
   text-align:center;
   display:flex;
   justify-content:center;
@@ -934,7 +934,7 @@ const features = (editor: Editor) => {
   margin-bottom:0;
   margin-left:0;
 }
-#i1vi{
+#i1viloy{
   height:fit-content;
   display:grid;
   flex-direction:row-reverse;
@@ -960,7 +960,7 @@ const features = (editor: Editor) => {
   height:400px;
   padding-top:1rem;
 }
-#imqcm{
+#imqcmwq{
   padding-top:0;
   padding-right:0;
   padding-bottom:0;
@@ -991,7 +991,7 @@ const features = (editor: Editor) => {
   margin-bottom:0;
   margin-left:0;
 }
-#iao4q{
+#iao4qlky{
   padding-top:0;
   padding-right:0;
   padding-bottom:0;
@@ -1011,7 +1011,7 @@ const features = (editor: Editor) => {
   padding-bottom:1rem;
   padding-left:1rem;
 }
-#icrkto{
+#icrktoxz{
   padding-top:0;
   padding-right:0;
   padding-bottom:0;
@@ -1031,7 +1031,7 @@ const features = (editor: Editor) => {
   padding-bottom:1rem;
   padding-left:1rem;
 }
-#i9l9x{
+#i9l9xzw{
   padding-top:0;
   padding-right:0;
   padding-bottom:0;
@@ -1051,7 +1051,7 @@ const features = (editor: Editor) => {
   padding-bottom:1rem;
   padding-left:1rem;
 }
-#iihcj{
+#iihcjmnst{
   padding-top:0;
   padding-right:0;
   padding-bottom:0;
@@ -1072,50 +1072,50 @@ const features = (editor: Editor) => {
   padding-left:1rem;
 }
 @media (max-width: 880px){
-  #i1vi{
+  #i1viloy{
     grid-template-columns:1fr 1fr 1fr 1fr;
   }
   .feature-container{
     grid-column:span 1;
   }
-  #imqcm{
+  #imqcmwq{
     grid-column:span 2;
   }
-  #iao4q{
+  #iao4qlky{
     grid-column:span 2;
   }
-  #icrkto{
+  #icrktoxz{
     grid-column:span 4;
   }
-  #iihcj{
+  #iihcjmnst{
     grid-column:span 2;
   }
 }
 @media (max-width: 600px){
-  #izpc{
+  #izpcyt{
     height:fit-content;
     margin-top:2rem;
     margin-bottom:2rem;
   }
-  #irf4{
+  #irf4qwe{
     height:165px;
   }
-  #i1vi{
+  #i1viloy{
     flex-direction:column;
     height:fit-content;
     row-gap:2rem;
     grid-template-columns:1fr;
   }
-  #imqcm{
+  #imqcmwq{
     grid-column:span 4;
   }
-  #iao4q{
+  #iao4qlky{
     grid-column:span 4;
   }
-  #i9l9x{
+  #i9l9xzw{
     grid-column:span 4;
   }
-  #iihcj{
+  #iihcjmnst{
     grid-column:span 4;
   }
 }
@@ -1148,20 +1148,20 @@ const features = (editor: Editor) => {
         name: 'Features With Image Bento Grid',
         components: `  
      <div id="izpc" class="block">
-      <div id="irf4" class="block">
-        <h2 id="ilin1" class="heading-two">Feature Heading
+      <div id="irf4ikr" class="block">
+        <h2 id="ilin11" class="heading-two">Feature Heading
         </h2>
-        <p id="iqpcl" class="paragraph">Insert your text here
+        <p id="iqpclr" class="paragraph">Insert your text here
         </p>
       </div>
-      <div id="i1vi" class="block">
-        <div id="imqcm" class="feature-container">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="i7c2of" class="grid-image"/>
+      <div id="i1vilah" class="block">
+        <div id="imqcmer" class="feature-container">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="i7c2ofly" class="grid-image"/>
         </div>
         <div id="iao4q" class="feature-container">
           <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="grid-image"/>
         </div>
-        <div id="icrkto" class="feature-container">
+        <div id="icrktotee" class="feature-container">
           <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="grid-image"/>
         </div>
         <div id="i9l9x" class="feature-container">
@@ -1192,7 +1192,7 @@ const features = (editor: Editor) => {
   margin-top:2rem;
   margin-bottom:2rem;
 }
-#irf4{
+#irf4ikr{
   text-align:center;
   display:flex;
   justify-content:center;
@@ -1215,7 +1215,7 @@ const features = (editor: Editor) => {
   margin-bottom:0;
   margin-left:0;
 }
-#i1vi{
+#i1vilah{
   height:fit-content;
   display:grid;
   flex-direction:row-reverse;
@@ -1241,7 +1241,7 @@ const features = (editor: Editor) => {
   height:400px;
   padding-top:1rem;
 }
-#imqcm{
+#imqcmer{
   padding-top:0;
   padding-right:0;
   padding-bottom:0;
@@ -1254,8 +1254,8 @@ const features = (editor: Editor) => {
   width:100%;
   height:100%;
 }
-#i7c2of{
-  height:100;
+#i7c2ofly{
+  height:100px;
 }
 #iao4q{
   padding-top:0;
@@ -1265,7 +1265,7 @@ const features = (editor: Editor) => {
   grid-column:span 2;
   grid-row:span 2;
 }
-#icrkto{
+#icrktotee{
   padding-top:0;
   padding-right:0;
   padding-bottom:0;
@@ -1290,19 +1290,19 @@ const features = (editor: Editor) => {
   grid-row:span 2;
 }
 @media (max-width: 880px){
-  #i1vi{
+  #i1vilah{
     grid-template-columns:1fr 1fr 1fr 1fr;
   }
   .feature-container{
     grid-column:span 1;
   }
-  #imqcm{
+  #imqcmer{
     grid-column:span 2;
   }
   #iao4q{
     grid-column:span 2;
   }
-  #icrkto{
+  #icrktotee{
     grid-column:span 4;
   }
   #iihcj{
@@ -1315,16 +1315,16 @@ const features = (editor: Editor) => {
     margin-top:2rem;
     margin-bottom:2rem;
   }
-  #irf4{
+  #irf4ikr{
     height:165px;
   }
-  #i1vi{
+  #i1vilah{
     flex-direction:column;
     height:fit-content;
     row-gap:2rem;
     grid-template-columns:1fr;
   }
-  #imqcm{
+  #imqcmer{
     grid-column:span 4;
   }
   #iao4q{

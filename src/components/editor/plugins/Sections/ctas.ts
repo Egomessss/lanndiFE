@@ -3,6 +3,16 @@ import type { Editor } from 'grapesjs';
 const ctas = (editor: Editor) => {
   const { Components } = editor;
 
+  // get number of the component being added
+
+  // let numberOfComponents = '';
+  //
+  // editor.on('component:add', (model) => {
+  //   const count = editor.DomComponents.getById(model.type).components().length;
+  //
+  //   numberOfComponents = count.toString();
+  // });
+
 
   editor.Blocks.add('cta-one', {
     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
@@ -17,20 +27,20 @@ const ctas = (editor: Editor) => {
       defaults: {
         name: 'CTA Simple With Button',
         components: `  
-    <div class="container" id="iku71">
-    <div class="cta-box">
-      <h2 class="heading-one">CTA Heading
+    <div class="cta-simple-container" >
+    <div class="cta-simple-content-box">
+      <h2 class="cta-simple-heading-one">CTA Heading
       </h2>
-      <p class="paragraph">Incididunt sint fugiat pariatur cupidatat consectetur sit cillum anim id veniam aliqua proident excepteur commodo do ea.
+      <p class="cta-simple-paragraph">Incididunt sint fugiat pariatur cupidatat consectetur sit cillum anim id veniam aliqua proident excepteur commodo do ea.
       </p>
-      <div class="button">
-        <button class="button">CTA Button</button>
+      <div class="cta-simple-button">
+        <button class="cta-simple-button">CTA Button</button>
         <span class="material-icons material-symbols-outlined">arrow_forward</span>
       </div>
     </div>
   </div>`,
         styles: `
-       .container{
+       .cta-simple-container{
   height:fit-content;
   width:90%;
   display:flex;
@@ -47,7 +57,7 @@ const ctas = (editor: Editor) => {
   padding-bottom:2rem;
   padding-left:2rem;
 }
-.cta-box{
+.cta-simple-content-box{
   height:268px;
   max-height:100%;
   width:100%;
@@ -63,13 +73,13 @@ const ctas = (editor: Editor) => {
   row-gap:1rem;
   border-color:rgba(70, 111, 250, 1);
 }
-.heading-one{
+.cta-simple-heading-one{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-.paragraph{
+.cta-simple-paragraph{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
@@ -77,7 +87,7 @@ const ctas = (editor: Editor) => {
   width:366px;
   text-align:center;
 }
-.button{
+.cta-simple-button{
   width:fit-content;
   cursor:pointer;
   outline:0;
@@ -96,17 +106,17 @@ const ctas = (editor: Editor) => {
   justify-content:center;
   align-items:center;
 }
-.button:hover{
+.cta-simple-button:hover{
   opacity:0.9;
 }
 @media (max-width: 600px){
-  #iku71{
+  .cta-simple-container{
     padding-top:0;
     padding-right:0;
     padding-bottom:0;
     padding-left:0;
   }
-  .paragraph{
+  .cta-simple-paragraph{
     height:fit-content;
     width:fit-content;
   }
@@ -130,42 +140,42 @@ const ctas = (editor: Editor) => {
       defaults: {
         name: 'CTA With Feature List',
         components: `  
-   <div id="iku71" class="container">
-      <div class="cta-box" id="ic5s">
-        <h2 class="heading-one">CTA Heading
+   <div  class="container-feature-list">
+      <div class="cta-feature-list-content" >
+        <h2 class="container-feature-list-heading-one">CTA Heading
         </h2>
-        <p class="paragraph">Incididunt sint fugiat pariatur cupidatat consectetur sit cillum anim id veniam aliqua proident excepteur commodo do ea.
+        <p class="container-feature-list-paragraph">Incididunt sint fugiat pariatur cupidatat consectetur sit cillum anim id veniam aliqua proident excepteur commodo do ea.
         </p>
-        <div class="cta-features">
-          <div class="cta-feature">
+        <div class="cta-feature-list-features">
+          <div class="cta-feature-list-feature">
             <span class="material-icons material-symbols-outlined">check</span>
-            <p class="paragraph">Feature one
+            <p class="container-feature-list-paragraph">Feature one
             </p>
           </div>
-          <div class="cta-feature">
+          <div class="cta-feature-list-feature">
             <span class="material-icons material-symbols-outlined">check</span>
-            <p class="paragraph">Feature two
+            <p class="container-feature-list-paragraph">Feature two
             </p>
           </div>
-          <div class="cta-feature">
+          <div class="cta-feature-list-feature">
             <span class="material-icons material-symbols-outlined">check</span>
-            <p class="paragraph">Feature three
+            <p class="container-feature-list-paragraph">Feature three
             </p>
           </div>
-          <div class="cta-feature">
+          <div class="cta-feature-list-feature">
             <span class="material-icons material-symbols-outlined">check</span>
-            <p class="paragraph">Feature four
+            <p class="container-feature-list-paragraph">Feature four
             </p>
           </div>
         </div>
-        <div class="button">
-          <button class="button">CTA Button</button>
+        <div class="container-feature-list-button">
+          <button class="container-feature-list-button">CTA Button</button>
           <span class="material-icons material-symbols-outlined">arrow_forward</span>
         </div>
       </div>
     </div>`,
         styles: `
-     .container{
+     .container-feature-list{
   height:fit-content;
   width:90%;
   display:flex;
@@ -182,7 +192,7 @@ const ctas = (editor: Editor) => {
   padding-bottom:2rem;
   padding-left:2rem;
 }
-.cta-box{
+.cta-feature-list-content{
   height:268px;
   max-height:100%;
   width:100%;
@@ -198,19 +208,19 @@ const ctas = (editor: Editor) => {
   row-gap:1rem;
   border-color:rgba(70, 111, 250, 1);
 }
-.heading-one{
+.container-feature-list-heading-one{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-.paragraph{
+.container-feature-list-paragraph{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-.cta-features{
+.cta-feature-list-features{
   width:fit-content;
   height:fit-content;
   display:flex;
@@ -223,14 +233,14 @@ const ctas = (editor: Editor) => {
   padding-bottom:1rem;
   padding-left:1rem;
 }
-.cta-feature{
+.cta-feature-list-feature{
   width:fit-content;
   height:fit-content;
   display:flex;
   flex-direction:row;
   column-gap:1rem;
 }
-.button{
+.container-feature-list-button{
   width:fit-content;
   cursor:pointer;
   outline:0;
@@ -249,32 +259,30 @@ const ctas = (editor: Editor) => {
   justify-content:center;
   align-items:center;
 }
-.button:hover{
+.container-feature-list-button:hover{
   opacity:0.9;
 }
 @media (max-width: 600px){
-  #iknt{
-    margin-top:1rem;
-  }
-  #iku71{
+  
+  .container-feature-list{
     padding-top:0;
     padding-right:0;
     padding-bottom:0;
     padding-left:0;
   }
-  #ic5s{
+  .cta-feature-list-feature-list-content{
     padding-top:1rem;
     padding-bottom:1rem;
     padding-right:1rem;
     padding-left:1rem;
     height:fit-content;
   }
-  .paragraph{
+  .container-feature-list-paragraph{
     height:fit-content;
     width:fit-content;
     text-align:center;
   }
-  .cta-features{
+  .cta-feature-list-features{
     flex-direction:row;
     flex-wrap:wrap;
   }
@@ -284,6 +292,6 @@ const ctas = (editor: Editor) => {
     },
   });
 
-}
+};
 
 export default ctas;
