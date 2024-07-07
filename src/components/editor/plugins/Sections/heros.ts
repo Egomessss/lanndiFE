@@ -15,29 +15,21 @@ const heros = (editor: Editor) => {
     model: {
       defaults: {
         name: 'Hero Image Bottom',
-        components: `<div class="block" id="ixrq">
-    <div class="block" id="i68h">
-      <h1 class="heading-one" id="i3pn">Create, launch and share your dream website in minutes
+        components: `<div class="hib-container">
+    <div class="hib-text-container" >
+      <h1 class="hib-heading-one" >Create, launch and share your dream website in minutes
       </h1>
-      <p class="paragraph">
-      <p class="paragraph">lanndi helps you create launch and share your beautiful and responsive website effortlessly, with a super easy-to-use editor without needing code or design skills
-        <br/>
-        <br/>
-      </p>
-      </p>
-    <div class="button">
-      <button class="button">Button</button>
+      <p class="hib-paragraph">lanndi helps you create launch and share your beautiful and responsive website effortlessly, with a super easy-to-use editor without needing code or design skills
+          </p>
+    <div class="hib-button">
+      <button class="hib-button">Button</button>
     </div>
   </div>
-  <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="ictil"/>
+  <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="hib-image"/>
   </div>`,
         styles: `
-     .block{
-  height:80px;
-  max-height:100%;
-  width:100%;
-}
-#ixrq{
+   
+.hib-container{
   height:1009px;
   display:flex;
   flex-direction:column;
@@ -49,7 +41,7 @@ const heros = (editor: Editor) => {
   margin-left:auto;
   width:90%;
 }
-#i68h{
+.hib-text-container{
   height:338px;
   display:flex;
   flex-direction:column;
@@ -59,22 +51,21 @@ const heros = (editor: Editor) => {
   row-gap:1rem;
   text-align:center;
 }
-.heading-one{
-  margin-top:0;
-  margin-right:0;
-  margin-bottom:0;
-  margin-left:0;
-}
-#i3pn{
+
+.hib-heading-one{
   font-size:3rem;
+   margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
 }
-.paragraph{
+.hib-paragraph{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-.button{
+.hib-button{
   width:fit-content;
   cursor:pointer;
   outline:0;
@@ -90,10 +81,10 @@ const heros = (editor: Editor) => {
   font-size:16px;
   border-radius:.25rem .25rem .25rem .25rem;
 }
-.button:hover{
+.hib-button:hover{
   opacity:0.9;
 }
-#ictil{
+.hib-image{
   width:858px;
   height:391px;
   border-top-left-radius:1rem;
@@ -102,27 +93,31 @@ const heros = (editor: Editor) => {
   border-bottom-left-radius:1rem;
 }
 @media (max-width: 810px){
-  #ixrq{
+  .hib-container{
     height:809px;
   }
-  #ictil{
+  .hib-image{
     width:662px;
     height:302px;
   }
 }
 @media (max-width: 600px){
-  #ixrq{
+  .hib-container{
     height:699px;
   }
-  #i68h{
+  .hib-text-container{
     width:100%;
     height:285px;
   }
-  #i3pn{
+  .hib-heading-one{
     font-size:1.5rem;
     width:100%;
+     margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
   }
-  #ictil{
+  .hib-image{
     width:100%;
     height:177px;
   }
@@ -138,69 +133,65 @@ const heros = (editor: Editor) => {
       defaults: {
         name: 'Hero Image Side',
         // attributes: { class: 'hero-three' },
-        components: `
-    <div id="ixrq" class="block">
-      <div id="i68h" class="block">
-        <h1 id="i3pn" class="heading-one">Create, launch and share your dream website in minutes
+        components: ` <div class="his-container">
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="his-image"/>
+      <div class="his-text-container">
+        <h1 class="his-heading-one">Create, launch and share your dream website in minutes
         </h1>
-        <p class="paragraph">
+        <p class="his-paragraph">lanndi helps you create launch and share your beautiful and responsive website effortlessly, with a super easy-to-use editor without needing code or design skills
         </p>
-        <p class="paragraph">lanndi helps you create launch and share your beautiful and responsive website effortlessly, with a super easy-to-use editor without needing code or design skills
-          <br/>
-          <br/>
-        </p>
-        <p class="paragraph">
-        </p>
-        <div class="button">
-          <button class="button">Button</button>
+        <div class="his-button">
+          <button type="button" class="his-button">Button</button>
         </div>
       </div>
-      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="ictil"/>
-    </div>
-  `,
-        styles: `.block{
-  height:80px;
-  max-height:100%;
-  width:100%;
-}
-#ixrq{
-  height:710px;
+    </div>`,
+        styles: `
+   
+.his-container{
+  height:fit-content;
   display:flex;
-  flex-direction:row;
+  flex-direction:row-reverse;
   justify-content:center;
   align-items:center;
   max-width:1200px;
   margin-right:auto;
   margin-left:auto;
   width:90%;
-  column-gap:02rem;
+  column-gap:2rem;
+  margin-top:4rem;
+  margin-bottom:4rem;
 }
-#i68h{
-  height:394px;
+.his-image{
+  width:858px;
+  height:391px;
+  border-top-left-radius:1rem;
+  border-top-right-radius:1rem;
+  border-bottom-right-radius:1rem;
+  border-bottom-left-radius:1rem;
+}
+.his-text-container{
+  height:338px;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  width:788px;
+  width:799px;
   row-gap:1rem;
   text-align:center;
 }
-.heading-one{
+.his-heading-one{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-#i3pn{
-  font-size:3rem;
-}
-.paragraph{
+.his-paragraph{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-.button{
+.his-button{
   width:fit-content;
   cursor:pointer;
   outline:0;
@@ -216,47 +207,42 @@ const heros = (editor: Editor) => {
   font-size:16px;
   border-radius:.25rem .25rem .25rem .25rem;
 }
-.button:hover{
+.his-button:hover{
   opacity:0.9;
 }
-#ictil{
-  width:704px;
-  height:395px;
-  border-top-left-radius:1rem;
-  border-top-right-radius:1rem;
-  border-bottom-right-radius:1rem;
-  border-bottom-left-radius:1rem;
+@media (max-width: 880px){
+  .his-container{
+    flex-direction:column-reverse;
+    row-gap:2rem;
+  }
+  .his-text-container{
+    height:338px;
+    width:fit-content;
+  }
 }
 @media (max-width: 810px){
-  #ixrq{
+  .his-container{
     height:809px;
-    flex-direction:column;
   }
-  #i68h{
-    width:100%;
-  }
-  #ictil{
-    width:100%;
+  .his-image{
+    width:662px;
     height:302px;
   }
 }
 @media (max-width: 600px){
-  #ixrq{
+  .his-container{
     height:699px;
   }
-  #i68h{
-    width:100%;
-    height:285px;
-  }
-  #i3pn{
-    font-size:1.5rem;
-    width:100%;
-  }
-  #ictil{
+  .his-image{
     width:100%;
     height:177px;
   }
+  .his-text-container{
+    width:100%;
+    height:285px;
+  }
 }
+
 `,
       },
     },
@@ -282,20 +268,18 @@ const heros = (editor: Editor) => {
 
         name: 'Hero No Image',
         // attributes: { class: 'hero-three' },
-        components: `<div id="ixrq" class="block">
-      <div id="i68h" class="block">
-        <h1 id="i3pn" class="heading-one">Create, launch and share your dream website in minutes
+        components: `<div  class="hni-container">
+      <div class="hni-text-content">
+        <h1 class="hni-heading-one">Create, launch and share your dream website in minutes
         </h1>
-        <p class="paragraph">
+        <p class="hni-paragraph">
         </p>
-        <p class="paragraph">lanndi helps you create launch and share your beautiful and responsive website effortlessly, with a super easy-to-use editor without needing code or design skills
-          <br/>
-          <br/>
+        <p class="hni-paragraph">lanndi helps you create launch and share your beautiful and responsive website effortlessly, with a super easy-to-use editor without needing code or design skills
         </p>
-        <p class="paragraph">
+        <p class="hni-paragraph">
         </p>
-        <div class="button">
-          <button class="button">Button</button>
+        <div class="hni-button">
+          <button class="hni-button">Button</button>
         </div>
       </div>
     </div>`,
@@ -304,7 +288,7 @@ const heros = (editor: Editor) => {
   max-height:100%;
   width:100%;
 }
-#ixrq{
+.hni-container{
   height:644px;
   display:flex;
   flex-direction:row;
@@ -316,7 +300,8 @@ const heros = (editor: Editor) => {
   width:90%;
   column-gap:02rem;
 }
-#i68h{
+
+.hni-text-content{
   height:394px;
   display:flex;
   flex-direction:column;
@@ -326,22 +311,21 @@ const heros = (editor: Editor) => {
   row-gap:1rem;
   text-align:center;
 }
-.heading-one{
+.hni-heading-one{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
-}
-#i3pn{
   font-size:3rem;
 }
-.paragraph{
+
+.hni-paragraph{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-.button{
+.hni-button{
   width:fit-content;
   cursor:pointer;
   outline:0;
@@ -357,27 +341,27 @@ const heros = (editor: Editor) => {
   font-size:16px;
   border-radius:.25rem .25rem .25rem .25rem;
 }
-.button:hover{
+.hni-button:hover{
   opacity:0.9;
 }
 @media (max-width: 810px){
-  #ixrq{
+  .hni-container{
     height:597px;
     flex-direction:column;
   }
-  #i68h{
+  .hni-text-content{
     width:100%;
   }
 }
 @media (max-width: 600px){
-  #ixrq{
+  .hni-container{
     height:526px;
   }
-  #i68h{
+  .hni-text-content{
     width:100%;
     height:285px;
   }
-  #i3pn{
+  hni-heading-one{
     font-size:1.5rem;
     width:100%;
   }
