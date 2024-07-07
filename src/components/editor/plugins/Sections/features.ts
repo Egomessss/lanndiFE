@@ -17,55 +17,51 @@ const features = (editor: Editor) => {
       defaults: {
         name: 'Features 3 Rows W/Icons',
         components: `  
-  <div class="block" id="izpcew">
-    <div class="block" id="irf41rw">
-      <p class="paragraph" id="ihfmplq">
+  <div class="ftri-container" >
+    <div class="ftri-text-container" >
+      <p class="ftri-paragraph bolden" >
      Subheading
       </p>
-    <h2 class="heading-two">Feature Heading
+    <h2 class="ftri-heading-two">Feature Heading
     </h2>
-    <p class="paragraph">
+    <p class="ftri-paragraph">
     Insert your text here
     </p>
   </div>
-<div class="block" id="i1viasd">
-  <div class="feature-container">
+<div class="ftri-content" >
+  <div class="ftri-feature-container">
     <span class="material-icons material-symbols-outlined">
       home
     </span>
-    <h4 class="heading-four">Heading
+    <h4 class="ftri-heading-four">Heading
     </h4>
-    <p class="paragraph">
+    <p class="ftri-paragraph">
     Insert your feature or benefit text here
     </p>
 </div>
-<div class="feature-container">
+<div class="ftri-feature-container">
   <span class="material-icons material-symbols-outlined">
     home
   </span>
-  <h4 class="heading-four">Heading
+  <h4 class="ftri-heading-four">Heading
   </h4>
-  <p class="paragraph">Insert your feature or benefit text here
+  <p class="ftri-paragraph">Insert your feature or benefit text here
   </p>
 </div>
-<div class="feature-container">
+<div class="ftri-feature-container">
   <span class="material-icons material-symbols-outlined">
     home
   </span>
-  <h4 class="heading-four">Heading
+  <h4 class="ftri-heading-four">Heading
   </h4>
-  <p class="paragraph">Insert your feature or benefit text here
+  <p class="ftri-paragraph">Insert your feature or benefit text here
   </p>
 </div>
 </div>
 </div>`,
         styles: `
-       .block{
-  height:11px;
-  max-height:100%;
-  width:100%;
-}
-#izpcew{
+      
+.ftri-container{
   height:453px;
   max-width:1200px;
   width:90%;
@@ -76,7 +72,7 @@ const features = (editor: Editor) => {
   align-items:center;
   flex-direction:column;
 }
-#irf41rw{
+.ftri-text-container{
   text-align:center;
   display:flex;
   justify-content:center;
@@ -87,22 +83,22 @@ const features = (editor: Editor) => {
   margin-top:2rem;
   margin-bottom:2rem;
 }
-.paragraph{
+.ftri-paragraph{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-#ihfmplq{
+.bolden{
   font-weight:700;
 }
-.heading-two{
+.ftri-heading-two{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-#i1viasd{
+.ftri-content{
   height:257px;
   display:flex;
   flex-direction:row-reverse;
@@ -110,7 +106,7 @@ const features = (editor: Editor) => {
   align-items:center;
   column-gap:2rem;
 }
-.feature-container{
+.ftri-feature-container{
   width:100%;
   padding-top:1rem;
   padding-right:1rem;
@@ -122,22 +118,22 @@ const features = (editor: Editor) => {
   align-items:start;
   row-gap:0.7rem;
 }
-.heading-four{
+.ftri-heading-four{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
 @media (max-width: 600px){
-  #izpcew{
+  .ftri-container{
     height:fit-content;
     margin-top:2rem;
     margin-bottom:2rem;
   }
-  #irf41rw{
+  .ftri{
     height:165px;
   }
-  #i1viasd{
+  .ftri-content{
     flex-direction:column;
     height:fit-content;
     row-gap:2rem;
@@ -161,75 +157,70 @@ const features = (editor: Editor) => {
       defaults: {
         name: 'Features With Big Image and Grid',
         components: `  
-   <div id="izpcmh" class="block">
-    <div id="irf4dg" class="block">
-      <p id="ihfmp" class="paragraph">
+   <div  class="fbig-container">
+    <div  class="fbig-text-content">
+      <p class="bolden">
      Subheading  
       </p>
-    <h2 id="ilin12" class="heading-two">Feature Heading
+    <h2  class="fbig-heading-two">Feature Heading
     </h2>
-    <p id="iqpclx" class="paragraph">Insert your text here
+    <p  class="fbig-paragraph">Insert your text here
     </p>
   </div>
-<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="iadpdd"/>
-<div id="i1vif" class="block">
-  <div id="imqcmm" class="feature-container">
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="fbig-image" />
+<div class="fbig-features-container" >
+  <div  class="feature-container">
     <span class="material-icons material-symbols-outlined">home</span>
-    <h4 class="heading-four">Heading
+    <h4 class="fbig-heading-four">Heading
     </h4>
-    <p class="paragraph">
+    <p class="fbig-paragraph">
     Insert your feature or benefit text here
     </p>
 </div>
 <div id="iqbmj" class="feature-container">
   <span class="material-icons material-symbols-outlined">home</span>
-  <h4 class="heading-four">Heading
+  <h4 class="fbig-heading-four">Heading
   </h4>
-  <p class="paragraph">
+  <p class="fbig-paragraph">
   Insert your feature or benefit text here
   </p>
 </div>
-<div id="izjku" class="feature-container">
+<div  class="feature-container">
   <span class="material-icons material-symbols-outlined">home</span>
-  <h4 class="heading-four">Heading
+  <h4 class="fbig-heading-four">Heading
   </h4>
-  <p class="paragraph">
+  <p class="fbig-paragraph">
   Insert your feature or benefit text here
   </p>
 </div>
-<div id="iazbj" class="feature-container">
+<div  class="feature-container">
   <span class="material-icons material-symbols-outlined">home</span>
-  <h4 class="heading-four">Heading
+  <h4 class="fbig-heading-four">Heading
   </h4>
-  <p class="paragraph">
+  <p class="fbig-paragraph">
   Insert your feature or benefit text here
   </p>
 </div>
-<div id="iminn" class="feature-container">
+<div  class="feature-container">
   <span class="material-icons material-symbols-outlined">home</span>
-  <h4 class="heading-four">Heading
+  <h4 class="fbig-heading-four">Heading
   </h4>
-  <p class="paragraph">
+  <p class="fbig-paragraph">
   Insert your feature or benefit text here
   </p>
 </div>
-<div id="i21q6" class="feature-container">
+<div  class="feature-container">
   <span class="material-icons material-symbols-outlined">home</span>
-  <h4 class="heading-four">Heading
+  <h4 class="fbig-heading-four">Heading
   </h4>
-  <p class="paragraph">
+  <p class="fbig-paragraph">
   Insert your feature or benefit text here
   </p>
 </div>
 </div>
 </div>`,
-        styles: `
-       .block{
-  height:11px;
-  max-height:100%;
-  width:100%;
-}
-#izpcmh{
+        styles: ` 
+.fbig-container{
   height:fit-content;
   max-width:1200px;
   width:90%;
@@ -242,7 +233,7 @@ const features = (editor: Editor) => {
   margin-top:2rem;
   margin-bottom:2rem;
 }
-#irf4dg{
+.fbig-text-content{
   text-align:center;
   display:flex;
   justify-content:center;
@@ -253,22 +244,22 @@ const features = (editor: Editor) => {
   margin-top:2rem;
   margin-bottom:2rem;
 }
-.paragraph{
+.fbig-paragraph{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-#ihfmp{
+.bolden{
   font-weight:700;
 }
-.heading-two{
+.fbig-heading-two{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-#iadpdd{
+.fbig-image{
   width:671px;
   height:343px;
   border-top-left-radius:1rem;
@@ -277,7 +268,7 @@ const features = (editor: Editor) => {
   border-bottom-right-radius:1rem;
   border-bottom-left-radius:1rem;
 }
-#i1vif{
+.fbig-features-container{
   height:fit-content;
   display:grid;
   flex-direction:row-reverse;
@@ -289,7 +280,7 @@ const features = (editor: Editor) => {
   margin-top:2rem;
   margin-bottom:2rem;
 }
-.feature-container{
+.fbig-feature-container{
   width:100%;
   padding-top:1rem;
   padding-right:1rem;
@@ -301,26 +292,26 @@ const features = (editor: Editor) => {
   align-items:start;
   row-gap:0.7rem;
 }
-.heading-four{
+.fbig-heading-four{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
 @media (max-width: 600px){
-  #izpcmh{
+  .fbig-container{
     height:fit-content;
     margin-top:2rem;
     margin-bottom:2rem;
   }
-  #irf4dg{
+  .fbig-text-content{
     height:165px;
   }
-  #iadpdd{
+  .fbig-image{
     width:100%;
     height:220px;
   }
-  #i1vif{
+  .fbig-features-container{
     flex-direction:column;
     height:fit-content;
     row-gap:2rem;
@@ -345,69 +336,62 @@ const features = (editor: Editor) => {
       defaults: {
         name: 'Features With Image and List',
         components: `  
-    <div id="ixrq8gq" class="block">
-      <div id="i68h" class="block">
-        <p class="paragraph" id="inolr">Subtitle
-        </p>
-        <h2 class="heading-two">Feature Heading
-        </h2>
-        <p class="paragraph">
-        </p>
-        <p class="paragraph">lanndi helps you create launch and share your beautiful and responsive website effortlessly, with a super easy-to-use editor without needing code or design skills
-          <br/>
-          <br/>
-        </p>
-        <div class="block" id="i97a3">
-          <div class="small-feature-container" id="i0jcx">
-            <span class="material-icons material-symbols-outlined">
-              home
-            </span>
-            <div class="block">
-              <p class="paragraph bolden">Feature title
-              </p>
-              <p class="paragraph">Insert your feature description text here
-              </p>
+    <div class="fil-container">
+        <div class="fil-text-container">
+          <p class="bolden">Subtitle
+          </p>
+          <h2 class="fil-heading-two">Feature Heading
+          </h2>
+          <p class="fil-paragraph">
+          </p>
+          <p class="fil-paragraph">lanndi helps you create launch and share your beautiful and responsive website effortlessly, with a super easy-to-use editor without needing code or design skills
+            <br/>
+            <br/>
+          </p>
+          <div class="fil-features-container">
+            <div class="fil-feature-container">
+              <span class="material-icons material-symbols-outlined">
+                home
+              </span>
+              <div class="fil-feature-text-container">
+                <p class="fil-paragraph fil-feature-text-bolden">Feature title
+                </p>
+                <p class="fil-paragraph">Insert your feature description text here
+                </p>
+              </div>
+            </div>
+            <div class="fil-feature-container">
+              <span class="material-icons material-symbols-outlined">
+                home
+              </span>
+              <div class="fil-feature-text-container">
+                <p class="fil-paragraph fil-feature-text-bolden">Feature title
+                </p>
+                <p class="fil-paragraph">Insert your feature description text here
+                </p>
+              </div>
+            </div>
+            <div class="fil-feature-container">
+              <span class="material-icons material-symbols-outlined">
+                home
+              </span>
+              <div class="fil-feature-text-container">
+                <p class="fil-paragraph fil-feature-text-bolden">Feature title
+                </p>
+                <p class="fil-paragraph">Insert your feature description text here
+                </p>
+              </div>
             </div>
           </div>
-          <div class="small-feature-container" id="iq0hd">
-            <span class="material-icons material-symbols-outlined">
-              home
-            </span>
-            <div class="block">
-              <p class="paragraph bolden">Feature title
-              </p>
-              <p class="paragraph">Insert your feature description text here
-              </p>
-            </div>
-          </div>
-          <div class="small-feature-container" id="imf6o">
-            <span class="material-icons material-symbols-outlined">
-              home
-            </span>
-            <div class="block">
-              <p class="paragraph bolden">Feature title
-              </p>
-              <p class="paragraph">Insert your feature description text here
-              </p>
-            </div>
-          </div>
+          <p class="fil-paragraph">
+          </p>
         </div>
-        <p class="paragraph">
-        </p>
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="fil-image"/>
       </div>
-      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="irqac"/>
-    </div>`,
+    </div>
+  </div>`,
         styles: `
-      .block{
-  height:80px;
-  max-height:100%;
-  width:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:start;
-  row-gap:1rem;
-}
-#ixrq8gq{
+     .fil-container{
   height:710px;
   display:flex;
   flex-direction:row;
@@ -419,7 +403,7 @@ const features = (editor: Editor) => {
   width:90%;
   column-gap:02rem;
 }
-#i68h{
+.fil-text-container{
   height:fit-content;
   display:flex;
   flex-direction:column;
@@ -431,22 +415,22 @@ const features = (editor: Editor) => {
   padding-top:1rem;
   padding-bottom:1rem;
 }
-.paragraph{
-  margin-top:0;
-  margin-right:0;
-  margin-bottom:0;
-  margin-left:0;
-}
-#inolr{
+.bolden{
   font-weight:700;
 }
-.heading-two{
+.fil-heading-two{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-#i97a3{
+.fil-paragraph{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+}
+.fil-features-container{
   height:fit-content;
   margin-top:1rem;
   margin-bottom:1rem;
@@ -455,62 +439,59 @@ const features = (editor: Editor) => {
   justify-content:center;
   align-items:center;
   row-gap:1rem;
+  width:100%;
 }
-#i0jcx{
-  width:1;
-}
-.small-feature-container{
+.fil-feature-container{
   width:100%;
   display:flex;
   flex-direction:row;
   justify-content:start;
   align-items:start;
+  height:fit-content;
 }
-.paragraph.bolden{
+.fil-feature-text-container{
+  width:100%;
+}
+.fil-feature-text-bolden{
   font-weight:600;
   font-size:1.2rem;
 }
-#iq0hd{
-  width:1;
-}
-#imf6o{
-  width:1;
-}
-#irqac{
+.fil-image{
   width:441px;
   height:561px;
 }
 @media (max-width: 880px){
-  #ixrq8gq{
+  .fil-container{
     height:fit-content;
     margin-top:2rem;
     margin-bottom:2rem;
     padding-top:2rem;
     padding-bottom:2rem;
   }
-  #irqac{
+  .fil-image{
     width:100%;
     height:327px;
   }
 }
 @media (max-width: 810px){
-  #ixrq8gq{
+  .fil-container{
     height:809px;
     flex-direction:column;
   }
-  #i68h{
+  .fil-text-container{
     width:100%;
   }
 }
 @media (max-width: 600px){
-  #ixrq8gq{
-    height:699px;
+  .fil-container{
+    height:fit-content;
   }
-  #i68h{
+  .fil-text-container{
     width:100%;
-    height:285px;
+    height:fit-content;
   }
 }
+
 `,
       },
     },
@@ -529,70 +510,70 @@ const features = (editor: Editor) => {
       defaults: {
         name: 'Features With Image Grid',
         components: `  
-     <div id="izpccn" class="block">
-      <div id="irf47hg" class="block">
-        <h2 id="ilin13" class="heading-two">Feature Heading
+     <div class="fig-container">
+      <div  class="fig-text-container">
+        <h2  class="fig-heading-two">Feature Heading
         </h2>
-        <p id="iqpcla" class="paragraph">Insert your text here
+        <p  class="fig-paragraph">Insert your text here
         </p>
       </div>
-      <div id="i1vi" class="block">
-        <div id="imqcmw" class="feature-container">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="i7c2ofas"/>
-          <div class="container-text" id="ii7jval">
-            <h4 class="heading-four">Heading
+      <div class="fig-features-container">
+        <div  class="fig-feature-container">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="fig-image"/>
+          <div class="fig-feature-text-container" >
+            <h4 class="fig-heading-four">Heading
             </h4>
-            <p class="paragraph">
+            <p class="fig-paragraph">
               Insert your feature or benefit text here
             </p>
           </div>
         </div>
-        <div class="feature-container" id="icrktoo">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="ivrf71"/>
-          <div class="container-text" id="i2p5j7ns">
-            <h4 class="heading-four">Heading
+        <div class="fig-feature-container" >
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="fig-image"/>
+          <div class="fig-feature-text-container" >
+            <h4 class="fig-heading-four">Heading
             </h4>
-            <p class="paragraph">
+            <p class="fig-paragraph">
               Insert your feature or benefit text here
             </p>
           </div>
         </div>
-        <div class="feature-container" id="i24cem">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="i51qns"/>
-          <div class="container-text" id="iq2ip1">
-            <h4 class="heading-four">Heading
+        <div class="fig-feature-container" >
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="fig-image"/>
+          <div class="fig-feature-text-container" >
+            <h4 class="fig-heading-four">Heading
             </h4>
-            <p class="paragraph">
+            <p class="fig-paragraph">
               Insert your feature or benefit text here
             </p>
           </div>
         </div>
-        <div class="feature-container" id="iihcjjt">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="iwz4k"/>
-          <div class="container-text" id="imp4cce">
-            <h4 class="heading-four">Heading
+        <div class="fig-feature-container" >
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="fig-image"/>
+          <div class="fig-feature-text-container" >
+            <h4 class="fig-heading-four">Heading
             </h4>
-            <p class="paragraph">
+            <p class="fig-paragraph">
               Insert your feature or benefit text here
             </p>
           </div>
         </div>
-        <div class="feature-container" id="i4fa8">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="irc6b"/>
-          <div class="container-text" id="ilx4k">
-            <h4 class="heading-four">Heading
+        <div class="fig-feature-container" >
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="fig-image"/>
+          <div class="fig-feature-text-container" >
+            <h4 class="fig-heading-four">Heading
             </h4>
-            <p class="paragraph">
+            <p class="fig-paragraph">
               Insert your feature or benefit text here
             </p>
           </div>
         </div>
-        <div class="feature-container" id="iylww">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="ivvzh"/>
-          <div class="container-text" id="iqsxg">
-            <h4 class="heading-four">Heading
+        <div class="fig-feature-container" >
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="fig-image"/>
+          <div class="fig-feature-text-container">
+            <h4 class="fig-heading-four">Heading
             </h4>
-            <p class="paragraph">
+            <p class="fig-paragraph">
               Insert your feature or benefit text here
             </p>
           </div>
@@ -605,7 +586,7 @@ const features = (editor: Editor) => {
   max-height:100%;
   width:100%;
 }
-#izpccn{
+.fig-container{
   height:fit-content;
   max-width:1200px;
   width:90%;
@@ -618,7 +599,7 @@ const features = (editor: Editor) => {
   margin-top:2rem;
   margin-bottom:2rem;
 }
-#irf47hg{
+.fig-text-container{
   text-align:center;
   display:flex;
   justify-content:center;
@@ -629,19 +610,19 @@ const features = (editor: Editor) => {
   margin-top:2rem;
   margin-bottom:2rem;
 }
-.heading-two{
+.fig-heading-two{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-.paragraph{
+.fig-paragraph{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-#i1vi{
+.fig-features-container{
   height:fit-content;
   display:grid;
   flex-direction:row-reverse;
@@ -653,8 +634,9 @@ const features = (editor: Editor) => {
   margin-top:2rem;
   margin-bottom:2rem;
 }
-.feature-container{
+.fig-feature-container{
   width:100%;
+  height:fit-content;
   padding-top:1rem;
   padding-right:1rem;
   padding-bottom:1rem;
@@ -664,19 +646,18 @@ const features = (editor: Editor) => {
   justify-content:center;
   align-items:start;
   row-gap:0.7rem;
-}
-#imqcmw{
-  padding-top:0;
+   padding-top:0;
   padding-right:0;
   padding-bottom:0;
   padding-left:0;
 }
-#i7c2ofas{
+
+.fig-image{
   width:100%;
   height:167px;
 }
-#ii7jval{
-  height:80px;
+.fig-feature-text-container{
+  height:fit-content;
   width:100%;
   display:flex;
   flex-direction:column;
@@ -687,137 +668,30 @@ const features = (editor: Editor) => {
   padding-bottom:1rem;
   padding-left:1rem;
 }
-.heading-four{
+.fig-heading-four{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-#icrktoo{
-  padding-top:0;
-  padding-right:0;
-  padding-bottom:0;
-  padding-left:0;
-}
-#ivrf71{
-  width:100%;
-  height:167px;
-}
-#i2p5j7ns{
-  height:80px;
-  width:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:start;
-  row-gap:1rem;
-  padding-top:1rem;
-  padding-right:1rem;
-  padding-bottom:1rem;
-  padding-left:1rem;
-}
-#i24cem{
-  padding-top:0;
-  padding-right:0;
-  padding-bottom:0;
-  padding-left:0;
-}
-#i51qns{
-  width:100%;
-  height:167px;
-}
-#iq2ip1{
-  height:80px;
-  width:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:start;
-  row-gap:1rem;
-  padding-top:1rem;
-  padding-right:1rem;
-  padding-bottom:1rem;
-  padding-left:1rem;
-}
-#iihcjjt{
-  padding-top:0;
-  padding-right:0;
-  padding-bottom:0;
-  padding-left:0;
-}
-#iwz4k{
-  width:100%;
-  height:167px;
-}
-#imp4cce{
-  height:80px;
-  width:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:start;
-  row-gap:1rem;
-  padding-top:1rem;
-  padding-right:1rem;
-  padding-bottom:1rem;
-  padding-left:1rem;
-}
-#i4fa8{
-  padding-top:0;
-  padding-right:0;
-  padding-bottom:0;
-  padding-left:0;
-}
-#irc6b{
-  width:100%;
-  height:167px;
-}
-#ilx4k{
-  height:80px;
-  width:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:start;
-  row-gap:1rem;
-  padding-top:1rem;
-  padding-right:1rem;
-  padding-bottom:1rem;
-  padding-left:1rem;
-}
-#iylww{
-  padding-top:0;
-  padding-right:0;
-  padding-bottom:0;
-  padding-left:0;
-}
-#ivvzh{
-  width:100%;
-  height:167px;
-}
-#iqsxg{
-  height:80px;
-  width:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:start;
-  row-gap:1rem;
-  padding-top:1rem;
-  padding-right:1rem;
-  padding-bottom:1rem;
-  padding-left:1rem;
-}
+
+
+
 @media (max-width: 880px){
-  #i1vi{
+  .fig-features-container{
     grid-template-columns:1fr 1fr;
   }
 }
 @media (max-width: 600px){
-  #izpccn{
+  .fig-container{
     height:fit-content;
     margin-top:2rem;
     margin-bottom:2rem;
   }
-  #irf47hg{
+  .fig-text-container{
     height:165px;
   }
-  #i1vi{
+  .fig-features-container{
     flex-direction:column;
     height:fit-content;
     row-gap:2rem;
