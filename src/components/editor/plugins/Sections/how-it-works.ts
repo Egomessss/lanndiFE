@@ -18,56 +18,46 @@ const features = (editor: Editor) => {
         // script: script,
         name: 'How It Works Simple',
         components: `  
-    <div id="ivkk" class="block">
-    <div id="irfb9" class="block">
-      <h2 id="i2ol" class="heading-two">It's easy as 1, 2, 3
+    <div class="hws-container">
+    <div class="hws-text-container">
+      <h2 class="hws-heading-two">It's easy as 1, 2, 3
       </h2>
-      <p id="iq6h" class="paragraph">Insert your description text here
+      <p class="hws-paragraph">Insert your description text here
       </p>
     </div>
-    <p id="i0et" class="paragraph">
+    <p  class="hws-paragraph">
     </p>
-    <div id="idok1" class="block">
-      <div id="i6fok" class="block">
-        <p id="izseg" class="paragraph">
+    <div class="hws-steps-container" >
+      <div class="hws-step-container" >
+        <p  class="hws-paragraph">
         </p>
-        <h3 id="iwkqj" class="how-it-works-h3">Step 1
+        <h3  class="hws-h3">Step 1
         </h3>
-        <p id="i9fm7" class="paragraph">Insert your description text here
+        <p  class="hws-paragraph">Insert your description text here
         </p>
       </div>
-      <span id="iyezo" class="material-icons material-symbols-outlined rotate">arrow_forward_ios</span>
-      <div id="isctl" class="block">
-        <p id="i3qgg" class="paragraph">
+      <span  class="material-icons material-symbols-outlined rotate">arrow_forward_ios</span>
+      <div class="hws-step-container">
+        <p  class="hws-paragraph">
         </p>
-        <h3 id="iyxsk" class="how-it-works-h3">Step 2
+        <h3 class="hws-h3">Step 2
         </h3>
-        <p id="ii6v9" class="paragraph">Insert your description text here
+        <p class="hws-paragraph">Insert your description text here
         </p>
       </div>
       <span class="material-icons material-symbols-outlined rot rotate">arrow_forward_ios</span>
-      <div id="ik0hy" class="block">
-        <p id="ik16f" class="paragraph">
+      <div class="hws-step-container" >
+        <p  class="hws-paragraph">
         </p>
-        <h3 id="ix8bt" class="how-it-works-h3">Step 3
+        <h3  class="hws-h3">Step 3
         </h3>
-        <p id="ivn4y" class="paragraph">Insert your description text here
+        <p  class="hws-paragraph">Insert your description text here
         </p>
       </div>
     </div>
   </div>`,
         styles: `
-      .block{
-  height:80px;
-  max-height:100%;
-  width:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  row-gap:2re;
-}
-#ivkk{
+.hws-container{
   height:359px;
   display:flex;
   flex-direction:column;
@@ -78,26 +68,26 @@ const features = (editor: Editor) => {
   margin-left:auto;
   width:90%;
 }
-#irfb9{
+.hws-text-container{
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   row-gap:1rem;
 }
-.heading-two{
+.hws-heading-two{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-.paragraph{
+.hws-paragraph{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-#idok1{
+.hws-steps-container{
   height:173px;
   display:flex;
   flex-direction:row;
@@ -105,48 +95,38 @@ const features = (editor: Editor) => {
   align-items:center;
   column-gap:2rem;
 }
-#i6fok{
-  width:588px;
+.hws-step-container{
   text-align:center;
 }
-.how-it-works-h3{
+.hws-h3{
   margin-left:0;
   padding-top:0;
   padding-left:0;
   margin-top:0;
 }
-#isctl{
-  width:588px;
-  text-align:center;
-}
-#ik0hy{
-  width:588px;
-  text-align:center;
-}
+
 @media (max-width: 600px){
-  #ivkk{
+  .hws-container{
     height:601px;
   }
-  #irfb9{
+  .hws-text-container{
     height:144px;
   }
-  #idok1{
+  .hws-steps-container{
     flex-direction:column;
     height:fit-content;
     row-gap:2rem;
   }
-  #i6fok{
+  .hws-step-container{
     width:100%;
   }
   .material-icons.material-symbols-outlined.rotate{
     transform:rotate(90deg);
   }
-  #isctl{
+  .hws-step-container{
     width:100%;
   }
-  #ik0hy{
-    width:100%;
-  }
+
 }
 
 `,
@@ -168,67 +148,60 @@ const features = (editor: Editor) => {
         // script: script,
         name: 'How It Works With Steps',
         components: `  
-     <div id="ivkk" class="block">
-      <div id="irfb9" class="block">
-        <h2 id="i2ol" class="heading-two">It's easy as 1, 2, 3
+      <div class="hwst-container">
+      <div class="hwst-text-container">
+        <h2 class="hwst-heading-two">It's easy as 1, 2, 3
         </h2>
-        <p id="iq6h" class="paragraph">Insert your description text here
+        <p class="hwst-paragraph">Insert your description text here
         </p>
       </div>
-      <p id="i0et" class="paragraph">
-      </p>
-      <div id="idok1" class="block">
-        <div id="i6fok" class="how-it-works-card">
-          <p id="izseg" class="paragraph">
+      <div class="hwst-steps-container">
+        <div class="hwst-card-container">
+          <p class="hwst-paragraph">
           </p>
-          <p id="i8vll" class="paragraph">
+          <p class="hwst-paragraph">
           </p>
-          <div id="i405k" class="step">
-            <p id="ic9jd" class="paragraph">1.
+          <div id="i405k" class="hwst-step">
+            <p id="ic9jd" class="hwst-paragraph">1.
             </p>
           </div>
-          <h3 id="iwkqj" class="how-it-works-h3">How It Works Subtitle
+          <h3 class="hwst-h3">How It Works Subtitle
           </h3>
-          <p id="i9fm7" class="paragraph">Insert your description text here
+          <p class="hwst-paragraph">Insert your description text here
           </p>
         </div>
-        <div id="ihf6d" class="how-it-works-card">
-          <p class="paragraph">
+        <div class="hwst-card-container">
+          <p class="hwst-paragraph">
           </p>
-          <p class="paragraph">
+          <p class="hwst-paragraph">
           </p>
-          <div id="iy13i" class="step">
-            <p id="i2rdr" class="paragraph">2.
+          <div class="hwst-step" id="ilzfw">
+            <p class="hwst-paragraph" id="ig87g">1.
             </p>
           </div>
-          <h3 class="how-it-works-h3">How It Works Subtitle
+          <h3 class="hwst-h3">How It Works Subtitle
           </h3>
-          <p class="paragraph">Insert your description text here
+          <p class="hwst-paragraph">Insert your description text here
           </p>
         </div>
-        <div id="i31k4" class="how-it-works-card">
-          <p class="paragraph">
+        <div class="hwst-card-container">
+          <p class="hwst-paragraph">
           </p>
-          <p class="paragraph">
+          <p class="hwst-paragraph">
           </p>
-          <div id="ixmsl" class="step">
-            <p id="is3ur" class="paragraph">3.
+          <div class="hwst-step" id="ifygg">
+            <p class="hwst-paragraph" id="isbgv">1.
             </p>
           </div>
-          <h3 class="how-it-works-h3">How It Works Subtitle
+          <h3 class="hwst-h3">How It Works Subtitle
           </h3>
-          <p class="paragraph">Insert your description text here
+          <p class="hwst-paragraph">Insert your description text here
           </p>
         </div>
       </div>
     </div>`,
         styles: `
-   .block{
-  height:80px;
-  max-height:100%;
-  width:100%;
-}
-#ivkk{
+.hwst-container{
   height:359px;
   display:flex;
   flex-direction:column;
@@ -238,140 +211,127 @@ const features = (editor: Editor) => {
   margin-right:auto;
   margin-left:auto;
   width:90%;
+  margin-top:2rem;
+  margin-bottom:2rem;
 }
-#irfb9{
+.hwst-text-container{
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   row-gap:1rem;
 }
-.heading-two{
+.hwst-heading-two{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-.paragraph{
+.hwst-paragraph{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-#idok1{
-  height:173px;
+.hwst-steps-container{
+  height:fit-content;
   display:flex;
   flex-direction:row;
   justify-content:center;
   align-items:center;
   column-gap:2rem;
+  width:fit-content;
+  margin-top:2rem;
+  margin-bottom:2rem;
 }
-#i6fok{
-  width:588px;
+.hwst-card-container{
+  row-gap:1rem;
+  height:fit-content;
   text-align:center;
   display:flex;
   justify-content:center;
   flex-direction:column;
   align-items:center;
-}
-.how-it-works-card{
-  row-gap:1rem;
-  width:460px;
-  height:154px;
+  width:fit-content;
+  padding-right:2rem;
+  padding-bottom:2rem;
+  padding-left:2rem;
+  padding-top:2rem;
 }
 #i405k{
   display:flex;
   justify-content:center;
   align-items:center;
 }
-.step{
+.hwst-step{
   width:40px;
   height:40px;
   border-style:solid;
   border-color:rgba(102, 151, 225, 1);
-  border-top-left-radius:10px;
-  border-top-right-radius:10px;
-  border-bottom-right-radius:10px;
-  border-bottom-left-radius:10px;
+  border-top-left-radius:50%;
+  border-top-right-radius:50%;
+  border-bottom-right-radius:50%;
+  border-bottom-left-radius:50%;
+  padding-top:1rem;
+  padding-right:1rem;
+  padding-bottom:1rem;
+  padding-left:1rem;
 }
 #ic9jd{
   height:fit-content;
   width:fit-content;
   font-size:1.5rem;
 }
-.how-it-works-h3{
+.hwst-h3{
   padding-top:0;
   padding-left:0;
   margin-top:0;
   margin-bottom:0;
 }
-#ihf6d{
-  width:588px;
-  text-align:center;
-  display:flex;
-  justify-content:center;
-  flex-direction:column;
-  align-items:center;
-}
-#iy13i{
+#ilzfw{
   display:flex;
   justify-content:center;
   align-items:center;
 }
-#i2rdr{
+#ig87g{
   height:fit-content;
   width:fit-content;
   font-size:1.5rem;
 }
-#i31k4{
-  width:588px;
-  text-align:center;
-  display:flex;
-  justify-content:center;
-  flex-direction:column;
-  align-items:center;
-}
-#ixmsl{
+#ifygg{
   display:flex;
   justify-content:center;
   align-items:center;
 }
-#is3ur{
+#isbgv{
   height:fit-content;
   width:fit-content;
   font-size:1.5rem;
 }
 @media (max-width: 810px){
-  #idok1{
+  .hwst-steps-container{
     column-gap:1rem;
   }
 }
 @media (max-width: 600px){
-  #ivkk{
+  .hwst-container{
     height:fit-content;
     row-gap:3rem;
     margin-top:2rem;
     margin-bottom:2rem;
   }
-  #irfb9{
+  .hwst-text-container{
     height:144px;
   }
-  #idok1{
+  .hwst-steps-container{
     flex-direction:column;
     height:fit-content;
     row-gap:2rem;
   }
-  #i6fok{
-    width:100%;
-  }
-  #ihf6d{
-    width:100%;
-  }
-  #i31k4{
+  .hwst-card-container{
     width:100%;
   }
 }
-
 `,
       },
     },
@@ -392,199 +352,158 @@ const features = (editor: Editor) => {
         // script: script,
         name: 'How It Works With Images',
         components: `  
-    <div class="block" id="i1yli">
-    <div id="irfb9" class="block">
-      <h2 id="i2ol" class="heading-two">It's easy as 1, 2, 3
-      </h2>
-      <p id="iq6h" class="paragraph">Insert your description text here
-      </p>
-    </div>
-    <div id="idok1" class="block">
-      <div id="i6fok" class="how-it-works-card">
-        <p id="izseg" class="paragraph">
-        </p>
-        <div class="image-container">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="iyali"/>
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-photo" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-            <path d="M15 8h.01" />
-            <path d="M3 6a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3v-12z" />
-            <path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l5 5" />
-            <path d="M14 14l1 -1c.928 -.893 2.072 -.893 3 0l3 3" />
-          </svg>
-        </div>
-        <p id="i8vll" class="paragraph">
-        </p>
-        <h3 id="iwkqj" class="how-it-works-h3">How It Works Subtitle
-        </h3>
-        <p id="i9fm7" class="paragraph">Insert your description text here
+    <div>
+    <div class="hwwi-container">
+      <div class="hwwi-text-container">
+        <h2 class="hwwi-heading-two">It's easy as 1, 2, 3
+        </h2>
+        <p class="hwwi-paragraph">Insert your description text here
         </p>
       </div>
-      <div class="how-it-works-card" id="ipo4p">
-        <p class="paragraph">
-        </p>
-        <div class="image-container">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="iajzd"/>
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-photo" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-            <path d="M15 8h.01" />
-            <path d="M3 6a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3v-12z" />
-            <path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l5 5" />
-            <path d="M14 14l1 -1c.928 -.893 2.072 -.893 3 0l3 3" />
-          </svg>
+      <div class="hwwi-steps-container">
+        <div class="hwwi-card-container">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="hwwi-image" id="irhsg"/>
+          <div class="block hwwi-step-text-container">
+            <h3 class="hwwi-h3">How It Works Subtitle
+            </h3>
+            <p class="hwwi-paragraph">Insert your description text here
+            </p>
+          </div>
+          <p class="hwwi-paragraph">
+          </p>
+          <p class="hwwi-paragraph">
+          </p>
         </div>
-        <p class="paragraph">
-        </p>
-        <h3 class="how-it-works-h3">How It Works Subtitle
-        </h3>
-        <p class="paragraph">Insert your description text here
-        </p>
-      </div>
-      <div class="how-it-works-card" id="igcul">
-        <p class="paragraph">
-        </p>
-        <div class="image-container">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="ipgp7"/>
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-photo" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-            <path d="M15 8h.01" />
-            <path d="M3 6a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3v-12z" />
-            <path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l5 5" />
-            <path d="M14 14l1 -1c.928 -.893 2.072 -.893 3 0l3 3" />
-          </svg>
+        <div class="hwwi-card-container">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="iow5o" class="hwwi-image"/>
+          <div class="block hwwi-step-text-container">
+            <h3 class="hwwi-h3">How It Works Subtitle
+            </h3>
+            <p class="hwwi-paragraph">Insert your description text here
+            </p>
+          </div>
+          <p class="hwwi-paragraph">
+          </p>
+          <p class="hwwi-paragraph">
+          </p>
         </div>
-        <p class="paragraph">
-        </p>
-        <h3 class="how-it-works-h3">How It Works Subtitle
-        </h3>
-        <p class="paragraph">Insert your description text here
-        </p>
+        <div class="hwwi-card-container">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="in7cb" class="hwwi-image"/>
+          <div class="block hwwi-step-text-container">
+            <h3 class="hwwi-h3">How It Works Subtitle
+            </h3>
+            <p class="hwwi-paragraph">Insert your description text here
+            </p>
+          </div>
+          <p class="hwwi-paragraph">
+          </p>
+          <p class="hwwi-paragraph">
+          </p>
+        </div>
       </div>
-    </div>
-  </div>`,
+    </div>`,
         styles: `
-    .block{
-  height:80px;
-  max-height:100%;
-  width:100%;
-}
-#i1yli{
+   .hwwi-container{
   height:fit-content;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
   max-width:1200px;
-  width:90%;
   margin-right:auto;
   margin-left:auto;
+  width:90%;
   margin-top:2rem;
   margin-bottom:2rem;
 }
-#irfb9{
+.hwwi-text-container{
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   row-gap:1rem;
-  height:153px;
+  margin-top:2rem;
 }
-.heading-two{
+.hwwi-heading-two{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-.paragraph{
+.hwwi-paragraph{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-#idok1{
+.hwwi-steps-container{
   height:fit-content;
   display:flex;
   flex-direction:row;
   justify-content:center;
   align-items:center;
   column-gap:2rem;
-  padding-top:2rem;
-  padding-bottom:2rem;
+  width:fit-content;
+  margin-top:2rem;
+  margin-bottom:2rem;
 }
-#i6fok{
-  width:588px;
+.hwwi-card-container{
+  row-gap:1rem;
+  height:fit-content;
   text-align:center;
   display:flex;
   justify-content:center;
   flex-direction:column;
   align-items:center;
+  width:fit-content;
 }
-.how-it-works-card{
+
+.hwwi-image{
+  width:100%;
+  height:158px;
+}
+
+.block.hwwi-step-text-container{
+  display:flex;
+  flex-direction:column;
   row-gap:1rem;
-  width:460px;
   height:fit-content;
-  padding-top:1rem;
   padding-bottom:1rem;
+  padding-right:1rem;
+  padding-left:1rem;
 }
-.image-container{
-  height:144px;
-  width:100%;
-}
-#iyali{
-  width:100%;
-  height:100%;
-}
-.how-it-works-h3{
+.hwwi-h3{
   padding-top:0;
   padding-left:0;
   margin-top:0;
   margin-bottom:0;
 }
-#ipo4p{
-  width:588px;
-  text-align:center;
-  display:flex;
-  justify-content:center;
-  flex-direction:column;
-  align-items:center;
-}
-#iajzd{
-  width:100%;
-  height:100%;
-}
-#igcul{
-  width:588px;
-  text-align:center;
-  display:flex;
-  justify-content:center;
-  flex-direction:column;
-  align-items:center;
-}
-#ipgp7{
-  width:100%;
-  height:100%;
-}
+#
 @media (max-width: 810px){
-  #idok1{
+  .hwwi-steps-container{
     column-gap:1rem;
   }
 }
 @media (max-width: 600px){
-  #irfb9{
+  .hwwi-container{
+    height:fit-content;
+    row-gap:3rem;
+    margin-top:2rem;
+    margin-bottom:2rem;
+  }
+  .hwwi-text-container{
     height:144px;
   }
-  #idok1{
+  .hwwi-steps-container{
     flex-direction:column;
     height:fit-content;
     row-gap:2rem;
-  }
-  #i6fok{
     width:100%;
   }
-  #ipo4p{
-    width:100%;
-  }
-  #igcul{
+  .hwwi-card-container{
     width:100%;
   }
 }
-
 `,
       },
     },
