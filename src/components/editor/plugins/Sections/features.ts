@@ -710,69 +710,63 @@ const features = (editor: Editor) => {
       defaults: {
         name: 'Features With Bento Grid',
         components: `  
-    <div id="izpcyt" class="block">
-      <div id="irf4qwe" class="block">
-        <h2 id="ilin15" class="heading-two">Feature Heading
+   <div class="bg-container">
+      <div class="bg-text-container">
+        <h2 class="bg-heading-two">Feature Heading
         </h2>
-        <p id="iqpclq" class="paragraph">Insert your text here
+        <p class="bg-paragraph">Insert your text here
         </p>
       </div>
-      <div id="i1viloy" class="block">
-        <div id="imqcmwq" class="feature-container">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="i7c2ofgs" class="grid-image"/>
-          <div id="ii7jva" class="container-text">
-            <h4 class="heading-four">Heading
+      <div class="bg-features-container">
+        <div class="bg-feature-container bg-feature-one">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="bg-feature-grid-image"/>
+          <div class="bg-feature-container-text">
+            <h4 class="bg-heading-four">Heading
             </h4>
-            <p class="paragraph">Insert your feature or benefit text here
+            <p class="bg-paragraph">Insert your feature or benefit text here
             </p>
           </div>
         </div>
-        <div id="iao4qlky" class="feature-container">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="grid-image"/>
-          <div id="iggbk" class="container-text">
-            <h4 class="heading-four">Heading
+        <div class="bg-feature-container bg-feature-two">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="bg-feature-grid-image"/>
+          <div class="bg-feature-container-text">
+            <h4 class="bg-heading-four">Heading
             </h4>
-            <p class="paragraph">Insert your feature or benefit text here
+            <p class="bg-paragraph">Insert your feature or benefit text here
             </p>
           </div>
         </div>
-        <div id="icrktoxz" class="feature-container">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="grid-image"/>
-          <div id="i2p5j7" class="container-text">
-            <h4 class="heading-four">Heading
+        <div class="bg-feature-container bg-feature-three">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="bg-feature-grid-image"/>
+          <div class="bg-feature-container-text">
+            <h4 class="bg-heading-four">Heading
             </h4>
-            <p class="paragraph">Insert your feature or benefit text here
+            <p class="bg-paragraph">Insert your feature or benefit text here
             </p>
           </div>
         </div>
-        <div id="i9l9xzw" class="feature-container">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="grid-image"/>
-          <div id="ijxkn" class="container-text">
-            <h4 class="heading-four">Heading
+        <div class="bg-feature-container bg-feature-four">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="bg-feature-grid-image"/>
+          <div class="bg-feature-container-text">
+            <h4 class="bg-heading-four">Heading
             </h4>
-            <p class="paragraph">Insert your feature or benefit text here
+            <p class="bg-paragraph">Insert your feature or benefit text here
             </p>
           </div>
         </div>
-        <div id="iihcjmnst" class="feature-container">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="grid-image"/>
-          <div id="imp4c" class="container-text">
-            <h4 class="heading-four">Heading
+        <div class="bg-feature-container bg-feature-five">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="bg-feature-grid-image"/>
+          <div class="bg-feature-container-text">
+            <h4 class="bg-heading-four">Heading
             </h4>
-            <p class="paragraph">Insert your feature or benefit text here
+            <p class="bg-paragraph">Insert your feature or benefit text here
             </p>
           </div>
         </div>
       </div>
     </div>`,
         styles: `
-     .block{
-  height:11px;
-  max-height:100%;
-  width:100%;
-  grid-template-rows:1fr 1fr 1fr 1f;
-}
-#izpcyt{
+ .bg-container{
   height:fit-content;
   max-width:1200px;
   width:90%;
@@ -785,7 +779,7 @@ const features = (editor: Editor) => {
   margin-top:2rem;
   margin-bottom:2rem;
 }
-#irf4qwe{
+.bg-text-container{
   text-align:center;
   display:flex;
   justify-content:center;
@@ -796,32 +790,31 @@ const features = (editor: Editor) => {
   margin-top:2rem;
   margin-bottom:2rem;
 }
-.heading-two{
+.bg-heading-two{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-.paragraph{
+.bg-paragraph{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-#i1viloy{
+.bg-features-container{
   height:fit-content;
   display:grid;
   flex-direction:row-reverse;
-  justify-content:space-between;
   align-items:center;
   column-gap:2rem;
   grid-template-columns:1fr 1fr 1fr;
   row-gap:2rem;
   margin-top:2rem;
   margin-bottom:2rem;
-  grid-template-rows:1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows:1fr 1fr 1fr ;
 }
-.feature-container{
+.bg-feature-container{
   width:100%;
   padding-right:1rem;
   padding-bottom:1rem;
@@ -834,21 +827,16 @@ const features = (editor: Editor) => {
   height:400px;
   padding-top:1rem;
 }
-#imqcmwq{
-  padding-top:0;
-  padding-right:0;
-  padding-bottom:0;
-  padding-left:0;
+.bg-feature-container.bg-feature-one{
   grid-column:span 1;
-  grid-row:span 2;
-  height:800p;
+  grid-row: span 1;
 }
-.grid-image{
+.bg-feature-grid-image{
   width:100%;
   height:75%;
 }
-#ii7jva{
-  height:80px;
+.bg-feature-container-text{
+  height:fit-content;
   width:100%;
   display:flex;
   flex-direction:column;
@@ -859,13 +847,13 @@ const features = (editor: Editor) => {
   padding-bottom:1rem;
   padding-left:1rem;
 }
-.heading-four{
+.bg-heading-four{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-#iao4qlky{
+.bg-feature-two{
   padding-top:0;
   padding-right:0;
   padding-bottom:0;
@@ -873,39 +861,15 @@ const features = (editor: Editor) => {
   grid-column:span 2;
   grid-row:span 2;
 }
-#iggbk{
-  height:80px;
-  width:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:start;
-  row-gap:1rem;
-  padding-top:1rem;
-  padding-right:1rem;
-  padding-bottom:1rem;
-  padding-left:1rem;
+.bg-feature-container.bg-feature-two{
+  grid-column:span 2;
+  grid-row:span 1;
 }
-#icrktoxz{
-  padding-top:0;
-  padding-right:0;
-  padding-bottom:0;
-  padding-left:0;
+.bg-feature-container.bg-feature-three{
   grid-column:span 3;
-  grid-row:span 2;
+  grid-row:span 1;
 }
-#i2p5j7{
-  height:80px;
-  width:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:start;
-  row-gap:1rem;
-  padding-top:1rem;
-  padding-right:1rem;
-  padding-bottom:1rem;
-  padding-left:1rem;
-}
-#i9l9xzw{
+.bg-feature-four{
   padding-top:0;
   padding-right:0;
   padding-bottom:0;
@@ -913,83 +877,62 @@ const features = (editor: Editor) => {
   grid-column:span 2;
   grid-row:span 2;
 }
-#ijxkn{
-  height:80px;
-  width:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:start;
-  row-gap:1rem;
-  padding-top:1rem;
-  padding-right:1rem;
-  padding-bottom:1rem;
-  padding-left:1rem;
+.bg-feature-container.bg-feature-four{
+  grid-row:span 1;
 }
-#iihcjmnst{
-  padding-top:0;
-  padding-right:0;
-  padding-bottom:0;
-  padding-left:0;
+.bg-feature-container.bg-feature-five{
   grid-column:span 1;
-  grid-row:span 2;
-}
-#imp4c{
-  height:80px;
-  width:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:start;
-  row-gap:1rem;
-  padding-top:1rem;
-  padding-right:1rem;
-  padding-bottom:1rem;
-  padding-left:1rem;
+  grid-row:span 1;
 }
 @media (max-width: 880px){
-  #i1viloy{
-    grid-template-columns:1fr 1fr 1fr 1fr;
+  .bg-features-container{
+    grid-template-columns:1fr 1fr 1fr;
   }
-  .feature-container{
+  .bg-feature-container{
     grid-column:span 1;
   }
-  #imqcmwq{
+  .bg-feature-two{
     grid-column:span 2;
   }
-  #iao4qlky{
+  .bg-feature-container.bg-feature-two{
     grid-column:span 2;
   }
-  #icrktoxz{
-    grid-column:span 4;
-  }
-  #iihcjmnst{
+  .bg-feature-container.bg-feature-five{
     grid-column:span 2;
   }
 }
 @media (max-width: 600px){
-  #izpcyt{
+  .bg-container{
     height:fit-content;
     margin-top:2rem;
     margin-bottom:2rem;
   }
-  #irf4qwe{
+  .bg-text-container{
     height:165px;
   }
-  #i1viloy{
+  .bg-features-container{
     flex-direction:column;
     height:fit-content;
     row-gap:2rem;
     grid-template-columns:1fr;
   }
-  #imqcmwq{
+  .bg-feature-container.bg-feature-one{
+    grid-row: span 1;
     grid-column:span 4;
   }
-  #iao4qlky{
+  .bg-feature-two{
     grid-column:span 4;
   }
-  #i9l9xzw{
+  .bg-feature-container.bg-feature-two{
     grid-column:span 4;
   }
-  #iihcjmnst{
+  .bg-feature-container.bg-feature-three{
+    grid-column:span 4;
+  }
+  .bg-feature-four{
+    grid-column:span 4;
+  }
+  .bg-feature-container.bg-feature-five{
     grid-column:span 4;
   }
 }
@@ -1021,39 +964,33 @@ const features = (editor: Editor) => {
       defaults: {
         name: 'Features With Image Bento Grid',
         components: `  
-     <div id="izpc" class="block">
-      <div id="irf4ikr" class="block">
-        <h2 id="ilin11" class="heading-two">Feature Heading
+   <div class="bgwi-container">
+      <div class="bgwi-text-container">
+        <h2 class="bgwi-heading-two">Feature Heading
         </h2>
-        <p id="iqpclr" class="paragraph">Insert your text here
+        <p class="bgwi-paragraph">Insert your text here
         </p>
       </div>
-      <div id="i1vilah" class="block">
-        <div id="imqcmer" class="feature-container">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" id="i7c2ofly" class="grid-image"/>
+      <div class="bgwi-features-container">
+        <div class="bgwi-feature-container bgwi-feature-one">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="bgwi-feature-grid-image"/>
         </div>
-        <div id="iao4q" class="feature-container">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="grid-image"/>
+        <div class="bgwi-feature-container bgwi-feature-two">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="bgwi-feature-grid-image"/>
         </div>
-        <div id="icrktotee" class="feature-container">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="grid-image"/>
+        <div class="bgwi-feature-container bgwi-feature-three">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="bgwi-feature-grid-image"/>
         </div>
-        <div id="i9l9x" class="feature-container">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="grid-image"/>
+        <div class="bgwi-feature-container bgwi-feature-four">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="bgwi-feature-grid-image"/>
         </div>
-        <div id="iihcj" class="feature-container">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="grid-image"/>
+        <div class="bgwi-feature-container bgwi-feature-five">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="bgwi-feature-grid-image"/>
         </div>
       </div>
     </div>`,
         styles: `
-     .block{
-  height:11px;
-  max-height:100%;
-  width:100%;
-  grid-template-rows:1fr 1fr 1fr 1f;
-}
-#izpc{
+ .bgwi-container{
   height:fit-content;
   max-width:1200px;
   width:90%;
@@ -1066,7 +1003,7 @@ const features = (editor: Editor) => {
   margin-top:2rem;
   margin-bottom:2rem;
 }
-#irf4ikr{
+.bgwi-text-container{
   text-align:center;
   display:flex;
   justify-content:center;
@@ -1077,32 +1014,31 @@ const features = (editor: Editor) => {
   margin-top:2rem;
   margin-bottom:2rem;
 }
-.heading-two{
+.bgwi-heading-two{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-.paragraph{
+.bgwi-paragraph{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-#i1vilah{
+.bgwi-features-container{
   height:fit-content;
   display:grid;
   flex-direction:row-reverse;
-  justify-content:space-between;
   align-items:center;
   column-gap:2rem;
   grid-template-columns:1fr 1fr 1fr;
   row-gap:2rem;
   margin-top:2rem;
   margin-bottom:2rem;
-  grid-template-rows:1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows:1fr 1fr 1fr ;
 }
-.feature-container{
+.bgwi-feature-container{
   width:100%;
   padding-right:1rem;
   padding-bottom:1rem;
@@ -1115,23 +1051,22 @@ const features = (editor: Editor) => {
   height:400px;
   padding-top:1rem;
 }
-#imqcmer{
-  padding-top:0;
-  padding-right:0;
-  padding-bottom:0;
-  padding-left:0;
+.bgwi-feature-container.bgwi-feature-one{
   grid-column:span 1;
-  grid-row:span 2;
-  height:800p;
+  grid-row: span 1;
 }
-.grid-image{
+.bgwi-feature-grid-image{
   width:100%;
   height:100%;
 }
-#i7c2ofly{
-  height:100px;
+
+.bgwi-heading-four{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
 }
-#iao4q{
+.bgwi-feature-two{
   padding-top:0;
   padding-right:0;
   padding-bottom:0;
@@ -1139,15 +1074,15 @@ const features = (editor: Editor) => {
   grid-column:span 2;
   grid-row:span 2;
 }
-#icrktotee{
-  padding-top:0;
-  padding-right:0;
-  padding-bottom:0;
-  padding-left:0;
+.bgwi-feature-container.bgwi-feature-two{
+  grid-column:span 2;
+  grid-row:span 1;
+}
+.bgwi-feature-container.bgwi-feature-three{
   grid-column:span 3;
-  grid-row:span 2;
+  grid-row:span 1;
 }
-#i9l9x{
+.bgwi-feature-four{
   padding-top:0;
   padding-right:0;
   padding-bottom:0;
@@ -1155,59 +1090,62 @@ const features = (editor: Editor) => {
   grid-column:span 2;
   grid-row:span 2;
 }
-#iihcj{
-  padding-top:0;
-  padding-right:0;
-  padding-bottom:0;
-  padding-left:0;
+.bgwi-feature-container.bgwi-feature-four{
+  grid-row:span 1;
+}
+.bgwi-feature-container.bgwi-feature-five{
   grid-column:span 1;
-  grid-row:span 2;
+  grid-row:span 1;
 }
 @media (max-width: 880px){
-  #i1vilah{
-    grid-template-columns:1fr 1fr 1fr 1fr;
+  .bgwi-features-container{
+    grid-template-columns:1fr 1fr 1fr;
   }
-  .feature-container{
+  .bgwi-feature-container{
     grid-column:span 1;
   }
-  #imqcmer{
+  .bgwi-feature-two{
     grid-column:span 2;
   }
-  #iao4q{
+  .bgwi-feature-container.bgwi-feature-two{
     grid-column:span 2;
   }
-  #icrktotee{
-    grid-column:span 4;
-  }
-  #iihcj{
+  .bgwi-feature-container.bgwi-feature-five{
     grid-column:span 2;
   }
 }
 @media (max-width: 600px){
-  #izpc{
+  .bgwi-container{
     height:fit-content;
     margin-top:2rem;
     margin-bottom:2rem;
   }
-  #irf4ikr{
+  .bgwi-text-container{
     height:165px;
   }
-  #i1vilah{
+  .bgwi-features-container{
     flex-direction:column;
     height:fit-content;
     row-gap:2rem;
     grid-template-columns:1fr;
   }
-  #imqcmer{
+  .bgwi-feature-container.bgwi-feature-one{
+    grid-row: span 1;
     grid-column:span 4;
   }
-  #iao4q{
+  .bgwi-feature-two{
     grid-column:span 4;
   }
-  #i9l9x{
+  .bgwi-feature-container.bgwi-feature-two{
     grid-column:span 4;
   }
-  #iihcj{
+  .bgwi-feature-container.bgwi-feature-three{
+    grid-column:span 4;
+  }
+  .bgwi-feature-four{
+    grid-column:span 4;
+  }
+  .bgwi-feature-container.bgwi-feature-five{
     grid-column:span 4;
   }
 }
