@@ -17,30 +17,30 @@ const testimonials = (editor: Editor) => {
       defaults: {
         name: 'Testimonial With Image, Quote and Rating',
         components: `  
-   <div id="ifjmk">
-    <div id="iegcj" class="block">
-      <span id="iqujl" class="material-icons material-symbols-outlined star-filled">star</span>
-      <span id="iemjs" class="material-icons material-symbols-outlined star-filled">star</span>
-      <span id="im35v" class="material-icons material-symbols-outlined star-filled">star</span>
-      <span id="isgss" class="material-icons material-symbols-outlined star-filled">star</span>
-      <span id="iydsg" class="material-icons material-symbols-outlined star-filled">star</span>
+   <div class="twqr-container">
+    <div class="twqr-ratings-container">
+      <span class="material-icons material-symbols-outlined star-filled">star</span>
+      <span class="material-icons material-symbols-outlined star-filled">star</span>
+      <span class="material-icons material-symbols-outlined star-filled">star</span>
+      <span class="material-icons material-symbols-outlined star-filled">star</span>
+      <span class="material-icons material-symbols-outlined star-filled">star</span>
     </div>
-    <p id="irzj2" class="paragraph">
+    <p class="twqr-paragraph">
       <b>HUGE
       </b>fan of the lanndi. Less than a month into using lanndi and I've already seen a tangible impact on my ability to produce beautiful, responsive and fast websites.
     </p>
-    <div id="i2cti" class="block">
-      <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" id="ir7qp"/>
-      <div id="i2h12" class="block">
-        <p id="ihfmp" class="paragraph">Person Name
+    <div class="twqr-rating-container">
+      <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="twqr-image"/>
+      <div class="twqr-rating-text-content">
+        <p class="twqr-bolden">Person Name
         </p>
-        <p id="ichu5" class="paragraph">10k followers on X/Twitter, Founder, Ceo
+        <p  class="twqr-paragraph">10k followers on X/Twitter, Founder, Ceo
         </p>
       </div>
     </div>
   </div>`,
         styles: `
-     #ifjmk{
+     .twqr-container{
   height:fit-content;
   display:flex;
   flex-direction:column;
@@ -54,33 +54,29 @@ const testimonials = (editor: Editor) => {
   margin-right:auto;
   margin-left:auto;
 }
-.block{
-  height:fit-conten;
-  max-height:100%;
-  width:100%;
-}
-#iegcj{
+
+.twqr-ratings-container{
   display:flex;
   flex-direction:row-reverse;
   justify-content:center;
   width:255px;
-  height:fit-t;
+
 }
 .material-icons.material-symbols-outlined.star-filled{
   color:rgb(250, 199, 30);
   height:24px;
 }
-.paragraph{
+
+.twqr-paragraph{
+  text-align:center;
+  width:496px;
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
 }
-#irzj2{
-  text-align:center;
-  width:496px;
-}
-#i2cti{
+
+.twqr-rating-container{
   height:fit-content;
   margin-bottom:2rem;
   padding-top:1rem;
@@ -89,7 +85,8 @@ const testimonials = (editor: Editor) => {
   justify-content:center;
   align-items:center;
 }
-#ir7qp{
+
+.twqr-image{
   width:30px;
   height:30px;
   border-top-left-radius:50%;
@@ -98,15 +95,15 @@ const testimonials = (editor: Editor) => {
   border-bottom-left-radius:50%;
   object-fit:cover;
 }
-#i2h12{
+.twqr-rating-text-content{
   height:fit-content;
   width:357px;
 }
-#ihfmp{
+.twqr-bolden{
   font-weight:700;
 }
 @media (max-width: 600px){
-  #irzj2{
+  .twqr-paragraph{
     width:100%;
   }
 }
@@ -128,67 +125,52 @@ const testimonials = (editor: Editor) => {
     model: {
       defaults: {
         name: 'Testimonial With Avatar Group and Rating',
-        components: `  
- <div id="ifjmk" class="container">
-    <div id="i2cti" class="testimonial-container">
-      <div id="iab5f" class="block">
-        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" id="ir7qp" class="testimonail-image-group"/>
-        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" id="inw1h" class="testimonail-image-group"/>
-        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" id="ilqup" class="testimonail-image-group"/>
-        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" id="i495a" class="testimonail-image-group"/>
-        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" id="i88fu" class="testimonail-image-group"/>
+        components: `
+   <div class="tar-container">
+      <div class="tar-avatar-group">
+        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="tar-avatar-image"/>
+        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="tar-avatar-image"/>
+        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="tar-avatar-image"/>
+        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="tar-avatar-image"/>
+        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="tar-avatar-image"/>
       </div>
-      <div id="i2h12" class="block">
-        <div id="iegcj" class="block">
-          <span id="iqujl" class="material-icons material-symbols-outlined star-filled">star</span>
-          <span id="iemjs" class="material-icons material-symbols-outlined star-filled">star</span>
-          <span id="im35v" class="material-icons material-symbols-outlined star-filled">star</span>
-          <span id="isgss" class="material-icons material-symbols-outlined star-filled">star</span>
-          <span id="iydsg" class="material-icons material-symbols-outlined star-filled">star</span>
+      <div class="tar-ratings-container">
+        <div class="tar-star-container">
+          <spa class="material-icons material-symbols-outlined star-filled">star
+          </spa>
+          <span class="material-icons material-symbols-outlined star-filled">star</span>
+          <span class="material-icons material-symbols-outlined star-filled">star</span>
+          <span class="material-icons material-symbols-outlined star-filled">star</span>
+          <span class="material-icons material-symbols-outlined star-filled">star</span>
         </div>
-        <p id="ichu5" class="paragraph">100+ people use this app
+        <p class="tar-ratings-paragraph">
+          <b>Trusted
+          </b> by +100 users
         </p>
       </div>
     </div>
-  </div>`,
+ `,
         styles: `
-    #ifjmk{
+   .tar-container{
   height:fit-content;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  row-gap:1rem;
   margin-top:2rem;
   margin-bottom:2rem;
-  width:90%;
+  width:19%;
   max-width:1200px;
   margin-right:auto;
   margin-left:auto;
 }
-#i2cti{
-  height:fit-content;
-  padding-top:1rem;
-  padding-bottom:1rem;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  column-gap:1rem;
-  width:fit-content;
-}
-.block{
-  height:fit-conten;
-  max-height:100%;
-  width:99%;
-}
-#iab5f{
+.tar-avatar-group{
   height:fit-content;
   display:flex;
-  justify-content:center;
   align-items:center;
   width:fit-content;
 }
-#ir7qp{
+.tar-avatar-image{
   width:30px;
   height:30px;
   border-top-left-radius:50%;
@@ -196,62 +178,26 @@ const testimonials = (editor: Editor) => {
   border-bottom-right-radius:50%;
   border-bottom-left-radius:50%;
   object-fit:cover;
-}
-.testimonail-image-group{
   margin-left:-10px;
 }
-#inw1h{
-  width:30px;
-  height:30px;
-  border-top-left-radius:50%;
-  border-top-right-radius:50%;
-  border-bottom-right-radius:50%;
-  border-bottom-left-radius:50%;
-  object-fit:cover;
-}
-#ilqup{
-  width:30px;
-  height:30px;
-  border-top-left-radius:50%;
-  border-top-right-radius:50%;
-  border-bottom-right-radius:50%;
-  border-bottom-left-radius:50%;
-  object-fit:cover;
-}
-#i495a{
-  width:30px;
-  height:30px;
-  border-top-left-radius:50%;
-  border-top-right-radius:50%;
-  border-bottom-right-radius:50%;
-  border-bottom-left-radius:50%;
-  object-fit:cover;
-}
-#i88fu{
-  width:30px;
-  height:30px;
-  border-top-left-radius:50%;
-  border-top-right-radius:50%;
-  border-bottom-right-radius:50%;
-  border-bottom-left-radius:50%;
-  object-fit:cover;
-}
-#i2h12{
+.tar-ratings-container{
   height:fit-content;
-  width:fit-content;
+  width:100%;
+  text-align:center;
 }
-#iegcj{
+.tar-star-container{
   display:flex;
   flex-direction:row-reverse;
-  justify-content:start;
-  width:fit-content;
-  height:f;
+  justify-content:center;
+  width:w-full;
+  align-items:center;
 }
 .material-icons.material-symbols-outlined.star-filled{
   color:rgb(250, 199, 30);
-  height:24px;
+  height:10p;
+  font-size:1rem;
 }
-.paragraph{
+.tar-ratings-paragraph{
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
@@ -275,160 +221,151 @@ const testimonials = (editor: Editor) => {
       defaults: {
         name: 'Testimonial Grid',
         components: `  
-  <div class="container" id="i3lg">
-    <div class="grid-block-container">
-      <div id="iegcj">
-        <span id="iqujl" class="material-icons material-symbols-outlined star-filled">star</span>
-        <span id="iemjs" class="material-icons material-symbols-outlined star-filled">star</span>
-        <span id="im35v" class="material-icons material-symbols-outlined star-filled">star</span>
-        <span id="isgss" class="material-icons material-symbols-outlined star-filled">star</span>
-        <span id="iydsg" class="material-icons material-symbols-outlined star-filled">star</span>
-      </div>
-      <p id="irzj2" class="paragraph italic">
-        <span>"</span>
-        <b draggable="true">HUGE
-        </b>fan of the lanndi. Less than a month into using lanndi and I've already seen a tangible impact on my ability to produce beautiful, responsive and fast websites."
-      </p>
-      <div id="i2cti">
-        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" id="ir7qp"/>
-        <div id="i2h12">
-          <p id="ihfmp" class="paragraph">Person Name
-          </p>
-          <p id="ichu5" class="paragraph">10k followers on X/Twitter, Founder, Ceo
-          </p>
+  <div class="tg-container">
+      <div class="tg-grid-block-container">
+        <div id=".tg-grid-item-container">
+          <span class="material-icons material-symbols-outlined star-filled">star</span>
+          <span class="material-icons material-symbols-outlined star-filled">star</span>
+          <span class="material-icons material-symbols-outlined star-filled">star</span>
+          <span class="material-icons material-symbols-outlined star-filled">star</span>
+          <span class="material-icons material-symbols-outlined star-filled">star</span>
+        </div>
+        <p class="tg-paragraph italic">
+          <span>"</span>
+          <b draggable="true">HUGE
+          </b>fan of the lanndi. Less than a month into using lanndi and I've already seen a tangible impact on my ability to produce beautiful, responsive and fast websites."
+        </p>
+        <div class="tg-person-data-container">
+          <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="tg-image"/>
+          <div id=".tg-person-text-content">
+            <p class="tg-paragraph tg-bolden">Person Name
+            </p>
+            <p class="tg-paragraph">10k followers on X/Twitter, Founder, Ceo
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="grid-block-container">
-      <div id="injjcp">
-        <span class="material-icons material-symbols-outlined star-filled">star</span>
-        <span class="material-icons material-symbols-outlined star-filled">star</span>
-        <span class="material-icons material-symbols-outlined star-filled">star</span>
-        <span class="material-icons material-symbols-outlined star-filled">star</span>
-        <span class="material-icons material-symbols-outlined star-filled">star</span>
-      </div>
-      <p class="paragraph italic" id="iuiaby">
-        <span>"</span>
-        <b draggable="true">HUGE
-        </b>fan of the lanndi. Less than a month into using lanndi and I've already seen a tangible impact on my ability to produce beautiful, responsive and fast websites."
-      </p>
-      <div id="ig8ff6">
-        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" id="israhy"/>
-        <div id="i7p13p">
-          <p class="paragraph" id="ihx1ht">Person Name
-          </p>
-          <p class="paragraph">10k followers on X/Twitter, Founder, Ceo
-          </p>
+      <div class="tg-grid-block-container">
+        <div id=".tg-grid-item-container-2">
+          <span class="material-icons material-symbols-outlined star-filled">star</span>
+          <span class="material-icons material-symbols-outlined star-filled">star</span>
+          <span class="material-icons material-symbols-outlined star-filled">star</span>
+          <span class="material-icons material-symbols-outlined star-filled">star</span>
+          <span class="material-icons material-symbols-outlined star-filled">star</span>
+        </div>
+        <p class="tg-paragraph italic">
+          <span>"</span>
+          <b draggable="true">HUGE
+          </b>fan of the lanndi. Less than a month into using lanndi and I've already seen a tangible impact on my ability to produce beautiful, responsive and fast websites."
+        </p>
+        <div class="tg-person-data-container">
+          <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="tg-image"/>
+          <div id=".tg-person-text-content-2">
+            <p class="tg-paragraph tg-bolden">Person Name
+            </p>
+            <p class="tg-paragraph">10k followers on X/Twitter, Founder, Ceo
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="grid-block-container">
-      <div id="igx0cl">
-        <span class="material-icons material-symbols-outlined star-filled">star</span>
-        <span class="material-icons material-symbols-outlined star-filled">star</span>
-        <span class="material-icons material-symbols-outlined star-filled">star</span>
-        <span class="material-icons material-symbols-outlined star-filled">star</span>
-        <span class="material-icons material-symbols-outlined star-filled">star</span>
-      </div>
-      <p class="paragraph italic" id="itlsob">
-        <span>"</span>
-        <b draggable="true">HUGE
-        </b>fan of the lanndi. Less than a month into using lanndi and I've already seen a tangible impact on my ability to produce beautiful, responsive and fast websites."
-      </p>
-      <div id="i1yx05">
-        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" id="iy6jt7"/>
-        <div id="i25gai">
-          <p class="paragraph" id="ih5hoc">Person Name
-          </p>
-          <p class="paragraph">10k followers on X/Twitter, Founder, Ceo
-          </p>
+      <div class="tg-grid-block-container">
+        <div id=".tg-grid-item-container-3">
+          <span class="material-icons material-symbols-outlined star-filled">star</span>
+          <span class="material-icons material-symbols-outlined star-filled">star</span>
+          <span class="material-icons material-symbols-outlined star-filled">star</span>
+          <span class="material-icons material-symbols-outlined star-filled">star</span>
+          <span class="material-icons material-symbols-outlined star-filled">star</span>
+        </div>
+        <p class="tg-paragraph italic">
+          <span>"</span>
+          <b draggable="true">HUGE
+          </b>fan of the lanndi. Less than a month into using lanndi and I've already seen a tangible impact on my ability to produce beautiful, responsive and fast websites."
+        </p>
+        <div class="tg-person-data-container">
+          <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="tg-image"/>
+          <div id=".tg-person-text-content-3">
+            <p class="tg-paragraph tg-bolden">Person Name
+            </p>
+            <p class="tg-paragraph">10k followers on X/Twitter, Founder, Ceo
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="grid-block-container">
-      <div id="iksny9">
-        <span class="material-icons material-symbols-outlined star-filled">star</span>
-        <span class="material-icons material-symbols-outlined star-filled">star</span>
-        <span class="material-icons material-symbols-outlined star-filled">star</span>
-        <span class="material-icons material-symbols-outlined star-filled">star</span>
-        <span class="material-icons material-symbols-outlined star-filled">star</span>
-      </div>
-      <p class="paragraph italic" id="i601az">
-        <span>"</span>
-        <b draggable="true">HUGE
-        </b>fan of the lanndi. Less than a month into using lanndi and I've already seen a tangible impact on my ability to produce beautiful, responsive and fast websites."
-      </p>
-      <div id="i7bcn1">
-        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" id="iad3jm"/>
-        <div id="ishnt2">
-          <p class="paragraph" id="ildy09">Person Name
-          </p>
-          <p class="paragraph">10k followers on X/Twitter, Founder, Ceo
-          </p>
+      <div class="tg-grid-block-container">
+        <div id=".tg-grid-item-container-4">
+          <span class="material-icons material-symbols-outlined star-filled">star</span>
+          <span class="material-icons material-symbols-outlined star-filled">star</span>
+          <span class="material-icons material-symbols-outlined star-filled">star</span>
+          <span class="material-icons material-symbols-outlined star-filled">star</span>
+          <span class="material-icons material-symbols-outlined star-filled">star</span>
+        </div>
+        <p class="tg-paragraph italic">
+          <span>"</span>
+          <b draggable="true">HUGE
+          </b>fan of the lanndi. Less than a month into using lanndi and I've already seen a tangible impact on my ability to produce beautiful, responsive and fast websites."
+        </p>
+        <div class="tg-person-data-container">
+          <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="tg-image"/>
+          <div id=".tg-person-text-content-4">
+            <p class="tg-paragraph tg-bolden">Person Name
+            </p>
+            <p class="tg-paragraph">10k followers on X/Twitter, Founder, Ceo
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </div>`,
+    </div>`,
         styles: `
- #i3lg{
+.tg-container{
   display:grid;
-  grid-template-columns:1fr 1fr ;
+  grid-template-columns:1fr 1fr;
   column-gap:1rem;
   row-gap:1rem;
-}
-.container{
   margin-top:2rem;
   margin-bottom:2rem;
   max-width:1200px;
   width:90%;
   margin-right:auto;
   margin-left:auto;
-  grid-template-columns:1fr 1fr ;
 }
-.grid-block-container{
+.tg-grid-block-container{
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   row-gap:1rem;
-  height:243px;
+  height:fit-content;
   grid-column:span 1;
   font-style:italic;
-}
-#iegcj{
-  display:flex;
-  flex-direction:row-reverse;
-  justify-content:center;
-  width:255px;
-  height:fit-t;
+  padding-top:1rem;
+  padding-right:1rem;
+  padding-bottom:1rem;
+  padding-left:1rem;
 }
 .material-icons.material-symbols-outlined.star-filled{
   color:rgb(250, 199, 30);
   height:24px;
 }
-.paragraph{
+.tg-paragraph{
+  text-align:center;
+  width:100%;
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
-  font-style:normal;
 }
-#irzj2{
-  text-align:center;
-  width:100%;
-}
-.paragraph.italic{
-  font-style:italic;
-}
-#i2cti{
+.tg-person-data-container{
   height:fit-content;
   padding-top:1rem;
   padding-bottom:1rem;
   display:flex;
   justify-content:center;
   align-items:center;
+  column-gap:1rem;
+  padding-right:1rem;
+  padding-left:1rem;
 }
-#ir7qp{
+.tg-image{
   width:30px;
   height:30px;
   border-top-left-radius:50%;
@@ -437,129 +374,20 @@ const testimonials = (editor: Editor) => {
   border-bottom-left-radius:50%;
   object-fit:cover;
 }
-#i2h12{
-  height:fit-content;
-  width:357px;
-}
-#ihfmp{
+.tg-bolden{
   font-weight:700;
 }
-#injjcp{
-  display:flex;
-  flex-direction:row-reverse;
-  justify-content:center;
-  width:255px;
-  height:fit-t;
-}
-#iuiaby{
-  text-align:center;
-  width:100%;
-}
-#ig8ff6{
-  height:fit-content;
-  padding-top:1rem;
-  padding-bottom:1rem;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-#israhy{
-  width:30px;
-  height:30px;
-  border-top-left-radius:50%;
-  border-top-right-radius:50%;
-  border-bottom-right-radius:50%;
-  border-bottom-left-radius:50%;
-  object-fit:cover;
-}
-#i7p13p{
-  height:fit-content;
-  width:357px;
-}
-#ihx1ht{
-  font-weight:700;
-}
-#igx0cl{
-  display:flex;
-  flex-direction:row-reverse;
-  justify-content:center;
-  width:255px;
-  height:fit-t;
-}
-#itlsob{
-  text-align:center;
-  width:100%;
-}
-#i1yx05{
-  height:fit-content;
-  padding-top:1rem;
-  padding-bottom:1rem;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-#iy6jt7{
-  width:30px;
-  height:30px;
-  border-top-left-radius:50%;
-  border-top-right-radius:50%;
-  border-bottom-right-radius:50%;
-  border-bottom-left-radius:50%;
-  object-fit:cover;
-}
-#i25gai{
-  height:fit-content;
-  width:357px;
-}
-#ih5hoc{
-  font-weight:700;
-}
-#iksny9{
-  display:flex;
-  flex-direction:row-reverse;
-  justify-content:center;
-  width:255px;
-  height:fit-t;
-}
-#i601az{
-  text-align:center;
-  width:100%;
-}
-#i7bcn1{
-  height:fit-content;
-  padding-top:1rem;
-  padding-bottom:1rem;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-#iad3jm{
-  width:30px;
-  height:30px;
-  border-top-left-radius:50%;
-  border-top-right-radius:50%;
-  border-bottom-right-radius:50%;
-  border-bottom-left-radius:50%;
-  object-fit:cover;
-}
-#ishnt2{
-  height:fit-content;
-  width:357px;
-}
-#ildy09{
-  font-weight:700;
+.tg-paragraph.tg-bolden{
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+  text-align:left;
+  width:263px;
+  height:18px;
 }
 @media (max-width: 600px){
-  #irzj2{
-    width:100%;
-  }
-  #iuiaby{
-    width:100%;
-  }
-  #itlsob{
-    width:100%;
-  }
-  #i601az{
+  .tg-paragraph{
     width:100%;
   }
 }
