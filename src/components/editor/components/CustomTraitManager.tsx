@@ -77,9 +77,10 @@ export const CssCode = () => {
   // console.log('css', componentCss);
 
   const handleClick = () => {
-    // console.log('css', value);
-    editor.Css.addRules(value);
-    // setValue('')
+    console.log('css', value);
+    // editor.Css.addRules(value);
+    setValue('')
+    close();
   };
 
 
@@ -384,13 +385,13 @@ export default function CustomTraitManager({
       {value === 'svg' && <SvgContentCode />}
       {
         user?.subscription !== 'free' ? <>
-          <CssCode />
+          {/*<CssCode />*/}
           <Button onClick={() => editor.runCommand('edit-script')} size="xs" mb="4">
             Edit Javascript
           </Button>
-          <Divider className="w-full" label="Global Customization" />
-          <GlobalCssCode />
-          <GlobalJsCode />
+          {/*<Divider className="w-full" label="Global Customization" />*/}
+          {/*<GlobalCssCode />*/}
+          {/*<GlobalJsCode />*/}
         </> : <>
           {/*<Button disabled size="xs" mb="4">*/}
           {/*  Edit CSS*/}

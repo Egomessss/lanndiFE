@@ -17,28 +17,28 @@ const testimonials = (editor: Editor) => {
       defaults: {
         name: 'Testimonial With Image, Quote and Rating',
         components: `  
-   <div class="twqr-container">
-    <div class="twqr-ratings-container">
-      <span class="material-icons material-symbols-outlined star-filled">star</span>
-      <span class="material-icons material-symbols-outlined star-filled">star</span>
-      <span class="material-icons material-symbols-outlined star-filled">star</span>
-      <span class="material-icons material-symbols-outlined star-filled">star</span>
-      <span class="material-icons material-symbols-outlined star-filled">star</span>
-    </div>
-    <p class="twqr-paragraph">
-      <b>HUGE
-      </b>fan of the lanndi. Less than a month into using lanndi and I've already seen a tangible impact on my ability to produce beautiful, responsive and fast websites.
-    </p>
-    <div class="twqr-rating-container">
-      <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="twqr-image"/>
-      <div class="twqr-rating-text-content">
-        <p class="twqr-bolden">Person Name
-        </p>
-        <p  class="twqr-paragraph">10k followers on X/Twitter, Founder, Ceo
-        </p>
+    <div class="twqr-container">
+      <div class="twqr-ratings-container">
+        <span class="material-icons material-symbols-outlined star-filled">star</span>
+        <span class="material-icons material-symbols-outlined star-filled">star</span>
+        <span class="material-icons material-symbols-outlined star-filled">star</span>
+        <span class="material-icons material-symbols-outlined star-filled">star</span>
+        <span class="material-icons material-symbols-outlined star-filled">star</span>
       </div>
-    </div>
-  </div>`,
+      <p class="twqr-paragraph">
+        <b>HUGE
+        </b>fan of the lanndi. Less than a month into using lanndi and I've already seen a tangible impact on my ability to produce beautiful, responsive and fast websites.
+      </p>
+      <div class="twqr-rating-container">
+        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="twqr-image"/>
+        <div class="twqr-rating-text-content">
+          <p class="twqr-bolden">Person Name
+          </p>
+          <p class="twqr-person-paragraph">10k followers on X/Twitter, Founder, Ceo
+          </p>
+        </div>
+      </div>
+    </div>`,
         styles: `
      .twqr-container{
   height:fit-content;
@@ -54,28 +54,24 @@ const testimonials = (editor: Editor) => {
   margin-right:auto;
   margin-left:auto;
 }
-
 .twqr-ratings-container{
   display:flex;
   flex-direction:row-reverse;
   justify-content:center;
   width:255px;
-
 }
 .material-icons.material-symbols-outlined.star-filled{
   color:rgb(250, 199, 30);
   height:24px;
 }
-
 .twqr-paragraph{
   text-align:center;
-  width:496px;
   margin-top:0;
   margin-right:0;
   margin-bottom:0;
   margin-left:0;
+  width:498px;
 }
-
 .twqr-rating-container{
   height:fit-content;
   margin-bottom:2rem;
@@ -85,7 +81,6 @@ const testimonials = (editor: Editor) => {
   justify-content:center;
   align-items:center;
 }
-
 .twqr-image{
   width:30px;
   height:30px;
@@ -106,8 +101,10 @@ const testimonials = (editor: Editor) => {
   .twqr-paragraph{
     width:100%;
   }
+  .twqr-rating-container{
+    width:100%;
+  }
 }
-
 `,
       },
     },
@@ -240,7 +237,7 @@ const testimonials = (editor: Editor) => {
           <div id=".tg-person-text-content">
             <p class="tg-paragraph tg-bolden">Person Name
             </p>
-            <p class="tg-paragraph">10k followers on X/Twitter, Founder, Ceo
+            <p class="tg-paragraph text-left">10k followers on X/Twitter, Founder, Ceo
             </p>
           </div>
         </div>
@@ -386,8 +383,22 @@ const testimonials = (editor: Editor) => {
   width:263px;
   height:18px;
 }
+@media (max-width: 880px){
+  .tg-container{
+    grid-template-columns:1fr;
+  }
+  .tg-paragraph.text-left{
+    text-align:left;
+  }
+}
 @media (max-width: 600px){
+  .tg-grid-block-container{
+    grid-column:span 2;
+  }
   .tg-paragraph{
+    width:100%;
+  }
+  .tg-person-data-container{
     width:100%;
   }
 }

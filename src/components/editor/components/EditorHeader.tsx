@@ -395,10 +395,6 @@ function EditorHeader() {
             {isDemo ? 'Homepage' : 'Dashboard'}
           </Button>
           <DarkModeButton />
-          {isDemo && <Button color="red" component="a" target="_blank"
-                             href="https://lanndi.lemonsqueezy.com/checkout/buy/2ddb7d73-91f4-4121-8413-c24ec6a3335c"
-                             size="xs">Get
-            lifetime deal</Button>}
         </div>
         <div className="flex items-center gap-4">
           <WithEditor>

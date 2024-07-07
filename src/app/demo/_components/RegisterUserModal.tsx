@@ -140,7 +140,7 @@ const CreateSiteModal = () => {
       <>
         <Tooltip label="Register before you can save your data">
           <Button rightSection={<IconDeviceFloppy size="1rem" />} size="xs" loading={isPending} onClick={open}>Sign Up To
-            Save Your Data</Button>
+            Save</Button>
           {/*<ActionIcon  className="animate-pulse"*/}
           {/*            variant="subtle">*/}
           {/*  <IconDeviceFloppy size="1rem" />*/}
