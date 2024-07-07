@@ -1,0 +1,8 @@
+.mantine-AppShell-navbar{
+    display:flex;
+    flex-direction: row;
+}
+
+.gjs-cv-canvas__frames{
+    overflow: hidden;
+}

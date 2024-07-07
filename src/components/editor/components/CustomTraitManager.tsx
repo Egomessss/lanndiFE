@@ -80,7 +80,7 @@ export const CssCode = () => {
     console.log('css', value);
     const trimmedCssCode = value.trim();
     editor.Css.addRules(trimmedCssCode);
-    setValue('')
+    // setValue('')
     close();
   };
 
@@ -119,9 +119,9 @@ export const GlobalCssCode = () => {
   // console.log('css', componentCss);
 
   const handleClick = () => {
-    console.log('css', value);
-    editor.Css.addRules(value);
-    // setValue('')
+    const trimmedCssCode = value.trim();
+    editor.Css.addRules(trimmedCssCode);
+    close()
   };
 
 
@@ -162,6 +162,8 @@ export const GlobalJsCode = () => {
     // console.log('global js', value);
     component?.set('script', value);
     // setValue('')
+    editor.refresh()
+    close()
   };
 
 
@@ -357,6 +359,7 @@ export default function CustomTraitManager({
                                              traits,
                                            }: Omit<TraitsResultProps, 'Container'>) {
   const { user } = useUser();
+  console.log(user);
   const editor = useEditor();
   const value = editor.getSelected()?.get('tagName');
 
@@ -384,24 +387,25 @@ export default function CustomTraitManager({
       {['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(value!) && <HeadingTypeSelector />}
       {/*<HtmlElementSelector />*/}
       {value === 'svg' && <SvgContentCode />}
-      {
+      {user?.isAdmin && <>{
         user?.subscription !== 'free' ? <>
-          {/*<CssCode />*/}
+          <CssCode />
           <Button onClick={() => editor.runCommand('edit-script')} size="xs" mb="4">
             Edit Javascript
           </Button>
-          {/*<Divider className="w-full" label="Global Customization" />*/}
-          {/*<GlobalCssCode />*/}
-          {/*<GlobalJsCode />*/}
+          <Divider className="w-full" label="Global Customization" />
+          <GlobalCssCode />
+          <GlobalJsCode />
         </> : <>
-          {/*<Button disabled size="xs" mb="4">*/}
-          {/*  Edit CSS*/}
-          {/*</Button>*/}
+          <Button disabled size="xs" mb="4">
+            Edit CSS
+          </Button>
           <Button disabled size="xs" mb="4">
             Edit Javascript
           </Button>
         </>
-      }
+      }</>}
+
 
     </div>
   );

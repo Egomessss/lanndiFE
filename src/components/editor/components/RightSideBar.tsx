@@ -12,7 +12,6 @@ import CustomTraitManager from '@/components/editor/components/CustomTraitManage
 
 function RightSideBar() {
 
-
   return <AppShell.Aside>
     <AppShell.Section grow component={ScrollArea}>
       <Tabs defaultValue="first" >
