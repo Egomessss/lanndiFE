@@ -59,6 +59,10 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
     },
   });
 
+  editor.on('component:update', (component) => {
+    editor.select(component)
+  })
+
   // Keymap for the 'Esc' key to trigger the deselect command
   editor.Keymaps.add('deselect-components', 'esc', 'deselect-components');
 

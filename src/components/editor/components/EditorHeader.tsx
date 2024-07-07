@@ -419,7 +419,10 @@ function EditorHeader() {
               <IconQuestionMark size="1rem" />
             </ActionIcon>
           </Tooltip>
-          <Tooltip label="Preview Interactions">
+          <Tooltip color="dark" label={<div className="flex flex-col gap-2">
+            <p>Preview Interactions e.g. button clicks</p>
+          <p>If by any chance some interactions don&apos;t work try refreshing the page</p>
+          </div>}>
             <ActionIcon
               color="blue"
               variant={

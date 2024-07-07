@@ -14,7 +14,7 @@ function RightSideBar() {
 
   return <AppShell.Aside>
     <AppShell.Section grow component={ScrollArea}>
-      <Tabs defaultValue="first" >
+      <Tabs  defaultValue="first" >
         <Tabs.List justify="space-between" grow>
           <Tabs.Tab value="first">Styles</Tabs.Tab>
           <Tabs.Tab value="second">Settings</Tabs.Tab>

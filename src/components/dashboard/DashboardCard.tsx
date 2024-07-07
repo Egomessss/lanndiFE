@@ -11,10 +11,11 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from '@/lib/axios';
 import { notifications } from '@mantine/notifications';
 import { useDisclosure } from '@mantine/hooks';
+import useUser from '@/hooks/use-user';
 
 
 const DashboardCard = ({ name, slug, ogImage, isLive }: Site) => {
-  // console.log(ogImage);
+  const { user } = useUser();
   const [opened, { open, close }] = useDisclosure(false);
   const [siteName, setSiteName] = useState('');
   const queryClient = useQueryClient();
@@ -58,7 +59,7 @@ const DashboardCard = ({ name, slug, ogImage, isLive }: Site) => {
 
   return (
     <div className="flex flex-col col-span-1 w-full">
-      <Link href={`/editor/${slug}`}>
+      <Link href={user?.isAdmin ? `/admin-editor/${slug}` : `/editor/${slug}`}>
         <img
           src={ogImage ? ogImage : 'https://images.pexels.com/photos/14577237/pexels-photo-14577237.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'}
           className="w-full h-44 rounded-lg mb-2  hover:border-solid"
@@ -80,6 +81,10 @@ const DashboardCard = ({ name, slug, ogImage, isLive }: Site) => {
                          leftSection={<IconPencil size="1rem" />}>
                 Edit site
               </Menu.Item>
+              {user?.isAdmin && <Menu.Item component={Link} href={`/editor/${slug}`}
+                                           leftSection={<IconPencil size="1rem" />}>
+                User editor
+              </Menu.Item>}
               <Menu.Item component={Link} href={`/settings/${slug}`}
                          leftSection={<IconSettings size="1rem" />}>
                 Site Settings
