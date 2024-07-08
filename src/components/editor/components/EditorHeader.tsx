@@ -406,11 +406,14 @@ function EditorHeader() {
         <div className="flex w-full items-center justify-end gap-4">
           <Tooltip
             color="dark"
-            label={<div className="flex gap-2 flex-col"><p>Click to help us improve our editor by providing feedback, report bugs
+            label={<div className="flex gap-2 flex-col"><p>Click to help us improve our editor by providing feedback,
+              report bugs
               and ask for features</p><p>If
               you need help you can contact us at help@lanndi.com - we respond in less than 24h</p>
+              <p>If you have any issues where blocks or interactions are not working properly try saving and refreshing the page.</p>
             </div>}>
             <ActionIcon
+              variant="light"
               color="red"
               component="a"
               target="_blank"
