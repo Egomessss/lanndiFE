@@ -30,17 +30,17 @@ function SubmitAsset() {
 
   // console.log(assets)
   const formSchema = z.object({
-    value: z.string().url().or(z.string().length(0)).optional(),
-    fileValue: z.instanceof(File).refine((file) => {
-      return file.size <= 1024 * 1024; // Adjusting to 1MB in bytes
-    }, `File size should be less than 1mb.`).nullable().optional(),
-  }).refine((data) => {
-    // Check that only one of value or fileValue is provided
-    return (data.value === null || data.value === '') !== (data.fileValue === null);
-  }, {
-    message: 'Only one of \'value\' or \'fileValue\' can be provided, not both.',
-    path: ['value'], // This path is arbitrary; adjust based on which field you want to highlight in case of an error
-  });
+  value: z.string().url().or(z.string().length(0)).optional(),
+  fileValue: z.instanceof(File).refine((file) => {
+    return file.size <= 1024 * 1024 * 5; // Adjusting to 5MB in bytes
+  }, `File size should be less than 5mb.`).nullable().optional(),
+}).refine((data) => {
+  // Check that only one of value or fileValue is provided
+  return (data.value === null || data.value === '') !== (data.fileValue === null);
+}, {
+  message: 'Only one of \'value\' or \'fileValue\' can be provided, not both.',
+  path: ['value'], // This path is arbitrary; adjust based on which field you want to highlight in case of an error
+});
 
   const form = useForm({
     initialValues: {
