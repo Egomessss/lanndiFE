@@ -54,12 +54,7 @@ const navbars = (editor: Editor) => {
             float: right;
           }
 
-          .${navbarPfx}-container::after {
-            content: "";
-            clear: both;
-            display: block;
-          }
-
+       
           .${navbarPfx}-brand {
             vertical-align: top;
             display: inline-block;
@@ -101,7 +96,7 @@ const navbars = (editor: Editor) => {
             margin: 5px 0;
           }
 
-          @media (max-width: 768px) {
+          @media (max-width: 840px) {
             .${navbarPfx}-items-c {
               display: none;
               width: 100%;
