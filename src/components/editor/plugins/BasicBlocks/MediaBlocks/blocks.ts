@@ -59,7 +59,7 @@ const MediaBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
 
   editor.DomComponents.addType('image', {
     isComponent: el => {
-      if (el.tagName === 'img') {
+      if (el.tagName === 'IMG') {
         return { type: 'image' };
       }
     },
