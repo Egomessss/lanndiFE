@@ -225,6 +225,7 @@ export default function CustomAssetManager({
     <Modal scrollAreaComponent={ScrollArea.Autosize} size="xl" opened={open} onClose={close} title="Assets" centered
     >
       <div className="flex flex-col gap-4">
+        <p>Compressed, optimized and assets that use newer standards such as webp make your website faster</p>
         <SubmitAsset />
         <div className="grid grid-cols-4 gap-2 pr-2">
           {assets.map((asset: Asset) => (
