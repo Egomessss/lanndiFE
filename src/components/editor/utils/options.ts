@@ -25,9 +25,8 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
   // avoidInlineStyle:true,
   undoManager: { trackSelection: false },
   canvas:{
-    scripts:[
-      "https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-    ]
+    // scripts:["https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"]
+    frameStyle: `body{height-fit-content;}`,
   },
   deviceManager: {
     default: 'fit',
@@ -97,7 +96,7 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
     // CssEditor,
     ScriptEditor,
     CustomCode,
-    // GoogleIcons,
+    GoogleIcons,
     BorderStyle,
     Sections,
     UtilsPlugin,

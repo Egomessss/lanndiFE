@@ -28,9 +28,10 @@ export const demoEditorConfigOptions = () => ({
   showOffsetsSelected: true,
   // avoidInlineStyle:true,
   undoManager: { trackSelection: false },
-  // canvas:{
-  //   scripts:["https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"]
-  // },
+  canvas:{
+    // scripts:["https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"]
+    frameStyle: `body{height-fit-content;}`,
+  },
   deviceManager: {
     default: 'fit',
     devices: [
@@ -98,7 +99,7 @@ export const demoEditorConfigOptions = () => ({
     PostCss,
     ScriptEditor,
     CustomCode,
-    // GoogleIcons,
+    GoogleIcons,
     BorderStyle,
     Sections,
     UtilsPlugin,

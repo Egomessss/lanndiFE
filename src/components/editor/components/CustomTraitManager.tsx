@@ -108,7 +108,7 @@ export const GlobalCssCode = () => {
   useEffect(() => {
     if (component) {
       // @ts-ignore
-      const formatedCss = formatCSS(editor.getCss({ component }));
+      const formatedCss = formatCSS(editor.getCss());
 
       setValue(formatedCss);
     }
@@ -395,12 +395,12 @@ export default function CustomTraitManager({
             Edit Javascript
           </Button>
           <Divider className="w-full" label="Global Customization" />
-          {/*<GlobalCssCode />*/}
+          <GlobalCssCode />
           <GlobalJsCode />
         </> : <>
-          {/*<Button disabled size="xs" mb="4">*/}
-          {/*  Edit CSS*/}
-          {/*</Button>*/}
+          <Button disabled size="xs" mb="4">
+            Edit CSS
+          </Button>
           <Button disabled size="xs" mb="4">
             Edit Javascript
           </Button>

@@ -6,19 +6,187 @@ const navbars = (editor: Editor) => {
   const id = 'navbar';
   const label = 'Navbar';
   const style = '';
+  const { Components } = editor;
 
+  const script = function () {
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector(".nav-menu");
 
+    hamburger?.addEventListener("click", mobileMenu);
 
-  editor.Blocks.add('navbar', {
-    media: `<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-layout-navbar"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 9l16 0" /></svg>`,
-    label: 'Navbar',
-    category: 'sections-navbar',
+    function mobileMenu() {
+      hamburger?.classList.toggle("active");
+      navMenu?.classList.toggle("active");
+    }
+
+    const navLink = document.querySelectorAll(".nav-link");
+
+    navLink.forEach(n => n.addEventListener("click", closeMenu));
+
+    function closeMenu() {
+      hamburger?.classList.remove("active");
+      navMenu?.classList.remove("active");
+    }
+  }
+
+  editor.Blocks.add('navbar-simple', {
+    media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
+    label: 'W/Burger',
+    category: 'sections-navbars',
     select: true,
-    content: { type: id },
+    content: { type: 'navbar-simple' },
+  });
+
+  Components.addType('navbar-simple', {
+    model: {
+      defaults: {
+        script: script,
+        name: 'Navbar W/Burger Menu',
+        components: `  
+   <header class="header">
+        <nav class="navbar">
+            <a href="#" class="nav-logo">WebDev.</a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+</header>`,
+        styles: `
+      .header{
+  border-bottom:1px solid #E2E8F0;
+}
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-top:0.5rem;
+  padding-right:0;
+  padding-bottom:0.5rem;
+  padding-left:0;
+  width:90%;
+  height:fit-content;
+  max-width:1200px;
+  margin-right:auto;
+  margin-left:auto;
+}
+a{
+  text-decoration:none;
+}
+.nav-logo{
+  font-size:1.5rem;
+  font-weight:500;
+  color:#482ff7;
+}
+.nav-menu{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:row;
+  width:fit-content;
+}
+li{
+  list-style:none;
+}
+.nav-item{
+  margin-left:5rem;
+}
+.nav-link{
+  font-size:1rem;
+  font-weight:400;
+  color:#475569;
+}
+.nav-link:hover{
+  color:#482ff7;
+}
+.hamburger{
+  display:none;
+}
+.bar{
+  display:block;
+  width:25px;
+  height:3px;
+  margin:5px auto;
+  -webkit-transition:all 0.3s ease-in-out;
+  transition:all 0.3s ease-in-out;
+  background-color:#101010;
+}
+@media (max-width: 880px){
+  #iumkw{
+    height:29px;
+  }
+}
+@media only screen and (max-width: 880px){
+  .nav-menu{
+    position:fixed;
+    left:-100%;
+    top:5rem;
+    flex-direction:column;
+    background-color:#fff;
+    width:100%;
+    border-radius:10px;
+    text-align:center;
+    transition:0.3s;
+    box-shadow:0 10px 27px rgba(0, 0, 0, 0.05);
+  }
+  
+  .nav-menu.active {
+        left: 0;
+    }
+    
+  .nav-item{
+    margin:2.5rem 0;
+  }
+  .hamburger{
+    display:block;
+    cursor:pointer;
+  }
+  
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+}
+`,
+      },
+    },
   });
 
 
-  const { Components } = editor;
+
+  // editor.Blocks.add('navbar', {
+  //   media: `<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-layout-navbar"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 9l16 0" /></svg>`,
+  //   label: 'Navbar',
+  //   category: 'sections-navbar',
+  //   select: true,
+  //   content: { type: id },
+  // });
+
+
+
 
 
   const navbarPfx = id;
@@ -37,29 +205,28 @@ const navbars = (editor: Editor) => {
         styles:  `
           .${navbarPfx} {
             background-color: inherit;
+            height:fit-content;
             min-height: 50px;
             width: 100%;
           }
 
           .${navbarPfx}-container {
-            max-width: 950px;
-            margin: 0 auto;
-            width: 95%;
-          }
-
-          .${navbarPfx}-items-c {
-            display: inline-block;
-            float: right;
+            max-width: 1200px;
+            margin: 0 auto 0 auto;
+            width: 90%;
+            height:fit-content;
+            display:flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
           }
 
        
           .${navbarPfx}-brand {
-            vertical-align: top;
-            display: inline-block;
             padding: 10px 10px 10px 10px;
-            min-height: 50px;
-            margin-top:4px;
-            min-width: 50px;
+            height:fit-content;
+            display: block;
             color: inherit;
             text-decoration: none;
           }
@@ -67,8 +234,10 @@ const navbars = (editor: Editor) => {
           .${navbarPfx}-menu {
             padding: 10px 0 10px 0;
             display: block;
-            float: right;
             margin: 0;
+            position:absolute;
+            top: 100%;
+            left: 0;
           }
 
           .${navbarPfx}-menu-link {
@@ -84,8 +253,7 @@ const navbars = (editor: Editor) => {
             width: 45px;
             padding: 5px 10px;
             display: none;
-            float: right;
-            cursor: pointer;
+                 cursor: pointer;
           }
 
           .${navbarPfx}-burger-line {
@@ -106,6 +274,7 @@ const navbars = (editor: Editor) => {
 
             .${navbarPfx}-menu {
               width: 100%;
+              
             }
 
             .${navbarPfx}-menu-link {
@@ -122,11 +291,7 @@ const navbars = (editor: Editor) => {
       defaults: {
         attributes: { class: `${navbarPfx}-container`, 'data-gjs': 'navbar' },
         name: 'Navbar Container',
-        droppable: false,
-        draggable: false,
-        removable: false,
         copyable: false,
-        highlightable: false,
         components: [
           {
             type: 'link',
