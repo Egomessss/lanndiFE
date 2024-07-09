@@ -272,6 +272,7 @@ const TypographyBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
         margin-right: 0;
         margin-bottom: 0;
         margin-left: 0;
+        width:fit-content;
         }
         `,
       },
