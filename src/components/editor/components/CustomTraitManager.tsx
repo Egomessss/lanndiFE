@@ -1,6 +1,6 @@
 import { TraitsResultProps, useEditor } from '@/components/editor/wrappers';
 import TraitPropertyField from '@/components/editor/components/TraitPropertyField';
-import { ActionIcon, Button, Divider, Modal, TextInput } from '@mantine/core';
+import { ActionIcon, Button, Divider, Modal, ScrollArea, TextInput } from '@mantine/core';
 import { HeadingTypeSelector } from '@/components/editor/components/HeadingTypeSelector';
 import { HtmlElementSelector } from '@/components/editor/components/HtmlElementSelector';
 import CodeMirror, { EditorView } from '@uiw/react-codemirror';
@@ -122,7 +122,7 @@ export const GlobalCssCode = () => {
     const trimmedCssCode = value.trim();
     console.log('css', trimmedCssCode);
     editor.Css.addRules(trimmedCssCode);
-    close()
+    close();
   };
 
 
@@ -163,8 +163,8 @@ export const GlobalJsCode = () => {
     // console.log('global js', value);
     component?.set('script', value);
     // setValue('')
-    editor.refresh()
-    close()
+    editor.refresh();
+    close();
   };
 
 
@@ -204,7 +204,6 @@ export const SvgContentCode = () => {
   };
 
   return <div className="flex items-start gap-2 flex-col w-full ">
-    <p>SVG Editor</p>
     <Modal opened={opened} size="xl" centered onClose={close} title="SVG Content">
       <CodeMirror
         value={value} height="400px" theme="dark"
@@ -231,7 +230,6 @@ function CustomAttributes() {
   const [attributeKey, setAttributeKey] = useState('');
   const [attributeValue, setAttributeValue] = useState('');
   const [refreshCounter, setRefreshCounter] = useState(0); // State to track changes
-
 
 
 // if changing an already added attribute get the key also
@@ -299,24 +297,24 @@ function CustomAttributes() {
           onChange={(event) => setAttributeValue(event.currentTarget.value)}
         />
         <div className="flex gap-1 items-center w-full justify-end">
-        <Button size="xs" my="md" onClick={() => handleAddAttribute()}>
-          Save Changes
-        </Button>
-        <Button color="red" size="xs" onClick={() => handleRemoveAttribute(attributeKey)}>
-          Delete Attribute
-        </Button>
+          <Button size="xs" my="md" onClick={() => handleAddAttribute()}>
+            Save Changes
+          </Button>
+          <Button color="red" size="xs" onClick={() => handleRemoveAttribute(attributeKey)}>
+            Delete Attribute
+          </Button>
         </div>
       </Modal>
       <div className="flex flex-col gap-2 justify-end">
-
-        <div>
+        <ScrollArea offsetScrollbars h={200} w={200} py="md">
           {Object.entries(filteredAttributes).map(([key, value]) => {
             return (
               <div key={key} className="flex gap-4 justify-end flex-wrap items-center">
                 <div className="flex gap-1 flex-col justify-start w-full text-sm">
                   <p className="font-bold">{key}</p>
                   {/*// @ts-ignore*/}
-                  <p className="text-xs">{value}</p>
+                  <p className="text-xs text-wrap w-full">{value}</p>
+
                 </div>
                 {/*// @ts-ignore*/}
                 <ActionIcon size="sm" onClick={() => openModalWithAttribute(key, value)}>
@@ -329,7 +327,7 @@ function CustomAttributes() {
               </div>
             );
           })}
-        </div>
+        </ScrollArea>
 
         <TextInput
           disabled={user?.subscription === 'free'}
@@ -384,10 +382,15 @@ export default function CustomTraitManager({
         </Button></>}
       <Divider className="w-full" label="Custom attributes" />
       <CustomAttributes />
-      <Divider className="w-full" label="Selected Block Customization" />
-      {['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(value!) && <HeadingTypeSelector />}
+
+
+      {['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(value!) &&
+        <div><Divider className="w-full" my="xs" label="Heading Type" /><HeadingTypeSelector /></div>}
+      {value === 'svg' &&
+        <div><Divider my="xs" className="w-full" label="SVG Editor" /><SvgContentCode /></div>}
       {/*<HtmlElementSelector />*/}
-      {value === 'svg' && <SvgContentCode />}
+
+      <Divider className="w-full" label="Selected Block Customization" />
       {user?.isAdmin && <>{
         user?.subscription !== 'free' ? <>
           <CssCode />

@@ -2,9 +2,9 @@ import * as React from 'react';
 import { useState } from 'react';
 
 import { Button, Divider, Text, Tooltip } from '@mantine/core';
-import { BlocksResultProps } from '@/components/editor/wrappers';
+import { BlocksResultProps, useEditor } from '@/components/editor/wrappers';
 import useUser from '@/hooks/use-user';
-import { IconExclamationCircle } from '@tabler/icons-react';
+import { IconBulb, IconExclamationCircle } from '@tabler/icons-react';
 
 
 export type CustomBlockManagerProps = Pick<
@@ -19,8 +19,24 @@ export default function CustomBlockManager({
                                            }: CustomBlockManagerProps) {
   const { user } = useUser();
 
+  const editor = useEditor();
+
+  const onClick = (id: string) => {
+    editor.runCommand('click:grab-block', { id: id });
+
+    editor.runCommand('click:drop-block', { id: id });
+  };
+
   return (
     <div className="w-full ">
+      <Tooltip arrowOffset={10} color="dark" w={400} multiline arrowSize={4}
+               label={<div className="flex flex-col gap-2"><p>1. Click and drag a block to display it on the canvas</p>
+                 <p>2. Click on the block and it will display in last place</p>
+                 <p>Blocks with interactive elements can be only be interacted with preview mode, e.g. pricing with
+                   switch can be switched on/off with preview mode and the values changed.</p></div>}
+               withArrow position="top">
+        <Button leftSection={<IconBulb size="1rem" />} size="xs" fullWidth>Tips</Button>
+      </Tooltip>
       {Array.from(mapCategoryBlocks)
         .filter(([category, _]) => !category.startsWith('sections-')) // Filter out categories starting with "section-"
         .map(([category, blocks]) => (
@@ -54,6 +70,7 @@ export default function CustomBlockManager({
                               style={{ paddingLeft: '4px' }}
                               draggable={!disabled}
                               justify="start" fullWidth
+                              onClick={() => onClick(block.getId())}
                               onDragStart={(ev) => !disabled ? dragStart(block, ev.nativeEvent) : ev.preventDefault()}
                               onDragEnd={() => dragStop(false)}
                               disabled={disabled}
@@ -72,12 +89,12 @@ export default function CustomBlockManager({
                             <IconExclamationCircle size="1rem" />
                           </Tooltip>
                         }
-                        {block.getLabel() === 'SVG'  &&
+                        {block.getLabel() === 'SVG' &&
                           <Tooltip label="You can edit your SVG content in the settings tab">
                             <IconExclamationCircle size="1rem" />
                           </Tooltip>
                         }
-                        {block.getLabel() === 'Heading'  &&
+                        {block.getLabel() === 'Heading' &&
                           <Tooltip label="You can edit the type of heading in the settings">
                             <IconExclamationCircle size="1rem" />
                           </Tooltip>

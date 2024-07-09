@@ -194,7 +194,7 @@ const InteractiveBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
   editor.DomComponents.addType('button', {
     isComponent: el => {
       // This will treat every 'div' element as a 'container' component
-      if (el.tagName === 'button') {
+      if (el.tagName === 'BUTTON') {
         return { type: 'button' };
       }
     },

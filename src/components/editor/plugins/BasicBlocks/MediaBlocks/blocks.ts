@@ -135,12 +135,12 @@ const MediaBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
   });
 
   editor.DomComponents.addType('svg', {
-    // isComponent: el => {
-    //   if (el.tagName === 'SVG') { // Corrected the condition to check for H1 tag
-    //     return { type: 'svg' };
-    //   }
-    // },
-    // extend: 'svg',
+    isComponent: el => {
+      if (el.tagName === 'SVG') { // Corrected the condition to check for H1 tag
+        return { type: 'svg' };
+      }
+    },
+    extend: 'svg',
     model: {
       defaults: {
         attributes: { class: 'svg' },

@@ -230,7 +230,7 @@ export default function StylePropertyField({
                     size="xs">Pick</Button>
           </Popover.Target>
           <Popover.Dropdown>
-            <ColorPicker className="text-xs" hidePresets hideAdvancedSliders hideColorGuide height={180} width={280}
+            <ColorPicker className="text-xs" hideAdvancedSliders hideColorGuide height={180} width={280}
                          value={value} onChange={onChange} />
           </Popover.Dropdown>
         </Popover>
