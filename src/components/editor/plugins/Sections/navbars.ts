@@ -31,14 +31,12 @@ const navbars = (editor: Editor) => {
   Components.addType(id, {
     model: {
       defaults: {
-        droppable: false,
         name: label,
         attributes: { class: navbarPfx },
         components: { type: idContainer },
         styles:  `
           .${navbarPfx} {
-            background-color: white;
-            color: black;
+            background-color: inherit;
             min-height: 50px;
             width: 100%;
           }
