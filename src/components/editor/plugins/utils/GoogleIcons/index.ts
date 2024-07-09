@@ -6,8 +6,14 @@ import { ClbObj } from 'grapesjs';
 const plugin = (editor: IEditor, opts = {}) => {
 
   editor.DomComponents.addType('materialIcons', {
+    isComponent: el => {
+      if (el.classList && el.classList.contains('material-icons')) {
+        return { type: 'materialIcons' };
+      }
+    },
     model:{
       defaults: {
+        name: 'Material Icon',
         traits: [
           {
             type: 'button',
