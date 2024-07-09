@@ -97,7 +97,7 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
     // CssEditor,
     ScriptEditor,
     CustomCode,
-    GoogleIcons,
+    // GoogleIcons,
     BorderStyle,
     Sections,
     UtilsPlugin,

@@ -98,7 +98,7 @@ export const demoEditorConfigOptions = () => ({
     PostCss,
     ScriptEditor,
     CustomCode,
-    GoogleIcons,
+    // GoogleIcons,
     BorderStyle,
     Sections,
     UtilsPlugin,
