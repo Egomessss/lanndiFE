@@ -58,7 +58,7 @@ const navbars = (editor: Editor) => {
                     <a href="#" class="nav-link">Contact</a>
                
             </div>
-            <button data-gjs-removable="false"  class="hamburger">
+            <button type="button" data-gjs-removable="false"  class="hamburger">
                 <span data-gjs-selectable="false" data-gjs-removable="false" class="bar"></span>
                 <span data-gjs-selectable="false" data-gjs-removable="false" class="bar"></span>
                 <span data-gjs-selectable="false" data-gjs-removable="false" class="bar"></span>
