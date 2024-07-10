@@ -13,6 +13,7 @@ import ScriptEditor from '@/components/editor/plugins/utils/ScriptEditor';
 import PostCss from '../plugins/utils/PostCss';
 import { styles } from '@/components/editor/utils/styles';
 import FormBlocks from '@/components/editor/plugins/BasicBlocks/FormsBlocks';
+import { starterTemplate, styleStarterTemplate } from '@/components/editor/templates/Starter';
 
 
 export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: boolean) => ({
@@ -80,8 +81,8 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
         {
           name: 'Home',
           slug: 'index',
-          // component: starterTemplate,
-          // styles: styleStarterTemplate,
+          component: starterTemplate,
+          styles: styleStarterTemplate,
         },
       ],
     }

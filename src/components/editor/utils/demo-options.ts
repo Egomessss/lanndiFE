@@ -82,8 +82,8 @@ export const demoEditorConfigOptions = () => ({
       {
         name: 'Home',
         slug: 'index',
-        // component: starterTemplate,
-        // styles: styleStarterTemplate,
+        component: starterTemplate,
+        styles: styleStarterTemplate,
       },
     ],
   },
