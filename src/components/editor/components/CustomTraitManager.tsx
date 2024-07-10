@@ -6,7 +6,15 @@ import { HtmlElementSelector } from '@/components/editor/components/HtmlElementS
 import CodeMirror, { EditorView } from '@uiw/react-codemirror';
 import { langs } from '@uiw/codemirror-extensions-langs';
 import React, { useEffect, useState } from 'react';
-import { IconCheck, IconEdit, IconTrash } from '@tabler/icons-react';
+import {
+  IconBrandCss3,
+  IconBrandJavascript,
+  IconCheck,
+  IconEdit, IconGlobe,
+  IconKey,
+  IconPlus,
+  IconTrash, IconWorld,
+} from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
 import useUser from '@/hooks/use-user';
 import Link from 'next/link';
@@ -94,7 +102,7 @@ export const CssCode = () => {
       />
       <Button my="1rem" fullWidth onClick={handleClick} size="xs">Save CSS Changes</Button>
     </Modal>
-    <Button fullWidth onClick={open} size="xs">Edit CSS</Button>
+    <Button leftSection={<IconBrandCss3 size="1rem"/>}  fullWidth onClick={open} size="xs">Edit CSS</Button>
   </div>;
 };
 
@@ -133,9 +141,9 @@ export const GlobalCssCode = () => {
         extensions={[langs.css(), EditorView.lineWrapping]}
         onChange={setValue}
       />
-      <Button my="1rem" fullWidth onClick={handleClick} size="xs">Save Global CSS Changes</Button>
+      <Button  my="1rem" fullWidth onClick={handleClick} size="xs">Save Global CSS Changes</Button>
     </Modal>
-    <Button fullWidth onClick={open} size="xs">Edit Global CSS</Button>
+    <Button justify="space-between" leftSection={<IconBrandCss3 size="1rem"/>} rightSection={<IconWorld size="1rem"/>}  fullWidth onClick={open} size="xs">Edit Global CSS</Button>
   </div>;
 };
 
@@ -177,7 +185,7 @@ export const GlobalJsCode = () => {
       />
       <Button my="1rem" fullWidth onClick={handleClick} size="xs">Save Global Js Changes</Button>
     </Modal>
-    <Button fullWidth onClick={open} size="xs">Edit Global Javascript</Button>
+    <Button justify="space-between" leftSection={<IconBrandCss3 size="1rem"/>} rightSection={<IconWorld size="1rem"/>} fullWidth onClick={open} size="xs">Edit Global Javascript</Button>
   </div>;
 };
 
@@ -306,7 +314,27 @@ function CustomAttributes() {
         </div>
       </Modal>
       <div className="flex flex-col gap-2 justify-end">
-        <ScrollArea offsetScrollbars h={200} w={200} py="md">
+
+
+        <TextInput
+          disabled={user?.subscription === 'free'}
+          size="xs"
+          label="Attribute Key"
+          placeholder="Attribute Key"
+          value={attributeKey}
+          onChange={(event) => setAttributeKey(event.currentTarget.value)}
+        />
+        <TextInput
+          size="xs"
+          label="Attribute Value"
+          placeholder="Attribute Value"
+          value={attributeValue}
+          onChange={(event) => setAttributeValue(event.currentTarget.value)}
+        />
+        <Button leftSection={<IconKey size="1rem"/>} size="xs" onClick={handleAddAttribute}>
+          Add Attribute
+        </Button>
+        <ScrollArea offsetScrollbars h={150} w={200} py="md">
           {Object.entries(filteredAttributes).map(([key, value]) => {
             return (
               <div key={key} className="flex gap-4 justify-end flex-wrap items-center">
@@ -328,25 +356,6 @@ function CustomAttributes() {
             );
           })}
         </ScrollArea>
-
-        <TextInput
-          disabled={user?.subscription === 'free'}
-          size="xs"
-          label="Attribute Key"
-          placeholder="Attribute Key"
-          value={attributeKey}
-          onChange={(event) => setAttributeKey(event.currentTarget.value)}
-        />
-        <TextInput
-          size="xs"
-          label="Attribute Value"
-          placeholder="Attribute Value"
-          value={attributeValue}
-          onChange={(event) => setAttributeValue(event.currentTarget.value)}
-        />
-        <Button size="xs" onClick={handleAddAttribute}>
-          Add Attribute
-        </Button>
       </div>
     </>
 
@@ -394,17 +403,17 @@ export default function CustomTraitManager({
       {user?.isAdmin && <>{
         user?.subscription !== 'free' ? <>
           <CssCode />
-          <Button onClick={() => editor.runCommand('edit-script')} size="xs" mb="4">
+          <Button leftSection={<IconBrandJavascript size="1rem"/>} onClick={() => editor.runCommand('edit-script')} size="xs" mb="4">
             Edit Javascript
           </Button>
           <Divider className="w-full" label="Global Customization" />
           <GlobalCssCode />
           <GlobalJsCode />
         </> : <>
-          <Button disabled size="xs" mb="4">
+          <Button leftSection={<IconBrandCss3 size="1rem"/>} disabled size="xs" mb="4">
             Edit CSS
           </Button>
-          <Button disabled size="xs" mb="4">
+          <Button leftSection={<IconBrandJavascript size="1rem"/>} disabled size="xs" mb="4">
             Edit Javascript
           </Button>
         </>

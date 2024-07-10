@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SelectorsResultProps, useEditor } from '../wrappers';
 import {
   ActionIcon,
@@ -25,6 +25,7 @@ import {
   IconTags,
 } from '@tabler/icons-react';
 import { Selector } from 'grapesjs';
+import useUser from '@/hooks/use-user';
 
 
 export default function CustomSelectorManager({
@@ -40,7 +41,7 @@ export default function CustomSelectorManager({
                                               }: Omit<SelectorsResultProps, 'Container'>) {
 
   const editor = useEditor();
-
+  const { user } = useUser();
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
     onDropdownOpen: () => combobox.updateSelectedOptionIndex('active'),
@@ -59,7 +60,7 @@ export default function CustomSelectorManager({
 
   const deleteSelector = (selector: Selector) => {
     removeSelector(selector);
-    const cssToRemove = editor.Css.getRules(`.${selector.getName()}`)
+    const cssToRemove = editor.Css.getRules(`.${selector.getName()}`);
     // console.log(cssToRemove);
     // @ts-ignore
     editor.Css.remove(cssToRemove);
@@ -112,7 +113,7 @@ export default function CustomSelectorManager({
           <Menu.Dropdown>
             <Menu.Label>Utility</Menu.Label>
             <Menu.Item onClick={(e) => {
-              e.stopPropagation()
+              e.stopPropagation();
               setIsRenamingSelector(true);
               setSelector(selector);
             }
@@ -161,11 +162,12 @@ export default function CustomSelectorManager({
     .filter((item) => item.toLowerCase().includes(search.trim().toLowerCase()))
     .map((item) => (
       <Combobox.Option onClick={() => addSelector(item)} value={item} key={item}>
-      <Group gap="sm">
+        <Group gap="sm">
           <span>{item}</span>
         </Group>
       </Combobox.Option>
     ));
+
 
 
   const isComponentFirst = editor.Selectors.getComponentFirst();
@@ -226,7 +228,8 @@ export default function CustomSelectorManager({
                          using its ID you won&apos;t be able to change the height using class, only if you remove that
                          value from the ID e.g: if you had styled a block with 100px height using its ID you&apos;d have
                          to remove(leave the input empty) that style before styling the height by class.</p>
-                       <p>Tip 4: Use  ID for solo blocks and classes for blocks that are used multiple time and share the same style.</p>
+                       <p>Tip 4: Use ID for solo blocks and classes for blocks that are used multiple time and share the
+                         same style.</p>
                      </div>}>
             <ActionIcon onClick={setComponentFirst}
                         variant={isComponentFirst ? 'filled' : 'subtle'}>
@@ -293,7 +296,8 @@ export default function CustomSelectorManager({
           </Combobox.Dropdown>
         </Combobox>
         {isRenamingSelector &&
-          <TextInput autoFocus className="w-full" placeholder="Insert new class name" size="xs" my={8} value={selectorName}
+          <TextInput autoFocus className="w-full" placeholder="Insert new class name" size="xs" my={8}
+                     value={selectorName}
                      onChange={(event) => setSelectorName(event.currentTarget.value)}
                      rightSection={<ActionIcon size="sm" onClick={() => renameSelector()}><IconCheck
                        size="1rem" /></ActionIcon>} />}

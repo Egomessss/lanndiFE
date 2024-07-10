@@ -29,15 +29,16 @@ const navbars = (editor: Editor) => {
     }
   }
 
-  editor.Blocks.add('navbar-simple', {
+
+
+  editor.Blocks.add('navbar-burger', {
     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
     label: 'W/Burger',
     category: 'sections-navbars',
     select: true,
-    content: { type: 'navbar-simple' },
+    content: { type: 'navbar-burger' },
   });
-
-  Components.addType('navbar-simple', {
+  Components.addType('navbar-burger', {
     model: {
       defaults: {
         script: script,
@@ -45,25 +46,22 @@ const navbars = (editor: Editor) => {
         components: `  
    <header class="header">
         <nav class="navbar">
-            <a href="#" class="nav-logo">WebDev.</a>
-            <ul class="nav-menu">
-                <li class="nav-item">
+            <a href="#" class="nav-logo">lanndi</a>
+            <div data-gjs-removable="false" class="nav-menu">
+              
                     <a href="#" class="nav-link">Services</a>
-                </li>
-                <li class="nav-item">
+               
                     <a href="#" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
+              
                     <a href="#" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
+              
                     <a href="#" class="nav-link">Contact</a>
-                </li>
-            </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+               
+            </div>
+            <div data-gjs-removable="false"  class="hamburger">
+                <span data-gjs-selectable="false" data-gjs-removable="false" class="bar"></span>
+                <span data-gjs-selectable="false" data-gjs-removable="false" class="bar"></span>
+                <span data-gjs-selectable="false" data-gjs-removable="false" class="bar"></span>
             </div>
         </nav>
 </header>`,
@@ -99,13 +97,13 @@ a{
   align-items:center;
   flex-direction:row;
   width:fit-content;
+  column-gap:2rem;
+  padding-top:1rem;
+  padding-right:1rem;
+  padding-bottom:1rem;
+  padding-left:1rem;
 }
-li{
-  list-style:none;
-}
-.nav-item{
-  margin-left:5rem;
-}
+
 .nav-link{
   font-size:1rem;
   font-weight:400;
@@ -135,8 +133,9 @@ li{
   .nav-menu{
     position:fixed;
     left:-100%;
-    top:5rem;
+    top:3rem;
     flex-direction:column;
+    row-gap:1rem;
     background-color:#fff;
     width:100%;
     border-radius:10px;
@@ -149,9 +148,7 @@ li{
         left: 0;
     }
     
-  .nav-item{
-    margin:2.5rem 0;
-  }
+ 
   .hamburger{
     display:block;
     cursor:pointer;
@@ -170,6 +167,108 @@ li{
     }
 
 }
+`,
+      },
+    },
+  });
+
+
+  editor.Blocks.add('navbar-simple', {
+    media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
+    label: 'W/Cta',
+    category: 'sections-navbars',
+    select: true,
+    content: { type: 'navbar-simple' },
+  });
+
+  Components.addType('navbar-simple', {
+    model: {
+      defaults: {
+        name: 'Navbar W/Cta',
+        components: `  
+   <header class="header">
+        <nav class="navbar">
+            <a href="#" class="nav-logo">lanndi</a>
+            <a class="link-box"><button class="button">Button</button></a>
+        </nav>
+</header>`,
+        styles: `
+      .header{
+  border-bottom:1px solid #E2E8F0;
+}
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-top:0.5rem;
+  padding-right:0;
+  padding-bottom:0.5rem;
+  padding-left:0;
+  width:90%;
+  height:fit-content;
+  max-width:1200px;
+  margin-right:auto;
+  margin-left:auto;
+}
+
+.nav-logo{
+  font-size:1.5rem;
+  font-weight:500;
+  color:#482ff7;
+}
+
+.link-box{
+  color:inherit;
+  display:inline-block;
+  vertical-align:top;
+  padding:10px;
+  max-width:100%;
+  text-decoration:none;
+  cursor:pointer;
+}
+.link-box:empty{
+  text-decoration:none;
+  padding:5px;
+}
+.link-box:empty:before{
+  background-color:#ddd;
+  color:#000;
+  font-size:16px;
+  font-weight:bold;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:30px;
+  padding:0 10px;
+  opacity:0.3;
+  border-radius:3px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  content:"Link Box";
+}
+.button{
+  width:fit-content;
+  cursor:pointer;
+  outline:0;
+  color:#fff;
+  background-color:#0d6efd;
+  border-color:#0d6efd;
+  display:inline-block;
+  font-weight:400;
+  line-height:1.5;
+  text-align:center;
+  border:1px solid transparent;
+  padding:2px 8px 2px 8px;
+  font-size:16px;
+  border-radius:.25rem .25rem .25rem .25rem;
+}
+.button:hover{
+  opacity:0.9;
+}
+
+
 `,
       },
     },

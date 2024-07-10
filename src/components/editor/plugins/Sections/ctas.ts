@@ -33,10 +33,7 @@ const ctas = (editor: Editor) => {
       </h2>
       <p class="cta-simple-paragraph">Incididunt sint fugiat pariatur cupidatat consectetur sit cillum anim id veniam aliqua proident excepteur commodo do ea.
       </p>
-      <div class="cta-simple-button">
         <button class="cta-simple-button">CTA Button</button>
-        <span class="material-icons material-symbols-outlined">arrow_forward</span>
-      </div>
     </div>
   </div>`,
         styles: `
@@ -168,10 +165,10 @@ const ctas = (editor: Editor) => {
             </p>
           </div>
         </div>
-        <div class="container-feature-list-button">
+        
           <button class="container-feature-list-button">CTA Button</button>
           <span class="material-icons material-symbols-outlined">arrow_forward</span>
-        </div>
+        
       </div>
     </div>`,
         styles: `

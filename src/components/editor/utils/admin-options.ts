@@ -20,7 +20,9 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
   height: '94vh',
   jsInHtml: false,
   optsHtml: { cleanId: true },
-  optsCss: { onlyMatched: true, keepUnusedStyles: true },
+  // canvasCss: `body{margin: 0;height-fit-content;}`,
+  multipleSelection: true,
+  optsCss: { onlyMatched: true, keepUnusedStyles: false },
   clearStyles: true,
   showOffsetsSelected: true,
   // avoidInlineStyle:true,
@@ -28,7 +30,7 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
   canvas:{
     styles:['https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;v=1704404084845'],
     // scripts:["https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"]
-    frameStyle: `body{height-fit-content;}`,
+    // frameStyle: 'body{height:fit-content;}',
   },
   deviceManager: {
     default: 'fit',
@@ -65,7 +67,7 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
     ],
   },
   selectorManager: {
-    stylePrefix: 'lnd-', componentFirst: true, states: [
+    stylePrefix: 'lnd-', componentFirst: false, states: [
       { name: 'hover', label: 'Hover', info: 'Change styles on user hover' },
       { name: 'focus', label: 'Focus', info: 'Change styles on user focus' },
       { name: 'active', label: 'Active', info: 'Change styles on active element' },

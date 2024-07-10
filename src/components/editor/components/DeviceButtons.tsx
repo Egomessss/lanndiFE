@@ -6,7 +6,7 @@ import {
   IconDeviceDesktop,
   IconDeviceLaptop,
   IconDeviceMobile,
-  IconDeviceTablet,
+  IconDeviceTablet, IconExclamationMark, IconQuestionMark,
 } from '@tabler/icons-react';
 
 const getDeviceIcon = (device: string) => {
@@ -32,6 +32,18 @@ const DeviceButtons = () => {
   console.log(width);
   return (
     <>
+      <Tooltip
+        color="dark"
+        w={300}
+        multiline
+        label={<div className="flex gap-2 flex-col"><p>We recommend you build your website with desktop view not fit to screen if you have a smaller editing device as desktop best represents the final product.</p>
+        </div>}>
+        <ActionIcon
+          variant="light"
+        >
+          <IconExclamationMark size="1rem" />
+        </ActionIcon>
+      </Tooltip>
       <DevicesProvider>
         {({ selected, select, devices }) => (
           <div className="flex items-center gap-2">

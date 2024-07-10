@@ -21,9 +21,9 @@ const heros = (editor: Editor) => {
       </h1>
       <p class="hib-paragraph">lanndi helps you create launch and share your beautiful and responsive website effortlessly, with a super easy-to-use editor without needing code or design skills
           </p>
-    <div class="hib-button">
+    
       <button class="hib-button">Button</button>
-    </div>
+   
   </div>
   <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+" class="hib-image"/>
   </div>`,
@@ -140,9 +140,9 @@ const heros = (editor: Editor) => {
         </h1>
         <p class="his-paragraph">lanndi helps you create launch and share your beautiful and responsive website effortlessly, with a super easy-to-use editor without needing code or design skills
         </p>
-        <div class="his-button">
+       
           <button type="button" class="his-button">Button</button>
-        </div>
+       
       </div>
     </div>`,
         styles: `
@@ -278,9 +278,9 @@ const heros = (editor: Editor) => {
         </p>
         <p class="hni-paragraph">
         </p>
-        <div class="hni-button">
+      
           <button class="hni-button">Button</button>
-        </div>
+        
       </div>
     </div>`,
         styles: `.block{

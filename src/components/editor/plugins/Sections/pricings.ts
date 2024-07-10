@@ -79,9 +79,9 @@ const pricings = (editor: Editor) => {
         </p>
         <p class="ltp-paragraph ltp-price" id=.>$299
         </p>
-        <div class="ltp-button">
+        <a class="ltp-link-box">
           <button class="ltp-button">Buy Now</button>
-        </div>
+      </a>
         <div class="ltp-links" >
           <a  href="#">Terms</a>
           <a  href="#">Privacy Policy</a>
@@ -172,6 +172,38 @@ display:grid;
   grid-template-columns:1fr 1fr;
   row-gap:1rem;
   column-gap:1rem;
+}
+
+.ltp-link-box{
+  color:inherit;
+  display:inline-block;
+  vertical-align:top;
+  padding:10px;
+  max-width:100%;
+  text-decoration:none;
+  cursor:pointer;
+}
+.ltp-link-box:empty{
+  text-decoration:none;
+  padding:5px;
+}
+.ltp-link-box:empty:before{
+  background-color:#ddd;
+  color:#000;
+  font-size:16px;
+  font-weight:bold;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:30px;
+  padding:0 10px;
+  opacity:0.3;
+  border-radius:3px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  content:"Link Box";
 }
 .ltp-feature-box{
   display:flex;
