@@ -58,11 +58,11 @@ const navbars = (editor: Editor) => {
                     <a href="#" class="nav-link">Contact</a>
                
             </div>
-            <div data-gjs-removable="false"  class="hamburger">
+            <button data-gjs-removable="false"  class="hamburger">
                 <span data-gjs-selectable="false" data-gjs-removable="false" class="bar"></span>
                 <span data-gjs-selectable="false" data-gjs-removable="false" class="bar"></span>
                 <span data-gjs-selectable="false" data-gjs-removable="false" class="bar"></span>
-            </div>
+            </button>
         </nav>
 </header>`,
         styles: `
@@ -152,6 +152,13 @@ a{
   .hamburger{
     display:block;
     cursor:pointer;
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
   }
   
     .hamburger.active .bar:nth-child(2) {
