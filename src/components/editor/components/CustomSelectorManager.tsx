@@ -230,10 +230,11 @@ export default function CustomSelectorManager({
                          to remove(leave the input empty) that style before styling the height by class.</p>
                        <p>Tip 4: Use ID for solo blocks and classes for blocks that are used multiple time and share the
                          same style.</p>
+                       <p>Tip 5: The latest class will always take precedent over the previous one. Use this to add extra styles without affecting base classes. e.g. Adding a background color to just one of three grid items</p>
                      </div>}>
             <ActionIcon onClick={setComponentFirst}
                         variant={isComponentFirst ? 'filled' : 'subtle'}>
-              <IconFocus2 size="1rem" />
+            <IconFocus2 size="1rem" />
             </ActionIcon>
           </Tooltip>
           <div>
