@@ -72,13 +72,11 @@ export const CssCode = () => {
   const component = editor.getSelected();
 
   useEffect(() => {
-    if (component) {
       // @ts-ignore
-      const formatedCss = formatCSS(editor.getCss({ component }));
-
+      const formatedCss = editor.getCss({ component });
       setValue(formatedCss);
-    }
-  }, [component]);
+
+  }, [opened]);
 
 
   // console.log("value",value);
@@ -111,16 +109,11 @@ export const GlobalCssCode = () => {
   const [value, setValue] = useState('');
 
   const editor = useEditor();
-  const component = editor.Pages.getSelected()?.getMainComponent();
 
   useEffect(() => {
-    if (component) {
-      // @ts-ignore
-      const formatedCss = formatCSS(editor.getCss());
+      setValue(editor.getCss());
 
-      setValue(formatedCss);
-    }
-  }, [component]);
+  }, [opened]);
 
 
   // console.log("value",value);
