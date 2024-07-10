@@ -9,15 +9,15 @@ const navbars = (editor: Editor) => {
   const { Components } = editor;
 
   const script = function () {
-    const hamburger = document.querySelector(".hamburger");
+    const hamburger = document.querySelector(".hamburger-btn");
     const navMenu = document.querySelector(".nav-menu");
-
-    hamburger?.addEventListener("click", mobileMenu);
 
     function mobileMenu() {
       hamburger?.classList.toggle("active");
       navMenu?.classList.toggle("active");
     }
+
+    hamburger?.addEventListener("click", mobileMenu);
 
     const navLink = document.querySelectorAll(".nav-link");
 
@@ -58,7 +58,7 @@ const navbars = (editor: Editor) => {
                     <a href="#" class="nav-link">Contact</a>
                
             </div>
-            <button type="button" data-gjs-removable="false"  class="hamburger">
+            <button type="button" data-gjs-removable="false"  class="hamburger-btn">
                 <span data-gjs-selectable="false" data-gjs-removable="false" class="bar"></span>
                 <span data-gjs-selectable="false" data-gjs-removable="false" class="bar"></span>
                 <span data-gjs-selectable="false" data-gjs-removable="false" class="bar"></span>
@@ -112,7 +112,7 @@ a{
 .nav-link:hover{
   color:#482ff7;
 }
-.hamburger{
+.hamburger-btn{
   display:none;
 }
 .bar{
@@ -124,11 +124,7 @@ a{
   transition:all 0.3s ease-in-out;
   background-color:#101010;
 }
-@media (max-width: 880px){
-  #iumkw{
-    height:29px;
-  }
-}
+
 @media only screen and (max-width: 880px){
   .nav-menu{
     position:fixed;
@@ -149,7 +145,7 @@ a{
     }
     
  
-  .hamburger{
+  .hamburger-btn{
     display:block;
     cursor:pointer;
     background: none;
@@ -157,19 +153,19 @@ a{
     border: none;
     padding: 0;
     font: inherit;
-    cursor: pointer;
     outline: inherit;
+    z-index: 1000;
   }
   
-    .hamburger.active .bar:nth-child(2) {
+    .hamburger-btn.active .bar:nth-child(2) {
         opacity: 0;
     }
 
-    .hamburger.active .bar:nth-child(1) {
+    .hamburger-btn.active .bar:nth-child(1) {
         transform: translateY(8px) rotate(45deg);
     }
 
-    .hamburger.active .bar:nth-child(3) {
+    .hamburger-btn.active .bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
     }
 
