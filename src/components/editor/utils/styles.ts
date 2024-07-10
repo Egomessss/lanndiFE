@@ -691,29 +691,30 @@ export const styles = {
               label: 'Offset Y',
             },
             {
-              type: 'color',
-              property: 'box-shadow-color',
-              label: 'Colour',
-            },
-            {
               type: 'base',
               property: 'box-shadow-blur',
               label: 'Blur',
             },
             {
-              type: 'base',
-              property: 'box-shadow-spread',
-              label: 'Spread',
+              type: 'color',
+              property: 'box-shadow-color',
+              label: 'Colour',
             },
-            {
-              type: 'select',
-              property: 'inset',
-              label: 'Inset',
-              options: [
-                { id: '', label: 'Default' },
-                { id: 'inset', label: 'Shadow Inside Element' },
-              ]
-            },
+
+            // {
+            //   type: 'base',
+            //   property: 'box-shadow-spread',
+            //   label: 'Spread',
+            // },
+            // {
+            //   type: 'select',
+            //   property: 'inset',
+            //   label: 'Inset',
+            //   options: [
+            //     { id: '', label: 'Default' },
+            //     { id: 'inset', label: 'Shadow Inside Element' },
+            //   ]
+            // },
 
           ],
         }
