@@ -120,11 +120,6 @@ export default function CustomStyleManager({
 
   const [value, setValue] = useState<string | null>(null);
 
-  useEffect(() => {
-    // Reset the value state when selected changes
-    setValue(null);
-  }, [selected]);
-
 // Check if there are any sectors
   if (sectors.length === 0) {
     return null; // or some placeholder component

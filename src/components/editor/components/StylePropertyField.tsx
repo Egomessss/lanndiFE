@@ -23,7 +23,7 @@ import {
   Tooltip,
 } from '@mantine/core';
 import { useEditor } from '../wrappers';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   IconArrowDown,
   IconArrowUp,
@@ -53,6 +53,17 @@ export default function StylePropertyField({
   // send value after delay
 
   const editor = useEditor();
+
+  const [inputKey, setInputKey] = useState(Date.now());
+
+  const component = editor.getSelected();
+
+// Reset the input when the selected component changes
+  useEffect(() => {
+    // Generate a new key to force the Input component to remount
+    setInputKey(Date.now());
+  }, [component]); // Dependency array includes `component` to trigger effect when it changes
+
 
 
   const handleChange = (value: any) => {
@@ -107,6 +118,7 @@ export default function StylePropertyField({
 
   let inputToRender = (
     <Input
+      key={inputKey}
       className="col-span-1"
       // default={valueWithDef}
       // @ts-ignore
@@ -115,7 +127,6 @@ export default function StylePropertyField({
       // value={valueString}
       onChange={onChangeText}
       size="xs"
-
     />
   );
 
