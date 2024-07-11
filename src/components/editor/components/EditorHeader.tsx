@@ -117,18 +117,16 @@ function SaveButton() {
     onSuccess: () => {
       setShowSuccess(true);
       setLastSaved(new Date());
-      setTimeout(() => setShowSuccess(false), 30000);
+      setTimeout(() => setShowSuccess(false), 5000);
       queryClient.invalidateQueries({ queryKey: ['editorData', siteSlug] });
     },
   });
 
   useEffect(() => {
     if (isNotFirstTimeSaving?.data !== null) {
-      const { data, pagesData } = getEditorData();
       const saveIntervalId = setInterval(() => {
         if (!idle) {
-          // @ts-ignore
-          mutate({ data, pagesData });
+         handleSave()
         }
       }, 120000); // 2 minutes
       return () => clearInterval(saveIntervalId);
@@ -154,10 +152,10 @@ function SaveButton() {
   return (
     <>
       {user ? (
-        <Tooltip color="gray"
-                 label={`Save changes - Saved automatically every 2 minutes. Last saved: ${lastSaved ? timeSince(lastSaved) : 'Not yet saved'}`}>
+        <Tooltip color="dark"
+                 label={<div className="flex flex-col gap-4"><p>Save changes - Saved automatically every 2 minutes.</p><p></p>Last saved: {lastSaved ? timeSince(lastSaved) : 'Not yet saved'}</div>}>
           <ActionIcon
-            disabled={showSuccess}
+            disabled={isPending}
             loading={isPending}
             className={!showSuccess ? 'animate-pulse' : ''}
             color={color}
@@ -395,15 +393,6 @@ function EditorHeader() {
             {isDemo ? 'Homepage' : 'Dashboard'}
           </Button>
           <DarkModeButton />
-        </div>
-        <div className="flex items-center gap-4">
-          <WithEditor>
-            <DeviceButtons />
-            <CommandButtons />
-          </WithEditor>
-        </div>
-
-        <div className="flex w-full items-center justify-end gap-4">
           <Tooltip
             color="dark"
             label={<div className="flex gap-2 flex-col"><p>Click to help us improve our editor by providing feedback,
@@ -422,6 +411,15 @@ function EditorHeader() {
               <IconQuestionMark size="1rem" />
             </ActionIcon>
           </Tooltip>
+        </div>
+        <div className="flex items-center gap-4">
+          <WithEditor>
+            <DeviceButtons />
+            <CommandButtons />
+          </WithEditor>
+        </div>
+
+        <div className="flex w-full items-center justify-end gap-2">
           <Tooltip color="dark" label={<div className="flex flex-col gap-2">
             <p>Preview Interactions e.g. button clicks</p>
           <p>If by any chance some interactions don&apos;t work try refreshing the page</p>

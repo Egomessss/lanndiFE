@@ -51,6 +51,7 @@ const DeviceButtons = () => {
               const isSelected = device.id === selected;
               return (
                 <Tooltip
+                  color="dark"
                   key={device.id}
                   label={device.id === 'fit' ? `${device.getName()} - ${width}px` : `${device.getName()} up to ${device.getWidthMedia()}`}
                 >
