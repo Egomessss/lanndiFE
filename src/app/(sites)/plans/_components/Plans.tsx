@@ -21,7 +21,6 @@ const Plans: React.FC<PlansData> = ({
   const includedFeatures = [
     'Unlimited websites',
     'Priority support',
-    'Priority feature requests',
     'Lifetime access to all future features and updates',
   ];
   const plans = [
@@ -29,7 +28,7 @@ const Plans: React.FC<PlansData> = ({
       name: 'Free',
       priceMonthly: 0,
       priceAnnual: 0,
-      features: ['1 site', '1 page max', 'lanndi badge', 'lanndi subdomain'],
+      features: ['1 site', '1 page max', 'lanndi badge', 'lanndi subdomain','SSL Certificate'],
       variantMonthly: 'free-monthly',
       variantAnnual: 'free-annually',
     },
@@ -37,7 +36,7 @@ const Plans: React.FC<PlansData> = ({
       name: 'Basic',
       priceMonthly: 5,
       priceAnnual: 50,
-      features: ['1 site', '10 page max', 'custom domain', 'custom code'],
+      features: ['1 site', '10 page max', 'custom domain', 'custom code', 'SSL Certificate','Preview domain','Custom code','FavIcons','No lanndi branding'],
       variantMonthly: 'basic-monthly',
       variantAnnual: 'basic-annually',
     },
@@ -45,7 +44,7 @@ const Plans: React.FC<PlansData> = ({
       name: 'Indie',
       priceMonthly: 15,
       priceAnnual: 150,
-      features: ['5 sites', '10 pages max', 'custom domain', 'custom code'],
+      features: ['5 sites', '10 pages max', 'custom domain', 'custom code', 'SSL Certificate','Preview domain','Custom code','FavIcons','No lanndi branding'],
       variantMonthly: 'indie-monthly',
       variantAnnual: 'indie-annually',
     },
