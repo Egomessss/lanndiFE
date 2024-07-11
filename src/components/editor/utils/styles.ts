@@ -148,7 +148,7 @@ export const styles = {
         },
         {
           type: 'composite',
-          label: 'Spacing', // Label for the property
+          label: 'Gap', // Label for the property
           property: 'gap', // CSS property to change
           detached: true,
           properties: [
@@ -181,25 +181,29 @@ export const styles = {
           label: 'Order',
           property: 'order',
           type: 'base',
-          tooltip: 'Controls the order in which this item appears in the flex container',
+          tooltip: 'Controls the order in which this item appears in the flex container. "2" places the item in the middle if there are 3 items',
+          default: '0'
         },
         {
-          label: 'Flex Grow',
+          label: 'Grow',
           property: 'flex-grow',
           type: 'base',
-          tooltip: 'Defines the ability for a flex item to grow if necessary',
+          tooltip: 'This defines the ability for a flex item to grow if necessary. "1" means equal growth, "2" means twice as much.',
+          default: '0'
         },
         {
-          label: 'Flex Shrink',
+          label: 'Shrink',
           property: 'flex-shrink',
           type: 'base',
-          tooltip: 'Defines the ability for a flex item to shrink if necessary',
+          tooltip: 'Controls item\'s ability to shrink. "1" (default) allows shrinking, "0" prevents shrinking.',
+          default: '1'
         },
         {
-          label: 'Flex Basis',
+          label: 'Basis',
           property: 'flex-basis',
           type: 'base',
-          tooltip: 'Defines the default size of an element before the remaining space is distributed',
+          tooltip: 'Sets item\'s initial size. "auto" (default) sizes based on content, "200px" starts at 200 pixels wide.',
+          default: 'auto'
         },
         {
           label: 'Align Self',
@@ -243,13 +247,13 @@ export const styles = {
           label: 'Columns',
           property: 'grid-template-columns',
           type: 'base',
-          tooltip: 'Adds columns by adding 1fr without commas, e.g. 1. 1fr 1fr 1fr parts the width into 3 equal columns, 2. 100px 200px 500px parts the grid into 3 different sized columns',
+          tooltip: 'Sets column widths. "1fr 1fr 1fr" creates 3 equal columns. "100px 200px 500px" creates 3 columns of different widths.',
         },
         {
           label: 'Rows',
           property: 'grid-template-rows',
           type: 'base',
-          tooltip: 'Adds rows by adding 1fr without commas,  e.g. 1. 1fr 1fr 1fr parts the width into 3 equal rows, 2. 100px 200px 500px parts the grid into 3 different sized rows',
+          tooltip: 'Sets row heights. "1fr 1fr 1fr" creates 3 equal rows. "100px 200px 500px" creates 3 rows of different heights.',
 
         },
         {
@@ -331,7 +335,7 @@ export const styles = {
         },
         {
           type: 'composite',
-          label: 'Spacing', // Label for the property
+          label: 'Gap', // Label for the property
           property: 'gap', // CSS property to change
           detached: true,
           properties: [{
@@ -361,13 +365,13 @@ export const styles = {
           label: 'Column span',
           property: 'grid-column',
           type: 'base',
-          tooltip: 'Starts/spans - e.g.1: span 2 - span 2 columns  e.g.2: 2/span 2 - starts in row 2 and spans 2 rows',
+          tooltip: 'How many columns an item takes up. "span 2" means it occupies 2 columns. "2/span 2" starts at column 2 and spans 2 columns.',
         },
         {
           label: 'Row span',
           property: 'grid-row',
           type: 'base',
-          tooltip: 'Starts/spans - e.g.1: span 2 - span 2 rows  e.g.2: 2/span 2 - starts in column 2 and spans 2 columns',
+          tooltip: 'How many rows an item takes up. "span 2" means it occupies 2 rows. "2/span 2" starts at row 2 and spans 2 rows.',
         },
         {
           label: 'Justify',
@@ -582,6 +586,7 @@ export const styles = {
           type: 'select',
           property: 'position',
           label: 'Element Position',
+          default: 'static',
           options: [
             { id: 'static', label: 'Default' },
             { id: 'relative', label: 'Relative to current position' },
@@ -665,6 +670,7 @@ export const styles = {
           'label': 'Background Repeat', // Updated label for clarity
           'property': 'background-repeat', // CSS property to change
           'default': 'repeat', // Default behavior is to repeat the background image
+          tooltip: 'Controls how background image repeats. "repeat" (default) tiles in both directions, "no-repeat" shows image once.',
           'options': [
             { 'id': 'repeat', 'label': 'Repeat' }, // Image is repeated in both directions
             { 'id': 'repeat-x', 'label': 'Repeat X' }, // Image is repeated horizontally
@@ -684,21 +690,29 @@ export const styles = {
               type: 'base',
               property: 'box-shadow-offset-x',
               label: 'Offset X',
+              tooltip: 'Sets horizontal shadow position. Positive values move shadow right, negative left.',
+              default: '0px'
             },
             {
               type: 'base',
               property: 'box-shadow-offset-y',
               label: 'Offset Y',
+              tooltip: 'Sets vertical shadow position. Positive values move shadow down, negative up.',
+              default: '0px'
             },
             {
               type: 'base',
               property: 'box-shadow-blur',
               label: 'Blur',
+              tooltip: 'Controls shadow softness. Larger values create a more diffused shadow.',
+              default: '0px'
             },
             {
               type: 'color',
               property: 'box-shadow-color',
               label: 'Colour',
+              tooltip: 'Determines shadow color. Can use color names, hex, RGB, or RGBA values.',
+              default: '#000000'
             },
 
             // {
@@ -937,23 +951,27 @@ export const styles = {
         },
         {
           type: 'base',
-          label: 'Line spacing', // Label for the property
+          label: 'Line gap', // Label for the property
           property: 'line-height', // CSS property to change
           units: ['px', '%', 'em', 'rem'], // Units (available only for the 'number' type)
           min: 0, // Min value (available only for the 'number' type)
+          default: 'normal'
         },
+
         {
           type: 'base',
-          label: 'Letter spacing', // Label for the property
+          label: 'Letter gap', // Label for the property
           property: 'letter-spacing', // CSS property to change
           units: ['px', '%', 'em', 'rem'], // Units (available only for the 'number' type)
           min: 0, // Min value (available only for the 'number' type)
+          default: '0px'
         },
 
         {
           type: 'select',
           label: 'White space', // Label for the property
           property: 'white-space', // CSS property to change
+          default: 'normal',
           options: [
             { id: 'normal', label: 'Normal' },
             { id: 'no-wrap', label: 'No wrap' },
@@ -968,6 +986,7 @@ export const styles = {
           type: 'select',
           label: 'Decoration', // Label for the property
           property: 'text-decoration', // CSS property to change
+          default: 'none',
           options: [
             { id: 'none', label: 'None' },
             { id: 'underline', label: 'Underline' },
@@ -984,12 +1003,12 @@ export const styles = {
           type: 'select',
           label: 'Transform', // Label for the property
           property: 'text-transform', // CSS property to change
+          default: 'none',
           options: [
             { id: 'none', label: 'None' },
-            { id: 'capitalize', label: 'None' },
-            { id: 'uppercase', label: 'Underline' },
-            { id: 'lowercase', label: 'Overline' },
-            { id: 'line-through', label: 'Line through' },
+            { id: 'capitalize', label: 'Capitalize' },
+            { id: 'uppercase', label: 'Uppercase' },
+            { id: 'lowercase', label: 'Lowercase' },
           ],
         },
         {
@@ -1002,21 +1021,25 @@ export const styles = {
               type: 'color',
               property: 'text-shadow-color',
               label: 'Colour',
+              default: '0px',
             },
             {
               type: 'base',
               property: 'text-shadow-offset-x',
               label: 'Offset X',
+              default: '0px'
             },
             {
               type: 'base',
               property: 'text-shadow-offset-y',
               label: 'Offset Y',
+              default: '0px',
             },
             {
               type: 'base',
               property: 'text-shadow-blur',
               label: 'Blur',
+              default: '0px'
             },
           ],
         },
@@ -1032,6 +1055,7 @@ export const styles = {
           property: 'object-fit', // CSS property to change
           default: 'none', // Default value to display
           type: 'select',
+          tooltip: 'Controls how an image fits in its container. "Contain" fits entirely, "Cover" fills container, "Fill" stretches to fit, "Scale Down" shrinks if needed, "None" uses default sizing.',
           options: [
             { id: 'contain', label: 'Contain Within' }, // Enhanced clarity
             { id: 'cover', label: 'Cover Entire Space' }, // Explicit description
@@ -1045,12 +1069,15 @@ export const styles = {
           property: 'aspect-ratio', // CSS property to change
           default: 'auto', // Default value to display
           type: 'base',
+          tooltip: 'Sets the preferred aspect ratio for the box. Use values like "16/9" for widescreen, "1/1" for square. "auto" lets the browser decide based on content.',
         },
         {
           type: 'select',
           label: 'Cursor type', // Label for the property
           property: 'cursor', // CSS property to change
           default: 'default', // Default value to display
+          // Correctly formatted tooltip property
+          tooltip: 'Specifies the mouse cursor\'s appearance when hovering over an element. "Default" uses browser default, "Pointer" shows a hand, "Wait" indicates loading, etc.',
           options: [
             { id: 'default', label: 'Default' },
             { id: 'pointer', label: 'pointer' },
@@ -1065,6 +1092,7 @@ export const styles = {
           type: 'select',
           label: 'List style', // Label for the property
           property: 'list-style', // CSS property to change
+          tooltip: 'Defines the appearance of list item markers. "None" removes markers, "Square" and "Circle" use shapes, "Roman" uses Roman numerals, "Alpha" uses letters.',
           options: [
             { id: 'none', label: 'None' },
             { id: 'square', label: 'Square' },
@@ -1072,6 +1100,7 @@ export const styles = {
             { id: 'upper-roman', label: 'Roman' },
             { id: 'lower-alpha', label: 'Alpha' },
           ],
+          default: 'none'
         },
         {
           type: 'composite',
@@ -1079,26 +1108,35 @@ export const styles = {
           label: 'Transition',
           detached: true,
           // Additional props
+          tooltip: 'Controls animation between element states. "Property" specifies what to animate, "Duration" sets animation length, "Delay" adds wait time, "Timing function" defines speed curve.',
           properties: [
             {
               type: 'base',
               label: 'Property', // Label for the property
               property: 'transition-property', // CSS property to change
+              tooltip: 'Specifies which CSS property to transition. Use "all" for all properties, or specific properties like "color", "opacity", "transform".',
+              default: '',
             },
             {
               type: 'base',
               label: 'Duration', // Label for the property
               property: 'transition-duration', // CSS property to change
+              tooltip: 'Sets how long the transition takes. Use time values like "0.5s" for half a second or "300ms" for 300 milliseconds.',
+              default: '0s',
             },
             {
               type: 'base',
               label: 'Delay', // Label for the property
               property: 'transition-delay', // CSS property to change
+              tooltip: 'Defines a delay before the transition starts. Use time values like "1s" for one second delay or "500ms" for half a second.',
+              default: '0s',
             },
             {
               type: 'select',
               label: 'Timing function', // Label for the property
               property: 'transition-timing-function', // CSS property to change
+              tooltip: 'Controls the speed curve of the transition. "Linear" is constant, "Ease" starts slow, speeds up, then slows down, "Ease-in" starts slow, "Ease-out" ends slow, "Ease-in-out" combines both.',
+              default: 'ease',
               options: [
                 { id: 'linear', label: 'Linear' },
                 { id: 'ease', label: 'Ease' },
@@ -1113,15 +1151,15 @@ export const styles = {
           label: 'Transform', // Label for the property
           property: 'transform', // CSS property to change
           default: 'auto', // Default value to display
-          tooltip: 'Use to rotate, scale, skew, etc., e.g., rotate(90deg), scale(2)',
           type: 'base',
+          tooltip: 'Modifies an element\'s appearance. Examples: "rotate(90deg)" turns element, "scale(2)" doubles size, "skew(20deg)" tilts element.',
         },
         {
           label: 'Clip Path', // Label for the property
           property: 'clip-path', // CSS property to change
           default: 'none', // Default value to display
-          tooltip: 'Use to create complex shapes, e.g., circle(90%), ellipse(30px 140px at 10% 20%)',
           type: 'base',
+          tooltip: 'Creates a clipping region that sets what part of an element should be shown. Examples: "circle(50%)" clips to a circle, "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" creates a diamond shape.'
         },
 
 

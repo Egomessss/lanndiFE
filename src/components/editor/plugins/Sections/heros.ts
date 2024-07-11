@@ -9,6 +9,7 @@ const heros = (editor: Editor) => {
     category: 'sections-heros',
     select: true,
     content: { type: 'hero-one' },
+    media:'https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/hero-bottom.png'
   });
 
   Components.addType('hero-one', {
@@ -253,6 +254,7 @@ const heros = (editor: Editor) => {
     category: 'sections-heros',
     select: true,
     content: { type: 'hero-two' },
+    media:'https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/hero-side.png'
   });
 
   editor.Blocks.add('hero-three', {
@@ -260,6 +262,7 @@ const heros = (editor: Editor) => {
     category: 'sections-heros',
     select: true,
     content: { type: 'hero-three' },
+    media:'https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/hero-no-image.png'
   });
 
   Components.addType('hero-three', {

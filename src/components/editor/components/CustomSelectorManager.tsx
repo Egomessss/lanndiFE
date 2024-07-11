@@ -242,7 +242,8 @@ export default function CustomSelectorManager({
                      position="left"
                      multiline
                      w={300}
-                     label="On top of each style property there&apos;s a tooltip that explains how each can be used to it's maximum potential">
+                     label={<div className="flex flex-col gap-2"><p>Each style property includes a hoverable tooltip that provides detailed usage instructions.</p>
+                       <p>For further customization, we recommend searching for additional CSS property options online.</p></div>}>
               <ThemeIcon
                 color="red"
                 variant="light">

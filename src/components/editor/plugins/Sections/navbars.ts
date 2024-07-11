@@ -179,7 +179,7 @@ a{
 
 
   editor.Blocks.add('navbar-simple', {
-    media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
+    media:'https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/navbar-cta.png',
     label: 'W/Cta',
     category: 'sections-navbars',
     select: true,
@@ -303,45 +303,50 @@ a{
   Components.addType(id, {
     model: {
       defaults: {
+        droppable: false,
         name: label,
         attributes: { class: navbarPfx },
         components: { type: idContainer },
-        styles:  `
+        styles: `
           .${navbarPfx} {
-            background-color: inherit;
-            height:fit-content;
+            background-color: #222;
+            color: #ddd;
             min-height: 50px;
             width: 100%;
           }
 
           .${navbarPfx}-container {
-            max-width: 1200px;
-            margin: 0 auto 0 auto;
-            width: 90%;
-            height:fit-content;
-            display:flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
+            max-width: 950px;
+            margin: 0 auto;
+            width: 95%;
           }
 
-       
-          .${navbarPfx}-brand {
-            padding: 10px 10px 10px 10px;
-            height:fit-content;
+          .${navbarPfx}-items-c {
+            display: inline-block;
+            float: right;
+          }
+
+          .${navbarPfx}-container::after {
+            content: "";
+            clear: both;
             display: block;
+          }
+
+          .${navbarPfx}-brand {
+            vertical-align: top;
+            display: inline-block;
+            padding: 5px;
+            min-height: 50px;
+            min-width: 50px;
             color: inherit;
             text-decoration: none;
           }
 
           .${navbarPfx}-menu {
-            padding: 10px 0 10px 0;
+            padding: 10px 0;
             display: block;
+            float: right;
             margin: 0;
-            position:absolute;
-            top: 100%;
-            left: 0;
           }
 
           .${navbarPfx}-menu-link {
@@ -357,16 +362,17 @@ a{
             width: 45px;
             padding: 5px 10px;
             display: none;
-                 cursor: pointer;
+            float: right;
+            cursor: pointer;
           }
 
           .${navbarPfx}-burger-line {
             padding: 1px;
-            background-color: black;
+            background-color: white;
             margin: 5px 0;
           }
 
-          @media (max-width: 840px) {
+          @media (max-width: 768px) {
             .${navbarPfx}-items-c {
               display: none;
               width: 100%;
@@ -378,14 +384,13 @@ a{
 
             .${navbarPfx}-menu {
               width: 100%;
-              
             }
 
             .${navbarPfx}-menu-link {
               display: block;
             }
           }
-        `
+        `,
       },
     }
   });
@@ -395,11 +400,14 @@ a{
       defaults: {
         attributes: { class: `${navbarPfx}-container`, 'data-gjs': 'navbar' },
         name: 'Navbar Container',
+        droppable: false,
+        draggable: false,
+        removable: false,
         copyable: false,
+        highlightable: false,
         components: [
           {
             type: 'link',
-            content:'Brand',
             attributes: { class: `${navbarPfx}-brand`, href: '/' },
           },
           { type: idBurgerMenu },
@@ -570,5 +578,4 @@ a{
     },
   });
 }
-
 export default navbars;

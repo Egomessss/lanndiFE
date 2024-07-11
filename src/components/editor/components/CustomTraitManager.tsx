@@ -72,9 +72,10 @@ export const CssCode = () => {
   const component = editor.getSelected();
 
   useEffect(() => {
-      // @ts-ignore
-      const formatedCss = editor.getCss({ component });
-      setValue(formatedCss);
+    // @ts-ignore
+    const formatedCss = formatCSS(editor.getCss({ component, avoidProtected: true }));
+    // @ts-ignore
+    setValue(formatedCss);
 
   }, [opened]);
 
@@ -85,8 +86,8 @@ export const CssCode = () => {
   const handleClick = () => {
     console.log('css', value);
     const trimmedCssCode = value.trim();
-    editor.Css.addRules(trimmedCssCode);
-    // setValue('')
+    editor.setStyle(trimmedCssCode);
+    editor.refresh();
     close();
   };
 
@@ -100,7 +101,7 @@ export const CssCode = () => {
       />
       <Button my="1rem" fullWidth onClick={handleClick} size="xs">Save CSS Changes</Button>
     </Modal>
-    <Button leftSection={<IconBrandCss3 size="1rem"/>}  fullWidth onClick={open} size="xs">Edit CSS</Button>
+    <Button leftSection={<IconBrandCss3 size="1rem" />} fullWidth onClick={open} size="xs">Edit CSS</Button>
   </div>;
 };
 
@@ -111,8 +112,8 @@ export const GlobalCssCode = () => {
   const editor = useEditor();
 
   useEffect(() => {
-      setValue(editor.getCss());
-
+    // @ts-ignore
+    setValue(formatCSS(editor.getCss({ avoidProtected: true })));
   }, [opened]);
 
 
@@ -122,7 +123,8 @@ export const GlobalCssCode = () => {
   const handleClick = () => {
     const trimmedCssCode = value.trim();
     console.log('css', trimmedCssCode);
-    editor.Css.addRules(trimmedCssCode);
+    editor.setStyle(trimmedCssCode);
+    editor.refresh();
     close();
   };
 
@@ -134,9 +136,10 @@ export const GlobalCssCode = () => {
         extensions={[langs.css(), EditorView.lineWrapping]}
         onChange={setValue}
       />
-      <Button  my="1rem" fullWidth onClick={handleClick} size="xs">Save Global CSS Changes</Button>
+      <Button my="1rem" fullWidth onClick={handleClick} size="xs">Save Global CSS Changes</Button>
     </Modal>
-    <Button justify="space-between" leftSection={<IconBrandCss3 size="1rem"/>} rightSection={<IconWorld size="1rem"/>}  fullWidth onClick={open} size="xs">Edit Global CSS</Button>
+    <Button justify="space-between" leftSection={<IconBrandCss3 size="1rem" />} rightSection={<IconWorld size="1rem" />}
+            fullWidth onClick={open} size="xs">Edit Global CSS</Button>
   </div>;
 };
 
@@ -178,7 +181,8 @@ export const GlobalJsCode = () => {
       />
       <Button my="1rem" fullWidth onClick={handleClick} size="xs">Save Global Js Changes</Button>
     </Modal>
-    <Button justify="space-between" leftSection={<IconBrandCss3 size="1rem"/>} rightSection={<IconWorld size="1rem"/>} fullWidth onClick={open} size="xs">Edit Global Javascript</Button>
+    <Button justify="space-between" leftSection={<IconBrandCss3 size="1rem" />} rightSection={<IconWorld size="1rem" />}
+            fullWidth onClick={open} size="xs">Edit Global Javascript</Button>
   </div>;
 };
 
@@ -324,7 +328,7 @@ function CustomAttributes() {
           value={attributeValue}
           onChange={(event) => setAttributeValue(event.currentTarget.value)}
         />
-        <Button leftSection={<IconKey size="1rem"/>} size="xs" onClick={handleAddAttribute}>
+        <Button leftSection={<IconKey size="1rem" />} size="xs" onClick={handleAddAttribute}>
           Add Attribute
         </Button>
         <ScrollArea offsetScrollbars h={150} w={200} py="md">
@@ -396,17 +400,18 @@ export default function CustomTraitManager({
       {user?.isAdmin && <>{
         user?.subscription !== 'free' ? <>
           <CssCode />
-          <Button leftSection={<IconBrandJavascript size="1rem"/>} onClick={() => editor.runCommand('edit-script')} size="xs" mb="4">
+          <Button leftSection={<IconBrandJavascript size="1rem" />} onClick={() => editor.runCommand('edit-script')}
+                  size="xs" mb="4">
             Edit Javascript
           </Button>
           <Divider className="w-full" label="Global Customization" />
           <GlobalCssCode />
           <GlobalJsCode />
         </> : <>
-          <Button leftSection={<IconBrandCss3 size="1rem"/>} disabled size="xs" mb="4">
+          <Button leftSection={<IconBrandCss3 size="1rem" />} disabled size="xs" mb="4">
             Edit CSS
           </Button>
-          <Button leftSection={<IconBrandJavascript size="1rem"/>} disabled size="xs" mb="4">
+          <Button leftSection={<IconBrandJavascript size="1rem" />} disabled size="xs" mb="4">
             Edit Javascript
           </Button>
         </>
