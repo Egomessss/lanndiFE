@@ -41,7 +41,6 @@ export default function CustomSelectorManager({
                                               }: Omit<SelectorsResultProps, 'Container'>) {
 
   const editor = useEditor();
-  const { user } = useUser();
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
     onDropdownOpen: () => combobox.updateSelectedOptionIndex('active'),
@@ -52,11 +51,6 @@ export default function CustomSelectorManager({
 
   const exactOptionMatch = allSelectors.some((item) => item === search);
 
-  const handleValueSelect = () => {
-    setSearch('');
-    addSelector(search);
-
-  };
 
   const deleteSelector = (selector: Selector) => {
     removeSelector(selector);
@@ -84,7 +78,26 @@ export default function CustomSelectorManager({
   const [selectorName, setSelectorName] = useState('');
 
   const [isRenamingSelector, setIsRenamingSelector] = useState(false);
-  console.log(isRenamingSelector, selectorName);
+  const [isCloningAndRenaming, setIsCloningAndRenaming] = useState(false);
+
+
+  // const cloneAndRenameSelector = () => {
+  //   // clone the previous style
+  //   // add rules and change the selector name
+  //   // remove the class from the selected component
+  //   // add the class to the select component
+  //   const clonedStyle = editor.Css.getRule(`.${selector?.getName()}`)?.toCSS();
+  //   console.log('cloned style', clonedStyle);
+  //   if (selector) {
+  //     // @ts-ignore
+  //     editor.Css.setClassRule(`.${selectorName}`, clonedStyle);
+  //     removeSelector(selector);
+  //     addSelector(selectorName);
+  //     setIsRenamingSelector(false);
+  //     setIsCloningAndRenaming(false);
+  //     setSelectorName('');
+  //   }
+  // };
 
   const renameSelector = () => {
     if (selector) {
@@ -115,18 +128,37 @@ export default function CustomSelectorManager({
             <Menu.Item onClick={(e) => {
               e.stopPropagation();
               setIsRenamingSelector(true);
+              setIsCloningAndRenaming(false);
               setSelector(selector);
             }
             }>
-              <div className="flex items-center justify-between w-full"><span>Rename</span>
+              <div className="flex items-center justify-between w-full"><span>Rename class</span>
                 <Tooltip label="This will rename all the classes not just one">
                   <IconExclamationCircle size="1rem" />
                 </Tooltip>
               </div>
             </Menu.Item>
+            {/*<Menu.Item onClick={(e) => {*/}
+            {/*  e.stopPropagation();*/}
+            {/*  setIsCloningAndRenaming(true);*/}
+            {/*  setIsRenamingSelector(false);*/}
+            {/*  setSelector(selector);*/}
+            {/*}*/}
+            {/*}>*/}
+            {/*  <div className="flex items-center justify-between w-full gap-2"><span>Clone & Rename</span>*/}
+            {/*    <Tooltip label="This will clone the styles and allow you to change the new cloned style class">*/}
+            {/*      <IconExclamationCircle size="1rem" />*/}
+            {/*    </Tooltip>*/}
+            {/*  </div>*/}
+            {/*</Menu.Item>*/}
 
             <Menu.Item onClick={() => disableSelector(selector)}>
-              Disable
+              <div className="flex items-center justify-between w-full">
+                {selector.getActive() ? 'Disable' : 'Enable'}
+                <Tooltip label="Edit a class style without affecting the disabled one">
+                  <IconExclamationCircle size="1rem" />
+                </Tooltip>
+              </div>
             </Menu.Item>
             <Menu.Divider />
             <Menu.Label>Danger zone</Menu.Label>
@@ -161,13 +193,12 @@ export default function CustomSelectorManager({
   const options = allSelectors
     .filter((item) => item.toLowerCase().includes(search.trim().toLowerCase()))
     .map((item) => (
-      <Combobox.Option onClick={() => addSelector(item)} value={item} key={item}>
+      <Combobox.Option value={item} key={item}>
         <Group gap="sm">
           <span>{item}</span>
         </Group>
       </Combobox.Option>
     ));
-
 
 
   const isComponentFirst = editor.Selectors.getComponentFirst();
@@ -230,11 +261,13 @@ export default function CustomSelectorManager({
                          to remove(leave the input empty) that style before styling the height by class.</p>
                        <p>Tip 4: Use ID for solo blocks and classes for blocks that are used multiple time and share the
                          same style.</p>
-                       <p>Tip 5: The latest class will always take precedent over the previous one. Use this to add extra styles without affecting base classes. e.g. Adding a background color to just one of three grid items</p>
+                       <p>Tip 5: The latest class will always take precedent over the previous one. Use this to add
+                         extra styles without affecting base classes. e.g. Adding a background color to just one of
+                         three grid items</p>
                      </div>}>
             <ActionIcon onClick={setComponentFirst}
                         variant={isComponentFirst ? 'filled' : 'subtle'}>
-            <IconFocus2 size="1rem" />
+              <IconFocus2 size="1rem" />
             </ActionIcon>
           </Tooltip>
           <div>
@@ -242,8 +275,10 @@ export default function CustomSelectorManager({
                      position="left"
                      multiline
                      w={300}
-                     label={<div className="flex flex-col gap-2"><p>Each style property includes a hoverable tooltip that provides detailed usage instructions.</p>
-                       <p>For further customization, we recommend searching for additional CSS property options online.</p></div>}>
+                     label={<div className="flex flex-col gap-2"><p>Each style property includes a hoverable tooltip
+                       that provides detailed usage instructions.</p>
+                       <p>For further customization, we recommend searching for additional CSS property options
+                         online.</p></div>}>
               <ThemeIcon
                 color="red"
                 variant="light">
@@ -255,7 +290,7 @@ export default function CustomSelectorManager({
 
         <Combobox styles={{
           dropdown: { width: '100%' },
-        }} store={combobox} onOptionSubmit={handleValueSelect} withinPortal={false}>
+        }} store={combobox} onOptionSubmit={(item) => addSelector(item)} withinPortal={false}>
           <Combobox.DropdownTarget>
             <PillsInput size="xs" className="w-full" onClick={() => combobox.openDropdown()}>
               <Pill.Group>
@@ -297,12 +332,21 @@ export default function CustomSelectorManager({
             </Combobox.Options>
           </Combobox.Dropdown>
         </Combobox>
+        {/*{isCloningAndRenaming &&*/}
+        {/*  <TextInput autoFocus className="w-full" placeholder="Insert new class name" size="xs" my={8}*/}
+        {/*             value={selectorName}*/}
+        {/*             onChange={(event) => setSelectorName(event.currentTarget.value)}*/}
+        {/*             rightSection={*/}
+        {/*               <ActionIcon size="sm" onClick={() => cloneAndRenameSelector()}><IconCheck*/}
+        {/*                 size="1rem" /></ActionIcon>} />}*/}
+
         {isRenamingSelector &&
           <TextInput autoFocus className="w-full" placeholder="Insert new class name" size="xs" my={8}
                      value={selectorName}
                      onChange={(event) => setSelectorName(event.currentTarget.value)}
-                     rightSection={<ActionIcon size="sm" onClick={() => renameSelector()}><IconCheck
-                       size="1rem" /></ActionIcon>} />}
+                     rightSection={
+                       <ActionIcon size="sm" onClick={() => renameSelector()}><IconCheck
+                         size="1rem" /></ActionIcon>} />}
       </div>
 
     </div>
