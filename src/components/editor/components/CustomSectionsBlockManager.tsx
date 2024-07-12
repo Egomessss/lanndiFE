@@ -40,21 +40,21 @@ export default function CustomSectionsBlockManager({
 
             <div className="flex flex-col gap-2">
               {blocks.map((block) => (
-                <Button  key={block.getId()} variant="subtle" size="xs"
+                <Button justify='start'  key={block.getId()} variant="subtle" size="xs"
                         style={{ paddingLeft: '4px' }}
                         leftSection={<Tooltip openDelay={200} position="right-start" color="dark"
                                                label={<img src={block.getMedia()} alt={block.getLabel()}
-                                                           className="object-cover aspect-video h-32 p-1" />}><ActionIcon size="sm"><IconPhoto
+                                                           className="object-contain aspect-video h-60 p-1" />}><ActionIcon variant="subtle" size="sm"><IconPhoto
                           size="0.8rem" /></ActionIcon></Tooltip>}
                         draggable
-                        justify="start" fullWidth
+                       fullWidth
                         onDragStart={(ev) =>
                           dragStart(block, ev.nativeEvent)
                         }
                         onDragEnd={() => dragStop(false)}
                 >
                   <p
-                    className="w-full px-2 text-start text-xs"
+                    className="w-full text-start text-[11px]"
                   >
                     {block.getLabel()}
                   </p>
