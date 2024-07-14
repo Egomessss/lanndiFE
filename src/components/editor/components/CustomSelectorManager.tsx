@@ -247,9 +247,11 @@ export default function CustomSelectorManager({
           </Tooltip>
           <Tooltip position="left" color="dark" multiline w={400}
                    label={
-                     <div className="flex flex-col gap-2"><p>Enabled: All the style changes will be applied on
-                       selected
-                       blocks (ID rules)</p>
+                     <div className="flex flex-col gap-2">
+
+                       <p>Enabled: All the style changes will be applied on
+                         selected
+                         blocks (ID rules)</p>
                        <p>Disabled: All the style changes will be applied on selected blocks with same
                          selectors(classes)</p>
                        <p>Tip 1: Use ID to style a single component independently</p>
@@ -275,8 +277,13 @@ export default function CustomSelectorManager({
                      position="left"
                      multiline
                      w={300}
-                     label={<div className="flex flex-col gap-2"><p>Each style property includes a hoverable tooltip
-                       that provides detailed usage instructions.</p>
+                     label={<div className="flex flex-col gap-2">
+                       <p>Important: All pages share the same style file, e.g. If you don&apos;t want page two paragraph
+                         to
+                         be the same size as your homepage you need to either style by ID or use a different class from
+                         the default one or the already styled one</p>
+                       <p>Each style property includes a hoverable tooltip
+                         that provides detailed usage instructions.</p>
                        <p>For further customization, we recommend searching for additional CSS property options
                          online.</p></div>}>
               <ThemeIcon
@@ -290,7 +297,7 @@ export default function CustomSelectorManager({
 
         <Combobox styles={{
           dropdown: { width: '100%' },
-        }} store={combobox} onOptionSubmit={(item) => addSelector(item)} withinPortal={false}>
+        }} store={combobox} onOptionSubmit={() => addSelector(search)} withinPortal={false}>
           <Combobox.DropdownTarget>
             <PillsInput size="xs" className="w-full" onClick={() => combobox.openDropdown()}>
               <Pill.Group>
