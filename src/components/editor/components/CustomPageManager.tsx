@@ -165,7 +165,7 @@ export default function CustomPageManager({
   const [editingPageId, setEditingPageId] = useState<string>('');
   const [opened, { open, close }] = useDisclosure(false);
   const { user } = useUser();
-
+  console.log(pages);
   const openModal = (pageToDelete: Page) => {
 
     if (pageToDelete.attributes.slug === 'index') {

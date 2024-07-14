@@ -24,29 +24,29 @@ const Plans: React.FC<PlansData> = ({
     'Lifetime access to all future features and updates',
   ];
   const plans = [
-    {
-      name: 'Free',
-      priceMonthly: 0,
-      priceAnnual: 0,
-      features: ['1 site', '1 page max', 'lanndi badge', 'lanndi subdomain','SSL Certificate'],
-      variantMonthly: 'free-monthly',
-      variantAnnual: 'free-annually',
-    },
-    {
-      name: 'Basic',
-      priceMonthly: 5,
-      priceAnnual: 50,
-      features: ['1 site', '10 page max', 'custom domain', 'custom code', 'SSL Certificate','Preview domain','Custom code','FavIcons','No lanndi branding'],
-      variantMonthly: 'basic-monthly',
-      variantAnnual: 'basic-annually',
-    },
+    // {
+    //   name: 'Free',
+    //   priceMonthly: 0,
+    //   priceAnnual: 0,
+    //   features: ['1 site', '1 page max', 'lanndi badge', 'lanndi subdomain','SSL Certificate'],
+    //   variantMonthly: 'free-monthly',
+    //   variantAnnual: 'free-annually',
+    // },
     {
       name: 'Indie',
-      priceMonthly: 15,
-      priceAnnual: 150,
-      features: ['5 sites', '10 pages max', 'custom domain', 'custom code', 'SSL Certificate','Preview domain','Custom code','FavIcons','No lanndi branding'],
+      priceMonthly: 12,
+      priceAnnual: 120,
+      features: ['3 website', '10 page max', 'custom domain', 'custom code', 'SSL Certificate','Preview domain','Custom code','FavIcons','No lanndi branding'],
       variantMonthly: 'indie-monthly',
       variantAnnual: 'indie-annually',
+    },
+    {
+      name: 'Freelancer',
+      priceMonthly: 35,
+      priceAnnual: 350,
+      features: ['10 websites', '10 pages max', 'custom domain', 'custom code', 'SSL Certificate','Preview domain','Custom code','FavIcons','No lanndi branding'],
+      variantMonthly: 'freelancer-monthly',
+      variantAnnual: 'freelancer-annually',
     },
     // {
     //   name: 'Freelancer',

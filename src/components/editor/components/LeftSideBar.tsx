@@ -17,7 +17,7 @@ function LeftSideBar() {
     { label: 'Sections', Icon: IconSection, selectedValue: 'Sections' },
     { label: 'Templates', Icon: IconTemplate, selectedValue: 'Templates' },
     { label: 'Layers', Icon: IconStack2, selectedValue: 'Layers' },
-    // { label: 'Pages', Icon: IconFile, selectedValue: 'Pages' },
+    { label: 'Pages', Icon: IconFile, selectedValue: 'Pages' },
   ];
 
   const renderSelectedComponent = () => {
@@ -30,8 +30,8 @@ function LeftSideBar() {
         return <BlockSideBar type="Templates" />;
       case 'Layers':
         return <LayersLeftSideBar />;
-      // case 'Pages':
-      //   return <PagesLeftSideBar />;
+      case 'Pages':
+        return <PagesLeftSideBar />;
       default:
         return null;
     }
