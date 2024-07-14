@@ -38,7 +38,7 @@ export default function CustomBlockManager({
         <Button leftSection={<IconBulb size="1rem" />} size="xs" fullWidth>Tips</Button>
       </Tooltip>
       {Array.from(mapCategoryBlocks)
-        .filter(([category, _]) => !category.startsWith('sections-')) // Filter out categories starting with "section-"
+        .filter(([category, _]) => !category.startsWith('sections-' || 'templates-')) // Filter out categories starting with "section-"
         .map(([category, blocks]) => (
           <div
             key={category}

@@ -6,6 +6,7 @@ import MediaBlocks from '../plugins/BasicBlocks/MediaBlocks';
 import CustomCode from '@/components/editor/plugins/utils/CustomCode';
 import BorderStyle from '@/components/editor/plugins/utils/BorderStyle';
 import Sections from '@/components/editor/plugins/Sections';
+import Templates from '@/components/editor/plugins/Templates';
 import { EditorData } from '@/hooks/use-editor-data';
 import UtilsPlugin from '@/components/editor/plugins/utils/UtilsPlugin/utils-plugin';
 import GoogleIcons from '@/components/editor/plugins/utils/GoogleIcons';
@@ -103,6 +104,7 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
     GoogleIcons,
     BorderStyle,
     Sections,
+    Templates,
     UtilsPlugin,
     FormBlocks,
     // Grid

@@ -17,6 +17,7 @@ import { styles } from '@/components/editor/utils/styles';
 import FormBlocks from '@/components/editor/plugins/BasicBlocks/FormsBlocks';
 import Accordion from '@/components/editor/plugins/BasicBlocks/Accordion';
 import Tabs from '@/components/editor/plugins/BasicBlocks/Tabs';
+import Templates from '@/components/editor/plugins/Templates';
 
 
 export const demoEditorConfigOptions = () => ({
@@ -105,6 +106,7 @@ export const demoEditorConfigOptions = () => ({
     GoogleIcons,
     BorderStyle,
     Sections,
+    Templates,
     UtilsPlugin,
     FormBlocks,
     // Grid

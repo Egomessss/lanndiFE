@@ -14,6 +14,7 @@ import PostCss from '../plugins/utils/PostCss';
 import { styles } from '@/components/editor/utils/styles';
 import FormBlocks from '@/components/editor/plugins/BasicBlocks/FormsBlocks';
 import ClickAndDrop from '@/components/editor/plugins/utils/ClickAndDrop/plugin';
+import Templates from '@/components/editor/plugins/Templates';
 
 
 export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: boolean) => ({
@@ -103,6 +104,7 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
     GoogleIcons,
     BorderStyle,
     Sections,
+    Templates,
     UtilsPlugin,
     FormBlocks,
     // Grid

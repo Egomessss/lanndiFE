@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ActionIcon, AppShell, Box, Divider, ScrollArea, Tooltip } from '@mantine/core';
 import styles from '@/app/(editor)/editor/[slug]/page.module.css';
-import { IconFile, IconLayoutGridAdd, IconSection, IconStack2 } from '@tabler/icons-react';
+import { IconFile, IconLayoutGridAdd, IconSection, IconStack2, IconTemplate } from '@tabler/icons-react';
 import SettingsModal from '@/components/editor/components/SettingsModal';
 import BlockSideBar from '@/components/editor/components/BlockSideBar';
 import LayersLeftSideBar from '@/components/editor/components/LayersLeftSideBar';
@@ -15,8 +15,9 @@ function LeftSideBar() {
   const icons = [
     { label: 'Blocks', Icon: IconLayoutGridAdd, selectedValue: 'Blocks' },
     { label: 'Sections', Icon: IconSection, selectedValue: 'Sections' },
+    { label: 'Templates', Icon: IconTemplate, selectedValue: 'Templates' },
     { label: 'Layers', Icon: IconStack2, selectedValue: 'Layers' },
-    { label: 'Pages', Icon: IconFile, selectedValue: 'Pages' },
+    // { label: 'Pages', Icon: IconFile, selectedValue: 'Pages' },
   ];
 
   const renderSelectedComponent = () => {
@@ -25,10 +26,12 @@ function LeftSideBar() {
         return <BlockSideBar type="Blocks" />;
       case 'Sections':
         return <BlockSideBar type="Sections" />;
+        case 'Templates':
+        return <BlockSideBar type="Templates" />;
       case 'Layers':
         return <LayersLeftSideBar />;
-      case 'Pages':
-        return <PagesLeftSideBar />;
+      // case 'Pages':
+      //   return <PagesLeftSideBar />;
       default:
         return null;
     }
