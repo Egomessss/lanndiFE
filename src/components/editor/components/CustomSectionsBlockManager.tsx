@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 
 import { ActionIcon, Button, Divider, Text, Tooltip } from '@mantine/core';
-import { BlocksResultProps } from '@/components/editor/wrappers';
+import { BlocksResultProps, useEditor } from '@/components/editor/wrappers';
 import { IconBulb, IconPhoto } from '@tabler/icons-react';
 
 
@@ -16,7 +16,13 @@ export default function CustomSectionsBlockManager({
                                                      dragStart,
                                                      dragStop,
                                                    }: CustomBlockManagerProps) {
+  const editor = useEditor()
 
+  const onClick = (id: string) => {
+    editor.runCommand('click:grab-block', { id: id });
+
+    editor.runCommand('click:drop-block', { id: id });
+  };
 
   return (
     <div className="w-full">
@@ -40,7 +46,7 @@ export default function CustomSectionsBlockManager({
 
             <div className="flex flex-col gap-2">
               {blocks.map((block) => (
-                <Button justify='start'  key={block.getId()} variant="subtle" size="xs"
+                <Button  onClick={() => onClick(block.getId())} justify='start'  key={block.getId()} variant="subtle" size="xs"
                         style={{ paddingLeft: '4px' }}
                         leftSection={<Tooltip openDelay={200} position="right-start" color="dark"
                                                label={<img src={block.getMedia()} alt={block.getLabel()}

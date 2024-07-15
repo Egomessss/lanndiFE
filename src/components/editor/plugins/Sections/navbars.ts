@@ -8,28 +8,16 @@ const navbars = (editor: Editor) => {
 
   const { Components } = editor;
 
-  const script = function () {
-    const hamburger = document.querySelector(".hamburger-btn");
-    const navMenu = document.querySelector(".nav-menu");
+  const script = function() {
 
-    hamburger?.addEventListener("click", mobileMenu);
-    hamburger?.addEventListener("ontouchstart", mobileMenu);
+    const hamburger = document.querySelector('.hamburger-menu');
+    const navMenu = document.querySelector('.nav-menu');
 
-    function mobileMenu() {
-      hamburger?.classList.toggle("active");
-      navMenu?.classList.toggle("active");
-    }
-
-    const navLink = document.querySelectorAll(".nav-link");
-
-    navLink.forEach(n => n.addEventListener("click", closeMenu));
-    navLink.forEach(n => n.addEventListener("ontouchstart", closeMenu));
-
-    function closeMenu() {
-      hamburger?.classList.remove("active");
-      navMenu?.classList.remove("active");
-    }
-  }
+    hamburger?.addEventListener('click', () => {
+      navMenu?.classList.toggle('hide');
+      hamburger.classList.toggle('active');
+    });
+  };
 
   editor.Blocks.add('navbar-burger', {
     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
@@ -38,123 +26,132 @@ const navbars = (editor: Editor) => {
     select: true,
     content: { type: 'navbar-burger' },
   });
+
   Components.addType('navbar-burger', {
     model: {
       defaults: {
         script: script,
         name: 'Navbar W/Burger Menu',
         components: `  
-   <header class="header">
+   <header>
         <nav class="navbar">
-            <a href="#" class="nav-logo">lanndi</a>
-            <div data-gjs-removable="false" class="nav-menu">
-                    <a href="#" class="nav-link">Services</a>
-               
-                    <a href="#" class="nav-link">Blog</a>
-              
-                    <a href="#" class="nav-link">About</a>
-              
-                    <a href="#" class="nav-link">Contact</a>
+            <div class="logo">
+                <a href="/">
+                    <img src=
+"https://media.geeksforgeeks.org/wp-content/cdn-uploads/gfg_200x200-min.png"
+                         alt="gfg_logo">
+                </a> 
             </div>
-            <button type="button" data-gjs-removable="false"  class="hamburger-btn">
-                <span data-gjs-selectable="false" data-gjs-removable="false" class="bar"></span>
-                <span data-gjs-selectable="false" data-gjs-removable="false" class="bar"></span>
-                <span data-gjs-selectable="false" data-gjs-removable="false" class="bar"></span>
-            </button>
+            <div class="hamburger-menu">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span> 
+            </div>
+            <div class="nav-menu hide">
+                <a href="#">Home</a>
+                <a href="#">Career</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </div>
         </nav>
-</header>`,
+    </header>`,
         styles: `
-      .header{
-  border-bottom:1px solid #E2E8F0;
+     a{
+    text-decoration: none;
+    color: black;
+    font-size: 1.3rem;
+    font-weight: bold;
 }
-.navbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding-top:0.5rem;
-  padding-right:0;
-  padding-bottom:0.5rem;
-  padding-left:0;
-  width:90%;
-  height:fit-content;
-  max-width:1200px;
-  margin-right:auto;
-  margin-left:auto;
-}
-a{
-  text-decoration:none;
-}
-.nav-logo{
-  font-size:1.5rem;
-  font-weight:500;
-  color:#482ff7;
-}
-.nav-menu{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:row;
-  width:fit-content;
-  column-gap:2rem;
-  padding-top:1rem;
-  padding-right:1rem;
-  padding-bottom:1rem;
-  padding-left:1rem;
-}
-
-.nav-link{
-  font-size:1rem;
-  font-weight:400;
-  color:#475569;
-}
-.nav-link:hover{
-  color:#482ff7;
-}
-.hamburger-btn{
-  display:none;
-}
-.bar{
-  display:block;
-  width:25px;
-  height:3px;
-  margin:5px auto;
-  -webkit-transition:all 0.3s ease-in-out;
-  transition:all 0.3s ease-in-out;
-  background-color:#101010;
-}
-
-@media only screen and (max-width: 880px){
-  .nav-menu{
-    position:fixed;
-    left:-100%;
-    top:3rem;
-    flex-direction:column;
-    row-gap:1rem;
-    background-color:#fff;
-    width:100%;
-    border-radius:10px;
-    text-align:center;
-    transition:0.3s;
-    box-shadow:0 10px 27px rgba(0, 0, 0, 0.05);
-  }
-  
-  .nav-menu.active {
-        left: 0;
-    }
-    
  
-  .hamburger-btn{
-    display:block;
-    cursor:pointer;
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    outline: inherit;
-    z-index: 1000;
-  }
-  
+/* navbar styling */
+.navbar{
+    display: flex;
+    height: 5rem;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-bottom: 2px solid rgb(223, 251, 219);
+}
+ 
+/* logo style  */
+.logo img{
+    width: 4rem;
+    height: 4rem;
+    margin-left:1rem;
+}
+ 
+.hamburger-menu{
+    padding-right: 1.5rem;
+    cursor: pointer;
+}
+ 
+.hamburger-menu .line {
+  display: block;
+  width: 2.5rem;
+  height: 2px;
+  margin-bottom: 5px;
+  background-color: black;
+ -webkit-transition:all 0.3s ease-in-out;
+  transition:all 0.3s ease-in-out;
+}
+
+.hamburger-menu.active .line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg); /* Move down and rotate */
+}
+
+.hamburger-menu.active .line:nth-child(2) {
+  opacity: 0; /* Fade out */
+}
+
+.hamburger-menu.active .line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg); /* Move up and rotate */
+}
+ 
+.nav-menu{
+    position: fixed;
+    width: 94%;
+    top: 6rem;
+    left: 18px;
+    background-color: rgb(255, 255, 255);
+    font-weight: 600;
+ 
+}
+.nav-menu a{
+    display: block;
+    text-align: center;
+    padding: 5px 0;
+}
+.nav-menu a:hover{
+    background-color: rgb(223, 251, 219);
+}
+ 
+.hide{
+    display: none;
+}
+ 
+/* for Desktop view  */
+@media screen and (min-width:880px){
+    .navbar{
+        justify-content: space-around;
+    }
+    .nav-menu{
+        display: block;
+        position: static;
+        width: auto;
+        margin-right:20px;
+        background: none;
+    }
+    .nav-menu a{
+        display: inline-block;
+        padding: 15px 20px;
+    }
+    .nav-menu a:hover{
+        background-color: rgb(223, 251, 219);
+        border-radius: 5px;
+    }
+    .hamburger-menu{
+        display: none;
+    }
     .hamburger-btn.active .bar:nth-child(2) {
         opacity: 0;
     }
@@ -166,7 +163,8 @@ a{
     .hamburger-btn.active .bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
     }
-
+    
+    
 }
 `,
       },
@@ -175,7 +173,7 @@ a{
 
 
   editor.Blocks.add('navbar-simple', {
-    media:'https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/navbar-cta.png',
+    media: 'https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/navbar-cta.png',
     label: 'W/Cta',
     category: 'sections-navbars',
     select: true,
@@ -287,159 +285,129 @@ height:fit-content;
   });
 
 
-
   // editor.Blocks.add('navbar', {
   //   media: `<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-layout-navbar"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 9l16 0" /></svg>`,
   //   label: 'Navbar',
   //   category: 'sections-navbar',
   //   select: true,
-  //   content: { type: id },
+  //   content: { type: 'navbar' },
   // });
 
 
-
-
-
-  const navbarPfx = id;
-  const idContainer = `${id}-container`;
   const idNavMenu = `${id}-nav-menu`;
   const idNavMenuLink = `${id}-nav-menu-link`;
   const idBurgerMenu = `${id}-burger-menu`;
   const idBurgerMenuLine = `${id}-burger-menu-line`;
 
-  Components.addType(id, {
+  Components.addType('navbar', {
     model: {
       defaults: {
-        droppable: false,
-        name: label,
-        attributes: { class: navbarPfx },
-        components: { type: idContainer },
+        name: 'Navbar',
+        attributes: { class: 'navbar' },
+        removable: false,
+        copyable: false,
+        components: [
+          {
+            type: 'link',
+            components:'lanndi',
+            attributes: { class: `navbar-brand`, href: '/' },
+          },
+          { type: idBurgerMenu },
+          {
+            attributes: { class: `navbar-items-c`, 'data-gjs': 'navbar-items' },
+            components: { type: idNavMenu },
+          },
+        ],
         styles: `
-          .${navbarPfx} {
-            background-color: #222;
-            color: #ddd;
-            min-height: 50px;
-            width: 100%;
+          .navbar {
+            height: fit-content;
+            padding-top: 0.5rem;
+            padding-right: 0.5rem;
+            padding-bottom: 0.5rem;
+            padding-left: 0.5rem;
+            max-width: 1200px;
+            width:100%;
+            margin-right: auto;
+            margin-left: auto;
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
           }
 
-          .${navbarPfx}-container {
-            max-width: 950px;
-            margin: 0 auto;
-            width: 95%;
-          }
-
-          .${navbarPfx}-items-c {
+          .navbar-items-c {
             display: inline-block;
-            float: right;
+         
           }
 
-          .${navbarPfx}-container::after {
+          .navbar-container::after {
             content: "";
             clear: both;
             display: block;
           }
 
-          .${navbarPfx}-brand {
-            vertical-align: top;
-            display: inline-block;
-            padding: 5px;
-            min-height: 50px;
-            min-width: 50px;
-            color: inherit;
+          .navbar-brand {
+                       height: fit-content;
+            width: fit-content;
+            color:inherit;
+                     text-decoration: none;
+          }
+
+          .navbar-menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            column-gap: 2rem;
+            margin: 0 0 0 0 ;
+            padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+          }
+
+          .navbar-menu-link {
+            
             text-decoration: none;
+           
+          }
+          
+           .navbar-menu-link:hover {
+           
+            text-decoration: underline;
+         
           }
 
-          .${navbarPfx}-menu {
-            padding: 10px 0;
-            display: block;
-            float: right;
-            margin: 0;
-          }
-
-          .${navbarPfx}-menu-link {
-            margin: 0;
-            color: inherit;
-            text-decoration: none;
-            display: inline-block;
-            padding: 10px 15px;
-          }
-
-          .${navbarPfx}-burger {
-            margin: 10px 0;
-            width: 45px;
-            padding: 5px 10px;
-            display: none;
-            float: right;
-            cursor: pointer;
-          }
-
-          .${navbarPfx}-burger-line {
-            padding: 1px;
-            background-color: white;
-            margin: 5px 0;
-          }
-
-          @media (max-width: 768px) {
-            .${navbarPfx}-items-c {
+          
+          @media (max-width: 880px) {
+            .navbar-items-c {
               display: none;
               width: 100%;
             }
 
-            .${navbarPfx}-burger {
-              display: block;
-            }
-
-            .${navbarPfx}-menu {
+          
+            .navbar-menu {
               width: 100%;
             }
 
-            .${navbarPfx}-menu-link {
+            .navbar-menu-link {
               display: block;
             }
           }
         `,
       },
-    }
+    },
   });
 
-  Components.addType(idContainer, {
-    model: {
-      defaults: {
-        attributes: { class: `${navbarPfx}-container`, 'data-gjs': 'navbar' },
-        name: 'Navbar Container',
-        droppable: false,
-        draggable: false,
-        removable: false,
-        copyable: false,
-        highlightable: false,
-        components: [
-          {
-            type: 'link',
-            attributes: { class: `${navbarPfx}-brand`, href: '/' },
-          },
-          { type: idBurgerMenu },
-          {
-            attributes: { class: `${navbarPfx}-items-c`, 'data-gjs': 'navbar-items' },
-            components: { type: idNavMenu },
-          }
-        ]
-      }
-    }
-  });
 
   Components.addType(idNavMenu, {
     model: {
       defaults: {
         name: 'Navbar Menu',
         tagName: 'nav',
-        attributes: { class: `${navbarPfx}-menu` },
+        attributes: { class: `navbar-menu` },
         components: [
           { type: idNavMenuLink, components: 'Home' },
           { type: idNavMenuLink, components: 'About' },
           { type: idNavMenuLink, components: 'Contact' },
-        ]
-      }
-    }
+        ],
+      },
+    },
   });
 
   Components.addType(idNavMenuLink, {
@@ -448,9 +416,9 @@ height:fit-content;
       defaults: {
         name: 'Menu link',
         draggable: `[data-gjs-type="${idNavMenu}"]`,
-        attributes: { class: `${navbarPfx}-menu-link` },
-      }
-    }
+        attributes: { class: `navbar-menu-link` },
+      },
+    },
   });
 
   Components.addType(idBurgerMenu, {
@@ -563,12 +531,33 @@ height:fit-content;
           // @ts-ignore
           currentEl[stringCollapse] = 1;
         },
-        attributes: { class: `${navbarPfx}-burger` },
+        attributes: { class: `navbar-burger` },
         components: [
           { type: idBurgerMenuLine },
           { type: idBurgerMenuLine },
           { type: idBurgerMenuLine },
-        ]
+        ],
+        styles:`.navbar-burger {
+            margin: 10px 0;
+            width: 45px;
+            padding: 5px 10px;
+            display: none;
+            cursor: pointer;
+          }
+            @media (max-width: 880px) {
+
+            .navbar-burger {
+              display: block;
+            }
+            
+            .navbar-burger-line {
+            padding: 1px;
+            background-color: black;
+            margin: 5px 0;
+          }
+            
+            }
+          `
       },
     },
   });
@@ -579,10 +568,11 @@ height:fit-content;
         name: 'Burger Line',
         droppable: false,
         draggable: false,
+        selectable: false,
         highlightable: false,
-        attributes: { class: `${navbarPfx}-burger-line` },
+        attributes: { class: `navbar-burger-line` },
       },
     },
   });
-}
+};
 export default navbars;
