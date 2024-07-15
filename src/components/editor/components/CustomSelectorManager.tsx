@@ -297,7 +297,15 @@ export default function CustomSelectorManager({
 
         <Combobox styles={{
           dropdown: { width: '100%' },
-        }} store={combobox} onOptionSubmit={() => addSelector(search)} withinPortal={false}>
+        }} store={combobox} onOptionSubmit={(item) => {
+          if (search.trim() === '') {
+            addSelector(item);
+          } else {
+            addSelector(search);
+          }
+          setSearch('');
+          combobox.closeDropdown();
+        }} withinPortal={false}>
           <Combobox.DropdownTarget>
             <PillsInput size="xs" className="w-full" onClick={() => combobox.openDropdown()}>
               <Pill.Group>
