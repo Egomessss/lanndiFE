@@ -103,9 +103,9 @@ const Login = () => {
           label="Password"
           {...form.getInputProps('password')}
         />
-        <Anchor component={Link} size="sm" href="/login">
-          Already registered?
-        </Anchor>
+        {/*<Anchor component={Link} size="sm" href="/login">*/}
+        {/*  Already registered?*/}
+        {/*</Anchor>*/}
 
         {/* Remember Me */}
         <Checkbox

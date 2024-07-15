@@ -372,6 +372,8 @@ function EditorHeader() {
     enabled: !isDemo,
   });
 
+  console.log(data);
+
   const isDisabled = !data?.title && !data?.description && user && user.subscription !== 'free' || !user || user.subscription === 'free';
   const tooltipColor = isDisabled ? 'red' : 'gray';
   const tooltipLabel = user?.subscription === 'free' ? 'Free users are not allowed preview domains' : (!data?.title && !data?.description ? 'Add a title and description to your site settings before you can preview your website(paid feature)' : 'Open latest saved preview');
