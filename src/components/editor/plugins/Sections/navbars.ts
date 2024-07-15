@@ -9,15 +9,13 @@ const navbars = (editor: Editor) => {
   const { Components } = editor;
 
   const script = function() {
-    const hamburger = document.querySelector('.hamburger-btn');
-    const navMenu = document.querySelector('.nav-menu');
+    const hamburger = document.querySelector('.nb-hamburger-btn');
+    const navMenu = document.querySelector('.nb-nav-menu');
 
-    hamburger?.addEventListener('click', mobileMenu);
-
-    function mobileMenu() {
+    hamburger?.addEventListener('click', ()=>{
       hamburger?.classList.toggle('active');
       navMenu?.classList.toggle('active');
-    }
+    });
 
     // const navLink = document.querySelectorAll(".nav-link");
     //
@@ -43,30 +41,30 @@ const navbars = (editor: Editor) => {
         script: script,
         name: 'Navbar W/Burger Menu',
         components: `  
-   <header class="header">
-        <nav class="navbar">
-            <a href="#" class="nav-logo">lanndi</a>
-            <div data-gjs-removable="false" class="nav-menu">
-                    <a href="#" class="nav-link">Services</a>
+   <header class="nb-header">
+        <nav class="nb-navbar">
+            <a href="#" class="nb-nav-logo">lanndi</a>
+            <div data-gjs-removable="false" class="nb-nav-menu">
+                    <a href="#" class="nb-nav-link">Services</a>
                
-                    <a href="#" class="nav-link">Blog</a>
+                    <a href="#" class="nb-nav-link">Blog</a>
               
-                    <a href="#" class="nav-link">About</a>
+                    <a href="#" class="nb-nav-link">About</a>
               
-                    <a href="#" class="nav-link">Contact</a>
+                    <a href="#" class="nb-nav-link">Contact</a>
             </div>
-            <div data-gjs-removable="false"  class="hamburger-btn">
-                <span  class="bar"></span>
-                <span  class="bar"></span>
-                <span  class="bar"></span>
+            <div data-gjs-removable="false"  class="nb-hamburger-btn">
+                <span data-gjs-selectable="false" data-gjs-removable="false" data-gjs-copyable="false" class="nb-bar"></span>
+                <span data-gjs-selectable="false" data-gjs-removable="false" data-gjs-copyable="false"  class="nb-bar"></span>
+                <span data-gjs-selectable="false" data-gjs-removable="false" data-gjs-copyable="false"  class="nb-bar"></span>
             </div>
         </nav>
 </header>`,
         styles: `
-      .header{
+      .nb-header{
   border-bottom:1px solid #E2E8F0;
 }
-.navbar{
+.nb-navbar{
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -83,12 +81,12 @@ const navbars = (editor: Editor) => {
 a{
   text-decoration:none;
 }
-.nav-logo{
+.nb-nav-logo{
   font-size:1.5rem;
   font-weight:500;
   color:#482ff7;
 }
-.nav-menu{
+.nb-nav-menu{
   display:flex;
   justify-content:center;
   align-items:center;
@@ -101,18 +99,18 @@ a{
   padding-left:1rem;
 }
 
-.nav-link{
+.nb-nav-link{
   font-size:1rem;
   font-weight:400;
   color:#475569;
 }
-.nav-link:hover{
+.nb-nav-link:hover{
   color:#482ff7;
 }
-.hamburger-btn{
+.nb-hamburger-btn{
   display:none;
 }
-.bar{
+.nb-bar{
   display:block;
   width:25px;
   height:3px;
@@ -123,7 +121,7 @@ a{
 }
 
 @media only screen and (max-width: 880px){
-  .nav-menu{
+  .nb-nav-menu{
     position:fixed;
     left:-100%;
     top:3rem;
@@ -137,12 +135,11 @@ a{
     box-shadow:0 10px 27px rgba(0, 0, 0, 0.05);
   }
   
-  .nav-menu.active {
+  .nb-nav-menu.active {
         left: 0;
     }
     
- 
-  .hamburger-btn{
+  .nb-hamburger-btn{
     display:block;
     cursor:pointer;
     background: none;
@@ -154,15 +151,15 @@ a{
     z-index: 1000;
   }
   
-    .hamburger-btn.active .bar:nth-child(2) {
+    .nb-hamburger-btn.active .nb-bar:nth-child(2) {
         opacity: 0;
     }
 
-    .hamburger-btn.active .bar:nth-child(1) {
+    .nb-hamburger-btn.active .nb-bar:nth-child(1) {
         transform: translateY(8px) rotate(45deg);
     }
 
-    .hamburger-btn.active .bar:nth-child(3) {
+    .nb-hamburger-btn.active .nb-bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
     }
 
