@@ -36,7 +36,7 @@ const Plans: React.FC<PlansData> = ({
       name: 'Indie',
       priceMonthly: 12,
       priceAnnual: 120,
-      features: ['3 website', '10 page max', 'custom domain', 'custom code', 'SSL Certificate','Preview domain','Custom code','FavIcons','No lanndi branding'],
+      features: ['3 websites', '10 page max', 'custom domain', 'custom code', 'SSL Certificate','Preview domain','Custom code','FavIcons','No lanndi branding'],
       variantMonthly: 'indie-monthly',
       variantAnnual: 'indie-annually',
     },
@@ -132,10 +132,10 @@ const Plans: React.FC<PlansData> = ({
         </div>
       </div>
       {isError && <p className="text-red-500">There was an error with your request please try again</p>}
-      <div className="grid md:grid-cols-3 gap-4 px-5">
+      <div className="flex flex-col md:flex-row gap-4 px-5 justify-center items-center">
         {plans.map((plan) => (
           <div key={plan.name}
-               className="border rounded-lg p-4 flex flex-col items-center border-solid border-blue-500 ">
+               className="border rounded-lg p-8 flex flex-col items-center border-solid border-blue-500 ">
             <h2 className="text-lg font-bold">{plan.name}</h2>
             <p className="my-2">
               €{isAnnual ? plan.priceAnnual : plan.priceMonthly}

@@ -238,7 +238,7 @@ function PublishButton({ siteData }: any) {
       onSuccess: () => {
         notifications.show({
           title: 'Success',
-          message: 'Your website has been successfully published',
+          message: 'Your website has been successfully published and your editor data automatically saved.',
           color: 'green',
         });
         queryClient.invalidateQueries({ queryKey: ['editorData', siteSlug] });
