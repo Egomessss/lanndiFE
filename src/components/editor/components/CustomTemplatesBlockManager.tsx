@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 
-import { ActionIcon, Button, Divider, ScrollArea, Text, Tooltip } from '@mantine/core';
+import { ActionIcon, Button, Divider, Popover, ScrollArea, Text, Tooltip } from '@mantine/core';
 import { BlocksResultProps } from '@/components/editor/wrappers';
 import { IconBulb, IconPhoto } from '@tabler/icons-react';
 
@@ -16,7 +16,6 @@ export default function CustomTemplatesBlockManager({
                                                       dragStart,
                                                       dragStop,
                                                     }: CustomBlockManagerProps) {
-  const [opened, setOpened] = useState(true);
 
   return (
     <div className="w-full">
@@ -42,14 +41,20 @@ export default function CustomTemplatesBlockManager({
               {blocks.map((block) => (
                 <Button justify="start" key={block.getId()} variant="subtle" size="xs"
                         style={{ paddingLeft: '4px' }}
-                        leftSection={<Tooltip opened={opened} openDelay={100} w={400} position="right-start"
-                                              color="dark"
-                                              label={<ScrollArea w={390} h={400}> <img src={block.getMedia()}
-                                                                                       alt={block.getLabel()}
-                                                                                       className="
-                                                            w-full h-full p-1" /></ScrollArea>}><ActionIcon
-                          onClick={() => setOpened((o) => !o)} variant="subtle" size="sm"><IconPhoto
-                          size="0.8rem" /></ActionIcon></Tooltip>}
+                        leftSection={<Popover  position="right-start" withArrow shadow="md">
+                          <Popover.Target>
+                            <ActionIcon size="sm" variant="subtle"><IconPhoto size="0.8rem"/></ActionIcon>
+                          </Popover.Target>
+                          <Popover.Dropdown>
+                            <ScrollArea.Autosize offsetScrollbars type="always" w={400} mah={500}>
+                              <img src={block.getMedia()}
+                                   alt={block.getLabel()}
+                                   className="
+                                                                                                                w-full h-full p-1" />
+                            </ScrollArea.Autosize>
+                          </Popover.Dropdown>
+                        </Popover>
+                        }
                         draggable
                         fullWidth
                         onDragStart={(ev) =>
