@@ -12,11 +12,13 @@ const navbars = (editor: Editor) => {
     const hamburger = document.querySelector('.nb-hamburger-btn');
     const navMenu = document.querySelector('.nb-nav-menu');
 
-    hamburger?.addEventListener('click', ()=>{
-      alert('clicked');
-      hamburger?.classList.toggle('active');
-      navMenu?.classList.toggle('active');
-    });
+    if(hamburger && navMenu) {
+      hamburger.addEventListener('click', ()=>{
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+      });
+
+    }
 
     // const navLink = document.querySelectorAll(".nav-link");
     //
@@ -98,6 +100,8 @@ a{
   padding-right:1rem;
   padding-bottom:1rem;
   padding-left:1rem;
+  z-index:1000;
+  background-color:#fff;
 }
 
 .nb-nav-link{
