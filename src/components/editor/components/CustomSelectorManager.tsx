@@ -22,7 +22,7 @@ import {
   IconFocus,
   IconFocus2,
   IconHash,
-  IconTags,
+  IconTags, IconX,
 } from '@tabler/icons-react';
 import { Selector } from 'grapesjs';
 import useUser from '@/hooks/use-user';
@@ -45,6 +45,7 @@ export default function CustomSelectorManager({
     onDropdownClose: () => combobox.resetSelectedOption(),
     onDropdownOpen: () => combobox.updateSelectedOptionIndex('active'),
   });
+
 
   const [search, setSearch] = useState('');
 
@@ -130,6 +131,7 @@ export default function CustomSelectorManager({
               setIsRenamingSelector(true);
               setIsCloningAndRenaming(false);
               setSelector(selector);
+              combobox.closeDropdown();
             }
             }>
               <div className="flex items-center justify-between w-full"><span>Rename class</span>
@@ -297,15 +299,19 @@ export default function CustomSelectorManager({
 
         <Combobox styles={{
           dropdown: { width: '100%' },
-        }} store={combobox} onOptionSubmit={(item) => {
-          if (search.trim() === '') {
-            addSelector(item);
-          } else {
-            addSelector(search);
-          }
-          setSearch('');
-          combobox.closeDropdown();
-        }} withinPortal={false}>
+        }} store={combobox}
+                  onOptionSubmit={(val) => {
+                    console.log('val', val);
+                    if (val === '$create') {
+                      addSelector(search);
+                    } else {
+                      addSelector(val);
+                    }
+                    combobox.closeDropdown();
+                  }}
+
+
+                  withinPortal={false}>
           <Combobox.DropdownTarget>
             <PillsInput size="xs" className="w-full" onClick={() => combobox.openDropdown()}>
               <Pill.Group>
@@ -315,7 +321,10 @@ export default function CustomSelectorManager({
                 <Combobox.EventsTarget>
                   <PillsInput.Field
                     onFocus={() => combobox.openDropdown()}
-                    onBlur={() => combobox.closeDropdown()}
+                    onBlur={() => {
+                      combobox.closeDropdown();
+                      setSearch('');
+                    }}
                     value={search}
                     placeholder="Add class style"
                     onChange={(event) => {
@@ -356,12 +365,16 @@ export default function CustomSelectorManager({
         {/*                 size="1rem" /></ActionIcon>} />}*/}
 
         {isRenamingSelector &&
+          <div className="flex flex-col justify-start w-full">
           <TextInput autoFocus className="w-full" placeholder="Insert new class name" size="xs" my={8}
                      value={selectorName}
                      onChange={(event) => setSelectorName(event.currentTarget.value)}
                      rightSection={
                        <ActionIcon size="sm" onClick={() => renameSelector()}><IconCheck
-                         size="1rem" /></ActionIcon>} />}
+                         size="1rem" /></ActionIcon>} />
+            <ActionIcon size="xs" color="red" onClick={() => setIsRenamingSelector(false)}><IconX
+            size="1rem" /></ActionIcon>
+          </div>}
       </div>
 
     </div>

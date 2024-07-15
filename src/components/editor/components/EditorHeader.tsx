@@ -60,7 +60,7 @@ function SaveButton() {
         js: editor.getJs({ component }),
       };
     });
-    console.log('pageData', pagesData);
+    // console.log('pageData', pagesData);
     return { data, pagesData };
 
   };
