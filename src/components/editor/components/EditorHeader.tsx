@@ -217,7 +217,8 @@ function PublishButton({ siteData }: any) {
           errorMessage = `${errorData.message || 'Validation error occurred'}${missingFieldsMessage}`;
         } else if (status >= 500) {
           // Server error handling
-          errorMessage = errorData.message;
+          // @ts-ignore
+          errorMessage = error.response.data.message;
         } else if (status === 403) {
           notifications.show({
             title: 'Error',
