@@ -9,14 +9,24 @@ const navbars = (editor: Editor) => {
   const { Components } = editor;
 
   const script = function() {
-
-    const hamburger = document.querySelector('.hamburger-menu');
+    const hamburger = document.querySelector('.hamburger-btn');
     const navMenu = document.querySelector('.nav-menu');
 
-    hamburger?.addEventListener('click', () => {
-      navMenu?.classList.toggle('hide');
-      hamburger.classList.toggle('active');
-    });
+    hamburger?.addEventListener('click', mobileMenu);
+
+    function mobileMenu() {
+      hamburger?.classList.toggle('active');
+      navMenu?.classList.toggle('active');
+    }
+
+    // const navLink = document.querySelectorAll(".nav-link");
+    //
+    // navLink.forEach(n => n.addEventListener("click", closeMenu));
+    //
+    // function closeMenu() {
+    //   hamburger?.classList.remove("active");
+    //   navMenu?.classList.remove("active");
+    // }
   };
 
   editor.Blocks.add('navbar-burger', {
@@ -33,125 +43,117 @@ const navbars = (editor: Editor) => {
         script: script,
         name: 'Navbar W/Burger Menu',
         components: `  
-   <header>
+   <header class="header">
         <nav class="navbar">
-            <div class="logo">
-                <a href="/">
-                    <img src=
-"https://media.geeksforgeeks.org/wp-content/cdn-uploads/gfg_200x200-min.png"
-                         alt="gfg_logo">
-                </a> 
+            <a href="#" class="nav-logo">lanndi</a>
+            <div data-gjs-removable="false" class="nav-menu">
+                    <a href="#" class="nav-link">Services</a>
+               
+                    <a href="#" class="nav-link">Blog</a>
+              
+                    <a href="#" class="nav-link">About</a>
+              
+                    <a href="#" class="nav-link">Contact</a>
             </div>
-            <div class="hamburger-menu">
-                <span class="line"></span>
-                <span class="line"></span>
-                <span class="line"></span> 
-            </div>
-            <div class="nav-menu hide">
-                <a href="#">Home</a>
-                <a href="#">Career</a>
-                <a href="#">About</a>
-                <a href="#">Contact</a>
+            <div data-gjs-removable="false"  class="hamburger-btn">
+                <span  class="bar"></span>
+                <span  class="bar"></span>
+                <span  class="bar"></span>
             </div>
         </nav>
-    </header>`,
+</header>`,
         styles: `
-     a{
-    text-decoration: none;
-    color: black;
-    font-size: 1.3rem;
-    font-weight: bold;
+      .header{
+  border-bottom:1px solid #E2E8F0;
 }
- 
-/* navbar styling */
 .navbar{
-    display: flex;
-    height: 5rem;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 1rem;
-    border-bottom: 2px solid rgb(223, 251, 219);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-top:0.5rem;
+  padding-right:0;
+  padding-bottom:0.5rem;
+  padding-left:0;
+  width:90%;
+  height:fit-content;
+  max-width:1200px;
+  margin-right:auto;
+  margin-left:auto;
 }
- 
-/* logo style  */
-.logo img{
-    width: 4rem;
-    height: 4rem;
-    margin-left:1rem;
+a{
+  text-decoration:none;
 }
- 
-.hamburger-menu{
-    padding-right: 1.5rem;
-    cursor: pointer;
+.nav-logo{
+  font-size:1.5rem;
+  font-weight:500;
+  color:#482ff7;
 }
- 
-.hamburger-menu .line {
-  display: block;
-  width: 2.5rem;
-  height: 2px;
-  margin-bottom: 5px;
-  background-color: black;
- -webkit-transition:all 0.3s ease-in-out;
-  transition:all 0.3s ease-in-out;
-}
-
-.hamburger-menu.active .line:nth-child(1) {
-  transform: translateY(7px) rotate(45deg); /* Move down and rotate */
-}
-
-.hamburger-menu.active .line:nth-child(2) {
-  opacity: 0; /* Fade out */
-}
-
-.hamburger-menu.active .line:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg); /* Move up and rotate */
-}
- 
 .nav-menu{
-    position: fixed;
-    width: 94%;
-    top: 6rem;
-    left: 18px;
-    background-color: rgb(255, 255, 255);
-    font-weight: 600;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:row;
+  width:fit-content;
+  column-gap:2rem;
+  padding-top:1rem;
+  padding-right:1rem;
+  padding-bottom:1rem;
+  padding-left:1rem;
+}
+
+.nav-link{
+  font-size:1rem;
+  font-weight:400;
+  color:#475569;
+}
+.nav-link:hover{
+  color:#482ff7;
+}
+.hamburger-btn{
+  display:none;
+}
+.bar{
+  display:block;
+  width:25px;
+  height:3px;
+  margin:5px auto;
+  -webkit-transition:all 0.3s ease-in-out;
+  transition:all 0.3s ease-in-out;
+  background-color:#101010;
+}
+
+@media only screen and (max-width: 880px){
+  .nav-menu{
+    position:fixed;
+    left:-100%;
+    top:3rem;
+    flex-direction:column;
+    row-gap:1rem;
+    background-color:#fff;
+    width:100%;
+    border-radius:10px;
+    text-align:center;
+    transition:0.3s;
+    box-shadow:0 10px 27px rgba(0, 0, 0, 0.05);
+  }
+  
+  .nav-menu.active {
+        left: 0;
+    }
+    
  
-}
-.nav-menu a{
-    display: block;
-    text-align: center;
-    padding: 5px 0;
-}
-.nav-menu a:hover{
-    background-color: rgb(223, 251, 219);
-}
- 
-.hide{
-    display: none;
-}
- 
-/* for Desktop view  */
-@media screen and (min-width:880px){
-    .navbar{
-        justify-content: space-around;
-    }
-    .nav-menu{
-        display: block;
-        position: static;
-        width: auto;
-        margin-right:20px;
-        background: none;
-    }
-    .nav-menu a{
-        display: inline-block;
-        padding: 15px 20px;
-    }
-    .nav-menu a:hover{
-        background-color: rgb(223, 251, 219);
-        border-radius: 5px;
-    }
-    .hamburger-menu{
-        display: none;
-    }
+  .hamburger-btn{
+    display:block;
+    cursor:pointer;
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    outline: inherit;
+    z-index: 1000;
+  }
+  
     .hamburger-btn.active .bar:nth-child(2) {
         opacity: 0;
     }
@@ -163,13 +165,13 @@ const navbars = (editor: Editor) => {
     .hamburger-btn.active .bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
     }
-    
-    
+
 }
 `,
       },
     },
   });
+
 
 
   editor.Blocks.add('navbar-simple', {
