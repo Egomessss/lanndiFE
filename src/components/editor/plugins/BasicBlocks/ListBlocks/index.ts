@@ -43,7 +43,7 @@ export type PluginOptions = {
 const ListBlocks: Plugin<PluginOptions> = (editor, opts = {}) => {
     const config: Required<PluginOptions> = {
         blocks: [
-            'no-decoration-list',
+            'list-item',
             'ordered-list',
             'unordered-list',
           

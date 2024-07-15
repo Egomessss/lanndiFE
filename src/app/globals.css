@@ -42,7 +42,7 @@
 
 .gjs-rte-actionbar {
     translate: 0 -1%;
-    background: #1970C2;
+    /*background: #1970C2;*/
     border-radius: 2px;
     color: white;
     border: none;

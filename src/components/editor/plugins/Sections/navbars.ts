@@ -5,7 +5,7 @@ const navbars = (editor: Editor) => {
 
   const id = 'navbar';
   const label = 'Navbar';
-  const style = '';
+
   const { Components } = editor;
 
   const script = function () {
@@ -31,15 +31,13 @@ const navbars = (editor: Editor) => {
     }
   }
 
-
-
-  // editor.Blocks.add('navbar-burger', {
-  //   media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
-  //   label: 'W/Burger',
-  //   category: 'sections-navbars',
-  //   select: true,
-  //   content: { type: 'navbar-burger' },
-  // });
+  editor.Blocks.add('navbar-burger', {
+    media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
+    label: 'W/Burger',
+    category: 'sections-navbars',
+    select: true,
+    content: { type: 'navbar-burger' },
+  });
   Components.addType('navbar-burger', {
     model: {
       defaults: {
@@ -50,7 +48,6 @@ const navbars = (editor: Editor) => {
         <nav class="navbar">
             <a href="#" class="nav-logo">lanndi</a>
             <div data-gjs-removable="false" class="nav-menu">
-              
                     <a href="#" class="nav-link">Services</a>
                
                     <a href="#" class="nav-link">Blog</a>
@@ -58,7 +55,6 @@ const navbars = (editor: Editor) => {
                     <a href="#" class="nav-link">About</a>
               
                     <a href="#" class="nav-link">Contact</a>
-               
             </div>
             <button type="button" data-gjs-removable="false"  class="hamburger-btn">
                 <span data-gjs-selectable="false" data-gjs-removable="false" class="bar"></span>
@@ -191,17 +187,18 @@ a{
       defaults: {
         name: 'Navbar W/Cta',
         components: `  
-   <header class="header">
-        <nav class="navbar">
-            <a href="#" class="nav-logo">lanndi</a>
-            <a class="link-box"><button class="button">Button</button></a>
+   <header class="nwa-header">
+        <nav class="nwa-navbar">
+            <a href="#" class="nwa-nav-logo">lanndi</a>
+            <a class="nwa-link-box"><button class="nwa-button"><p class="nwa-button-text">Button
+</p></button></a>
         </nav>
 </header>`,
         styles: `
-      .header{
+      .nwa-header{
   border-bottom:1px solid #E2E8F0;
 }
-.navbar{
+.nwa-navbar{
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -216,13 +213,41 @@ a{
   margin-left:auto;
 }
 
-.nav-logo{
+.nwa-button{
+width:fit-content;
+cursor:pointer;
+outline:0;
+color:#fff;
+background-color:#0d6efd;
+border-color:#0d6efd;
+display:inline-block;
+font-weight:400;
+line-height:1.5;
+text-align:center;
+border:1px solid transparent;
+padding:2px 8px 2px 8px;
+font-size:16px;
+border-radius:.25rem .25rem .25rem .25rem;
+}
+.nwa-button:hover{
+opacity:0.9;
+}
+.nwa-button-text{
+margin-top:0;
+margin-right:0;
+margin-bottom:0;
+margin-left:0;
+width:fit-content;
+height:fit-content;
+}
+
+.nwa-nav-logo{
   font-size:1.5rem;
   font-weight:500;
   color:#482ff7;
 }
 
-.link-box{
+.nwa-link-box{
   color:inherit;
   display:inline-block;
   vertical-align:top;
@@ -231,11 +256,11 @@ a{
   text-decoration:none;
   cursor:pointer;
 }
-.link-box:empty{
+.nwa-link-box:empty{
   text-decoration:none;
   padding:5px;
 }
-.link-box:empty:before{
+.nwa-link-box:empty:before{
   background-color:#ddd;
   color:#000;
   font-size:16px;
@@ -253,25 +278,7 @@ a{
   text-overflow:ellipsis;
   content:"Link Box";
 }
-.button{
-  width:fit-content;
-  cursor:pointer;
-  outline:0;
-  color:#fff;
-  background-color:#0d6efd;
-  border-color:#0d6efd;
-  display:inline-block;
-  font-weight:400;
-  line-height:1.5;
-  text-align:center;
-  border:1px solid transparent;
-  padding:2px 8px 2px 8px;
-  font-size:16px;
-  border-radius:.25rem .25rem .25rem .25rem;
-}
-.button:hover{
-  opacity:0.9;
-}
+
 
 
 `,

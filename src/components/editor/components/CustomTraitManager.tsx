@@ -51,8 +51,7 @@ export const SvgContentCode = () => {
 export default function CustomTraitManager({
                                              traits,
                                            }: Omit<TraitsResultProps, 'Container'>) {
-  const { user } = useUser();
-  console.log(user);
+
   const editor = useEditor();
   const value = editor.getSelected()?.get('tagName');
 

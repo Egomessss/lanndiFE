@@ -29,7 +29,7 @@ const DeviceButtons = () => {
   const editor = useEditor();
 
   const width = editor.Canvas.getBody()?.clientWidth;
-  console.log(width);
+  // console.log(width);
   return (
     <>
       <Tooltip

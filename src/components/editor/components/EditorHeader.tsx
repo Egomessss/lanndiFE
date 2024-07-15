@@ -342,7 +342,7 @@ function SiteSettingsButton({ data }: any) {
   const { user } = useUser();
   return (
     <>
-      <Tooltip label="Site settings">
+      <Tooltip color="dark" label="Site settings">
         <ActionIcon disabled={!user} onClick={open} variant="subtle">
           <IconSettings size="1rem" />
         </ActionIcon>

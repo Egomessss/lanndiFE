@@ -38,7 +38,7 @@ export default function CustomBlockManager({
         <Button leftSection={<IconBulb size="1rem" />} size="xs" fullWidth>Tips</Button>
       </Tooltip>
       {Array.from(mapCategoryBlocks)
-        .filter(([category, _]) => !category.startsWith('sections-' || 'templates-')) // Filter out categories starting with "section-"
+        .filter(([category, _]) => !category.startsWith('sections-') && !category.startsWith('templates-'))
         .map(([category, blocks]) => (
           <div
             key={category}
@@ -96,6 +96,11 @@ export default function CustomBlockManager({
                         }
                         {block.getLabel() === 'Heading' &&
                           <Tooltip label="You can edit the type of heading in the settings">
+                            <IconExclamationCircle size="1rem" />
+                          </Tooltip>
+                        }
+                        {block.getLabel() === 'List Item' &&
+                          <Tooltip label="Can only be dragged inside Ordered and Unordered lists">
                             <IconExclamationCircle size="1rem" />
                           </Tooltip>
                         }

@@ -95,7 +95,7 @@ export const demoEditorConfigOptions = () => ({
     TypographyBlocks,
     CoreBlocks,
     MediaBlocks,
-    // ListBlocks,
+    ListBlocks,
     // FormBlocks,
     // SemanticBlocks,
     // IntegrationsBlocks,

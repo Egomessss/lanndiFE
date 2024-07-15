@@ -51,7 +51,7 @@ function CreatePageModal({ editingPageId, pages, add, opened, onClose }: CreateP
   const page = editor.Pages.get(editingPageId);
   const pageName = editor.Pages.get(editingPageId)?.getName();
   const pageData = editor.Pages.get(editingPageId)?.attributes;
-  console.log(pageData);
+  // console.log(pageData);
 
   const formSchema = z.object({
     name: z.string().max(60, 'Title must be at most 60 characters'),

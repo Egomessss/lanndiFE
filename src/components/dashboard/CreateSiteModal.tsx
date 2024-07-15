@@ -15,12 +15,12 @@ type props = {
   isOverMaxSitesAllowed: boolean
 }
 
-const CreateSiteModal = (isOverMaxSitesAllowed: props) => {
+const CreateSiteModal = (props: props) => {
   const [opened, { open, close }] = useDisclosure(false);
   const router = useRouter();
   const queryClient = useQueryClient();
   const validSubdomainRegex = /^[a-zA-Z0-9]([a-zA-Z0-9-]{2,61}[a-zA-Z0-9])?$/;
-  console.log(isOverMaxSitesAllowed);
+
   const formSchema = z.object({
     name: z.string().min(4, 'Name must have at least 4 letters').max(100, { message: 'Must be 100 or fewer characters long' }),
     subdomain: z.string()
@@ -95,11 +95,12 @@ const CreateSiteModal = (isOverMaxSitesAllowed: props) => {
     }
   };
   // console.log(isOverMaxSitesAllowed);
+  const { isOverMaxSitesAllowed } = props;
 
   return (
     <>
       {isOverMaxSitesAllowed ? <Tooltip label="Upgrade your plan so you can host more websites">
-          <Button onClick={open} disabled={!!isOverMaxSitesAllowed} rightSection={<IconPlus size="1rem" />}>
+          <Button onClick={open} disabled={isOverMaxSitesAllowed} rightSection={<IconPlus size="1rem" />}>
             New Site</Button>
         </Tooltip> :
         <Button onClick={open} rightSection={<IconPlus size="1rem" />}>New Site</Button>}

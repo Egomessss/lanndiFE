@@ -206,9 +206,9 @@ const InteractiveBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
         resizable: true,
         name: 'Button', // Default component name
         tagName: 'button',
-        components: 'Button' ,
+        // components: 'Button' ,
         attributes: { class: 'button' },
-        // components: `<button class="button">Button</button>`,
+        components: `<p class="button-text">Button</p>`,
         styles: `
                    .button{
   width:fit-content;
@@ -229,6 +229,18 @@ const InteractiveBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
 .button:hover{
   opacity:0.9;
 }
+
+  .button-text{
+        margin-top:0 ;
+        margin-right: 0;
+        margin-bottom: 0;
+        margin-left: 0;
+        width:fit-content;
+        height:fit-content;
+        }
+
+
+
                 `,
       },
       // init() {

@@ -209,13 +209,11 @@ export default function TopBarButtons() {
   }, [cmdButtons, editor]);
 
 
-
-
   return (
     <div className="flex w-full gap-2 items-center">
       <Divider orientation="vertical" />
       <div className="flex items-center justify-center gap-2  w-full">
-        <Tooltip color="gray" label="Use Left Mouse Click + Spacebar to drag canvas - Zoom must be less than 100%">
+        <Tooltip color="dark" label="Use Left Mouse Click + Spacebar to drag canvas - Zoom must be less or greater than 100%">
           <ActionIcon
             color="blue"
             variant="subtle"
@@ -223,7 +221,7 @@ export default function TopBarButtons() {
             <IconHandGrab size="1rem" />
           </ActionIcon>
         </Tooltip>
-        <Tooltip label="Zoom out/ Shift -">
+        <Tooltip color="dark" label="Zoom out/ Shift -">
           <ActionIcon
             color="blue"
             variant="subtle"
@@ -242,7 +240,7 @@ export default function TopBarButtons() {
           min={50}
           styles={{ input: { width: rem(54), textAlign: 'center' } }}
         />
-        <Tooltip label="Zoom in / Shift + ">
+        <Tooltip color="dark" label="Zoom in / Shift + ">
           <ActionIcon
             color="blue"
             disabled={zoomValue > 199}
@@ -252,7 +250,7 @@ export default function TopBarButtons() {
             <IconZoomIn size="1rem" />
           </ActionIcon>
         </Tooltip>
-        <Tooltip label="Reset zoom & position">
+        <Tooltip color="dark" label="Reset zoom & position">
           <ActionIcon
             color="blue"
 
@@ -290,7 +288,7 @@ export default function TopBarButtons() {
           key={id}
           className="item flex items-center gap-2 whitespace-nowrap "
         >
-          <Tooltip label={name}>
+          <Tooltip color="dark" label={name}>
             <ActionIcon
               key={id}
               color="blue"
