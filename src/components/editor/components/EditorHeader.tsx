@@ -217,7 +217,7 @@ function PublishButton({ siteData }: any) {
           errorMessage = `${errorData.message || 'Validation error occurred'}${missingFieldsMessage}`;
         } else if (status >= 500) {
           // Server error handling
-          errorMessage = 'A server error occurred. Please try again later.';
+          errorMessage = errorData.message;
         } else if (status === 403) {
           notifications.show({
             title: 'Error',
