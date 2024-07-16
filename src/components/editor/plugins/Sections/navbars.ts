@@ -9,22 +9,14 @@ const navbars = (editor: Editor) => {
     const { Components } = editor;
 
 
-    editor.Blocks.add('navbar-burger', {
-      media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
-      label: 'W/Burger And Dropdown',
-      category: 'sections-navbars',
-      select: true,
-      content: { type: 'navbar-burger' },
-    });
-
-    editor.Blocks.add('navbar-burger-two', {
-      media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
-      label: 'W/Burger And Sidebar',
-      category: 'sections-navbars',
-      select: true,
-      content: { type: 'navbar-burger-two' },
-    });
-
+    // editor.Blocks.add('navbar-burger', {
+    //   media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
+    //   label: 'W/Burger And Dropdown',
+    //   category: 'sections-navbars',
+    //   select: true,
+    //   content: { type: 'navbar-burger' },
+    // });
+    //
     Components.addType('navbar-burger', {
         model: {
           defaults: {
@@ -184,6 +176,13 @@ a{
     )
     ;
 
+  // editor.Blocks.add('navbar-burger-two', {
+  //   media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
+  //   label: 'W/Burger And Sidebar',
+  //   category: 'sections-navbars',
+  //   select: true,
+  //   content: { type: 'navbar-burger-two' },
+  // });
 
     Components.addType('navbar-burger-two', {
       model: {
@@ -193,10 +192,10 @@ a{
             const navbar = document.querySelector('.menubar');
 
             const toggleNav = () => {
-              navbar.classList.toggle('active');
-              mobileNav.classList.toggle('hamburger-active');
+              navbar?.classList.toggle('active');
+              mobileNav?.classList.toggle('hamburger-active');
             };
-            mobileNav.addEventListener('click', () => toggleNav());
+            mobileNav?.addEventListener('click', () => toggleNav());
           },
           name: 'Navbar W/Burger Menu',
           components: `  
@@ -490,13 +489,13 @@ height:fit-content;
     });
 
 
-    editor.Blocks.add('navbar', {
-      media: `<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-layout-navbar"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 9l16 0" /></svg>`,
-      label: 'Navbar',
-      category: 'sections-navbar',
-      select: true,
-      content: { type: 'navbar' },
-    });
+    // editor.Blocks.add('navbar', {
+    //   media: `<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-layout-navbar"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 9l16 0" /></svg>`,
+    //   label: 'Navbar',
+    //   category: 'sections-navbar',
+    //   select: true,
+    //   content: { type: 'navbar' },
+    // });
 
 
     const idNavMenu = `${id}-nav-menu`;
