@@ -23,7 +23,7 @@ const InteractiveBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
     model: {
       defaults: {
         label: 'Link',
-        tagName:'a',
+        tagName: 'a',
         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 15l6 -6" /><path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464" /><path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" /></svg>`,
         attributes: { class: 'link', href: '/' },
         components: `link`,
@@ -47,9 +47,9 @@ const InteractiveBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
             label: 'Target tab',
             name: 'target',
             options: [ // Array of options
-              { id: '_blank', label: 'Open in new tab'},
-              { id: '_self', label: 'Open in current tab'},
-            ]
+              { id: '_blank', label: 'Open in new tab' },
+              { id: '_self', label: 'Open in current tab' },
+            ],
           },
         ],
       },
@@ -62,8 +62,9 @@ const InteractiveBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
     label: 'Link',
     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 15l6 -6" /><path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464" /><path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" /></svg>`,
     content: {
-      type: 'link'
+      type: 'link',
     },
+
   });
 
   editor.DomComponents.addType('nav-link', {
@@ -75,7 +76,7 @@ const InteractiveBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-symlink" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 21v-4a3 3 0 0 1 3 -3h5" /><path d="M9 17l3 -3l-3 -3" /><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M5 11v-6a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-9.5" /></svg>`,
         attributes: { class: 'nav-link' },
         name: 'NavLink',
-        content:'',
+        content: '',
       },
     },
   });
@@ -103,10 +104,10 @@ const InteractiveBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
         tagName: 'a',
         name: 'Link Box',
         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" /><path d="M11 13l9 -9" /><path d="M15 4h5v5" /></svg>`,
-        selectable:true,
-        editable:false,
-        droppable:true,
-        components:'',
+        selectable: true,
+        editable: false,
+        droppable: true,
+        components: '',
         attributes: { class: 'link-box' },
         styles: `
                 .link-box {
@@ -161,9 +162,9 @@ const InteractiveBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
             label: 'Target tab',
             name: 'target',
             options: [ // Array of options
-              { id: '_blank', label: 'Open in new tab'},
-              { id: '_self', label: 'Open in current tab'},
-            ]
+              { id: '_blank', label: 'Open in new tab' },
+              { id: '_self', label: 'Open in current tab' },
+            ],
           },
         ],
       },

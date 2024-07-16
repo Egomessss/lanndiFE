@@ -142,8 +142,6 @@ export default function TopBarButtons() {
   // });
 
 
-
-
   const { user } = useUser();
 
 
@@ -190,6 +188,11 @@ export default function TopBarButtons() {
       disabled: () => !UndoManager.hasRedo(),
       name: 'Redo',
     },
+    {
+      id: 'core:canvas-move',
+      Icon: IconHandGrab,
+      name: 'Move Canvas or use Left Mouse Click + Spacebar to drag canvas - Zoom must be less or greater than 100%',
+    },
   ];
 
   useEffect(() => {
@@ -202,6 +205,7 @@ export default function TopBarButtons() {
     editor.on(cmdEvent, onCommand);
     editor.on(updateEvent, updateCounter);
 
+
     return () => {
       editor.off(cmdEvent, onCommand);
       editor.off(updateEvent, updateCounter);
@@ -209,18 +213,12 @@ export default function TopBarButtons() {
   }, [cmdButtons, editor]);
 
 
+
+
   return (
     <div className="flex w-full gap-2 items-center">
       <Divider orientation="vertical" />
       <div className="flex items-center justify-center gap-2  w-full">
-        <Tooltip color="dark" label="Use Left Mouse Click + Spacebar to drag canvas - Zoom must be less or greater than 100%">
-          <ActionIcon
-            color="blue"
-            variant="subtle"
-          >
-            <IconHandGrab size="1rem" />
-          </ActionIcon>
-        </Tooltip>
         <Tooltip color="dark" label="Zoom out/ Shift -">
           <ActionIcon
             color="blue"

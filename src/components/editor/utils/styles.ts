@@ -57,7 +57,7 @@ export const styles = {
           label: 'Direction',
           property: 'flex-direction',
           type: 'radio',
-          default: 'horizontal',
+          default: 'row',
           options: [
             {
               id: 'row',

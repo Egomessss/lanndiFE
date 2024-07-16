@@ -40,7 +40,8 @@ export const demoEditorConfigOptions = () => ({
   canvas:{
     styles:['https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;v=1704404084845'],
     // scripts:["https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"]
-    frameStyle: `body{height-fit-content;}`,
+    notTextable: ['input[type=checkbox]', 'input[type=radio]'],
+
   },
   deviceManager: {
     default: 'fit',
