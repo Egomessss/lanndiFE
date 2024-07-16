@@ -3,47 +3,54 @@ import type { Editor } from 'grapesjs';
 
 const navbars = (editor: Editor) => {
 
-  const id = 'navbar';
-  const label = 'Navbar';
+    const id = 'navbar';
+    const label = 'Navbar';
 
-  const { Components } = editor;
+    const { Components } = editor;
 
-  const script = function() {
-    const hamburger = document.querySelector('.nb-hamburger-btn');
-    const navMenu = document.querySelector('.nb-nav-menu');
 
-    if(hamburger && navMenu) {
-      hamburger.addEventListener('click', ()=>{
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-      });
+    editor.Blocks.add('navbar-burger', {
+      media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
+      label: 'W/Burger And Dropdown',
+      category: 'sections-navbars',
+      select: true,
+      content: { type: 'navbar-burger' },
+    });
 
-    }
+    editor.Blocks.add('navbar-burger-two', {
+      media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
+      label: 'W/Burger And Sidebar',
+      category: 'sections-navbars',
+      select: true,
+      content: { type: 'navbar-burger-two' },
+    });
 
-    // const navLink = document.querySelectorAll(".nav-link");
-    //
-    // navLink.forEach(n => n.addEventListener("click", closeMenu));
-    //
-    // function closeMenu() {
-    //   hamburger?.classList.remove("active");
-    //   navMenu?.classList.remove("active");
-    // }
-  };
+    Components.addType('navbar-burger', {
+        model: {
+          defaults: {
+            script: function() {
+              const hamburger = document.querySelector('.nb-hamburger-btn');
+              const navMenu = document.querySelector('.nb-nav-menu');
 
-  editor.Blocks.add('navbar-burger', {
-    media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
-    label: 'W/Burger',
-    category: 'sections-navbars',
-    select: true,
-    content: { type: 'navbar-burger' },
-  });
+              if (hamburger && navMenu) {
+                hamburger.addEventListener('click', () => {
+                  hamburger.classList.toggle('active');
+                  navMenu.classList.toggle('active');
+                });
+              }
 
-  Components.addType('navbar-burger', {
-    model: {
-      defaults: {
-        script: script,
-        name: 'Navbar W/Burger Menu',
-        components: `  
+              // const navLink = document.querySelectorAll(".nav-link");
+              //
+              // navLink.forEach(n => n.addEventListener("click", closeMenu));
+              //
+              // function closeMenu() {
+              //   hamburger?.classList.remove("active");
+              //   navMenu?.classList.remove("active");
+              // }
+            },
+            name: 'Navbar W/Burger Menu',
+            components:
+              `  
    <header class="nb-header">
         <nav class="nb-navbar">
             <a href="#" class="nb-nav-logo">lanndi</a>
@@ -63,7 +70,8 @@ const navbars = (editor: Editor) => {
             </div>
         </nav>
 </header>`,
-        styles: `
+            styles:
+              `
       .nb-header{
   border-bottom:1px solid #E2E8F0;
 }
@@ -170,25 +178,218 @@ a{
 
 }
 `,
+          },
+        },
       },
-    },
-  });
+    )
+    ;
 
 
+    Components.addType('navbar-burger-two', {
+      model: {
+        defaults: {
+          script: function() {
+            const mobileNav = document.querySelector('.hamburger');
+            const navbar = document.querySelector('.menubar');
 
-  editor.Blocks.add('navbar-simple', {
-    media: 'https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/navbar-cta.png',
-    label: 'W/Cta',
-    category: 'sections-navbars',
-    select: true,
-    content: { type: 'navbar-simple' },
-  });
+            const toggleNav = () => {
+              navbar.classList.toggle('active');
+              mobileNav.classList.toggle('hamburger-active');
+            };
+            mobileNav.addEventListener('click', () => toggleNav());
+          },
+          name: 'Navbar W/Burger Menu',
+          components: `  
+   <nav>
+      <div class="logo">
+        <img src="assets/Logo64x64.png" alt="logo" />
+        <h1>LOGO</h1>
+      </div>
+      <ul>
+        <li>
+          <a href="#">Home</a>
+        </li>
+        <li>
+          <a href="#">Services</a>
+        </li>
+        <li>
+          <a href="#">Blog</a>
+        </li>
+        <li>
+          <a href="#">Contact Us</a>
+        </li>
+      </ul>
+      <div class="hamburger">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </nav>
+    <div class="menubar">
+      <ul>
+        <li>
+          <a href="#">Home</a>
+        </li>
+        <li>
+          <a href="#">Services</a>
+        </li>
+        <li>
+          <a href="#">Blog</a>
+        </li>
+        <li>
+          <a href="#">Contact Us</a>
+        </li>
+      </ul>
+    </div>`,
+          styles: `
+      nav {
+  padding: 5px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  z-index: 1;
+}
+nav .logo {
+  display: flex;
+  align-items: center;
+}
+nav .logo img {
+  height: 25px;
+  width: auto;
+  margin-right: 10px;
+}
+nav .logo h1 {
+  font-size: 1.1rem;
+  background: linear-gradient(to right, #b927fc 0%, #2c64fc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-  Components.addType('navbar-simple', {
-    model: {
-      defaults: {
-        name: 'Navbar W/Cta',
-        components: `  
+nav ul {
+  list-style: none;
+  display: flex;
+}
+nav ul li {
+  margin-left: 1.5rem;
+}
+nav ul li a {
+  text-decoration: none;
+  color: #000;
+  font-size: 95%;
+  font-weight: 400;
+  padding: 4px 8px;
+  border-radius: 5px;
+}
+
+nav ul li a:hover {
+  background-color: #f5f5f5;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.hamburger .line {
+  width: 25px;
+  height: 1px;
+  background-color: #1f1f1f;
+  display: block;
+  margin: 7px auto;
+  transition: all 0.3s ease-in-out;
+}
+.hamburger-active {
+  transition: all 0.3s ease-in-out;
+  transition-delay: 0.6s;
+  transform: rotate(45deg);
+}
+
+.hamburger-active .line:nth-child(2) {
+  width: 0px;
+}
+
+.hamburger-active .line:nth-child(1),
+.hamburger-active .line:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.hamburger-active .line:nth-child(1) {
+  transform: translateY(12px);
+}
+
+.hamburger-active .line:nth-child(3) {
+  transform: translateY(-5px) rotate(90deg);
+}
+
+.menubar {
+  position: absolute;
+  top: 0;
+  left: -60%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 60%;
+  height: 100vh;
+  padding: 20% 0;
+  background: rgba(255, 255, 255);
+  transition: all 0.5s ease-in;
+  z-index: 2;
+}
+.active {
+  left: 0;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.menubar ul {
+  padding: 0;
+  list-style: none;
+}
+.menubar ul li {
+  margin-bottom: 32px;
+}
+
+.menubar ul li a {
+  text-decoration: none;
+  color: #000;
+  font-size: 95%;
+  font-weight: 400;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.menubar ul li a:hover {
+  background-color: #f5f5f5;
+}
+@media screen and (max-width: 880px) {
+  .hamburger {
+    display: block;
+  }
+  nav ul {
+    display: none;
+  }
+}
+`,
+        },
+      },
+    });
+
+
+    editor.Blocks.add('navbar-simple', {
+      media: 'https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/navbar-cta.png',
+      label: 'W/Cta',
+      category: 'sections-navbars',
+      select: true,
+      content: { type: 'navbar-simple' },
+    });
+
+    Components.addType('navbar-simple', {
+      model: {
+        defaults: {
+          name: 'Navbar W/Cta',
+          components: `  
    <header class="nwa-header">
         <nav class="nwa-navbar">
             <a href="#" class="nwa-nav-logo">lanndi</a>
@@ -196,7 +397,7 @@ a{
 </p></button></a>
         </nav>
 </header>`,
-        styles: `
+          styles: `
       .nwa-header{
   border-bottom:1px solid #E2E8F0;
 }
@@ -284,45 +485,45 @@ height:fit-content;
 
 
 `,
+        },
       },
-    },
-  });
+    });
 
 
-  // editor.Blocks.add('navbar', {
-  //   media: `<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-layout-navbar"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 9l16 0" /></svg>`,
-  //   label: 'Navbar',
-  //   category: 'sections-navbar',
-  //   select: true,
-  //   content: { type: 'navbar' },
-  // });
+    editor.Blocks.add('navbar', {
+      media: `<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-layout-navbar"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 9l16 0" /></svg>`,
+      label: 'Navbar',
+      category: 'sections-navbar',
+      select: true,
+      content: { type: 'navbar' },
+    });
 
 
-  const idNavMenu = `${id}-nav-menu`;
-  const idNavMenuLink = `${id}-nav-menu-link`;
-  const idBurgerMenu = `${id}-burger-menu`;
-  const idBurgerMenuLine = `${id}-burger-menu-line`;
+    const idNavMenu = `${id}-nav-menu`;
+    const idNavMenuLink = `${id}-nav-menu-link`;
+    const idBurgerMenu = `${id}-burger-menu`;
+    const idBurgerMenuLine = `${id}-burger-menu-line`;
 
-  Components.addType('navbar', {
-    model: {
-      defaults: {
-        name: 'Navbar',
-        attributes: { class: 'navbar' },
-        removable: false,
-        copyable: false,
-        components: [
-          {
-            type: 'link',
-            components:'lanndi',
-            attributes: { class: `navbar-brand`, href: '/' },
-          },
-          { type: idBurgerMenu },
-          {
-            attributes: { class: `navbar-items-c`, 'data-gjs': 'navbar-items' },
-            components: { type: idNavMenu },
-          },
-        ],
-        styles: `
+    Components.addType('navbar', {
+      model: {
+        defaults: {
+          name: 'Navbar',
+          attributes: { class: 'navbar' },
+          removable: false,
+          copyable: false,
+          components: [
+            {
+              type: 'link',
+              components: 'lanndi',
+              attributes: { class: `navbar-brand`, href: '/' },
+            },
+            { type: idBurgerMenu },
+            {
+              attributes: { class: `navbar-items-c`, 'data-gjs': 'navbar-items' },
+              components: { type: idNavMenu },
+            },
+          ],
+          styles: `
           .navbar {
             height: fit-content;
             padding-top: 0.5rem;
@@ -336,6 +537,7 @@ height:fit-content;
             display:flex;
             justify-content: space-between;
             align-items: center;
+             min-height: 50px;
           }
 
           .navbar-items-c {
@@ -394,154 +596,154 @@ height:fit-content;
             }
           }
         `,
-      },
-    },
-  });
-
-
-  Components.addType(idNavMenu, {
-    model: {
-      defaults: {
-        name: 'Navbar Menu',
-        tagName: 'nav',
-        attributes: { class: `navbar-menu` },
-        components: [
-          { type: idNavMenuLink, components: 'Home' },
-          { type: idNavMenuLink, components: 'About' },
-          { type: idNavMenuLink, components: 'Contact' },
-        ],
-      },
-    },
-  });
-
-  Components.addType(idNavMenuLink, {
-    extend: 'link',
-    model: {
-      defaults: {
-        name: 'Menu link',
-        draggable: `[data-gjs-type="${idNavMenu}"]`,
-        attributes: { class: `navbar-menu-link` },
-      },
-    },
-  });
-
-  Components.addType(idBurgerMenu, {
-    model: {
-      defaults: {
-        name: 'Burger',
-        draggable: false,
-        droppable: false,
-        copyable: false,
-        removable: false,
-        script: function () {
-          // @ts-ignore
-          const currentEl = this as HTMLElement;
-          const stringCollapse = 'gjs-collapse';
-          const clickEvent = 'click';
-          const transitProp = 'max-height';
-          let transEndAdded: any;
-          let isAnimating = 0;
-
-          const getTransitionEvent = function() {
-            const el = document.createElement('void');
-            const transitions: Record<string, string> = {
-              'transition': 'transitionend',
-              'OTransition': 'oTransitionEnd',
-              'MozTransition': 'transitionend',
-              'WebkitTransition': 'webkitTransitionEnd'
-            }
-
-            for (let t in transitions) {
-              // @ts-ignore
-              if (el.style[t] !== undefined){
-                return transitions[t];
-              }
-            }
-          }
-
-          const transitEndEvent = getTransitionEvent();
-
-          var getElHeight = function(el: HTMLElement): number {
-            const style = window.getComputedStyle(el);
-            const elDisplay = style.display;
-            // @ts-ignore
-            const elMaxHeight = parseInt(style[transitProp]);
-
-            if (elDisplay !== 'none' && elMaxHeight !== 0) {
-              return el.offsetHeight;
-            }
-
-            el.style.height = 'auto';
-            el.style.display = 'block';
-            el.style.position = 'absolute';
-            el.style.visibility = 'hidden';
-            const height = el.offsetHeight;
-            el.style.height = '';
-            el.style.display = '';
-            el.style.position = '';
-            el.style.visibility = '';
-
-            return height;
-          };
-
-          var toggleSlide = function(el: HTMLElement) {
-            isAnimating = 1;
-            var elMaxHeight = getElHeight(el);
-            var elStyle: any = el.style;
-            elStyle.display = 'block';
-            elStyle.transition = `${transitProp} 0.25s ease-in-out`;
-            elStyle.overflowY = 'hidden';
-
-            if (elStyle[transitProp] == '') {
-              elStyle[transitProp] = 0;
-            }
-
-            if (parseInt(elStyle[transitProp]) == 0) {
-              elStyle[transitProp] = '0';
-              setTimeout(function() {
-                elStyle[transitProp] = elMaxHeight + 'px';
-              }, 10);
-            } else {
-              elStyle[transitProp] = '0';
-            }
-          }
-
-          const toggle = function(ev: Event) {
-            ev.preventDefault();
-            if (isAnimating) return;
-
-            const navParent = currentEl.closest(`[data-gjs=navbar]`);
-            const navItems = navParent?.querySelector(`[data-gjs=navbar-items]`) as HTMLElement;
-            navItems && toggleSlide(navItems);
-
-            if (!transEndAdded) {
-              // @ts-ignore
-              navItems?.addEventListener(transitEndEvent, function() {
-                isAnimating = 0;
-                const itemsStyle: any = navItems.style;
-                if (parseInt(itemsStyle[transitProp]) == 0) {
-                  itemsStyle.display = '';
-                  itemsStyle[transitProp] = '';
-                }
-              });
-              transEndAdded = 1;
-            }
-          };
-
-          if ( !(stringCollapse in currentEl) ) {
-            currentEl.addEventListener(clickEvent, toggle);
-          }
-
-          // @ts-ignore
-          currentEl[stringCollapse] = 1;
         },
-        attributes: { class: `navbar-burger` },
-        components: [
-          { type: idBurgerMenuLine },
-          { type: idBurgerMenuLine },
-          { type: idBurgerMenuLine },
-        ],
-        styles:`.navbar-burger {
+      },
+    });
+
+
+    Components.addType(idNavMenu, {
+      model: {
+        defaults: {
+          name: 'Navbar Menu',
+          tagName: 'nav',
+          attributes: { class: `navbar-menu` },
+          components: [
+            { type: idNavMenuLink, components: 'Home' },
+            { type: idNavMenuLink, components: 'About' },
+            { type: idNavMenuLink, components: 'Contact' },
+          ],
+        },
+      },
+    });
+
+    Components.addType(idNavMenuLink, {
+      extend: 'link',
+      model: {
+        defaults: {
+          name: 'Menu link',
+          draggable: `[data-gjs-type="${idNavMenu}"]`,
+          attributes: { class: `navbar-menu-link` },
+        },
+      },
+    });
+
+    Components.addType(idBurgerMenu, {
+      model: {
+        defaults: {
+          name: 'Burger',
+          draggable: false,
+          droppable: false,
+          copyable: false,
+          removable: false,
+          script: function() {
+            // @ts-ignore
+            const currentEl = this as HTMLElement;
+            const stringCollapse = 'gjs-collapse';
+            const clickEvent = 'click';
+            const transitProp = 'max-height';
+            let transEndAdded: any;
+            let isAnimating = 0;
+
+            const getTransitionEvent = function() {
+              const el = document.createElement('void');
+              const transitions: Record<string, string> = {
+                'transition': 'transitionend',
+                'OTransition': 'oTransitionEnd',
+                'MozTransition': 'transitionend',
+                'WebkitTransition': 'webkitTransitionEnd',
+              };
+
+              for (let t in transitions) {
+                // @ts-ignore
+                if (el.style[t] !== undefined) {
+                  return transitions[t];
+                }
+              }
+            };
+
+            const transitEndEvent = getTransitionEvent();
+
+            var getElHeight = function(el: HTMLElement): number {
+              const style = window.getComputedStyle(el);
+              const elDisplay = style.display;
+              // @ts-ignore
+              const elMaxHeight = parseInt(style[transitProp]);
+
+              if (elDisplay !== 'none' && elMaxHeight !== 0) {
+                return el.offsetHeight;
+              }
+
+              el.style.height = 'auto';
+              el.style.display = 'block';
+              el.style.position = 'absolute';
+              el.style.visibility = 'hidden';
+              const height = el.offsetHeight;
+              el.style.height = '';
+              el.style.display = '';
+              el.style.position = '';
+              el.style.visibility = '';
+
+              return height;
+            };
+
+            var toggleSlide = function(el: HTMLElement) {
+              isAnimating = 1;
+              var elMaxHeight = getElHeight(el);
+              var elStyle: any = el.style;
+              elStyle.display = 'block';
+              elStyle.transition = `${transitProp} 0.25s ease-in-out`;
+              elStyle.overflowY = 'hidden';
+
+              if (elStyle[transitProp] == '') {
+                elStyle[transitProp] = 0;
+              }
+
+              if (parseInt(elStyle[transitProp]) == 0) {
+                elStyle[transitProp] = '0';
+                setTimeout(function() {
+                  elStyle[transitProp] = elMaxHeight + 'px';
+                }, 10);
+              } else {
+                elStyle[transitProp] = '0';
+              }
+            };
+
+            const toggle = function(ev: Event) {
+              ev.preventDefault();
+              if (isAnimating) return;
+
+              const navParent = currentEl.closest(`[data-gjs=navbar]`);
+              const navItems = navParent?.querySelector(`[data-gjs=navbar-items]`) as HTMLElement;
+              navItems && toggleSlide(navItems);
+
+              if (!transEndAdded) {
+                // @ts-ignore
+                navItems?.addEventListener(transitEndEvent, function() {
+                  isAnimating = 0;
+                  const itemsStyle: any = navItems.style;
+                  if (parseInt(itemsStyle[transitProp]) == 0) {
+                    itemsStyle.display = '';
+                    itemsStyle[transitProp] = '';
+                  }
+                });
+                transEndAdded = 1;
+              }
+            };
+
+            if (!(stringCollapse in currentEl)) {
+              currentEl.addEventListener(clickEvent, toggle);
+            }
+
+            // @ts-ignore
+            currentEl[stringCollapse] = 1;
+          },
+          attributes: { class: `navbar-burger` },
+          components: [
+            { type: idBurgerMenuLine },
+            { type: idBurgerMenuLine },
+            { type: idBurgerMenuLine },
+          ],
+          styles: `.navbar-burger {
             margin: 10px 0;
             width: 45px;
             padding: 5px 10px;
@@ -561,22 +763,23 @@ height:fit-content;
           }
             
             }
-          `
+          `,
+        },
       },
-    },
-  });
+    });
 
-  Components.addType(idBurgerMenuLine, {
-    model: {
-      defaults: {
-        name: 'Burger Line',
-        droppable: false,
-        draggable: false,
-        selectable: false,
-        highlightable: false,
-        attributes: { class: `navbar-burger-line` },
+    Components.addType(idBurgerMenuLine, {
+      model: {
+        defaults: {
+          name: 'Burger Line',
+          droppable: false,
+          draggable: false,
+          selectable: false,
+          highlightable: false,
+          attributes: { class: `navbar-burger-line` },
+        },
       },
-    },
-  });
-};
+    });
+  }
+;
 export default navbars;
