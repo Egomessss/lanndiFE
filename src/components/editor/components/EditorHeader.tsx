@@ -126,7 +126,7 @@ function SaveButton() {
     if (isNotFirstTimeSaving?.data !== null) {
       const saveIntervalId = setInterval(() => {
         if (!idle) {
-         handleSave()
+          handleSave();
         }
       }, 120000); // 2 minutes
       return () => clearInterval(saveIntervalId);
@@ -150,28 +150,21 @@ function SaveButton() {
   const color = isError ? 'red' : showSuccess ? 'green' : 'blue';
 
   return (
-    <>
-      {user ? (
-        <Tooltip color="dark"
-                 label={<div className="flex flex-col gap-4"><p>Save changes - Saved automatically every 2 minutes.</p><p></p>Last saved: {lastSaved ? timeSince(lastSaved) : 'Not yet saved'}</div>}>
-          <ActionIcon
-            disabled={isPending}
-            loading={isPending}
-            className={!showSuccess ? 'animate-pulse' : ''}
-            color={color}
-            onClick={handleSave}
-            variant="subtle"
-          >
-            {isError && <IconFaceIdError size="1rem" />}
-            {!isPending && !isError && showSuccess ? <IconCheck size="1rem" /> : <IconDeviceFloppy size="1rem" />}
-          </ActionIcon>
-        </Tooltip>
-      ) : (
-        <Tooltip label="Register before you can save your site data">
-          <RegisterUserModal />
-        </Tooltip>
-      )}
-    </>
+    <Tooltip color="dark"
+             label={<div className="flex flex-col gap-4"><p>Save changes - Saved automatically every 2 minutes.</p>
+               <p></p>Last saved: {lastSaved ? timeSince(lastSaved) : 'Not yet saved'}</div>}>
+      <ActionIcon
+        disabled={isPending}
+        loading={isPending}
+        className={!showSuccess ? 'animate-pulse' : ''}
+        color={color}
+        onClick={handleSave}
+        variant="subtle"
+      >
+        {isError && <IconFaceIdError size="1rem" />}
+        {!isPending && !isError && showSuccess ? <IconCheck size="1rem" /> : <IconDeviceFloppy size="1rem" />}
+      </ActionIcon>
+    </Tooltip>
   );
 }
 
@@ -372,13 +365,10 @@ function EditorHeader() {
     enabled: !isDemo,
   });
 
-  console.log(data);
-
   const isDisabled = !data?.title && !data?.description && user && user.subscription !== 'free' || !user || user.subscription === 'free';
   const tooltipColor = isDisabled ? 'red' : 'gray';
   const tooltipLabel = user?.subscription === 'free' ? 'Free users are not allowed preview domains' : (!data?.title && !data?.description ? 'Add a title and description to your site settings before you can preview your website(paid feature)' : 'Open latest saved preview');
   const buttonHref = isDisabled ? '' : `https://preview.${data?.subdomain}.lanndi.com`;
-
 
 
   return (
@@ -402,7 +392,8 @@ function EditorHeader() {
               report bugs
               and ask for features</p><p>If
               you need help you can contact us at help@lanndi.com - we respond in less than 24h</p>
-              <p>If you have any issues where blocks or interactions are not working properly try saving and refreshing the page.</p>
+              <p>If you have any issues where blocks or interactions are not working properly try saving and refreshing
+                the page.</p>
             </div>}>
             <ActionIcon
               variant="light"
@@ -425,7 +416,7 @@ function EditorHeader() {
         <div className="flex w-full items-center justify-end gap-2">
           <Tooltip color="dark" label={<div className="flex flex-col gap-2">
             <p>Preview Interactions e.g. button clicks</p>
-          <p>If by any chance some interactions don&apos;t work try refreshing the page</p>
+            <p>If by any chance some interactions don&apos;t work try refreshing the page</p>
           </div>}>
             <ActionIcon
               color="blue"
@@ -462,7 +453,9 @@ function EditorHeader() {
             </Button>
           </Tooltip>
           <SiteSettingsButton data={data} />
-          <SaveButton />
+          {user ? <SaveButton /> : <Tooltip label="Register before you can save your site data">
+            <RegisterUserModal />
+          </Tooltip>}
           <PublishButton siteData={data} />
         </div>
       </div>

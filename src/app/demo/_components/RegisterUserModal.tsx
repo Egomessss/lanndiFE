@@ -1,7 +1,17 @@
 'use client';
 
 import React, { FormEventHandler, useEffect, useState } from 'react';
-import { ActionIcon, Anchor, Button, Modal, PasswordInput, TextInput, Tooltip } from '@mantine/core';
+import {
+  ActionIcon,
+  Anchor,
+  Box,
+  Button,
+  LoadingOverlay,
+  Modal,
+  PasswordInput,
+  TextInput,
+  Tooltip,
+} from '@mantine/core';
 import { IconAt, IconDeviceFloppy, IconPlus } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
 import { useForm, zodResolver } from '@mantine/form';
@@ -26,7 +36,7 @@ const CreateSiteModal = () => {
     const editor = useEditorMaybe();
     const [opened, { open, close }] = useDisclosure(false);
     const router = useRouter();
-
+  const [visible, { toggle }] = useDisclosure(false);
     const validSubdomainRegex = /^[a-zA-Z0-9]([a-zA-Z0-9-]{2,61}[a-zA-Z0-9])?$/;
 
     const { csrf } = useAuth();
@@ -81,6 +91,7 @@ const CreateSiteModal = () => {
           await csrf(); // Ensure CSRF setup
           const response = await axios.post('/register-demo', form.values);
           return response.data; // Return the Axios response data
+          toggle()
         } catch (error) {
           // Handle errors that occur during the request or setup
           // @ts-ignore
@@ -104,6 +115,7 @@ const CreateSiteModal = () => {
           message: 'Your account has been created. Redirecting to the editor...',
           color: 'green',
         });
+        toggle()
       },
       onError: (error) => {
         let errorMessage = 'An unexpected error occurred. Please try again!';
@@ -117,6 +129,7 @@ const CreateSiteModal = () => {
           } else if (status >= 500) {
             errorMessage = 'Server error, please try again later.';
           }
+          toggle()
         }
         notifications.show({
           title: 'Error',
@@ -132,6 +145,7 @@ const CreateSiteModal = () => {
       const isValid = form.isValid();
       if (isValid) {
         register();
+        toggle()
       }
     };
 
@@ -147,7 +161,9 @@ const CreateSiteModal = () => {
           {/*</ActionIcon>*/}
         </Tooltip>
 
-        <Modal centered opened={opened} onClose={close} title="User & Site Creation">
+        <Modal closeOnEscape={!visible} withCloseButton={!visible} closeOnClickOutside={!visible} centered  opened={opened} onClose={close} title="User & Site Creation">
+          <Box pos="relative">
+          <LoadingOverlay visible={visible} zIndex={1000} overlayProps={{ radius: "sm", blur: 2 }} />
           <form onSubmit={validateBeforeSubmit} className="flex flex-col gap-4 ">
             <TextInput
               label="Site subdomain - will appear before .lanndi.com, e.g lanndisawesome.lanndi.com"
@@ -169,6 +185,7 @@ const CreateSiteModal = () => {
             />
             <Button loading={isPending} type="submit">Register</Button>
           </form>
+        </Box>
         </Modal>
       </>
     );

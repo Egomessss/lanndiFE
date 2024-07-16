@@ -26,7 +26,6 @@ export default function CustomEditor() {
     (window as any).editor = editor;
     // console.log('width', editor.Canvas.getFrame().width);
   };
-  const data = null;
 
   // Step 2: Define state for loading
   const [isLoading, setIsLoading] = useState(true);

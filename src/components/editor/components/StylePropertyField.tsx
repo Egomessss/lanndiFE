@@ -251,15 +251,20 @@ export default function StylePropertyField({
       break;
     case 'slider': {
       const sliderProp = prop as PropertySlider;
-
       inputToRender = (
         <Slider
-          size="xs"
+          p="md"
+          mb="xl"
+          size="sm"
+          min={0}
+          max={1}
           value={sliderProp.getValue()}
-          min={sliderProp.getMin()}
-          max={sliderProp.getMax()}
           onChange={onChange}
           step={0.1}
+          marks={[
+            { value: 0, label: '0%' },
+            { value: 1, label: '100%' },
+          ]}
         />
       );
     }

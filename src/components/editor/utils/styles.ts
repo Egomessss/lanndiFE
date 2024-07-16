@@ -247,12 +247,14 @@ export const styles = {
           label: 'Columns',
           property: 'grid-template-columns',
           type: 'base',
+          default:'1fr 1fr',
           tooltip: 'Sets column widths. "1fr 1fr 1fr" creates 3 equal columns. "100px 200px 500px" creates 3 columns of different widths.',
         },
         {
           label: 'Rows',
           property: 'grid-template-rows',
           type: 'base',
+          default:'1fr 1fr 1fr',
           tooltip: 'Sets row heights. "1fr 1fr 1fr" creates 3 equal rows. "100px 200px 500px" creates 3 rows of different heights.',
 
         },
@@ -365,12 +367,14 @@ export const styles = {
           label: 'Column span',
           property: 'grid-column',
           type: 'base',
+          default:'span 2',
           tooltip: 'How many columns an item takes up. "span 2" means it occupies 2 columns. "2/span 2" starts at column 2 and spans 2 columns.',
         },
         {
           label: 'Row span',
           property: 'grid-row',
           type: 'base',
+          default:'span 1',
           tooltip: 'How many rows an item takes up. "span 2" means it occupies 2 rows. "2/span 2" starts at row 2 and spans 2 rows.',
         },
         {
@@ -610,15 +614,15 @@ export const styles = {
             },
             {
               type: 'base',
-              property: 'bottom',
-              label: 'Bottom',
+              property: 'left',
+              label: 'Left',
               default: '0',
               tooltip: 'Units available: px, %, em, rem',
             },
             {
               type: 'base',
-              property: 'left',
-              label: 'Left',
+              property: 'bottom',
+              label: 'Bottom',
               default: '0',
               tooltip: 'Units available: px, %, em, rem',
             },
@@ -634,7 +638,7 @@ export const styles = {
         {
           type: 'select',
           property: 'z-index',
-          label: 'Stack order control',
+          label: 'Stack order',
           default: 'auto',
           options: [
             { id: 'auto', label: 'Automatic' }, // More precise than "Default"
@@ -683,54 +687,9 @@ export const styles = {
         {
           label: 'Box Shadow',
           property: 'box-shadow',
-          type: 'composite',
-          detached: false,
-          properties: [
-            {
-              type: 'base',
-              property: 'box-shadow-offset-x',
-              label: 'Offset X',
-              tooltip: 'Sets horizontal shadow position. Positive values move shadow right, negative left.',
-              default: '0px'
-            },
-            {
-              type: 'base',
-              property: 'box-shadow-offset-y',
-              label: 'Offset Y',
-              tooltip: 'Sets vertical shadow position. Positive values move shadow down, negative up.',
-              default: '0px'
-            },
-            {
-              type: 'base',
-              property: 'box-shadow-blur',
-              label: 'Blur',
-              tooltip: 'Controls shadow softness. Larger values create a more diffused shadow.',
-              default: '0px'
-            },
-            {
-              type: 'color',
-              property: 'box-shadow-color',
-              label: 'Colour',
-              tooltip: 'Determines shadow color. Can use color names, hex, RGB, or RGBA values.',
-              default: '#000000'
-            },
-
-            // {
-            //   type: 'base',
-            //   property: 'box-shadow-spread',
-            //   label: 'Spread',
-            // },
-            // {
-            //   type: 'select',
-            //   property: 'inset',
-            //   label: 'Inset',
-            //   options: [
-            //     { id: '', label: 'Default' },
-            //     { id: 'inset', label: 'Shadow Inside Element' },
-            //   ]
-            // },
-
-          ],
+          type: 'false',
+          default: '2px 2px 5px rgba(0, 0, 0, 0.5)',
+          tooltip: 'Adds a shadow around an element. For example: "2px 2px 5px rgba(0, 0, 0, 0.5)" creates a subtle shadow that is 2px offset to the right and bottom, with a 5px blur radius. - google CSS for more customization options',
         }
         ,
       ],
@@ -1014,34 +973,9 @@ export const styles = {
         {
           label: 'Text Shadow',
           property: 'text-shadow',
-          type: 'composite',
-          detached: false,
-          properties: [
-            {
-              type: 'color',
-              property: 'text-shadow-color',
-              label: 'Colour',
-              default: '0px',
-            },
-            {
-              type: 'base',
-              property: 'text-shadow-offset-x',
-              label: 'Offset X',
-              default: '0px'
-            },
-            {
-              type: 'base',
-              property: 'text-shadow-offset-y',
-              label: 'Offset Y',
-              default: '0px',
-            },
-            {
-              type: 'base',
-              property: 'text-shadow-blur',
-              label: 'Blur',
-              default: '0px'
-            },
-          ],
+          type: 'base',
+          default:'2px 2px 5px rgba(0, 0, 0, 0.5)',
+          tooltip: 'Adds a shadow to text. For example: "2px 2px 5px rgba(0, 0, 0, 0.5)" creates a subtle shadow that is 2px offset to the right and bottom, with a 5px blur radius. - google CSS for more customization options',
         },
       ],
     },
@@ -1103,56 +1037,18 @@ export const styles = {
           default: 'none'
         },
         {
-          type: 'composite',
+          type: 'base',
           property: 'transition',
           label: 'Transition',
-          detached: true,
-          // Additional props
-          tooltip: 'Controls animation between element states. "Property" specifies what to animate, "Duration" sets animation length, "Delay" adds wait time, "Timing function" defines speed curve.',
-          properties: [
-            {
-              type: 'base',
-              label: 'Property', // Label for the property
-              property: 'transition-property', // CSS property to change
-              tooltip: 'Specifies which CSS property to transition. Use "all" for all properties, or specific properties like "color", "opacity", "transform".',
-              default: '',
-            },
-            {
-              type: 'base',
-              label: 'Duration', // Label for the property
-              property: 'transition-duration', // CSS property to change
-              tooltip: 'Sets how long the transition takes. Use time values like "0.5s" for half a second or "300ms" for 300 milliseconds.',
-              default: '0s',
-            },
-            {
-              type: 'base',
-              label: 'Delay', // Label for the property
-              property: 'transition-delay', // CSS property to change
-              tooltip: 'Defines a delay before the transition starts. Use time values like "1s" for one second delay or "500ms" for half a second.',
-              default: '0s',
-            },
-            {
-              type: 'select',
-              label: 'Timing function', // Label for the property
-              property: 'transition-timing-function', // CSS property to change
-              tooltip: 'Controls the speed curve of the transition. "Linear" is constant, "Ease" starts slow, speeds up, then slows down, "Ease-in" starts slow, "Ease-out" ends slow, "Ease-in-out" combines both.',
-              default: 'ease',
-              options: [
-                { id: 'linear', label: 'Linear' },
-                { id: 'ease', label: 'Ease' },
-                { id: 'ease-in', label: 'Ease in' },
-                { id: 'ease-out', label: 'Ease out' },
-                { id: 'ease-in-out', label: 'Ease in out' },
-              ],
-            },
-          ],
+          default:'all 0.5s ease-in-out',
+          tooltip: 'Smoothly animate changes. For example: "all 0.5s ease-in-out" animates all properties over 0.5 seconds with a gradual speed curve.',
         },
         {
           label: 'Transform', // Label for the property
           property: 'transform', // CSS property to change
-          default: 'auto', // Default value to display
           type: 'base',
-          tooltip: 'Modifies an element\'s appearance. Examples: "rotate(90deg)" turns element, "scale(2)" doubles size, "skew(20deg)" tilts element.',
+          default:'rotate(90deg)',
+          tooltip: 'Change the look of an element. For example: "rotate(90deg)" spins it, "scale(2)" doubles its size, and "skew(20deg)" tilts it.',
         },
         {
           label: 'Clip Path', // Label for the property
