@@ -176,13 +176,13 @@ a{
     )
     ;
 
-  // editor.Blocks.add('navbar-burger-two', {
-  //   media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
-  //   label: 'W/Burger And Sidebar',
-  //   category: 'sections-navbars',
-  //   select: true,
-  //   content: { type: 'navbar-burger-two' },
-  // });
+    // editor.Blocks.add('navbar-burger-two', {
+    //   media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-bottombar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" /></svg>`,
+    //   label: 'W/Burger And Sidebar',
+    //   category: 'sections-navbars',
+    //   select: true,
+    //   content: { type: 'navbar-burger-two' },
+    // });
 
     Components.addType('navbar-burger-two', {
       model: {
@@ -488,124 +488,196 @@ height:fit-content;
       },
     });
 
+  editor.Blocks.add('navbar', {
+    media: `<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-layout-navbar"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 9l16 0" /></svg>`,
+    label: 'Navbar w/Burger Menu',
+    category: 'sections-navbars',
+    select: true,
+    content: { type: 'navbar' },
+  });
 
-    // editor.Blocks.add('navbar', {
-    //   media: `<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-layout-navbar"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 9l16 0" /></svg>`,
-    //   label: 'Navbar',
-    //   category: 'sections-navbar',
-    //   select: true,
-    //   content: { type: 'navbar' },
-    // });
 
-
+  const navbarPfx = 'navbar';
+    const idContainer = `${id}-container`;
     const idNavMenu = `${id}-nav-menu`;
     const idNavMenuLink = `${id}-nav-menu-link`;
     const idBurgerMenu = `${id}-burger-menu`;
     const idBurgerMenuLine = `${id}-burger-menu-line`;
 
-    Components.addType('navbar', {
+    Components.addType(id, {
       model: {
         defaults: {
-          name: 'Navbar',
-          attributes: { class: 'navbar' },
-          removable: false,
-          copyable: false,
-          components: [
-            {
-              type: 'link',
-              components: 'lanndi',
-              attributes: { class: `navbar-brand`, href: '/' },
-            },
-            { type: idBurgerMenu },
-            {
-              attributes: { class: `navbar-items-c`, 'data-gjs': 'navbar-items' },
-              components: { type: idNavMenu },
-            },
-          ],
+          // droppable: false,
+          name: label,
+          attributes: { class: navbarPfx },
+          components: { type: idContainer },
           styles: `
-          .navbar {
-            height: fit-content;
-            padding-top: 0.5rem;
-            padding-right: 0.5rem;
-            padding-bottom: 0.5rem;
-            padding-left: 0.5rem;
-            max-width: 1200px;
-            width:100%;
-            margin-right: auto;
-            margin-left: auto;
+          .${navbarPfx} {
+           max-width: 1200px;
+            min-height: 50px;
+            width: 100%;
+          }
+
+          .${navbarPfx}-container {
+            width:90%;
+            margin-right:auto;
+            margin-left:auto;
             display:flex;
+            flex-direction:row;
             justify-content: space-between;
             align-items: center;
-             min-height: 50px;
           }
 
-          .navbar-items-c {
-            display: inline-block;
-         
+          .${navbarPfx}-items-c {
+            display: flex;
+         justify-content: space-between;
+            align-items: center;
+            column-gap: 10px;
           }
 
-          .navbar-container::after {
-            content: "";
+          .${navbarPfx}-container::after {
             clear: both;
             display: block;
           }
 
-          .navbar-brand {
-                       height: fit-content;
-            width: fit-content;
-            color:inherit;
-                     text-decoration: none;
-          }
-
-          .navbar-menu {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            column-gap: 2rem;
-            margin: 0 0 0 0 ;
-            padding: 0.5rem 0.5rem 0.5rem 0.5rem;
-          }
-
-          .navbar-menu-link {
+          .${navbarPfx}-brand-link-box {
             
+            height: fit-content;
+            width: fit-content;
+       text-decoration: none;
+       color: inherit;
+    
+            padding: 10px 10px 10px 10px;
+              display: flex;
+         justify-content: space-between;
+            align-items: center;
+            column-gap: 10px;
+          }
+          
+           .${navbarPfx}-brand-img{
+            
+            height: 25px;
+            width: 25px;
+          }
+
+          .${navbarPfx}-menu {
+            padding: 10px 0;
+            display: flex;
+         justify-content: space-between;
+            align-items: center;
+            column-gap: 10px;
+            margin: 0;
+          }
+
+          .${navbarPfx}-menu-link {
+            margin: 0;
+            color: inherit;
             text-decoration: none;
-           
-          }
-          
-           .navbar-menu-link:hover {
-           
-            text-decoration: underline;
-         
+            display: inline-block;
+            padding: 10px 15px;
           }
 
-          
+          .${navbarPfx}-burger {
+            margin: 10px 0;
+            width: 45px;
+            padding: 5px 10px;
+            display: none;
+            cursor: pointer;
+          }
+
+          .${navbarPfx}-burger-line {
+            padding: 1px;
+        background-color:black;
+            margin: 5px 0;
+          }
+
           @media (max-width: 880px) {
-            .navbar-items-c {
-              display: none;
-              width: 100%;
-            }
+  .${navbarPfx}-items-c {
+    display: none; /* Hide by default */
+    position: fixed; /* Make it fixed to cover the whole screen */
+    top: 3.5rem;
+    left: 0;
+    width: 100%;
+    height: fit-content;
+    background-color: white; /* Semi-transparent background */
+    z-index: 1050; /* Ensure it's above other content */
+    overflow-y: auto; /* Enable scroll if content is taller than the screen */
+    padding: 1rem 1rem 1rem 1rem;
+  }
+  
+   .${navbarPfx}-menu {
+    width: 100%;
+    height: fit-content;
+    display:flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: flex-start; /* Align items to the top */
+    align-items: center; /* Center items horizontally */
+    row-gap: 1rem; /* Remove the gap between items */
+    background-color: white; /* Semi-transparent background */
+    z-index: 1050; /* Ensure it's above other content */
+    overflow-y: auto; /* Enable scroll if content is taller than the screen */
+    padding-top: 2rem; /* Add some space at the top */
+    padding-bottom: 2rem; /* Add some space at the top */
+  }
+  
 
-          
-            .navbar-menu {
-              width: 100%;
-            }
+  .${navbarPfx}-burger {
+    display: block; /* Ensure burger menu is always displayed */
+  }
 
-            .navbar-menu-link {
-              display: block;
-            }
-          }
+  .${navbarPfx}-menu-link {
+    display: block; /* Stack links vertically */
+    width: 100%; /* Full width links */
+    text-align: center; /* Center text */
+    padding: 15px; /* Increase padding */
+    border-bottom: 1px solid #ddd; /* Add a separator between links */
+  }
+  .${navbarPfx}-burger.active .${navbarPfx}-burger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.${navbarPfx}-burger.active .${navbarPfx}-burger-line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.${navbarPfx}-burger.active .${navbarPfx}-burger-line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+}
         `,
         },
       },
     });
 
+    Components.addType(idContainer, {
+      model: {
+        defaults: {
+          attributes: { class: `${navbarPfx}-container`, 'data-gjs': 'navbar' },
+          name: 'Navbar Container',
+          // droppable: false,
+          // draggable: false,
+          removable: false,
+          copyable: false,
+          highlightable: false,
+          components: [
+              '<a class="navbar-brand-link-box" href="/"><img src="https://pub-f5a07b52c95f477cb476a4dbda31ebbe.r2.dev/assets/UxiMLsmmatQxFMdpnmdGr2QFqOMcagbkchqEoyG8.png" class="navbar-brand-img"/><p  class="paragraph">lanndi</p></a>'
+            ,
+            { type: idBurgerMenu },
+            {
+              attributes: { class: `${navbarPfx}-items-c`, 'data-gjs': 'navbar-items' },
+              components: { type: idNavMenu },
+            },
+          ],
+        },
+      },
+    });
 
     Components.addType(idNavMenu, {
       model: {
         defaults: {
           name: 'Navbar Menu',
           tagName: 'nav',
-          attributes: { class: `navbar-menu` },
+          attributes: { class: `${navbarPfx}-menu` },
           components: [
             { type: idNavMenuLink, components: 'Home' },
             { type: idNavMenuLink, components: 'About' },
@@ -621,7 +693,7 @@ height:fit-content;
         defaults: {
           name: 'Menu link',
           draggable: `[data-gjs-type="${idNavMenu}"]`,
-          attributes: { class: `navbar-menu-link` },
+          attributes: { class: `${navbarPfx}-menu-link` },
         },
       },
     });
@@ -713,7 +785,11 @@ height:fit-content;
 
               const navParent = currentEl.closest(`[data-gjs=navbar]`);
               const navItems = navParent?.querySelector(`[data-gjs=navbar-items]`) as HTMLElement;
+
+
+
               navItems && toggleSlide(navItems);
+
 
               if (!transEndAdded) {
                 // @ts-ignore
@@ -736,33 +812,12 @@ height:fit-content;
             // @ts-ignore
             currentEl[stringCollapse] = 1;
           },
-          attributes: { class: `navbar-burger` },
+          attributes: { class: `${navbarPfx}-burger` },
           components: [
             { type: idBurgerMenuLine },
             { type: idBurgerMenuLine },
             { type: idBurgerMenuLine },
           ],
-          styles: `.navbar-burger {
-            margin: 10px 0;
-            width: 45px;
-            padding: 5px 10px;
-            display: none;
-            cursor: pointer;
-          }
-            @media (max-width: 880px) {
-
-            .navbar-burger {
-              display: block;
-            }
-            
-            .navbar-burger-line {
-            padding: 1px;
-            background-color: black;
-            margin: 5px 0;
-          }
-            
-            }
-          `,
         },
       },
     });
@@ -774,8 +829,11 @@ height:fit-content;
           droppable: false,
           draggable: false,
           selectable: false,
+          copyable: false,
+          removable: false,
           highlightable: false,
-          attributes: { class: `navbar-burger-line` },
+          hoverable: false,
+          attributes: { class: `${navbarPfx}-burger-line` },
         },
       },
     });
