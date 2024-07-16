@@ -69,11 +69,10 @@ const plugin: Plugin<PluginOptions> = (editor, opts = {}) => {
     modalTitle: 'Insert your custom code here:\n' +
       '- HTML inside a div\n' +
       '- CSS inside a style tag\n' +
-      '- JavaScript inside a script tag\n' +
       'Please note:\n' +
-      '1. Your custom code should come styled - editor styles might not work.\n' +
-      '2. Custom code with <script> or <iframe> tags will only be shown in preview/published site.\n' +
-      '3. Scripts and links should be added to site settings custom head code for them to work on the live website.',
+      '1. Your custom code should come styled - as all your imported styles might not work with the editor.\n' +
+      '2. To add custom javascript go to the custom code advanced tab and click edit component js or your javascript will not work.\n' +
+      '3. External Scripts and links should be added to site settings custom head code for them to work on the live website.',
     codeViewOptions: {},
     buttonLabel: 'Save',
     commandCustomCode: {},

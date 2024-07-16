@@ -24,12 +24,11 @@ const components = (editor: Editor, opts: PluginOptions = {}) => {
         editable: true,
         components: {
           tagName: 'span',
-          components: { type: 'textnode', content: 'Insert here your custom code' }
+          components: { type: 'textnode', content: 'Double click to add your custom code' }
         } as any,
         ...opts.propsCustomCode,
         traits: [
           {
-            // lazy load
             type: 'button',
             label: 'Open Custom Code Editor',
             command:'custom-code:open-modal'

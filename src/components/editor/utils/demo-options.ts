@@ -24,6 +24,11 @@ export const demoEditorConfigOptions = () => ({
   height: '94vh',
   jsInHtml: false,
   optsHtml: { cleanId: true },
+  parser: {
+    optionsHtml: {
+      allowScripts: true,
+    },
+  },
   // canvasCss: `body{margin: 0;height-fit-content;}`,
   multipleSelection: true,
   optsCss: { onlyMatched: true, keepUnusedStyles: false },
