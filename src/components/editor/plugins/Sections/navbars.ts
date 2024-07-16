@@ -586,9 +586,13 @@ height:fit-content;
           }
 
           .${navbarPfx}-burger-line {
-            padding: 1px;
-        background-color:black;
-            margin: 5px 0;
+           display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: #101010;
           }
 
           @media (max-width: 880px) {
@@ -632,15 +636,16 @@ height:fit-content;
     padding: 15px; /* Increase padding */
     border-bottom: 1px solid #ddd; /* Add a separator between links */
   }
-  .${navbarPfx}-burger.active .${navbarPfx}-burger-line:nth-child(2) {
+   .${navbarPfx}-burger-line:nth-child(2).active {
     opacity: 0;
 }
 
-.${navbarPfx}-burger.active .${navbarPfx}-burger-line:nth-child(1) {
+ .${navbarPfx}-burger-line:nth-child(1).active {
     transform: translateY(8px) rotate(45deg);
+    
 }
 
-.${navbarPfx}-burger.active .${navbarPfx}-burger-line:nth-child(3) {
+ .${navbarPfx}-burger-line:nth-child(3).active {
     transform: translateY(-8px) rotate(-45deg);
 }
 }
@@ -679,7 +684,7 @@ height:fit-content;
           tagName: 'nav',
           attributes: { class: `${navbarPfx}-menu` },
           components: [
-            { type: idNavMenuLink, components: 'Home' },
+            { type: idNavMenuLink, components: 'Pricing' },
             { type: idNavMenuLink, components: 'About' },
             { type: idNavMenuLink, components: 'Contact' },
           ],
@@ -707,6 +712,20 @@ height:fit-content;
           copyable: false,
           removable: false,
           script: function() {
+            const burgerMenu = document.querySelector('.navbar-burger');
+
+            // Step 2: Add an event listener to the burger menu
+            burgerMenu?.addEventListener('click', () => {
+              console.log('click');
+              // Step 4: Select all burger lines within the burger menu
+              const burgerLines = burgerMenu.querySelectorAll('.navbar-burger-line');
+              console.log('burger lines',burgerLines);
+              // Step 5: Iterate over each burger line and toggle the 'active' class
+              burgerLines.forEach(line => {
+                line.classList.toggle('active');
+              });
+            });
+
             // @ts-ignore
             const currentEl = this as HTMLElement;
             const stringCollapse = 'gjs-collapse';
@@ -765,6 +784,7 @@ height:fit-content;
               elStyle.transition = `${transitProp} 0.25s ease-in-out`;
               elStyle.overflowY = 'hidden';
 
+
               if (elStyle[transitProp] == '') {
                 elStyle[transitProp] = 0;
               }
@@ -787,9 +807,7 @@ height:fit-content;
               const navItems = navParent?.querySelector(`[data-gjs=navbar-items]`) as HTMLElement;
 
 
-
               navItems && toggleSlide(navItems);
-
 
               if (!transEndAdded) {
                 // @ts-ignore
