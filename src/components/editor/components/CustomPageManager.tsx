@@ -1,37 +1,24 @@
 import {
   ActionIcon,
   Button,
-  Menu,
-  NavLink,
-  TextInput,
-  Text,
-  Tooltip,
-  Modal,
   Divider,
+  Menu,
+  Modal,
+  ScrollArea,
+  Text,
   Textarea,
-  FileInput, ScrollArea,
+  TextInput,
+  Tooltip,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import React, { useEffect, useState } from 'react';
-
-
 import { PagesResultProps, useEditor } from '../wrappers';
-import {
-  IconCheck,
-  IconDots, IconDotsVertical,
-  IconExclamationCircle,
-  IconFile,
-  IconLink,
-  IconPlus,
-  IconTrash,
-} from '@tabler/icons-react';
+import { IconDotsVertical, IconExclamationCircle, IconLink, IconPlus, IconTrash } from '@tabler/icons-react';
 import { modals } from '@mantine/modals';
-import { Editor, Page } from 'grapesjs';
+import { Page } from 'grapesjs';
 import { z } from 'zod';
 import { useForm, zodResolver } from '@mantine/form';
 import TextLength from '@/components/common/TextLength';
-import CodeMirror from '@uiw/react-codemirror';
-import { langs } from '@uiw/codemirror-extensions-langs';
 import { notifications } from '@mantine/notifications';
 import useUser from '@/hooks/use-user';
 

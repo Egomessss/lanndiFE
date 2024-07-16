@@ -1,11 +1,11 @@
 import { HTMLProps, MouseEvent, useEffect, useMemo, useRef, useState } from 'react';
 import type { Component } from 'grapesjs';
-import { ActionIcon, Menu, TextInput, ThemeIcon } from '@mantine/core';
+import { ActionIcon, Menu, TextInput, ThemeIcon, Tooltip } from '@mantine/core';
 import { useEditor } from '../wrappers';
 import {
   IconBox, IconCheck,
   IconChevronDown,
-  IconChevronRight,
+  IconChevronRight, IconCopy,
   IconDotsVertical, IconEdit,
   IconEye,
   IconLock,
@@ -34,7 +34,6 @@ export default function LayerItem({
   const layerRef = useRef<HTMLDivElement>(null);
   const [layerData, setLayerData] = useState(Layers.getLayerData(component));
   // console.log('layer', layerData);
-
 
 
   const { open, selected, hovered, components, visible, name, locked } =
@@ -117,11 +116,13 @@ export default function LayerItem({
     Layers.setLocked(component, !locked);
   };
 
+  const symbolMainInfo = editor.Components.getSymbolInfo(component);
 
-  const wrapperCls = `layer-item flex flex-col rounded-lg  ${selected ? 'bg-[#228BE6]/20  ' : ''} ${(!visible || isDragging) ? 'opacity-40' : ''}`;
+  const wrapperCls = `layer-item flex flex-col rounded-lg text-white ${selected ? 'bg-[#228BE6]/20  ' : ''} ${(!visible || isDragging) ? 'opacity-40' : ''}`;
 
   const icon = component.get('icon');
 
+  console.log(symbolMainInfo);
 
   return (
     <div className={wrapperCls}>
@@ -136,7 +137,7 @@ export default function LayerItem({
       >
         <div
           className={
-            `flex items-center p-1  ${level === 0 ? '' : ''} ${isHovered ? 'cursor-pointer bg-[#228BE6]/20 rounded-md' : ''} ${selected ? 'rounded-md bg-[#339AF0] ' : ''}`
+            `flex items-center p-1  ${level === 0 ? '' : ''} ${isHovered ? 'cursor-pointer bg-[#228BE6]/10 rounded-md' : ''} ${selected ? 'rounded-md bg-[#339AF0] ' : ''}`
           }
 
         >
@@ -156,18 +157,26 @@ export default function LayerItem({
           {icon && (
             <span className="pr-1" dangerouslySetInnerHTML={{ __html: icon }} />
           )}
-          {isEditingLayerName ? <TextInput size="xs" value={layerName} onChange={(event) => setLayerName(event.currentTarget.value)}
-                                           rightSection={<ActionIcon
-                                             size="xs"
-                                             onClick={changeLayerName}
-                                           >
-                                             <IconCheck size="0.8rem" />
-                                           </ActionIcon>} /> : <p
-            className="flex-grow truncate text-[10px] font-medium"
-            style={itemStyle}
-          >
-            {name}
-          </p>}
+          {isEditingLayerName ?
+            <TextInput size="xs" value={layerName} onChange={(event) => setLayerName(event.currentTarget.value)}
+                       rightSection={<ActionIcon
+                         size="xs"
+                         onClick={changeLayerName}
+                       >
+                         <IconCheck size="0.8rem" />
+                       </ActionIcon>} /> : <p
+              className="flex-grow truncate text-[10px] font-medium"
+              style={itemStyle}
+            >
+              {name}
+            </p>}
+          {/*{symbolMainInfo.isSymbol && symbolMainInfo.isMain && <Tooltip label="Main Component">*/}
+          {/*  <IconBox className="text-fuchsia-600 cursor-pointer" size="0.8rem" />*/}
+          {/*</Tooltip>}*/}
+          {symbolMainInfo.isSymbol && symbolMainInfo.isInstance &&
+            <Tooltip color="dark" label={`Instance of ${symbolMainInfo.main?.getName()} component`}>
+              <IconBox className="text-fuchsia-500 drop-shadow-lg cursor-pointer" size="0.8rem" />
+            </Tooltip>}
           <Menu position="bottom-start" trigger="hover" openDelay={100} closeDelay={400} shadow="md" width={200}>
             <Menu.Target>
               <ActionIcon

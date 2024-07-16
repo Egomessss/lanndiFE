@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
 import { ActionIcon, AppShell, Box, Divider, ScrollArea, Tooltip } from '@mantine/core';
-import styles from '@/app/(editor)/editor/[slug]/page.module.css';
-import { IconFile, IconLayoutGridAdd, IconSection, IconStack2, IconTemplate } from '@tabler/icons-react';
-import SettingsModal from '@/components/editor/components/SettingsModal';
+import { IconBox, IconFile, IconLayoutGridAdd, IconSection, IconStack2, IconTemplate } from '@tabler/icons-react';
 import BlockSideBar from '@/components/editor/components/BlockSideBar';
 import LayersLeftSideBar from '@/components/editor/components/LayersLeftSideBar';
 import PagesLeftSideBar from '@/components/editor/components/PagesLeftSideBar';
-import { usePathname } from 'next/navigation';
-import { useEditor, useEditorMaybe } from '@/components/editor/context/EditorInstance';
+import CustomComponentsBlockManager from '@/components/editor/components/CustomComponentsBlockManager';
+import useUser from '@/hooks/use-user';
 
 function LeftSideBar() {
+
+  const { user } = useUser();
+
   const [selected, setSelected] = useState('Blocks');
 
   const icons = [
-    { label: 'Blocks', Icon: IconLayoutGridAdd, selectedValue: 'Blocks' },
-    { label: 'Sections', Icon: IconSection, selectedValue: 'Sections' },
-    { label: 'Templates', Icon: IconTemplate, selectedValue: 'Templates' },
-    { label: 'Layers', Icon: IconStack2, selectedValue: 'Layers' },
-    { label: 'Pages', Icon: IconFile, selectedValue: 'Pages' },
+    { label: 'Blocks', Icon: IconLayoutGridAdd, selectedValue: 'Blocks', show: true },
+    { label: 'Components', Icon: IconBox, selectedValue: 'Components',show: user && user?.isAdmin },
+    { label: 'Sections', Icon: IconSection, selectedValue: 'Sections', show: true },
+    { label: 'Templates', Icon: IconTemplate, selectedValue: 'Templates', show: true },
+    { label: 'Layers', Icon: IconStack2, selectedValue: 'Layers', show: true },
+    { label: 'Pages', Icon: IconFile, selectedValue: 'Pages', show: true },
   ];
 
   const renderSelectedComponent = () => {
@@ -26,27 +28,33 @@ function LeftSideBar() {
         return <BlockSideBar type="Blocks" />;
       case 'Sections':
         return <BlockSideBar type="Sections" />;
-        case 'Templates':
+      case 'Templates':
         return <BlockSideBar type="Templates" />;
       case 'Layers':
         return <LayersLeftSideBar />;
       case 'Pages':
         return <PagesLeftSideBar />;
+      case 'Components':
+        return <CustomComponentsBlockManager />;
       default:
         return null;
     }
   };
-
+  console.log(user && user.isAdmin);
   return (
     <AppShell.Navbar>
       <div className="h-full flex">
         <div className="flex flex-col gap-2 h-full p-1">
-          {icons.map(({ label, Icon, selectedValue }) => (
-            <Tooltip key={label} label={label}>
-              <ActionIcon onClick={() => setSelected(selectedValue)} variant="subtle">
-                <Icon size="1rem" />
-              </ActionIcon>
-            </Tooltip>
+          {icons.filter(icon => icon.show === true).map(({ label, Icon, selectedValue }) => (
+            <>
+              <Tooltip key={label} label={label}>
+                <ActionIcon onClick={() => setSelected(selectedValue)} variant="subtle">
+                  <Icon size="1rem" />
+                </ActionIcon>
+              </Tooltip>
+              {label === 'Components' && <Divider orientation="horizontal" my="xs" />}
+              {label === 'Templates' && <Divider orientation="horizontal" my="xs" />}
+            </>
           ))}
           {/*<Divider my="xs" variant="dashed" />*/}
           {/*<SettingsModal />*/}

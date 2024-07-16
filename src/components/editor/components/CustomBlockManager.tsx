@@ -35,7 +35,7 @@ export default function CustomBlockManager({
                  <p>Blocks with interactive elements can be only be interacted with preview mode, e.g. pricing with
                    switch can be switched on/off with preview mode and the values changed.</p></div>}
                withArrow position="top">
-        <Button leftSection={<IconBulb size="1rem" />} size="xs" fullWidth>Tips</Button>
+        <Button variant="subtle" leftSection={<IconBulb size="1rem" />} size="xs" fullWidth>Tips</Button>
       </Tooltip>
       {Array.from(mapCategoryBlocks)
         .filter(([category, _]) => !category.startsWith('sections-') && !category.startsWith('templates-'))

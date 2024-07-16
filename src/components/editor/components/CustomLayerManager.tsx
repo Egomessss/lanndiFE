@@ -4,7 +4,7 @@ import type { Component, Editor } from 'grapesjs';
 
 import LayerItem from './LayerItem';
 import { LayersResultProps, useEditor } from '../wrappers';
-import { Button, ScrollArea, Text, Tooltip } from '@mantine/core';
+import { Button, ScrollArea, Tooltip } from '@mantine/core';
 import { IconBulb } from '@tabler/icons-react';
 
 
@@ -122,7 +122,7 @@ export default function CustomLayerManager({
       <Tooltip arrowOffset={10} w={200} multiline arrowSize={4}
                label="To place a block inside another just drag until you see a hand over your target, to drag below or top just drag until you see a yellow marker above or below the target"
                withArrow  position="top">
-        <Button leftSection={<IconBulb size="1rem"/>} size="xs" fullWidth>Tips</Button>
+        <Button variant="subtle" leftSection={<IconBulb size="1rem"/>} size="xs" fullWidth>Tips</Button>
       </Tooltip>
       <ScrollArea
         className="gjs-custom-layer-manager relative  select-none text-left mt-2"

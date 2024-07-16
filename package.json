@@ -20,7 +20,7 @@
     "@uiw/codemirror-extensions-langs": "^4.21.21",
     "@uiw/react-codemirror": "^4.21.21",
     "axios": "^1.6.5",
-    "grapesjs": "^0.21.10",
+    "grapesjs": "^0.21.12",
     "next": "14.1.0",
     "posthog-js": "^1.141.4",
     "react": "^18",
