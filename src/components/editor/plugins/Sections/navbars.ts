@@ -599,7 +599,7 @@ height:fit-content;
   .${navbarPfx}-items-c {
     display: none; /* Hide by default */
     position: fixed; /* Make it fixed to cover the whole screen */
-    top: 3.5rem;
+    top: 4rem;
     left: 0;
     width: 100%;
     height: fit-content;
