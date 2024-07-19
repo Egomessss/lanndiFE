@@ -69,6 +69,14 @@ export default function DomainConfiguration(props: { plan: string; domainData: S
             <IconExternalLink size="1.4rem" />
           </ThemeIcon>
         </a>}
+        {subdomain && <a href={`https://preview-${subdomain}.lanndi.com`}
+                         className="no-underline text-white font-semibold text-xl flex items-center gap-2"
+                         target="_blank">
+          <p className='text-xs'>prevew-{subdomain}.lanndi.com</p>
+          <ThemeIcon color="blue" variant="subtle">
+            <IconExternalLink size="1.4rem" />
+          </ThemeIcon>
+        </a>}
 
       </div>
       {plan !== 'free' ? <>

@@ -46,7 +46,7 @@ function LeftSideBar() {
       <div className="h-full flex">
         <div className="flex flex-col gap-2 h-full p-1">
           {icons.filter(icon => icon.show === true).map(({ label, Icon, selectedValue }) => (
-            <>
+            <div key={label}>
               <Tooltip key={label} label={label}>
                 <ActionIcon onClick={() => setSelected(selectedValue)} variant="subtle">
                   <Icon size="1rem" />
@@ -54,7 +54,7 @@ function LeftSideBar() {
               </Tooltip>
               {label === 'Components' && <Divider orientation="horizontal" my="xs" />}
               {label === 'Templates' && <Divider orientation="horizontal" my="xs" />}
-            </>
+            </div>
           ))}
           {/*<Divider my="xs" variant="dashed" />*/}
           {/*<SettingsModal />*/}

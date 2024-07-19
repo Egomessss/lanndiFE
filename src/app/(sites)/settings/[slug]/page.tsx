@@ -10,6 +10,7 @@ import { useParams } from 'next/navigation';
 import DomainSettingsForm from '@/app/(sites)/settings/_components/DomainSettingsForm';
 import DomainConfiguration from '@/app/(sites)/settings/_components/DomainConfiguration';
 import useUser from '@/hooks/use-user';
+import SeoConfiguration from '@/app/(sites)/settings/_components/SeoConfiguration';
 
 export type SiteSettings = {
   name: string,
@@ -55,13 +56,17 @@ const Page = () => {
         <Tabs.List>
           <Tabs.Tab value="first">General</Tabs.Tab>
           <Tabs.Tab value="second">Domain</Tabs.Tab>
+          <Tabs.Tab value="third">SEO</Tabs.Tab>
         </Tabs.List>
         <Tabs.Panel value="first">
           {data && <SiteSettingsForm plan={plan} data={data}/>}
         </Tabs.Panel>
         <Tabs.Panel value="second">
           {data && <DomainSettingsForm plan={plan} data={data} />}
-          {data && <DomainConfiguration plan={plan} domainData={data} />}
+          {data && <DomainConfiguration plan={plan} domainData={data}/>}
+        </Tabs.Panel>
+        <Tabs.Panel value="third">
+          {data && <SeoConfiguration plan={plan} domainData={data} />}
         </Tabs.Panel>
       </Tabs>
     </div>

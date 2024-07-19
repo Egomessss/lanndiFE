@@ -1,16 +1,18 @@
-import { ActionIcon, Anchor, AppShell, Button, Modal, Popover, ScrollArea, Tabs, Tooltip } from '@mantine/core';
+import { ActionIcon, Anchor, AppShell, Button, Loader, Modal, Popover, Tabs, Tooltip } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import {
   IconArrowLeft,
   IconCheck,
   IconChevronDown,
   IconDeviceFloppy,
-  IconExternalLink, IconEye,
-  IconFaceIdError, IconQuestionMark,
+  IconExternalLink,
+  IconEye,
+  IconFaceIdError,
+  IconQuestionMark,
   IconSettings,
 } from '@tabler/icons-react';
 import { useParams, usePathname } from 'next/navigation';
-import { useEditor, useEditorMaybe } from '@/components/editor/context/EditorInstance';
+import { useEditorMaybe } from '@/components/editor/context/EditorInstance';
 import useEditorData from '@/hooks/use-editor-data';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from '@/lib/axios';
@@ -27,43 +29,34 @@ import DomainConfiguration from '@/app/(sites)/settings/_components/DomainConfig
 import { SiteSettings } from '@/app/(sites)/settings/[slug]/page';
 import useUser from '@/hooks/use-user';
 import { DarkModeButton } from '@/components/common/DarkModeButton/DarkModeButton';
-import { timeSince } from '@/lib/utils';
 import { useSidePanel } from '@/contexts/SidePanelPreviewContext';
 
 
 function SaveButton() {
-  const [lastSaved, setLastSaved] = useState<Date | null>(null);
+
   const editor = useEditorMaybe();
   const params = useParams();
   const siteSlug = params.slug;
-  const slug = usePathname();
   const queryClient = useQueryClient();
-  const user = slug === '/demo' ? null : true;
   const [showSuccess, setShowSuccess] = useState(false);
   const { data: isNotFirstTimeSaving } = useEditorData();
-  const idle = useIdle(1200000);
+  const idle = useIdle(300000); // 5mins idle
 
-  const getEditorData = () => {
-    // console.log('editor data fetched');
-    const data = editor?.getProjectData();
-    const pagesData = editor?.Pages.getAll().map(page => {
-      const component = page.getMainComponent();
-      const pageData = page.attributes;
-      return {
-        pageId: pageData.id,
-        name: pageData.name,
-        slug: pageData.slug,
-        title: pageData.title,
-        description: pageData.description,
-        html: editor.getHtml({ component }),
-        css: editor.getCss({ component }),
-        js: editor.getJs({ component }),
-      };
-    });
-    // console.log('pageData', pagesData);
-    return { data, pagesData };
-
-  };
+  const data = () =>  editor?.getProjectData();
+  const pagesData = editor?.Pages.getAll().map(page => {
+    const component = page.getMainComponent();
+    const pageData = page.attributes;
+    return {
+      pageId: pageData.id,
+      name: pageData.name,
+      slug: pageData.slug,
+      title: pageData.title,
+      description: pageData.description,
+      html: editor.getHtml({ component }),
+      css: editor.getCss({ component }),
+      js: editor.getJs({ component }),
+    };
+  });
 
   const showNotification = (color: string, title: string, message: string) => {
     notifications.show({
@@ -73,16 +66,16 @@ function SaveButton() {
     });
   };
 
-
   const { mutate, isError, isPending } = useMutation({
     // @ts-ignore
-    mutationFn: async ({ data, pagesData }) => {
+    mutationFn: async () => {
       const endpoint = `api/v1/editor/${siteSlug}/`;
       const url = isNotFirstTimeSaving?.data ? `${endpoint}update` : `${endpoint}store`;
       const method = isNotFirstTimeSaving?.data ? 'patch' : 'post';
+      const projectData = data();
       const payload = {
         projectId: siteSlug,
-        data,
+        data:projectData,
         pagesData,
       };
       await axios({
@@ -116,25 +109,32 @@ function SaveButton() {
     },
     onSuccess: () => {
       setShowSuccess(true);
-      setLastSaved(new Date());
       setTimeout(() => setShowSuccess(false), 5000);
       queryClient.invalidateQueries({ queryKey: ['editorData', siteSlug] });
     },
   });
 
   useEffect(() => {
-    if (isNotFirstTimeSaving?.data !== null) {
+    // Define a function to check if autosave conditions are met
+    const canAutoSave = () => {
+      // Example condition: check if there's data to save and the user is not idle
+      return isNotFirstTimeSaving?.data !== null && !idle;
+    };
+
+    // Only set up the interval if autosave conditions are met
+    if (canAutoSave()) {
       const saveIntervalId = setInterval(() => {
-        if (!idle) {
-          handleSave();
-        }
-      }, 120000); // 2 minutes
+        handleSave();
+      }, 120000); // Autosave every 2 minutes
+
+      // Clean up the interval on component unmount or when dependencies change
       return () => clearInterval(saveIntervalId);
     }
   }, [mutate, idle, isNotFirstTimeSaving?.data]);
 
+
   const handleSave = () => {
-    const { data, pagesData } = getEditorData();
+
     if (!editor) {
       showNotification('red', 'Error', 'Editor is not available.');
       return;
@@ -144,15 +144,15 @@ function SaveButton() {
       return;
     }
     // @ts-ignore
-    mutate({ data, pagesData });
+    mutate();
   };
 
   const color = isError ? 'red' : showSuccess ? 'green' : 'blue';
 
   return (
     <Tooltip color="dark"
-             label={<div className="flex flex-col gap-4"><p>Save changes - Saved automatically every 2 minutes.</p>
-               <p></p>Last saved: {lastSaved ? timeSince(lastSaved) : 'Not yet saved'}</div>}>
+             label={<div className="flex flex-col gap-4"><p>Save changes - Saved automatically every 2 minutes. Every Site is cached which means your changes will take 15 seconds to take effect after inital page load</p>
+             </div>}>
       <ActionIcon
         disabled={isPending}
         loading={isPending}
@@ -446,17 +446,21 @@ function EditorHeader() {
           {/*          size="xs" variant="subtle"*/}
           {/*          leftSection={<IconExternalLink size="1rem" />}>Preview</Button>*/}
           {/*</Tooltip>*/}
-          <Tooltip color={tooltipColor} label={tooltipLabel}>
-            <Button disabled={isDisabled} component="a" href={buttonHref} target="_blank" size="xs" variant="subtle"
-                    leftSection={<IconExternalLink size="1rem" />}>
-              Preview
-            </Button>
-          </Tooltip>
-          <SiteSettingsButton data={data} />
-          {user ? <SaveButton /> : <Tooltip label="Register before you can save your site data">
-            <RegisterUserModal />
-          </Tooltip>}
-          <PublishButton siteData={data} />
+          {isLoading ?
+            <div className="w-full h-full flex justify-center items-center p-2 gap-2"><Loader size="xs" color="blue" />
+              <p className="text-xs">Loading header data...</p></div> : <> <Tooltip color={tooltipColor}
+                                                                                    label={tooltipLabel}>
+              <Button disabled={isDisabled} component="a" href={buttonHref} target="_blank" size="xs" variant="subtle"
+                      leftSection={<IconExternalLink size="1rem" />}>
+                Preview
+              </Button>
+            </Tooltip>
+              <SiteSettingsButton data={data} />
+              {user ? <SaveButton /> : <Tooltip label="Register before you can save your site data">
+                <RegisterUserModal />
+              </Tooltip>}
+              <PublishButton siteData={data} /></>}
+
         </div>
       </div>
     </AppShell.Header>);
