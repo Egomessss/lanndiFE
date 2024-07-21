@@ -367,12 +367,11 @@ export default function CustomAdvancedTraitManager() {
 
   return (
     <div className="gjs-custom-trait-manager text-left w-full flex flex-col gap-4 my-4">
-      {user?.subscription !== 'free' && <p className="text-xs text-red-500">Buy a plan to take advantage of all
+      {user?.subscription === 'free' && <p className="text-xs text-red-500">Buy a plan to take advantage of all
         lanndi&apos;s features such as CSS and
         Javascript code editors</p>}
       <Divider className="w-full" label="Custom attributes" />
       <CustomAttributes />
-
       {user?.subscription !== 'free' ? <>
         <Divider className="w-full" label="Selected Block Customization" />
         <CssCode />

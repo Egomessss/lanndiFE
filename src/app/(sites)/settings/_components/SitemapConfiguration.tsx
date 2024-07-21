@@ -34,7 +34,7 @@ const SitemapConfiguration = ({ domain, slug }: { domain: string; slug: string }
         <div className="flex gap-2 items-center">
           <p>View your sitemap at</p>
           <Anchor target="blank"
-                  href={domain ? domain : ''}>{domain ? domain : 'your-site-main-domain.com/sitemap.xml'}/sitemap.xml</Anchor>
+                  href={domain}>{domain}/sitemap.xml</Anchor>
         </div>
         <Button loading={isRefetching} leftSection={<IconRefresh size="1rem" />} onClick={refetchSitemap}>
           Update Sitemap
