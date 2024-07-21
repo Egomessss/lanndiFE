@@ -1,7 +1,7 @@
 import { ActionIcon, Anchor, AppShell, Button, Loader, Modal, Popover, Tabs, Tooltip } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import {
-  IconArrowLeft,
+  IconArrowLeft, IconArrowRight,
   IconCheck,
   IconChevronDown,
   IconDeviceFloppy,
@@ -30,6 +30,7 @@ import { SiteSettings } from '@/app/(sites)/settings/[slug]/page';
 import useUser from '@/hooks/use-user';
 import { DarkModeButton } from '@/components/common/DarkModeButton/DarkModeButton';
 import { useSidePanel } from '@/contexts/SidePanelPreviewContext';
+import SeoConfiguration from '@/app/(sites)/settings/_components/SeoConfiguration';
 
 
 function SaveButton() {
@@ -318,13 +319,17 @@ function SiteSettingsModal(props: {
       <Tabs.List>
         <Tabs.Tab value="first">General</Tabs.Tab>
         <Tabs.Tab value="second">Domain</Tabs.Tab>
+        <Tabs.Tab value="third">SEO</Tabs.Tab>
       </Tabs.List>
       <Tabs.Panel value="first">
-        <SiteSettingsForm plan={plan} data={data} />
+        {data && <SiteSettingsForm plan={plan} data={data} />}
       </Tabs.Panel>
       <Tabs.Panel value="second">
-        <DomainSettingsForm plan={plan} data={data} />
-        <DomainConfiguration plan={plan} domainData={data} />
+        {data && <DomainSettingsForm plan={plan} data={data} />}
+        {data && <DomainConfiguration plan={plan} domainData={data} />}
+      </Tabs.Panel>
+      <Tabs.Panel value="third">
+        {data && <SeoConfiguration plan={plan} domainData={data} />}
       </Tabs.Panel>
     </Tabs>
   </Modal>;

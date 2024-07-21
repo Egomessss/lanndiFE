@@ -77,7 +77,7 @@ const DashboardCard = ({ name, slug, ogImage, isLive }: Site) => {
             </Menu.Target>
 
             <Menu.Dropdown>
-              <Menu.Item component={Link} href={`/editor/${slug}`}
+              <Menu.Item component={Link} href={`admin-editor/${slug}`}
                          leftSection={<IconPencil size="1rem" />}>
                 Editor
               </Menu.Item>

@@ -3,11 +3,10 @@ import { IconRefresh } from '@tabler/icons-react';
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from '@/lib/axios';
-import { notifications } from '@mantine/notifications';
 
 const SitemapConfiguration = ({ domain, slug }: { domain: string; slug: string }) => {
-  const { isLoading, isError, refetch } = useQuery({
-    queryKey: ['siteDomain', slug],
+  const { isRefetching, isError, refetch, isFetched } = useQuery({
+    queryKey: ['siteSitemap', slug],
     queryFn: async () => {
       if (!domain) {
         return null;
@@ -20,14 +19,12 @@ const SitemapConfiguration = ({ domain, slug }: { domain: string; slug: string }
     refetchOnWindowFocus: false,
   });
 
-  if (isError) return notifications.show({
-    title: 'Somethings went wrong',
-    message: 'Please try again later or contact support team.',
-  });
 
   const refetchSitemap = () => {
     refetch();
   };
+
+
   return (
     <div className="flex justify-start gap-4 w-full flex-col items-start">
       <h3>Sitemap</h3>
@@ -39,9 +36,12 @@ const SitemapConfiguration = ({ domain, slug }: { domain: string; slug: string }
           <Anchor target="blank"
                   href={domain ? domain : ''}>{domain ? domain : 'your-site-main-domain.com/sitemap.xml'}/sitemap.xml</Anchor>
         </div>
-        <Button loading={isLoading} leftSection={<IconRefresh size="1rem" />} onClick={refetchSitemap}>
+        <Button loading={isRefetching} leftSection={<IconRefresh size="1rem" />} onClick={refetchSitemap}>
           Update Sitemap
-        </Button></> : <p>Domain not set - please set your domain to access your sitemap</p>
+        </Button>
+        {isFetched && <p className="text-green-500">Your sitemap has been updated successfully.</p>}
+        {isError && <p className="text-red-500">Somethings went wrong while updating your site sitemap</p>}
+      </> : <p>Domain not set - please set your domain to access your sitemap</p>
       }
     </div>
   );

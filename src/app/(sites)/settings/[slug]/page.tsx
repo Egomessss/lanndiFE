@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Tabs } from '@mantine/core';
+import { Button, Menu, Tabs } from '@mantine/core';
 import SiteSettingsForm from '@/app/(sites)/settings/_components/SiteSettingsForm';
 import Loading from '@/app/(sites)/Loading';
 import ErrorMessage from '@/app/(sites)/Error';
@@ -11,6 +11,8 @@ import DomainSettingsForm from '@/app/(sites)/settings/_components/DomainSetting
 import DomainConfiguration from '@/app/(sites)/settings/_components/DomainConfiguration';
 import useUser from '@/hooks/use-user';
 import SeoConfiguration from '@/app/(sites)/settings/_components/SeoConfiguration';
+import { IconArrowRight, IconPencil } from '@tabler/icons-react';
+import Link from 'next/link';
 
 export type SiteSettings = {
   name: string,
@@ -24,7 +26,7 @@ export type SiteSettings = {
   headCode: string,
   bodyCode: string,
   slug: string,
-  canonicalUrl:string,
+  canonicalUrl: string,
   robots:
     {
       userAgent: string,
@@ -56,8 +58,6 @@ const Page = () => {
   if (isError) return <ErrorMessage />;
 
 
-
-
   return (
     <div>
       <Tabs keepMounted={false} defaultValue="first">
@@ -65,13 +65,21 @@ const Page = () => {
           <Tabs.Tab value="first">General</Tabs.Tab>
           <Tabs.Tab value="second">Domain</Tabs.Tab>
           <Tabs.Tab value="third">SEO</Tabs.Tab>
+          {user?.isAdmin ?
+            <Button  size="xs" className='ml-auto' rightSection={<IconArrowRight size="1rem" />} component={Link} href={`admin-editor/${siteSlug}`}
+                   >
+              Editor
+            </Button>: <Button size="xs" className='ml-auto' rightSection={<IconArrowRight size="1rem" />} component={Link} href={`/editor/${siteSlug}`}
+        >
+          Editor
+        </Button>}
         </Tabs.List>
         <Tabs.Panel value="first">
-          {data && <SiteSettingsForm plan={plan} data={data}/>}
+          {data && <SiteSettingsForm plan={plan} data={data} />}
         </Tabs.Panel>
         <Tabs.Panel value="second">
           {data && <DomainSettingsForm plan={plan} data={data} />}
-          {data && <DomainConfiguration plan={plan} domainData={data}/>}
+          {data && <DomainConfiguration plan={plan} domainData={data} />}
         </Tabs.Panel>
         <Tabs.Panel value="third">
           {data && <SeoConfiguration plan={plan} domainData={data} />}

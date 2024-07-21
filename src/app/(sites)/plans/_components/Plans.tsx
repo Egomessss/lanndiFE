@@ -24,14 +24,14 @@ const Plans: React.FC<PlansData> = ({
     'Lifetime access to all future features and updates',
   ];
   const plans = [
-    // {
-    //   name: 'Free',
-    //   priceMonthly: 0,
-    //   priceAnnual: 0,
-    //   features: ['1 site', '1 page max', 'lanndi badge', 'lanndi subdomain','SSL Certificate'],
-    //   variantMonthly: 'free-monthly',
-    //   variantAnnual: 'free-annually',
-    // },
+    {
+    name: 'Starter',
+    priceMonthly: 5,
+    priceAnnual: 50,
+    features: ['2 websites', '1 page max', 'custom domain', 'custom code', 'SSL Certificate','Preview domain','Custom code','FavIcons','lanndi branding'],
+    variantMonthly: 'basic-monthly',
+    variantAnnual: 'basic-annually',
+  },
     {
       name: 'Indie',
       priceMonthly: 12,

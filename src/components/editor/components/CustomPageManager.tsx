@@ -215,17 +215,16 @@ export default function CustomPageManager({
   };
 
 
-  // user is free subscription dont allow more than one page
-
   return (
     <div
       className="gjs-custom-page-manager relative select-none text-left text-xs flex flex-col gap-2"
     >
-      {user?.subscription === 'free' ? <Tooltip
-        label="Free users cannot add more pages. Subscribe to a plan to add more pages."
+      {user?.subscription === 'basic-monthly' || user?.subscription === 'basic-yearly' ? <Tooltip
+        label="Basic users cannot add more pages. Subscribe to a different plan to add more pages."
         color="red"
       >
-        <Button disabled={user?.subscription === 'free'} leftSection={<IconPlus size="1rem" />}
+        <Button disabled={user?.subscription === 'basic-monthly' || user?.subscription === 'basic-yearly'}
+                leftSection={<IconPlus size="1rem" />}
 
                 onClick={addNewPage} size="xs" variant="subtle">Add page</Button>
       </Tooltip> : <Button disabled={user?.subscription === 'free'} leftSection={<IconPlus size="1rem" />}

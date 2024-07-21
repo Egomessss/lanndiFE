@@ -1,8 +1,8 @@
 'use client';
 
 
-import { IconAlertCircle, IconExternalLink, IconInfoCircle, IconRefresh } from '@tabler/icons-react';
-import { Alert, Anchor, Button, Card, Divider, TextInput, ThemeIcon } from '@mantine/core';
+import { IconAlertCircle, IconExternalLink, IconFile, IconInfoCircle, IconRefresh } from '@tabler/icons-react';
+import { Alert, Anchor, Button, Card, Divider, FileInput, Textarea, TextInput, ThemeIcon } from '@mantine/core';
 import React from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from '@/lib/axios';
@@ -16,36 +16,50 @@ import SitemapConfiguration from '@/app/(sites)/settings/_components/SitemapConf
 import RobotsSettingsForm from '@/app/(sites)/settings/_components/RobotsSettingsForm';
 import { z } from 'zod';
 import { useForm, zodResolver } from '@mantine/form';
+import TextLength from '@/components/common/TextLength';
+import CodeMirror from '@uiw/react-codemirror';
+import { langs } from '@uiw/codemirror-extensions-langs';
 
 
-function SiteCanonicalUrlConfiguration( props: { plan: string; data: SiteSettings }) {
-  const { plan, data } = props;
+function SiteCanonicalUrlConfiguration(props: { plan: string; data: SiteSettings }) {
+  const { data } = props;
   const {
-    canonicalUrl,
+    name,
+    title,
+    description,
+    language,
+    headCode,
+    bodyCode,
     slug,
+    canonicalUrl,
   } = data;
-  console.log(canonicalUrl);
-
   const queryClient = useQueryClient();
 
   const formSchema = z.object({
-    canonicalUrl: z.string().url().max(160, 'Canonical url must be at most 160 characters'),
+    canonicalUrl: z.string().url().optional(), // Optional since it can be empty
   });
 
 
 // Usage with useForm
   const form = useForm({
     initialValues: {
-      canonicalUrl: canonicalUrl || '*', // Shorthand for title: title
+      name: name || '', // Shorthand for title: title
+      title: title || '', // Shorthand for title: title
+      description: description || '', // Defaults to what's passed in, or you can provide a fallback
+      favIcon: null, // Defaults to null if favIco is not provided
+      ogImage: null, // Defaults to null if ogImage is not provided
+      language: language || 'en', // Default to 'en' if language is not provided
+      headCode: headCode || '', // Shorthand for headCode: headCode
+      bodyCode: bodyCode || '', // Shorthand for bodyCode: bodyCode
+      canonicalUrl: canonicalUrl || '', // Shorthand for canonicalUrl: canonicalUrl
     },
     validate: zodResolver(formSchema), // Here you integrate Zod's validation with useForm
   });
 
   const { mutate: submitSite, isPending } = useMutation({
       mutationFn: async () => {
-
         // Use Axios to send formData
-        return await axios.post(`/api/v1/sites/settings/robots/${slug}/update`, form.values);
+        return await axios.post(`/api/v1/sites/settings/${slug}/update`, form.values);
       },
       onSuccess:
         (data) => {
@@ -56,7 +70,7 @@ function SiteCanonicalUrlConfiguration( props: { plan: string; data: SiteSetting
               message: responseData.message,
               color: 'green',
             });
-            queryClient.invalidateQueries({ queryKey: ['siteRobotsSettings', slug] });
+            queryClient.invalidateQueries({ queryKey: ['siteSettings', slug] });
           }
         }
       ,
@@ -87,20 +101,24 @@ function SiteCanonicalUrlConfiguration( props: { plan: string; data: SiteSetting
     }
   };
 
-  return <div className="flex flex-col gap-2">
-    <h3>Global canonical tag URL</h3>
-    <p>
-      Set a global URL for the site’s canonical tag. This tells search engines which URL to index, and avoids duplicate
-      content.
-    </p>
-    <p>Your website wont be indexed until you change your disallow</p>
-    <TextInput className="w-full"
-               label="Global canonical URL"
-               description="URL should match your custom default domain"
-               placeholder="https://example.com"
-               {...form.getInputProps('canonicalUrl')}
-    />
-  </div>;
+
+  return (
+    <div className="flex items-start gap-8 flex-col my-4 w-full">
+      <h3>Canonical URL</h3>
+      <p>
+        Set a global URL for the site’s canonical tag. This tells search engines which URL to index, and avoids duplicate
+        content.
+      </p>
+      <TextInput className="w-full"
+                 label="Canonical URL"
+                 placeholder="https://example.com"
+                 {...form.getInputProps('canonicalUrl')}
+      />
+      <div className="flex items-end justify-end w-full">
+        <Button onClick={validateBeforeSubmit} loading={isPending}>Save Changes</Button>
+      </div>
+    </div>
+  );
 }
 
 export default function SeoConfiguration(props: { plan: string; domainData: SiteSettings }) {
@@ -108,24 +126,18 @@ export default function SeoConfiguration(props: { plan: string; domainData: Site
   const { domain, slug } = domainData;
 
 
-
   return (
     <div className="w-full rounded-lg p-4">
-      <SitemapConfiguration domain={domain} slug={slug} />
-      <div className="flex justify-start gap-4 w-full flex-col items-start">
-        <Divider className="w-full" my="md" />
-        <RobotsSettingsForm plan={plan} data={domainData} />
-        <Divider className="w-full" my="md" />
-        <SiteCanonicalUrlConfiguration plan={plan} data={domainData} />
-      </div>
-      {plan !== 'free' ? <>
+      {domain !== null ? <>
+        <SitemapConfiguration domain={domain} slug={slug} />
+        <div className="flex justify-start gap-4 w-full flex-col items-start">
+          <Divider className="w-full" my="md" />
+          <RobotsSettingsForm plan={plan} data={domainData} />
+          <Divider className="w-full" my="md" />
+          <SiteCanonicalUrlConfiguration plan={plan} data={domainData} />
+        </div>
       </> : <Alert variant="light" color="pink" title="Alert title" icon={<IconInfoCircle />}>
-        <p>Subscribe to a plan to be able to access SEO capabilities</p>
-        <p className="font-bold text-red-500 my-10">PS: Save your settings/editor data before clicking the link
-          button</p>
-        <Button fullWidth component={Link} href="/plans">
-          Buy a plan
-        </Button>
+        <p>Before you can take advantage of lanndi&apos;s SEO capability you must assign your website a custom domain</p>
       </Alert>}
 
     </div>
