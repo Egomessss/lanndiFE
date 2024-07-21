@@ -32,9 +32,10 @@ export default function RootLayout({
       <ColorSchemeScript defaultColorScheme="auto" />
     </head>
     <body className={inter.className}>
+    <MantineProvider defaultColorScheme="auto">
+      <Notifications />
     <TanstackProvider>
-      <MantineProvider defaultColorScheme="auto">
-        <Notifications />
+
         <ModalsProvider>
           <SidePanelProvider>
             <CSPostHogProvider>
@@ -42,9 +43,9 @@ export default function RootLayout({
             </CSPostHogProvider>
           </SidePanelProvider>
         </ModalsProvider>
-      </MantineProvider>
       {/*<ReactQueryDevtools initialIsOpen={false} />*/}
     </TanstackProvider>
+    </MantineProvider>
     </body>
     </html>
   );

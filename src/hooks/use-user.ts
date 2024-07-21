@@ -23,6 +23,7 @@ const useUser = () => {
     cacheTime:Infinity,
     staleTime: Infinity,
     enabled: !isDemo,
+    retry:5
   });
 
 

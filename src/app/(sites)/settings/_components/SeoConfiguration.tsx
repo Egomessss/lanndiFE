@@ -2,9 +2,9 @@
 
 
 import { IconAlertCircle, IconExternalLink, IconInfoCircle, IconRefresh } from '@tabler/icons-react';
-import { Alert, Anchor, Button, Card, Divider, ThemeIcon } from '@mantine/core';
+import { Alert, Anchor, Button, Card, Divider, TextInput, ThemeIcon } from '@mantine/core';
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from '@/lib/axios';
 import Loading from '@/app/(sites)/Loading';
 import ErrorMessage from '@/app/(sites)/Error';
@@ -13,7 +13,95 @@ import Link from 'next/link';
 import useUser from '@/hooks/use-user';
 import { notifications } from '@mantine/notifications';
 import SitemapConfiguration from '@/app/(sites)/settings/_components/SitemapConfiguration';
+import RobotsSettingsForm from '@/app/(sites)/settings/_components/RobotsSettingsForm';
+import { z } from 'zod';
+import { useForm, zodResolver } from '@mantine/form';
 
+
+function SiteCanonicalUrlConfiguration( props: { plan: string; data: SiteSettings }) {
+  const { plan, data } = props;
+  const {
+    canonicalUrl,
+    slug,
+  } = data;
+  console.log(canonicalUrl);
+
+  const queryClient = useQueryClient();
+
+  const formSchema = z.object({
+    canonicalUrl: z.string().url().max(160, 'Canonical url must be at most 160 characters'),
+  });
+
+
+// Usage with useForm
+  const form = useForm({
+    initialValues: {
+      canonicalUrl: canonicalUrl || '*', // Shorthand for title: title
+    },
+    validate: zodResolver(formSchema), // Here you integrate Zod's validation with useForm
+  });
+
+  const { mutate: submitSite, isPending } = useMutation({
+      mutationFn: async () => {
+
+        // Use Axios to send formData
+        return await axios.post(`/api/v1/sites/settings/robots/${slug}/update`, form.values);
+      },
+      onSuccess:
+        (data) => {
+          const responseData = data?.data; // Assuming your data is nested under a 'data' key
+          if (responseData) {
+            notifications.show({
+              title: 'Success!',
+              message: responseData.message,
+              color: 'green',
+            });
+            queryClient.invalidateQueries({ queryKey: ['siteRobotsSettings', slug] });
+          }
+        }
+      ,
+      onError:
+        (error) => {
+          // @ts-ignore
+          if (error.response.status === 422) {
+            // Handle Laravel validation errors
+            // @ts-ignore
+            form.setErrors(error.response.data.errors || {});
+          } else {
+            notifications.show({
+              title: 'Error',
+              message: 'Something went wrong... Please try again!',
+              color: 'red',
+            });
+          }
+        },
+    },
+  );
+
+
+  const validateBeforeSubmit = () => {
+    form.validate();
+    const isValid = form.isValid();
+    if (isValid) {
+      submitSite();
+    }
+  };
+
+  return <div className="flex flex-col gap-2">
+    <h3>Global canonical tag URL</h3>
+    <p>
+      Set a global URL for the site’s canonical tag. This tells search engines which URL to index, and avoids duplicate
+      content.
+    </p>
+    <p>Your website wont be indexed until you change your disallow</p>
+    <TextInput className="w-full"
+               label="Global canonical URL"
+               description="URL should match your custom default domain"
+               placeholder="https://example.com"
+               {...form.getInputProps('canonicalUrl')}
+    />
+  </div>;
+}
 
 export default function SeoConfiguration(props: { plan: string; domainData: SiteSettings }) {
   const { plan, domainData } = props;
@@ -23,15 +111,12 @@ export default function SeoConfiguration(props: { plan: string; domainData: Site
 
   return (
     <div className="w-full rounded-lg p-4">
-      <SitemapConfiguration domain={domain} slug={slug}/>
+      <SitemapConfiguration domain={domain} slug={slug} />
       <div className="flex justify-start gap-4 w-full flex-col items-start">
         <Divider className="w-full" my="md" />
-        <h3>Robots.txt</h3>
-        <p>Boost your SEO by automatically updating your sitemap whenever you publish your site. View your sitemap at
-          “your-site-main-domain.com/sitemap.xml”. You&apos;ll still need to submit your sitemap to Google. </p>
-        <Button >
-          Generate Sitemap
-        </Button>
+        <RobotsSettingsForm plan={plan} data={domainData} />
+        <Divider className="w-full" my="md" />
+        <SiteCanonicalUrlConfiguration plan={plan} data={domainData} />
       </div>
       {plan !== 'free' ? <>
       </> : <Alert variant="light" color="pink" title="Alert title" icon={<IconInfoCircle />}>

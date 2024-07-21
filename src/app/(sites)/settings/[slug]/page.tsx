@@ -23,7 +23,15 @@ export type SiteSettings = {
   language: string,
   headCode: string,
   bodyCode: string,
-  slug: string
+  slug: string,
+  canonicalUrl:string,
+  robots:
+    {
+      userAgent: string,
+      allow: string,
+      disallow: string,
+      sitemap: string | null,
+    }
 }
 
 

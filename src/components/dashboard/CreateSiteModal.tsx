@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Button, LoadingOverlay, Modal, TextInput, Tooltip } from '@mantine/core';
 import { IconPlus } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
@@ -86,9 +86,11 @@ const CreateSiteModal = (props: props) => {
     },
   );
 
-  if(isPending){
-    toggle()
-  }
+  useEffect(() => {
+    if (isPending) {
+      toggle();
+    }
+  }, [isPending]);
 
   const validateBeforeSubmit = (e: React.FormEvent) => {
     e.preventDefault()
