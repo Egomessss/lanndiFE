@@ -152,7 +152,7 @@ export default function CustomPageManager({
   const [editingPageId, setEditingPageId] = useState<string>('');
   const [opened, { open, close }] = useDisclosure(false);
   const { user } = useUser();
-  console.log(pages);
+
   const openModal = (pageToDelete: Page) => {
 
     if (pageToDelete.attributes.slug === 'index') {
@@ -181,38 +181,48 @@ export default function CustomPageManager({
         confirmProps: { color: 'red' },
         labels: { confirm: 'Delete', cancel: 'Cancel' },
         onCancel: () => console.log('Cancel'),
-        onConfirm: () => remove(pageToDelete),
+        onConfirm: () => {
+          remove(pageToDelete)
+          select(pages[0])
+          ;
+        },
       });
     }
   };
 
 
-  const addNewPage = () => {
+  const addNewPage =  () => {
     const maxPages = user?.subscription === 'admin' ? Infinity : user?.subscription === 'free' ? 1 : 10;
     if (pages.length < maxPages) {
       const nextIndex = pages.length + 1;
-      add({
-        name: `page ${pages.length + 1}`,
+      // Assuming `add` now returns the ID of the newly added page
+      const newPageId = add({
+        name: `page ${nextIndex}`,
         slug: '',
         component: `<h1>Page content ${nextIndex}</h1>`,
         title: '',
         description: '',
       });
+      // Update the editingPageId with the ID of the new page
+      // @ts-ignore
+      setEditingPageId(newPageId?.getId());
+      // Open the modal for editing the new page
+      open();
     }
   };
 
-  const duplicatePage = (pageToDuplicate: any) => {
-    const maxPages = user?.subscription === 'admin' ? Infinity : user?.subscription === 'free' ? 1 : 10;
-    if (pages.length < maxPages) {
-      add({
-        name: `${pageToDuplicate.getName()} (Copy)`,
-        component: pageToDuplicate.component, // Assuming component data is stored like this
-        slug: '',
-        title: '',
-        description: '',
-      });
-    }
-  };
+  // const duplicatePage = (pageToDuplicate: any) => {
+  //   const maxPages = user?.subscription === 'admin' ? Infinity : user?.subscription === 'free' ? 1 : 10;
+  //   if (pages.length < maxPages) {
+  //     add({
+  //       name: `${pageToDuplicate.getName()} (Copy)`,
+  //       component: pageToDuplicate.component, // Assuming component data is stored like this
+  //       slug: '',
+  //       title: '',
+  //       description: '',
+  //     });
+  //   }
+  // };
 
 
   return (

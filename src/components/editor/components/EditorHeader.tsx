@@ -1,19 +1,16 @@
 import { ActionIcon, Anchor, AppShell, Button, Loader, Modal, Popover, Tabs, Tooltip } from '@mantine/core';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
-  IconArrowLeft, IconArrowRight,
+  IconArrowLeft,
   IconCheck,
   IconChevronDown,
-  IconDeviceFloppy,
   IconExternalLink,
   IconEye,
-  IconFaceIdError,
   IconQuestionMark,
   IconSettings,
 } from '@tabler/icons-react';
 import { useParams, usePathname } from 'next/navigation';
 import { useEditorMaybe } from '@/components/editor/context/EditorInstance';
-import useEditorData from '@/hooks/use-editor-data';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from '@/lib/axios';
 import { notifications } from '@mantine/notifications';
@@ -22,7 +19,7 @@ import { WithEditor } from '@/components/editor/wrappers';
 import CommandButtons from '@/components/editor/components/TopBarButtons';
 import DeviceButtons from '@/components/editor/components/DeviceButtons';
 import RegisterUserModal from '@/app/demo/_components/RegisterUserModal';
-import { useDisclosure, useIdle } from '@mantine/hooks';
+import { useDisclosure } from '@mantine/hooks';
 import SiteSettingsForm from '@/app/(sites)/settings/_components/SiteSettingsForm';
 import DomainSettingsForm from '@/app/(sites)/settings/_components/DomainSettingsForm';
 import DomainConfiguration from '@/app/(sites)/settings/_components/DomainConfiguration';
@@ -31,143 +28,8 @@ import useUser from '@/hooks/use-user';
 import { DarkModeButton } from '@/components/common/DarkModeButton/DarkModeButton';
 import { useSidePanel } from '@/contexts/SidePanelPreviewContext';
 import SeoConfiguration from '@/app/(sites)/settings/_components/SeoConfiguration';
+import { SaveButton } from '@/components/editor/components/SaveButton';
 
-
-function SaveButton() {
-
-  const editor = useEditorMaybe();
-  const params = useParams();
-  const siteSlug = params.slug;
-  const queryClient = useQueryClient();
-  const [showSuccess, setShowSuccess] = useState(false);
-  const { data: isNotFirstTimeSaving } = useEditorData();
-  const idle = useIdle(300000); // 5mins idle
-
-  const data = () =>  editor?.getProjectData();
-  const pagesData = editor?.Pages.getAll().map(page => {
-    const component = page.getMainComponent();
-    const pageData = page.attributes;
-    return {
-      pageId: pageData.id,
-      name: pageData.name,
-      slug: pageData.slug,
-      title: pageData.title,
-      description: pageData.description,
-      html: editor.getHtml({ component }),
-      css: editor.getCss({ component }),
-      js: editor.getJs({ component }),
-    };
-  });
-
-  const showNotification = (color: string, title: string, message: string) => {
-    notifications.show({
-      color,
-      title,
-      message,
-    });
-  };
-
-  const { mutate, isError, isPending } = useMutation({
-    // @ts-ignore
-    mutationFn: async () => {
-      const endpoint = `api/v1/editor/${siteSlug}/`;
-      const url = isNotFirstTimeSaving?.data ? `${endpoint}update` : `${endpoint}store`;
-      const method = isNotFirstTimeSaving?.data ? 'patch' : 'post';
-      const projectData = data();
-      const payload = {
-        projectId: siteSlug,
-        data:projectData,
-        pagesData,
-      };
-      await axios({
-        method: method,
-        url: url,
-        data: payload,
-      });
-    },
-    onError: (error) => {
-      // @ts-ignore
-      const status = error.response?.status;
-      let errorMessage = 'Something went wrong... Please try again!';
-      if (status === 422) {
-        // Validation error handling
-        // @ts-ignore
-        const errorData = error.response.data;
-        const missingFieldsMessage = errorData.missingFields ? ` Missing fields: ${errorData.missingFields.join(', ')}.` : '';
-        errorMessage = `${errorData.message || 'Validation error occurred'}${missingFieldsMessage}`;
-      } else if (status >= 500) {
-        // Server error handling
-        errorMessage = 'A server error occurred. Please try again later.';
-      } else if (status === 401 || status === 419) {
-        errorMessage = 'Log in before you can save your data.';
-      } else if (status === 403) {
-        errorMessage = 'You do not have the necessary permissions.';
-      } else if (status === 404) {
-        // Handle 404 error
-        errorMessage = 'The requested resource could not be found.';
-      }
-      showNotification('red', 'Error', errorMessage);
-    },
-    onSuccess: () => {
-      setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 5000);
-      queryClient.invalidateQueries({ queryKey: ['editorData', siteSlug] });
-    },
-  });
-
-  useEffect(() => {
-    // Define a function to check if autosave conditions are met
-    const canAutoSave = () => {
-      // Example condition: check if there's data to save and the user is not idle
-      return isNotFirstTimeSaving?.data !== null && !idle;
-    };
-
-    // Only set up the interval if autosave conditions are met
-    if (canAutoSave()) {
-      const saveIntervalId = setInterval(() => {
-        handleSave();
-      }, 120000); // Autosave every 2 minutes
-
-      // Clean up the interval on component unmount or when dependencies change
-      return () => clearInterval(saveIntervalId);
-    }
-  }, [mutate, idle, isNotFirstTimeSaving?.data]);
-
-
-  const handleSave = () => {
-
-    if (!editor) {
-      showNotification('red', 'Error', 'Editor is not available.');
-      return;
-    }
-    if (!data || !pagesData) {
-      showNotification('red', 'Error', 'Data is not available.');
-      return;
-    }
-    // @ts-ignore
-    mutate();
-  };
-
-  const color = isError ? 'red' : showSuccess ? 'green' : 'blue';
-
-  return (
-    <Tooltip color="dark"
-             label={<div className="flex flex-col gap-4"><p>Save changes - Saved automatically every 2 minutes. Every Site is cached which means your changes will take 15 seconds to take effect after inital page load</p>
-             </div>}>
-      <ActionIcon
-        disabled={isPending}
-        loading={isPending}
-        className={!showSuccess ? 'animate-pulse' : ''}
-        color={color}
-        onClick={handleSave}
-        variant="subtle"
-      >
-        {isError && <IconFaceIdError size="1rem" />}
-        {!isPending && !isError && showSuccess ? <IconCheck size="1rem" /> : <IconDeviceFloppy size="1rem" />}
-      </ActionIcon>
-    </Tooltip>
-  );
-}
 
 function PublishButton({ siteData }: any) {
 
@@ -178,27 +40,29 @@ function PublishButton({ siteData }: any) {
   const queryClient = useQueryClient();
   const editor = useEditorMaybe();
 
-  const data = editor?.getProjectData();
-
-  const pagesData = editor?.Pages.getAll().map(page => {
-    const component = page.getMainComponent();
-    const pageData = page.attributes;
-    return {
-      pageId: pageData.id,
-      name: pageData.name,
-      slug: pageData.slug,
-      title: pageData.title,
-      description: pageData.description,
-      html: editor.getHtml({ component }),
-      css: editor.getCss({ component }),
-      js: editor.getJs({ component }),
-    };
-  });
-
 
   const { mutate, isPending } = useMutation({
       mutationFn:
-        async () => await axios.post(`api/v1/sites/${siteSlug}/publish`, { projectId: siteSlug, data, pagesData }),
+
+        async () => {
+          const data = editor?.getProjectData();
+
+          const pagesData = editor?.Pages.getAll().map(page => {
+            const component = page.getMainComponent();
+            const pageData = page.attributes;
+            return {
+              pageId: pageData.id,
+              name: pageData.name,
+              slug: pageData.slug,
+              title: pageData.title,
+              description: pageData.description,
+              html: editor.getHtml({ component }),
+              css: editor.getCss({ component }),
+              js: editor.getJs({ component }),
+            };
+          });
+          await axios.post(`api/v1/sites/${siteSlug}/publish`, { projectId: siteSlug, data, pagesData });
+        },
       onError: (error) => {
         let errorMessage = 'Something went wrong... Please try again!';
         // @ts-ignore
@@ -361,7 +225,7 @@ function EditorHeader() {
   const params = useParams();
   const siteSlug = params.slug;
 
-  const { data, isLoading, isError } = useQuery({
+  const { data } = useQuery({
     queryKey: ['siteSettings', siteSlug],
     queryFn: async () => {
       const { data } = await axios.get(`/api/v1/sites/settings/${siteSlug}`);
@@ -451,20 +315,18 @@ function EditorHeader() {
           {/*          size="xs" variant="subtle"*/}
           {/*          leftSection={<IconExternalLink size="1rem" />}>Preview</Button>*/}
           {/*</Tooltip>*/}
-          {isLoading ?
-            <div className="w-full h-full flex justify-center items-center p-2 gap-2"><Loader size="xs" color="blue" />
-              <p className="text-xs">Loading header data...</p></div> : <> <Tooltip color={tooltipColor}
-                                                                                    label={tooltipLabel}>
-              <Button disabled={isDisabled} component="a" href={buttonHref} target="_blank" size="xs" variant="subtle"
-                      leftSection={<IconExternalLink size="1rem" />}>
-                Preview
-              </Button>
-            </Tooltip>
-              <SiteSettingsButton data={data} />
-              {user ? <SaveButton /> : <Tooltip label="Register before you can save your site data">
-                <RegisterUserModal />
-              </Tooltip>}
-              <PublishButton siteData={data} /></>}
+          <Tooltip color={tooltipColor}
+                   label={tooltipLabel}>
+            <Button disabled={isDisabled} component="a" href={buttonHref} target="_blank" size="xs" variant="subtle"
+                    leftSection={<IconExternalLink size="1rem" />}>
+              Preview
+            </Button>
+          </Tooltip>
+          <SiteSettingsButton data={data} />
+          {user ? <SaveButton /> : <Tooltip label="Register before you can save your site data">
+            <RegisterUserModal />
+          </Tooltip>}
+          <PublishButton siteData={data} />
 
         </div>
       </div>

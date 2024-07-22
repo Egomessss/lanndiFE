@@ -54,7 +54,7 @@ export default function CustomTraitManager({
 
   const editor = useEditor();
   const value = editor.getSelected()?.get('tagName');
-
+  console.log(traits);
 
   return (
     <div className="gjs-custom-trait-manager text-left w-full flex flex-col gap-4 my-4">

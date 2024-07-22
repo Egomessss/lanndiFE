@@ -104,8 +104,8 @@ const DashboardCard = ({ name, slug, ogImage, isLive }: Site) => {
         {isLive ? <Badge variant="light" color="green">Live</Badge> :
           <Badge variant="light" color="orange">Draft</Badge>}
       </div>
-      <Modal centered opened={opened} onClose={close} title="Authentication">
-        <div className="flex flex-col gap-4">
+      <Modal centered opened={opened} onClose={close} title="Delete Website">
+        <form onSubmit={handleDelete} className="flex flex-col gap-4">
           <Text size="sm">
             Are you sure you want to delete your site? This action is destructive and irreversible!.
           </Text>
@@ -114,10 +114,10 @@ const DashboardCard = ({ name, slug, ogImage, isLive }: Site) => {
             placeholder="Enter site name to confirm"
             onChange={(event) => setSiteName(event.currentTarget.value)}
           />
-        </div>
+        </form>
         <div className="flex gap-4 w-full justify-end mt-4 ">
           <Button variant="subtle" color="red" onClick={close}>Cancel</Button>
-          <Button color="red" loading={isPending} onClick={handleDelete}>Delete Site</Button>
+          <Button color="red" loading={isPending} type="submit">Delete Site</Button>
         </div>
       </Modal>
     </div>

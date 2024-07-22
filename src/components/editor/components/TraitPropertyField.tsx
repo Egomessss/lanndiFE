@@ -39,7 +39,7 @@ export default function TraitPropertyField({
   const defValue = trait.getDefault() || trait.attributes.placeholder;
   const value = trait.getValue();
   const options = trait.getOptions().map((option) => ({
-    value: trait.getOptionId(option).toString(),
+    value: trait.getOptionId(option),
     label: trait.getOptionLabel(option),
   }));
 

@@ -84,6 +84,14 @@ const MediaBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
             type: 'checkbox',
             label: 'Lazy Load',
             valueTrue: 'lazy', // Value to assign when is checked, default: `true`
+            valueFalse: 'eager',
+          },
+          {
+            // lazy load
+            name: 'loading', // Name of the trait
+            type: 'checkbox',
+            label: 'Eager Load',
+            valueTrue: 'eager', // Value to assign when is checked, default: `true`
             valueFalse: '',
           },
           {
