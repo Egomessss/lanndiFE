@@ -256,7 +256,20 @@ export const styles = {
           type: 'base',
           default:'1fr 1fr 1fr',
           tooltip: 'Sets row heights. "1fr 1fr 1fr" creates 3 equal rows. "100px 200px 500px" creates 3 rows of different heights.',
-
+        },
+        {
+          label: 'Auto Columns',
+          property: 'grid-auto-columns',
+          type: 'base',
+          default: 'auto',
+          tooltip: 'Defines the size of implicitly-created columns. "auto" sets columns to their content width. "1fr" makes each column occupy a fraction of the available space. Example: "100px 1fr" creates columns where the first is 100px wide, and the second takes up the remaining space proportionally.',
+        },
+        {
+          label: 'Auto Rows',
+          property: 'grid-auto-rows',
+          type: 'base',
+          default: 'auto',
+          tooltip: 'Defines the size of implicitly-created rows. "auto" sets rows to their content height. "1fr" makes each row occupy a fraction of the available space. Example: "200px 2fr" creates rows where the first is 200px high, and the second takes up twice the remaining space proportionally.',
         },
         {
           label: 'Justify content',

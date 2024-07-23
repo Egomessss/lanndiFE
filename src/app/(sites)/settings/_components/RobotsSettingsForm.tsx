@@ -11,7 +11,7 @@ import Link from 'next/link';
 import { SiteSettings } from '@/app/(sites)/settings/[slug]/page';
 
 
-const SiteSettingsForm = (props: { plan: string; data: SiteSettings }) => {
+const SiteRobotsSettingsForm = (props: { plan: string; data: SiteSettings }) => {
     const { plan, data } = props;
     const {
       robots,
@@ -32,18 +32,17 @@ const SiteSettingsForm = (props: { plan: string; data: SiteSettings }) => {
 // Usage with useForm
     const form = useForm({
       initialValues: {
-        userAgent: userAgent || '*', // Shorthand for title: title
+        userAgent: userAgent || '', // Shorthand for title: title
         allow: allow || '', // Shorthand for title: title
-        disallow: disallow || '/', // Defaults to what's passed in, or you can provide a fallback
+        disallow: disallow || '', // Defaults to what's passed in, or you can provide a fallback
       },
       validate: zodResolver(formSchema), // Here you integrate Zod's validation with useForm
     });
 
     const { mutate: submitSite, isPending } = useMutation({
         mutationFn: async () => {
-
           // Use Axios to send formData
-          return await axios.post(`/api/v1/sites/settings/robots/${slug}/update`, form.values);
+          return await axios.patch(`/api/v1/sites/${slug}/robots-settings/update`, form.values);
         },
         onSuccess:
           (data) => {
@@ -54,7 +53,7 @@ const SiteSettingsForm = (props: { plan: string; data: SiteSettings }) => {
                 message: responseData.message,
                 color: 'green',
               });
-              queryClient.invalidateQueries({ queryKey: ['siteRobotsSettings', slug] });
+              queryClient.invalidateQueries({ queryKey: ['siteSettings', slug] });
             }
           }
         ,
@@ -93,7 +92,7 @@ const SiteSettingsForm = (props: { plan: string; data: SiteSettings }) => {
           The <code>robots.txt</code> file is used to instruct web robots (typically search engine robots) about which
           pages on your site to crawl or not to crawl. It&apos;s a way to control and manage the access of robots to your
           website, ensuring that sensitive areas or pages that should not be indexed are kept out of search engine
-          results for more information visit:<a href="https://www.robotstxt.org/" target="_blank">robotstxt.org</a>.
+          results for more information visit: <a href="https://www.robotstxt.org/" target="_blank">robotstxt.org</a>.
         </p>
         <p>Your website wont be indexed until you change your disallow</p>
         <TextInput className="w-full"
@@ -133,4 +132,4 @@ const SiteSettingsForm = (props: { plan: string; data: SiteSettings }) => {
   }
 ;
 
-export default SiteSettingsForm;
+export default SiteRobotsSettingsForm;

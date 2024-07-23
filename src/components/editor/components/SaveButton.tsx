@@ -9,10 +9,15 @@ import axios from '@/lib/axios';
 import { ActionIcon, Tooltip } from '@mantine/core';
 import { IconCheck, IconDeviceFloppy, IconFaceIdError } from '@tabler/icons-react';
 
+interface Payload {
+  projectId: string | string[];
+  data: any; // Consider specifying a more precise type for your project data
+  pagesData?: any[]; // Adjust the type according to the structure of your pages data
+}
 
 export function SaveButton() {
 
-  const editor = useEditor();
+  const editor = useEditorMaybe();
   const params = useParams();
   const siteSlug = params.slug;
   const queryClient = useQueryClient();
@@ -31,33 +36,35 @@ export function SaveButton() {
 
 
   const { mutate, isError, isPending } = useMutation({
-    // @ts-ignore
-    mutationFn: async () => {
-      const pagesData = editor?.Pages.getAll().map(page => {
-        const component = page.getMainComponent();
-        const pageData = page.attributes;
-        return {
-          pageId: pageData.id,
-          name: pageData.name,
-          slug: pageData.slug,
-          title: pageData.title,
-          description: pageData.description,
-          html: editor.getHtml({ component, cleanId: true }),
-          css: editor.getCss({ component, onlyMatched: true, keepUnusedStyles: false }),
-          js: editor.getJs({ component }),
-        };
-      });
-
+    mutationFn: async (autoSave?:boolean) => {
       const endpoint = `api/v1/editor/${siteSlug}/`;
       const url = isNotFirstTimeSaving?.data ? `${endpoint}update` : `${endpoint}store`;
       const method = isNotFirstTimeSaving?.data ? 'patch' : 'post';
 
-
-      const payload = {
+      const payload:Payload = {
         projectId: siteSlug,
         data: editor?.getProjectData(),
-        pagesData,
+        pagesData: [],
       };
+
+      if (autoSave !== true) {
+        const pagesData = editor?.Pages.getAll().map(page => {
+          const component = page.getMainComponent();
+          const pageData = page.attributes;
+          return {
+            pageId: pageData.id,
+            name: pageData.name,
+            slug: pageData.slug,
+            title: pageData.title,
+            description: pageData.description,
+            html: editor.getHtml({ component, cleanId: true }),
+            css: editor.getCss({ component, onlyMatched: true, keepUnusedStyles: false }),
+            js: editor.getJs({ component }),
+          };
+        });
+        payload.pagesData = pagesData;
+      }
+
       await axios({
         method: method,
         url: url,
@@ -69,20 +76,17 @@ export function SaveButton() {
       const status = error.response?.status;
       let errorMessage = 'Something went wrong... Please try again!';
       if (status === 422) {
-        // Validation error handling
         // @ts-ignore
         const errorData = error.response.data;
         const missingFieldsMessage = errorData.missingFields ? ` Missing fields: ${errorData.missingFields.join(', ')}.` : '';
         errorMessage = `${errorData.message || 'Validation error occurred'}${missingFieldsMessage}`;
       } else if (status >= 500) {
-        // Server error handling
         errorMessage = 'A server error occurred. Please try again later.';
       } else if (status === 401 || status === 419) {
         errorMessage = 'Log in before you can save your data.';
       } else if (status === 403) {
         errorMessage = 'You do not have the necessary permissions.';
       } else if (status === 404) {
-        // Handle 404 error
         errorMessage = 'The requested resource could not be found.';
       }
       showNotification('red', 'Error', errorMessage);
@@ -95,28 +99,23 @@ export function SaveButton() {
   });
 
   useEffect(() => {
-    // Define a function to check if autosave conditions are met
     const canAutoSave = () => {
-      // Example condition: check if there's data to save and the user is not idle
       return isNotFirstTimeSaving?.data !== null && !idle;
     };
 
-    // Only set up the interval if autosave conditions are met
     if (canAutoSave()) {
       const saveIntervalId = setInterval(() => {
-        handleSave();
-      }, 120000); // Autosave every 2 minutes
+        handleSave(true);
+      }, 10000); // Autosave every 2 minutes
 
-      // Clean up the interval on component unmount or when dependencies change
       return () => clearInterval(saveIntervalId);
     }
   }, [mutate, idle, isNotFirstTimeSaving?.data]);
 
-
-  const handleSave = () => {
-    // @ts-ignore
-    mutate();
+  const handleSave = (autoSave?: boolean) => {
+    mutate(autoSave);
   };
+
 
   const color = isError ? 'red' : showSuccess ? 'green' : 'blue';
 
@@ -124,15 +123,18 @@ export function SaveButton() {
     <Tooltip color="dark"
              w={250}
              multiline
-             label={<div className="flex flex-col gap-4"><p>Save changes - Saved automatically every 2 minutes. Every
-               Site is cached which means your changes will take 15 seconds to take effect after inital page load</p>
+             label={<div className="flex flex-col gap-4">
+               <p>Save changes - Saved automatically every 2 minutes. </p>
+               <p>Every
+                 Site is cached which means your changes will take 15 seconds to take effect after inital page load</p>
+               <p>Autosave functionality doesn&apos;t update your preview pages only by clicking you can update</p>
              </div>}>
       <ActionIcon
         disabled={isPending}
         loading={isPending}
         className={!showSuccess ? 'animate-pulse' : ''}
         color={color}
-        onClick={handleSave}
+        onClick={() => handleSave(false)}
         variant="subtle"
       >
         {isError && <IconFaceIdError size="1rem" />}

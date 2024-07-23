@@ -32,7 +32,7 @@ type CreatePageProps = {
 }
 
 
-function CreatePageModal({ editingPageId, pages, add, opened, onClose }: CreatePageProps) {
+function CreatePageModal({ editingPageId, opened, onClose }: CreatePageProps) {
 
   const editor = useEditor();
 
@@ -67,7 +67,7 @@ function CreatePageModal({ editingPageId, pages, add, opened, onClose }: CreateP
     initialValues: {
       name: 'Insert page name here',
       slug: 'Insert slug here',
-      component: pageData?.component || `<h1>Page content</h1>`,
+      component: pageData?.component || '',
       title: pageData?.title || '',
       description: pageData?.description || '',
     },
@@ -80,7 +80,7 @@ function CreatePageModal({ editingPageId, pages, add, opened, onClose }: CreateP
     if (isValid && page?.attributes.slug !== 'index') {
       page?.set(form.values);
       // @ts-ignore
-      editor.Pages.select(page?.getId())
+      editor.Pages.select(editingPageId)
       // @ts-ignore
       notifications.show({
         title: 'Success!',

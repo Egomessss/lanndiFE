@@ -19,6 +19,7 @@ import { useForm, zodResolver } from '@mantine/form';
 import TextLength from '@/components/common/TextLength';
 import CodeMirror from '@uiw/react-codemirror';
 import { langs } from '@uiw/codemirror-extensions-langs';
+import SiteRobotsSettingsForm from '@/app/(sites)/settings/_components/RobotsSettingsForm';
 
 
 function SiteCanonicalUrlConfiguration(props: { plan: string; data: SiteSettings }) {
@@ -132,7 +133,7 @@ export default function SeoConfiguration(props: { plan: string; domainData: Site
         <SitemapConfiguration domain={domain} slug={slug} />
         <div className="flex justify-start gap-4 w-full flex-col items-start">
           <Divider className="w-full" my="md" />
-          <RobotsSettingsForm plan={plan} data={domainData} />
+          <SiteRobotsSettingsForm plan={plan} data={domainData} />
           <Divider className="w-full" my="md" />
           <SiteCanonicalUrlConfiguration plan={plan} data={domainData} />
         </div>
