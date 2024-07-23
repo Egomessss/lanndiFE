@@ -42,8 +42,8 @@ export function SaveButton() {
           slug: pageData.slug,
           title: pageData.title,
           description: pageData.description,
-          html: editor.getHtml({ component }),
-          css: editor.getCss({ component }),
+          html: editor.getHtml({ component, cleanId: true }),
+          css: editor.getCss({ component, onlyMatched: true, keepUnusedStyles: false }),
           js: editor.getJs({ component }),
         };
       });

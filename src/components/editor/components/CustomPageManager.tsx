@@ -22,6 +22,7 @@ import TextLength from '@/components/common/TextLength';
 import { notifications } from '@mantine/notifications';
 import useUser from '@/hooks/use-user';
 
+
 type CreatePageProps = {
   editingPageId: string
   pages: Page[],
@@ -39,6 +40,7 @@ function CreatePageModal({ editingPageId, pages, add, opened, onClose }: CreateP
   const pageName = editor.Pages.get(editingPageId)?.getName();
   const pageData = editor.Pages.get(editingPageId)?.attributes;
   // console.log(pageData);
+
 
   const formSchema = z.object({
     name: z.string().max(60, 'Title must be at most 60 characters'),
@@ -77,16 +79,21 @@ function CreatePageModal({ editingPageId, pages, add, opened, onClose }: CreateP
     const isValid = form.isValid();
     if (isValid && page?.attributes.slug !== 'index') {
       page?.set(form.values);
+      // @ts-ignore
+      editor.Pages.select(page?.getId())
+      // @ts-ignore
       notifications.show({
         title: 'Success!',
         message: 'Your page settings has been successfully saved!',
         color: 'green',
       });
+
+      // editor.Pages.select(page)
       onClose();
     }
+
   };
 
-  console.log(form.values);
   return <Modal centered size="lg" scrollAreaComponent={ScrollArea.Autosize} opened={opened} onClose={onClose}
                 title={`${pageName} Page Settings`}>
     <div className="flex items-start gap-4 flex-col my-4 w-full">
