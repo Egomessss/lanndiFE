@@ -15,7 +15,7 @@ interface Payload {
   pagesData?: any[]; // Adjust the type according to the structure of your pages data
 }
 
-export function SaveButton() {
+export function SaveButton({ canAutosaveLoadedData }: { canAutosaveLoadedData: boolean }) {
 
   const editor = useEditorMaybe();
   const params = useParams();
@@ -24,6 +24,8 @@ export function SaveButton() {
   const [showSuccess, setShowSuccess] = useState(false);
   const { data: isNotFirstTimeSaving } = useEditorData();
   const idle = useIdle(300000); // 5mins idle
+
+  console.log('can auto', canAutosaveLoadedData);
 
 
   const showNotification = (color: string, title: string, message: string) => {
@@ -99,18 +101,18 @@ export function SaveButton() {
   });
 
   useEffect(() => {
-    const canAutoSave = () => {
-      return isNotFirstTimeSaving?.data !== null && !idle;
-    };
+    const canAutoSave = isNotFirstTimeSaving?.data !== null && !idle && canAutosaveLoadedData;
 
-    if (canAutoSave()) {
+    console.log('can autosave', canAutoSave);
+    // Only set up autosaving if the condition is met
+    if (canAutoSave) {
       const saveIntervalId = setInterval(() => {
         handleSave(true);
       }, 120000); // Autosave every 2 minutes
 
       return () => clearInterval(saveIntervalId);
     }
-  }, [mutate, idle, isNotFirstTimeSaving?.data]);
+  }, [mutate, idle, isNotFirstTimeSaving?.data, canAutosaveLoadedData]);
 
   const handleSave = (autoSave?: boolean) => {
     mutate(autoSave);

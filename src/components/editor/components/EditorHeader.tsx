@@ -222,7 +222,8 @@ function EditorHeader() {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const isDemo = slug === '/demo';
   const { user } = useUser();
-
+  const [canAutosaveLoadedData, setCanAutosaveLoadedData] = useState(true);
+  console.log(canAutosaveLoadedData);
   const params = useParams();
   const siteSlug = params.slug;
 
@@ -239,6 +240,11 @@ function EditorHeader() {
   const tooltipColor = isDisabled ? 'red' : 'gray';
   const tooltipLabel = user?.subscription === 'free' ? 'Free users are not allowed preview domains' : (!data?.title && !data?.description ? 'Add a title and description to your site settings before you can preview your website(paid feature)' : 'Open latest saved preview');
   const buttonHref = isDisabled ? '' : `https://preview.${data?.subdomain}.lanndi.com`;
+
+  const loadVersionData = (data:any) => {
+    editor?.loadProjectData(data);
+    setCanAutosaveLoadedData(false)
+  };
 
 
   return (
@@ -323,11 +329,12 @@ function EditorHeader() {
               Preview
             </Button>
           </Tooltip>
-          <EditorVersions/>
+          <EditorVersions setCanAutosaveLoadedData={setCanAutosaveLoadedData} loadVersionData={loadVersionData} />
           <SiteSettingsButton data={data} />
-          {user ? <SaveButton /> : <Tooltip label="Register before you can save your site data">
-            <RegisterUserModal />
-          </Tooltip>}
+          {user ? <SaveButton canAutosaveLoadedData={canAutosaveLoadedData} /> :
+            <Tooltip label="Register before you can save your site data">
+              <RegisterUserModal />
+            </Tooltip>}
           <PublishButton siteData={data} />
 
         </div>
