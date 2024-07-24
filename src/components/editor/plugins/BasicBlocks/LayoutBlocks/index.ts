@@ -11,6 +11,12 @@ const LayoutBlocks: Plugin<PluginOptions> = (editor, opts = {}) => {
       'columns',
       'rows',
       'grid',
+      'table',
+      'thead',
+      'tbody',
+      'tcell',
+      'trow',
+      'tfoot',
       // 'table', 'table-cell', 'table-row', 'table-head', 'table-body','table-footer'
     ],
     flexGrid: false,

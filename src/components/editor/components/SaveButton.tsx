@@ -106,7 +106,7 @@ export function SaveButton() {
     if (canAutoSave()) {
       const saveIntervalId = setInterval(() => {
         handleSave(true);
-      }, 10000); // Autosave every 2 minutes
+      }, 120000); // Autosave every 2 minutes
 
       return () => clearInterval(saveIntervalId);
     }

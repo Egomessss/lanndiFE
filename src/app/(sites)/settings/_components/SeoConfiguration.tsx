@@ -137,7 +137,7 @@ export default function SeoConfiguration(props: { plan: string; domainData: Site
           <Divider className="w-full" my="md" />
           <SiteCanonicalUrlConfiguration plan={plan} data={domainData} />
         </div>
-      </> : <Alert variant="light" color="pink" title="Alert title" icon={<IconInfoCircle />}>
+      </> : <Alert variant="light" color="pink" title="Assign a custom domain" icon={<IconInfoCircle />}>
         <p>Before you can take advantage of lanndi&apos;s SEO capability you must assign your website a custom domain</p>
       </Alert>}
 

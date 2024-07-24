@@ -118,7 +118,7 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
     // Grid
     // Accordion,
     // Tabs
-    ClickAndDrop
+    ClickAndDrop,
   ],
   styleManager:
   styles

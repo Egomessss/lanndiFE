@@ -238,6 +238,12 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
 
 
   editor.DomComponents.addType('table', {
+    isComponent: el => {
+      if (el.tagName === 'TABLE') {
+        return { type: 'table' };
+      }
+    },
+    extend:'table',
     model: {
       defaults: {
         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-table" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z" /><path d="M3 10h18" /><path d="M10 3v18" /></svg>`,
@@ -246,9 +252,9 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
             'table',
         }
         ,
-        resizable: false,
+        resizable: true,
         components:
-          `<table id="customers">
+          `<div class="table-wrapper"><table class="table">
   <tr>
     <th>Company</th>
     <th>Contact</th>
@@ -304,23 +310,31 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
     <td>Marie Bertrand</td>
     <td>France</td>
   </tr>
-</table>`,
-        styles: `#customers {
+</table> </div>`,
+        styles: `
+        .table-wrapper {
+    width: 100%;
+    /* max-width: 500px; */
+    overflow-x: auto;
+  }
+        
+        .table {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
+  overflow-x: auto;
 }
 
-#customers td, #customers th {
+.table td, .table th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-#customers tr:nth-child(even){background-color: #f2f2f2;}
+.table tr:nth-child(even){background-color: #f2f2f2;}
 
-#customers tr:hover {background-color: #ddd;}
+.table tr:hover {background-color: #ddd;}
 
-#customers th {
+.table th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
@@ -334,13 +348,221 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
   });
 
 
+//   toAdd('table') &&
+//   bm.add('table', {
+//     ...commonBlockProps,
+//     category: 'Layout',
+//     label: 'Table',
+//     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-table" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z" /><path d="M3 10h18" /><path d="M10 3v18" /></svg>`,
+//     content: { type: 'table' },
+//   });
+
   toAdd('table') &&
   bm.add('table', {
     ...commonBlockProps,
-    category: 'Layout',
     label: 'Table',
-    media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-table" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z" /><path d="M3 10h18" /><path d="M10 3v18" /></svg>`,
+    category: 'Table',
+    media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-grid" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /></svg>`,
     content: { type: 'table' },
+  });
+
+
+
+  // Define table component
+  // editor.DomComponents.addType('table', {
+  //   isComponent: el => {
+  //     if (el.tagName === 'TABLE') {
+  //       return { type: 'table' };
+  //     }
+  //   },
+  //   model: {
+  //     defaults: {
+  //       tagName: 'table',
+  //       name: 'Table',
+  //       icon: '',
+  //       resizable: true,
+  //       attributes: { class: 'table' },
+  //       styles: `.table {
+  //       width: 100%;
+  //       border-collapse: collapse;
+  //     }`,
+  //     },
+  //   },
+  // });
+
+  toAdd('thead') &&
+  bm.add('thead', {
+    ...commonBlockProps,
+    label: 'Table Head',
+    category: 'Table',
+    media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-grid" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /></svg>`,
+    content: { type: 'thead' },
+  });
+
+// Define table head component
+  editor.DomComponents.addType('thead', {
+    isComponent: el => {
+      if (el.tagName === 'THEAD') {
+        return { type: 'thead' };
+      }
+    },
+    extend:'thead',
+    model: {
+      defaults: {
+        tagName: 'thead',
+        name: 'Table Head',
+        draggable: 'table',
+        icon: '',
+        droppable:true,
+        resizable: true,
+        attributes: { class: 'thead' },
+        styles: `.thead {
+        background-color: #f3f3f3;
+      }`,
+      },
+    },
+  });
+
+  toAdd('tbody') &&
+  bm.add('tbody', {
+    ...commonBlockProps,
+    label: 'Table Body',
+    category: 'Table',
+    media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-grid" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /></svg>`,
+    content: { type: 'tbody' },
+  });
+// Define table body component
+  editor.DomComponents.addType('tbody', {
+    isComponent: el => {
+      if (el.tagName === 'TBODY') {
+        return { type: 'tbody' };
+      }
+    },
+    extend:'tbody',
+    model: {
+      defaults: {
+        tagName: 'tbody',
+        name: 'Table Body',
+        icon: '',
+        draggable: 'table',
+        resizable: true,
+        droppable:true,
+        attributes: { class: 'tbody' },
+        styles: `.tbody {
+        background-color: #ffffff;
+      }`,
+      },
+    },
+  });
+
+  toAdd('trow') &&
+  bm.add('trow', {
+    ...commonBlockProps,
+    label: 'Table Row',
+    category: 'Table',
+    media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-grid" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /></svg>`,
+    content: { type: 'trow' },
+  });
+
+// Define table row component
+  editor.DomComponents.addType('trow', {
+    isComponent: el => {
+      if (el.tagName === 'TR') {
+        return { type: 'trow' };
+      }
+    },
+    extend:'row',
+    model: {
+      defaults: {
+        tagName: 'tr',
+        name: 'Table Row',
+        icon: '',
+        droppable:true,
+        selectable:true,
+        highlightable:true,
+        hoverable:true,
+        draggable: 'table,thead,tbody,tfoot',
+        resizable: true,
+        attributes: { class: 'trow' },
+        styles: `.trow {
+        border-bottom: 1px solid #dddddd;
+        background:red;
+      }`,
+      },
+    },
+  });
+
+  toAdd('tcell') &&
+  bm.add('tcell', {
+    ...commonBlockProps,
+    label: 'Table Cell',
+    category: 'Table',
+    media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-grid" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /></svg>`,
+    content: { type: 'tcell' },
+  });
+
+// Define table tcell component
+  editor.DomComponents.addType('tcell', {
+    isComponent: el => {
+      if (el.tagName === 'TD' || el.tagName === 'TH') {
+        return { type: 'tcell' };
+      }
+    },
+    extend:'cell',
+    model: {
+      defaults: {
+        tagName: 'td',
+        name: 'Table Cell',
+        icon: '',
+        resizable: true,
+        droppable:true,
+        components: [
+          {
+            type: "paragraph",
+            content: "Cell",
+          },
+        ],
+        draggable: 'trow',
+        attributes: { class: 'tcell' },
+        styles: `.tcell {
+        padding: 8px;
+        text-align: left;
+      }`,
+      },
+    },
+  });
+
+  toAdd('tfoot') &&
+  bm.add('tfoot', {
+    ...commonBlockProps,
+    label: 'Table Footer',
+    category: 'Table',
+    media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-grid" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M14 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /></svg>`,
+    content: { type: 'tfoot' },
+  });
+
+// Define table footer component
+  editor.DomComponents.addType('tfoot', {
+    isComponent: el => {
+      if (el.tagName === 'TFOOT') {
+        return { type: 'tfoot' };
+      }
+    },
+    extend:'tfoot',
+    model: {
+      defaults: {
+        tagName: 'tfoot',
+        name: 'Table Footer',
+        icon: '',
+        resizable: true,
+        droppable:true,
+        draggable: 'table',
+        attributes: { class: 'tfoot' },
+        styles: `.tfoot {
+        background-color: #f3f3f3;
+      }`,
+      },
+    },
   });
 
 
