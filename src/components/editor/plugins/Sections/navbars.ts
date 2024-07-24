@@ -488,16 +488,16 @@ height:fit-content;
       },
     });
 
-  editor.Blocks.add('navbar', {
-    media: 'https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/Screenshot%202024-07-16%20162949.png',
-    label: 'W/Burger Menu',
-    category: 'sections-navbars',
-    select: true,
-    content: { type: 'navbar' },
-  });
+    editor.Blocks.add('navbar', {
+      media: 'https://pub-692392e7a4934f739c13ac69503cb052.r2.dev/Screenshot%202024-07-16%20162949.png',
+      label: 'W/Burger Menu',
+      category: 'sections-navbars',
+      select: true,
+      content: { type: 'navbar' },
+    });
 
 
-  const navbarPfx = 'navbar';
+    const navbarPfx = 'navbar';
     const idContainer = `${id}-container`;
     const idNavMenu = `${id}-nav-menu`;
     const idNavMenuLink = `${id}-nav-menu-link`;
@@ -665,7 +665,7 @@ height:fit-content;
           copyable: false,
           highlightable: false,
           components: [
-              '<a class="navbar-brand-link-box" href="/"><img src="https://pub-f5a07b52c95f477cb476a4dbda31ebbe.r2.dev/assets/UxiMLsmmatQxFMdpnmdGr2QFqOMcagbkchqEoyG8.png" class="navbar-brand-img"/><p  class="paragraph">lanndi</p></a>'
+            '<a class="navbar-brand-link-box" href="/"><img src="https://pub-f5a07b52c95f477cb476a4dbda31ebbe.r2.dev/assets/UxiMLsmmatQxFMdpnmdGr2QFqOMcagbkchqEoyG8.png" class="navbar-brand-img"/><p  class="paragraph">lanndi</p></a>'
             ,
             { type: idBurgerMenu },
             {
@@ -699,6 +699,18 @@ height:fit-content;
           name: 'Menu link',
           draggable: `[data-gjs-type="${idNavMenu}"]`,
           attributes: { class: `${navbarPfx}-menu-link` },
+          styles: `.navbar-menu-link {
+          text-decoration: none;
+          display: inline-block;
+          cursor: pointer;
+          }
+          
+          .navbar-menu-link:hover {
+          color: blue;
+          text-decoration: underline;
+           cursor: pointer;
+          }
+          `,
         },
       },
     });
@@ -714,17 +726,17 @@ height:fit-content;
           script: function() {
             const burgerMenu = document.querySelector('.navbar-burger');
             const navLink = document.querySelectorAll('.navbar-menu-link');
-            let isToggled = false
+            let isToggled = false;
 
 
             // Step 2: Add an event listener to the burger menu
             burgerMenu?.addEventListener('click', () => {
               isToggled = !isToggled;
-              console.log('isToggled',isToggled);
+              console.log('isToggled', isToggled);
               console.log('click');
               // Step 4: Select all burger lines within the burger menu
               const burgerLines = burgerMenu.querySelectorAll('.navbar-burger-line');
-              console.log('burger lines',burgerLines);
+              console.log('burger lines', burgerLines);
               // Step 5: Iterate over each burger line and toggle the 'active' class
               burgerLines.forEach(line => {
                 line.classList.toggle('active');
@@ -748,9 +760,9 @@ height:fit-content;
             if (!isEditorAvailable && isToggled) {
               navLink.forEach(link => {
                 link.addEventListener('click', () => {
-                  toggleSlide(navItems)
+                  toggleSlide(navItems);
                   const burgerLines = burgerMenu?.querySelectorAll('.navbar-burger-line');
-                  console.log('burger lines',burgerLines);
+                  console.log('burger lines', burgerLines);
                   // Step 5: Iterate over each burger line and toggle the 'active' class
                   burgerLines?.forEach(line => {
                     line.classList.toggle('active');

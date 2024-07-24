@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { SelectorsResultProps, useEditor } from '../wrappers';
 import {
   ActionIcon,
-  CheckIcon,
   Combobox,
   Group,
   Menu,
   Pill,
   PillsInput,
   ScrollArea,
-  Select, TextInput,
+  Select,
+  TextInput,
   ThemeIcon,
   Tooltip,
   useCombobox,
@@ -19,13 +19,12 @@ import {
   IconCheck,
   IconDotsVertical,
   IconExclamationCircle,
-  IconFocus,
   IconFocus2,
   IconHash,
-  IconTags, IconX,
+  IconTags,
+  IconX,
 } from '@tabler/icons-react';
 import { Selector } from 'grapesjs';
-import useUser from '@/hooks/use-user';
 
 
 export default function CustomSelectorManager({
@@ -79,7 +78,7 @@ export default function CustomSelectorManager({
   const [selectorName, setSelectorName] = useState('');
 
   const [isRenamingSelector, setIsRenamingSelector] = useState(false);
-  const [isCloningAndRenaming, setIsCloningAndRenaming] = useState(false);
+  // const [isCloningAndRenaming, setIsCloningAndRenaming] = useState(false);
 
 
   // const cloneAndRenameSelector = () => {
@@ -241,16 +240,15 @@ export default function CustomSelectorManager({
         <div className="flex justify-between w-full h-full ">
 
           <Tooltip color="blue"
-                   label={`block classes -[${selectors.map((s) => s.toString())}] | block ID - #${targetsIds.toString()}`}>
+                   label={`Block ID - #${targetsIds.toString()}`}>
             <ThemeIcon
-              variant="light">
-              <IconTags size="1rem" />
+              variant="subtle">
+              <IconHash size="1rem" />
             </ThemeIcon>
           </Tooltip>
           <Tooltip position="left" color="dark" multiline w={400}
                    label={
                      <div className="flex flex-col gap-2">
-
                        <p>Enabled: All the style changes will be applied on
                          selected
                          blocks (ID rules)</p>
@@ -296,22 +294,21 @@ export default function CustomSelectorManager({
             </Tooltip>
           </div>
         </div>
-
-        <Combobox styles={{
+        {!isComponentFirst &&  <Combobox styles={{
           dropdown: { width: '100%' },
         }} store={combobox}
-                  onOptionSubmit={(val) => {
-                    console.log('val', val);
-                    if (val === '$create') {
-                      addSelector(search);
-                    } else {
-                      addSelector(val);
-                    }
-                    combobox.closeDropdown();
-                  }}
+                                        onOptionSubmit={(val) => {
+                                          console.log('val', val);
+                                          if (val === '$create') {
+                                            addSelector(search);
+                                          } else {
+                                            addSelector(val);
+                                          }
+                                          combobox.closeDropdown();
+                                        }}
 
 
-                  withinPortal={false}>
+                                        withinPortal={false}>
           <Combobox.DropdownTarget>
             <PillsInput size="xs" className="w-full" onClick={() => combobox.openDropdown()}>
               <Pill.Group>
@@ -355,7 +352,8 @@ export default function CustomSelectorManager({
               </ScrollArea.Autosize>
             </Combobox.Options>
           </Combobox.Dropdown>
-        </Combobox>
+        </Combobox> }
+
         {/*{isCloningAndRenaming &&*/}
         {/*  <TextInput autoFocus className="w-full" placeholder="Insert new class name" size="xs" my={8}*/}
         {/*             value={selectorName}*/}

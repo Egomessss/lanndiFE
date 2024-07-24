@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ActionIcon, Button, Modal, ScrollArea, Text, TextInput, Tooltip } from '@mantine/core';
-import { IconCheck, IconDeviceFloppy, IconEdit, IconGitCompare, IconTrash } from '@tabler/icons-react';
+import { IconCheck, IconDeviceFloppy, IconEdit, IconGitCompare, IconHistory, IconTrash } from '@tabler/icons-react';
 import { useEditorMaybe } from '@/components/editor/context/EditorInstance';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from '@/lib/axios';
@@ -277,7 +277,7 @@ const EditorVersions = ({ loadVersionData,setCanAutosaveLoadedData }: { loadVers
 
       <Tooltip color="dark" label="Site Versions">
         <ActionIcon variant="subtle" onClick={() => setOpened(true)}>
-          <IconGitCompare size="1rem" />
+          <IconHistory size="1rem" />
         </ActionIcon>
       </Tooltip>
     </>
