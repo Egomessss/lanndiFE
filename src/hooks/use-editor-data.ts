@@ -11,6 +11,7 @@ export type EditorData = {
 function useEditorData() {
   const params = useParams();
   const siteSlug = params.slug;
+
   const slug = usePathname();
   const isDemo = slug === '/demo';
 

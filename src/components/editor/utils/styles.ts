@@ -953,7 +953,20 @@ export const styles = {
             { id: 'break-space', label: 'Spaces & Breaks' },
           ],
         },
-
+        {
+          type: 'select',
+          label: 'Text Wrap', // Label for the property
+          property: 'text-wrap', // CSS property to change
+          default: 'normal', // Default value
+          options: [
+            { id: 'normal', label: 'Normal' }, // Breaks words only at normal line breaks (default)
+            { id: 'Wrap', label: 'Wrap' } ,// Breaks long words at arbitrary points if necessary
+            { id: 'no-wrap', label: 'No wrap' }, // Prevents wrapping of long words
+            { id: 'balance', label: 'Balance' }, // Preserves whitespace and line breaks
+            { id: 'pretty', label: 'pretty' }, // Preserves whitespace and wraps lines
+            { id: 'stable', label: 'stable' }, // Preserves whitespace and wraps lines, removes leading whitespace
+          ]
+        },
         {
           type: 'select',
           label: 'Decoration', // Label for the property

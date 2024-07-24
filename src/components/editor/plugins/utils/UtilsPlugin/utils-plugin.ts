@@ -62,9 +62,14 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
   // editor.on('component:update', (component) => {
   //   editor.select(component)
   // })
+  // editor.Keymaps.removeAll()
 
   // Keymap for the 'Esc' key to trigger the deselect command
   editor.Keymaps.add('deselect-components', 'esc', 'deselect-components');
+  // editor.Keymaps.add('core:canvas-move', 'ctrl+spacebar','core:canvas-move', {
+  //   // Prevent the default browser action
+  //   prevent: true,
+  // });
 
   editor.on('page:select', () => {
     editor.getWrapper()?.set('stylable', [

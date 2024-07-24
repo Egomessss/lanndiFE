@@ -29,6 +29,7 @@ import { DarkModeButton } from '@/components/common/DarkModeButton/DarkModeButto
 import { useSidePanel } from '@/contexts/SidePanelPreviewContext';
 import SeoConfiguration from '@/app/(sites)/settings/_components/SeoConfiguration';
 import { SaveButton } from '@/components/editor/components/SaveButton';
+import EditorVersions from '@/components/editor/components/EditorVersions';
 
 
 function PublishButton({ siteData }: any) {
@@ -322,6 +323,7 @@ function EditorHeader() {
               Preview
             </Button>
           </Tooltip>
+          <EditorVersions/>
           <SiteSettingsButton data={data} />
           {user ? <SaveButton /> : <Tooltip label="Register before you can save your site data">
             <RegisterUserModal />

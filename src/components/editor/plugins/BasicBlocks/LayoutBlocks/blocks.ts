@@ -247,6 +247,8 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
     model: {
       defaults: {
         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-table" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z" /><path d="M3 10h18" /><path d="M10 3v18" /></svg>`,
+        droppable:true,
+        draggable:false,
         attributes: {
           class:
             'table',
@@ -256,91 +258,86 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
         components:
           `<div class="table-wrapper"><table class="table">
   <tr>
-    <th>Company</th>
-    <th>Contact</th>
-    <th>Country</th>
+    <th class="table-th"><p>Company</p></th>
+    <th class="table-th"><p>Contact</p></th>
+    <th class="table-th"><p>Country</p></th>
   </tr>
   <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
+    <td class="table-td"><p>Alfreds Futterkiste</p></td>
+    <td class="table-td"><p>Maria Anders</p></td>
+    <td class="table-td"><p>Germany</p></td>
   </tr>
   <tr>
-    <td>Berglunds snabbköp</td>
-    <td>Christina Berglund</td>
-    <td>Sweden</td>
+    <td class="table-td"><p>Berglunds snabbköp</p></td>
+    <td class="table-td"><p>Christina Berglund</p></td>
+    <td class="table-td"><p>Sweden</p></td>
   </tr>
   <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-    <td>Mexico</td>
+    <td class="table-td"><p>Centro comercial Moctezuma</p></td>
+    <td class="table-td"><p>Francisco Chang</p></td>
+    <td class="table-td"><p>Mexico</p></td>
   </tr>
   <tr>
-    <td>Ernst Handel</td>
-    <td>Roland Mendel</td>
-    <td>Austria</td>
+    <td class="table-td"><p>Ernst Handel</p></td>
+    <td class="table-td"><p>Roland Mendel</p></td>
+    <td class="table-td"><p>Austria</p></td>
   </tr>
   <tr>
-    <td>Island Trading</td>
-    <td>Helen Bennett</td>
-    <td>UK</td>
+    <td class="table-td"><p>Island Trading</p></td>
+    <td class="table-td"><p>Helen Bennett</p></td>
+    <td class="table-td"><p>UK</p></td>
   </tr>
   <tr>
-    <td>Königlich Essen</td>
-    <td>Philip Cramer</td>
-    <td>Germany</td>
+    <td class="table-td"><p>Königlich Essen</p></td>
+    <td class="table-td"><p>Philip Cramer</p></td>
+    <td class="table-td"><p>Germany</p></td>
   </tr>
   <tr>
-    <td>Laughing Bacchus Winecellars</td>
-    <td>Yoshi Tannamuri</td>
-    <td>Canada</td>
+    <td class="table-td"><p>Laughing Bacchus Winecellars</p></td>
+    <td class="table-td"><p>Yoshi Tannamuri</p></td>
+    <td class="table-td"><p>Canada</p></td>
   </tr>
   <tr>
-    <td>Magazzini Alimentari Riuniti</td>
-    <td>Giovanni Rovelli</td>
-    <td>Italy</td>
+    <td class="table-td"><p>Magazzini Alimentari Riuniti</p></td>
+    <td class="table-td"><p>Giovanni Rovelli</p></td>
+    <td class="table-td"><p>Italy</p></td>
   </tr>
   <tr>
-    <td>North/South</td>
-    <td>Simon Crowther</td>
-    <td>UK</td>
+    <td class="table-td"><p>North/South</p></td>
+    <td class="table-td"><p>Simon Crowther</p></td>
+    <td class="table-td"><p>UK</p></td>
   </tr>
   <tr>
-    <td>Paris spécialités</td>
-    <td>Marie Bertrand</td>
-    <td>France</td>
+    <td class="table-td"><p>Paris spécialités</p></td>
+    <td class="table-td"><p>Marie Bertrand</p></td>
+    <td class="table-td"><p>France</p></td>
   </tr>
 </table> </div>`,
         styles: `
         .table-wrapper {
     width: 100%;
-    /* max-width: 500px; */
+    max-width: 1200px; 
     overflow-x: auto;
   }
         
         .table {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
   width: 100%;
-  overflow-x: auto;
 }
 
-.table td, .table th {
+.table-td{
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-.table tr:nth-child(even){background-color: #f2f2f2;}
-
-.table tr:hover {background-color: #ddd;}
-
-.table th {
-  padding-top: 12px;
+.table-th {
+  border: 1px solid #ddd;
+   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
   background-color: #04AA6D;
   color: white;
-}`,
+}
+`,
 
       }
       ,
@@ -486,7 +483,6 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
         attributes: { class: 'trow' },
         styles: `.trow {
         border-bottom: 1px solid #dddddd;
-        background:red;
       }`,
       },
     },
@@ -522,7 +518,7 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
             content: "Cell",
           },
         ],
-        draggable: 'trow',
+        draggable: 'table,trow',
         attributes: { class: 'tcell' },
         styles: `.tcell {
         padding: 8px;

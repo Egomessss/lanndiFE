@@ -180,13 +180,13 @@ export default function TopBarButtons() {
       id: 'core:undo',
       Icon: IconArrowBackUp,
       disabled: () => !UndoManager.hasUndo(),
-      name: 'Undo',
+      name: 'Undo - Ctrl + Z',
     },
     {
       id: 'core:redo',
       Icon: IconArrowForwardUp,
       disabled: () => !UndoManager.hasRedo(),
-      name: 'Redo',
+      name: 'Redo - Ctrl + Shift + Z',
     },
     {
       id: 'core:canvas-move',

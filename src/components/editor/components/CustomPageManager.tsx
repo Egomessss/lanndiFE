@@ -206,7 +206,7 @@ export default function CustomPageManager({
       const newPageId = add({
         name: `page ${nextIndex}`,
         slug: '',
-        component: `<h1>Page content ${nextIndex}</h1>`,
+        component: '',
         title: '',
         description: '',
       });
