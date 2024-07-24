@@ -329,7 +329,7 @@ function EditorHeader() {
               Preview
             </Button>
           </Tooltip>
-          <EditorVersions setCanAutosaveLoadedData={setCanAutosaveLoadedData} loadVersionData={loadVersionData} />
+          {user?.isAdmin &&<EditorVersions setCanAutosaveLoadedData={setCanAutosaveLoadedData} loadVersionData={loadVersionData} />}
           <SiteSettingsButton data={data} />
           {user ? <SaveButton canAutosaveLoadedData={canAutosaveLoadedData} /> :
             <Tooltip label="Register before you can save your site data">

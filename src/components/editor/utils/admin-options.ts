@@ -21,7 +21,6 @@ import ListBlocks from '@/components/editor/plugins/BasicBlocks/ListBlocks';
 export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: boolean) => ({
   height: '94vh',
   jsInHtml: false,
-  optsHtml: { cleanId: true },
   parser: {
     optionsHtml: {
       allowScripts: true,
@@ -29,11 +28,9 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
   },
   // canvasCss: `body{margin: 0;height-fit-content;}`,
   multipleSelection: true,
-  optsCss: { onlyMatched: true, keepUnusedStyles: false },
-  clearStyles: true,
   showOffsetsSelected: true,
   // avoidInlineStyle:true,
-  undoManager: { trackSelection: true },
+  undoManager: { trackSelection: false },
   canvas:{
     styles:['https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;v=1704404084845'],
     // scripts:["https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"]

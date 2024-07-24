@@ -22,7 +22,6 @@ import ClickAndDrop from '@/components/editor/plugins/utils/ClickAndDrop/plugin'
 export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: boolean) => ({
   height: '94vh',
   jsInHtml: false,
-  optsHtml: { cleanId: true },
   parser: {
     optionsHtml: {
       allowScripts: true,
@@ -30,7 +29,6 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
   },
   // canvasCss: `body{margin: 0;height-fit-content;}`,
   multipleSelection: true,
-  optsCss: { onlyMatched: true, keepUnusedStyles: false },
   clearStyles: true,
   showOffsetsSelected: true,
   // avoidInlineStyle:true,

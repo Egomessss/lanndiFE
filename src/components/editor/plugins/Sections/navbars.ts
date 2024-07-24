@@ -713,9 +713,14 @@ height:fit-content;
           removable: false,
           script: function() {
             const burgerMenu = document.querySelector('.navbar-burger');
+            const navLink = document.querySelectorAll('.navbar-menu-link');
+            let isToggled = false
+
 
             // Step 2: Add an event listener to the burger menu
             burgerMenu?.addEventListener('click', () => {
+              isToggled = !isToggled;
+              console.log('isToggled',isToggled);
               console.log('click');
               // Step 4: Select all burger lines within the burger menu
               const burgerLines = burgerMenu.querySelectorAll('.navbar-burger-line');
@@ -733,6 +738,27 @@ height:fit-content;
             const transitProp = 'max-height';
             let transEndAdded: any;
             let isAnimating = 0;
+
+
+            // const navParent = currentEl.closest(`[data-gjs=navbar]`);
+            // const navItems = navParent?.querySelector(`[data-gjs=navbar-items]`) as HTMLElement;
+
+            // const isEditorAvailable = typeof editor !== 'undefined' && editor !== null;
+            //
+            // if (!isEditorAvailable && isToggled) {
+            //   navLink.forEach(link => {
+            //     link.addEventListener('click', () => {
+            //       toggleSlide(navItems)
+            //       const burgerLines = burgerMenu?.querySelectorAll('.navbar-burger-line');
+            //       console.log('burger lines',burgerLines);
+            //       // Step 5: Iterate over each burger line and toggle the 'active' class
+            //       burgerLines?.forEach(line => {
+            //         line.classList.toggle('active');
+            //       });
+            //     });
+            //   });
+            // }
+
 
             const getTransitionEvent = function() {
               const el = document.createElement('void');
@@ -777,6 +803,7 @@ height:fit-content;
             };
 
             var toggleSlide = function(el: HTMLElement) {
+
               isAnimating = 1;
               var elMaxHeight = getElHeight(el);
               var elStyle: any = el.style;

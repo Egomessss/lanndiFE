@@ -19,7 +19,7 @@ function LeftSideBar() {
     { label: 'Sections', Icon: IconSection, selectedValue: 'Sections', show: true },
     { label: 'Templates', Icon: IconTemplate, selectedValue: 'Templates', show: true },
     { label: 'Layers', Icon: IconStack2, selectedValue: 'Layers', show: true },
-    { label: 'Pages', Icon: IconFile, selectedValue: 'Pages', show: true },
+    { label: 'Pages', Icon: IconFile, selectedValue: 'Pages', show: user && user?.isAdmin },
   ];
 
   const renderSelectedComponent = () => {

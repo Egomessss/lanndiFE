@@ -1,4 +1,4 @@
-import { useEditor, useEditorMaybe } from '@/components/editor/context/EditorInstance';
+import { useEditorMaybe } from '@/components/editor/context/EditorInstance';
 import { useParams } from 'next/navigation';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
@@ -50,7 +50,7 @@ export function SaveButton({ canAutosaveLoadedData }: { canAutosaveLoadedData: b
       };
 
       if (autoSave !== true) {
-        const pagesData = editor?.Pages.getAll().map(page => {
+        payload.pagesData = editor?.Pages.getAll().map(page => {
           const component = page.getMainComponent();
           const pageData = page.attributes;
           return {
@@ -59,12 +59,11 @@ export function SaveButton({ canAutosaveLoadedData }: { canAutosaveLoadedData: b
             slug: pageData.slug,
             title: pageData.title,
             description: pageData.description,
-            html: editor.getHtml({ component, cleanId: true }),
-            css: editor.getCss({ component, onlyMatched: true, keepUnusedStyles: false }),
+            html: editor.getHtml({ component, cleanId:true }),
+            css: editor.getCss({ component, keepUnusedStyles: false }),
             js: editor.getJs({ component }),
           };
         });
-        payload.pagesData = pagesData;
       }
 
       await axios({
