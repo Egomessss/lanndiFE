@@ -740,24 +740,24 @@ height:fit-content;
             let isAnimating = 0;
 
 
-            // const navParent = currentEl.closest(`[data-gjs=navbar]`);
-            // const navItems = navParent?.querySelector(`[data-gjs=navbar-items]`) as HTMLElement;
+            const navParent = currentEl.closest(`[data-gjs=navbar]`);
+            const navItems = navParent?.querySelector(`[data-gjs=navbar-items]`) as HTMLElement;
 
-            // const isEditorAvailable = typeof editor !== 'undefined' && editor !== null;
-            //
-            // if (!isEditorAvailable && isToggled) {
-            //   navLink.forEach(link => {
-            //     link.addEventListener('click', () => {
-            //       toggleSlide(navItems)
-            //       const burgerLines = burgerMenu?.querySelectorAll('.navbar-burger-line');
-            //       console.log('burger lines',burgerLines);
-            //       // Step 5: Iterate over each burger line and toggle the 'active' class
-            //       burgerLines?.forEach(line => {
-            //         line.classList.toggle('active');
-            //       });
-            //     });
-            //   });
-            // }
+            const isEditorAvailable = typeof editor !== 'undefined' && editor !== null;
+
+            if (!isEditorAvailable && isToggled) {
+              navLink.forEach(link => {
+                link.addEventListener('click', () => {
+                  toggleSlide(navItems)
+                  const burgerLines = burgerMenu?.querySelectorAll('.navbar-burger-line');
+                  console.log('burger lines',burgerLines);
+                  // Step 5: Iterate over each burger line and toggle the 'active' class
+                  burgerLines?.forEach(line => {
+                    line.classList.toggle('active');
+                  });
+                });
+              });
+            }
 
 
             const getTransitionEvent = function() {

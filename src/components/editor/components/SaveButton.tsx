@@ -59,8 +59,8 @@ export function SaveButton({ canAutosaveLoadedData }: { canAutosaveLoadedData: b
             slug: pageData.slug,
             title: pageData.title,
             description: pageData.description,
-            html: editor.getHtml({ component, cleanId:true }),
-            css: editor.getCss({ component, keepUnusedStyles: false }),
+            html: editor.getHtml({ component}),
+            css: editor.getCss({ component}),
             js: editor.getJs({ component }),
           };
         });
