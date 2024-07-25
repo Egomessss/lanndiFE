@@ -59,177 +59,59 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
     },
   });
 
-  // editor.on('component:update', (component) => {
-  //   editor.select(component)
-  // })
-  // editor.Keymaps.removeAll()
-
-  // Keymap for the 'Esc' key to trigger the deselect command
   editor.Keymaps.add('deselect-components', 'esc', 'deselect-components');
-  // editor.Keymaps.add('core:canvas-move', 'ctrl+spacebar','core:canvas-move', {
-  //   // Prevent the default browser action
-  //   prevent: true,
-  // });
 
-  editor.on('page:select', () => {
-    editor.getWrapper()?.set('stylable', [
-      'height',
-      'margin',
-      'margin-top',
-      'margin-right',
-      'margin-bottom',
-      'margin-left',
-      'padding',
-      'padding-top',
-      'padding-right',
-      'padding-bottom',
-      'padding-left',
-      'background',
-      'background-color',
-      'background-image',
-      'background-repeat',
-      'font',
-      'font-family',
-    ]);
+
+  editor.runCommand('core:component-outline');
+
+  // if editor zoom is less than 100%
+  // get body height
+  // set iframe height to body height
+
+
+  editor.on('canvas:zoom', () => {
+    const zoom = editor.Canvas.getZoom();
+    const bodyHeight = editor.Canvas.getBody().offsetHeight;
+    console.log('body heoght  ',bodyHeight);
+    if (zoom < 100 || zoom > 100) {
+      editor.Canvas.getFrame().set('height', bodyHeight);
+    }
   });
 
 
-  editor.on('load', () => {
-    editor.runCommand('core:component-outline');
-    // @ts-ignore
-
-    editor.getWrapper()?.set('stylable', [
-      'height',
-      'margin',
-      'margin-top',
-      'margin-right',
-      'margin-bottom',
-      'margin-left',
-      'padding',
-      'padding-top',
-      'padding-right',
-      'padding-bottom',
-      'padding-left',
-      'background',
-      'background-color',
-      'background-image',
-      'background-repeat',
-      'font',
-      'font-family',
-    ]);
-
-    // editor.getWrapper()?.setStyle({ height: '2000px' });
-
-    // editor.on('device:select', (device) => {
-    //   console.log('device selected', device);
-    //   console.log('offeset',editor.Canvas.canvasRectOffset())
-    //   // editor.Canvas.setZoom(100);
-    //   // const bodyHeight = editor.Canvas.getBody().clientHeight
-    //   // console.log('coords world',editor.Canvas.getWorldRectToScreen());
-    //   console.log('coords',editor.Canvas.getCoords());
-    //   editor.Canvas.setCoords(0, 0);
-    // });
-
-    // const bodyHeight = editor.Canvas.getBody().clientHeight;
-    // console.log(editor.Canvas);
-    // console.log('body height', bodyHeight);
-    // const bodyHeight = editor.getWrapper()?.getStyle();
-    //
-    // if(bodyHeight > 2000){
-    //
-    // }
-
-
-    // editor.Canvas.getFrame().set('height', bodyHeight);
-    // editor.getWrapper()?.set({ tagName: 'div' });
-
+  editor.on('component:update', () => {
+    const zoom = editor.Canvas.getZoom();
+    const bodyHeight = editor.Canvas.getBody().offsetHeight;
+    console.log('body heoght component update',bodyHeight);
+    if (zoom < 100 || zoom > 100) {
+      editor.Canvas.getFrame().set('height', bodyHeight);
+    }
   });
 
-  // editor.StyleManager.addBuiltIn('font-family', {
-  //     type: 'select',
-  //     label: 'Family', // Updated label for clarity
-  //     default: 'inherit', // 'inherit' is more appropriate for font-family defaults
-  // },)
-
-  // editor.Selectors.setComponentFirst(true);
-
-  // editor.Canvas.setZoom(60);
-  // editor.Canvas.setCoords(-140, -100);
-
-  // Function to update the frame height based on the body's client height
-
-  // Use ResizeObserver to watch for changes in the body's size, if the editor exists
-  // const resizeObserver = new ResizeObserver(entries => {
-  //   // Assuming there's only one element (body) being observed
-  //   for (let entry of entries) {
-  //     // Check if the contentRect size is what we're observing
-  //     if (entry.contentRect) {
-  //       updateFrameHeight();
-  //     }
-  //   }
-  // });
-  //
-  // // Start observing the body element
-  // const bodyElement = editor.Canvas.getBody();
-  // resizeObserver.observe(bodyElement);
-//   editor.Keymaps.add('ns:redo', 'ctrl+z', editor => {
-//     editor.UndoManager.redo()
-//     // prevent: true,
-//   });
-// // or
-//   // resizeObserver.observe(bodyElement);
-//   editor.Keymaps.add('ns:undo', 'ctrl+y', editor => {
-//     editor.UndoManager.undo()
-//     // prevent: true,
-//   });
-
-  // listen to events
-  // editor.on('keymap:emit', (id, shortcut, event) => {
-  //   // ...
-  // })
-  // const loadStyling = () => {
-  //   const head = editor.Canvas.getDocument().head;
-  //   const urls = [
-  //     "//fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&v=1704404084845",
-  //     // "//fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&v=1704404087635",
-  //     // "//fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&v=1704404089108"
-  //   ]
-  //
-  //   urls.forEach(url => {
-  //     head.insertAdjacentHTML('beforeend', `<link rel="stylesheet" href="${url}" />`);
-  //     document.head.insertAdjacentHTML('beforeend', `<link rel="stylesheet" href="${url}" />`);
-  //   });
-  // }
-
-  editor.on('load', () => {
-    // loadStyling()
-    // This overload the select type
 
 
+  editor.DomComponents.addType('select', {
+    model: {
+      defaults: {
+        enableEvents: false,
+      },
 
-    editor.DomComponents.addType('select', {
-      model: {
-        defaults: {
-          enableEvents: false,
-        },
-
-        init() {
-          // Maybe better to use (this.listenTo)
-          editor.on('run:preview', () => this.set('enableEvents', true));
-          editor.on('stop:preview', () => this.set('enableEvents', false));
+      init() {
+        // Maybe better to use (this.listenTo)
+        editor.on('run:preview', () => this.set('enableEvents', true));
+        editor.on('stop:preview', () => this.set('enableEvents', false));
+      },
+    },
+    view: {
+      events: {
+        // @ts-ignore
+        mousedown: function(e) {
+          if (!this.model.get('enableEvents')) {
+            e.preventDefault();
+          }
         },
       },
-      view: {
-        events: {
-          // @ts-ignore
-          mousedown: function(e) {
-            if (!this.model.get('enableEvents')) {
-              e.preventDefault();
-            }
-          },
-        },
-      },
-    });
+    },
   });
 
 

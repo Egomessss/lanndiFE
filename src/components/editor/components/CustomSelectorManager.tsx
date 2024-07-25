@@ -128,7 +128,7 @@ export default function CustomSelectorManager({
             <Menu.Item onClick={(e) => {
               e.stopPropagation();
               setIsRenamingSelector(true);
-              setIsCloningAndRenaming(false);
+              // setIsCloningAndRenaming(false);
               setSelector(selector);
               combobox.closeDropdown();
             }
@@ -241,10 +241,10 @@ export default function CustomSelectorManager({
 
           <Tooltip color="blue"
                    label={`Block ID - #${targetsIds.toString()}`}>
-            <ThemeIcon
+            <ActionIcon
               variant="subtle">
               <IconHash size="1rem" />
-            </ThemeIcon>
+            </ActionIcon>
           </Tooltip>
           <Tooltip position="left" color="dark" multiline w={400}
                    label={

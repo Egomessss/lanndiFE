@@ -247,8 +247,8 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
     model: {
       defaults: {
         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-table" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z" /><path d="M3 10h18" /><path d="M10 3v18" /></svg>`,
-        droppable:true,
         draggable:false,
+        droppable: ['tbody', 'thead', 'tfoot'],
         attributes: {
           class:
             'table',
@@ -441,9 +441,9 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
         tagName: 'tbody',
         name: 'Table Body',
         icon: '',
+        droppable: ['tr'],
         draggable: 'table',
         resizable: true,
-        droppable:true,
         attributes: { class: 'tbody' },
         styles: `.tbody {
         background-color: #ffffff;
@@ -474,15 +474,15 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
         tagName: 'tr',
         name: 'Table Row',
         icon: '',
-        droppable:true,
         selectable:true,
         highlightable:true,
         hoverable:true,
-        draggable: 'table,thead,tbody,tfoot',
+        draggable: ['table,thead,tbody,tfoot'],
+        droppable: ['th', 'td'],
         resizable: true,
         attributes: { class: 'trow' },
         styles: `.trow {
-        border-bottom: 1px solid #dddddd;
+          min-height:60px; display: block ;
       }`,
       },
     },
@@ -504,7 +504,6 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
         return { type: 'tcell' };
       }
     },
-    extend:'cell',
     model: {
       defaults: {
         tagName: 'td',
@@ -518,7 +517,7 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
             content: "Cell",
           },
         ],
-        draggable: 'table,trow',
+        draggable:['table','tbody','trow'],
         attributes: { class: 'tcell' },
         styles: `.tcell {
         padding: 8px;
@@ -560,6 +559,47 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
       },
     },
   });
+
+  editor.DomComponents.addType('body', {
+    isComponent: el => {
+      if (el.tagName === 'BODY') {
+        return { type: 'body' };
+      }
+    },
+    extend:'wrapper',
+    model: {
+      defaults: {
+        tagName: 'body',
+        name: 'Body',
+        icon: '',
+        removable: false,
+        copyable: false,
+        draggable: false,
+        attributes: { class: 'body' },
+        stylable: [
+          'height',
+          'margin',
+          'margin-top',
+          'margin-right',
+          'margin-bottom',
+          'margin-left',
+          'padding',
+          'padding-top',
+          'padding-right',
+          'padding-bottom',
+          'padding-left',
+          'background',
+          'background-color',
+          'background-image',
+          'background-repeat',
+          'font',
+          'font-family',
+        ],
+      },
+    },
+  });
+
+
 
 
 };
