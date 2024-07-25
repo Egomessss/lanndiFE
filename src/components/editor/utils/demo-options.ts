@@ -5,7 +5,6 @@ import CoreBlocks from '../plugins/BasicBlocks/InteractiveBlocks';
 import MediaBlocks from '../plugins/BasicBlocks/MediaBlocks';
 import ListBlocks from '../plugins/BasicBlocks/ListBlocks';
 import CustomCode from '@/components/editor/plugins/utils/CustomCode';
-import BorderStyle from '@/components/editor/plugins/utils/BorderStyle';
 import Sections from '@/components/editor/plugins/Sections';
 import { EditorData } from '@/hooks/use-editor-data';
 import UtilsPlugin from '@/components/editor/plugins/utils/UtilsPlugin/utils-plugin';
@@ -109,7 +108,6 @@ export const demoEditorConfigOptions = () => ({
     ScriptEditor,
     CustomCode,
     GoogleIcons,
-    BorderStyle,
     Sections,
     Templates,
     UtilsPlugin,

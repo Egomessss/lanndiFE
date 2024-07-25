@@ -1,6 +1,6 @@
 'use client';
 import grapesjs, { Editor } from 'grapesjs';
-import { AppShell, Button, useComputedColorScheme } from '@mantine/core';
+import { AppShell, Button } from '@mantine/core';
 import React from 'react';
 import GjsEditor, { AssetsProvider, Canvas, ModalProvider } from '@/components/editor/wrappers';
 import LeftSideBar from '@/components/editor/components/LeftSideBar';
@@ -12,10 +12,9 @@ import { useParams } from 'next/navigation';
 import CustomModal from '@/components/editor/components/CustomModal';
 import { editorConfigOptions } from '@/components/editor/utils/admin-options';
 import useEditorData from '@/hooks/use-editor-data';
-import { EditorLoading } from '@/components/common/EditorLoading';
 import CustomAssetManager from '@/components/editor/components/CustomAssetManager';
 import { IconExclamationCircle } from '@tabler/icons-react';
-import { SidePanelProvider, useSidePanel } from '@/contexts/SidePanelPreviewContext';
+import { useSidePanel } from '@/contexts/SidePanelPreviewContext';
 
 // export const dynamic = 'force-dynamic'
 export default function CustomEditor() {

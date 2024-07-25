@@ -4,7 +4,7 @@ import TypographyBlocks from '../plugins/BasicBlocks/TypographyBlocks';
 import CoreBlocks from '../plugins/BasicBlocks/InteractiveBlocks';
 import MediaBlocks from '../plugins/BasicBlocks/MediaBlocks';
 import CustomCode from '@/components/editor/plugins/utils/CustomCode';
-import BorderStyle from '@/components/editor/plugins/utils/BorderStyle';
+
 import Sections from '@/components/editor/plugins/Sections';
 import Templates from '@/components/editor/plugins/Templates';
 import { EditorData } from '@/hooks/use-editor-data';
@@ -108,7 +108,6 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
     ScriptEditor,
     CustomCode,
     GoogleIcons,
-    BorderStyle,
     Sections,
     Templates,
     UtilsPlugin,

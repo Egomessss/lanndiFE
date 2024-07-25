@@ -374,19 +374,19 @@ export default function CustomAdvancedTraitManager() {
       <CustomAttributes />
       {user?.subscription !== 'free' ? <>
         <Divider className="w-full" label="Selected Block Customization" />
-        <CssCode />
+        {/*<CssCode />*/}
         <Button leftSection={<IconBrandJavascript size="1rem" />} onClick={() => editor.runCommand('edit-script')}
                 size="xs" mb="4">
           Edit Javascript
         </Button>
         <Divider className="w-full" label="Global Customization" />
-        <GlobalCssCode />
+        {/*<GlobalCssCode />*/}
         <GlobalJsCode />
       </> : <>
 
-        <Button leftSection={<IconBrandCss3 size="1rem" />} disabled size="xs" mb="4">
-          Edit CSS
-        </Button>
+        {/*<Button leftSection={<IconBrandCss3 size="1rem" />} disabled size="xs" mb="4">*/}
+        {/*  Edit CSS*/}
+        {/*</Button>*/}
         <Button leftSection={<IconBrandJavascript size="1rem" />} disabled size="xs" mb="4">
           Edit Javascript
         </Button>
