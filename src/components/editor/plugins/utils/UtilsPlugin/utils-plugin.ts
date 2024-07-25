@@ -79,14 +79,14 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
   });
 
 
-  editor.on('component:update', () => {
-    const zoom = editor.Canvas.getZoom();
-    const bodyHeight = editor.Canvas.getBody().offsetHeight;
-    console.log('body heoght component update',bodyHeight);
-    if (zoom < 100 || zoom > 100) {
-      editor.Canvas.getFrame().set('height', bodyHeight);
-    }
-  });
+  // editor.on('component:update', () => {
+  //   const zoom = editor.Canvas.getZoom();
+  //   const bodyHeight = editor.Canvas.getBody().offsetHeight;
+  //   console.log('body heoght component update',bodyHeight);
+  //   if (zoom < 100 || zoom > 100) {
+  //     editor.Canvas.getFrame().set('height', bodyHeight);
+  //   }
+  // });
 
 
 
