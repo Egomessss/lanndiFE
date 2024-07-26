@@ -60,7 +60,7 @@ export function SaveButton({ canAutosaveLoadedData }: { canAutosaveLoadedData: b
             title: pageData.title,
             description: pageData.description,
             html: editor.getHtml({ component}),
-            css: editor.getCss({ component}),
+            css: editor.getCss({ component, avoidProtected:false}),
             js: editor.getJs({ component }),
           };
         });

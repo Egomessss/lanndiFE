@@ -1,68 +1,22 @@
-import { TraitsResultProps, useEditor } from '@/components/editor/wrappers';
-import TraitPropertyField from '@/components/editor/components/TraitPropertyField';
+import { useEditor } from '@/components/editor/wrappers';
 import { ActionIcon, Button, Divider, Modal, ScrollArea, TextInput } from '@mantine/core';
-import { HeadingTypeSelector } from '@/components/editor/components/HeadingTypeSelector';
-import { HtmlElementSelector } from '@/components/editor/components/HtmlElementSelector';
 import CodeMirror, { EditorView } from '@uiw/react-codemirror';
 import { langs } from '@uiw/codemirror-extensions-langs';
 import React, { useEffect, useState } from 'react';
-import {
-  IconBrandCss3,
-  IconBrandJavascript,
-  IconCheck,
-  IconEdit, IconGlobe,
-  IconKey,
-  IconPlus,
-  IconTrash, IconWorld,
-} from '@tabler/icons-react';
+import { IconBrandCss3, IconBrandJavascript, IconEdit, IconKey, IconTrash, IconWorld } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
 import useUser from '@/hooks/use-user';
-import Link from 'next/link';
 
+// Function to format the CSS string
+const formatCss = (cssString: any): string => {
+  return cssString.replace(/}/g, '}\n\n').replace(/{/g, ' {\n  ').replace(/;/g, ';\n  ').replace(/\n  \n/g, '\n');
+};
 
-function removeCSSRules(cssString: string) {
-  const rulesToRemove = [
-    /\*\s*\{\s*box-sizing:\s*border-box;\s*\}/g,
-    /body\s*\{\s*margin:\s*0;\s*\}/g,
-  ];
+// Function to unformat the CSS string (minify)
+const unformatCss = (cssString: string): string => {
+  return cssString.replace(/\s+/g, ' ').replace(/}\s/g, '}').replace(/;\s/g, ';').replace(/\s{/g, '{').trim();
+};
 
-  let cleanedCSS = cssString;
-
-  rulesToRemove.forEach((rule) => {
-    cleanedCSS = cleanedCSS.replace(rule, '');
-  });
-
-  return cleanedCSS;
-}
-
-function formatCSS(cssString: string): string {
-  // Split the input string into individual block sections (selectors + declarations)
-  // First, remove the unwanted CSS rules
-  const cleanedCSS = removeCSSRules(cssString);
-
-  // Split the cleaned CSS string into individual block sections (selectors + declarations)
-  const blocks = cssString.split('}').filter(Boolean); // Remove any empty strings
-
-
-  let formattedCSS = '';
-
-  blocks.forEach((block) => {
-    const splitBlock = block.split('{');
-    if (splitBlock.length < 2) return; // Skip this iteration if there's no '{'
-
-    const [selectors, declarations] = splitBlock;
-    const formattedDeclarations = declarations
-      .trim()
-      .split(';')
-      .filter(Boolean) // Remove any empty strings resulting from split
-      .map((declaration) => `  ${declaration.trim()};\n`) // Add indentation and newline to each declaration
-      .join('');
-
-    formattedCSS += `${selectors.trim()} {\n${formattedDeclarations}}\n\n`;
-  });
-
-  return formattedCSS;
-}
 
 export const CssCode = () => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -71,29 +25,30 @@ export const CssCode = () => {
   const editor = useEditor();
   const component = editor.getSelected();
 
+
+  console.log('value', value);
+  // console.log('css', componentCss);
+
   useEffect(() => {
     // @ts-ignore
-    const formatedCss = formatCSS(editor.getCss({ component, avoidProtected: true }));
+    const formatedCss = formatCss(editor.getCss({ component, avoidProtected: true }));
     // @ts-ignore
     setValue(formatedCss);
 
   }, [opened]);
 
 
-  // console.log("value",value);
-  // console.log('css', componentCss);
-
   const handleClick = () => {
-    console.log('css', value);
-    const trimmedCssCode = value.trim();
-    editor.setStyle(trimmedCssCode);
-    editor.refresh();
+    const unformattedCss = unformatCss(value); // Unformat the CSS for saving
+    editor.CssComposer.addRules(unformattedCss); // Apply the edited CSS
+    setValue('');
     close();
   };
 
 
   return <div className="flex items-start gap-2 flex-col w-full ">
     <Modal opened={opened} size="xl" centered onClose={close} title="Block CSS">
+      <p className="w-full text-center">Only allows adding/changing selected selectors style properties</p>
       <CodeMirror
         value={value} height="400px" theme="dark"
         extensions={[langs.css(), EditorView.lineWrapping]}
@@ -108,29 +63,34 @@ export const CssCode = () => {
 export const GlobalCssCode = () => {
   const [opened, { open, close }] = useDisclosure(false);
   const [value, setValue] = useState('');
-
+  console.log('global css', value);
   const editor = useEditor();
-
-  useEffect(() => {
-    // @ts-ignore
-    setValue(formatCSS(editor.getCss({ avoidProtected: true })));
-  }, [opened]);
 
 
   // console.log("value",value);
   // console.log('css', componentCss);
 
+  useEffect(() => {
+    // @ts-ignore
+    const formatedCss = formatCss(editor.getCss({ avoidProtected: false }));
+    // @ts-ignore
+    setValue(formatedCss);
+
+  }, [opened]);
+
+
   const handleClick = () => {
-    const trimmedCssCode = value.trim();
-    console.log('css', trimmedCssCode);
-    editor.setStyle(trimmedCssCode);
-    editor.refresh();
+    const formattedCssCode = formatCss(value);
+    // console.log('css', formattedCssCode);
+    editor.Css.addRules(formattedCssCode);
+    setValue('');
     close();
   };
 
 
   return <div className="flex items-start gap-2 flex-col w-full ">
     <Modal opened={opened} size="xl" centered onClose={close} title="Global CSS">
+      <p className="w-full text-center">Only allows adding/changing selected selectors style properties</p>
       <CodeMirror
         value={value} height="400px" theme="dark"
         extensions={[langs.css(), EditorView.lineWrapping]}
@@ -184,43 +144,6 @@ export const GlobalJsCode = () => {
     <Button justify="space-between" leftSection={<IconBrandCss3 size="1rem" />} rightSection={<IconWorld size="1rem" />}
             fullWidth onClick={open} size="xs">Edit Global Javascript</Button>
   </div>;
-};
-
-export const SvgContentCode = () => {
-
-  const [opened, { open, close }] = useDisclosure(false);
-  const editor = useEditor();
-
-  const component = editor.getSelected();
-  const [value, setValue] = useState('');
-
-  useEffect(() => {
-    if (component) {
-      // @ts-ignore
-      setValue(editor.getHtml({ component }));
-    }
-  }, [component]);
-
-  // console.log("value",value);
-  // console.log('css', componentCss);
-  const handleClick = () => {
-    editor.getSelected()?.set({ content: value });
-    close();
-  };
-
-  return <div className="flex items-start gap-2 flex-col w-full ">
-    <Modal opened={opened} size="xl" centered onClose={close} title="SVG Content">
-      <CodeMirror
-        value={value} height="400px" theme="dark"
-        extensions={[langs.html(), EditorView.lineWrapping]}
-        onChange={setValue}
-      />
-      <Button my="1rem" fullWidth onClick={handleClick} size="xs">Save SVG Changes</Button>
-    </Modal>
-    <Button fullWidth onClick={open} size="xs">Edit SVG</Button>
-  </div>;
-
-
 };
 
 
@@ -285,7 +208,7 @@ function CustomAttributes() {
 
   return (
     <>
-      <Modal opened={opened} onClose={close} title="Edit Attribute">
+      <Modal centered opened={opened} onClose={close} title="Edit Attribute">
         <TextInput
           readOnly
           disabled={user?.subscription === 'free'}
@@ -303,10 +226,11 @@ function CustomAttributes() {
           onChange={(event) => setAttributeValue(event.currentTarget.value)}
         />
         <div className="flex gap-1 items-center w-full justify-end">
-          <Button   disabled={user?.subscription === 'free'} size="xs" my="md" onClick={() => handleAddAttribute()}>
+          <Button disabled={user?.subscription === 'free'} size="xs" my="md" onClick={() => handleAddAttribute()}>
             Save Changes
           </Button>
-          <Button   disabled={user?.subscription === 'free'} color="red" size="xs" onClick={() => handleRemoveAttribute(attributeKey)}>
+          <Button disabled={user?.subscription === 'free'} color="red" size="xs"
+                  onClick={() => handleRemoveAttribute(attributeKey)}>
             Delete Attribute
           </Button>
         </div>
@@ -328,30 +252,34 @@ function CustomAttributes() {
           value={attributeValue}
           onChange={(event) => setAttributeValue(event.currentTarget.value)}
         />
-        <Button   disabled={user?.subscription === 'free'} leftSection={<IconKey size="1rem" />} size="xs" onClick={handleAddAttribute}>
+        <Button disabled={user?.subscription === 'free'} leftSection={<IconKey size="1rem" />} size="xs"
+                onClick={handleAddAttribute}>
           Add Attribute
         </Button>
-        <ScrollArea offsetScrollbars h={150} w={200} py="md">
-          {Object.entries(filteredAttributes).map(([key, value]) => {
-            return (
-              <div key={key} className="flex gap-4 justify-end flex-wrap items-center">
-                <div className="flex gap-1 flex-col justify-start w-full text-sm">
-                  <p className="font-bold">{key}</p>
-                  {/*// @ts-ignore*/}
-                  <p className="text-xs text-wrap w-full">{value}</p>
-
+        <ScrollArea offsetScrollbars h={250} w={200} py="md">
+          <div className="flex flex-col gap-6 w-full">
+            {Object.entries(filteredAttributes).map(([key, value]) => {
+              return (
+                <div key={key} className="flex  flex-col gap-2 justify-start  items-center">
+                  <div className="flex gap-1 flex-col justify-start w-full text-sm text-wrap">
+                    <p className="font-bold">{key}</p>
+                    {/*// @ts-ignore*/}
+                    <p className="text-xs w-full">{value}</p>
+                  </div>
+                  <div className="flex gap-1 justify-start w-full text-sm">
+                    {/*// @ts-ignore*/}
+                    <ActionIcon size="sm" onClick={() => openModalWithAttribute(key, value)}>
+                      <IconEdit size="1rem" />
+                    </ActionIcon>
+                    <ActionIcon disabled={user?.subscription === 'free'} color="red" size="sm"
+                                onClick={() => handleRemoveAttribute(key)}>
+                      <IconTrash size="1rem" />
+                    </ActionIcon>
+                  </div>
                 </div>
-                {/*// @ts-ignore*/}
-                <ActionIcon size="sm" onClick={() => openModalWithAttribute(key, value)}>
-                  <IconEdit size="1rem" />
-                </ActionIcon>
-                <ActionIcon disabled={user?.subscription === 'free'} color="red" size="sm"
-                            onClick={() => handleRemoveAttribute(key)}>
-                  <IconTrash size="1rem" />
-                </ActionIcon>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </ScrollArea>
       </div>
     </>
@@ -374,13 +302,13 @@ export default function CustomAdvancedTraitManager() {
       <CustomAttributes />
       {user?.subscription !== 'free' ? <>
         <Divider className="w-full" label="Selected Block Customization" />
-        {/*<CssCode />*/}
+        <CssCode />
         <Button leftSection={<IconBrandJavascript size="1rem" />} onClick={() => editor.runCommand('edit-script')}
                 size="xs" mb="4">
           Edit Javascript
         </Button>
         <Divider className="w-full" label="Global Customization" />
-        {/*<GlobalCssCode />*/}
+        <GlobalCssCode />
         <GlobalJsCode />
       </> : <>
 
@@ -392,7 +320,7 @@ export default function CustomAdvancedTraitManager() {
         </Button>
       </>}
 
-      </div>
-        );
-      }
+    </div>
+  );
+}
 

@@ -73,7 +73,11 @@
 
 
 .gjs-selected {
-    outline: 2px dotted #1970C2 !important;
+    outline: 2px solid #1970C2 !important;
     outline-offset: -2px;
+}
+
+.gjs-highlighter {
+    outline: 2px dotted var(--gjs-color-blue) !important;
 }
 

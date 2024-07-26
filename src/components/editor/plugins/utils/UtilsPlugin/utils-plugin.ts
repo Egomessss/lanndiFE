@@ -104,6 +104,7 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
   );
 
 
+
   // Command for deselecting components
   editor.Commands.add('deselect-components', {
     run: () => {

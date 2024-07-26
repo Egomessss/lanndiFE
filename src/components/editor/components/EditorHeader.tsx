@@ -58,7 +58,7 @@ function PublishButton({ siteData }: any) {
               title: pageData.title,
               description: pageData.description,
               html: editor.getHtml({ component, cleanId: true }),
-              css: editor.getCss({ component, onlyMatched: true, keepUnusedStyles: false }),
+              css: editor.getCss({ component, avoidProtected: false }),
               js: editor.getJs({ component }),
             };
           });
@@ -241,9 +241,9 @@ function EditorHeader() {
   const tooltipLabel = user?.subscription === 'free' ? 'Free users are not allowed preview domains' : (!data?.title && !data?.description ? 'Add a title and description to your site settings before you can preview your website(paid feature)' : 'Open latest saved preview');
   const buttonHref = isDisabled ? '' : `https://preview.${data?.subdomain}.lanndi.com`;
 
-  const loadVersionData = (data:any) => {
+  const loadVersionData = (data: any) => {
     editor?.loadProjectData(data);
-    setCanAutosaveLoadedData(false)
+    setCanAutosaveLoadedData(false);
   };
 
 
@@ -329,7 +329,8 @@ function EditorHeader() {
               Preview
             </Button>
           </Tooltip>
-          {user?.isAdmin &&<EditorVersions setCanAutosaveLoadedData={setCanAutosaveLoadedData} loadVersionData={loadVersionData} />}
+          {user?.isAdmin &&
+            <EditorVersions setCanAutosaveLoadedData={setCanAutosaveLoadedData} loadVersionData={loadVersionData} />}
           <SiteSettingsButton data={data} />
           {user ? <SaveButton canAutosaveLoadedData={canAutosaveLoadedData} /> :
             <Tooltip label="Register before you can save your site data">
