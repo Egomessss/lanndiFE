@@ -1,6 +1,7 @@
 import { Editor } from 'grapesjs';
 
 const UtilsPlugin = (editor: Editor, opts = {}) => {
+
   editor.Commands.add('wrapper', {
     run: () => {
       // Get all currently selected components
@@ -51,58 +52,53 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
     // },
   });
 
-  // Add a custom RTE action for the 'li' element
+
+  editor.on('page:select', () => {
+    editor.getWrapper()?.set('stylable', [
+      'height',
+      'margin',
+      'margin-top',
+      'margin-right',
+      'margin-bottom',
+      'margin-left',
+      'padding',
+      'padding-top',
+      'padding-right',
+      'padding-bottom',
+      'padding-left',
+      'background',
+      'background-color',
+      'background-image',
+      'background-repeat',
+      'font',
+      'font-family',
+    ]);
+  });
 
 
-  editor.onReady(() => {
-    editor.RichTextEditor.add('li-item', {
-      name:'li-item',
-      icon: `<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-list"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l11 0" /><path d="M9 12l11 0" /><path d="M9 18l11 0" /><path d="M5 6l0 .01" /><path d="M5 12l0 .01" /><path d="M5 18l0 .01" /></svg>`, // SVG icon for the toolbar button
-      attributes: { title: 'Insert list item' },
-      result: (rte) => {
-        const selection = rte.selection();
-        if (selection && selection.rangeCount) {
-          const range = selection.getRangeAt(0);
-          let ul = null;
-          let node = range.startContainer;
-
-          // Traverse up from the selected node to find the closest <ul>
-          while (node) {
-            // @ts-ignore
-            if (node.nodeType === 1 && node.tagName === 'UL') {
-              ul = node;
-              break;
-            }
-            // @ts-ignore
-            node = node.parentNode;
-          }
-
-          if (!ul) {
-            // If no <ul> exists, create one and wrap the selected text
-            ul = document.createElement('ul');
-            const li = document.createElement('li');
-            li.appendChild(range.extractContents());
-            ul.appendChild(li);
-            range.insertNode(ul);
-          } else {
-            // If <ul> exists, add a new <li>
-            const li = document.createElement('li');
-            li.appendChild(range.extractContents());
-            ul.appendChild(li);
-            range.insertNode(li);
-          }
-          // @ts-ignore
-          rte.exec('insertHTML', ul.outerHTML); // Update the editor content
-        } else {
-          // If already inside a <ul>, just insert <li>
-          rte.exec('insertUnorderedList');
-        }
-      }
-    });
-
-    }
-  );
-
+  editor.on('load', () => {
+    editor.runCommand('core:component-outline');
+    // @ts-ignore
+    editor.getWrapper()?.set('stylable', [
+      'height',
+      'margin',
+      'margin-top',
+      'margin-right',
+      'margin-bottom',
+      'margin-left',
+      'padding',
+      'padding-top',
+      'padding-right',
+      'padding-bottom',
+      'padding-left',
+      'background',
+      'background-color',
+      'background-image',
+      'background-repeat',
+      'font',
+      'font-family',
+    ]);
+  });
 
 
   // Command for deselecting components
@@ -115,7 +111,7 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
   editor.Keymaps.add('deselect-components', 'esc', 'deselect-components');
 
 
-  editor.runCommand('core:component-outline');
+
 
   // if editor zoom is less than 100%
   // get body height
@@ -217,6 +213,7 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
 
 
 };
+
 
 export default UtilsPlugin;
 

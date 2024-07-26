@@ -19,7 +19,9 @@ function LeftSideBar() {
     { label: 'Sections', Icon: IconSection, selectedValue: 'Sections', show: true },
     { label: 'Templates', Icon: IconTemplate, selectedValue: 'Templates', show: true },
     { label: 'Layers', Icon: IconStack2, selectedValue: 'Layers', show: true },
-    { label: 'Pages', Icon: IconFile, selectedValue: 'Pages', show: !(user?.subscription === 'free' || user?.subscription === 'basic-monthly' || user?.subscription === 'basic-yearly') },
+    { label: 'Pages', Icon: IconFile, selectedValue: 'Pages', show:
+        !(user?.subscription === 'free' || user?.subscription === 'basic-monthly' || user?.subscription === 'basic-yearly')
+    },
   ];
 
   const renderSelectedComponent = () => {

@@ -550,44 +550,44 @@ const LayoutBlocks = (editor: Editor, opts: any) => {
     },
   });
 
-  editor.DomComponents.addType('body', {
-    isComponent: el => {
-      if (el.tagName === 'BODY') {
-        return { type: 'body' };
-      }
-    },
-    extend:'wrapper',
-    model: {
-      defaults: {
-        tagName: 'body',
-        name: 'Body',
-        icon: '',
-        removable: false,
-        copyable: false,
-        draggable: false,
-        attributes: { class: 'body' },
-        stylable: [
-          'height',
-          'margin',
-          'margin-top',
-          'margin-right',
-          'margin-bottom',
-          'margin-left',
-          'padding',
-          'padding-top',
-          'padding-right',
-          'padding-bottom',
-          'padding-left',
-          'background',
-          'background-color',
-          'background-image',
-          'background-repeat',
-          'font',
-          'font-family',
-        ],
-      },
-    },
-  });
+  // editor.DomComponents.addType('body', {
+  //   isComponent: el => {
+  //     if (el.tagName === 'BODY') {
+  //       return { type: 'body' };
+  //     }
+  //   },
+  //   extend:'wrapper',
+  //   model: {
+  //     defaults: {
+  //       tagName: 'body',
+  //       name: 'Body',
+  //       icon: '',
+  //       removable: false,
+  //       copyable: false,
+  //       draggable: false,
+  //       attributes: { class: 'body' },
+  //       stylable: [
+  //         'height',
+  //         'margin',
+  //         'margin-top',
+  //         'margin-right',
+  //         'margin-bottom',
+  //         'margin-left',
+  //         'padding',
+  //         'padding-top',
+  //         'padding-right',
+  //         'padding-bottom',
+  //         'padding-left',
+  //         'background',
+  //         'background-color',
+  //         'background-image',
+  //         'background-repeat',
+  //         'font',
+  //         'font-family',
+  //       ],
+  //     },
+  //   },
+  // });
 
 
 

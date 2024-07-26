@@ -57,6 +57,7 @@ export default function TopBarButtons() {
 
 // Prevent browser default zoom behavior on CTRL + scroll
   editor.on('load', () => {
+
     // Prevent browser default zoom behavior on CTRL + scroll
     const canvasBody = editor.Canvas.getBody();
     if (canvasBody) {

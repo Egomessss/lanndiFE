@@ -269,7 +269,7 @@ export default function CustomPageManager({
             key={page.getId()}
             size="xs"
             variant={page === selected ? 'filled' : 'subtle'}
-            onClick={()=>selectPage(page)}
+            onClick={()=>select(page)}
             rightSection={page.attributes.slug === 'index' || user?.subscription !== 'free' ?
               <Menu
                 shadow="md"
