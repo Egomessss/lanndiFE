@@ -25,7 +25,7 @@ export function SaveButton({ canAutosaveLoadedData }: { canAutosaveLoadedData: b
   const { data: isNotFirstTimeSaving } = useEditorData();
   const idle = useIdle(300000); // 5mins idle
 
-  console.log('can auto', canAutosaveLoadedData);
+  // console.log('can auto', canAutosaveLoadedData);
 
 
   const showNotification = (color: string, title: string, message: string) => {
@@ -102,7 +102,7 @@ export function SaveButton({ canAutosaveLoadedData }: { canAutosaveLoadedData: b
   useEffect(() => {
     const canAutoSave = isNotFirstTimeSaving?.data !== null && !idle && canAutosaveLoadedData;
 
-    console.log('can autosave', canAutoSave);
+    // console.log('can autosave', canAutoSave);
     // Only set up autosaving if the condition is met
     if (canAutoSave) {
       const saveIntervalId = setInterval(() => {

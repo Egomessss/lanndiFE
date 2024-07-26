@@ -80,7 +80,7 @@ function CreatePageModal({ editingPageId, opened, onClose }: CreatePageProps) {
     if (isValid && page?.attributes.slug !== 'index') {
       page?.set(form.values);
       // @ts-ignore
-      editor.Pages.select(editingPageId)
+      editor.Pages.select(editingPageId);
       // @ts-ignore
       notifications.show({
         title: 'Success!',
@@ -160,6 +160,9 @@ export default function CustomPageManager({
   const [opened, { open, close }] = useDisclosure(false);
   const { user } = useUser();
 
+  // pages frames are being deleted when i select another page
+  console.log('pages', pages);
+
   const openModal = (pageToDelete: Page) => {
 
     if (pageToDelete.attributes.slug === 'index') {
@@ -186,35 +189,35 @@ export default function CustomPageManager({
           </Text>
         ),
         confirmProps: { color: 'red' },
+        closeOnConfirm: true,
         labels: { confirm: 'Delete', cancel: 'Cancel' },
         onCancel: () => console.log('Cancel'),
         onConfirm: () => {
-          remove(pageToDelete)
+          remove(pageToDelete);
           select(pages[0])
-          ;
         },
       });
     }
   };
 
 
-  const addNewPage =  () => {
-    const maxPages = user?.subscription === 'admin' ? Infinity : user?.subscription === 'free' ? 1 : 10;
-    if (pages.length < maxPages) {
+  const addNewPage = () => {
+    const maxPages = user?.subscription === 'admin' ? Infinity : user?.subscription === 'free' || user?.subscription === 'basic-monthly' || user?.subscription === 'basic-yearly' ? 1 : 10;
+    if (pages.length <= maxPages) {
       const nextIndex = pages.length + 1;
       // Assuming `add` now returns the ID of the newly added page
-      const newPageId = add({
+      add({
         name: `page ${nextIndex}`,
         slug: '',
-        component: '',
-        title: '',
-        description: '',
+        component: `<h1>Page ${nextIndex}</h1>`,
+        title: 'Boilerplate title',
+        description: 'Boilerplate description',
       });
       // Update the editingPageId with the ID of the new page
       // @ts-ignore
-      setEditingPageId(newPageId?.getId());
-      // Open the modal for editing the new page
-      open();
+      // setEditingPageId(newPageId?.getId());
+      // // Open the modal for editing the new page
+      // open();
     }
   };
 
@@ -231,7 +234,19 @@ export default function CustomPageManager({
   //   }
   // };
 
+  const selectPage = (page: Page) => {
+    if (!page) {
+      console.error('Page is null or undefined');
+      return;
+    }
 
+    if(page.getId()){
+      console.log(`Page ID is ${page.getId()}`);
+    }
+    select(page)
+    // Proceed with the rest of the logic
+    // ...
+  };
   return (
     <div
       className="gjs-custom-page-manager relative select-none text-left text-xs flex flex-col gap-2"
@@ -242,10 +257,8 @@ export default function CustomPageManager({
       >
         <Button disabled={user?.subscription === 'basic-monthly' || user?.subscription === 'basic-yearly'}
                 leftSection={<IconPlus size="1rem" />}
-
                 onClick={addNewPage} size="xs" variant="subtle">Add page</Button>
       </Tooltip> : <Button disabled={user?.subscription === 'free'} leftSection={<IconPlus size="1rem" />}
-
                            onClick={addNewPage} size="xs" variant="subtle">Add page</Button>}
       {pages.map((page, index) => (
         <div key={index}>
@@ -256,7 +269,7 @@ export default function CustomPageManager({
             key={page.getId()}
             size="xs"
             variant={page === selected ? 'filled' : 'subtle'}
-            onClick={() => select(page)}
+            onClick={()=>selectPage(page)}
             rightSection={page.attributes.slug === 'index' || user?.subscription !== 'free' ?
               <Menu
                 shadow="md"
