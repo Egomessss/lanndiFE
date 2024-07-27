@@ -157,8 +157,8 @@ const FloatingEditorButtons = () => {
         color="dark"
         w={300}
         multiline
-        label={<div className="flex gap-2 flex-col"><p>Changes how the frame height is shown, active: The body height is
-          the same as the frame, not active: The frame height is 600px</p>
+        label={<div className="flex gap-2 flex-col"><p>Active: The frame assumes the body height. </p>
+          <p>Inactive: The frame does not assume the body height the frame height is set to 600px.</p>
         </div>}>
         <ActionIcon onClick={handleFitToScreen} variant={isActive ? 'filled' : 'subtle'}>
           <IconArrowAutofitHeight size="1rem" />
@@ -168,7 +168,7 @@ const FloatingEditorButtons = () => {
         color="dark"
         w={300}
         multiline
-        label={<div className="flex gap-2 flex-col"><p>Move Canvas or use Left Mouse Click + Spacebar to drag canvas - Zoom must be less or greater than 100%</p>
+        label={<div className="flex gap-2 flex-col"><p>Move Canvas or use Left Mouse Click + Spacebar to drag canvas</p>
         </div>}>
         <ActionIcon  onClick={handleMoveCanvasScreen} variant={isMoveActive ? 'filled' : 'subtle'}>
           <IconHandGrab size="1rem" />
