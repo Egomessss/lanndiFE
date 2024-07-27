@@ -13,6 +13,7 @@ import useUser from '@/hooks/use-user';
 import SeoConfiguration from '@/app/(sites)/settings/_components/SeoConfiguration';
 import { IconArrowRight, IconPencil } from '@tabler/icons-react';
 import Link from 'next/link';
+import SiteSettingsFonts from '@/app/(sites)/settings/_components/SiteSettingsFonts';
 
 export type SiteSettings = {
   name: string,
@@ -65,6 +66,7 @@ const Page = () => {
           <Tabs.Tab value="first">General</Tabs.Tab>
           <Tabs.Tab value="second">Domain</Tabs.Tab>
           <Tabs.Tab value="third">SEO</Tabs.Tab>
+          <Tabs.Tab value="forth">Fonts</Tabs.Tab>
           {user?.isAdmin ?
             <Button  size="xs" className='ml-auto' rightSection={<IconArrowRight size="1rem" />} component={Link} href={`admin-editor/${siteSlug}`}
                    >
@@ -83,6 +85,9 @@ const Page = () => {
         </Tabs.Panel>
         <Tabs.Panel value="third">
           {data && <SeoConfiguration plan={plan} domainData={data} />}
+        </Tabs.Panel>
+        <Tabs.Panel value="forth">
+          {data && <SiteSettingsFonts plan={plan} data={data} />}
         </Tabs.Panel>
       </Tabs>
     </div>

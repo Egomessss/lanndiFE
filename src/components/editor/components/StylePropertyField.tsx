@@ -1,39 +1,21 @@
 'use client';
 
-import {
-  Property,
-  PropertyComposite, PropertyNumber,
-  PropertyRadio,
-  PropertySelect,
-  PropertySlider,
-  PropertyStack,
-} from 'grapesjs';
+import { Property, PropertyComposite, PropertyNumber, PropertySelect, PropertySlider } from 'grapesjs';
 
 import {
   ActionIcon,
   Button,
-  ColorInput, Input,
+  Input,
   NumberInput,
   Popover,
   SegmentedControl,
   Select,
   Slider,
-  TextInput,
-  ThemeIcon,
   Tooltip,
 } from '@mantine/core';
 import { useEditor } from '../wrappers';
 import React, { useEffect, useState } from 'react';
-import {
-  IconArrowDown,
-  IconArrowUp,
-  IconCircleFilled,
-  IconExclamationCircle,
-  IconPalette,
-  IconPlus,
-  IconScaleOutline,
-  IconX,
-} from '@tabler/icons-react';
+import { IconCircleFilled, IconPalette, IconX } from '@tabler/icons-react';
 import ColorPicker from 'react-best-gradient-color-picker';
 import classes from './StylePropertyField.module.css';
 
@@ -65,7 +47,6 @@ export default function StylePropertyField({
   }, [component]); // Dependency array includes `component` to trigger effect when it changes
 
 
-
   const handleChange = (value: any) => {
     prop.upValue(value);
   };
@@ -87,6 +68,12 @@ export default function StylePropertyField({
   const handleSizeChange = (newValue: any) => {
     // @ts-ignore
     prop.upUnit(newValue);
+
+  };
+
+  const handleClearValue = () => {
+    // @ts-ignore
+    handleChange('');
 
   };
 
@@ -113,8 +100,9 @@ export default function StylePropertyField({
   const value = prop.getValue();
   const valueString = hasValue ? value : '';
   const valueWithDef = hasValue ? value : defValue;
+  const hasValueParent = prop.hasValueParent();
   // console.log('property', prop.getName(), 'value', value);
-
+  // console.log('property', style, 'hasValue', hasValue, 'hasValueParent', hasValueParent);
 
   let inputToRender = (
     <Input
@@ -234,9 +222,8 @@ export default function StylePropertyField({
       inputToRender = (
         <Popover position="left-start" shadow="md">
           <Popover.Target>
-            <Button justify="space-between" leftSection={<IconPalette size="1rem" />}
-                    rightSection={
-                      <IconCircleFilled className={`text-[rgb(140, 36, 193)]`} size="1rem" />} variant="default"
+            <Button  leftSection={<IconPalette  size="1rem" />}
+                    variant="default"
                     fullWidth
                     size="xs">Pick</Button>
           </Popover.Target>
@@ -279,14 +266,16 @@ export default function StylePropertyField({
       className="mb-3 px-1 w-full"
     >
       <div
-        className={`mb-2 flex items-center justify-between w-full text-xs  whitespace-nowrap  ${canClear ? 'text-blue-300' : ''}`}
+        className={`mb-2 flex items-center justify-between w-full text-xs  whitespace-nowrap  ${canClear || hasValue ? 'text-blue-300' : ''}`}
       >
         <div className="flex-grow capitalize flex gap-1 items-center  ">
           {/* if the prop.attributes.tooltip doesnt exist dont render the tooltip*/}
           <Tooltip position="left" className="cursor-pointer" multiline w={200} openDelay={180} color="gray"
             //@ts-ignore
-                   label={<div className="flex flex-col gap-2"><span>{prop.attributes.tooltip}</span>CSS property
-                     - {style}<span></span></div>}><span>{prop.getLabel()}</span></Tooltip>
+                   label={<div className="flex flex-col gap-2">
+                     <span>{prop.attributes.tooltip}</span>CSS property
+                     - {style}<span></span></div>}>
+            <span className="">{prop.getLabel()}</span></Tooltip>
         </div>
         {canClear && (
           <ActionIcon size="xs" variant="subtle" onClick={() => prop.clear()}>

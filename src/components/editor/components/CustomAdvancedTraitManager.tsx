@@ -26,7 +26,7 @@ export const CssCode = () => {
   const component = editor.getSelected();
 
 
-  console.log('value', value);
+  // console.log('value', value);
   // console.log('css', componentCss);
 
   useEffect(() => {
@@ -71,7 +71,7 @@ export const CssCode = () => {
 export const GlobalCssCode = () => {
   const [opened, { open, close }] = useDisclosure(false);
   const [value, setValue] = useState('');
-  console.log('global css', value);
+  // console.log('global css', value);
   const editor = useEditor();
   const component = editor.Pages.getSelected()?.getMainComponent();
 
@@ -131,7 +131,7 @@ export const GlobalJsCode = () => {
     if (component) {
       // @ts-ignore
       const globalJs = editor.getJs({ component });
-      console.log('global js', globalJs);
+      // console.log('global js', globalJs);
       setValue(globalJs);
     }
   }, [component, opened]);

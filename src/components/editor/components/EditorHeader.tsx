@@ -30,6 +30,7 @@ import { useSidePanel } from '@/contexts/SidePanelPreviewContext';
 import SeoConfiguration from '@/app/(sites)/settings/_components/SeoConfiguration';
 import { SaveButton } from '@/components/editor/components/SaveButton';
 import EditorVersions from '@/components/editor/components/EditorVersions';
+import SiteSettingsFonts from '@/app/(sites)/settings/_components/SiteSettingsFonts';
 
 
 function PublishButton({ siteData }: any) {
@@ -185,6 +186,7 @@ function SiteSettingsModal(props: {
         <Tabs.Tab value="first">General</Tabs.Tab>
         <Tabs.Tab value="second">Domain</Tabs.Tab>
         <Tabs.Tab value="third">SEO</Tabs.Tab>
+        <Tabs.Tab value="forth">Fonts</Tabs.Tab>
       </Tabs.List>
       <Tabs.Panel value="first">
         {data && <SiteSettingsForm plan={plan} data={data} />}
@@ -196,6 +198,10 @@ function SiteSettingsModal(props: {
       <Tabs.Panel value="third">
         {data && <SeoConfiguration plan={plan} domainData={data} />}
       </Tabs.Panel>
+      <Tabs.Panel value="forth">
+        {data && <SiteSettingsFonts plan={plan} data={data} />}
+      </Tabs.Panel>
+
     </Tabs>
   </Modal>;
 }

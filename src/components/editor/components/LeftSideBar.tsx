@@ -6,9 +6,10 @@ import LayersLeftSideBar from '@/components/editor/components/LayersLeftSideBar'
 import PagesLeftSideBar from '@/components/editor/components/PagesLeftSideBar';
 import CustomComponentsBlockManager from '@/components/editor/components/CustomComponentsBlockManager';
 import useUser from '@/hooks/use-user';
+import CustomRte from '@/components/editor/components/CustomRte';
+
 
 function LeftSideBar() {
-
   const { user } = useUser();
 
   const [selected, setSelected] = useState('Blocks');
@@ -46,6 +47,7 @@ function LeftSideBar() {
   return (
     <AppShell.Navbar>
       <div className="h-full flex">
+
         <div className="flex flex-col gap-2 h-full p-1">
           {icons.filter(icon => icon.show === true).map(({ label, Icon, selectedValue }) => (
             <div key={label}>

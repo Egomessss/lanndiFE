@@ -292,6 +292,56 @@ const TypographyBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
     },
   });
 
+  editor.DomComponents.addType('rich-text', {
+    isComponent: el => {
+      if (el.classList && el.classList.contains('rich-text')) {
+        return { type: 'rich-text' };
+      }
+    },
+    model: {
+      defaults: {
+        attributes: { class: 'rich-text' },
+        resizable: true,
+        name: 'Rich Text', // Default component name
+        tagName: 'div',
+        components: '' ,
+        icon: `<svg  xmlns="http://www.w3.org/2000/svg"  width="12"  height="12"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-text-grammar"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 9a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M4 12v-5a3 3 0 1 1 6 0v5" /><path d="M4 9h6" /><path d="M20 6v6" /><path d="M4 16h12" /><path d="M4 20h6" /><path d="M14 20l2 2l5 -5" /></svg>`,
+        styles: `
+        .rich-text:empty:before  {
+      background-color: #ddd;
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    padding: 0 10px;
+    opacity: 0.3;
+    border-radius: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    content: "Go to Settings To Edit Rich Text";
+    }
+        `,
+      },
+
+    },
+  });
+
+
+  toAdd('rich-text') &&
+  bm.add('rich-text', {
+    ...commonBlockProps,
+    label: 'Rich Text',
+    media: `<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-text-grammar"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 9a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M4 12v-5a3 3 0 1 1 6 0v5" /><path d="M4 9h6" /><path d="M20 6v6" /><path d="M4 16h12" /><path d="M4 20h6" /><path d="M14 20l2 2l5 -5" /></svg>`,
+    content: {
+      type: 'rich-text',
+    },
+  });
+
 
 };
 

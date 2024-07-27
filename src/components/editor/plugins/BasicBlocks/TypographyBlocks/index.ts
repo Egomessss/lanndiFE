@@ -51,7 +51,7 @@ export type PluginOptions = {
 
 const TypographyBlocks: Plugin<PluginOptions> = (editor, opts = {}) => {
     const config: Required<PluginOptions> = {
-        blocks: ['heading-one', 'text', 'paragraph'],
+        blocks: ['heading-one', 'text', 'paragraph', 'rich-text'],
         flexGrid: false,
         stylePrefix: 'lnd-',
         addBasicStyle: true,

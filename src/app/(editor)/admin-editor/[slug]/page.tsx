@@ -25,7 +25,6 @@ import FloatingEditorButtons from '@/components/editor/components/FloatingEditor
 import { EditorLoading } from '@/components/common/EditorLoading';
 
 
-
 // export const dynamic = 'force-dynamic'
 export default function CustomEditor() {
   const { isSidePanelOpen } = useSidePanel();

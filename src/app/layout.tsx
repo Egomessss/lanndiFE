@@ -11,6 +11,7 @@ import React from 'react';
 import { SidePanelProvider } from '@/contexts/SidePanelPreviewContext';
 import { CSPostHogProvider } from '@/contexts/PostHogProvider';
 // import { CSPostHogProvider } from '@/contexts/PostHogProvider';
+import '@mantine/tiptap/styles.css';
 
 const inter = Inter({ subsets: ['latin'] });
 

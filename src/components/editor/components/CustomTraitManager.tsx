@@ -7,6 +7,7 @@ import { langs } from '@uiw/codemirror-extensions-langs';
 import React, { useEffect, useState } from 'react';
 import { useDisclosure } from '@mantine/hooks';
 import useUser from '@/hooks/use-user';
+import CustomRte from '@/components/editor/components/CustomRte';
 
 export const SvgContentCode = () => {
 
@@ -46,15 +47,13 @@ export const SvgContentCode = () => {
 };
 
 
-
-
 export default function CustomTraitManager({
                                              traits,
                                            }: Omit<TraitsResultProps, 'Container'>) {
 
   const editor = useEditor();
   const value = editor.getSelected()?.get('tagName');
-  console.log(traits);
+  const isRichText = editor.getSelected()?.getName() === 'Rich Text';
 
   return (
     <div className="gjs-custom-trait-manager text-left w-full flex flex-col gap-4 my-4">
@@ -70,6 +69,7 @@ export default function CustomTraitManager({
       )}
       {['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(value!) &&
         <div><Divider className="w-full" my="xs" label="Heading Type" /><HeadingTypeSelector /></div>}
+      {isRichText && <CustomRte />}
       {value === 'svg' &&
         <div><Divider my="xs" className="w-full" label="SVG Editor" /><SvgContentCode /></div>}
       {/*<HtmlElementSelector />*/}
