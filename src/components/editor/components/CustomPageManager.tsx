@@ -88,7 +88,7 @@ function CreatePageModal({ editingPageId, opened, onClose }: CreatePageProps) {
         color: 'green',
       });
 
-      // editor.Pages.select(page)
+      editor.Pages.select(editingPageId)
       onClose();
     }
 
@@ -206,7 +206,7 @@ export default function CustomPageManager({
     if (pages.length <= maxPages) {
       const nextIndex = pages.length + 1;
       // Assuming `add` now returns the ID of the newly added page
-      add({
+    const newPage =  add({
         name: `page ${nextIndex}`,
         slug: '',
         component: `<h1>Page ${nextIndex}</h1>`,
@@ -215,9 +215,9 @@ export default function CustomPageManager({
       });
       // Update the editingPageId with the ID of the new page
       // @ts-ignore
-      // setEditingPageId(newPageId?.getId());
-      // // Open the modal for editing the new page
-      // open();
+      setEditingPageId(newPage?.id);
+      // Open the modal for editing the new page
+      open();
     }
   };
 
@@ -234,19 +234,7 @@ export default function CustomPageManager({
   //   }
   // };
 
-  const selectPage = (page: Page) => {
-    if (!page) {
-      console.error('Page is null or undefined');
-      return;
-    }
 
-    if(page.getId()){
-      console.log(`Page ID is ${page.getId()}`);
-    }
-    select(page)
-    // Proceed with the rest of the logic
-    // ...
-  };
   return (
     <div
       className="gjs-custom-page-manager relative select-none text-left text-xs flex flex-col gap-2"

@@ -40,7 +40,7 @@ export const CssCode = () => {
 
   const handleClick = () => {
     const unformattedCss = unformatCss(value); // Unformat the CSS for saving
-    editor.CssComposer.addRules(unformattedCss); // Apply the edited CSS
+    editor.CssComposer.setRule(unformattedCss); // Apply the edited CSS
     setValue('');
     close();
   };
@@ -48,7 +48,15 @@ export const CssCode = () => {
 
   return <div className="flex items-start gap-2 flex-col w-full ">
     <Modal opened={opened} size="xl" centered onClose={close} title="Block CSS">
-      <p className="w-full text-center">Only allows adding/changing selected selectors style properties</p>
+      <ul className="p-2">
+        <li>Can add styles to selector</li>
+        <li>Can modify style of a selector</li>
+      </ul>
+      <ul className="p-2 text-red-500">
+        <li>Can&apos;t remove styles</li>
+        <li>Can&apos;t change selectors name</li>
+        <li>Can&apos;t add new selectors</li>
+      </ul>
       <CodeMirror
         value={value} height="400px" theme="dark"
         extensions={[langs.css(), EditorView.lineWrapping]}
@@ -65,7 +73,7 @@ export const GlobalCssCode = () => {
   const [value, setValue] = useState('');
   console.log('global css', value);
   const editor = useEditor();
-
+  const component = editor.Pages.getSelected()?.getMainComponent();
 
   // console.log("value",value);
   // console.log('css', componentCss);
@@ -81,8 +89,10 @@ export const GlobalCssCode = () => {
 
   const handleClick = () => {
     const formattedCssCode = formatCss(value);
+    editor.Css.clear()
     // console.log('css', formattedCssCode);
-    editor.Css.addRules(formattedCssCode);
+    // component?.set('style', value);
+    editor.setStyle(formattedCssCode);
     setValue('');
     close();
   };
@@ -90,7 +100,14 @@ export const GlobalCssCode = () => {
 
   return <div className="flex items-start gap-2 flex-col w-full ">
     <Modal opened={opened} size="xl" centered onClose={close} title="Global CSS">
-      <p className="w-full text-center">Only allows adding/changing selected selectors style properties</p>
+      <ul className="p-2">
+        <li>Can add styles to selector</li>
+        <li>Can modify style of a selector</li>
+      </ul>
+      <ul className="p-2 text-red-500" >
+        <li>Can&apos;t change selectors name</li>
+        <li>Can&apos;t add new selectors</li>
+      </ul>
       <CodeMirror
         value={value} height="400px" theme="dark"
         extensions={[langs.css(), EditorView.lineWrapping]}

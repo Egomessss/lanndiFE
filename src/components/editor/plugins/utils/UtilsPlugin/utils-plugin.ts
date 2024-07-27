@@ -1,4 +1,4 @@
-import { Editor } from 'grapesjs';
+import { DeviceProperties, Editor } from 'grapesjs';
 
 const UtilsPlugin = (editor: Editor, opts = {}) => {
 
@@ -211,6 +211,19 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
     },
   });
 
+
+  editor.on('load', () => {
+    // @ts-ignore
+    const deviceManager = editor.DeviceManager;
+    const desktop = deviceManager.get('desktop');
+
+    if (desktop) {
+      // @ts-ignore
+      desktop.set('widthMedia', '');
+    }
+
+  });
+  // Create a new class that extends the original Device class
 
 };
 

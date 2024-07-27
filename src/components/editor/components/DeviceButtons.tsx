@@ -53,7 +53,7 @@ const DeviceButtons = () => {
                 <Tooltip
                   color="dark"
                   key={device.id}
-                  label={`${device.getName()} up to ${device.getWidthMedia()}`}
+                  label={`${device.getName()} up to ${device.get('id') === 'desktop' ? '1536px': device.getWidthMedia()}`}
                 >
                   <ActionIcon
                     key={device.id}
