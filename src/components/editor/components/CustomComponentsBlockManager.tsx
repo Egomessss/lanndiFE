@@ -56,7 +56,7 @@ export default function CustomComponentsBlockManager() {
         {symbols.map((symbol: any) => {
           return (
             <div key={symbol.getId()} className="flex flex-col justify-end items-end gap-2">
-              <Button  variant="subtle" size="xl"
+              <Button  variant="subtle" className="h-fit w-fit"
                       style={{ padding: '10px' }}
                 // draggable={!disabled}
                       justify="start" fullWidth
@@ -66,7 +66,7 @@ export default function CustomComponentsBlockManager() {
 
               >
                 <div className="flex flex-col gap-2 justify-start items-start text-xs">
-                  <p>{symbol.getName()}</p>
+                  <p className="max-w-xs text-wrap">{symbol.getName()}</p>
                   <p>{editor.Components.getSymbolInfo(symbol).instances.length} {(editor.Components.getSymbolInfo(symbol).instances.length > 1) ? 'Instances' : 'Instance'}</p>
                 </div>
               </Button>
