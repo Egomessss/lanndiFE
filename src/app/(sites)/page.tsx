@@ -13,6 +13,7 @@ import { Alert, Badge, Button } from '@mantine/core';
 import useUser from '@/hooks/use-user';
 import { IconInfoCircle } from '@tabler/icons-react';
 import { User } from '@/lib/types';
+import { notifications } from '@mantine/notifications';
 
 export type Site = {
   id: number;
@@ -38,13 +39,22 @@ function VerifyEmail({ user }: { user: User }) {
       .then(response => setStatus(response.data.status));
   };
 
+  if (status === 'verification-link-sent') {
+    notifications.show({
+      title: 'Verification Email Sent',
+      message: 'A new verification link has been sent to your email address.',
+      color: 'green',
+    });
+  }
+
   return (
     <>
       {user?.email_verified_at === null && user.subscription === 'free' &&
-        <Alert variant="light" color="red" title="Alert title" icon={<IconInfoCircle size="1rem" />}>
+        <Alert variant="light" color={status === 'verification-link-sent' ? 'green' : 'red'} title="Verification status"
+               icon={<IconInfoCircle size="1rem" />}>
           <div className="flex items-center gap-4 flex-col">
             <p>Verify your email to be able to publish your website!</p>
-            <p>Check your spam folder if you don&apos;t see the email right away!</p>
+            <p className="font-bold text-lg">Check your spam folder if you don&apos;t see the email right away!</p>
             {status === 'verification-link-sent' && (
               <p>
                 A new verification link has been sent to the email address
