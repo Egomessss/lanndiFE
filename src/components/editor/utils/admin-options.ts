@@ -39,36 +39,36 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
 
   },
   deviceManager: {
-    default: 'fit',
+    default: 'desktop',
     devices: [
-      {
-        id: 'fit',
-        name: 'Fit to Screen',
-        width: '',
-      },
-      {
-        id: 'desktop', name: 'Desktop(XL)', width: '1536px',
-        // widthMedia: '1536px',
-      },
-      {
-        id: 'laptop',
-        name: 'Laptop(LG)',
-        width: '1080px',
-        // widthMedia: '1080px',
-      },
-      {
-        id: 'tablet',
-        name: 'Tablet(MD)',
-        width: '768px',
-        widthMedia: '880px',
-      },
-      {
-        id: 'mobile',
-        name: 'Mobile(SM)',
-        width: '400px',
-        widthMedia: '600px',
-        height:'600px'
-      },
+      // {
+      //   id: 'fit',
+      //   name: 'Fit to Screen',
+      //   width: '',
+      // },
+        {
+          id: 'desktop', name: 'Desktop(XL)', width: '1536px',
+          widthMedia: '1536px',
+        },
+        {
+          id: 'laptop',
+          name: 'Laptop(LG)',
+          width: '1080px',
+          // widthMedia: '1080px',
+        },
+        {
+          id: 'tablet',
+          name: 'Tablet(MD)',
+          width: '768px',
+          widthMedia: '880px',
+        },
+        {
+          id: 'mobile',
+          name: 'Mobile(SM)',
+          width: '400px',
+          widthMedia: '600px',
+          height:'600px'
+        },
       // { id: 'fit', name: 'Fit To Screen', width: '' },
     ],
   },

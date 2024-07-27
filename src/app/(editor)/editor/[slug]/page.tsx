@@ -2,7 +2,7 @@
 import grapesjs, { Editor } from 'grapesjs';
 import { AppShell, Button, useComputedColorScheme } from '@mantine/core';
 import React from 'react';
-import GjsEditor, { AssetsProvider, Canvas, ModalProvider } from '@/components/editor/wrappers';
+import GjsEditor, { AssetsProvider, Canvas, ModalProvider, WithEditor } from '@/components/editor/wrappers';
 import LeftSideBar from '@/components/editor/components/LeftSideBar';
 import RightSideBar from '@/components/editor/components/RightSideBar';
 import EditorHeader from '@/components/editor/components/EditorHeader';
@@ -16,6 +16,7 @@ import { EditorLoading } from '@/components/common/EditorLoading';
 import CustomAssetManager from '@/components/editor/components/CustomAssetManager';
 import { IconExclamationCircle } from '@tabler/icons-react';
 import { SidePanelProvider, useSidePanel } from '@/contexts/SidePanelPreviewContext';
+import FloatingEditorButtons from '@/components/editor/components/FloatingEditorButtons';
 
 // export const dynamic = 'force-dynamic'
 export default function CustomEditor() {
@@ -25,7 +26,9 @@ export default function CustomEditor() {
 
   const { data, isLoading, isError } = useEditorData();
 
-  if (isLoading) return <Loading />;
+  if (isLoading) {
+    return <EditorLoading />; // Replace this with your loading component
+  }
   if (isError) return <ErrorMessage />;
 
   const onEditor = (editor: Editor) => {
@@ -87,6 +90,9 @@ export default function CustomEditor() {
             )}
           </AssetsProvider>
         </div>
+        <WithEditor>
+          <FloatingEditorButtons />
+        </WithEditor>
       </GjsEditor>
       <div className="md:hidden h-[100svh] w-full flex justify-center items-center flex-col gap-8 text-xl">
         <IconExclamationCircle size="4rem" className="text-red-500" />

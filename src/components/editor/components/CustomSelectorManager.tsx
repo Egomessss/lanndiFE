@@ -246,7 +246,7 @@ export default function CustomSelectorManager({
               <IconHash size="1rem" />
             </ActionIcon>
           </Tooltip>
-          <Tooltip position="left" color="dark" multiline w={400}
+          <Tooltip position="left" color="dark" multiline w={700}
                    label={
                      <div className="flex flex-col gap-2">
                        <p>Enabled: All the style changes will be applied on
@@ -266,6 +266,9 @@ export default function CustomSelectorManager({
                        <p>Tip 5: The latest class will always take precedent over the previous one. Use this to add
                          extra styles without affecting base classes. e.g. Adding a background color to just one of
                          three grid items</p>
+                       <p>Tip 6: You can disable certain style classes to modify a specific class style when you have multiple ones for a select block</p>
+                       <p>Tip 7: Combo classes add another layer of styles on just the last class without modifying the previous one, example you have a heading with a class of hero-heading which has a white text colour on your homepage, but then you have another page where you need your hero heading to be black, you just add another class on top of the select block such as hero-heading-text-black thus allowing you to make slight changes to a block style without modifying certain classes</p>
+                       <p className="font-bold">Important: Always remember If you can&apos;t change a style its either because you styled that block using the priority style(ID) or you&apos;re styling the wrong breakpoint </p>
                      </div>}>
             <ActionIcon onClick={setComponentFirst}
                         variant={isComponentFirst ? 'filled' : 'subtle'}>

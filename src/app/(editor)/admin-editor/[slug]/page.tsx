@@ -1,8 +1,8 @@
 'use client';
 import grapesjs, { Editor } from 'grapesjs';
-import { AppShell, Button } from '@mantine/core';
-import React from 'react';
-import GjsEditor, { AssetsProvider, Canvas, ModalProvider } from '@/components/editor/wrappers';
+import { ActionIcon, AppShell, Box, Button, Divider, NumberInput, rem, Tooltip } from '@mantine/core';
+import React, { useState } from 'react';
+import GjsEditor, { AssetsProvider, Canvas, ModalProvider, useEditor, WithEditor } from '@/components/editor/wrappers';
 import LeftSideBar from '@/components/editor/components/LeftSideBar';
 import RightSideBar from '@/components/editor/components/RightSideBar';
 import EditorHeader from '@/components/editor/components/EditorHeader';
@@ -13,8 +13,18 @@ import CustomModal from '@/components/editor/components/CustomModal';
 import { editorConfigOptions } from '@/components/editor/utils/admin-options';
 import useEditorData from '@/hooks/use-editor-data';
 import CustomAssetManager from '@/components/editor/components/CustomAssetManager';
-import { IconExclamationCircle } from '@tabler/icons-react';
+import {
+  IconArrowAutofitHeight,
+  IconExclamationCircle, IconHandGrab,
+  IconZoomIn,
+  IconZoomOut,
+  IconZoomReset,
+} from '@tabler/icons-react';
 import { useSidePanel } from '@/contexts/SidePanelPreviewContext';
+import FloatingEditorButtons from '@/components/editor/components/FloatingEditorButtons';
+import { EditorLoading } from '@/components/common/EditorLoading';
+
+
 
 // export const dynamic = 'force-dynamic'
 export default function CustomEditor() {
@@ -24,7 +34,9 @@ export default function CustomEditor() {
 
   const { data, isLoading, isError } = useEditorData();
 
-  if (isLoading) return <Loading />;
+  if (isLoading) {
+    return <EditorLoading />; // Replace this with your loading component
+  }
   if (isError) return <ErrorMessage />;
 
   const onEditor = (editor: Editor) => {
@@ -84,8 +96,12 @@ export default function CustomEditor() {
 
             )}
           </AssetsProvider>
+          <WithEditor>
+            <FloatingEditorButtons />
+          </WithEditor>
         </div>
       </GjsEditor>
+
       <div className="md:hidden h-[100svh] w-full flex justify-center items-center flex-col gap-8 text-xl">
         <IconExclamationCircle size="4rem" className="text-red-500" />
         <p>Editor is not available for mobile devices</p>
@@ -93,7 +109,6 @@ export default function CustomEditor() {
           <Button component="a" href="https://lanndi.com"
                   variant="subtle">Homepage</Button>
           <Button component="a" href="https://app.lanndi.com/login">Signup</Button></div>
-
       </div>
 
     </>

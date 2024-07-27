@@ -50,8 +50,8 @@ const ZoomPlugin = (editor: Editor, opts = {}) => {
 
   editor.Commands.add('zoomReset', {
     run: () => {
-      editor.Canvas.setZoom(100);
-      editor.Canvas.setCoords(0,0);
+      editor.Canvas.setZoom(60);
+      editor.Canvas.setCoords(-160, -10);
     },
   });
 

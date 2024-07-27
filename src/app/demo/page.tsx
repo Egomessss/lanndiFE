@@ -2,7 +2,7 @@
 import grapesjs, { Editor } from 'grapesjs';
 import { AppShell, Button, useComputedColorScheme } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
-import GjsEditor, { AssetsProvider, Canvas, ModalProvider } from '@/components/editor/wrappers';
+import GjsEditor, { AssetsProvider, Canvas, ModalProvider, WithEditor } from '@/components/editor/wrappers';
 import LeftSideBar from '@/components/editor/components/LeftSideBar';
 import RightSideBar from '@/components/editor/components/RightSideBar';
 import EditorHeader from '@/components/editor/components/EditorHeader';
@@ -12,6 +12,7 @@ import { EditorLoading } from '@/components/common/EditorLoading';
 import { demoEditorConfigOptions } from '@/components/editor/utils/demo-options';
 import { IconExclamationCircle } from '@tabler/icons-react';
 import { SidePanelProvider, useSidePanel } from '@/contexts/SidePanelPreviewContext';
+import FloatingEditorButtons from '@/components/editor/components/FloatingEditorButtons';
 
 
 export default function CustomEditor() {
@@ -95,6 +96,9 @@ export default function CustomEditor() {
 
             )}
           </AssetsProvider>
+          <WithEditor>
+            <FloatingEditorButtons />
+          </WithEditor>
         </div>
       </GjsEditor>
       <div className="md:hidden h-[100svh] w-full flex justify-center items-center flex-col gap-8 text-xl">

@@ -52,6 +52,8 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
     // },
   });
 
+  editor.Canvas.setZoom(60);
+  editor.Canvas.setCoords(-160, -10);
 
   editor.on('page:select', () => {
     editor.getWrapper()?.set('stylable', [
@@ -111,21 +113,19 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
   editor.Keymaps.add('deselect-components', 'esc', 'deselect-components');
 
 
-
-
   // if editor zoom is less than 100%
   // get body height
   // set iframe height to body height
 
-
-  // editor.on('canvas:zoom', () => {
-  //   const zoom = editor.Canvas.getZoom();
-  //   const bodyHeight = editor.Canvas.getBody().offsetHeight;
-  //   console.log('body heoght  ', bodyHeight);
-  //   if (zoom < 100 || zoom > 100) {
-  //     editor.Canvas.getFrame().set('height', bodyHeight);
-  //   }
-  // });
+  editor.Commands.add('change-frame-height', {
+    run: () => {
+      const bodyHeight = editor.Canvas.getBody().offsetHeight;
+      editor.Canvas.getFrame().set('height', bodyHeight);
+    },
+    stop: () => {
+      editor.Canvas.getFrame().set('height', 600);
+    },
+  });
 
 
   // editor.on('component:update', () => {

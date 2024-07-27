@@ -1,12 +1,12 @@
 import { DevicesProvider, useEditor } from '@/components/editor/wrappers';
-import { ActionIcon, Tooltip } from '@mantine/core';
-import React from 'react';
+import { ActionIcon, Divider, Tooltip } from '@mantine/core';
+import React, { useState } from 'react';
 import {
-  IconArrowsHorizontal,
+  IconArrowAutofitHeight,
   IconDeviceDesktop,
   IconDeviceLaptop,
   IconDeviceMobile,
-  IconDeviceTablet, IconExclamationMark, IconQuestionMark,
+  IconDeviceTablet,
 } from '@tabler/icons-react';
 
 const getDeviceIcon = (device: string) => {
@@ -18,32 +18,32 @@ const getDeviceIcon = (device: string) => {
     return <IconDeviceTablet size="1rem" />;
   } else if (device === 'mobile') {
     return <IconDeviceMobile size="1rem" />;
-  } else if (device === 'fit') {
-    return <IconArrowsHorizontal size="1rem" />;
   }
+  // else if (device === 'fit') {
+  //   return <IconArrowsHorizontal size="1rem" />;
+  // }
   return null; // Fallback
 };
 
 const DeviceButtons = () => {
 
-  const editor = useEditor();
 
-  const width = editor.Canvas.getBody()?.clientWidth;
-  // console.log(width);
+
   return (
     <>
-      <Tooltip
-        color="dark"
-        w={300}
-        multiline
-        label={<div className="flex gap-2 flex-col"><p>We recommend you build your website with desktop view not fit to screen if you have a smaller editing device as desktop best represents the final product.</p>
-        </div>}>
-        <ActionIcon
-          variant="light"
-        >
-          <IconExclamationMark size="1rem" />
-        </ActionIcon>
-      </Tooltip>
+      {/*<Tooltip*/}
+      {/*  color="dark"*/}
+      {/*  w={300}*/}
+      {/*  multiline*/}
+      {/*  label={<div className="flex gap-2 flex-col"><p>We recommend you build your website with desktop view not fit to*/}
+      {/*    screen if you have a smaller editing device as desktop best represents the final product.</p>*/}
+      {/*  </div>}>*/}
+      {/*  <ActionIcon*/}
+      {/*    variant="light"*/}
+      {/*  >*/}
+      {/*    <IconExclamationMark size="1rem" />*/}
+      {/*  </ActionIcon>*/}
+      {/*</Tooltip>*/}
       <DevicesProvider>
         {({ selected, select, devices }) => (
           <div className="flex items-center gap-2">
@@ -53,7 +53,7 @@ const DeviceButtons = () => {
                 <Tooltip
                   color="dark"
                   key={device.id}
-                  label={device.id === 'fit' ? `${device.getName()} - ${width}px` : `${device.getName()} up to ${device.getWidthMedia()}`}
+                  label={`${device.getName()} up to ${device.getWidthMedia()}`}
                 >
                   <ActionIcon
                     key={device.id}
@@ -69,8 +69,11 @@ const DeviceButtons = () => {
               );
             })}
           </div>
+
         )}
-      </DevicesProvider></>
+      </DevicesProvider>
+
+    </>
   );
 };
 
