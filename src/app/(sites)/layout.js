@@ -22,7 +22,7 @@ import Loading from './Loading';
 
 
 const SiteLayout = ({ children }) => {
-  const [opened, { toggle }] = useDisclosure();
+  const [opened, {close, toggle }] = useDisclosure();
   const { user, logout } = useUser();
 
 
@@ -81,12 +81,15 @@ const SiteLayout = ({ children }) => {
       padding="md"
     >
       <AppShell.Header>
-        <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-        <div className="w-full flex justify-between items-center h-full px-4">
-          <Link className="no-underline text-inherit font-bold text-xl"
-                href="/">
-            lanndi
-          </Link>
+        <div className="w-full h-full flex justify-between items-center  px-4">
+          <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
+          <div className="w-full flex justify-between items-center  px-4">
+            <Link className="no-underline text-inherit font-bold text-xl"
+                  href="/">
+              lanndi
+            </Link>
+
+          </div>
 
           <div className="flex items-center gap-6">
             <DarkModeButton />
@@ -119,18 +122,21 @@ const SiteLayout = ({ children }) => {
         <AppShell.Section grow my="md" component={ScrollArea}>
           <NavLink
             component={Link}
+            onClick={close}
             href="/"
             label="Sites"
             leftSection={<IconHome2 size="1rem" stroke={1.5} />}
           />
           <NavLink
             component={Link}
+            onClick={close}
             href="/plans"
             label="Plans"
             leftSection={<IconAdjustmentsDollar size="1rem" stroke={1.5} />}
           />
         </AppShell.Section>
         <NavLink
+          onClick={close}
           color="green"
           active
           component="a"
@@ -144,6 +150,7 @@ const SiteLayout = ({ children }) => {
           leftSection={<IconAt size="1rem" stroke={1.5} />}
         />
         <NavLink
+          onClick={close}
           color="blue"
           active
           component="a"
@@ -152,10 +159,11 @@ const SiteLayout = ({ children }) => {
           label="Provide Feedback"
           leftSection={<IconMessage size="1rem" stroke={1.5} />}
         />
-        <AppShell.Section> <NavLink
+        <AppShell.Section>
+          <NavLink
           component={Link}
+          onClick={toggle}
           href="/profile"
-          target="blank"
           label="Profile Settings"
           leftSection={<IconUser size="1rem" stroke={1.5} />}
         />

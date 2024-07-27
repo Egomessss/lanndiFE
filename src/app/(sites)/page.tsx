@@ -89,7 +89,7 @@ const Dashboard = () => {
       </div>
       <Badge variant="light">{data?.subscriptionPlan} Plan </Badge>
       {data?.sites.length === 0 ? <div>You have no sites yet!</div> :
-        <div className="grid grid-cols-4 gap-4 my-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 my-8">
           {data?.sites.map((site) => (
             // Assuming your data has an id and other properties you need to pass to DashboardCard
             <DashboardCard key={site.slug} {...site} />

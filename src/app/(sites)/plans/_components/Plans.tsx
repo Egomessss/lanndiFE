@@ -132,10 +132,10 @@ const Plans: React.FC<PlansData> = ({
         </div>
       </div>
       {isError && <p className="text-red-500">There was an error with your request please try again</p>}
-      <div className="flex flex-col md:flex-row gap-4 px-5 justify-center items-center">
+      <div className="flex flex-col lg:flex-row gap-4 px-5 justify-center items-center">
         {plans.map((plan) => (
           <div key={plan.name}
-               className="border rounded-lg p-8 flex flex-col items-center border-solid border-blue-500 ">
+               className="border rounded-lg md:p-8 w-full flex flex-col items-center border-solid border-blue-500 ">
             <h2 className="text-lg font-bold">{plan.name}</h2>
             <p className="my-2">
               €{isAnnual ? plan.priceAnnual : plan.priceMonthly}
@@ -150,8 +150,8 @@ const Plans: React.FC<PlansData> = ({
                 </li>
               ))}
             </ul>
-            <Divider className="w-full" my="md" />
-            <div className="h-10"> {isAnnual ? <Button loading={isPending}
+            <Divider className="w-full" mt="md" />
+            <div className="p-4"> {isAnnual ? <Button loading={isPending}
                                                        disabled={plan.name === 'Free' || isUserSubscribed || currentPlan === 'lifetime'}
                                                        onClick={() => handleSubscribe(plan.variantAnnual)}>
               {isUserSubscribed ? 'Subscribed' : 'Subscribe To a Plan'}
@@ -197,9 +197,10 @@ const Plans: React.FC<PlansData> = ({
               </Button>
             </div>
           </div>
-          <div className="flex gap-2 text-xs w-full justify-center mt-2">
-            <Link href="/privacy-policy">Privacy Policy</Link>{' '}
-            <Link href="/terms-and-conditions">Terms</Link>
+          <div className="flex gap-2 text-xs w-full justify-center mt-2 ">
+            <Link className="text-inherit no-underline hover:underline" target="_blank" href="https://lanndi.com/privacy-policy">Privacy Policy</Link>{' '}
+            <Link className="text-inherit no-underline hover:underline" target="_blank" href="https://lanndi.com/terms-and-conditions">Terms</Link>
+            <Link className="text-inherit no-underline hover:underline" target="_blank" href="https://lanndi.com/refund-policy">Refund Policy</Link>
           </div>
         </div>
       </div>

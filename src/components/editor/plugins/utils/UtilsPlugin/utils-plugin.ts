@@ -45,6 +45,7 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
 
       // Select the new wrapper 'div' component
       editor.select(wrapperDiv);
+      editor.refresh()
     },
     // Optional: Define the 'stop' function if needed
     // stop: () => {
@@ -75,6 +76,7 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
       'font',
       'font-family',
     ]);
+    editor.refresh()
   });
 
 
@@ -121,9 +123,11 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
     run: () => {
       const bodyHeight = editor.Canvas.getBody().offsetHeight;
       editor.Canvas.getFrame().set('height', bodyHeight);
+      editor.refresh()
     },
     stop: () => {
       editor.Canvas.getFrame().set('height', 600);
+      editor.refresh()
     },
   });
 
@@ -169,6 +173,7 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
         },
         // this is my new toolbar element with my custom command
       ],
+
     });
 
     // const checkIfAlreadyExists = defaultToolbar.filter((tool:any) => tool.command === newTool.command)
@@ -183,7 +188,7 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
     //   })
     //   component.set('toolbar', defaultToolbar)
     // }
-
+    editor.refresh()
   });
 
 
