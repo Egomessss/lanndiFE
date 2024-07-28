@@ -111,7 +111,7 @@ const FloatingEditorButtons = () => {
       setIsActive(true);
     }
   };
-  return <Box bg="dark" className="fixed z-[1000] w-fit p-2 rounded-lg  m-auto left-0 right-0 bottom-5">
+  return <Box bg="dark" className="fixed z-[100] w-fit p-2 rounded-lg  m-auto left-0 right-0 bottom-5">
     <div className="flex items-center justify-center gap-2  w-full">
       <Tooltip color="dark" label="Zoom out/ Shift -">
         <ActionIcon

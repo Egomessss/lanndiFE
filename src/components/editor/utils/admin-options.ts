@@ -4,7 +4,6 @@ import TypographyBlocks from '../plugins/BasicBlocks/TypographyBlocks';
 import CoreBlocks from '../plugins/BasicBlocks/InteractiveBlocks';
 import MediaBlocks from '../plugins/BasicBlocks/MediaBlocks';
 import CustomCode from '@/components/editor/plugins/utils/CustomCode';
-
 import Sections from '@/components/editor/plugins/Sections';
 import { EditorData } from '@/hooks/use-editor-data';
 import UtilsPlugin from '@/components/editor/plugins/utils/UtilsPlugin/utils-plugin';
@@ -16,6 +15,7 @@ import FormBlocks from '@/components/editor/plugins/BasicBlocks/FormsBlocks';
 import ClickAndDrop from '@/components/editor/plugins/utils/ClickAndDrop/plugin';
 import Templates from '@/components/editor/plugins/Templates';
 import ListBlocks from '@/components/editor/plugins/BasicBlocks/ListBlocks';
+import GoogleFontsPlugin from '../plugins/utils/GoogleFonts';
 
 
 export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: boolean) => ({
@@ -115,7 +115,14 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
     // Accordion,
     // Tabs
     ClickAndDrop,
+    GoogleFontsPlugin
   ],
+  pluginsOpts: {
+    ['GoogleFontsPlugin']: {
+      apiKey: process.env.NEXT_PUBLIC_GOOGLE_FONTS_API_KEY,
+      preserveDefaultFonts: true,
+    }
+  },
   styleManager:
   styles
   ,
