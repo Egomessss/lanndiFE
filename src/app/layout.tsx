@@ -35,8 +35,7 @@ export default function RootLayout({
     <body className={inter.className}>
     <MantineProvider defaultColorScheme="auto">
       <Notifications />
-    <TanstackProvider>
-
+    <TanstackProvider >
         <ModalsProvider>
           <SidePanelProvider>
             <CSPostHogProvider>

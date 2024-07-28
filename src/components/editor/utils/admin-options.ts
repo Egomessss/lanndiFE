@@ -16,6 +16,7 @@ import ClickAndDrop from '@/components/editor/plugins/utils/ClickAndDrop/plugin'
 import Templates from '@/components/editor/plugins/Templates';
 import ListBlocks from '@/components/editor/plugins/BasicBlocks/ListBlocks';
 import GoogleFontsPlugin from '../plugins/utils/GoogleFonts';
+import GoogleFonts from '../plugins/utils/GoogleFonts';
 
 
 export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: boolean) => ({
@@ -115,12 +116,13 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
     // Accordion,
     // Tabs
     ClickAndDrop,
-    GoogleFontsPlugin
+    GoogleFonts
   ],
   pluginsOpts: {
-    ['GoogleFontsPlugin']: {
-      apiKey: process.env.NEXT_PUBLIC_GOOGLE_FONTS_API_KEY,
-      preserveDefaultFonts: true,
+    ['GoogleFonts']: {
+      apiKey: process.env.GOOGLE_FONTS_API_KEY,
+      api_url: 'https://www.googleapis.com',
+      server_url: 'https://fonts.googleapis.com',
     }
   },
   styleManager:

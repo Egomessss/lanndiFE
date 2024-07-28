@@ -25,6 +25,7 @@ export default function CustomStyleManager({
   const editor = useEditor();
 
   const selected = editor.getSelected();
+  console.log(sectors);
 
   // editor.on('device:select', (device) => {
   //   let zoomLevel;

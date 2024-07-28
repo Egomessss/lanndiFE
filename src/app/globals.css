@@ -103,3 +103,118 @@
     outline: 2px dotted var(--gjs-color-blue) !important;
 }
 
+/* Basic styles for the form */
+.silex-form {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    max-width: 600px;
+    margin: auto;
+}
+
+.silex-form__group {
+    margin-bottom: 20px;
+}
+
+.silex-bar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.silex-bar input[type="text"] {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.silex-bar select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.silex-button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 3px;
+    background-color: #007bff;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.silex-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.silex-button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+.silex-form__element {
+    margin-top: 20px;
+}
+
+.silex-list {
+    list-style: none;
+    padding: 0;
+}
+
+.silex-list__item__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.silex-list__item__header h4 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.silex-list__item__body {
+    padding: 10px 0;
+}
+
+.silex-group--simple {
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 10px;
+}
+
+.silex-group--simple legend {
+    font-size: 14px;
+    padding: 0 5px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.silex-list__item__footer {
+    margin-top: 10px;
+}
+
+.silex-list__item__footer .silex-button {
+    background-color: #dc3545;
+}
+
+.silex-list__item__footer .silex-button:hover:not(:disabled) {
+    background-color: #c82333;
+}
+
+footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+

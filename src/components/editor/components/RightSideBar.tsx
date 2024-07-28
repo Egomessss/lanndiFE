@@ -17,7 +17,7 @@ function RightSideBar() {
       <Tabs defaultValue="first">
         <Tabs.List justify="space-between" grow>
           <Tabs.Tab value="first">
-            <Tooltip label="Palette" position="top">
+            <Tooltip label="Styles" position="top">
               <IconPalette size="1rem" />
             </Tooltip>
           </Tabs.Tab>
@@ -27,7 +27,7 @@ function RightSideBar() {
             </Tooltip>
           </Tabs.Tab>
           <Tabs.Tab value="third">
-            <Tooltip label="Code Adjustments" position="top">
+            <Tooltip label="Advanced Settings" position="top">
               <IconAdjustmentsCode size="1rem" />
             </Tooltip>
           </Tabs.Tab>

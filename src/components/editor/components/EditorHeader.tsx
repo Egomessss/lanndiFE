@@ -234,6 +234,9 @@ function EditorHeader() {
       return data as SiteSettings;
     },
     enabled: !isDemo,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    retry: 3,
   });
 
   const isDisabled = !data?.title && !data?.description && user && user.subscription !== 'free' || !user || user.subscription === 'free';
