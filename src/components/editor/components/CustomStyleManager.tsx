@@ -24,40 +24,6 @@ export default function CustomStyleManager({
 
   const editor = useEditor();
 
-  const selected = editor.getSelected();
-  console.log(sectors);
-
-  // editor.on('device:select', (device) => {
-  //   let zoomLevel;
-  //   switch (device.getName()) {
-  //     case 'Mobile(SM)':
-  //       zoomLevel = 100;
-  //       // editor.Canvas.setCoords(0, -100);
-  //       break;
-  //     case 'Tablet(MD)':
-  //       zoomLevel = 90;
-  //       editor.Canvas.setCoords(-5, -100);
-  //       break;
-  //     case 'Laptop(LG)':
-  //       zoomLevel = 80;
-  //       editor.Canvas.setCoords(-45, -40);
-  //       break;
-  //     case 'Desktop(XL)':
-  //       zoomLevel = 60;
-  //       editor.Canvas.setCoords(-165, -100);
-  //       break;
-  //     default:
-  //       zoomLevel = 100; // Default zoom level if device is not recognized
-  //   }
-  //   editor.Canvas.setZoom(zoomLevel);
-  //
-  //   // const frameHeight =  editor.Canvas.getBody().clientHeight;
-  //   // console.log('frameh',frameHeight);
-  //   // editor.Canvas.getFrame().set('height', frameHeight);
-  //   // editor.Canvas.getFrame().set('width', frameHeight);
-  //
-  // });
-
 
 // console.log('style manager');
 

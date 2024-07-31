@@ -74,7 +74,7 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
     ],
   },
   selectorManager: {
-    stylePrefix: 'lnd-', componentFirst: true, states: [
+    stylePrefix: 'lnd-', componentFirst: false, states: [
       { name: 'hover', label: 'Hover', info: 'Change styles on user hover' },
       { name: 'focus', label: 'Focus', info: 'Change styles on user focus' },
       { name: 'active', label: 'Active', info: 'Change styles on active element' },

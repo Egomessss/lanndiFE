@@ -4,7 +4,7 @@ const faqs = (editor: Editor) => {
   const { Components } = editor;
 
   const script = function() {
-    let answers = document.querySelectorAll('.faqa-accordion__question');
+    let answers = document.querySelectorAll('.faqa-accordion-question');
 
     answers.forEach((question) => {
       question.addEventListener('click', function(event) {
@@ -37,6 +37,7 @@ const faqs = (editor: Editor) => {
     model: {
       defaults: {
         script: script,
+        isInteractive: true, interactiveClasses:['faqa-accordion-question'],
         name: 'FAQ Accordion',
         // attributes: { class: 'faq-one' },
         components: `  
@@ -45,57 +46,57 @@ const faqs = (editor: Editor) => {
     </h2>
     <div  class="faqa-layout">
       <div class="faqa-accordion">
-        <button   class="faqa-accordion__question">Lorem ipsum dolor sit amet?</button>
-        <div class="faqa-accordion__answer">
+        <button   class="faqa-accordion-question">Lorem ipsum dolor sit amet?</button>
+        <div class="faqa-accordion-answer">
           <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio doloremque fugiat inventore itaque natus odio!
           </p>
         </div>
       </div>
       <div class="faqa-accordion">
-        <button   class="faqa-accordion__question">Lorem ipsum dolor sit amet?</button>
-        <div class="faqa-accordion__answer">
+        <button   class="faqa-accordion-question">Lorem ipsum dolor sit amet?</button>
+        <div class="faqa-accordion-answer">
           <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio doloremque fugiat inventore itaque natus odio!
           </p>
         </div>
       </div>
       <div class="faqa-accordion">
-        <button   class="faqa-accordion__question">Lorem ipsum dolor sit amet?</button>
-        <div class="faqa-accordion__answer">
+        <button   class="faqa-accordion-question">Lorem ipsum dolor sit amet?</button>
+        <div class="faqa-accordion-answer">
           <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio doloremque fugiat inventore itaque natus odio!
           </p>
         </div>
       </div>
       <div class="faqa-accordion">
-        <button   class="faqa-accordion__question">Lorem ipsum dolor sit amet?</button>
-        <div class="faqa-accordion__answer">
+        <button   class="faqa-accordion-question">Lorem ipsum dolor sit amet?</button>
+        <div class="faqa-accordion-answer">
           <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio doloremque fugiat inventore itaque natus odio!
           </p>
         </div>
       </div>
       <div class="faqa-accordion">
-        <button   class="faqa-accordion__question">Lorem ipsum dolor sit amet?</button>
-        <div class="faqa-accordion__answer">
+        <button   class="faqa-accordion-question">Lorem ipsum dolor sit amet?</button>
+        <div class="faqa-accordion-answer">
           <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio doloremque fugiat inventore itaque natus odio!
           </p>
         </div>
       </div>
       <div class="faqa-accordion">
-        <button   class="faqa-accordion__question">Lorem ipsum dolor sit amet?</button>
-        <div class="faqa-accordion__answer">
+        <button   class="faqa-accordion-question">Lorem ipsum dolor sit amet?</button>
+        <div class="faqa-accordion-answer">
           <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio doloremque fugiat inventore itaque natus odio!
           </p>
         </div>
       </div>
       <div class="faqa-accordion">
-        <button   class="faqa-accordion__question">Lorem ipsum dolor sit amet?</button>
-        <div class="faqa-accordion__answer">
+        <button   class="faqa-accordion-question">Lorem ipsum dolor sit amet?</button>
+        <div class="faqa-accordion-answer">
           <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio doloremque fugiat inventore itaque natus odio!
           </p>
         </div>
       </div>
       <div class="faqa-accordion">
-        <button   class="faqa-accordion__question">Lorem ipsum dolor sit amet?</button>
-        <div class="faqa-accordion__answer">
+        <button   class="faqa-accordion-question">Lorem ipsum dolor sit amet?</button>
+        <div class="faqa-accordion-answer">
           <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio doloremque fugiat inventore itaque natus odio!
           </p>
         </div>
@@ -140,7 +141,7 @@ const faqs = (editor: Editor) => {
   border-left-width:0;
   border-color:rgb(231,231,233);
 }
-.faqa-accordion__question{
+.faqa-accordion-question{
   cursor:pointer;
   width:100%;
   height:30px;
@@ -151,18 +152,18 @@ const faqs = (editor: Editor) => {
   border-left-width:0;
   text-align:left;
 }
-.faqa-accordion__question:hover{
+.faqa-accordion-question:hover{
   background:rgba(231, 231, 233, 1);
   border-top-left-radius:5px;
   border-top-right-radius:5px;
   border-bottom-right-radius:5px;
   border-bottom-left-radius:5px;
 }
-.faqa-accordion__answer{
+.faqa-accordion-answer{
   display:none;
 }
 
-.faqa-accordion__answer p{
+.faqa-accordion-answer p{
   margin-top:5px;
   margin-right:0;
   margin-bottom:5px;

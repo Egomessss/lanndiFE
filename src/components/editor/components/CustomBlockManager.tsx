@@ -22,16 +22,20 @@ export default function CustomBlockManager({
   const editor = useEditor();
 
   const onClick = (id: string) => {
-    editor.runCommand('click:grab-block', { id: id });
+    const block = editor.Blocks.get(id);
+    const selectedComponent = editor.getSelected() as any; // Replace 'any' with the correct type if known
+    const component = block?.getContent();
 
-    editor.runCommand('click:drop-block', { id: id });
+    if (selectedComponent) {
+      const appendedBlock = selectedComponent.append(component)[0];
+      editor.select(appendedBlock)
+    }
   };
-
   return (
     <div className="w-full ">
       <Tooltip arrowOffset={10} color="dark" w={400} multiline arrowSize={4}
                label={<div className="flex flex-col gap-2"><p>1. Click and drag a block to display it on the canvas</p>
-                 <p>2. Click on the block and it will display in last place</p>
+                 <p>2. Select a canvas block and click to append the block inside of it.</p>
                  <p>Blocks with interactive elements can be only be interacted with preview mode, e.g. pricing with
                    switch can be switched on/off with preview mode and the values changed.</p></div>}
                withArrow position="top">

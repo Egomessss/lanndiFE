@@ -6,7 +6,7 @@ import ErrorMessage from '@/app/(sites)/Error';
 import React from 'react';
 import GjsEditor from '@/components/editor/wrappers/Editor';
 import grapesjs, { Editor } from 'grapesjs';
-import { editorConfigOptions } from '@/components/editor/utils/admin-options';
+
 import { AppShell, Button } from '@mantine/core';
 import EditorHeader from '@/components/editor/components/EditorHeader';
 import LeftSideBar from '@/components/editor/components/LeftSideBar';
@@ -17,7 +17,7 @@ import CustomAssetManager from '@/components/editor/components/CustomAssetManage
 import FloatingEditorButtons from '@/components/editor/components/FloatingEditorButtons';
 import { IconExclamationCircle } from '@tabler/icons-react';
 
-const EditorReusable = ({ isDemo }: { isDemo: boolean }) => {
+const EditorReusable = ({ isDemo, editorConfigOptions }: { isDemo: boolean, editorConfigOptions:any }) => {
 
   const { isSidePanelOpen } = useSidePanel();
   const params = useParams();

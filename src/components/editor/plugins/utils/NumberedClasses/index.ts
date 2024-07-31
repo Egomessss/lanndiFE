@@ -1,21 +1,23 @@
-import { Editor, Component } from 'grapesjs';
+import { Editor, Component, Selector } from 'grapesjs';
 
-interface NumberedClassesPluginConfig {
-  componentTypes: string[];
-  numberingPrefix: string;
-}
-
-const getBaseSelector = (component: Component): string => {
-  const classes = component.getClasses();
-  return classes.length > 0 ? classes[0] : '';
-};
 
 const addNumberedSelector = (editor: Editor, component: Component) => {
-  const baseSelector = getBaseSelector(component);
+  const baseSelector = component.getAttributes().baseClass;
   if (!baseSelector) return;
 
-  const count = editor.Css.getRules(`.${baseSelector}`)?.length;
+  console.log('baseSelector', baseSelector);
+
+  const count = editor.Selectors.getAll()
+    .filter((selector: Selector) => selector.getName().startsWith(baseSelector))
+    .length;
+  console.log('count', count);
+  const existingClasses = component.getClasses();
   const newSelector = `${baseSelector}'unnamed'${count + 1}`;
+  if (existingClasses.length >= 2 || existingClasses.some((cls: any) => cls.toLowerCase().includes('unnamed'))) {
+    console.log('Skipping new selector: Component has more than 2 classes or contains "unnamed" class');
+    return;
+  }
+  console.log('newSelector', newSelector);
   component.addClass(newSelector);
 };
 
@@ -28,37 +30,28 @@ const NumberedClasses = (editor: Editor) => {
   // Command to edit base style
   editor.Commands.add('edit-base-style', {
     run: (editor: Editor) => {
-      const selected = editor.getSelected();
-      if (selected) {
-        const baseSelector = getBaseSelector(selected);
-        const classes = selected.getClasses();
-
+      const classes = editor.Selectors.getSelectedAll();
+      if (classes) {
         // Disable all classes except the base one
-        classes.forEach(cls => {
-          if (cls !== baseSelector) {
-            selected.removeClass(cls);
-            selected.setClass(cls, { active: false });
+        classes.forEach((cls: any, index: number) => {
+          if (index !== 0) {
+            cls.setActive(false);
           }
         });
-
-        // Trigger style manager update
-        editor.Styles.select(selected);
       }
     },
     stop: (editor: Editor) => {
-      const selected = editor.getSelected();
-      if (selected) {
-        const classes = selected.getClasses();
-
+      const classes = editor.Selectors.getSelectedAll();
+      if (classes) {
         // Re-enable all classes
-        classes.forEach(cls => {
-          selected.setClass(cls, { active: true });
+        classes.forEach((cls: any) => {
+          cls.setActive(true);
         });
 
         // Trigger style manager update
-        editor.Styles.select(selected);
+        // editor.Styles.select(selected);
       }
-    }
+    },
   });
 };
 

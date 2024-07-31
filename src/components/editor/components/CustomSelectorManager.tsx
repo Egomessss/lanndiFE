@@ -1,9 +1,8 @@
-import * as React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { SelectorsResultProps, useEditor } from '../wrappers';
 import {
   ActionIcon,
-  Combobox,
+  Combobox, Divider,
   Group,
   Menu,
   Pill,
@@ -16,6 +15,8 @@ import {
   useCombobox,
 } from '@mantine/core';
 import {
+  IconBolt,
+  IconBrush,
   IconCheck,
   IconDotsVertical,
   IconExclamationCircle,
@@ -25,6 +26,9 @@ import {
   IconX,
 } from '@tabler/icons-react';
 import { Selector } from 'grapesjs';
+import CodeMirror, { EditorView } from '@uiw/react-codemirror';
+import { langs } from '@uiw/codemirror-extensions-langs';
+import { formatCss } from '@/components/editor/components/CustomAdvancedTraitManager';
 
 
 export default function CustomSelectorManager({
@@ -78,26 +82,21 @@ export default function CustomSelectorManager({
   const [selectorName, setSelectorName] = useState('');
 
   const [isRenamingSelector, setIsRenamingSelector] = useState(false);
-  // const [isCloningAndRenaming, setIsCloningAndRenaming] = useState(false);
 
 
-  // const cloneAndRenameSelector = () => {
-  //   // clone the previous style
-  //   // add rules and change the selector name
-  //   // remove the class from the selected component
-  //   // add the class to the select component
-  //   const clonedStyle = editor.Css.getRule(`.${selector?.getName()}`)?.toCSS();
-  //   console.log('cloned style', clonedStyle);
-  //   if (selector) {
-  //     // @ts-ignore
-  //     editor.Css.setClassRule(`.${selectorName}`, clonedStyle);
-  //     removeSelector(selector);
-  //     addSelector(selectorName);
-  //     setIsRenamingSelector(false);
-  //     setIsCloningAndRenaming(false);
-  //     setSelectorName('');
-  //   }
-  // };
+  const styleBaseClass = () => {
+    if (editor.getSelected()?.getClasses().length <= 1)
+      return;
+
+    if (editor.Commands.isActive('edit-base-style')) {
+      editor.Commands.stop('edit-base-style');
+      // setIsMoveActive(false);
+    } else {
+      editor.Commands.run('edit-base-style');
+      // setIsMoveActive(true);
+    }
+  };
+
 
   const renameSelector = () => {
     if (selector) {
@@ -109,97 +108,120 @@ export default function CustomSelectorManager({
   };
 
 
-  const values = selectors.map((selector) => (
-      <div key={selector.toString()} className="flex gap-1 items-center w-full overflow-hidden">
-        <Pill
-          style={selector.getActive() ? {} : { opacity: 0.5 }}
-          disabled={!selector.getActive()}
-          radius="xs"
-        >
-          <span>{selector.toString()}</span>
-        </Pill>
-        <Menu shadow="md">
-          <Menu.Target>
-            <ActionIcon variant="subtle" size="xs">
-              <IconDotsVertical size="0.7rem" /></ActionIcon>
-          </Menu.Target>
-          <Menu.Dropdown>
-            <Menu.Label>Utility</Menu.Label>
-            <Menu.Item onClick={(e) => {
-              e.stopPropagation();
-              setIsRenamingSelector(true);
-              // setIsCloningAndRenaming(false);
-              setSelector(selector);
-              combobox.closeDropdown();
-            }
-            }>
-              <div className="flex items-center justify-between w-full"><span>Rename class</span>
-                <Tooltip label="This will rename all the classes not just one">
-                  <IconExclamationCircle size="1rem" />
-                </Tooltip>
-              </div>
-            </Menu.Item>
-            {/*<Menu.Item onClick={(e) => {*/}
-            {/*  e.stopPropagation();*/}
-            {/*  setIsCloningAndRenaming(true);*/}
-            {/*  setIsRenamingSelector(false);*/}
-            {/*  setSelector(selector);*/}
-            {/*}*/}
-            {/*}>*/}
-            {/*  <div className="flex items-center justify-between w-full gap-2"><span>Clone & Rename</span>*/}
-            {/*    <Tooltip label="This will clone the styles and allow you to change the new cloned style class">*/}
-            {/*      <IconExclamationCircle size="1rem" />*/}
-            {/*    </Tooltip>*/}
-            {/*  </div>*/}
-            {/*</Menu.Item>*/}
+  const values = selectors.map((selector) => {
+    // console.log(selector);
+      const classes = editor.Css.getRules(`.${selector.getName()}`).map((rule) => rule.toCSS().toString()).join('\n');
+      // console.log('class', classes);
 
-            <Menu.Item onClick={() => disableSelector(selector)}>
-              <div className="flex items-center justify-between w-full">
-                {selector.getActive() ? 'Disable' : 'Enable'}
-                <Tooltip label="Edit a class style without affecting the disabled one">
-                  <IconExclamationCircle size="1rem" />
-                </Tooltip>
-              </div>
-            </Menu.Item>
-            <Menu.Divider />
-            <Menu.Label>Danger zone</Menu.Label>
-            <Menu.Item
-              color="red"
-              onClick={() => removeSelector(selector)}
-              // add tooltip
-            >
-              <div className="flex items-center justify-between w-full"><span>Remove</span>
-                <Tooltip label="Removes the class from the selected blocks">
-                  <IconExclamationCircle size="1rem" />
-                </Tooltip>
-              </div>
+      let formattedCss: string;
 
-            </Menu.Item>
-            <Menu.Item
-              color="red"
-              onClick={() => deleteSelector(selector)}
-              // add tooltip
-            >
-              <div className="flex items-center justify-between w-full"><span>Delete</span>
-                <Tooltip label="Deletes the class from the project">
-                  <IconExclamationCircle size="1rem" />
-                </Tooltip>
-              </div>
-            </Menu.Item>
-          </Menu.Dropdown>
-        </Menu></div>
-    ))
+      if (classes) {
+        formattedCss = formatCss(classes);
+      } else {
+        formattedCss = 'No css found';
+      }
+
+      return (
+        <div key={selector.toString()} className="flex gap-1 items-center w-full overflow-hidden">
+          <Tooltip w={400} p="xs" position="left-end" style={{ height: 'fit-content' }} multiline color="dark"
+                   label={<CodeMirror
+                     value={formattedCss} theme="dark"
+                     extensions={[langs.css(), EditorView.lineWrapping]}
+                   />}><Pill
+            style={selector.getActive() ? {} : { opacity: 0.5 }}
+            disabled={!selector.getActive()}
+            radius="xs"
+          >
+            <span>{selector.toString()}</span>
+          </Pill></Tooltip>
+          <Menu shadow="md">
+            <Menu.Target>
+              <ActionIcon variant="subtle" size="xs">
+                <IconDotsVertical size="0.7rem" /></ActionIcon>
+            </Menu.Target>
+            <Menu.Dropdown>
+              <Menu.Label>Utility</Menu.Label>
+              <Menu.Item onClick={(e) => {
+                e.stopPropagation();
+                setIsRenamingSelector(true);
+                // setIsCloningAndRenaming(false);
+                setSelector(selector);
+                combobox.closeDropdown();
+              }
+              }>
+                <div className="flex items-center justify-between w-full"><span>Rename class</span>
+                  <Tooltip label="This will rename all the classes not just one">
+                    <IconExclamationCircle size="1rem" />
+                  </Tooltip>
+                </div>
+              </Menu.Item>
+
+              <Menu.Item onClick={() => disableSelector(selector)}>
+                <div className="flex items-center justify-between w-full">
+                  {selector.getActive() ? 'Disable' : 'Enable'}
+                  <Tooltip label="Edit a class style without affecting the disabled one">
+                    <IconExclamationCircle size="1rem" />
+                  </Tooltip>
+                </div>
+              </Menu.Item>
+              <Menu.Divider />
+              <Menu.Label>Danger zone</Menu.Label>
+              <Menu.Item
+                color="red"
+                onClick={() => removeSelector(selector)}
+                // add tooltip
+              >
+                <div className="flex items-center justify-between w-full"><span>Remove</span>
+                  <Tooltip label="Removes the class from the selected blocks">
+                    <IconExclamationCircle size="1rem" />
+                  </Tooltip>
+                </div>
+
+              </Menu.Item>
+              <Menu.Item
+                color="red"
+                onClick={() => deleteSelector(selector)}
+                // add tooltip
+              >
+                <div className="flex items-center justify-between w-full"><span>Delete</span>
+                  <Tooltip label="Deletes the class from the project">
+                    <IconExclamationCircle size="1rem" />
+                  </Tooltip>
+                </div>
+              </Menu.Item>
+            </Menu.Dropdown>
+          </Menu></div>
+      );
+    })
   ;
 
   const options = allSelectors
     .filter((item) => item.toLowerCase().includes(search.trim().toLowerCase()))
-    .map((item) => (
-      <Combobox.Option value={item} key={item}>
-        <Group gap="sm">
-          <span>{item}</span>
-        </Group>
-      </Combobox.Option>
-    ));
+    .map((item) => {
+      const classes = editor.Css.getRules(item).map((rule) => rule.toCSS().toString()).join('\n');
+      // console.log('class', classes);
+
+      let formattedCss: string;
+
+      if (classes) {
+        formattedCss = formatCss(classes);
+      } else {
+        formattedCss = 'No css found';
+      }
+
+      return (
+        <Tooltip w={400} p="xs" position="left-end" style={{ height: 'fit-content' }} multiline color="dark" key={item}
+                 label={<CodeMirror
+                   value={formattedCss} theme="dark"
+                   extensions={[langs.css(), EditorView.lineWrapping]}
+                 />}>
+          <Combobox.Option value={item}>
+            <Group gap="sm">
+              <span>{item}</span>
+            </Group>
+          </Combobox.Option>
+        </Tooltip>);
+    });
 
 
   const isComponentFirst = editor.Selectors.getComponentFirst();
@@ -207,6 +229,10 @@ export default function CustomSelectorManager({
   const setComponentFirst = () => {
     editor.Selectors.setComponentFirst(!isComponentFirst);
   };
+
+
+  const isInteractive = editor.getSelected()?.get('isInteractive');
+
 
   return (
     <div className=" flex flex-col  gap-2 text-left">
@@ -238,12 +264,38 @@ export default function CustomSelectorManager({
 
       <div className="flex flex-col gap-2 items-start w-full h-full">
         <div className="flex justify-between w-full h-full ">
-
           <Tooltip color="blue"
                    label={`Block ID - #${targetsIds.toString()}`}>
             <ActionIcon
               variant="subtle">
               <IconHash size="1rem" />
+            </ActionIcon>
+          </Tooltip>
+          {isInteractive
+            && <Tooltip color="dark"
+                        label={<div>
+                          <p>This block is Interactive</p>
+                          <p>It uses special classes to add
+                            interactivity to the block</p>
+                          <p>You should not modify these
+                            classes as this will break the
+                            interactivity:</p>
+                          {editor.getSelected()?.get('interactiveClasses')?.map((c: string, i: number) => (
+                            <p className="font-bold text-red-500" key={i}>[{c}]</p>
+                          ))}
+                        </div>}>
+              <ActionIcon
+                color="green"
+                variant="subtle">
+                <IconBolt size="1rem" />
+              </ActionIcon>
+            </Tooltip>}
+          <Tooltip color="blue"
+                   label="Style base class">
+            <ActionIcon
+              onClick={styleBaseClass}
+              variant={editor.Commands.isActive('edit-base-style') ? 'filled' : 'subtle'}>
+              <IconBrush size="1rem" />
             </ActionIcon>
           </Tooltip>
           <Tooltip position="left" color="dark" multiline w={700}
@@ -266,9 +318,16 @@ export default function CustomSelectorManager({
                        <p>Tip 5: The latest class will always take precedent over the previous one. Use this to add
                          extra styles without affecting base classes. e.g. Adding a background color to just one of
                          three grid items</p>
-                       <p>Tip 6: You can disable certain style classes to modify a specific class style when you have multiple ones for a select block</p>
-                       <p>Tip 7: Combo classes add another layer of styles on just the last class without modifying the previous one, example you have a heading with a class of hero-heading which has a white text colour on your homepage, but then you have another page where you need your hero heading to be black, you just add another class on top of the select block such as hero-heading-text-black thus allowing you to make slight changes to a block style without modifying certain classes</p>
-                       <p className="font-bold">Important: Always remember If you can&apos;t change a style its either because you styled that block using the priority style(ID) or you&apos;re styling the wrong breakpoint </p>
+                       <p>Tip 6: You can disable certain style classes to modify a specific class style when you have
+                         multiple ones for a select block</p>
+                       <p>Tip 7: Combo classes add another layer of styles on just the last class without modifying the
+                         previous one, example you have a heading with a class of hero-heading which has a white text
+                         colour on your homepage, but then you have another page where you need your hero heading to be
+                         black, you just add another class on top of the select block such as hero-heading-text-black
+                         thus allowing you to make slight changes to a block style without modifying certain classes</p>
+                       <p className="font-bold">Important: Always remember If you can&apos;t change a style its either
+                         because you styled that block using the priority style(ID) or you&apos;re styling the wrong
+                         breakpoint </p>
                      </div>}>
             <ActionIcon onClick={setComponentFirst}
                         variant={isComponentFirst ? 'filled' : 'subtle'}>
@@ -297,7 +356,7 @@ export default function CustomSelectorManager({
             </Tooltip>
           </div>
         </div>
-        {!isComponentFirst &&  <Combobox styles={{
+        {!isComponentFirst && <Combobox styles={{
           dropdown: { width: '100%' },
         }} store={combobox}
                                         onOptionSubmit={(val) => {
@@ -344,6 +403,7 @@ export default function CustomSelectorManager({
 
           <Combobox.Dropdown>
             <Combobox.Options>
+              <Divider size="xs" label="Existing Classes" />
               <ScrollArea.Autosize mah={200} type="scroll">
                 {options}
                 {!exactOptionMatch && search.trim().length > 0 && (
@@ -355,7 +415,7 @@ export default function CustomSelectorManager({
               </ScrollArea.Autosize>
             </Combobox.Options>
           </Combobox.Dropdown>
-        </Combobox> }
+        </Combobox>}
 
         {/*{isCloningAndRenaming &&*/}
         {/*  <TextInput autoFocus className="w-full" placeholder="Insert new class name" size="xs" my={8}*/}
@@ -367,14 +427,14 @@ export default function CustomSelectorManager({
 
         {isRenamingSelector &&
           <div className="flex flex-col justify-start w-full">
-          <TextInput autoFocus className="w-full" placeholder="Insert new class name" size="xs" my={8}
-                     value={selectorName}
-                     onChange={(event) => setSelectorName(event.currentTarget.value)}
-                     rightSection={
-                       <ActionIcon size="sm" onClick={() => renameSelector()}><IconCheck
-                         size="1rem" /></ActionIcon>} />
+            <TextInput autoFocus className="w-full" placeholder="Insert new class name" size="xs" my={8}
+                       value={selectorName}
+                       onChange={(event) => setSelectorName(event.currentTarget.value)}
+                       rightSection={
+                         <ActionIcon size="sm" onClick={() => renameSelector()}><IconCheck
+                           size="1rem" /></ActionIcon>} />
             <ActionIcon size="xs" color="red" onClick={() => setIsRenamingSelector(false)}><IconX
-            size="1rem" /></ActionIcon>
+              size="1rem" /></ActionIcon>
           </div>}
       </div>
 

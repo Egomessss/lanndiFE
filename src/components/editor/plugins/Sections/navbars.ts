@@ -509,6 +509,7 @@ height:fit-content;
         defaults: {
           // droppable: false,
           name: label,
+          isInteractive: true, interactiveClasses:[`${navbarPfx}-burger-menu`,`${navbarPfx}-burger-line`, `${navbarPfx}-items-c`, `${navbarPfx}-navbar-menu`],
           attributes: { class: navbarPfx },
           components: { type: idContainer },
           styles: `
@@ -662,6 +663,7 @@ height:fit-content;
           // droppable: false,
           // draggable: false,
           removable: false,
+          isInteractive: true, interactiveClasses:[`${navbarPfx}-menu`,`${navbarPfx}-burger-menu`,`${navbarPfx}-burger-line`],
           copyable: false,
           highlightable: false,
           components: [
@@ -682,6 +684,7 @@ height:fit-content;
         defaults: {
           name: 'Navbar Menu',
           tagName: 'nav',
+          isInteractive: true, interactiveClasses:[`${navbarPfx}-menu`,`${navbarPfx}-burger-menu`,`${navbarPfx}-burger-line`],
           attributes: { class: `${navbarPfx}-menu` },
           components: [
             { type: idNavMenuLink, components: 'Pricing' },
@@ -697,6 +700,7 @@ height:fit-content;
       model: {
         defaults: {
           name: 'Menu link',
+          isInteractive: true, interactiveClasses:[`${navbarPfx}-menu`,`${navbarPfx}-burger-menu`,`${navbarPfx}-burger-line`],
           draggable: `[data-gjs-type="${idNavMenu}"]`,
           attributes: { class: `${navbarPfx}-menu-link` },
           styles: `.navbar-menu-link {
@@ -723,9 +727,10 @@ height:fit-content;
           droppable: false,
           copyable: false,
           removable: false,
+          isInteractive: true, interactiveClasses:[`${navbarPfx}-burger-menu`,`${navbarPfx}-burger-line`],
           script: function() {
             const burgerMenu = document.querySelector('.navbar-burger');
-            const navLink = document.querySelectorAll('.navbar-menu-link');
+
             let isToggled = false;
 
 
@@ -752,24 +757,24 @@ height:fit-content;
             let isAnimating = 0;
 
 
-            const navParent = currentEl.closest(`[data-gjs=navbar]`);
-            const navItems = navParent?.querySelector(`[data-gjs=navbar-items]`) as HTMLElement;
+            // const navParent = currentEl.closest(`[data-gjs=navbar]`);
+            // const navItems = navParent?.querySelector(`[data-gjs=navbar-items]`) as HTMLElement;
 
-            const isEditorAvailable = typeof editor !== 'undefined' && editor !== null;
-
-            if (!isEditorAvailable && isToggled) {
-              navLink.forEach(link => {
-                link.addEventListener('click', () => {
-                  toggleSlide(navItems);
-                  const burgerLines = burgerMenu?.querySelectorAll('.navbar-burger-line');
-                  console.log('burger lines', burgerLines);
-                  // Step 5: Iterate over each burger line and toggle the 'active' class
-                  burgerLines?.forEach(line => {
-                    line.classList.toggle('active');
-                  });
-                });
-              });
-            }
+            // const isEditorAvailable = typeof editor !== 'undefined' && editor !== null;
+            //
+            // if (!isEditorAvailable && isToggled) {
+            //   navLink.forEach(link => {
+            //     link.addEventListener('click', () => {
+            //       toggleSlide(navItems);
+            //       const burgerLines = burgerMenu?.querySelectorAll('.navbar-burger-line');
+            //       console.log('burger lines', burgerLines);
+            //       // Step 5: Iterate over each burger line and toggle the 'active' class
+            //       burgerLines?.forEach(line => {
+            //         line.classList.toggle('active');
+            //       });
+            //     });
+            //   });
+            // }
 
 
             const getTransitionEvent = function() {
@@ -887,6 +892,7 @@ height:fit-content;
           draggable: false,
           selectable: false,
           copyable: false,
+          isInteractive: true, interactiveClasses:[`${navbarPfx}-burger-line`],
           removable: false,
           highlightable: false,
           hoverable: false,

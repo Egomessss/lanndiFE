@@ -6,7 +6,6 @@ import MediaBlocks from '../plugins/BasicBlocks/MediaBlocks';
 import ListBlocks from '../plugins/BasicBlocks/ListBlocks';
 import CustomCode from '@/components/editor/plugins/utils/CustomCode';
 import Sections from '@/components/editor/plugins/Sections';
-import { EditorData } from '@/hooks/use-editor-data';
 import UtilsPlugin from '@/components/editor/plugins/utils/UtilsPlugin/utils-plugin';
 import GoogleIcons from '@/components/editor/plugins/utils/GoogleIcons';
 import ScriptEditor from '@/components/editor/plugins/utils/ScriptEditor';
@@ -14,8 +13,6 @@ import PostCss from '../plugins/utils/PostCss';
 import { starterTemplate, styleStarterTemplate } from '@/components/editor/templates/Starter';
 import { styles } from '@/components/editor/utils/styles';
 import FormBlocks from '@/components/editor/plugins/BasicBlocks/FormsBlocks';
-import Accordion from '@/components/editor/plugins/BasicBlocks/Accordion';
-import Tabs from '@/components/editor/plugins/BasicBlocks/Tabs';
 import Templates from '@/components/editor/plugins/Templates';
 import ClickAndDrop from '@/components/editor/plugins/utils/ClickAndDrop/plugin';
 
@@ -75,7 +72,7 @@ export const demoEditorConfigOptions = () => ({
     ],
   },
   selectorManager: {
-    stylePrefix: 'lnd-', componentFirst: true, states: [
+    stylePrefix: 'lnd-', componentFirst: false, states: [
       { name: 'hover', label: 'Hover', info: 'Change styles on user hover' },
       { name: 'focus', label: 'Focus', info: 'Change styles on user focus' },
       { name: 'active', label: 'Active', info: 'Change styles on active element' },

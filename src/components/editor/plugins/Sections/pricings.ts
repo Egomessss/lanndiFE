@@ -426,7 +426,7 @@ display:grid;
       </div>
     </div>
   `,
-        styles:`
+        styles: `
      .p3h-container{
   height:fit-content;
   width:90%;
@@ -681,6 +681,7 @@ display:grid;
       defaults: {
         script: script,
         name: 'Pricing With Monthly/Annual Switch',
+        isInteractive: true, interactiveClasses: ['pws-togglePricing', 'pws-price-monthly', 'pws-price-annual'],
         // Define default values for your custom properties
         components: ` 
    <div class="pws-container">
@@ -794,7 +795,7 @@ display:grid;
       </div>
     </div>
   `,
-        styles:`
+        styles: `
      .pws-container{
   height:fit-content;
   width:90%;
@@ -1035,7 +1036,6 @@ display:grid;
     },
 
   });
-
 
 
 };

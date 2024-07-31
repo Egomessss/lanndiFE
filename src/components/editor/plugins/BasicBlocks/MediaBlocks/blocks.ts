@@ -74,6 +74,11 @@ const MediaBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
         attributes: { class: 'image' },
         traits: [
           {
+            name:'id',
+            type: 'text',
+            label: 'ID',
+          },
+          {
             // lazy load
             name: 'alt', // Name of the trait
             type: 'base',

@@ -8,7 +8,7 @@ import { useDisclosure } from '@mantine/hooks';
 import useUser from '@/hooks/use-user';
 
 // Function to format the CSS string
-const formatCss = (cssString: any): string => {
+export const formatCss = (cssString: any): string => {
   return cssString.replace(/}/g, '}\n\n').replace(/{/g, ' {\n  ').replace(/;/g, ';\n  ').replace(/\n  \n/g, '\n');
 };
 
