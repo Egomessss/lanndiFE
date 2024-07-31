@@ -1033,6 +1033,14 @@ display:grid;
 
 `,
       },
+      init() {
+        const interactiveClasses = this.get('interactiveClasses') as string[];
+
+        interactiveClasses.map((className) => {
+          editor.Selectors.get(className)?.set('protected', true);
+        });
+
+      },
     },
 
   });

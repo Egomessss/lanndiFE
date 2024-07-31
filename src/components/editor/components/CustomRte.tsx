@@ -9,9 +9,15 @@ import { Underline } from '@tiptap/extension-underline';
 import { useEffect } from 'react';
 import { IconDeviceFloppy } from '@tabler/icons-react';
 import Loading from '@/app/(sites)/Loading';
+import { OrderedList } from '@tiptap/extension-ordered-list';
+import { Bold } from '@tiptap/extension-bold';
+import { BulletList } from '@tiptap/extension-bullet-list';
+import { ListItem } from '@tiptap/extension-list-item';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Heading } from '@tiptap/extension-heading';
+import { Italic } from '@tiptap/extension-italic';
 
-const content =
-  '<h2 style="text-align: center;">Welcome to Mantine rich text editor</h2><p><code>RichTextEditor</code> component focuses on usability and is designed to be as simple as possible to bring a familiar editing experience to regular users. <code>RichTextEditor</code> is based on <a href="https://tiptap.dev/" rel="noopener noreferrer" target="_blank">Tiptap.dev</a> and supports all of its features:</p><ul><li>General text formatting: <strong>bold</strong>, <em>italic</em>, <u>underline</u>, <s>strike-through</s> </li><li>Headings (h1-h6)</li><li>Sub and super scripts (<sup>&lt;sup /&gt;</sup> and <sub>&lt;sub /&gt;</sub> tags)</li><li>Ordered and bullet lists</li><li>Text align&nbsp;</li><li>And all <a href="https://tiptap.dev/extensions" target="_blank" rel="noopener noreferrer">other extensions</a></li></ul>';
+
 
 
 const CustomRte = () => {
@@ -26,11 +32,58 @@ const CustomRte = () => {
   // Initialize the Tiptap editor with extensions
   const rteEditor = useTiptapEditor({
     extensions: [
-      StarterKit,
-      Link,
-      Underline,
-      // Underline,
+      StarterKit.configure({
+        heading: {
+          HTMLAttributes: {
+            class: "rte-h",
+          },
+        },
+        bold: {
+          HTMLAttributes: {
+            class: 'rte-bold',
+          }
+        },
+        strike: {
+          HTMLAttributes: {
+            class: 'rte-strike',
+          }
+        },
+        italic: {
+          HTMLAttributes: {
+            class: 'rte-italic',
+          }
+        },
+        orderedList: {
+          HTMLAttributes: {
+            class: 'rte-ol',
+          }
+        },
+        bulletList: {
+          HTMLAttributes: {
+            class: 'rte-ul',
+          }
+        },paragraph: {
+          HTMLAttributes: {
+            class: 'rte-p',
+          }
+        },
+        listItem: {
+          HTMLAttributes: {
+            class: 'rte-li',
+          }
+        },
+      }),
+      Underline.configure({
+        HTMLAttributes: {
+          class: 'rte-underline',
+        },
+      }),
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
+      Link.configure({
+        HTMLAttributes: {
+          class: 'rte-link',
+        },
+      }),
     ],
     content: richTextContent,
     immediatelyRender: false,
@@ -109,7 +162,7 @@ const CustomRte = () => {
                   aria-label="Save"
                   title="Save"
                   color="blue"
-                  className="text-xs px-4 mx-4 "
+                  className="text-xs px-4 mx-4 flex-grow"
                 >
                   <div className="flex gap-2 items-center">
                     <p>Save</p>

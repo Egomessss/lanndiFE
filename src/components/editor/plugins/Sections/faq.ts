@@ -37,7 +37,8 @@ const faqs = (editor: Editor) => {
     model: {
       defaults: {
         script: script,
-        isInteractive: true, interactiveClasses:['faqa-accordion-question'],
+        isInteractive: true,
+        interactiveClasses: ['faqa-accordion-question'],
         name: 'FAQ Accordion',
         // attributes: { class: 'faq-one' },
         components: `  
@@ -175,7 +176,16 @@ const faqs = (editor: Editor) => {
 }
 `,
       },
+      init() {
+        const interactiveClasses = this.get('interactiveClasses') as string[];
+
+        interactiveClasses.map((className) => {
+          editor.Selectors.get(className)?.set('protected', true);
+        });
+
+      },
     },
+
   });
 
 

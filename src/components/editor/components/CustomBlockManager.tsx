@@ -28,9 +28,16 @@ export default function CustomBlockManager({
 
     if (selectedComponent) {
       const appendedBlock = selectedComponent.append(component)[0];
-      editor.select(appendedBlock)
+      if(appendedBlock){
+        editor.select(appendedBlock)
+      }
     }
   };
+
+  console.log(editor.Css.getAll());
+
+
+
   return (
     <div className="w-full ">
       <Tooltip arrowOffset={10} color="dark" w={400} multiline arrowSize={4}

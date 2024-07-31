@@ -507,69 +507,58 @@ height:fit-content;
     Components.addType(id, {
       model: {
         defaults: {
-          // droppable: false,
           name: label,
-          isInteractive: true, interactiveClasses:[`${navbarPfx}-burger-menu`,`${navbarPfx}-burger-line`, `${navbarPfx}-items-c`, `${navbarPfx}-navbar-menu`],
+          isInteractive: true,
+          interactiveClasses: [`${navbarPfx}-burger`, `${navbarPfx}-burger-line`, `${navbarPfx}-items-c`, `${navbarPfx}-navbar-menu`],
           attributes: { class: navbarPfx },
           components: { type: idContainer },
           styles: `
           .${navbarPfx} {
-           max-width: 1200px;
+            max-width: 1200px;
             min-height: 50px;
             width: 100%;
-            margin-right:auto;
-            margin-left:auto;
+            margin-right: auto;
+            margin-left: auto;
           }
-
           .${navbarPfx}-container {
-
-            display:flex;
-            flex-direction:row;
+            display: flex;
+            flex-direction: row;
             justify-content: space-between;
             align-items: center;
           }
-
           .${navbarPfx}-items-c {
             display: flex;
-         justify-content: space-between;
+            justify-content: space-between;
             align-items: center;
             column-gap: 10px;
           }
-
           .${navbarPfx}-container::after {
             clear: both;
             display: block;
           }
-
           .${navbarPfx}-brand-link-box {
-            
             height: fit-content;
             width: fit-content;
-       text-decoration: none;
-       color: inherit;
-    
+            text-decoration: none;
+            color: inherit;
             padding: 10px 10px 10px 10px;
-              display: flex;
-         justify-content: space-between;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
             column-gap: 10px;
           }
-          
-           .${navbarPfx}-brand-img{
-            
+          .${navbarPfx}-brand-img {
             height: 25px;
             width: 25px;
           }
-
           .${navbarPfx}-menu {
             padding: 10px 0;
             display: flex;
-         justify-content: space-between;
+            justify-content: space-between;
             align-items: center;
             column-gap: 10px;
             margin: 0;
           }
-
           .${navbarPfx}-menu-link {
             margin: 0;
             color: inherit;
@@ -577,7 +566,6 @@ height:fit-content;
             display: inline-block;
             padding: 10px 15px;
           }
-
           .${navbarPfx}-burger {
             margin: 10px 0;
             width: 45px;
@@ -585,72 +573,71 @@ height:fit-content;
             display: none;
             cursor: pointer;
           }
-
           .${navbarPfx}-burger-line {
-           display: block;
-    width: 25px;
-    height: 3px;
-    margin: 5px auto;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-    background-color: #101010;
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            background-color: #101010;
           }
-
           @media (max-width: 880px) {
-  .${navbarPfx}-items-c {
-    display: none; /* Hide by default */
-    position: fixed; /* Make it fixed to cover the whole screen */
-    top: 4rem;
-    left: 0;
-    width: 100%;
-    height: fit-content;
-    background-color: white; /* Semi-transparent background */
-    z-index: 1050; /* Ensure it's above other content */
-    overflow-y: auto; /* Enable scroll if content is taller than the screen */
-    padding: 1rem 1rem 1rem 1rem;
-  }
-  
-   .${navbarPfx}-menu {
-    width: 100%;
-    height: fit-content;
-    display:flex;
-    flex-direction: column; /* Stack items vertically */
-    justify-content: flex-start; /* Align items to the top */
-    align-items: center; /* Center items horizontally */
-    row-gap: 1rem; /* Remove the gap between items */
-    background-color: white; /* Semi-transparent background */
-    z-index: 1050; /* Ensure it's above other content */
-    overflow-y: auto; /* Enable scroll if content is taller than the screen */
-    padding-top: 2rem; /* Add some space at the top */
-    padding-bottom: 2rem; /* Add some space at the top */
-  }
-  
-
-  .${navbarPfx}-burger {
-    display: block; /* Ensure burger menu is always displayed */
-  }
-
-  .${navbarPfx}-menu-link {
-    display: block; /* Stack links vertically */
-    width: 100%; /* Full width links */
-    text-align: center; /* Center text */
-    padding: 15px; /* Increase padding */
-    border-bottom: 1px solid #ddd; /* Add a separator between links */
-  }
-   .${navbarPfx}-burger-line:nth-child(2).active {
-    opacity: 0;
-}
-
- .${navbarPfx}-burger-line:nth-child(1).active {
-    transform: translateY(8px) rotate(45deg);
-    
-}
-
- .${navbarPfx}-burger-line:nth-child(3).active {
-    transform: translateY(-8px) rotate(-45deg);
-}
-}
+            .${navbarPfx}-items-c {
+              display: none;
+              position: fixed;
+              top: 4rem;
+              left: 0;
+              width: 100%;
+              height: fit-content;
+              background-color: white;
+              z-index: 1050;
+              overflow-y: auto;
+              padding: 1rem 1rem 1rem 1rem;
+            }
+            .${navbarPfx}-menu {
+              width: 100%;
+              height: fit-content;
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-start;
+              align-items: center;
+              row-gap: 1rem;
+              background-color: white;
+              z-index: 1050;
+              overflow-y: auto;
+              padding-top: 2rem;
+              padding-bottom: 2rem;
+            }
+            .${navbarPfx}-burger {
+              display: block;
+            }
+            .${navbarPfx}-menu-link {
+              display: block;
+              width: 100%;
+              text-align: center;
+              padding: 15px;
+              border-bottom: 1px solid #ddd;
+            }
+            .${navbarPfx}-burger-line:nth-child(2).active {
+              opacity: 0;
+            }
+            .${navbarPfx}-burger-line:nth-child(1).active {
+              transform: translateY(8px) rotate(45deg);
+            }
+            .${navbarPfx}-burger-line:nth-child(3).active {
+              transform: translateY(-8px) rotate(-45deg);
+            }
+          }
         `,
+        },
+        init() {
+          const interactiveClasses = this.get('interactiveClasses') as string[];
+
+          interactiveClasses.map((className) => {
+            editor.Selectors.get(className)?.set('protected', true);
+          })
+
         },
       },
     });
@@ -663,7 +650,8 @@ height:fit-content;
           // droppable: false,
           // draggable: false,
           removable: false,
-          isInteractive: true, interactiveClasses:[`${navbarPfx}-menu`,`${navbarPfx}-burger-menu`,`${navbarPfx}-burger-line`],
+          isInteractive: true,
+          interactiveClasses: [`${navbarPfx}-menu`, `${navbarPfx}-burger-menu`, `${navbarPfx}-burger-line`],
           copyable: false,
           highlightable: false,
           components: [
@@ -684,7 +672,8 @@ height:fit-content;
         defaults: {
           name: 'Navbar Menu',
           tagName: 'nav',
-          isInteractive: true, interactiveClasses:[`${navbarPfx}-menu`,`${navbarPfx}-burger-menu`,`${navbarPfx}-burger-line`],
+          isInteractive: true,
+          interactiveClasses: [`${navbarPfx}-menu`, `${navbarPfx}-burger-menu`, `${navbarPfx}-burger-line`],
           attributes: { class: `${navbarPfx}-menu` },
           components: [
             { type: idNavMenuLink, components: 'Pricing' },
@@ -700,7 +689,8 @@ height:fit-content;
       model: {
         defaults: {
           name: 'Menu link',
-          isInteractive: true, interactiveClasses:[`${navbarPfx}-menu`,`${navbarPfx}-burger-menu`,`${navbarPfx}-burger-line`],
+          isInteractive: true,
+          interactiveClasses: [`${navbarPfx}-menu`, `${navbarPfx}-burger-menu`, `${navbarPfx}-burger-line`],
           draggable: `[data-gjs-type="${idNavMenu}"]`,
           attributes: { class: `${navbarPfx}-menu-link` },
           styles: `.navbar-menu-link {
@@ -727,7 +717,7 @@ height:fit-content;
           droppable: false,
           copyable: false,
           removable: false,
-          isInteractive: true, interactiveClasses:[`${navbarPfx}-burger-menu`,`${navbarPfx}-burger-line`],
+          isInteractive: true, interactiveClasses: [`${navbarPfx}-burger-menu`, `${navbarPfx}-burger-line`],
           script: function() {
             const burgerMenu = document.querySelector('.navbar-burger');
 
@@ -892,7 +882,7 @@ height:fit-content;
           draggable: false,
           selectable: false,
           copyable: false,
-          isInteractive: true, interactiveClasses:[`${navbarPfx}-burger-line`],
+          isInteractive: true, interactiveClasses: [`${navbarPfx}-burger-line`],
           removable: false,
           highlightable: false,
           hoverable: false,

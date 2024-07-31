@@ -57,11 +57,16 @@ export default function CustomSelectorManager({
 
 
   const deleteSelector = (selector: Selector) => {
-    removeSelector(selector);
-    const cssToRemove = editor.Css.getRules(`.${selector.getName()}`);
-    // console.log(cssToRemove);
-    // @ts-ignore
-    editor.Css.remove(cssToRemove);
+
+    const protectedClass = selector.get('protected');
+
+    if (!protectedClass) {
+      removeSelector(selector);
+      const cssToRemove = editor.Css.getRules(`.${selector.getName()}`);
+      // console.log(cssToRemove);
+      // @ts-ignore
+      editor.Css.remove(cssToRemove);
+    }
   };
 
   // const duplicateSelector = (selector:Selector) => {
@@ -84,6 +89,53 @@ export default function CustomSelectorManager({
   const [isRenamingSelector, setIsRenamingSelector] = useState(false);
 
 
+  const [isCloningAndRenaming, setIsCloningAndRenaming] = useState(false);
+
+
+  const cloneAndRenameSelector = () => {
+    // Ensure the selector is defined
+    if (!selector) return;
+
+    const protectedClass = selector.get('protected');
+
+    if (protectedClass) return;
+
+    // Convert the selector to string
+    const selectorString = selector.toString();
+
+    // Get all CSS rules for the given selector
+    const classRules = editor.Css.getRules(selectorString);
+
+    // Clone the CSS styles by converting rules to string
+    const clonedStyle = classRules.map((rule) => rule.toCSS().toString()).join('\n');
+
+    // Log the cloned style for debugging
+    console.log('cloned style', clonedStyle);
+
+    // Create a new regular expression to replace the old selector with the new one
+    const replaceClassName = new RegExp(selectorString, 'g');
+    const newStyle = clonedStyle.replace(replaceClassName, `.${selectorName}`);
+
+    // Check if the newStyle is successfully created
+    if (newStyle) {
+      // Add the new rules with the new selector name
+      editor.Css.addRules(newStyle);
+
+      // Remove the old selector from the component
+      removeSelector(selector);
+
+      // Add the new selector to the component
+      addSelector(selectorName);
+
+      // Reset the state variables
+      setIsRenamingSelector(false);
+      setIsCloningAndRenaming(false);
+      setSelectorName('');
+    } else {
+      console.error('Failed to create new style');
+    }
+  };
+
   const styleBaseClass = () => {
     if (editor.getSelected()?.getClasses().length <= 1)
       return;
@@ -99,6 +151,11 @@ export default function CustomSelectorManager({
 
 
   const renameSelector = () => {
+
+    const protectedClass = selector?.get('protected');
+
+    if (protectedClass) return;
+
     if (selector) {
       selector.set('name', selectorName);
       setSelector(null);
@@ -109,7 +166,7 @@ export default function CustomSelectorManager({
 
 
   const values = selectors.map((selector) => {
-    // console.log(selector);
+      // console.log(selector);
       const classes = editor.Css.getRules(`.${selector.getName()}`).map((rule) => rule.toCSS().toString()).join('\n');
       // console.log('class', classes);
 
@@ -120,6 +177,9 @@ export default function CustomSelectorManager({
       } else {
         formattedCss = 'No css found';
       }
+
+      const protectedClass = selector?.get('protected');
+
 
       return (
         <div key={selector.toString()} className="flex gap-1 items-center w-full overflow-hidden">
@@ -140,22 +200,40 @@ export default function CustomSelectorManager({
                 <IconDotsVertical size="0.7rem" /></ActionIcon>
             </Menu.Target>
             <Menu.Dropdown>
-              <Menu.Label>Utility</Menu.Label>
+              <Menu.Item
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsRenamingSelector(true);
+                  setIsCloningAndRenaming(false);
+                  setSelector(selector);
+                  combobox.closeDropdown();
+                }}
+                disabled={protectedClass}
+              >
+                <div className="flex items-center justify-between w-full"><span>Rename</span>
+                  {protectedClass ?
+                    <Tooltip label="Can't delete protected classes that add interactivity to your blocks">
+                      <IconExclamationCircle size="1rem" />
+                    </Tooltip> :
+                    <Tooltip label="This will rename all the classes with the same name not just the selected one">
+                      <IconExclamationCircle size="1rem" />
+                    </Tooltip>}
+
+                </div>
+              </Menu.Item>
               <Menu.Item onClick={(e) => {
                 e.stopPropagation();
-                setIsRenamingSelector(true);
-                // setIsCloningAndRenaming(false);
+                setIsCloningAndRenaming(true);
+                setIsRenamingSelector(false);
                 setSelector(selector);
-                combobox.closeDropdown();
               }
               }>
-                <div className="flex items-center justify-between w-full"><span>Rename class</span>
-                  <Tooltip label="This will rename all the classes not just one">
+                <div className="flex items-center justify-between w-full gap-2"><span>Clone</span>
+                  <Tooltip label="This will clone the styles and allow you to change the new cloned style class">
                     <IconExclamationCircle size="1rem" />
                   </Tooltip>
                 </div>
               </Menu.Item>
-
               <Menu.Item onClick={() => disableSelector(selector)}>
                 <div className="flex items-center justify-between w-full">
                   {selector.getActive() ? 'Disable' : 'Enable'}
@@ -165,28 +243,34 @@ export default function CustomSelectorManager({
                 </div>
               </Menu.Item>
               <Menu.Divider />
-              <Menu.Label>Danger zone</Menu.Label>
               <Menu.Item
                 color="red"
+                disabled={protectedClass}
                 onClick={() => removeSelector(selector)}
                 // add tooltip
               >
                 <div className="flex items-center justify-between w-full"><span>Remove</span>
-                  <Tooltip label="Removes the class from the selected blocks">
+                  {protectedClass ? <Tooltip label="Can't remove protected classes that add interactivity to your blocks">
                     <IconExclamationCircle size="1rem" />
-                  </Tooltip>
+                  </Tooltip> : <Tooltip label="Removes the class from the selected blocks">
+                    <IconExclamationCircle size="1rem" />
+                  </Tooltip>}
                 </div>
 
               </Menu.Item>
               <Menu.Item
                 color="red"
+                disabled={protectedClass}
                 onClick={() => deleteSelector(selector)}
                 // add tooltip
               >
                 <div className="flex items-center justify-between w-full"><span>Delete</span>
-                  <Tooltip label="Deletes the class from the project">
+                  {protectedClass ? <Tooltip label="Can't delete protected classes that add interactivity to your blocks">
                     <IconExclamationCircle size="1rem" />
-                  </Tooltip>
+                  </Tooltip> : <Tooltip label="Deletes the class from the project">
+                    <IconExclamationCircle size="1rem" />
+                  </Tooltip>}
+
                 </div>
               </Menu.Item>
             </Menu.Dropdown>
@@ -277,8 +361,8 @@ export default function CustomSelectorManager({
                           <p>This block is Interactive</p>
                           <p>It uses special classes to add
                             interactivity to the block</p>
-                          <p>You should not modify these
-                            classes as this will break the
+                          <p>You can&apos;t delete, rename or remove the following classes as they
+                            doing this will break the
                             interactivity:</p>
                           {editor.getSelected()?.get('interactiveClasses')?.map((c: string, i: number) => (
                             <p className="font-bold text-red-500" key={i}>[{c}]</p>
@@ -340,10 +424,10 @@ export default function CustomSelectorManager({
                      multiline
                      w={300}
                      label={<div className="flex flex-col gap-2">
-                       <p>Important: All pages share the same style file, e.g. If you don&apos;t want page two paragraph
-                         to
-                         be the same size as your homepage you need to either style by ID or use a different class from
-                         the default one or the already styled one</p>
+                       {/*<p>Important: All pages share the same style file, e.g. If you don&apos;t want page two paragraph*/}
+                       {/*  to*/}
+                       {/*  be the same size as your homepage you need to either style by ID or use a different class from*/}
+                       {/*  the default one or the already styled one</p>*/}
                        <p>Each style property includes a hoverable tooltip
                          that provides detailed usage instructions.</p>
                        <p>For further customization, we recommend searching for additional CSS property options
@@ -417,13 +501,13 @@ export default function CustomSelectorManager({
           </Combobox.Dropdown>
         </Combobox>}
 
-        {/*{isCloningAndRenaming &&*/}
-        {/*  <TextInput autoFocus className="w-full" placeholder="Insert new class name" size="xs" my={8}*/}
-        {/*             value={selectorName}*/}
-        {/*             onChange={(event) => setSelectorName(event.currentTarget.value)}*/}
-        {/*             rightSection={*/}
-        {/*               <ActionIcon size="sm" onClick={() => cloneAndRenameSelector()}><IconCheck*/}
-        {/*                 size="1rem" /></ActionIcon>} />}*/}
+        {isCloningAndRenaming &&
+          <TextInput autoFocus className="w-full" placeholder="Insert new class name" size="xs" my={8}
+                     value={selectorName}
+                     onChange={(event) => setSelectorName(event.currentTarget.value)}
+                     rightSection={
+                       <ActionIcon size="sm" onClick={() => cloneAndRenameSelector()}><IconCheck
+                         size="1rem" /></ActionIcon>} />}
 
         {isRenamingSelector &&
           <div className="flex flex-col justify-start w-full">

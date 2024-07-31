@@ -45,7 +45,7 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
 
       // Select the new wrapper 'div' component
       editor.select(wrapperDiv);
-      editor.refresh()
+      editor.refresh();
     },
     // Optional: Define the 'stop' function if needed
     // stop: () => {
@@ -76,18 +76,19 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
       'font',
       'font-family',
     ]);
-    editor.refresh()
+    editor.refresh();
   });
 
   editor.on('device:select', (device) => {
-    if(device.getName() === 'Fit to Screen'){
+    if (device.getName() === 'Fit to Screen') {
       editor.Canvas.setZoom(100);
-      editor.Canvas.setCoords(0,0);
-    }else{
+      editor.Canvas.setCoords(0, 0);
+    } else {
       editor.Canvas.setZoom(60);
       editor.Canvas.setCoords(-160, -10);
     }
-  })
+  });
+
 
 
   editor.on('load', () => {
@@ -133,11 +134,11 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
     run: () => {
       const bodyHeight = editor.Canvas.getBody().offsetHeight;
       editor.Canvas.getFrame().set('height', bodyHeight);
-      editor.refresh()
+      editor.refresh();
     },
     stop: () => {
       editor.Canvas.getFrame().set('height', 600);
-      editor.refresh()
+      editor.refresh();
     },
   });
 
@@ -198,7 +199,7 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
     //   })
     //   component.set('toolbar', defaultToolbar)
     // }
-    editor.refresh()
+    editor.refresh();
   });
 
 

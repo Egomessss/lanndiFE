@@ -90,14 +90,6 @@ const MediaBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
             type: 'checkbox',
             label: 'Lazy Load',
             valueTrue: 'lazy', // Value to assign when is checked, default: `true`
-            valueFalse: 'eager',
-          },
-          {
-            // lazy load
-            name: 'loading', // Name of the trait
-            type: 'checkbox',
-            label: 'Eager Load',
-            valueTrue: 'eager', // Value to assign when is checked, default: `true`
             valueFalse: '',
           },
           {
@@ -106,6 +98,19 @@ const MediaBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
             full: true, // Full width button
             // or you can just specify the Command ID
             command: editor => editor.Assets.open(),
+          },
+          {
+            // add width and height traits
+            type: 'number',
+            name: 'width',
+            label: 'Width',
+          },
+          {
+            // add width and height traits
+            type: 'number',
+            name: 'height',
+            label: 'Height',
+
           },
         ],
       },
