@@ -481,7 +481,58 @@ export const styles = {
           tooltip: 'Units available: px, %, em, rem, fit-content',
           default: 'auto',
         },
-
+        {
+          label: 'Overflow', // Label for the property
+          property: 'overflow', // CSS property to change
+          default: 'none', // Default value to display
+          type: 'radio',
+          options: [
+            {
+              id: 'visible',
+              label: 'Show all',
+              icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>`,
+            }, {
+              id: 'hidden',
+              label: 'Clip.',
+              icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye-off" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" /><path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" /><path d="M3 3l18 18" /></svg>`,
+            }, {
+              id: 'scroll',
+              label: 'Scrollable.',
+              icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mouse" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 3m0 4a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-4a4 4 0 0 1 -4 -4z" /><path d="M12 7l0 4" /></svg>`,
+            },
+            {
+              id: 'clip',
+              label: 'Clip and hide overflow',
+              icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cut" width="12" height="12" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M17 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M9.15 14.85l8.85 -10.85" /><path d="M6 4l8.85 10.85" /></svg>`,
+            },
+            {
+              id: 'auto',
+              label: 'Adds scrollbars only when necessary.',
+              icon: 'Auto',
+            },
+          ],
+        },
+        {
+          label: 'Image fit mode', // Label for the property
+          property: 'object-fit', // CSS property to change
+          default: 'none', // Default value to display
+          type: 'select',
+          tooltip: 'Controls how an image fits in its container. "Contain" fits entirely, "Cover" fills container, "Fill" stretches to fit, "Scale Down" shrinks if needed, "None" uses default sizing.',
+          options: [
+            { id: 'contain', label: 'Contain Within' }, // Enhanced clarity
+            { id: 'cover', label: 'Cover Entire Space' }, // Explicit description
+            { id: 'fill', label: 'Fill Available Space' }, // Descriptive
+            { id: 'scale-down', label: 'Scale Down Only' }, // Clear action
+            { id: 'none', label: 'None' }, // Explicit no action
+          ],
+        },
+        {
+          label: 'Aspect Ratio', // Label for the property
+          property: 'aspect-ratio', // CSS property to change
+          default: 'auto', // Default value to display
+          type: 'base',
+          tooltip: 'Sets the preferred aspect ratio for the box. Use values like "16/9" for widescreen, "1/1" for square. "auto" lets the browser decide based on content.',
+        },
       ],
     },
     {
@@ -558,37 +609,6 @@ export const styles = {
               label: 'Left',
               default: '0',
               tooltip: 'Units available: px, %, em, rem',
-            },
-          ],
-        },
-        {
-          label: 'Overflow', // Label for the property
-          property: 'overflow', // CSS property to change
-          default: 'none', // Default value to display
-          type: 'radio',
-          options: [
-            {
-              id: 'visible',
-              label: 'Show all',
-              icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>`,
-            }, {
-              id: 'hidden',
-              label: 'Clip.',
-              icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye-off" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" /><path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" /><path d="M3 3l18 18" /></svg>`,
-            }, {
-              id: 'scroll',
-              label: 'Scrollable.',
-              icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mouse" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 3m0 4a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-4a4 4 0 0 1 -4 -4z" /><path d="M12 7l0 4" /></svg>`,
-            },
-            {
-              id: 'clip',
-              label: 'Clip and hide overflow',
-              icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cut" width="12" height="12" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M17 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M9.15 14.85l8.85 -10.85" /><path d="M6 4l8.85 10.85" /></svg>`,
-            },
-            {
-              id: 'auto',
-              label: 'Adds scrollbars only when necessary.',
-              icon: 'Auto',
             },
           ],
         },
@@ -1010,27 +1030,6 @@ export const styles = {
       open: true,
       visible: true,
       properties: [
-        {
-          label: 'Image fit mode', // Label for the property
-          property: 'object-fit', // CSS property to change
-          default: 'none', // Default value to display
-          type: 'select',
-          tooltip: 'Controls how an image fits in its container. "Contain" fits entirely, "Cover" fills container, "Fill" stretches to fit, "Scale Down" shrinks if needed, "None" uses default sizing.',
-          options: [
-            { id: 'contain', label: 'Contain Within' }, // Enhanced clarity
-            { id: 'cover', label: 'Cover Entire Space' }, // Explicit description
-            { id: 'fill', label: 'Fill Available Space' }, // Descriptive
-            { id: 'scale-down', label: 'Scale Down Only' }, // Clear action
-            { id: 'none', label: 'None' }, // Explicit no action
-          ],
-        },
-        {
-          label: 'Aspect Ratio', // Label for the property
-          property: 'aspect-ratio', // CSS property to change
-          default: 'auto', // Default value to display
-          type: 'base',
-          tooltip: 'Sets the preferred aspect ratio for the box. Use values like "16/9" for widescreen, "1/1" for square. "auto" lets the browser decide based on content.',
-        },
         {
           type: 'select',
           label: 'Cursor type', // Label for the property

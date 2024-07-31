@@ -23,13 +23,14 @@ const TypographyBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
         resizable: true,
         attributes: { class: 'heading-one' },
         name: 'Heading',
+        baseClass: 'heading-one',
         tagName: 'h1',
         components: 'Heading',
         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-h-1" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19 18v-8l-2 2" /><path d="M4 6v12" /><path d="M12 6v12" /><path d="M11 18h2" /><path d="M3 18h2" /><path d="M4 12h8" /><path d="M3 6h2" /><path d="M11 6h2" /></svg>`,
         droppable: false,
         styles: `
         .heading-one{
-        margin-top:0 ;
+       margin-top:0 ;
         margin-right: 0;
         margin-bottom: 0;
         margin-left: 0;
@@ -64,11 +65,12 @@ const TypographyBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
         name: 'Heading Two', // Default component name
         tagName: 'h2',
         components: 'Heading',
+        baseClass: 'heading-two',
         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-h-2" width="12" height="12" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 12a2 2 0 1 1 4 0c0 .591 -.417 1.318 -.816 1.858l-3.184 4.143l4 0" /><path d="M4 6v12" /><path d="M12 6v12" /><path d="M11 18h2" /><path d="M3 18h2" /><path d="M4 12h8" /><path d="M3 6h2" /><path d="M11 6h2" /></svg>`,
         droppable: false,
         styles: `
         .heading-two{
-        margin-top:0 ;
+       margin-top:0 ;
         margin-right: 0;
         margin-bottom: 0;
         margin-left: 0;
@@ -103,12 +105,13 @@ const TypographyBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
         attributes: { class: 'heading-three' },
         name: 'Heading Three', // Default component name
         tagName: 'h3',
+        baseClass: 'heading-three',
         components: 'Heading',
         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-h-3" width="12" height="12" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19 14a2 2 0 1 0 -2 -2" /><path d="M17 16a2 2 0 1 0 2 -2" /><path d="M4 6v12" /><path d="M12 6v12" /><path d="M11 18h2" /><path d="M3 18h2" /><path d="M4 12h8" /><path d="M3 6h2" /><path d="M11 6h2" /></svg>`,
         droppable: false,
         styles: `
         .heading-three{
-        margin-top:0 ;
+       margin-top:0 ;
         margin-right: 0;
         margin-bottom: 0;
         margin-left: 0;
@@ -144,12 +147,13 @@ const TypographyBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
         resizable: true,
         name: 'Heading Four', // Default component name
         tagName: 'h4',
+        baseClass: 'heading-four',
         components: 'Heading',
         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-h-4" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 18v-8l-4 6h5" /><path d="M4 6v12" /><path d="M12 6v12" /><path d="M11 18h2" /><path d="M3 18h2" /><path d="M4 12h8" /><path d="M3 6h2" /><path d="M11 6h2" /></svg>`,
         droppable: false,
         styles: `
         .heading-four{
-        margin-top:0 ;
+       margin-top:0 ;
         margin-right: 0;
         margin-bottom: 0;
         margin-left: 0;
@@ -182,6 +186,7 @@ const TypographyBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
       defaults: {
         attributes: { class: 'heading-five' },
         resizable: true,
+        baseClass: 'heading-five',
         name: 'Heading Five', // Default component name
         tagName: 'h5',
         components: 'Heading',
@@ -189,7 +194,7 @@ const TypographyBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
         droppable: false,
         styles: `
         .heading-five{
-        margin-top:0 ;
+       margin-top:0 ;
         margin-right: 0;
         margin-bottom: 0;
         margin-left: 0;
@@ -224,13 +229,14 @@ const TypographyBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
         resizable: true,
         name: 'Heading Six', // Default component name
         tagName: 'h6',
+        baseClass: 'heading-six',
         components: 'Heading',
         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-h-6" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19 14a2 2 0 1 0 0 4a2 2 0 0 0 0 -4z" /><path d="M21 12a2 2 0 1 0 -4 0v4" /><path d="M4 6v12" /><path d="M12 6v12" /><path d="M11 18h2" /><path d="M3 18h2" /><path d="M4 12h8" /><path d="M3 6h2" /><path d="M11 6h2" /></svg>`,
 
         droppable: false,
         styles: `
         .heading-six{
-        margin-top:0 ;
+       margin-top:0 ;
         margin-right: 0;
         margin-bottom: 0;
         margin-left: 0;
@@ -264,11 +270,12 @@ const TypographyBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
         resizable: true,
         name: 'Paragraph', // Default component name
         tagName: 'p',
+        baseClass: 'paragraph',
         components: 'Insert your text here' ,
         icon: `<svg  xmlns="http://www.w3.org/2000/svg"  width="12"  height="12"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-letter-p"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 20v-16h5.5a4 4 0 0 1 0 9h-5.5" /></svg>`,
         styles: `
         .paragraph{
-        margin-top:0 ;
+       margin-top:0 ;
         margin-right: 0;
         margin-bottom: 0;
         margin-left: 0;
@@ -304,6 +311,7 @@ const TypographyBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
         resizable: true,
         name: 'Rich Text', // Default component name
         tagName: 'div',
+        baseClass: 'rich-text',
         components: '' ,
         droppable: false,
         editable: false,

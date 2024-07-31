@@ -1,4 +1,4 @@
-import { DeviceProperties, Editor } from 'grapesjs';
+import { Editor } from 'grapesjs';
 
 const UtilsPlugin = (editor: Editor, opts = {}) => {
 
@@ -78,6 +78,16 @@ const UtilsPlugin = (editor: Editor, opts = {}) => {
     ]);
     editor.refresh()
   });
+
+  editor.on('device:select', (device) => {
+    if(device.getName() === 'Fit to Screen'){
+      editor.Canvas.setZoom(100);
+      editor.Canvas.setCoords(0,0);
+    }else{
+      editor.Canvas.setZoom(60);
+      editor.Canvas.setCoords(-160, -10);
+    }
+  })
 
 
   editor.on('load', () => {

@@ -77,7 +77,7 @@ export default function CustomTraitManager({
         <div><Divider className="w-full" my="xs" label="Heading Type" /><HeadingTypeSelector /></div>}
       {isRichText && <CustomRte />}
       {value === 'svg' &&
-        <div><Divider my="xs" className="w-full" label="SVG Editor" /><SvgContentCode /></div>}
+        <div><Divider my="xs" className="w-full" label="SVG EditorReusable" /><SvgContentCode /></div>}
       {/*<HtmlElementSelector />*/}
 
 

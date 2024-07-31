@@ -1,8 +1,8 @@
-import { DevicesProvider, useEditor } from '@/components/editor/wrappers';
-import { ActionIcon, Divider, Tooltip } from '@mantine/core';
-import React, { useState } from 'react';
+import { DevicesProvider } from '@/components/editor/wrappers';
+import { ActionIcon, Tooltip } from '@mantine/core';
+import React from 'react';
 import {
-  IconArrowAutofitHeight,
+  IconArrowsHorizontal,
   IconDeviceDesktop,
   IconDeviceLaptop,
   IconDeviceMobile,
@@ -18,10 +18,9 @@ const getDeviceIcon = (device: string) => {
     return <IconDeviceTablet size="1rem" />;
   } else if (device === 'mobile') {
     return <IconDeviceMobile size="1rem" />;
+  } else if (device === 'fit') {
+    return <IconArrowsHorizontal size="1rem" />;
   }
-  // else if (device === 'fit') {
-  //   return <IconArrowsHorizontal size="1rem" />;
-  // }
   return null; // Fallback
 };
 

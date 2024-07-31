@@ -17,6 +17,7 @@ import Templates from '@/components/editor/plugins/Templates';
 import ListBlocks from '@/components/editor/plugins/BasicBlocks/ListBlocks';
 import GoogleFontsPlugin from '../plugins/utils/GoogleFonts';
 import GoogleFonts from '../plugins/utils/GoogleFonts';
+import NumberedClasses from '../plugins/utils/NumberedClasses';
 
 
 export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: boolean) => ({
@@ -42,11 +43,11 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
   deviceManager: {
     default: 'desktop',
     devices: [
-      // {
-      //   id: 'fit',
-      //   name: 'Fit to Screen',
-      //   width: '',
-      // },
+      {
+        id: 'fit',
+        name: 'Fit to Screen',
+        width: '',
+      },
         {
           id: 'desktop', name: 'Desktop(XL)', width: '1536px',
           widthMedia: '1536px',
@@ -116,7 +117,8 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
     // Accordion,
     // Tabs
     ClickAndDrop,
-    GoogleFonts
+    GoogleFonts,
+    NumberedClasses
   ],
   pluginsOpts: {
     ['GoogleFonts']: {

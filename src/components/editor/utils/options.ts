@@ -42,11 +42,11 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
   deviceManager: {
     default: 'desktop',
     devices: [
-      // {
-      //   id: 'fit',
-      //   name: 'Fit to Screen',
-      //   width: '',
-      // },
+      {
+        id: 'fit',
+        name: 'Fit to Screen',
+        width: '',
+      },
       {
         id: 'desktop', name: 'Desktop(XL)', width: '1536px',
         widthMedia: '1536px',

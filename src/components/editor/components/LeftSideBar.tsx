@@ -1,27 +1,38 @@
 import React, { useState } from 'react';
 import { ActionIcon, AppShell, Box, Divider, ScrollArea, Tooltip } from '@mantine/core';
-import { IconBox, IconFile, IconLayoutGridAdd, IconSection, IconStack2, IconTemplate } from '@tabler/icons-react';
+import {
+  IconBox,
+  IconFile,
+  IconLayoutGridAdd,
+  IconPhoto,
+  IconSection,
+  IconStack2,
+  IconTemplate,
+} from '@tabler/icons-react';
 import BlockSideBar from '@/components/editor/components/BlockSideBar';
 import LayersLeftSideBar from '@/components/editor/components/LayersLeftSideBar';
 import PagesLeftSideBar from '@/components/editor/components/PagesLeftSideBar';
 import CustomComponentsBlockManager from '@/components/editor/components/CustomComponentsBlockManager';
 import useUser from '@/hooks/use-user';
 import CustomRte from '@/components/editor/components/CustomRte';
+import { useEditor } from '../context/EditorInstance';
 
 
 function LeftSideBar() {
+  const editor = useEditor();
   const { user } = useUser();
 
   const [selected, setSelected] = useState('Blocks');
 
   const icons = [
     { label: 'Blocks', Icon: IconLayoutGridAdd, selectedValue: 'Blocks', show: true },
-    { label: 'Components', Icon: IconBox, selectedValue: 'Components',show: user && user?.isAdmin },
+    { label: 'Components', Icon: IconBox, selectedValue: 'Components', show: user && user?.isAdmin },
     { label: 'Sections', Icon: IconSection, selectedValue: 'Sections', show: true },
     { label: 'Templates', Icon: IconTemplate, selectedValue: 'Templates', show: true },
     { label: 'Layers', Icon: IconStack2, selectedValue: 'Layers', show: true },
-    { label: 'Pages', Icon: IconFile, selectedValue: 'Pages', show:
-        !(user?.subscription === 'free' || user?.subscription === 'basic-monthly' || user?.subscription === 'basic-yearly')
+    {
+      label: 'Pages', Icon: IconFile, selectedValue: 'Pages', show:
+        !(user?.subscription === 'free' || user?.subscription === 'basic-monthly' || user?.subscription === 'basic-yearly'),
     },
   ];
 
@@ -62,9 +73,16 @@ function LeftSideBar() {
           ))}
           {/*<Divider my="xs" variant="dashed" />*/}
           {/*<SettingsModal />*/}
+          <Divider orientation="horizontal" my="xs" />
+          <Tooltip label="Assets Manager">
+            <ActionIcon onClick={() => editor.Assets.open()} variant="subtle">
+              <IconPhoto size="1rem" />
+            </ActionIcon>
+          </Tooltip>
         </div>
         <Divider orientation="vertical" my="xs" />
         <Box component={ScrollArea} scrollbars="y" className="p-1 w-full overflow">{renderSelectedComponent()}</Box>
+
       </div>
     </AppShell.Navbar>
   );

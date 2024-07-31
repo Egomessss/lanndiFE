@@ -65,9 +65,9 @@ const CustomRte = () => {
   return (
     <>
       <Button variant="subtle" onClick={open}>Edit Rich Text</Button>
-      <Modal centered size="xl" opened={opened} onClose={close} scrollAreaComponent={ScrollArea.Autosize}>
+      <Modal centered size="80%" opened={opened} onClose={close} scrollAreaComponent={ScrollArea.Autosize}>
         {!rteEditor ? <Loading/> :   <RichTextEditor editor={rteEditor}>
-          <RichTextEditor.Toolbar sticky stickyOffset={60}>
+          <RichTextEditor.Toolbar style={{width:'100%'}} sticky stickyOffset={60}>
             <RichTextEditor.ControlsGroup>
               <RichTextEditor.Bold />
               <RichTextEditor.Italic />

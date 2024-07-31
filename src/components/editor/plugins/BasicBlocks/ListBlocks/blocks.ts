@@ -21,6 +21,7 @@ const ListBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
       defaults: {
         attributes: { class: 'ordered-list' },
         tagName: 'ol',
+        baseClass: 'ordered-list',
         resizable: true,
         name: 'Ordered List',
         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list-numbers" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11 6h9" /><path d="M11 12h9" /><path d="M12 18h8" /><path d="M4 16a2 2 0 1 1 4 0c0 .591 -.5 1 -1 1.5l-3 2.5h4" /><path d="M6 10v-6l-2 2" /></svg>`,
@@ -50,6 +51,7 @@ const ListBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
       defaults: {
         attributes: { class: 'unordered-list' },
         tagName: 'ul',
+        baseClass: 'unordered-list',
         resizable: true,
         name: 'Unordered List',
         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l11 0" /><path d="M9 12l11 0" /><path d="M9 18l11 0" /><path d="M5 6l0 .01" /><path d="M5 12l0 .01" /><path d="M5 18l0 .01" /></svg>`,
@@ -80,6 +82,7 @@ const ListBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
         tagName: 'li',
         resizable: true,
         name: 'List Item',
+        baseClass: 'list-item',
         draggable: 'ul, ol',
         icon: `<svg  xmlns="http://www.w3.org/2000/svg"  width="12"  height="12"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-list-tree"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6h11" /><path d="M12 12h8" /><path d="M15 18h5" /><path d="M5 6v.01" /><path d="M8 12v.01" /><path d="M11 18v.01" /></svg>`,
         components: `<li><p>List Item 1</p></li>`,

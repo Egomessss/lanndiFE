@@ -49,7 +49,7 @@ const plugin = (editor: IEditor, opts = {}) => {
     content: `
     <span 
       data-gjs-type="materialIcons" 
-      class="material-icons material-symbols-outlined"
+      class="material-symbols-outlined"
     >
       home
     </span>`,

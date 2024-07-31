@@ -80,7 +80,7 @@ export const GlobalCssCode = () => {
 
   useEffect(() => {
     // @ts-ignore
-    const formatedCss = formatCss(editor.getCss({ avoidProtected: false }));
+    const formatedCss = formatCss(editor.getCss({ avoidProtected: true }));
     // @ts-ignore
     setValue(formatedCss);
 
@@ -99,14 +99,11 @@ export const GlobalCssCode = () => {
 
 
   return <div className="flex items-start gap-2 flex-col w-full ">
-    <Modal opened={opened} size="xl" centered onClose={close} title="Global CSS">
+    <Modal opened={opened} size="xl" scrollAreaComponent={ScrollArea.Autosize} centered onClose={close} title="Global CSS">
       <ul className="p-2">
         <li>Can add styles to selector</li>
         <li>Can modify style of a selector</li>
-      </ul>
-      <ul className="p-2 text-red-500" >
-        <li>Can&apos;t change selectors name</li>
-        <li>Can&apos;t add new selectors</li>
+        <li>Can add new html tag selectors</li>
       </ul>
       <CodeMirror
         value={value} height="400px" theme="dark"
@@ -324,7 +321,7 @@ export default function CustomAdvancedTraitManager() {
       <CustomAttributes />
       {user?.subscription !== 'free' ? <>
         <Divider className="w-full" label="Selected Block Customization" />
-        <CssCode />
+        {/*<CssCode />*/}
         <Button leftSection={<IconBrandJavascript size="1rem" />} onClick={() => editor.runCommand('edit-script')}
                 size="xs" mb="4">
           Edit Javascript
