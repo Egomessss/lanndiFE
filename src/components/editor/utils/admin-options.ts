@@ -16,6 +16,7 @@ import ClickAndDrop from '@/components/editor/plugins/utils/ClickAndDrop/plugin'
 import Templates from '@/components/editor/plugins/Templates';
 import ListBlocks from '@/components/editor/plugins/BasicBlocks/ListBlocks';
 import GoogleFonts from '../plugins/utils/GoogleFonts';
+import NumberedClasses from '../plugins/utils/NumberedClasses';
 
 
 export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: boolean) => ({
@@ -116,6 +117,7 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
     // Tabs
     ClickAndDrop,
     GoogleFonts,
+    NumberedClasses
   ],
   pluginsOpts: {
     ['GoogleFonts']: {

@@ -136,18 +136,7 @@ export default function CustomSelectorManager({
     }
   };
 
-  const styleBaseClass = () => {
-    if (editor.getSelected()?.getClasses().length <= 1)
-      return;
 
-    if (editor.Commands.isActive('edit-base-style')) {
-      editor.Commands.stop('edit-base-style');
-      // setIsMoveActive(false);
-    } else {
-      editor.Commands.run('edit-base-style');
-      // setIsMoveActive(true);
-    }
-  };
 
 
   const renameSelector = () => {
@@ -165,7 +154,7 @@ export default function CustomSelectorManager({
   };
 
 
-  const values = selectors.map((selector) => {
+  const values = selectors.map((selector, index) => {
       // console.log(selector);
       const classes = editor.Css.getRules(`.${selector.getName()}`).map((rule) => rule.toCSS().toString()).join('\n');
       // console.log('class', classes);
@@ -179,22 +168,40 @@ export default function CustomSelectorManager({
       }
 
       const protectedClass = selector?.get('protected');
+      const isBaseClass = editor.getSelected()?.get('baseClass');
+      console.log('name', selector.getName());
+      console.log('base', isBaseClass);
 
+    const setActiveSelectorByIndex = () => {
+      const selected = editor.getSelected();
+      if (selected) {
+        const selectors = selected.getSelectors();
+        selectors.forEach((selector: Selector, i: number) => {
+          selector.setActive(i === index);
+        });
+
+        // Refresh the style manager to reflect the changes
+        // editor.StyleManager.refresh();
+      }
+    };
 
       return (
-        <div key={selector.toString()} className="flex gap-1 items-center w-full overflow-hidden">
-          <Tooltip w={400} p="xs" position="left-end" style={{ height: 'fit-content' }} multiline color="dark"
+        <div key={selector.toString()} className="flex gap-1 items-center flex-wrap w-full overflow-hidden">
+          <Tooltip openDelay={400} w={400} p="xs" position="left-end" style={{ height: 'fit-content' }} multiline
+                   color="dark"
                    label={<CodeMirror
                      value={formattedCss} theme="dark"
                      extensions={[langs.css(), EditorView.lineWrapping]}
                    />}><Pill
+            onClick={setActiveSelectorByIndex}
+            className="cursor-pointer"
             style={selector.getActive() ? {} : { opacity: 0.5 }}
             disabled={!selector.getActive()}
             radius="xs"
           >
-            <span>{selector.toString()}</span>
+            <span>{selector.getName()}</span>
           </Pill></Tooltip>
-          <Menu shadow="md">
+          <Menu zIndex="200" shadow="md">
             <Menu.Target>
               <ActionIcon variant="subtle" size="xs">
                 <IconDotsVertical size="0.7rem" /></ActionIcon>
@@ -208,7 +215,7 @@ export default function CustomSelectorManager({
                   setSelector(selector);
                   combobox.closeDropdown();
                 }}
-                disabled={protectedClass}
+                disabled={protectedClass || isBaseClass === selector.getName()}
               >
                 <div className="flex items-center justify-between w-full"><span>Rename</span>
                   {protectedClass ?
@@ -234,7 +241,7 @@ export default function CustomSelectorManager({
                   </Tooltip>
                 </div>
               </Menu.Item>
-              <Menu.Item onClick={() => disableSelector(selector)}>
+              <Menu.Item disabled={isBaseClass === selector.getName()} onClick={() => disableSelector(selector)}>
                 <div className="flex items-center justify-between w-full">
                   {selector.getActive() ? 'Disable' : 'Enable'}
                   <Tooltip label="Edit a class style without affecting the disabled one">
@@ -260,7 +267,7 @@ export default function CustomSelectorManager({
               </Menu.Item>
               <Menu.Item
                 color="red"
-                disabled={protectedClass}
+                disabled={protectedClass || isBaseClass === selector.getName()}
                 onClick={() => deleteSelector(selector)}
                 // add tooltip
               >
@@ -294,7 +301,8 @@ export default function CustomSelectorManager({
       }
 
       return (
-        <Tooltip w={400} p="xs" position="left-end" style={{ height: 'fit-content' }} multiline color="dark" key={item}
+        <Tooltip openDelay={200} w={400} p="xs" position="left-end" style={{ height: 'fit-content' }} multiline
+                 color="dark" key={item}
                  label={<CodeMirror
                    value={formattedCss} theme="dark"
                    extensions={[langs.css(), EditorView.lineWrapping]}
@@ -316,7 +324,9 @@ export default function CustomSelectorManager({
 
 
   const isInteractive = editor.getSelected()?.get('isInteractive');
+  // const selectedComponentId = editor.getSelected()?.getId();
 
+  // const hasIdRules = editor.Css.getRules(selectedComponentId);
 
   return (
     <div className=" flex flex-col  gap-2 text-left">
@@ -374,23 +384,34 @@ export default function CustomSelectorManager({
                 <IconBolt size="1rem" />
               </ActionIcon>
             </Tooltip>}
-          <Tooltip color="blue"
-                   label="Style base class">
-            <ActionIcon
-              onClick={styleBaseClass}
-              variant={editor.Commands.isActive('edit-base-style') ? 'filled' : 'subtle'}>
-              <IconBrush size="1rem" />
-            </ActionIcon>
-          </Tooltip>
-          <Tooltip position="left" color="dark" multiline w={700}
+          <Tooltip position="left" color="dark" multiline w={300}
                    label={
                      <div className="flex flex-col gap-2">
                        <p>Enabled: All the style changes will be applied on
-                         selected
+                         only the selected
                          blocks (ID rules)</p>
                        <p>Disabled: All the style changes will be applied on selected blocks with same
                          selectors(classes)</p>
-                       <p>Tip 1: Use ID to style a single component independently</p>
+                     </div>}>
+            <ActionIcon onClick={setComponentFirst}
+                        variant={isComponentFirst ? 'filled' : 'subtle'}>
+              <IconFocus2 size="1rem" />
+            </ActionIcon>
+          </Tooltip>
+          <div>
+            <Tooltip color="dark"
+                     position="left"
+                     multiline
+                     w={700}
+                     label={<div className="flex flex-col gap-2">
+                       {/*<p>Important: All pages share the same style file, e.g. If you don&apos;t want page two paragraph*/}
+                       {/*  to*/}
+                       {/*  be the same size as your homepage you need to either style by ID or use a different class from*/}
+                       {/*  the default one or the already styled one</p>*/}
+                       <p>Each style property includes a hoverable tooltip
+                         that provides detailed usage instructions.</p>
+                       <p>For further customization, we recommend searching for additional CSS property options
+                         online.</p>  <p>Tip 1: Use ID to style a single component independently</p>
                        <p>Tip 2: Use classes/selectors to style multiple component simultaneously</p>
                        <p>Tip 3: ID always takes precedent in styling over classes. e.g. if you style a block
                          height
@@ -411,27 +432,7 @@ export default function CustomSelectorManager({
                          thus allowing you to make slight changes to a block style without modifying certain classes</p>
                        <p className="font-bold">Important: Always remember If you can&apos;t change a style its either
                          because you styled that block using the priority style(ID) or you&apos;re styling the wrong
-                         breakpoint </p>
-                     </div>}>
-            <ActionIcon onClick={setComponentFirst}
-                        variant={isComponentFirst ? 'filled' : 'subtle'}>
-              <IconFocus2 size="1rem" />
-            </ActionIcon>
-          </Tooltip>
-          <div>
-            <Tooltip color="dark"
-                     position="left"
-                     multiline
-                     w={300}
-                     label={<div className="flex flex-col gap-2">
-                       {/*<p>Important: All pages share the same style file, e.g. If you don&apos;t want page two paragraph*/}
-                       {/*  to*/}
-                       {/*  be the same size as your homepage you need to either style by ID or use a different class from*/}
-                       {/*  the default one or the already styled one</p>*/}
-                       <p>Each style property includes a hoverable tooltip
-                         that provides detailed usage instructions.</p>
-                       <p>For further customization, we recommend searching for additional CSS property options
-                         online.</p></div>}>
+                         breakpoint </p></div>}>
               <ThemeIcon
                 color="red"
                 variant="light">
@@ -456,9 +457,9 @@ export default function CustomSelectorManager({
 
                                         withinPortal={false}>
           <Combobox.DropdownTarget>
-            <PillsInput size="xs" className="w-full" onClick={() => combobox.openDropdown()}>
+            <PillsInput size="xs"  className="w-full" onClick={() => combobox.openDropdown()}>
               <Pill.Group>
-                <ScrollArea type="hover" h={40} w="100%">
+                <ScrollArea type="hover" h={45} w="100%">
                   {values}
                 </ScrollArea>
                 <Combobox.EventsTarget>

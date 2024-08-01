@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ActionIcon, AppShell, Box, Divider, ScrollArea, Tooltip } from '@mantine/core';
 import {
-  IconBox,
+  IconBox, IconBrush,
   IconFile, IconFileTypography,
   IconLayoutGridAdd,
   IconPhoto,
@@ -16,6 +16,7 @@ import CustomComponentsBlockManager from '@/components/editor/components/CustomC
 import useUser from '@/hooks/use-user';
 import CustomRte from '@/components/editor/components/CustomRte';
 import { useEditor } from '../context/EditorInstance';
+import CustomBaseStyleManager from '@/components/editor/components/CustomBaseStylesManager';
 
 
 function LeftSideBar() {
@@ -33,7 +34,11 @@ function LeftSideBar() {
     {
       label: 'Pages', Icon: IconFile, selectedValue: 'Pages', show:
         !(user?.subscription === 'free' || user?.subscription === 'basic-monthly' || user?.subscription === 'basic-yearly'),
+    }, {
+      label: 'Base Styles', Icon: IconBrush, selectedValue: 'Styles', show:
+        !(user?.subscription === 'free' || user?.subscription === 'basic-monthly' || user?.subscription === 'basic-yearly'),
     },
+
   ];
 
   const renderSelectedComponent = () => {
@@ -50,6 +55,8 @@ function LeftSideBar() {
         return <PagesLeftSideBar />;
       case 'Components':
         return <CustomComponentsBlockManager />;
+      // case 'Styles':
+      //   return <CustomBaseStyleManager />;
       default:
         return null;
     }
@@ -83,11 +90,14 @@ function LeftSideBar() {
             <ActionIcon onClick={() => editor.Assets.open()} variant="subtle">
               <IconFileTypography size="1rem" />
             </ActionIcon>
-          </Tooltip>
+          </Tooltip><Tooltip label="Base Styles Manager">
+          <ActionIcon onClick={() => editor.Assets.open()} variant="subtle">
+            <IconFileTypography size="1rem" />
+          </ActionIcon>
+        </Tooltip>
         </div>
         <Divider orientation="vertical" my="xs" />
         <Box component={ScrollArea} scrollbars="y" className="p-1 w-full overflow">{renderSelectedComponent()}</Box>
-
       </div>
     </AppShell.Navbar>
   );

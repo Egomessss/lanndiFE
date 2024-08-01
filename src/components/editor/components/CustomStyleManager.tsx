@@ -8,14 +8,13 @@ import classes from './CustomStyleManager.module.css';
 import { useEditor } from '@/components/editor/context/EditorInstance';
 
 
-function getClassName(propertiesLength: number) {
+function getClassName(propertyName: string) {
   // console.log(propertiesLength);
-  if (propertiesLength > 8) {
-    return 'flex flex-wrap items-center';
-  } else if (propertiesLength === 6) {
+  if (propertyName === 'Sizing') {
     return 'grid grid-cols-2';
+  } else {
+    return 'flex flex-wrap items-center';
   }
-  return ''; // Default className if no condition is met
 }
 
 export default function CustomStyleManager({
@@ -23,7 +22,7 @@ export default function CustomStyleManager({
                                            }: Omit<StylesResultProps, 'Container'>) {
 
   const editor = useEditor();
-
+  // console.log('sectors', sectors.map(sector => sector.getName()));
 
 // console.log('style manager');
 
@@ -111,8 +110,8 @@ export default function CustomStyleManager({
     // .filter(sector => sector.isOpen())
     .map((sector) => {
       // console.log(sector);
-      const propertiesLength = sector.getProperties().length;
-      const className = getClassName(propertiesLength);
+      const propertyName = sector.getName();
+      const className = getClassName(propertyName);
 
       return (
         <Accordion.Item key={sector.getId()} value={sector.getId()}>

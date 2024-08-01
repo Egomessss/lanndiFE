@@ -33,7 +33,7 @@ export default function StylePropertyField({
   // get value from editor
   // when user input new value delay 1 sec after typing
   // send value after delay
-
+  // console.log('property', prop.getName(), prop);
   const editor = useEditor();
 
   const [inputKey, setInputKey] = useState(Date.now());
@@ -154,6 +154,7 @@ export default function StylePropertyField({
           value={prop.getValue()}
           size="xs"
           fullWidth
+          // style={prop.getName() === 'overflow' ? { gridColumn: 'span 2' } : {}}
           onChange={onChange}
           // @ts-ignore
           data={radioProp.getOptions().map((option) => ({
