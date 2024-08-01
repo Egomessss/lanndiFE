@@ -110,7 +110,7 @@ export default function CustomSelectorManager({
     const clonedStyle = classRules.map((rule) => rule.toCSS().toString()).join('\n');
 
     // Log the cloned style for debugging
-    console.log('cloned style', clonedStyle);
+    // console.log('cloned style', clonedStyle);
 
     // Create a new regular expression to replace the old selector with the new one
     const replaceClassName = new RegExp(selectorString, 'g');

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ActionIcon, AppShell, Box, Divider, ScrollArea, Tooltip } from '@mantine/core';
 import {
   IconBox,
-  IconFile,
+  IconFile, IconFileTypography,
   IconLayoutGridAdd,
   IconPhoto,
   IconSection,
@@ -77,6 +77,11 @@ function LeftSideBar() {
           <Tooltip label="Assets Manager">
             <ActionIcon onClick={() => editor.Assets.open()} variant="subtle">
               <IconPhoto size="1rem" />
+            </ActionIcon>
+          </Tooltip>
+          <Tooltip label="Fonts Manager">
+            <ActionIcon onClick={() => editor.Assets.open()} variant="subtle">
+              <IconFileTypography size="1rem" />
             </ActionIcon>
           </Tooltip>
         </div>
