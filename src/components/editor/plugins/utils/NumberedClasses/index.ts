@@ -1,7 +1,7 @@
 import { Editor, Component } from 'grapesjs';
 
 const NumberedClasses = (editor: Editor) => {
-  const baseComponents = ['block', 'container', 'rows', 'columns', 'grid', 'heading1', 'heading2', 'heading3', 'heading4', 'heading5', 'heading6', 'paragraph', 'link', 'link-box', 'button', 'image', 'svg', 'youtube', 'material-icon', 'ordered-list', 'unordered-list', 'list-item', 'custom-code'];
+  const baseComponents = ['block', 'container', 'rows', 'columns', 'grid', 'heading-one', 'heading-two', 'heading-three', 'heading-four', 'heading-five', 'heading-six', 'paragraph', 'link', 'link-box', 'button', 'image', 'svg', 'youtube', 'material-icon', 'ordered-list', 'unordered-list', 'list-item', 'custom-code'];
 
   const generateRandomString = (length: number): string => {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

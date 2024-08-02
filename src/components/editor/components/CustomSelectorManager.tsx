@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SelectorsResultProps, useEditor } from '../wrappers';
 import {
   ActionIcon,
@@ -29,6 +29,7 @@ import { Selector } from 'grapesjs';
 import CodeMirror, { EditorView } from '@uiw/react-codemirror';
 import { langs } from '@uiw/codemirror-extensions-langs';
 import { formatCss } from '@/components/editor/components/CustomAdvancedTraitManager';
+import { useMantineTheme } from '@mantine/core';
 
 
 export default function CustomSelectorManager({
@@ -137,8 +138,6 @@ export default function CustomSelectorManager({
   };
 
 
-
-
   const renameSelector = () => {
 
     const protectedClass = selector?.get('protected');
@@ -152,10 +151,20 @@ export default function CustomSelectorManager({
       setSelectorName('');
     }
   };
+  const theme = useMantineTheme();
 
+  useEffect(() => {
+    const length = selectors.length;
+
+    selectors.forEach((selector: Selector, i: number) => {
+      selector.setActive(i === length - 1);
+    });
+  }, [selectors]);
 
   const values = selectors.map((selector, index) => {
+
       // console.log(selector);
+
       const classes = editor.Css.getRules(`.${selector.getName()}`).map((rule) => rule.toCSS().toString()).join('\n');
       // console.log('class', classes);
 
@@ -169,21 +178,20 @@ export default function CustomSelectorManager({
 
       const protectedClass = selector?.get('protected');
       const isBaseClass = editor.getSelected()?.get('baseClass');
-      console.log('name', selector.getName());
-      console.log('base', isBaseClass);
 
-    const setActiveSelectorByIndex = () => {
-      const selected = editor.getSelected();
-      if (selected) {
-        const selectors = selected.getSelectors();
-        selectors.forEach((selector: Selector, i: number) => {
-          selector.setActive(i === index);
-        });
 
-        // Refresh the style manager to reflect the changes
-        // editor.StyleManager.refresh();
-      }
-    };
+      const setActiveSelectorByIndex = () => {
+        const selected = editor.getSelected();
+        if (selected) {
+          const selectors = selected.getSelectors();
+          selectors.forEach((selector: Selector, i: number) => {
+            selector.setActive(i === index);
+          });
+
+          // Refresh the style manager to reflect the changes
+          // editor.StyleManager.refresh();
+        }
+      };
 
       return (
         <div key={selector.toString()} className="flex gap-1 items-center flex-wrap w-full overflow-hidden">
@@ -193,9 +201,14 @@ export default function CustomSelectorManager({
                      value={formattedCss} theme="dark"
                      extensions={[langs.css(), EditorView.lineWrapping]}
                    />}><Pill
+            my="1"
             onClick={setActiveSelectorByIndex}
             className="cursor-pointer"
-            style={selector.getActive() ? {} : { opacity: 0.5 }}
+            style={
+              selector.getActive()
+                ? { backgroundColor: theme.colors.blue[7], color: theme.white }
+                : { opacity: 0.5 }
+            }
             disabled={!selector.getActive()}
             radius="xs"
           >
@@ -328,6 +341,32 @@ export default function CustomSelectorManager({
 
   // const hasIdRules = editor.Css.getRules(selectedComponentId);
 
+  const idCodes: string[] = [];
+
+  targetsIds.forEach((id) => {
+    const rules = editor.Css.getRules(`#${id}`);
+    const cssCode = rules.map((rule) => rule.toCSS()).join('\n');
+    if (cssCode) {
+      idCodes.push(`/* CSS for #${id} */\n${cssCode}`);
+    }
+  });
+
+  const allIdCodes = idCodes.join('\n\n');
+  console.log('CSS for all IDs:');
+  console.log(allIdCodes);
+
+  if (idCodes.length === 0) {
+    console.log('No CSS rules found for the given IDs.');
+  }
+
+  let formattedCss: string;
+
+  if (allIdCodes) {
+    formattedCss = formatCss(allIdCodes);
+  } else {
+    formattedCss = 'No css found';
+  }
+
   return (
     <div className=" flex flex-col  gap-2 text-left">
       <div className="flex items-center gap-2">
@@ -335,6 +374,7 @@ export default function CustomSelectorManager({
                  w={200} position="left-end"
                  withArrow openDelay={400}
                  label="Use this to change how your block reacts with a user action. e.g. Change background colour on hover">
+
           <ThemeIcon variant="light">
             <IconExclamationCircle size="1rem" />
           </ThemeIcon>
@@ -358,8 +398,13 @@ export default function CustomSelectorManager({
 
       <div className="flex flex-col gap-2 items-start w-full h-full">
         <div className="flex justify-between w-full h-full ">
-          <Tooltip color="blue"
-                   label={`Block ID - #${targetsIds.toString()}`}>
+          <Tooltip openDelay={400} w={400} p="xs" position="left-end" style={{ height: 'fit-content' }} multiline
+                   color="dark"
+                   label={<div className="flex flex-col gap-2"><p>{`Block IDs - ${targetsIds.toString()}`}</p>
+                     <CodeMirror
+                       value={formattedCss} theme="dark"
+                       extensions={[langs.css(), EditorView.lineWrapping]}
+                     /></div>}>
             <ActionIcon
               variant="subtle">
               <IconHash size="1rem" />
@@ -457,7 +502,7 @@ export default function CustomSelectorManager({
 
                                         withinPortal={false}>
           <Combobox.DropdownTarget>
-            <PillsInput size="xs"  className="w-full" onClick={() => combobox.openDropdown()}>
+            <PillsInput size="xs" className="w-full" onClick={() => combobox.openDropdown()}>
               <Pill.Group>
                 <ScrollArea type="hover" h={45} w="100%">
                   {values}

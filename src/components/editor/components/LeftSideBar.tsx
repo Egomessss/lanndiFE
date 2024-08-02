@@ -34,10 +34,11 @@ function LeftSideBar() {
     {
       label: 'Pages', Icon: IconFile, selectedValue: 'Pages', show:
         !(user?.subscription === 'free' || user?.subscription === 'basic-monthly' || user?.subscription === 'basic-yearly'),
-    }, {
-      label: 'Base Styles', Icon: IconBrush, selectedValue: 'Styles', show:
-        !(user?.subscription === 'free' || user?.subscription === 'basic-monthly' || user?.subscription === 'basic-yearly'),
     },
+    // {
+    //   label: 'Base Styles', Icon: IconBrush, selectedValue: 'Styles', show:
+    //     !(user?.subscription === 'free' || user?.subscription === 'basic-monthly' || user?.subscription === 'basic-yearly'),
+    // },
 
   ];
 
@@ -69,7 +70,7 @@ function LeftSideBar() {
         <div className="flex flex-col gap-2 h-full p-1">
           {icons.filter(icon => icon.show === true).map(({ label, Icon, selectedValue }) => (
             <div key={label}>
-              <Tooltip key={label} label={label}>
+              <Tooltip color="dark" key={label} label={label}>
                 <ActionIcon onClick={() => setSelected(selectedValue)} variant="subtle">
                   <Icon size="1rem" />
                 </ActionIcon>
