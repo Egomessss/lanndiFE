@@ -14,7 +14,7 @@ import { starterTemplate, styleStarterTemplate } from '@/components/editor/templ
 import { styles } from '@/components/editor/utils/styles';
 import FormBlocks from '@/components/editor/plugins/BasicBlocks/FormsBlocks';
 import Templates from '@/components/editor/plugins/Templates';
-import ClickAndDrop from '@/components/editor/plugins/utils/ClickAndDrop/plugin';
+import NumberedClasses from '../plugins/utils/NumberedClasses';
 
 
 export const demoEditorConfigOptions = () => ({
@@ -112,7 +112,7 @@ export const demoEditorConfigOptions = () => ({
     // Grid
     // Accordion,
     // Tabs
-    ClickAndDrop
+    NumberedClasses
   ],
   styleManager:styles,
 

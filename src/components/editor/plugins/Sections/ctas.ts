@@ -26,8 +26,8 @@ const ctas = (editor: Editor) => {
     model: {
       defaults: {
         name: 'CTA Simple With Button',
+        attributes: { class: 'cta-simple-container' },
         components: `  
-    <div class="cta-simple-container" >
     <div class="cta-simple-content-box">
       <h2 class="cta-simple-heading-one">CTA Heading
       </h2>
@@ -35,7 +35,7 @@ const ctas = (editor: Editor) => {
       </p>
         <button class="cta-simple-button">CTA Button</button>
     </div>
-  </div>`,
+  `,
         styles: `
        .cta-simple-container{
   height:fit-content;

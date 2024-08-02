@@ -87,15 +87,16 @@ function LeftSideBar() {
               <IconPhoto size="1rem" />
             </ActionIcon>
           </Tooltip>
-          <Tooltip label="Fonts Manager">
-            <ActionIcon onClick={() => editor.Assets.open()} variant="subtle">
-              <IconFileTypography size="1rem" />
-            </ActionIcon>
-          </Tooltip><Tooltip label="Base Styles Manager">
-          <ActionIcon onClick={() => editor.Assets.open()} variant="subtle">
-            <IconFileTypography size="1rem" />
-          </ActionIcon>
-        </Tooltip>
+          {/*<Tooltip label="Fonts Manager">*/}
+          {/*  <ActionIcon onClick={() => editor.Assets.open()} variant="subtle">*/}
+          {/*    <IconFileTypography size="1rem" />*/}
+          {/*  </ActionIcon>*/}
+          {/*</Tooltip>*/}
+          {/*<Tooltip label="Base Styles Manager">*/}
+          {/*  <ActionIcon onClick={() => editor.Assets.open()} variant="subtle">*/}
+          {/*    <IconFileTypography size="1rem" />*/}
+          {/*  </ActionIcon>*/}
+          {/*</Tooltip>*/}
         </div>
         <Divider orientation="vertical" my="xs" />
         <Box component={ScrollArea} scrollbars="y" className="p-1 w-full overflow">{renderSelectedComponent()}</Box>

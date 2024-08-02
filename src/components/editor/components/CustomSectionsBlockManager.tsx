@@ -19,9 +19,20 @@ export default function CustomSectionsBlockManager({
   const editor = useEditor()
 
   const onClick = (id: string) => {
-    editor.runCommand('click:grab-block', { id: id });
+    const block = editor.Blocks.get(id);
 
-    editor.runCommand('click:drop-block', { id: id });
+    const component = block?.getContent();
+
+    if (block) {
+      // @ts-ignore
+      const appendedBlock = editor.getWrapper()?.append(component)?.[0];
+      if(appendedBlock){
+        editor.select(appendedBlock)
+      }
+    }
+    // editor.runCommand('click:grab-block', { id: id });
+    //
+    // editor.runCommand('click:drop-block', { id: id });
   };
 
   return (

@@ -12,7 +12,6 @@ import ScriptEditor from '@/components/editor/plugins/utils/ScriptEditor';
 import PostCss from '../plugins/utils/PostCss';
 import { styles } from '@/components/editor/utils/styles';
 import FormBlocks from '@/components/editor/plugins/BasicBlocks/FormsBlocks';
-import ClickAndDrop from '@/components/editor/plugins/utils/ClickAndDrop/plugin';
 import Templates from '@/components/editor/plugins/Templates';
 import ListBlocks from '@/components/editor/plugins/BasicBlocks/ListBlocks';
 import NumberedClasses from '../plugins/utils/NumberedClasses';
@@ -114,7 +113,6 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
     // Grid
     // Accordion,
     // Tabs
-    ClickAndDrop,
     NumberedClasses
   ],
   pluginsOpts: {
