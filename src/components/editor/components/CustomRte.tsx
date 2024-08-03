@@ -85,7 +85,7 @@ const CustomRte = () => {
         },
       }),
     ],
-    content: richTextContent,
+    content: richTextContent || 'Start typing here...',
     immediatelyRender: false,
   });
 
@@ -119,7 +119,7 @@ const CustomRte = () => {
     <>
       <Button variant="subtle" onClick={open}>Edit Rich Text</Button>
       <Modal centered size="80%" opened={opened} onClose={close} scrollAreaComponent={ScrollArea.Autosize}>
-        {!rteEditor ? <Loading/> :   <RichTextEditor editor={rteEditor}>
+        {!rteEditor ? <Loading/> :   <RichTextEditor mih={400} editor={rteEditor}>
           <RichTextEditor.Toolbar style={{width:'100%'}} sticky stickyOffset={60}>
             <RichTextEditor.ControlsGroup>
               <RichTextEditor.Bold />
@@ -156,26 +156,27 @@ const CustomRte = () => {
             <RichTextEditor.ControlsGroup>
               <RichTextEditor.Undo />
               <RichTextEditor.Redo />
-              <RichTextEditor.ControlsGroup>
-                <RichTextEditor.Control
-                  onClick={saveRichText}
-                  aria-label="Save"
-                  title="Save"
-                  color="blue"
-                  className="text-xs px-4 mx-4 flex-grow"
-                >
-                  <div className="flex gap-2 items-center">
-                    <p>Save</p>
-                    <IconDeviceFloppy size="0.8rem" />
-                  </div>
 
-                </RichTextEditor.Control>
-                {/*<div className="w-full flex justify-end ">*/}
-                {/*  <Button size="xs" onClick={saveRichText}>*/}
-                {/*    Save*/}
-                {/*  </Button>*/}
-                {/*</div>*/}
-              </RichTextEditor.ControlsGroup>
+            </RichTextEditor.ControlsGroup>
+            <RichTextEditor.ControlsGroup>
+              <RichTextEditor.Control
+                onClick={saveRichText}
+                aria-label="Save"
+                title="Save"
+                color="blue"
+                className="text-xs px-4 mx-4 w-full text-blue-500 border-blue-500"
+              >
+                <div className="flex gap-2 items-center">
+                  <p>Save</p>
+                  <IconDeviceFloppy size="0.8rem" />
+                </div>
+
+              </RichTextEditor.Control>
+              {/*<div className="w-full flex justify-end ">*/}
+              {/*  <Button size="xs" onClick={saveRichText}>*/}
+              {/*    Save*/}
+              {/*  </Button>*/}
+              {/*</div>*/}
             </RichTextEditor.ControlsGroup>
           </RichTextEditor.Toolbar>
           <RichTextEditor.Content />

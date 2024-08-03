@@ -88,7 +88,7 @@ function CreatePageModal({ editingPageId, opened, onClose }: CreatePageProps) {
         color: 'green',
       });
 
-      editor.Pages.select(editingPageId)
+      editor.Pages.select(editingPageId);
       onClose();
     }
 
@@ -107,19 +107,22 @@ function CreatePageModal({ editingPageId, opened, onClose }: CreatePageProps) {
         <p className="text-red-500 text-xs">Set homepage settings in site settings</p>}
       <div className="flex  gap-2 flex-col w-full">
         <TextInput className="w-full"
-                   disabled={form.getInputProps('slug').value === 'index'}
                    label="Page Slug"
-                   description="Slug must be all lowercase and must not contain spaces. Use '-' to separate words. "
+                   description="Slug must be all lowercase and must not contain spaces. Use '-' to separate words.And '/' to separate paths."
                    placeholder="Insert your site slug here..."
                    {...form.getInputProps('slug')}
                    rightSectionWidth="40"
         />
+        {form.getInputProps('slug').value === 'index' &&
+          <p className="text-red-500 text-xs">/index should be reserved for your homepage</p>}
         <div className="flex  gap-2"><IconLink size="1rem" />      <p
           className="text-xs">/{form.getInputProps('slug').value}</p></div>
       </div>
 
 
       <Divider className="w-full" my="xs" label="Page metadata settings" />
+      {form.getInputProps('slug').value === 'index' &&
+        <p className="text-red-500 text-xs">Set homepage(/index) metadata in site settings</p>}
       <TextInput className="w-full"
                  label="Title"
                  disabled={form.getInputProps('slug').value === 'index'}
@@ -194,7 +197,7 @@ export default function CustomPageManager({
         onCancel: () => console.log('Cancel'),
         onConfirm: () => {
           remove(pageToDelete);
-          select(pages[0])
+          select(pages[0]);
         },
       });
     }
@@ -206,7 +209,7 @@ export default function CustomPageManager({
     if (pages.length <= maxPages) {
       const nextIndex = pages.length + 1;
       // Assuming `add` now returns the ID of the newly added page
-    const newPage =  add({
+      const newPage = add({
         name: `page ${nextIndex}`,
         slug: '',
         component: `<h1>Page ${nextIndex}</h1>`,
@@ -257,7 +260,7 @@ export default function CustomPageManager({
             key={page.getId()}
             size="xs"
             variant={page === selected ? 'filled' : 'subtle'}
-            onClick={()=>select(page)}
+            onClick={() => select(page)}
             rightSection={page.attributes.slug === 'index' || user?.subscription !== 'free' ?
               <Menu
                 shadow="md"
@@ -275,14 +278,14 @@ export default function CustomPageManager({
                 <Menu.Dropdown>
                   <Menu.Label>Page Settings</Menu.Label>
                   <Menu.Item
-                    disabled={page.attributes.slug === 'index'}
+                    // disabled={page.attributes.slug === 'index'}
                     onClick={() => {
                       setEditingPageId(page.getId());
                       open();
                     }
                     }
                   >
-                    {page.attributes.slug === 'index' ? 'Edit homepage in site settings' : 'Edit'}
+                    Edit
                   </Menu.Item>
                   {/*<Menu.Item*/}
                   {/*  disabled={page.attributes.slug !== 'index' }*/}
@@ -293,12 +296,11 @@ export default function CustomPageManager({
                   <Menu.Divider />
                   <Menu.Label>Danger zone</Menu.Label>
                   <Menu.Item
-                    disabled={page.attributes.slug === 'index'}
                     onClick={() => openModal(page)}
                     color="red"
                     leftSection={<IconTrash size="1rem" />}
                   >
-                    {page.attributes.slug === 'index' ? 'Can\'t delete homepage' : 'Delete page'}
+                    Delete page
                   </Menu.Item>
                 </Menu.Dropdown>
               </Menu> :
