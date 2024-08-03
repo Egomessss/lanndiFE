@@ -21,7 +21,7 @@ export default function CustomBlockManager({
   const { user } = useUser();
 
   const editor = useEditor();
-  console.log(mapCategoryBlocks);
+  // console.log(mapCategoryBlocks);
   const onClick = (id: string) => {
     const block = editor.Blocks.get(id);
     const selectedComponent = editor.getSelected() as any; // Replace 'any' with the correct type if known
@@ -35,7 +35,7 @@ export default function CustomBlockManager({
     }
   };
 
-  console.log(editor.Css.getAll());
+  // console.log(editor.Css.getAll());
 
 
   return (

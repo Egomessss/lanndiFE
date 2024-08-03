@@ -40,9 +40,8 @@ const faqs = (editor: Editor) => {
         isInteractive: true,
         interactiveClasses: ['faqa-accordion-question'],
         name: 'FAQ Accordion',
-        // attributes: { class: 'faq-one' },
+        attributes: { class: 'faqa-container' },
         components: `  
-<div class="faqa-container">
     <h2 class="faqa-heading-two">Frequently Asked Questions
     </h2>
     <div  class="faqa-layout">
@@ -103,7 +102,7 @@ const faqs = (editor: Editor) => {
         </div>
       </div>
     </div>
-  </div>`,
+ `,
         styles: `
    .faqa-container{
   width:90%;
@@ -176,14 +175,6 @@ const faqs = (editor: Editor) => {
 }
 `,
       },
-      init() {
-        const interactiveClasses = this.get('interactiveClasses') as string[];
-
-        interactiveClasses.map((className) => {
-          editor.Selectors.get(className)?.set('protected', true);
-        });
-
-      },
     },
 
   });
@@ -200,11 +191,9 @@ const faqs = (editor: Editor) => {
   Components.addType('faq-two', {
     model: {
       defaults: {
-        script: script,
         name: 'FAQ Grid',
-        // attributes: { class: 'faq-one' },
+        attributes: { class: 'faqg-container' },
         components: `  
-<div class="faqg-container" >
     <h2 class="faqg-heading-two">Frequently Asked Questions
     </h2>
     <div class="faqg-grid">
@@ -238,7 +227,7 @@ const faqs = (editor: Editor) => {
       </div>
      
     </div>
-  </div>`,
+`,
         styles: `
   .faqg-container{
   width:90%;

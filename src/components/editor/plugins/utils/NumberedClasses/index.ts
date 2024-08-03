@@ -21,7 +21,8 @@ const NumberedClasses = (editor: Editor) => {
   };
 
   editor.on('component:add', (component: Component) => {
-    const componentType = component.get('type');
+    // const componentType = component.get('type');
+    const componentType = component?.getClasses()[0];
     // @ts-ignore
     if (baseComponents.includes(componentType)) {
       const existingUnnamedClass = findNearestUnnamedClass(component);

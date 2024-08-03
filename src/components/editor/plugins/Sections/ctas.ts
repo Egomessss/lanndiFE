@@ -135,9 +135,9 @@ const ctas = (editor: Editor) => {
   Components.addType('cta-two', {
     model: {
       defaults: {
+        attributes: { class: 'container-feature-list' },
         name: 'CTA With Feature List',
         components: `  
-   <div  class="container-feature-list">
       <div class="cta-feature-list-content" >
         <h2 class="container-feature-list-heading-one">CTA Heading
         </h2>
@@ -170,7 +170,7 @@ const ctas = (editor: Editor) => {
         
         
       </div>
-    </div>`,
+  `,
         styles: `
      .container-feature-list{
   height:fit-content;

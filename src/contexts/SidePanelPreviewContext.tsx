@@ -16,7 +16,7 @@ export function SidePanelProvider({ children }: { children: ReactNode }) {
 
   const openSidePanel = () => setSidePanelOpen(true);
   const closeSidePanel = () => setSidePanelOpen(false);
-  console.log('isSidePanelOpen', isSidePanelOpen);
+  // console.log('isSidePanelOpen', isSidePanelOpen);
 
 
   return (

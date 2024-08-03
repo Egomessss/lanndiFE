@@ -56,7 +56,7 @@ export default function CustomComponentsBlockManager() {
         {symbols.map((symbol: any) => {
           return (
             <div key={symbol.getId()} className="flex flex-col justify-end items-end gap-2">
-              <Button  variant="subtle" className="h-fit w-fit"
+              <Button  variant="subtle" className="h-fit"
                       style={{ padding: '10px' }}
                 // draggable={!disabled}
                       justify="start" fullWidth

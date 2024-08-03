@@ -1,4 +1,4 @@
-import { HTMLProps, MouseEvent, useEffect, useMemo, useRef, useState } from 'react';
+import { HTMLProps, MouseEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { Component } from 'grapesjs';
 import { ActionIcon, Menu, TextInput, ThemeIcon, Tooltip } from '@mantine/core';
 import { useEditor } from '../wrappers';
@@ -34,6 +34,7 @@ export default function LayerItem({
   const layerRef = useRef<HTMLDivElement>(null);
   const [layerData, setLayerData] = useState(Layers.getLayerData(component));
   // console.log('layer', layerData);
+  const [symbolMainInfo, setSymbolMainInfo] = useState(editor.Components.getSymbolInfo(component));
 
 
   const { open, selected, hovered, components, visible, name, locked } =
@@ -116,13 +117,17 @@ export default function LayerItem({
     Layers.setLocked(component, !locked);
   };
 
-  const symbolMainInfo = editor.Components.getSymbolInfo(component);
 
   const wrapperCls = `layer-item flex flex-col rounded-lg text-white ${selected ? 'bg-[#228BE6]/20  ' : ''} ${(!visible || isDragging) ? 'opacity-40' : ''}`;
 
   const icon = component.get('icon');
 
-  console.log(symbolMainInfo);
+
+  const handleDetachSymbol = useCallback(() => {
+    editor.Components.detachSymbol(component);
+    // setLayerData(Layers.getLayerData(component));
+    setSymbolMainInfo(editor.Components.getSymbolInfo(component));
+  }, [editor, component, Layers]);
 
   return (
     <div className={wrapperCls}>
@@ -170,10 +175,10 @@ export default function LayerItem({
             >
               {name}
             </p>}
-          {/*{symbolMainInfo.isSymbol && symbolMainInfo.isMain && <Tooltip label="Main Component">*/}
-          {/*  <IconBox className="text-fuchsia-600 cursor-pointer" size="0.8rem" />*/}
-          {/*</Tooltip>}*/}
-          {symbolMainInfo.isSymbol && symbolMainInfo.isInstance &&
+          {symbolMainInfo.isSymbol && symbolMainInfo.isMain && symbolMainInfo.isRoot && <Tooltip label="Main Symbol">
+            <IconBox className="text-fuchsia-600 cursor-pointer" size="0.8rem" />
+          </Tooltip>}
+          {symbolMainInfo.isSymbol && symbolMainInfo.isInstance && symbolMainInfo.isRoot &&
             <Tooltip color="dark" label={`Instance of ${symbolMainInfo.main?.getName()} component`}>
               <IconBox className="text-fuchsia-500 drop-shadow-lg cursor-pointer" size="0.8rem" />
             </Tooltip>}
@@ -207,6 +212,10 @@ export default function LayerItem({
               <Menu.Item onClick={() => editor.runCommand('wrapper')}
                          rightSection={<ThemeIcon variant="subtle" color="white"><IconBox size="1rem" /></ThemeIcon>}>
                 Add Wrapper
+              </Menu.Item>
+              <Menu.Item onClick={handleDetachSymbol}
+                         rightSection={<ThemeIcon variant="subtle" color="white"><IconBox size="1rem" /></ThemeIcon>}>
+                Detach Component
               </Menu.Item>
               {/*<Menu.Item*/}
               {/*>*/}

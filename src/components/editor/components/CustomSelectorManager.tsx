@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { SelectorsResultProps, useEditor } from '../wrappers';
 import {
   ActionIcon,
@@ -6,7 +6,7 @@ import {
   Group,
   Menu,
   Pill,
-  PillsInput,
+  PillsInput, Popover,
   ScrollArea,
   Select,
   TextInput,
@@ -17,7 +17,7 @@ import {
 import {
   IconBolt,
   IconBrush,
-  IconCheck,
+  IconCheck, IconCode,
   IconDotsVertical,
   IconExclamationCircle,
   IconFocus2,
@@ -49,7 +49,18 @@ export default function CustomSelectorManager({
     onDropdownClose: () => combobox.resetSelectedOption(),
     onDropdownOpen: () => combobox.updateSelectedOptionIndex('active'),
   });
+  const [selector, setSelector] = useState<null | Selector>(null);
+  const [selectorName, setSelectorName] = useState('');
+  const [opened, setOpened] = useState(true);
+  const [isRenamingSelector, setIsRenamingSelector] = useState(false);
+  const theme = useMantineTheme();
 
+  const viewport = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () =>
+    viewport.current!.scrollTo({ top: viewport.current!.scrollHeight, behavior: 'smooth' });
+
+  const [isCloningAndRenaming, setIsCloningAndRenaming] = useState(false);
 
   const [search, setSearch] = useState('');
 
@@ -70,10 +81,6 @@ export default function CustomSelectorManager({
     }
   };
 
-  // const duplicateSelector = (selector:Selector) => {
-  //     addSelector(selector)
-  // }
-
   const disableSelector = (selector: Selector) => {
     const isDisabled = selector.getActive();
 
@@ -83,14 +90,6 @@ export default function CustomSelectorManager({
       selector.setActive(true);
     }
   };
-
-  const [selector, setSelector] = useState<null | Selector>(null);
-  const [selectorName, setSelectorName] = useState('');
-
-  const [isRenamingSelector, setIsRenamingSelector] = useState(false);
-
-
-  const [isCloningAndRenaming, setIsCloningAndRenaming] = useState(false);
 
 
   const cloneAndRenameSelector = () => {
@@ -151,7 +150,7 @@ export default function CustomSelectorManager({
       setSelectorName('');
     }
   };
-  const theme = useMantineTheme();
+
 
   useEffect(() => {
     const length = selectors.length;
@@ -202,6 +201,7 @@ export default function CustomSelectorManager({
                      extensions={[langs.css(), EditorView.lineWrapping]}
                    />}><Pill
             my="1"
+            size="xs"
             onClick={setActiveSelectorByIndex}
             className="cursor-pointer"
             style={
@@ -214,7 +214,7 @@ export default function CustomSelectorManager({
           >
             <span>{selector.getName()}</span>
           </Pill></Tooltip>
-          <Menu zIndex="200" shadow="md">
+          <Menu zIndex={500} shadow="md">
             <Menu.Target>
               <ActionIcon variant="subtle" size="xs">
                 <IconDotsVertical size="0.7rem" /></ActionIcon>
@@ -302,30 +302,14 @@ export default function CustomSelectorManager({
   const options = allSelectors
     .filter((item) => item.toLowerCase().includes(search.trim().toLowerCase()))
     .map((item) => {
-      const classes = editor.Css.getRules(item).map((rule) => rule.toCSS().toString()).join('\n');
-      // console.log('class', classes);
-
-      let formattedCss: string;
-
-      if (classes) {
-        formattedCss = formatCss(classes);
-      } else {
-        formattedCss = 'No css found';
-      }
 
       return (
-        <Tooltip openDelay={200} w={400} p="xs" position="left-end" style={{ height: 'fit-content' }} multiline
-                 color="dark" key={item}
-                 label={<CodeMirror
-                   value={formattedCss} theme="dark"
-                   extensions={[langs.css(), EditorView.lineWrapping]}
-                 />}>
-          <Combobox.Option value={item}>
-            <Group gap="sm">
-              <span>{item}</span>
-            </Group>
-          </Combobox.Option>
-        </Tooltip>);
+        <Combobox.Option key={item} value={item}>
+          <Group gap="sm">
+            <span className="text-xs">{item}</span>
+          </Group>
+        </Combobox.Option>
+      );
     });
 
 
@@ -337,9 +321,6 @@ export default function CustomSelectorManager({
 
 
   const isInteractive = editor.getSelected()?.get('isInteractive');
-  // const selectedComponentId = editor.getSelected()?.getId();
-
-  // const hasIdRules = editor.Css.getRules(selectedComponentId);
 
   const idCodes: string[] = [];
 
@@ -352,21 +333,28 @@ export default function CustomSelectorManager({
   });
 
   const allIdCodes = idCodes.join('\n\n');
-  console.log('CSS for all IDs:');
-  console.log(allIdCodes);
 
-  if (idCodes.length === 0) {
-    console.log('No CSS rules found for the given IDs.');
-  }
+  const classCodes: string[] = [];
+
+  selectors.forEach((selector) => {
+    const rules = editor.Css.getRules(`.${selector.getName()}`);
+    const cssCode = rules.map((rule) => rule.toCSS()).join('\n');
+    if (cssCode) {
+      classCodes.push(`/* CSS for .${selector.getName()} */\n${cssCode}`);
+    }
+  });
+
+  const allClassCodes = classCodes.join('\n\n');
 
   let formattedCss: string;
 
-  if (allIdCodes) {
-    formattedCss = formatCss(allIdCodes);
+  if (allIdCodes || allClassCodes) {
+    formattedCss = formatCss(`${allIdCodes}\n\n${allClassCodes}`);
   } else {
     formattedCss = 'No css found';
   }
 
+  console.log(formattedCss);
   return (
     <div className=" flex flex-col  gap-2 text-left">
       <div className="flex items-center gap-2">
@@ -398,18 +386,25 @@ export default function CustomSelectorManager({
 
       <div className="flex flex-col gap-2 items-start w-full h-full">
         <div className="flex justify-between w-full h-full ">
-          <Tooltip openDelay={400} w={400} p="xs" position="left-end" style={{ height: 'fit-content' }} multiline
-                   color="dark"
-                   label={<div className="flex flex-col gap-2"><p>{`Block IDs - ${targetsIds.toString()}`}</p>
-                     <CodeMirror
-                       value={formattedCss} theme="dark"
-                       extensions={[langs.css(), EditorView.lineWrapping]}
-                     /></div>}>
-            <ActionIcon
-              variant="subtle">
-              <IconHash size="1rem" />
-            </ActionIcon>
-          </Tooltip>
+          <Popover styles={{dropdown:{backgroundColor: theme.colors.dark[7]}}}  position="left-start" opened={opened} onChange={setOpened}>
+            <Popover.Target>
+              <ActionIcon onClick={() => setOpened((o) => !o)}
+                          variant="subtle">
+                <IconCode size="1rem" />
+              </ActionIcon>
+            </Popover.Target>
+
+            <Popover.Dropdown >
+              <div className="flex flex-col gap-2"><p>CSS Code</p>
+                <ScrollArea h={400} >
+                  <CodeMirror
+                    value={formattedCss} theme="dark"
+                    extensions={[langs.css(), EditorView.lineWrapping]}
+                  />
+                </ScrollArea>
+              </div>
+            </Popover.Dropdown>
+          </Popover>
           {isInteractive
             && <Tooltip color="dark"
                         label={<div>
@@ -490,23 +485,24 @@ export default function CustomSelectorManager({
           dropdown: { width: '100%' },
         }} store={combobox}
                                         onOptionSubmit={(val) => {
-                                          console.log('val', val);
+                                          // console.log('val', val);
                                           if (val === '$create') {
                                             addSelector(search);
                                           } else {
                                             addSelector(val);
                                           }
+                                          scrollToBottom();
                                           combobox.closeDropdown();
                                         }}
 
 
-                                        withinPortal={false}>
+                                        withinPortal={false}> <ScrollArea viewportRef={viewport} type="hover" h={45}
+                                                                          w="100%">
+          {values}
+        </ScrollArea>
           <Combobox.DropdownTarget>
             <PillsInput size="xs" className="w-full" onClick={() => combobox.openDropdown()}>
               <Pill.Group>
-                <ScrollArea type="hover" h={45} w="100%">
-                  {values}
-                </ScrollArea>
                 <Combobox.EventsTarget>
                   <PillsInput.Field
                     onFocus={() => combobox.openDropdown()}
