@@ -63,7 +63,7 @@ const MediaBlocks: Plugin<PluginOptions> = (editor, opts = {}) => {
         blocks: [
             "image",
             'iconsvg',
-            "youtube",
+            "video",
             // 'icon',
         ],
         flexGrid: false,

@@ -15,6 +15,7 @@ import FormBlocks from '@/components/editor/plugins/BasicBlocks/FormsBlocks';
 import Templates from '@/components/editor/plugins/Templates';
 import ListBlocks from '@/components/editor/plugins/BasicBlocks/ListBlocks';
 import NumberedClasses from '../plugins/utils/NumberedClasses';
+import Tabs from '@/components/editor/plugins/BasicBlocks/Tabs';
 
 
 export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: boolean) => ({
@@ -113,7 +114,8 @@ export const editorConfigOptions = (data: EditorData, siteSlug: string, isDemo: 
     // Grid
     // Accordion,
     // Tabs
-    NumberedClasses
+    NumberedClasses,
+    Tabs
   ],
   pluginsOpts: {
     ['GoogleFonts']: {

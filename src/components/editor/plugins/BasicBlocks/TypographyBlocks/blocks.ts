@@ -83,14 +83,14 @@ const TypographyBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
   });
 
 
-  // toAdd('heading-two') &&
-  // bm.add('heading-two', {
-  //     ...commonBlockProps,
-  //     label: 'Heading Two',
-  //
-  //     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-h-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 12a2 2 0 1 1 4 0c0 .591 -.417 1.318 -.816 1.858l-3.184 4.143l4 0" /><path d="M4 6v12" /><path d="M12 6v12" /><path d="M11 18h2" /><path d="M3 18h2" /><path d="M4 12h8" /><path d="M3 6h2" /><path d="M11 6h2" /></svg>`,
-  //     content: { type: 'heading-two' },
-  // })
+  toAdd('heading-two') &&
+  bm.add('heading-two', {
+      ...commonBlockProps,
+      label: 'Heading Two',
+
+      media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-h-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 12a2 2 0 1 1 4 0c0 .591 -.417 1.318 -.816 1.858l-3.184 4.143l4 0" /><path d="M4 6v12" /><path d="M12 6v12" /><path d="M11 18h2" /><path d="M3 18h2" /><path d="M4 12h8" /><path d="M3 6h2" /><path d="M11 6h2" /></svg>`,
+      content: { type: 'heading-two' },
+  })
 
   editor.DomComponents.addType('heading-three', {
     isComponent: el => {
@@ -124,14 +124,14 @@ const TypographyBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
   });
 
 
-  // toAdd('heading-three') &&
-  // bm.add('heading-three', {
-  //     ...commonBlockProps,
-  //     label: 'Heading Three',
-  //
-  //     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-h-3" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19 14a2 2 0 1 0 -2 -2" /><path d="M17 16a2 2 0 1 0 2 -2" /><path d="M4 6v12" /><path d="M12 6v12" /><path d="M11 18h2" /><path d="M3 18h2" /><path d="M4 12h8" /><path d="M3 6h2" /><path d="M11 6h2" /></svg>`,
-  //     content: { type: 'heading-three' },
-  // })
+  toAdd('heading-three') &&
+  bm.add('heading-three', {
+      ...commonBlockProps,
+      label: 'Heading Three',
+
+      media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-h-3" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19 14a2 2 0 1 0 -2 -2" /><path d="M17 16a2 2 0 1 0 2 -2" /><path d="M4 6v12" /><path d="M12 6v12" /><path d="M11 18h2" /><path d="M3 18h2" /><path d="M4 12h8" /><path d="M3 6h2" /><path d="M11 6h2" /></svg>`,
+      content: { type: 'heading-three' },
+  })
 
 
   editor.DomComponents.addType('heading-four', {
@@ -166,13 +166,13 @@ const TypographyBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
   });
 
 
-  // toAdd('heading-four') &&
-  // bm.add('heading-four', {
-  //     ...commonBlockProps,
-  //     label: 'Heading Four',
-  //     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-h-4" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 18v-8l-4 6h5" /><path d="M4 6v12" /><path d="M12 6v12" /><path d="M11 18h2" /><path d="M3 18h2" /><path d="M4 12h8" /><path d="M3 6h2" /><path d="M11 6h2" /></svg>`,
-  //     content: { type: 'heading-four' },
-  // })
+  toAdd('heading-four') &&
+  bm.add('heading-four', {
+      ...commonBlockProps,
+      label: 'Heading Four',
+      media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-h-4" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 18v-8l-4 6h5" /><path d="M4 6v12" /><path d="M12 6v12" /><path d="M11 18h2" /><path d="M3 18h2" /><path d="M4 12h8" /><path d="M3 6h2" /><path d="M11 6h2" /></svg>`,
+      content: { type: 'heading-four' },
+  })
 
 
   editor.DomComponents.addType('heading-five', {
@@ -207,14 +207,14 @@ const TypographyBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
   });
 
 
-  // toAdd('heading-five') &&
-  // bm.add('heading-five', {
-  //     ...commonBlockProps,
-  //     label: 'Heading Five',
-  //
-  //     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-h-5" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 18h2a2 2 0 1 0 0 -4h-2v-4h4" /><path d="M4 6v12" /><path d="M12 6v12" /><path d="M11 18h2" /><path d="M3 18h2" /><path d="M4 12h8" /><path d="M3 6h2" /><path d="M11 6h2" /></svg>`,
-  //     content: { type: 'heading-five' },
-  // })
+  toAdd('heading-five') &&
+  bm.add('heading-five', {
+      ...commonBlockProps,
+      label: 'Heading Five',
+
+      media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-h-5" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 18h2a2 2 0 1 0 0 -4h-2v-4h4" /><path d="M4 6v12" /><path d="M12 6v12" /><path d="M11 18h2" /><path d="M3 18h2" /><path d="M4 12h8" /><path d="M3 6h2" /><path d="M11 6h2" /></svg>`,
+      content: { type: 'heading-five' },
+  })
 
   editor.DomComponents.addType('heading-six', {
     isComponent: el => {
@@ -249,13 +249,14 @@ const TypographyBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
   });
 
 
-  // toAdd('heading-six') &&
-  // bm.add('heading-six', {
-  //     ...commonBlockProps,
-  //     label: 'Heading Six',
-  //     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-h-6" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19 14a2 2 0 1 0 0 4a2 2 0 0 0 0 -4z" /><path d="M21 12a2 2 0 1 0 -4 0v4" /><path d="M4 6v12" /><path d="M12 6v12" /><path d="M11 18h2" /><path d="M3 18h2" /><path d="M4 12h8" /><path d="M3 6h2" /><path d="M11 6h2" /></svg>`,
-  //     content: { type: 'heading-six' },
-  // })
+  toAdd('heading-six') &&
+  bm.add('heading-six', {
+      ...commonBlockProps,
+      label: 'Heading Six',
+
+      media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-h-6" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19 14a2 2 0 1 0 0 4a2 2 0 0 0 0 -4z" /><path d="M21 12a2 2 0 1 0 -4 0v4" /><path d="M4 6v12" /><path d="M12 6v12" /><path d="M11 18h2" /><path d="M3 18h2" /><path d="M4 12h8" /><path d="M3 6h2" /><path d="M11 6h2" /></svg>`,
+      content: { type: 'heading-six' },
+  })
 
   editor.DomComponents.addType('paragraph', {
     isComponent: el => {

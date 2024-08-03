@@ -74,7 +74,7 @@ const MediaBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
         attributes: { class: 'image' },
         traits: [
           {
-            name:'id',
+            name: 'id',
             type: 'text',
             label: 'ID',
           },
@@ -149,7 +149,7 @@ const MediaBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
     ...commonBlockProps,
     label: opts.labelIconSvg,
     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 8h-2a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2v-4h-1" /><path d="M7 8h-3a1 1 0 0 0 -1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-3" /><path d="M10 8l1.5 8h1l1.5 -8" /></svg>`,
-    content: { type: 'svg'},
+    content: { type: 'svg' },
   });
 
   editor.DomComponents.addType('svg', {
@@ -178,23 +178,43 @@ const MediaBlocks = (editor: Editor, opts: Required<PluginOptions>) => {
     },
   });
 
-  toAdd('youtube') &&
-  bm.add('youtube', {
+  editor.Components.addType('video', {
+    isComponent: el => {
+      if (el.classList && el.classList.contains('video')) {
+        return { type: 'video' };
+      }
+    },
+    extend: 'video',
+    model: {
+      defaults: {
+        baseClass: 'video',
+        attributes: { class: 'video' },
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-youtube" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z"></path>
+            <path d="M10 9l5 3l-5 3z"></path>
+         </svg>`,
+        styles:`.video{
+          width:320px;
+          height:240px;
+        }
+        `
+      },
+    },
+  });
+
+  toAdd('video') &&
+  bm.add('video', {
     ...commonBlockProps,
-    label: 'Youtube Video',
-    attributes: { class: 'ytb-video' },
+    label: 'Video',
     media: `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-youtube" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
             <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z"></path>
             <path d="M10 9l5 3l-5 3z"></path>
          </svg>`,
-    content: {components:`<iframe  width="1463" height="669" src="https://www.youtube.com/embed/2w5IvDyPlZQ" title="Should Transit Run 24 Hours?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,  baseClass:'youtube', attributes:{class:'youtube'}, icon:`<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-youtube" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-            <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z"></path>
-            <path d="M10 9l5 3l-5 3z"></path>
-         </svg>`,
-  },
-  });
+    content: { type: 'video' },
+  })
+  ;
 
 
 };
