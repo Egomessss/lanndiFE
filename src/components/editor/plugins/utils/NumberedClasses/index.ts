@@ -29,6 +29,10 @@ const NumberedClasses = (editor: Editor) => {
       if (existingUnnamedClass) {
         component.addClass(existingUnnamedClass);
         component.set('unnamedClass', existingUnnamedClass);
+      } else {
+        const newClass = `unnamed-class-${generateRandomString(8)}`;
+        component.addClass(newClass);
+        component.set('unnamedClass', newClass);
       }
     }
   });

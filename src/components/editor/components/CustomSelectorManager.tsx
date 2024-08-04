@@ -155,7 +155,14 @@ export default function CustomSelectorManager({
   };
 
 
-
+  const getActiveSelector = useCallback(() => {
+    const selected = editor.getSelected();
+    if (selected) {
+      const selectors = selected.getSelectors();
+      return selectors.find((selector: { getActive: () => any; }) => selector.getActive());
+    }
+    return null;
+  }, [editor]);
 
   useEffect(() => {
     const handleSelectionChange = () => {
@@ -171,22 +178,31 @@ export default function CustomSelectorManager({
     };
   }, [editor]);
 
+  const setActiveSelectorByIndex = useCallback((index: number) => {
+    const selected = editor.getSelected();
+    if (selected) {
+      const selectors = selected.getSelectors();
+      selectors.forEach((selector: Selector, i: number) => {
+        selector.setActive(i === index);
+      });
+      editor.select(selected); // This will trigger a re-render
+    }
+  }, [editor, selectors]);
 
-  const values = selectors.map((selector: Selector) => {
+  const activeSelector = getActiveSelector();
 
+  const values = selectors.map((selector: Selector, index: number) => {
       const protectedClass = selector?.get('protected');
       const isBaseClass = editor.getSelected()?.get('baseClass');
 
       const isActive = selector.getActive();
-    // Check if all selectors have .getActive() returning false
-
 
       return (
         <div key={selector.toString()} className="flex gap-1 items-center flex-wrap w-full overflow-hidden">
             <Pill
               my="2"
               size="xs"
-
+              onClick={() => setActiveSelectorByIndex(index)}
               className="cursor-pointer"
               style={
                 isActive
@@ -278,8 +294,7 @@ export default function CustomSelectorManager({
                 </div>
               </Menu.Item>
             </Menu.Dropdown>
-          </Menu>
-        </div>
+          </Menu></div>
       );
     })
   ;
@@ -387,7 +402,6 @@ export default function CustomSelectorManager({
               <div className="flex flex-col gap-2"><p>CSS Code</p>
                 <ScrollArea h={400}>
                   <CodeMirror
-                    readOnly
                     value={formattedCss} theme="dark"
                     extensions={[langs.css(), EditorView.lineWrapping]}
                   />
@@ -460,9 +474,15 @@ export default function CustomSelectorManager({
                          colour on your homepage, but then you have another page where you need your hero heading to be
                          black, you just add another class on top of the select block such as hero-heading-text-black
                          thus allowing you to make slight changes to a block style without modifying certain classes</p>
+                       <p>Tip.8: If you do not have a class in your component it will styled by id</p>
+                       <p className="font-bold">The selected classes that are stylable with classes are displayed
+                         with <span className="bg-blue-600 rounded-sm p-1">a blue background</span> otherwise they will
+                         styled with ID</p>
                        <p className="font-bold">Important: Always remember If you can&apos;t change a style its either
                          because you styled that block using the priority style(ID) or you&apos;re styling the wrong
-                         breakpoint </p></div>}>
+                         breakpoint </p>
+
+                     </div>}>
               <ThemeIcon
                 color="red"
                 variant="light">
@@ -493,8 +513,7 @@ export default function CustomSelectorManager({
             {values}
           </ScrollArea>
             <Combobox.DropdownTarget>
-              <PillsInput variant="unstyled" px="xs" bg="dark.6" size="xs" className="w-full" m="0"
-                          onClick={() => combobox.openDropdown()}>
+              <PillsInput variant="unstyled" px="xs"  bg="dark.6" size="xs" className="w-full" m="0" onClick={() => combobox.openDropdown()}>
                 <Pill.Group>
                   <Combobox.EventsTarget>
                     <PillsInput.Field
@@ -537,6 +556,7 @@ export default function CustomSelectorManager({
             </Combobox.Dropdown>
           </Combobox>}
         </div>
+
 
         {isCloningAndRenaming &&
           <TextInput autoFocus className="w-full" placeholder="Insert new class name" size="xs" my={8}
