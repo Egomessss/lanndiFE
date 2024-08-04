@@ -153,8 +153,6 @@ export default function CustomSelectorManager({
   };
 
 
-
-
   const getActiveSelector = useCallback(() => {
     const selected = editor.getSelected();
     if (selected) {
@@ -192,47 +190,47 @@ export default function CustomSelectorManager({
   const activeSelector = getActiveSelector();
 
   const values = selectors.map((selector: Selector, index: number) => {
-    const classes = editor.Css.getRules(`.${selector.getName()}`).map((rule) => rule.toCSS().toString()).join('\n');
-    let formattedCss: string = classes ? formatCss(classes) : 'No css found';
+      const classes = editor.Css.getRules(`.${selector.getName()}`).map((rule) => rule.toCSS().toString()).join('\n');
+      let formattedCss: string = classes ? formatCss(classes) : 'No css found';
 
-    const protectedClass = selector?.get('protected');
-    const isBaseClass = editor.getSelected()?.get('baseClass');
+      const protectedClass = selector?.get('protected');
+      const isBaseClass = editor.getSelected()?.get('baseClass');
 
-    const isActive = selector === activeSelector;
+      const isActive = selector === activeSelector;
 
-    return (
-      <div key={selector.toString()} className="flex gap-1 items-center flex-wrap w-full overflow-hidden">
-        <Tooltip
-          openDelay={700}
-          w={400}
-          p="xs"
-          position="left-end"
-          style={{ height: 'fit-content' }}
-          multiline
-          color="dark"
-          label={
-            <CodeMirror
-              value={formattedCss}
-              theme="dark"
-              extensions={[langs.css(), EditorView.lineWrapping]}
-            />
-          }
-        >
-          <Pill
-            my="1"
-            size="xs"
-            onClick={() => setActiveSelectorByIndex(index)}
-            className="cursor-pointer"
-            style={
-              isActive
-                ? { backgroundColor: theme.colors.blue[7], color: theme.white }
-                : { opacity: 0.5 }
+      return (
+        <div key={selector.toString()} className="flex gap-1 items-center flex-wrap w-full overflow-hidden">
+          <Tooltip
+            openDelay={700}
+            w={400}
+            p="xs"
+            position="left-end"
+            style={{ height: 'fit-content' }}
+            multiline
+            color="dark"
+            label={
+              <CodeMirror
+                value={formattedCss}
+                theme="dark"
+                extensions={[langs.css(), EditorView.lineWrapping]}
+              />
             }
-            radius="xs"
           >
-            <span>{selector.getName()}</span>
-          </Pill>
-        </Tooltip>
+            <Pill
+              my="2"
+              size="xs"
+              onClick={() => setActiveSelectorByIndex(index)}
+              className="cursor-pointer"
+              style={
+                isActive
+                  ? { backgroundColor: theme.colors.blue[7], color: theme.white }
+                  : { opacity: 0.5 }
+              }
+              radius="xs"
+            >
+              <span>{selector.getName()}</span>
+            </Pill>
+          </Tooltip>
           <Menu zIndex={500} shadow="md">
             <Menu.Target>
               <ActionIcon variant="subtle" size="xs">
@@ -406,19 +404,20 @@ export default function CustomSelectorManager({
 
       <div className="flex flex-col gap-2 items-start w-full h-full">
         <div className="flex justify-between w-full h-full ">
-          <Popover styles={{dropdown:{backgroundColor: theme.colors.dark[7]}}}  position="left-start" opened={opened} onChange={setOpened}>
+          <Popover styles={{ dropdown: { backgroundColor: theme.colors.dark[7] } }} position="left-start"
+                   opened={opened} onChange={setOpened}>
             <Popover.Target>
               <Tooltip label="Show CSS Code" color="dark">
-              <ActionIcon onClick={() => setOpened((o) => !o)}
-                          variant="subtle">
-                <IconCode size="1rem" />
-              </ActionIcon>
+                <ActionIcon onClick={() => setOpened((o) => !o)}
+                            variant="subtle">
+                  <IconCode size="1rem" />
+                </ActionIcon>
               </Tooltip>
             </Popover.Target>
 
-            <Popover.Dropdown >
+            <Popover.Dropdown>
               <div className="flex flex-col gap-2"><p>CSS Code</p>
-                <ScrollArea h={400} >
+                <ScrollArea h={400}>
                   <CodeMirror
                     value={formattedCss} theme="dark"
                     extensions={[langs.css(), EditorView.lineWrapping]}
@@ -503,67 +502,72 @@ export default function CustomSelectorManager({
             </Tooltip>
           </div>
         </div>
-        {!isComponentFirst && <Combobox  styles={{
-          dropdown: { width: '100%' },
-        }} store={combobox}
-                                        onOptionSubmit={(val) => {
-                                          // console.log('val', val);
-                                          if (val === '$create') {
-                                            addSelector(search);
-                                          } else {
-                                            addSelector(val);
-                                          }
-                                          scrollToBottom();
-                                          combobox.closeDropdown();
-                                        }}
+        <div className="w-full">
+          {!isComponentFirst && <Combobox styles={{
+            dropdown: { width: '100%' },
+          }} store={combobox}
+                                          onOptionSubmit={(val) => {
+                                            // console.log('val', val);
+                                            if (val === '$create') {
+                                              addSelector(search);
+                                            } else {
+                                              addSelector(val);
+                                            }
+                                            scrollToBottom();
+                                            combobox.closeDropdown();
+                                          }}
 
 
-                                        withinPortal={false}> <ScrollArea viewportRef={viewport} type="hover" h={45}
-                                                                          w="100%">
-          {values}
-        </ScrollArea>
-          <Combobox.DropdownTarget>
-            <PillsInput size="xs" className="w-full" onClick={() => combobox.openDropdown()}>
-              <Pill.Group>
-                <Combobox.EventsTarget>
-                  <PillsInput.Field
-                    onFocus={() => combobox.openDropdown()}
-                    onBlur={() => {
-                      combobox.closeDropdown();
-                      setSearch('');
-                    }}
-                    value={search}
-                    placeholder="Add class style"
-                    onChange={(event) => {
-                      combobox.updateSelectedOptionIndex();
-                      setSearch(event.currentTarget.value);
-                    }}
-                    onKeyDown={(event) => {
-                      if (event.key === 'Backspace' && search.length === 0) {
-                        event.preventDefault();
-                      }
-                    }}
-                  />
-                </Combobox.EventsTarget>
-              </Pill.Group>
-            </PillsInput>
-          </Combobox.DropdownTarget>
+                                          withinPortal={false}> <ScrollArea bg="dark.6" className="rounded-sm p-1"
+                                                                            viewportRef={viewport} type="hover" h={45}
+                                                                            w="100%">
+            {values}
+          </ScrollArea>
+            <Combobox.DropdownTarget>
+              <PillsInput variant="unstyled" px="xs"  bg="dark.6" size="xs" className="w-full" m="0" onClick={() => combobox.openDropdown()}>
+                <Pill.Group>
+                  <Combobox.EventsTarget>
+                    <PillsInput.Field
 
-          <Combobox.Dropdown>
-            <Combobox.Options>
-              <Divider size="xs" label="Existing Classes" />
-              <ScrollArea.Autosize mah={200} type="scroll">
-                {options}
-                {!exactOptionMatch && search.trim().length > 0 && (
-                  <Combobox.Option value="$create">+ Create {search}</Combobox.Option>
-                )}
-                {exactOptionMatch && search.trim().length > 0 && options.length === 0 && (
-                  <Combobox.Empty>Nothing found</Combobox.Empty>
-                )}
-              </ScrollArea.Autosize>
-            </Combobox.Options>
-          </Combobox.Dropdown>
-        </Combobox>}
+                      onFocus={() => combobox.openDropdown()}
+                      onBlur={() => {
+                        combobox.closeDropdown();
+                        setSearch('');
+                      }}
+                      value={search}
+                      placeholder="Add class style"
+                      onChange={(event) => {
+                        combobox.updateSelectedOptionIndex();
+                        setSearch(event.currentTarget.value);
+                      }}
+                      onKeyDown={(event) => {
+                        if (event.key === 'Backspace' && search.length === 0) {
+                          event.preventDefault();
+                        }
+                      }}
+                    />
+                  </Combobox.EventsTarget>
+                </Pill.Group>
+              </PillsInput>
+            </Combobox.DropdownTarget>
+
+            <Combobox.Dropdown>
+              <Combobox.Options>
+                <Divider size="xs" label="Existing Classes" />
+                <ScrollArea.Autosize mah={200} type="scroll">
+                  {options}
+                  {!exactOptionMatch && search.trim().length > 0 && (
+                    <Combobox.Option value="$create">+ Create {search}</Combobox.Option>
+                  )}
+                  {exactOptionMatch && search.trim().length > 0 && options.length === 0 && (
+                    <Combobox.Empty>Nothing found</Combobox.Empty>
+                  )}
+                </ScrollArea.Autosize>
+              </Combobox.Options>
+            </Combobox.Dropdown>
+          </Combobox>}
+        </div>
+
 
         {isCloningAndRenaming &&
           <TextInput autoFocus className="w-full" placeholder="Insert new class name" size="xs" my={8}
