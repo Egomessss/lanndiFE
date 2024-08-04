@@ -10,7 +10,7 @@ import {
   Popover,
   SegmentedControl,
   Select,
-  Slider,
+  Slider, TextInput,
   Tooltip,
 } from '@mantine/core';
 import { useEditor } from '../wrappers';
@@ -103,6 +103,17 @@ export default function StylePropertyField({
   const hasValueParent = prop.hasValueParent();
   // console.log('property', prop.getName(), 'value', value);
   // console.log('property', style, 'hasValue', hasValue, 'hasValueParent', hasValueParent);
+
+  const [colorValue, setColorValue] = useState<string>(valueString);
+
+  useEffect(() => {
+    setColorValue(valueString);
+  }, [valueString]);
+
+  const handleColorChange = (newColor: string) => {
+    setColorValue(newColor);
+    handleChange(newColor);
+  };
 
   let inputToRender = (
     <Input
@@ -221,19 +232,34 @@ export default function StylePropertyField({
       break;
     case 'color': {
       inputToRender = (
-        <Popover position="left-start" shadow="md">
-          <Popover.Target>
-            <Button  leftSection={<IconPalette  size="1rem" />}
-                    variant="default"
-                    fullWidth
-                    size="xs">Pick</Button>
-          </Popover.Target>
-          <Popover.Dropdown>
-            <ColorPicker className="text-xs" hideAdvancedSliders hideColorGuide height={180} width={280}
-                         value={value} onChange={onChange} />
-          </Popover.Dropdown>
-        </Popover>
-
+        <div className="flex gap-2 items-center">
+          <TextInput
+            key={inputKey}
+            className="col-span-1"
+            value={colorValue}
+            onChange={(event) => handleColorChange(event.currentTarget.value)}
+            placeholder={valueWithDef}
+            size="xs"
+          />
+          <Popover position="left" shadow="md">
+            <Popover.Target>
+              <ActionIcon variant="subtle">
+                <IconPalette size="1rem" />
+              </ActionIcon>
+            </Popover.Target>
+            <Popover.Dropdown>
+              <ColorPicker
+                className="text-xs"
+                hideAdvancedSliders
+                hideColorGuide
+                height={180}
+                width={280}
+                value={colorValue}
+                onChange={handleColorChange}
+              />
+            </Popover.Dropdown>
+          </Popover>
+        </div>
       );
     }
       break;

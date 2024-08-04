@@ -51,7 +51,7 @@ export default function CustomSelectorManager({
   });
   const [selector, setSelector] = useState<null | Selector>(null);
   const [selectorName, setSelectorName] = useState('');
-  const [opened, setOpened] = useState(true);
+  const [opened, setOpened] = useState(false);
   const [isRenamingSelector, setIsRenamingSelector] = useState(false);
   const theme = useMantineTheme();
 
@@ -354,7 +354,7 @@ export default function CustomSelectorManager({
     formattedCss = 'No css found';
   }
 
-  console.log(formattedCss);
+  // console.log(formattedCss);
   return (
     <div className=" flex flex-col  gap-2 text-left">
       <div className="flex items-center gap-2">
@@ -381,6 +381,7 @@ export default function CustomSelectorManager({
           }))}
           size="xs"
           placeholder="-No state-"
+
         />
       </div>
 
@@ -388,10 +389,12 @@ export default function CustomSelectorManager({
         <div className="flex justify-between w-full h-full ">
           <Popover styles={{dropdown:{backgroundColor: theme.colors.dark[7]}}}  position="left-start" opened={opened} onChange={setOpened}>
             <Popover.Target>
+              <Tooltip label="Show CSS Code" color="dark">
               <ActionIcon onClick={() => setOpened((o) => !o)}
                           variant="subtle">
                 <IconCode size="1rem" />
               </ActionIcon>
+              </Tooltip>
             </Popover.Target>
 
             <Popover.Dropdown >
@@ -481,7 +484,7 @@ export default function CustomSelectorManager({
             </Tooltip>
           </div>
         </div>
-        {!isComponentFirst && <Combobox styles={{
+        {!isComponentFirst && <Combobox  styles={{
           dropdown: { width: '100%' },
         }} store={combobox}
                                         onOptionSubmit={(val) => {

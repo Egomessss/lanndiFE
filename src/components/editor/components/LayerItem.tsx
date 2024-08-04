@@ -9,6 +9,7 @@ import {
   IconDotsVertical, IconEdit,
   IconEye,
   IconLock,
+  IconSquare,
   IconTrash,
 } from '@tabler/icons-react';
 
@@ -138,7 +139,7 @@ export default function LayerItem({
         className="group max-w-full overflow-hidden"
         data-layer-item=""
         ref={layerRef}
-        style={{ paddingLeft: `${level * 4}px` }}
+        style={{ paddingLeft: `${level * 3}px` }}
       >
         <div
           className={
@@ -179,8 +180,8 @@ export default function LayerItem({
             <IconBox className="text-fuchsia-600 cursor-pointer" size="0.8rem" />
           </Tooltip>}
           {symbolMainInfo.isSymbol && symbolMainInfo.isInstance && symbolMainInfo.isRoot &&
-            <Tooltip color="dark" label={`Instance of ${symbolMainInfo.main?.getName()} component`}>
-              <IconBox className="text-fuchsia-500 drop-shadow-lg cursor-pointer" size="0.8rem" />
+            <Tooltip color="dark" label={<p>Instance of<span className="font-bold bg-blue-700 mx-2 rounded-sm"> {symbolMainInfo.main?.getName()} </span>component</p>}>
+              <IconBox className="text-fuchsia-500 drop-shadow-lg cursor-pointer " stroke="3" size="0.8rem" />
             </Tooltip>}
           <Menu position="bottom-start" trigger="hover" openDelay={100} closeDelay={400} shadow="md" width={200}>
             <Menu.Target>
@@ -210,11 +211,11 @@ export default function LayerItem({
                 {visible ? 'Hide' : 'Unhide'}
               </Menu.Item>
               <Menu.Item onClick={() => editor.runCommand('wrapper')}
-                         rightSection={<ThemeIcon variant="subtle" color="white"><IconBox size="1rem" /></ThemeIcon>}>
+                         rightSection={<ThemeIcon variant="subtle" color="white"><IconSquare size="1rem" /></ThemeIcon>}>
                 Add Wrapper
               </Menu.Item>
               <Menu.Item onClick={handleDetachSymbol}
-                         rightSection={<ThemeIcon variant="subtle" color="white"><IconBox size="1rem" /></ThemeIcon>}>
+                         rightSection={<ThemeIcon variant="subtle"  className="text-fuchsia-500"><IconBox size="1rem" /></ThemeIcon>}>
                 Detach Component
               </Menu.Item>
               {/*<Menu.Item*/}
