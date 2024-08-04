@@ -2,34 +2,34 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { SelectorsResultProps, useEditor } from '../wrappers';
 import {
   ActionIcon,
-  Combobox, Divider,
+  Combobox,
+  Divider,
   Group,
   Menu,
   Pill,
-  PillsInput, Popover,
+  PillsInput,
+  Popover,
   ScrollArea,
   Select,
   TextInput,
   ThemeIcon,
   Tooltip,
   useCombobox,
+  useMantineTheme,
 } from '@mantine/core';
 import {
   IconBolt,
-  IconBrush,
-  IconCheck, IconCode,
+  IconCheck,
+  IconCode,
   IconDotsVertical,
   IconExclamationCircle,
   IconFocus2,
-  IconHash,
-  IconTags,
   IconX,
 } from '@tabler/icons-react';
 import { Selector } from 'grapesjs';
 import CodeMirror, { EditorView } from '@uiw/react-codemirror';
 import { langs } from '@uiw/codemirror-extensions-langs';
 import { formatCss } from '@/components/editor/components/CustomAdvancedTraitManager';
-import { useMantineTheme } from '@mantine/core';
 
 
 export default function CustomSelectorManager({
