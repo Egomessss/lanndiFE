@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { SelectorsResultProps, useEditor } from '../wrappers';
 import {
   ActionIcon,
@@ -53,6 +53,7 @@ export default function CustomSelectorManager({
   const [selectorName, setSelectorName] = useState('');
   const [opened, setOpened] = useState(false);
   const [isRenamingSelector, setIsRenamingSelector] = useState(false);
+  const [, forceUpdate] = useState({});
   const theme = useMantineTheme();
 
   const viewport = useRef<HTMLDivElement>(null);
@@ -152,68 +153,86 @@ export default function CustomSelectorManager({
   };
 
 
+
+
+  const getActiveSelector = useCallback(() => {
+    const selected = editor.getSelected();
+    if (selected) {
+      const selectors = selected.getSelectors();
+      return selectors.find((selector: { getActive: () => any; }) => selector.getActive());
+    }
+    return null;
+  }, [editor]);
+
   useEffect(() => {
-    const length = selectors.length;
+    const handleSelectionChange = () => {
+      forceUpdate({});
+    };
 
-    selectors.forEach((selector: Selector, i: number) => {
-      selector.setActive(i === length - 1);
-    });
-  }, [selectors]);
+    editor.on('component:selected', handleSelectionChange);
+    editor.on('component:update:classes', handleSelectionChange);
 
-  const values = selectors.map((selector, index) => {
+    return () => {
+      editor.off('component:selected', handleSelectionChange);
+      editor.off('component:update:classes', handleSelectionChange);
+    };
+  }, [editor]);
 
-      // console.log(selector);
+  const setActiveSelectorByIndex = useCallback((index: number) => {
+    const selected = editor.getSelected();
+    if (selected) {
+      const selectors = selected.getSelectors();
+      selectors.forEach((selector: Selector, i: number) => {
+        selector.setActive(i === index);
+      });
+      editor.select(selected); // This will trigger a re-render
+    }
+  }, [editor]);
 
-      const classes = editor.Css.getRules(`.${selector.getName()}`).map((rule) => rule.toCSS().toString()).join('\n');
-      // console.log('class', classes);
+  const activeSelector = getActiveSelector();
 
-      let formattedCss: string;
+  const values = selectors.map((selector: Selector, index: number) => {
+    const classes = editor.Css.getRules(`.${selector.getName()}`).map((rule) => rule.toCSS().toString()).join('\n');
+    let formattedCss: string = classes ? formatCss(classes) : 'No css found';
 
-      if (classes) {
-        formattedCss = formatCss(classes);
-      } else {
-        formattedCss = 'No css found';
-      }
+    const protectedClass = selector?.get('protected');
+    const isBaseClass = editor.getSelected()?.get('baseClass');
 
-      const protectedClass = selector?.get('protected');
-      const isBaseClass = editor.getSelected()?.get('baseClass');
+    const isActive = selector === activeSelector;
 
-
-      const setActiveSelectorByIndex = () => {
-        const selected = editor.getSelected();
-        if (selected) {
-          const selectors = selected.getSelectors();
-          selectors.forEach((selector: Selector, i: number) => {
-            selector.setActive(i === index);
-          });
-
-          // Refresh the style manager to reflect the changes
-          // editor.StyleManager.refresh();
-        }
-      };
-
-      return (
-        <div key={selector.toString()} className="flex gap-1 items-center flex-wrap w-full overflow-hidden">
-          <Tooltip openDelay={400} w={400} p="xs" position="left-end" style={{ height: 'fit-content' }} multiline
-                   color="dark"
-                   label={<CodeMirror
-                     value={formattedCss} theme="dark"
-                     extensions={[langs.css(), EditorView.lineWrapping]}
-                   />}><Pill
+    return (
+      <div key={selector.toString()} className="flex gap-1 items-center flex-wrap w-full overflow-hidden">
+        <Tooltip
+          openDelay={700}
+          w={400}
+          p="xs"
+          position="left-end"
+          style={{ height: 'fit-content' }}
+          multiline
+          color="dark"
+          label={
+            <CodeMirror
+              value={formattedCss}
+              theme="dark"
+              extensions={[langs.css(), EditorView.lineWrapping]}
+            />
+          }
+        >
+          <Pill
             my="1"
             size="xs"
-            onClick={setActiveSelectorByIndex}
+            onClick={() => setActiveSelectorByIndex(index)}
             className="cursor-pointer"
             style={
-              selector.getActive()
+              isActive
                 ? { backgroundColor: theme.colors.blue[7], color: theme.white }
                 : { opacity: 0.5 }
             }
-            disabled={!selector.getActive()}
             radius="xs"
           >
             <span>{selector.getName()}</span>
-          </Pill></Tooltip>
+          </Pill>
+        </Tooltip>
           <Menu zIndex={500} shadow="md">
             <Menu.Target>
               <ActionIcon variant="subtle" size="xs">
