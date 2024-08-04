@@ -56,6 +56,8 @@ export default function CustomSelectorManager({
   const [, forceUpdate] = useState({});
   const theme = useMantineTheme();
 
+  console.log('selectors', selectors.map((sel)=> sel.getActive()));
+
   const viewport = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () =>
@@ -153,14 +155,7 @@ export default function CustomSelectorManager({
   };
 
 
-  const getActiveSelector = useCallback(() => {
-    const selected = editor.getSelected();
-    if (selected) {
-      const selectors = selected.getSelectors();
-      return selectors.find((selector: { getActive: () => any; }) => selector.getActive());
-    }
-    return null;
-  }, [editor]);
+
 
   useEffect(() => {
     const handleSelectionChange = () => {
@@ -176,50 +171,22 @@ export default function CustomSelectorManager({
     };
   }, [editor]);
 
-  const setActiveSelectorByIndex = useCallback((index: number) => {
-    const selected = editor.getSelected();
-    if (selected) {
-      const selectors = selected.getSelectors();
-      selectors.forEach((selector: Selector, i: number) => {
-        selector.setActive(i === index);
-      });
-      editor.select(selected); // This will trigger a re-render
-    }
-  }, [editor]);
 
-  const activeSelector = getActiveSelector();
-
-  const values = selectors.map((selector: Selector, index: number) => {
-      const classes = editor.Css.getRules(`.${selector.getName()}`).map((rule) => rule.toCSS().toString()).join('\n');
-      let formattedCss: string = classes ? formatCss(classes) : 'No css found';
+  const values = selectors.map((selector: Selector) => {
 
       const protectedClass = selector?.get('protected');
       const isBaseClass = editor.getSelected()?.get('baseClass');
 
-      const isActive = selector === activeSelector;
+      const isActive = selector.getActive();
+    // Check if all selectors have .getActive() returning false
+
 
       return (
         <div key={selector.toString()} className="flex gap-1 items-center flex-wrap w-full overflow-hidden">
-          <Tooltip
-            openDelay={700}
-            w={400}
-            p="xs"
-            position="left-end"
-            style={{ height: 'fit-content' }}
-            multiline
-            color="dark"
-            label={
-              <CodeMirror
-                value={formattedCss}
-                theme="dark"
-                extensions={[langs.css(), EditorView.lineWrapping]}
-              />
-            }
-          >
             <Pill
               my="2"
               size="xs"
-              onClick={() => setActiveSelectorByIndex(index)}
+
               className="cursor-pointer"
               style={
                 isActive
@@ -230,7 +197,7 @@ export default function CustomSelectorManager({
             >
               <span>{selector.getName()}</span>
             </Pill>
-          </Tooltip>
+
           <Menu zIndex={500} shadow="md">
             <Menu.Target>
               <ActionIcon variant="subtle" size="xs">
@@ -311,7 +278,8 @@ export default function CustomSelectorManager({
                 </div>
               </Menu.Item>
             </Menu.Dropdown>
-          </Menu></div>
+          </Menu>
+        </div>
       );
     })
   ;
@@ -419,6 +387,7 @@ export default function CustomSelectorManager({
               <div className="flex flex-col gap-2"><p>CSS Code</p>
                 <ScrollArea h={400}>
                   <CodeMirror
+                    readOnly
                     value={formattedCss} theme="dark"
                     extensions={[langs.css(), EditorView.lineWrapping]}
                   />
@@ -524,7 +493,8 @@ export default function CustomSelectorManager({
             {values}
           </ScrollArea>
             <Combobox.DropdownTarget>
-              <PillsInput variant="unstyled" px="xs"  bg="dark.6" size="xs" className="w-full" m="0" onClick={() => combobox.openDropdown()}>
+              <PillsInput variant="unstyled" px="xs" bg="dark.6" size="xs" className="w-full" m="0"
+                          onClick={() => combobox.openDropdown()}>
                 <Pill.Group>
                   <Combobox.EventsTarget>
                     <PillsInput.Field
@@ -567,7 +537,6 @@ export default function CustomSelectorManager({
             </Combobox.Dropdown>
           </Combobox>}
         </div>
-
 
         {isCloningAndRenaming &&
           <TextInput autoFocus className="w-full" placeholder="Insert new class name" size="xs" my={8}

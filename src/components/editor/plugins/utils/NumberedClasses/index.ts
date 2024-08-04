@@ -21,22 +21,17 @@ const NumberedClasses = (editor: Editor) => {
   };
 
   editor.on('component:add', (component: Component) => {
-    // const componentType = component.get('type');
-    const componentType = component?.getClasses()[0];
-    // @ts-ignore
-    if (baseComponents.includes(componentType)) {
+    const classes = component.getClasses();
+
+    // Check if there's only one class and it's in baseComponents
+    if (classes.length === 1 && baseComponents.includes(classes[0])) {
       const existingUnnamedClass = findNearestUnnamedClass(component);
       if (existingUnnamedClass) {
         component.addClass(existingUnnamedClass);
         component.set('unnamedClass', existingUnnamedClass);
-      } else {
-        const newClass = `unnamed-class-${generateRandomString(8)}`;
-        component.addClass(newClass);
-        component.set('unnamedClass', newClass);
       }
     }
   });
-
 };
 
 export default NumberedClasses;

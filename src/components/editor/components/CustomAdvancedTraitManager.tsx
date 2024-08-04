@@ -3,9 +3,18 @@ import { ActionIcon, Button, Divider, Modal, ScrollArea, TextInput } from '@mant
 import CodeMirror, { EditorView } from '@uiw/react-codemirror';
 import { langs } from '@uiw/codemirror-extensions-langs';
 import React, { useEffect, useState } from 'react';
-import { IconBrandCss3, IconBrandJavascript, IconEdit, IconKey, IconTrash, IconWorld } from '@tabler/icons-react';
+import {
+  IconAlertCircle,
+  IconBrandCss3,
+  IconBrandJavascript,
+  IconEdit,
+  IconKey,
+  IconTrash,
+  IconWorld,
+} from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
 import useUser from '@/hooks/use-user';
+import { notifications } from '@mantine/notifications';
 
 // Function to format the CSS string
 export const formatCss = (cssString: any): string => {
@@ -88,13 +97,26 @@ export const GlobalCssCode = () => {
 
 
   const handleClick = () => {
-    const formattedCssCode = formatCss(value);
-    editor.Css.clear()
-    // console.log('css', formattedCssCode);
-    // component?.set('style', value);
-    editor.setStyle(formattedCssCode);
-    setValue('');
-    close();
+    try {
+      const formattedCssCode = formatCss(value);
+      editor.Css.clear();
+      editor.setStyle(formattedCssCode);
+      setValue('');
+      close();
+      notifications.show({
+        title: 'Success',
+        message: 'Global CSS updated successfully',
+        color: 'green',
+      });
+    } catch (error) {
+      console.error('Error updating CSS:', error);
+      notifications.show({
+        title: 'Error',
+        message: 'Failed to update CSS. Please check your code for errors.',
+        color: 'red',
+        icon: <IconAlertCircle />,
+      });
+    }
   };
 
 
