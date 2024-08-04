@@ -332,7 +332,7 @@ function EditorHeader() {
               Preview
             </Button>
           </Tooltip>
-          {user?.isAdmin &&
+          {user &&
             <EditorVersions setCanAutosaveLoadedData={setCanAutosaveLoadedData} loadVersionData={loadVersionData} />}
           <SiteSettingsButton data={data} />
           {user ? <SaveButton canAutosaveLoadedData={canAutosaveLoadedData} /> :

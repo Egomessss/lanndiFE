@@ -159,7 +159,6 @@ const EditorVersions = ({ loadVersionData,setCanAutosaveLoadedData }: { loadVers
     enabled: !isDemo,
   });
 
-
   const { mutate: StoreVersion, isPending } = useMutation({
     mutationFn: async () => {
       const endpoint = `api/v1/sites/${siteSlug}/versions/store`;
@@ -205,7 +204,6 @@ const EditorVersions = ({ loadVersionData,setCanAutosaveLoadedData }: { loadVers
       queryClient.invalidateQueries({ queryKey: ['siteVersions', siteSlug] });
     },
   });
-
 
   return (
     <>

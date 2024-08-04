@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { ActionIcon, AppShell, Box, Divider, ScrollArea, Tooltip } from '@mantine/core';
 import {
-  IconBox, IconBrush,
-  IconFile, IconFileTypography,
+  IconBox,
+  IconFile,
   IconLayoutGridAdd,
   IconPhoto,
   IconSection,
@@ -14,9 +14,7 @@ import LayersLeftSideBar from '@/components/editor/components/LayersLeftSideBar'
 import PagesLeftSideBar from '@/components/editor/components/PagesLeftSideBar';
 import CustomComponentsBlockManager from '@/components/editor/components/CustomComponentsBlockManager';
 import useUser from '@/hooks/use-user';
-import CustomRte from '@/components/editor/components/CustomRte';
 import { useEditor } from '../context/EditorInstance';
-import CustomBaseStyleManager from '@/components/editor/components/CustomBaseStylesManager';
 
 
 function LeftSideBar() {
@@ -27,7 +25,7 @@ function LeftSideBar() {
 
   const icons = [
     { label: 'Blocks', Icon: IconLayoutGridAdd, selectedValue: 'Blocks', show: true },
-    { label: 'Components', Icon: IconBox, selectedValue: 'Components', show: user && user?.isAdmin },
+    { label: 'Components', Icon: IconBox, selectedValue: 'Components', show: true },
     { label: 'Sections', Icon: IconSection, selectedValue: 'Sections', show: true },
     { label: 'Templates', Icon: IconTemplate, selectedValue: 'Templates', show: true },
     { label: 'Layers', Icon: IconStack2, selectedValue: 'Layers', show: true },

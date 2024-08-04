@@ -12,7 +12,7 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import React, { useEffect, useState } from 'react';
-import {  useEditor } from '../wrappers';
+import { PagesResultProps, useEditor } from '../wrappers';
 import { IconDotsVertical, IconExclamationCircle, IconLink, IconPlus, IconTrash } from '@tabler/icons-react';
 import { modals } from '@mantine/modals';
 import { Page } from 'grapesjs';
@@ -31,27 +31,24 @@ interface ExtendedPage extends Page {
     [key: string]: any; // For any other attributes that might be present
   };
 }
-// Update the prop types
+// Update EditPageModal props
 interface EditPageProps {
-  editingPage: ExtendedPage | null;
+  editingPage: Page | null;
   opened: boolean;
   onClose: () => void;
 }
 
 interface CreatePageProps {
   editingPageId: string;
-  pages: ExtendedPage[];
-  add: (page: Partial<ExtendedPage>) => ExtendedPage;
+  pages: Page[];
   opened: boolean;
   onClose: () => void;
 }
 
-interface PagesResultProps {
-  pages: ExtendedPage[];
-  selected: ExtendedPage | null;
-  add: (page: Partial<ExtendedPage>) => ExtendedPage;
-  select: (page: ExtendedPage) => void;
-  remove: (page: ExtendedPage) => void;
+interface PageExtras {
+  slug?: string;
+  title?: string;
+  description?: string;
 }
 
 
@@ -91,18 +88,26 @@ export function EditPageModal({ editingPage, opened, onClose }: EditPageProps) {
 
   useEffect(() => {
     if (editingPage) {
+      const extras = editingPage.attributes as PageExtras;
       form.setValues({
         name: editingPage.getName() || '',
-        slug: editingPage.attributes.slug || '',
-        title: editingPage.attributes.title || '',
-        description: editingPage.attributes.description || '',
+        slug: extras.slug || '',
+        title: extras.title || '',
+        description: extras.description || '',
       });
     }
-  }, [editingPage]);
+  }, [editingPage]);;
 
   const handleSubmit = (values: typeof form.values) => {
-    if (editingPage && editingPage.attributes.slug !== 'index') {
-      editingPage.set(values);
+    if (editingPage) {
+      editingPage.set('name', values.name);
+      // Update the extra properties
+      const extras: PageExtras = {
+        slug: values.slug,
+        title: values.title,
+        description: values.description,
+      };
+      editingPage.set('attributes', { ...editingPage.attributes, ...extras });
       editor.Pages.select(editingPage.getId());
       notifications.show({
         title: 'Success!',
@@ -185,8 +190,6 @@ function CreatePageModal({ editingPageId, opened, onClose }: CreatePageProps) {
 
   const editor = useEditor();
   const page = editor.Pages.get(editingPageId) as ExtendedPage | undefined;
-  const pageName = editor.Pages.get(editingPageId)?.getName();
-
 
   const formSchema = z.object({
     name: z.string().max(60, 'Title must be at most 60 characters'),
@@ -301,7 +304,7 @@ export default function CustomPageManager({
                                             remove,
                                           }: PagesResultProps) {
   const [editingPageId, setEditingPageId] = useState<string>('');
-  const [editingPage, setEditingPage] = useState<ExtendedPage | null>(null);
+  const [editingPage, setEditingPage] = useState<Page | null>(null);
   const [createModalOpened, createModalHandlers] = useDisclosure(false);
   const [editModalOpened, editModalHandlers] = useDisclosure(false);
 
@@ -310,12 +313,12 @@ export default function CustomPageManager({
   // pages frames are being deleted when i select another page
   console.log('pages', pages);
 
-  const openEditModal = (page: ExtendedPage) => {
+  const openEditModal = (page: Page) => {
     setEditingPage(page);
     editModalHandlers.open();
   };
 
-  const openModal = (pageToDelete: ExtendedPage) => {
+  const openModal = (pageToDelete: Page) => {
 
     if (pageToDelete.attributes.slug === 'index') {
       modals.openConfirmModal({
@@ -454,7 +457,6 @@ export default function CustomPageManager({
       <CreatePageModal
         opened={createModalOpened}
         onClose={createModalHandlers.close}
-        add={add}
         pages={pages}
         editingPageId={editingPageId}
       />
