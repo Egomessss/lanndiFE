@@ -7,6 +7,9 @@ import { useEditor } from '@/components/editor/context/EditorInstance';
 interface StylePropertyFieldProps extends React.HTMLProps<HTMLDivElement> {
   trait: Trait;
 }
+const capitalizeFirstLetter = (string: string): string => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
 
 export default function TraitPropertyField({
                                              trait,
@@ -46,7 +49,7 @@ export default function TraitPropertyField({
   // console.log(trait);
   let inputToRender = (
     <TextInput
-      label={trait.getLabel()}
+      label={capitalizeFirstLetter(trait.getLabel())}
       size="xs"
       placeholder={defValue || ''}
       value={value}
