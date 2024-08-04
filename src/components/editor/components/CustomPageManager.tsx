@@ -12,7 +12,7 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import React, { useEffect, useState } from 'react';
-import { PagesResultProps, useEditor } from '../wrappers';
+import {  useEditor } from '../wrappers';
 import { IconDotsVertical, IconExclamationCircle, IconLink, IconPlus, IconTrash } from '@tabler/icons-react';
 import { modals } from '@mantine/modals';
 import { Page } from 'grapesjs';
@@ -22,24 +22,170 @@ import TextLength from '@/components/common/TextLength';
 import { notifications } from '@mantine/notifications';
 import useUser from '@/hooks/use-user';
 
-
-type CreatePageProps = {
-  editingPageId: string
-  pages: Page[],
-  add: any,
-  opened: boolean
-  onClose: () => void
+interface ExtendedPage extends Page {
+  attributes: {
+    name:string;
+    slug: string;
+    title: string;
+    description: string;
+    [key: string]: any; // For any other attributes that might be present
+  };
+}
+// Update the prop types
+interface EditPageProps {
+  editingPage: ExtendedPage | null;
+  opened: boolean;
+  onClose: () => void;
 }
 
+interface CreatePageProps {
+  editingPageId: string;
+  pages: ExtendedPage[];
+  add: (page: Partial<ExtendedPage>) => ExtendedPage;
+  opened: boolean;
+  onClose: () => void;
+}
+
+interface PagesResultProps {
+  pages: ExtendedPage[];
+  selected: ExtendedPage | null;
+  add: (page: Partial<ExtendedPage>) => ExtendedPage;
+  select: (page: ExtendedPage) => void;
+  remove: (page: ExtendedPage) => void;
+}
+
+
+const formSchema = z.object({
+  name: z.string().max(60, 'Title must be at most 60 characters'),
+  title: z.string().max(60, 'Title must be at most 60 characters'),
+  description: z.string().max(160, 'Description must be at most 160 characters'),
+  slug: z.string()
+    .max(160, 'Slug must be at most 160 characters')
+    .refine(slug => slug === slug.toLowerCase(), {
+      message: 'Slug must be all lowercase',
+    })
+    .refine(slug => /^[a-z0-9-\/]+$/.test(slug), {
+      message: 'Slug can only contain lowercase letters, numbers, hyphens (-), and forward slashes (/)',
+    })
+    .refine(slug => !/^-|-$/.test(slug), {
+      message: 'Slug cannot start or end with a hyphen',
+    })
+    .refine(slug => !/^\/|\/\/|\/\/$/.test(slug), {
+      message: 'Slug cannot start or end with a forward slash, and cannot contain consecutive forward slashes',
+    }),
+});
+
+export function EditPageModal({ editingPage, opened, onClose }: EditPageProps) {
+  const editor = useEditor();
+  console.log('page edit',editingPage);
+
+  const form = useForm({
+    initialValues: {
+      name: '',
+      slug: '',
+      title: '',
+      description: '',
+    },
+    validate: zodResolver(formSchema),
+  });
+
+  useEffect(() => {
+    if (editingPage) {
+      form.setValues({
+        name: editingPage.getName() || '',
+        slug: editingPage.attributes.slug || '',
+        title: editingPage.attributes.title || '',
+        description: editingPage.attributes.description || '',
+      });
+    }
+  }, [editingPage]);
+
+  const handleSubmit = (values: typeof form.values) => {
+    if (editingPage && editingPage.attributes.slug !== 'index') {
+      editingPage.set(values);
+      editor.Pages.select(editingPage.getId());
+      notifications.show({
+        title: 'Success!',
+        message: 'Your page settings have been successfully saved!',
+        color: 'green',
+      });
+      onClose();
+    }
+  };
+
+  return (
+    <Modal
+      centered
+      size="lg"
+      scrollAreaComponent={ScrollArea.Autosize}
+      opened={opened}
+      onClose={onClose}
+      title={`Edit ${editingPage?.getName()} page settings`}
+    >
+      <form onSubmit={form.onSubmit(handleSubmit)}>
+        <div className="flex items-start gap-4 flex-col my-4 w-full">
+          <TextInput
+            className="w-full"
+            label="Page name"
+            placeholder="Insert your page name here..."
+            {...form.getInputProps('name')}
+          />
+          <div className="flex gap-2 flex-col w-full">
+            <TextInput
+              className="w-full"
+              label="Page Slug"
+              description="Slug must be all lowercase and must not contain spaces. Use '-' to separate words and '/' to separate paths."
+              placeholder="Insert your page slug here..."
+              {...form.getInputProps('slug')}
+            />
+            {form.values.slug === 'index' && (
+              <p className="text-red-500 text-xs">/index should be reserved for your homepage</p>
+            )}
+            <div className="flex gap-2">
+              <IconLink size="1rem" />
+              <p className="text-xs">/{form.values.slug}</p>
+            </div>
+          </div>
+
+          <Divider className="w-full" my="xs" label="Page metadata settings" />
+          {form.values.slug === 'index' && (
+            <p className="text-red-500 text-xs">Set homepage(/index) metadata in site settings</p>
+          )}
+          <TextInput
+            className="w-full"
+            label="Title"
+            disabled={form.values.slug === 'index'}
+            placeholder="Insert your title here..."
+            {...form.getInputProps('title')}
+            rightSection={form.values.title && (
+              <TextLength maxLength={60} value={form.values.title} />
+            )}
+          />
+          <Textarea
+            className="w-full"
+            label="Description"
+            disabled={form.values.slug === 'index'}
+            placeholder="Insert your description here..."
+            {...form.getInputProps('description')}
+            rightSectionWidth={40}
+            rightSection={form.values.description && (
+              <TextLength maxLength={160} value={form.values.description} />
+            )}
+          />
+        </div>
+        <div className="flex items-end justify-end w-full">
+          <Button type="submit">Save Changes</Button>
+        </div>
+      </form>
+    </Modal>
+  );
+}
 
 function CreatePageModal({ editingPageId, opened, onClose }: CreatePageProps) {
 
   const editor = useEditor();
-
-  const page = editor.Pages.get(editingPageId);
+  const page = editor.Pages.get(editingPageId) as ExtendedPage | undefined;
   const pageName = editor.Pages.get(editingPageId)?.getName();
-  const pageData = editor.Pages.get(editingPageId)?.attributes;
-  // console.log(pageData);
 
 
   const formSchema = z.object({
@@ -56,20 +202,14 @@ function CreatePageModal({ editingPageId, opened, onClose }: CreatePageProps) {
       }),
   });
 
-  useEffect(() => {
-    // This assumes getProjectData is synchronous; if not, adjust accordingly.
-    form.setValues({ name: pageName });
-    // @ts-ignore
-    form.setValues({ slug: page?.attributes.slug });
-  }, [editingPageId, opened]);
 
   const form = useForm({
     initialValues: {
-      name: 'Insert page name here',
-      slug: 'Insert slug here',
-      component: pageData?.component || '',
-      title: pageData?.title || '',
-      description: pageData?.description || '',
+      name: '',
+      slug: '',
+      component: '',
+      title: '',
+      description: '',
     },
     validate: zodResolver(formSchema), // Here you integrate Zod's validation with useForm
   });
@@ -77,7 +217,7 @@ function CreatePageModal({ editingPageId, opened, onClose }: CreatePageProps) {
   const validateBeforeSubmit = () => {
     form.validate();
     const isValid = form.isValid();
-    if (isValid && page?.attributes.slug !== 'index') {
+    if(isValid){
       page?.set(form.values);
       // @ts-ignore
       editor.Pages.select(editingPageId);
@@ -88,6 +228,7 @@ function CreatePageModal({ editingPageId, opened, onClose }: CreatePageProps) {
         color: 'green',
       });
 
+      // @ts-ignore
       editor.Pages.select(editingPageId);
       onClose();
     }
@@ -95,7 +236,7 @@ function CreatePageModal({ editingPageId, opened, onClose }: CreatePageProps) {
   };
 
   return <Modal centered size="lg" scrollAreaComponent={ScrollArea.Autosize} opened={opened} onClose={onClose}
-                title={`${pageName} Page Settings`}>
+                title='Create Page'>
     <div className="flex items-start gap-4 flex-col my-4 w-full">
       <TextInput className="w-full"
                  label="Page name"
@@ -160,13 +301,21 @@ export default function CustomPageManager({
                                             remove,
                                           }: PagesResultProps) {
   const [editingPageId, setEditingPageId] = useState<string>('');
-  const [opened, { open, close }] = useDisclosure(false);
+  const [editingPage, setEditingPage] = useState<ExtendedPage | null>(null);
+  const [createModalOpened, createModalHandlers] = useDisclosure(false);
+  const [editModalOpened, editModalHandlers] = useDisclosure(false);
+
   const { user } = useUser();
 
   // pages frames are being deleted when i select another page
   console.log('pages', pages);
 
-  const openModal = (pageToDelete: Page) => {
+  const openEditModal = (page: ExtendedPage) => {
+    setEditingPage(page);
+    editModalHandlers.open();
+  };
+
+  const openModal = (pageToDelete: ExtendedPage) => {
 
     if (pageToDelete.attributes.slug === 'index') {
       modals.openConfirmModal({
@@ -210,9 +359,10 @@ export default function CustomPageManager({
       const nextIndex = pages.length + 1;
       // Assuming `add` now returns the ID of the newly added page
       const newPage = add({
+        //  @ts-ignore
         name: `page ${nextIndex}`,
         slug: '',
-        component: `<h1>Page ${nextIndex}</h1>`,
+        component: '',
         title: 'Boilerplate title',
         description: 'Boilerplate description',
       });
@@ -220,7 +370,7 @@ export default function CustomPageManager({
       // @ts-ignore
       setEditingPageId(newPage?.id);
       // Open the modal for editing the new page
-      open();
+      createModalHandlers.open();
     }
   };
 
@@ -256,63 +406,64 @@ export default function CustomPageManager({
           <Button
             fullWidth
             justify="space-between"
-            // leftSection={<IconFile size="1rem" />}
             key={page.getId()}
             size="xs"
             variant={page === selected ? 'filled' : 'subtle'}
             onClick={() => select(page)}
-            rightSection={page.attributes.slug === 'index' || user?.subscription !== 'free' ?
-              <Menu
-                shadow="md"
-                width={200}
-                position="right-start"
-                offset={10}
-                // disabled={page.attributes.slug === 'index'}
-              >
-                <Menu.Target>
-                  <ActionIcon size="sm" variant="subtle">
-                    <IconDotsVertical size="1rem"
-                    />
-                  </ActionIcon>
-                </Menu.Target>
-                <Menu.Dropdown>
-                  <Menu.Label>Page Settings</Menu.Label>
-                  <Menu.Item
-                    // disabled={page.attributes.slug === 'index'}
-                    onClick={() => {
-                      setEditingPageId(page.getId());
-                      open();
-                    }
-                    }
-                  >
-                    Edit
-                  </Menu.Item>
-                  {/*<Menu.Item*/}
-                  {/*  disabled={page.attributes.slug !== 'index' }*/}
-                  {/*  onClick={() => duplicatePage(page)}*/}
-                  {/*>*/}
-                  {/*  Duplicate*/}
-                  {/*</Menu.Item>*/}
-                  <Menu.Divider />
-                  <Menu.Label>Danger zone</Menu.Label>
-                  <Menu.Item
-                    onClick={() => openModal(page)}
-                    color="red"
-                    leftSection={<IconTrash size="1rem" />}
-                  >
-                    Delete page
-                  </Menu.Item>
-                </Menu.Dropdown>
-              </Menu> :
-              <Tooltip label="Edit your homepage setting in site settings">
-                <IconExclamationCircle size="1rem"
-                />
-              </Tooltip>
+            rightSection={
+              page.attributes.slug === 'index' || user?.subscription !== 'free' ? (
+                <Menu
+                  shadow="md"
+                  width={200}
+                  position="right-start"
+                  offset={10}
+                >
+                  <Menu.Target>
+                    <ActionIcon size="sm" variant="subtle">
+                      <IconDotsVertical size="1rem" />
+                    </ActionIcon>
+                  </Menu.Target>
+                  <Menu.Dropdown>
+                    <Menu.Label>Page Settings</Menu.Label>
+                    <Menu.Item onClick={() => openEditModal(page)}>
+                      Edit
+                    </Menu.Item>
+                    <Menu.Divider />
+                    <Menu.Label>Danger zone</Menu.Label>
+                    <Menu.Item
+                      onClick={() => openModal(page)}
+                      color="red"
+                      leftSection={<IconTrash size="1rem" />}
+                    >
+                      Delete page
+                    </Menu.Item>
+                  </Menu.Dropdown>
+                </Menu>
+              ) : (
+                <Tooltip label="Edit your homepage setting in site settings">
+                  <IconExclamationCircle size="1rem" />
+                </Tooltip>
+              )
             }
-          >{page.getName() || 'Untitled page'}</Button>
+          >
+            {page.getName() || 'Untitled page'}
+          </Button>
         </div>
       ))}
-      <CreatePageModal editingPageId={editingPageId} pages={pages} add={add} opened={opened} onClose={close} />
+
+      <CreatePageModal
+        opened={createModalOpened}
+        onClose={createModalHandlers.close}
+        add={add}
+        pages={pages}
+        editingPageId={editingPageId}
+      />
+
+      <EditPageModal
+        editingPage={editingPage}
+        opened={editModalOpened}
+        onClose={editModalHandlers.close}
+      />
     </div>
   );
 }
