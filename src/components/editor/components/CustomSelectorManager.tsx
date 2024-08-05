@@ -56,7 +56,6 @@ export default function CustomSelectorManager({
   const [, forceUpdate] = useState({});
   const theme = useMantineTheme();
 
-  console.log('selectors', selectors.map((sel)=> sel.getActive()));
 
   const viewport = useRef<HTMLDivElement>(null);
 
@@ -189,7 +188,6 @@ export default function CustomSelectorManager({
     }
   }, [editor, selectors]);
 
-  const activeSelector = getActiveSelector();
 
   const values = selectors.map((selector: Selector, index: number) => {
       const protectedClass = selector?.get('protected');
@@ -354,7 +352,10 @@ export default function CustomSelectorManager({
     formattedCss = 'No css found';
   }
 
+  // console.log();
+
   // console.log(formattedCss);
+
   return (
     <div className=" flex flex-col  gap-2 text-left">
       <div className="flex items-center gap-2">
