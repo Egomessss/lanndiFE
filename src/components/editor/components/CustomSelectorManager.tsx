@@ -457,7 +457,7 @@ export default function CustomSelectorManager({
                          that provides detailed usage instructions.</p>
                        <p>For further customization, we recommend searching for additional CSS property options
                          online.</p>  <p>Tip 1: Use ID to style a single component independently</p>
-                       <p>Tip 2: Use classes/selectors to style multiple component simultaneously</p>
+                       <p>Tip 2: Use classes/selectors to style multiple component simultaneously, use the BEM naming convection: Block-Element-Modifier</p>
                        <p>Tip 3: ID always takes precedent in styling over classes. e.g. if you style a block
                          height
                          using its ID you won&apos;t be able to change the height using class, only if you remove that
@@ -476,7 +476,7 @@ export default function CustomSelectorManager({
                          black, you just add another class on top of the select block such as hero-heading-text-black
                          thus allowing you to make slight changes to a block style without modifying certain classes</p>
                        <p>Tip.8: If you do not have a class in your component it will styled by id</p>
-                       <p className="font-bold">The selected classes that are stylable with classes are displayed
+                       <p className="font-bold">Tip.9: The selected classes that are stylable with classes are displayed
                          with <span className="bg-blue-600 rounded-sm p-1">a blue background</span> otherwise they will
                          styled with ID</p>
                        <p className="font-bold">Important: Always remember If you can&apos;t change a style its either

@@ -23,7 +23,7 @@ export function SaveButton({ canAutosaveLoadedData }: { canAutosaveLoadedData: b
   const [showSuccess, setShowSuccess] = useState(false);
   const { data: isNotFirstTimeSaving } = useEditorData();
   const idle = useIdle(300000); // 5mins idle
-
+  const queryClient = useQueryClient();
   // console.log('can auto', canAutosaveLoadedData);
 
 
@@ -94,7 +94,7 @@ export function SaveButton({ canAutosaveLoadedData }: { canAutosaveLoadedData: b
     onSuccess: () => {
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 2000);
-      // queryClient.invalidateQueries({ queryKey: ['editorData', siteSlug] });
+      queryClient.invalidateQueries({ queryKey: ['editorData', siteSlug] });
       // queryClient.setQueryData(['editorData', siteSlug], savedData);
     },
   });
@@ -143,7 +143,7 @@ export function SaveButton({ canAutosaveLoadedData }: { canAutosaveLoadedData: b
       <ActionIcon
         disabled={isPending}
         loading={isPending}
-        className={!showSuccess && canAutosaveLoadedData ? 'animate-pulse' : ''}
+        className={!showSuccess && canAutosaveLoadedData ? 'animate-pulse text-red-500' : ''}
         color={color}
         onClick={() => handleSave(false)}
         variant="subtle"

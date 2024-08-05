@@ -27,7 +27,7 @@ function useEditorData() {
       const response = await axios.get(`/api/v1/editor/${siteSlug}`);
       return response.data as EditorData;
     },
-    // staleTime: Infinity,
+    staleTime: Infinity,
     // The query is enabled only if not in demo mode
     enabled: !isDemo,
   });
