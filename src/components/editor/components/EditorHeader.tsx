@@ -38,7 +38,7 @@ function PublishButton({ siteData }: any) {
 
   const params = useParams();
   const siteSlug = params.slug;
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
   const editor = useEditorMaybe();
 
 
@@ -100,7 +100,7 @@ function PublishButton({ siteData }: any) {
           message: 'Your website has been successfully published and your editor data automatically saved.',
           color: 'green',
         });
-        queryClient.invalidateQueries({ queryKey: ['editorData', siteSlug] });
+        // queryClient.invalidateQueries({ queryKey: ['editorData', siteSlug] });
       },
     },
   );

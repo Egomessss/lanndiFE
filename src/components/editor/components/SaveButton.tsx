@@ -7,7 +7,7 @@ import { useIdle } from '@mantine/hooks';
 import { notifications } from '@mantine/notifications';
 import axios from '@/lib/axios';
 import { ActionIcon, Tooltip } from '@mantine/core';
-import { IconCheck, IconDeviceFloppy, IconFaceIdError } from '@tabler/icons-react';
+import { IconCheck, IconDeviceFloppy, IconFaceIdError, IconX } from '@tabler/icons-react';
 
 interface Payload {
   projectId: string | string[];
@@ -20,7 +20,6 @@ export function SaveButton({ canAutosaveLoadedData }: { canAutosaveLoadedData: b
   const editor = useEditorMaybe();
   const params = useParams();
   const siteSlug = params.slug;
-  const queryClient = useQueryClient();
   const [showSuccess, setShowSuccess] = useState(false);
   const { data: isNotFirstTimeSaving } = useEditorData();
   const idle = useIdle(300000); // 5mins idle
@@ -95,7 +94,8 @@ export function SaveButton({ canAutosaveLoadedData }: { canAutosaveLoadedData: b
     onSuccess: () => {
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 2000);
-      queryClient.invalidateQueries({ queryKey: ['editorData', siteSlug] });
+      // queryClient.invalidateQueries({ queryKey: ['editorData', siteSlug] });
+      // queryClient.setQueryData(['editorData', siteSlug], savedData);
     },
   });
 
@@ -120,26 +120,38 @@ export function SaveButton({ canAutosaveLoadedData }: { canAutosaveLoadedData: b
 
   const color = isError ? 'red' : showSuccess ? 'green' : 'blue';
 
+  const tooltipContent = canAutosaveLoadedData ? (
+    <div className="flex flex-col gap-4">
+      <p>Save changes - Saved automatically every 2 minutes. </p>
+      <p>Every Site is cached which means your changes will take 15 seconds to take effect after initial page load</p>
+      <p>Autosave functionality doesn&apos;t update your preview pages only by clicking you can update</p>
+    </div>
+  ) : (
+    <div className="flex flex-col gap-4">
+      <p>Data is not being autosaved.</p>
+      <p>Click to manually save your changes.</p>
+    </div>
+  );
+
   return (
-    <Tooltip color="dark"
-             w={250}
-             multiline
-             label={<div className="flex flex-col gap-4">
-               <p>Save changes - Saved automatically every 2 minutes. </p>
-               <p>Every
-                 Site is cached which means your changes will take 15 seconds to take effect after inital page load</p>
-               <p>Autosave functionality doesn&apos;t update your preview pages only by clicking you can update</p>
-             </div>}>
+    <Tooltip
+      color="dark"
+      w={250}
+      multiline
+      label={tooltipContent}
+    >
       <ActionIcon
         disabled={isPending}
         loading={isPending}
-        className={!showSuccess ? 'animate-pulse' : ''}
+        className={!showSuccess && canAutosaveLoadedData ? 'animate-pulse' : ''}
         color={color}
         onClick={() => handleSave(false)}
         variant="subtle"
       >
         {isError && <IconFaceIdError size="1rem" />}
-        {!isPending && showSuccess ? <IconCheck size="1rem" /> : <IconDeviceFloppy size="1rem" />}
+        {!isPending && showSuccess && <IconCheck size="1rem" />}
+        {!isPending && !showSuccess && canAutosaveLoadedData && <IconDeviceFloppy size="1rem" />}
+        {!isPending && !showSuccess && !canAutosaveLoadedData && <IconX size="1rem" />}
       </ActionIcon>
     </Tooltip>
   );

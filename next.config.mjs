@@ -25,10 +25,10 @@ const nextConfig = {
   //   ];
   // },
 
-  // compiler: {
-  //   removeConsole: process.env.NODE_ENV === 'production',
-  // },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
 };
 
-if (process.env.NODE_ENV === 'production') nextConfig.compiler = { removeConsole: true };
+// if (process.env.NODE_ENV === 'production') nextConfig.compiler = { removeConsole: true };
 
